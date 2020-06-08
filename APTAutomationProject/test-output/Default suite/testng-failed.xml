@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="com.saksoft.qa.apttestscripts.APT_AutomationTest">
+        <methods>
+          <include name="setup"/>
+          <include name="startReport"/>
+          <include name="endReport"/>
+          <include name="Teardown"/>
+          <include name="verifycreateorder" invocation-numbers="0"/>
+          <include name="BeforeMethod"/>
+          <include name="BeforeSuite"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- com.saksoft.qa.apttestscripts.APT_AutomationTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

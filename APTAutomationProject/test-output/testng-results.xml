@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="APT application End-to-End" duration-ms="114573" started-at="2020-05-26T08:23:26Z" finished-at="2020-05-26T08:25:20Z">
+    <groups>
+    </groups>
+    <test name="APT login" duration-ms="114573" started-at="2020-05-26T08:23:26Z" finished-at="2020-05-26T08:25:20Z">
+      <class name="com.saksoft.qa.apttestscripts.APT_AutomationTest">
+        <test-method status="PASS" signature="BeforeSuite()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_AutomationTest@14acaea5]" name="BeforeSuite" is-config="true" duration-ms="27604" started-at="2020-05-26T13:52:58Z" finished-at="2020-05-26T13:53:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeSuite -->
+        <test-method status="PASS" signature="startReport()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_AutomationTest@14acaea5]" name="startReport" is-config="true" duration-ms="107" started-at="2020-05-26T13:53:26Z" finished-at="2020-05-26T13:53:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startReport -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_AutomationTest@14acaea5]" name="setup" is-config="true" duration-ms="0" started-at="2020-05-26T13:53:26Z" finished-at="2020-05-26T13:53:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="BeforeMethod(java.lang.reflect.Method, org.testng.ITestContext, [Ljava.lang.Object;)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_AutomationTest@14acaea5]" name="BeforeMethod" is-config="true" duration-ms="1" started-at="2020-05-26T13:53:27Z" finished-at="2020-05-26T13:53:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.saksoft.qa.apttestscripts.APT_AutomationTest.choosecustomer(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@29170a47]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@2a8f8555]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeMethod -->
+        <test-method status="PASS" signature="choosecustomer(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_AutomationTest@14acaea5]" name="choosecustomer" duration-ms="78099" started-at="2020-05-26T13:53:27Z" description="TC-02" data-provider="Finaldatareader" finished-at="2020-05-26T13:54:45Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Existing RFIREQNumber=NGINRFI_23, NewOrderNumber=NewOrderTest01, Email=ngin23@test.com, ExistingOrderNumber=NGINOrder_23, NewRFIREQNumber=WholeSale, CountryToBeSelected=BE (Belgium), Reference=testreference23, ExistingOrderService=No, DedicatedPortal=Vodafone Portal, Name=NGIN_23, TechnicalContactName=ngincontact23, ChooseCustomerToBeSelected=NGIN_23, DedicatedPortalStatus=NO, Phone=9876898363, NewOrderService=Yes, MainDomain=ngindomain23.com, OCN=nginocn23, Fax=238883, TypeToBeSelected=Colt Telecom - internal, Name1=NGIN_, Name2=23}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- choosecustomer -->
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_AutomationTest@14acaea5]" name="getResult" is-config="true" duration-ms="0" started-at="2020-05-26T13:54:45Z" finished-at="2020-05-26T13:54:45Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=choosecustomer status=SUCCESS method=APT_AutomationTest.choosecustomer(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_AutomationTest@14acaea5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getResult -->
+        <test-method status="PASS" signature="verifycreateorder(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_AutomationTest@14acaea5]" name="verifycreateorder" duration-ms="34877" started-at="2020-05-26T13:54:45Z" description="TC-03" data-provider="Finaldatareader" finished-at="2020-05-26T13:55:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Existing RFIREQNumber=NGINRFI_23, NewOrderNumber=NewOrderTest01, Email=ngin23@test.com, ExistingOrderNumber=NGINOrder_23, NewRFIREQNumber=WholeSale, CountryToBeSelected=BE (Belgium), Reference=testreference23, ExistingOrderService=No, DedicatedPortal=Vodafone Portal, Name=NGIN_23, TechnicalContactName=ngincontact23, ChooseCustomerToBeSelected=NGIN_23, DedicatedPortalStatus=NO, Phone=9876898363, NewOrderService=Yes, MainDomain=ngindomain23.com, OCN=nginocn23, Fax=238883, TypeToBeSelected=Colt Telecom - internal, Name1=NGIN_, Name2=23}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifycreateorder -->
+        <test-method status="PASS" signature="BeforeMethod(java.lang.reflect.Method, org.testng.ITestContext, [Ljava.lang.Object;)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_AutomationTest@14acaea5]" name="BeforeMethod" is-config="true" duration-ms="0" started-at="2020-05-26T13:54:45Z" finished-at="2020-05-26T13:54:45Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.saksoft.qa.apttestscripts.APT_AutomationTest.verifycreateorder(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@29170a47]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@402b4f81]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeMethod -->
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_AutomationTest@14acaea5]" name="getResult" is-config="true" duration-ms="1" started-at="2020-05-26T13:55:20Z" finished-at="2020-05-26T13:55:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifycreateorder status=SUCCESS method=APT_AutomationTest.verifycreateorder(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_AutomationTest@14acaea5] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getResult -->
+        <test-method status="PASS" signature="Teardown()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_AutomationTest@14acaea5]" name="Teardown" is-config="true" duration-ms="0" started-at="2020-05-26T13:55:20Z" finished-at="2020-05-26T13:55:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Teardown -->
+        <test-method status="PASS" signature="endReport()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_AutomationTest@14acaea5]" name="endReport" is-config="true" duration-ms="275" started-at="2020-05-26T13:55:20Z" finished-at="2020-05-26T13:55:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endReport -->
+      </class> <!-- com.saksoft.qa.apttestscripts.APT_AutomationTest -->
+    </test> <!-- APT login -->
+  </suite> <!-- APT application End-to-End -->
+</testng-results>

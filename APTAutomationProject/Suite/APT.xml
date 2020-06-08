@@ -1,0 +1,22 @@
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="APT application End-to-End" thread-count="1" verbose="1"
+	annotations="JDK">
+	
+
+	<test name="APT login" junit="false"
+		preserve-order="true">
+		<classes>
+
+			<class name="com.saksoft.qa.apttestscripts.APT_AutomationTest"/>
+			
+
+		</classes>
+	</test>
+	
+	
+</suite>
+
+
+
+

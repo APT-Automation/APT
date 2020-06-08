@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="APT application End-to-End" thread-count="1" verbose="1"
+	annotations="JDK">
+	
+
+	<listeners>
+		<listener class-name="com.saksoft.qa.listeners.TestListener" />
+	</listeners>
+	
+	
+	
+	<test name="APT login" junit="false"
+		preserve-order="true">
+		<classes>
+
+			<class name="com.saksoft.qa.testscripts.APT_Login"/>
+			
+			<methods>
+					<include name="APT_HeaderLogin" />
+				</methods>
+			
+
+		</classes>
+	</test>
+	
+	
+</suite>

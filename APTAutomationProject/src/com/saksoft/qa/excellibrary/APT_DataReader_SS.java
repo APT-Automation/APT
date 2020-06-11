@@ -48,7 +48,8 @@ public class APT_DataReader_SS {
 	 */
 
 	@DataProvider(name = "SampleOrder1", parallel = false)
-	public static Object[][] dataReaderUsinghashTable() throws IOException {
+	public static Object[][] dataReaderUsinghashTable() throws IOException 
+	{
 
 		System.out.println("Fetching the file");
 		FileInputStream file = new FileInputStream(

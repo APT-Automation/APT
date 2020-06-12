@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<locators>
+<msplatency>
+
+<managecoltnetworklink>(//div[@class='ant-menu-submenu-title'])[4]</managecoltnetworklink>
+<msplatencylink>//li[text()='MSP Latency Grid']</msplatencylink>
+<msplatency_header>//div[@class='heading-green-row row']</msplatency_header>
+<addmsplatency_link>(//div[@class='col']//a)[1]</addmsplatency_link>
+<generatecircuits_link>(//div[@class='col']//a)[2]</generatecircuits_link>
+<viewgeneratedcircuits_link>(//div[@class='col']//a)[3]</viewgeneratedcircuits_link>
+<viewremovedcircuithistory_link>(//div[@class='col']//a)[4]</viewremovedcircuithistory_link>
+<uploadthresholdvalues_link>(//div[@class='col']//a)[5]</uploadthresholdvalues_link>
+<citycode_column>//div[@col-id='cityCode'][@role='presentation']</citycode_column>
+<cityname_column>//div[@col-id='cityName'][@role='presentation']</cityname_column>
+<devicename_column>//div[@col-id='deviceName'][@role='presentation']</devicename_column>
+<deviceip_column>//div[@col-id='deviceAddress'][@role='presentation']</deviceip_column>
+<aspendeviceid_column>//div[@col-id='aspenDeviceId'][@role='presentation']</aspendeviceid_column>
+<aspenportname_column>//div[@col-id='aspenPortName'][@role='presentation']</aspenportname_column>
+<aspenportid_column>//div[@col-id='aspenPortId'][@role='presentation']</aspenportid_column>
+<vlanid_column>//div[@col-id='vlanId'][@role='presentation']</vlanid_column>
+<cancelbutton>(//button[@type='submit']//span)[2]</cancelbutton>
+<okbutton>(//button[@type='submit']//span)[3]</okbutton>
+<warningmsg_city>//input[@id='searchCity']/parent::div//div</warningmsg_city>
+<warningmsg_deviceip>//input[@id='deviceIP']/parent::div//div</warningmsg_deviceip>
+<warningmsg_Aspenportname>//label[text()='Aspen Port Name']/parent::div/following-sibling::div</warningmsg_Aspenportname>
+<warningmsg_devicename>//input[@id='deviceName']/parent::div//div</warningmsg_devicename>
+<warningmsg_vlanid>//input[@id='VLANID']/parent::div//div</warningmsg_vlanid>
+<city_textfield>//input[@id='searchCity']</city_textfield>
+<available_dropdown>(//label[text()='Available']/parent::div//input)[1]</available_dropdown>
+<available_dropdownvalue>(//label[text()='Available']/parent::div//span)[2]</available_dropdownvalue>
+<deviceip_textfield>//input[@id='deviceIP']</deviceip_textfield>
+<searchinaspen_button>(//button[@type='submit']//span)[1]</searchinaspen_button>
+<aspenportnamevalue>(//label[text()='Aspen Port Name']/parent::div//span)[2]</aspenportnamevalue>
+<devicenamevalue>//input[@id='deviceName']/parent::div//input</devicenamevalue>
+<vlanid_textfield>//input[@id='VLANID']/parent::div//input</vlanid_textfield>
+<successmsg>//div[@role='alert']//span</successmsg>
+<aspendeviceid_cellvalue>(//div[@class='app-main']//div[@role='gridcell'][@col-id='aspenDeviceId'])[1]</aspendeviceid_cellvalue>
+<aspenportname_cellvalue>(//div[@class='app-main']//div[@role='gridcell'][@col-id='aspenPortName'])[1]</aspenportname_cellvalue>
+<aspenportid_cellvalue>(//div[@class='app-main']//div[@role='gridcell'][@col-id='aspenPortId'])[1]</aspenportid_cellvalue>
+<vlanid_cellvalue>(//div[@class='app-main']//div[@role='gridcell'][@col-id='vlanId'])[1]</vlanid_cellvalue>
+<alertpopup>//div[@class='modal-content']</alertpopup>
+<generatecircuits_cancel>//button[@type='button'][text()='Cancel']</generatecircuits_cancel>
+<generatecircuits_ok>//button[@type='button'][text()='Ok']</generatecircuits_ok>
+<circuitname_textfield>//div//input[@id='circuitName']</circuitname_textfield>
+<backbutton>(//button[@type='submit']//span)[1]</backbutton>
+<searchbutton>(//button[@type='submit']//span)[2]</searchbutton>
+<generatedcircuit>(//div[@class='div-border div-margin container'])[2]</generatedcircuit>
+<existingcircuitname>(//div[@role='gridcell'])[2]//table//b</existingcircuitname>
+<connectionname_column>((//div[@ref='eLabel'])[2]//span)[1]</connectionname_column>
+<actions_column>((//div[@ref='eLabel'])[3]//span)[1]</actions_column>
+<threshold_column>((//div[@ref='eLabel'])[4]//span)[1]</threshold_column>
+<aspensyncstatus>((//div[@role='gridcell'])[2]//table//span//em)[1]</aspensyncstatus>
+<vistamartsyncstatus>((//div[@role='gridcell'])[2]//table//span//em)[2]</vistamartsyncstatus>
+<generatedcircuit_devicename_column>((//div[@role='gridcell'])[2]//table//tr)[2]//th[1]</generatedcircuit_devicename_column>
+<generatedcircuit_deviceip_column>((//div[@role='gridcell'])[2]//table//tr)[2]//th[2]</generatedcircuit_deviceip_column>
+<generatedcircuit_aspenportname_column>((//div[@role='gridcell'])[2]//table//tr)[2]//th[3]</generatedcircuit_aspenportname_column>
+<generatedcircuit_provisionedvlanid_column>((//div[@role='gridcell'])[2]//table//tr)[2]//th[4]</generatedcircuit_provisionedvlanid_column>
+<viewcircuithistory_link>(//div[@class='ag-react-container']//a)[1]</viewcircuithistory_link>
+<fetchinfofromaspen_link>(//div[@class='ag-react-container']//a)[2]</fetchinfofromaspen_link>
+<circuithistorydata>//div[@class='row']//ul</circuithistorydata>
+<aspen_okbutton>(//div[@class='modal-content']//button[@type='button'])[2]</aspen_okbutton>
+<createselectedcircuitsinaspen_link>(//div[@class='row']//a)[1]</createselectedcircuitsinaspen_link>
+<synchronizeselectedcircuitstovistamart_link>(//div[@class='row']//a)[2]</synchronizeselectedcircuitstovistamart_link>
+<removedcircuithistory_header>//div[@class='modal-header']//div</removedcircuithistory_header>
+<removedcircuithistorydata>//div[@class='row']//ul</removedcircuithistorydata>
+<close_removedcircuithistorypopup>(//button[@type='button']//span)[3]</close_removedcircuithistorypopup>
+<choosefile_uploadthreshold>//label[text()='File']/following-sibling::input</choosefile_uploadthreshold>
+<cancel_uploadthreshold>(//button[@type='submit']//span)[1]</cancel_uploadthreshold>
+<ok_uploadthreshold>(//button[@type='submit']//span)[2]</ok_uploadthreshold>
+<msp_actiondropdown>//button[@id='dropdown-basic-button']</msp_actiondropdown>
+<mspdelete_link>//div[@class='dropdown-menu show']//a[text()='Delete']</mspdelete_link>
+<deletebutton>//button[@type='button'][text()='Delete']</deletebutton>
+
+</msplatency>
+</locators>

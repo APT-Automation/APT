@@ -49,15 +49,15 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
-public class DriverHelper{
-	
+public class DriverHelper {
+
 	protected WebDriver driver;
 	Wait<WebDriver> wait;
 	WebElement el;
 	List<WebElement> ellist;
-	SoftAssert sa=new SoftAssert();
-	public static ThreadLocal<String> NameStatus= new ThreadLocal<>();
-	public static ThreadLocal<String> CustomerCreatedStatus= new ThreadLocal<>();
+	SoftAssert sa = new SoftAssert();
+	public static ThreadLocal<String> NameStatus = new ThreadLocal<>();
+	public static ThreadLocal<String> CustomerCreatedStatus = new ThreadLocal<>();
 //	public static XMLReader xml = null;
 //	
 //	
@@ -66,77 +66,64 @@ public class DriverHelper{
 //		xml = xmlValue;
 //		
 //	}
-	
-	
-	public DriverHelper(WebDriver dr)
-	{
-		driver=dr;
-		wait = new FluentWait<WebDriver>(driver) 
-				.withTimeout(60, TimeUnit.SECONDS)    
-				.pollingEvery(15, TimeUnit.SECONDS)    
-				.ignoring(NoSuchElementException.class)
-				.ignoring(StaleElementReferenceException.class);
+
+	public DriverHelper(WebDriver dr) {
+		driver = dr;
+		wait = new FluentWait<WebDriver>(driver).withTimeout(60, TimeUnit.SECONDS).pollingEvery(15, TimeUnit.SECONDS)
+				.ignoring(NoSuchElementException.class).ignoring(StaleElementReferenceException.class);
 	}
-	 
-	public void javascriptexecutor(WebElement el) throws InterruptedException
-	{
-		JavascriptExecutor js = (JavascriptExecutor)driver;
+
+	public void javascriptexecutor(WebElement el) throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView(true);", el);
-		//js.executeScript("window.scrollBy(0, 350)");
-		//window.scrollTo(0, 0);
+		// js.executeScript("window.scrollBy(0, 350)");
+		// window.scrollTo(0, 0);
 	}
-	
-	
+
 	public void Expandthesection(WebElement Section, WebElement ClickableElement) throws Exception {
-		Thread.sleep(5000);	
-		String classvalue=Getattribute(Section,"class");
-			System.out.println(classvalue);
-		if(!classvalue.contains("green")){
+		Thread.sleep(5000);
+		String classvalue = Getattribute(Section, "class");
+		System.out.println(classvalue);
+		if (!classvalue.contains("green")) {
 			System.out.println("In IF class");
-			//Clickon(ClickableElement);
+			// Clickon(ClickableElement);
 			safeJavaScriptClick(ClickableElement);
 			((JavascriptExecutor)
 
-					driver).executeScript("arguments[0].scrollIntoView(window.innerHeight/2);", ClickableElement);
-		}
-		else {
+			driver).executeScript("arguments[0].scrollIntoView(window.innerHeight/2);", ClickableElement);
+		} else {
 			System.out.println("Already expanded");
 		}
-		}
-	
-	
+	}
+
 	public void Clickonoutofviewport(WebElement locator) throws Exception {
-		((JavascriptExecutor)
-				driver).executeScript("arguments[0].scrollIntoView(window.innerHeight/2);", locator);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(window.innerHeight/2);", locator);
 		safeJavaScriptClick(locator);
 	}
-	
-	
+
 	public void Clickonoutofviewportwithstring(String locator) throws Exception {
-		((JavascriptExecutor)
-				driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//*[text()='Show Groups']")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",
+				driver.findElement(By.xpath("//*[text()='Show Groups']")));
 		safeJavaScriptClick(driver.findElement(By.xpath(locator)));
 	}
-	
-	
-	
+
 	@DataProvider
-	public static Map<String, String> getTestData(String sheetName){
+	public static Map<String, String> getTestData(String sheetName) {
 		Map<String, String> returnMap = new HashMap<String, String>();
 		try {
-			FileInputStream fis = new FileInputStream(new File("src\\com\\saksoft\\qa\\datalibrary\\APT_MCS_TESTDATA.xlsx"));
+			FileInputStream fis = new FileInputStream(
+					new File("src\\com\\saksoft\\qa\\datalibrary\\APT_MCS_TESTDATA.xlsx"));
 			XSSFWorkbook workbook = new XSSFWorkbook(fis);
-			
+
 			XSSFSheet sheet = workbook.getSheet(sheetName);
-			
+
 			switch (sheetName) {
 			case "Sheet1":
 				Iterator<Row> rowIterator = sheet.iterator();
-				
-				while(rowIterator.hasNext())
-				{
+
+				while (rowIterator.hasNext()) {
 					Row row = rowIterator.next();
-					if(row.getRowNum() != 0) {
+					if (row.getRowNum() != 0) {
 						/*
 						 * Iterator<Cell> cellIterator = row.cellIterator();
 						 * while(cellIterator.hasNext()) { Cell cell = cellIterator.next();
@@ -145,203 +132,180 @@ public class DriverHelper{
 						returnMap.put("Name", row.getCell(0).getStringCellValue());
 						returnMap.put("Device Type", row.getCell(1).getStringCellValue());
 						returnMap.put("Vender Model", row.getCell(2).getStringCellValue());
-						
+
 						returnMap.put("Router Id", row.getCell(4).getStringCellValue());
 						returnMap.put("Country", row.getCell(5).getStringCellValue());
 						returnMap.put("Management Address", row.getCell(6).getStringCellValue());
-						
+
 					}
-					
+
 				}
-							
-							break;
+
+				break;
 			case "Sheet2":
-				
-							
-							
-							break;
+
+				break;
 
 			default:
 				break;
 			}
-			
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
-			
+		} finally {
+
 		}
 		return returnMap;
 	}
-	
-	
-	public void WaitforElementtobeclickable(final String locator) throws InterruptedException
-	{
+
+	public void WaitforElementtobeclickable(final String locator) throws InterruptedException {
 		waitForpageload();
-		if(locator.startsWith("//") || locator.startsWith("(")) {
-		
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator))); 
-		//getwebelement(xml.getlocator("//locators/StandrdQuote"));
-		System.out.println("Code for Loading");
-		Thread.sleep(2000);
-		}
-		else if(locator.startsWith("name"))
-		{
-			wait.until(ExpectedConditions.elementToBeClickable(By.name(locator.split("=")[1]))); 
-			//getwebelement(xml.getlocator("//locators/StandrdQuote"));
+		if (locator.startsWith("//") || locator.startsWith("(")) {
+
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
+			// getwebelement(xml.getlocator("//locators/StandrdQuote"));
 			System.out.println("Code for Loading");
 			Thread.sleep(2000);
-			
-		}
-		else if(locator.startsWith("id"))
-		{
-			wait.until(ExpectedConditions.elementToBeClickable(By.id(locator.split("=")[1]))); 
-			//getwebelement(xml.getlocator("//locators/StandrdQuote"));
+		} else if (locator.startsWith("name")) {
+			wait.until(ExpectedConditions.elementToBeClickable(By.name(locator.split("=")[1])));
+			// getwebelement(xml.getlocator("//locators/StandrdQuote"));
 			System.out.println("Code for Loading");
 			Thread.sleep(2000);
-			
+
+		} else if (locator.startsWith("id")) {
+			wait.until(ExpectedConditions.elementToBeClickable(By.id(locator.split("=")[1])));
+			// getwebelement(xml.getlocator("//locators/StandrdQuote"));
+			System.out.println("Code for Loading");
+			Thread.sleep(2000);
+
 		}
 	}
-	public void Getloadingcomplete(final String locator) throws InterruptedException
-	{
-		wait.until(ExpectedConditions.attributeToBe(By.xpath(locator), "style", "display: none;")); 
-		//getwebelement(xml.getlocator("//locators/StandrdQuote"));
+
+	public void Getloadingcomplete(final String locator) throws InterruptedException {
+		wait.until(ExpectedConditions.attributeToBe(By.xpath(locator), "style", "display: none;"));
+		// getwebelement(xml.getlocator("//locators/StandrdQuote"));
 		System.out.println("Code for Loading");
 		Thread.sleep(2000);
-		
+
 	}
-	
-	public void CloseProposalwindow() throws InterruptedException
-	{   String parentWinHandle = driver.getWindowHandle();
-		Set<String> totalopenwindow=driver.getWindowHandles();
-		if(totalopenwindow.size()>1) {
-		for(String handle: totalopenwindow)
-		{
-            if(!handle.equals(parentWinHandle))
-            {
-            driver.switchTo().window(handle);
-            
-            }
-		}
-		driver.close();
-		driver.switchTo().window(parentWinHandle);
-		}
-		else {
+
+	public void CloseProposalwindow() throws InterruptedException {
+		String parentWinHandle = driver.getWindowHandle();
+		Set<String> totalopenwindow = driver.getWindowHandles();
+		if (totalopenwindow.size() > 1) {
+			for (String handle : totalopenwindow) {
+				if (!handle.equals(parentWinHandle)) {
+					driver.switchTo().window(handle);
+
+				}
+			}
+			driver.close();
+			driver.switchTo().window(parentWinHandle);
+		} else {
 			System.out.println("Something went wrong. Proposal has not be generated");
 		}
 	}
-	public void Switchtotabandsignthequote() throws Exception
-	{   String parentWinHandle = driver.getWindowHandle();
-		Set<String> totalopenwindow=driver.getWindowHandles();
-		for(String handle: totalopenwindow)
-		{
-            if(!handle.equals(parentWinHandle))
-            {
-            driver.switchTo().window(handle);
-            Thread.sleep(12000);
-            try {
-            safeJavaScriptClick(getwebelement("//*[@id='disclosureAccepted']"));
-            }
-            catch(Exception e) {
-            Clickon(getwebelement("//*[text()='Required']"));
-            }
-            Clickon(getwebelement("//button[text()='Continue']"));
-    		Clickon(getwebelement("//button[@data-qa='SignHere']"));
-    		Clickon(getwebelement("//div[@class='page-tabs']"));
-    		//create object 'action' of Actions class
-    		//Dragedrop(getwebelement("//button[@data-qa='SignHere']"),getwebelement("//div[@class='page-tabs']"));
-    		Thread.sleep(10000);
-    		Clickon(getwebelement("//button[text()='Adopt and Sign']"));
+
+	public void Switchtotabandsignthequote() throws Exception {
+		String parentWinHandle = driver.getWindowHandle();
+		Set<String> totalopenwindow = driver.getWindowHandles();
+		for (String handle : totalopenwindow) {
+			if (!handle.equals(parentWinHandle)) {
+				driver.switchTo().window(handle);
+				Thread.sleep(12000);
+				try {
+					safeJavaScriptClick(getwebelement("//*[@id='disclosureAccepted']"));
+				} catch (Exception e) {
+					Clickon(getwebelement("//*[text()='Required']"));
+				}
+				Clickon(getwebelement("//button[text()='Continue']"));
+				Clickon(getwebelement("//button[@data-qa='SignHere']"));
+				Clickon(getwebelement("//div[@class='page-tabs']"));
+				// create object 'action' of Actions class
+				// Dragedrop(getwebelement("//button[@data-qa='SignHere']"),getwebelement("//div[@class='page-tabs']"));
+				Thread.sleep(10000);
+				Clickon(getwebelement("//button[text()='Adopt and Sign']"));
 //    		Thread.sleep(10000);
 //    		Clickon(getwebelement("//button[text()='Ok']"));
-    		Thread.sleep(10000);
-    		WaitforElementtobeclickable("//button[text()='Finish']");
-    		Clickon(getwebelement("//button[text()='Finish']"));
-    		WaitforElementtobeclickable("(//button[text()='Continue'])[2]");
-    		Clickon(getwebelement("(//button[text()='Continue'])[2]"));
-    		Thread.sleep(10000);
-            }
+				Thread.sleep(10000);
+				WaitforElementtobeclickable("//button[text()='Finish']");
+				Clickon(getwebelement("//button[text()='Finish']"));
+				WaitforElementtobeclickable("(//button[text()='Continue'])[2]");
+				Clickon(getwebelement("(//button[text()='Continue'])[2]"));
+				Thread.sleep(10000);
+			}
 		}
 		driver.close();
 		driver.switchTo().window(parentWinHandle);
 	}
-	public void Switchtotab() throws Exception
-	{   String parentWinHandle = driver.getWindowHandle();
-		Set<String> totalopenwindow=driver.getWindowHandles();
-		for(String handle: totalopenwindow)
-		{
-            if(!handle.equals(parentWinHandle))
-            {
-            driver.switchTo().window(handle);
-            Thread.sleep(4000);
-           
-            }
+
+	public void Switchtotab() throws Exception {
+		String parentWinHandle = driver.getWindowHandle();
+		Set<String> totalopenwindow = driver.getWindowHandles();
+		for (String handle : totalopenwindow) {
+			if (!handle.equals(parentWinHandle)) {
+				driver.switchTo().window(handle);
+				Thread.sleep(4000);
+
+			}
 		}
-		//driver.close();
-		//driver.switchTo().window(parentWinHandle);
+		// driver.close();
+		// driver.switchTo().window(parentWinHandle);
 	}
-	public void Getmaploaded(final String framlocator, final String messagelocator) throws InterruptedException
-	{
-		
+
+	public void Getmaploaded(final String framlocator, final String messagelocator) throws InterruptedException {
+
 		System.out.println("Code for Map Loading");
 		Thread.sleep(3000);
-		String[] finalval=framlocator.split("=");
-		//Thread.sleep(3000);
+		String[] finalval = framlocator.split("=");
+		// Thread.sleep(3000);
 		driver.switchTo().frame(driver.findElement(By.id(finalval[1])));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(messagelocator))); 
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(messagelocator)));
 		System.out.println(driver.findElement(By.xpath(messagelocator)).getText().toString());
 		driver.switchTo().defaultContent();
 		Thread.sleep(2000);
 		System.out.println("Code for Map Loading");
-		
+
 	}
-	
-		public WebElement getwebelement(final String locator) throws InterruptedException
-			{   //Log.info("Indriverhelper"+driver);
-				//WebElement el;
-				final String[] finalval;
-				if(locator.startsWith("name"))
-				{
-					finalval=locator.split("=");
-					//Log.info(finalval[1]);
-					//Log.info("Indriverhelper"+driver);
-					//wait.until();  
-					wait.until(new Function<WebDriver, WebElement>() {       
-						public WebElement apply(WebDriver driver) { 
-							el=driver.findElement(By.name(finalval[1]));
-							return driver.findElement(By.name(finalval[1]));     
-						}  
-					});  
-				}
-				else if(locator.startsWith("id"))
-				{
-					finalval=locator.split("=");
-					//Log.info(finalval[1]);
-					//Log.info("Indriverhelper"+driver);
-					wait.until(new Function<WebDriver, WebElement>() {       
-						public WebElement apply(WebDriver driver) { 
-							el=driver.findElement(By.id(finalval[1]));
-							return driver.findElement(By.id(finalval[1]));     
-						}  
-					});
-					//el= driver.findElement(By.id(finalval[1]));
-				}
-				else if (locator.startsWith("//")|| locator.startsWith("(//"))
-				{
-					wait.until(new Function<WebDriver, WebElement>() {       
-						public WebElement apply(WebDriver driver) { 
-							el=driver.findElement(By.xpath(locator)); 
-							return driver.findElement(By.xpath(locator));     
-						}  
-					});
 
+	public WebElement getwebelement(final String locator) throws InterruptedException { // Log.info("Indriverhelper"+driver);
+																						// WebElement el;
+		final String[] finalval;
+		if (locator.startsWith("name")) {
+			finalval = locator.split("=");
+			// Log.info(finalval[1]);
+			// Log.info("Indriverhelper"+driver);
+			// wait.until();
+			wait.until(new Function<WebDriver, WebElement>() {
+				public WebElement apply(WebDriver driver) {
+					el = driver.findElement(By.name(finalval[1]));
+					return driver.findElement(By.name(finalval[1]));
 				}
-				Thread.sleep(1000);
-				return el;
-			} 
+			});
+		} else if (locator.startsWith("id")) {
+			finalval = locator.split("=");
+			// Log.info(finalval[1]);
+			// Log.info("Indriverhelper"+driver);
+			wait.until(new Function<WebDriver, WebElement>() {
+				public WebElement apply(WebDriver driver) {
+					el = driver.findElement(By.id(finalval[1]));
+					return driver.findElement(By.id(finalval[1]));
+				}
+			});
+			// el= driver.findElement(By.id(finalval[1]));
+		} else if (locator.startsWith("//") || locator.startsWith("(//")) {
+			wait.until(new Function<WebDriver, WebElement>() {
+				public WebElement apply(WebDriver driver) {
+					el = driver.findElement(By.xpath(locator));
+					return driver.findElement(By.xpath(locator));
+				}
+			});
 
-	
+		}
+		Thread.sleep(1000);
+		return el;
+	}
+
 //	public WebElement getwebelement(final String locator) throws InterruptedException
 //	{   //Log.info("Indriverhelper"+driver);
 //	 //WebElement el;
@@ -394,57 +358,54 @@ public class DriverHelper{
 //		
 //		return el;
 //	}
-		
-		
+
 	public String gettitle() {
 		return driver.getTitle();
 	}
-	
-	
-	public WebElement getwebelement2(final String locator) throws InterruptedException
-	{   
-		if (locator.startsWith("//")|| locator.startsWith("(//"))
-		{	
-					el=(WebElement) driver.findElement(By.xpath(locator)); 
-					return driver.findElement(By.xpath(locator));     	
+
+	public WebElement getwebelement2(final String locator) throws InterruptedException {
+		if (locator.startsWith("//") || locator.startsWith("(//")) {
+			el = (WebElement) driver.findElement(By.xpath(locator));
+			return driver.findElement(By.xpath(locator));
 		}
 		Thread.sleep(1000);
 		return el;
 	}
+
 	public void openurl(String environment) throws Exception {
-		String URL=null;
-		PropertyReader pr=new PropertyReader();
-		Log.info(environment+"_URL");
-		URL=pr.readproperty(environment+"_URL");
-		
+		String URL = null;
+		PropertyReader pr = new PropertyReader();
+		Log.info(environment + "_URL");
+		URL = pr.readproperty(environment + "_URL");
+
 		driver.get(URL);
-		
+
 	}
+
 	public void Geturl(String URL) throws Exception {
-	
+
 		driver.get(URL);
-		
+
 	}
+
 	public void Clickon(WebElement el) throws InterruptedException {
-		//Thread.sleep(3000);
-		
+		// Thread.sleep(3000);
+
 		try {
-			
-			
-		el.click();
-		
-		}
-		catch(WebDriverException e)
-		//Thread.sleep(3000);
+
+			el.click();
+
+		} catch (WebDriverException e)
+		// Thread.sleep(3000);
 		{
-			//Thread.sleep(3000);
-			if(e.getMessage().contains("Element is not clickable at point"))
-			{
+			// Thread.sleep(3000);
+			if (e.getMessage().contains("Element is not clickable at point")) {
 				Thread.sleep(3000);
 				el.click();
 			}
 		}
 	}
+
 	public void safeJavaScriptClick(WebElement element) throws Exception {
 		try {
 			if (element.isEnabled() && element.isDisplayed()) {
@@ -455,389 +416,348 @@ public class DriverHelper{
 				Log.info("Unable to click on element");
 			}
 		} catch (StaleElementReferenceException e) {
-			Log.info("Element is not attached to the page document "+ e.getStackTrace());
+			Log.info("Element is not attached to the page document " + e.getStackTrace());
 		} catch (NoSuchElementException e) {
-			Log.info("Element was not found in DOM "+ e.getStackTrace());
+			Log.info("Element was not found in DOM " + e.getStackTrace());
 		} catch (Exception e) {
-			Log.info("Unable to click on element "+ e.getStackTrace());
+			Log.info("Unable to click on element " + e.getStackTrace());
 		}
 	}
-	public void switchtofram(WebElement el){
+
+	public void switchtofram(WebElement el) {
 		driver.switchTo().frame(el);
-		
-	}
-	public void switchtodefault(){
-		driver.switchTo().defaultContent();
-		
-	}
-			public String Getattribute(WebElement el,String attributename) {
-			Log.info(el.getAttribute(attributename));
-			return el.getAttribute(attributename);
-	  }
-public void Moveon(WebElement el) {
-			
-		Actions action = new Actions(driver);
-		 
-	    action.moveToElement(el).build().perform();
-	    
-	}
-	public boolean isElementPresent(String locator) {
-	    try {
-	        driver.findElement(By.xpath(locator));
-	        Log.info("Element Found: True");
-	        return true;
-	    } catch (NoSuchElementException e) {
-	    	 Log.info("Element Found: False");
-	        return false;
-	    }
+
 	}
 
-	public void waitandclickForworkitemsPresent(String locator, int timeout) throws InterruptedException
-	{
-			for(int i=0;i<=timeout*60/20;i++){
-				try {
-		            if (isElementPresent(locator)){
-		                break;
-		            }
-		            else{
-		            	//Goto Error Tab
-		            	// Clickon(getwebelement(xml.getlocator("//locators/Tasks/Errors")));
-		            	//if any Error displayed
-		            	//if(isElementPresent("Locator for first error"))
-		            	//{
-		            	//Assert.fail("An Error Occuured on Error Tab");
-		            	//break;
-		            	//}
-		            	//else
-		            	//{
-		            	//Clickon(getwebelement(xml.getlocator("//locators/Tasks/Workitems")));
-		            	//Log.info("Refreshing the Pages");
-			        	//driver.navigate().refresh();
-			        	//Log.info("Waiting For 20 Sec");
-			        	//Thread.sleep(20000);
-		            	//}
-		            	//Assert False and Break
-		            	//else navigate to WorkItems and do the page refresh and weight
-		            	Log.info("Refreshing the Pages");
-			        	driver.navigate().refresh();
-			        	Log.info("Waiting For 20 Sec");
-			        	Thread.sleep(20000);
-		            }
-		            }
-		        catch (Exception e) {
-		        	Log.info(e.getMessage());
-		        }
+	public void switchtodefault() {
+		driver.switchTo().defaultContent();
+
+	}
+
+	public String Getattribute(WebElement el, String attributename) {
+		Log.info(el.getAttribute(attributename));
+		return el.getAttribute(attributename);
+	}
+
+	public void Moveon(WebElement el) {
+
+		Actions action = new Actions(driver);
+
+		action.moveToElement(el).build().perform();
+
+	}
+
+	public boolean isElementPresent(String locator) {
+		try {
+			driver.findElement(By.xpath(locator));
+			Log.info("Element Found: True");
+			return true;
+		} catch (NoSuchElementException e) {
+			Log.info("Element Found: False");
+			return false;
+		}
+	}
+
+	public void waitandclickForworkitemsPresent(String locator, int timeout) throws InterruptedException {
+		for (int i = 0; i <= timeout * 60 / 20; i++) {
+			try {
+				if (isElementPresent(locator)) {
+					break;
+				} else {
+					// Goto Error Tab
+					// Clickon(getwebelement(xml.getlocator("//locators/Tasks/Errors")));
+					// if any Error displayed
+					// if(isElementPresent("Locator for first error"))
+					// {
+					// Assert.fail("An Error Occuured on Error Tab");
+					// break;
+					// }
+					// else
+					// {
+					// Clickon(getwebelement(xml.getlocator("//locators/Tasks/Workitems")));
+					// Log.info("Refreshing the Pages");
+					// driver.navigate().refresh();
+					// Log.info("Waiting For 20 Sec");
+					// Thread.sleep(20000);
+					// }
+					// Assert False and Break
+					// else navigate to WorkItems and do the page refresh and weight
+					Log.info("Refreshing the Pages");
+					driver.navigate().refresh();
+					Log.info("Waiting For 20 Sec");
+					Thread.sleep(20000);
+				}
+			} catch (Exception e) {
+				Log.info(e.getMessage());
 			}
+		}
 	}
-	
-	public void waitandclickForOrderCompleted(String locator, int timeout) throws InterruptedException
-	{
-			for(int i=0;i<=timeout*60/20;i++){
-				try {
-		            if (isElementPresent(locator)){
-		                break;
-		            }
-		            else{
-		            	Log.info("Refreshing the Pages");
-			        	driver.navigate().refresh();
-			        	Log.info("Waiting For 20 Sec");
-			        	Thread.sleep(20000);
-		            }
-		            }
-		        catch (Exception e) {
-		        	Log.info(e.getMessage());
-		        }
+
+	public void waitandclickForOrderCompleted(String locator, int timeout) throws InterruptedException {
+		for (int i = 0; i <= timeout * 60 / 20; i++) {
+			try {
+				if (isElementPresent(locator)) {
+					break;
+				} else {
+					Log.info("Refreshing the Pages");
+					driver.navigate().refresh();
+					Log.info("Waiting For 20 Sec");
+					Thread.sleep(20000);
+				}
+			} catch (Exception e) {
+				Log.info(e.getMessage());
 			}
+		}
 	}
-	
-	public void waitandclickForOrderStarted(String locator, int timeout) throws InterruptedException
-	{
-			for(int i=0;i<=timeout*60/20;i++){
-				try {
-		            if (isElementPresent(locator)){
-		                break;
-		            }
-		            else{
-		            	Log.info("Refreshing the Pages");
-			        	driver.navigate().refresh();
-			        	Log.info("Waiting For 20 Sec");
-			        	Thread.sleep(20000);
-		            }
-		            }
-		        catch (Exception e) {
-		        	Log.info(e.getMessage());
-		        }
+
+	public void waitandclickForOrderStarted(String locator, int timeout) throws InterruptedException {
+		for (int i = 0; i <= timeout * 60 / 20; i++) {
+			try {
+				if (isElementPresent(locator)) {
+					break;
+				} else {
+					Log.info("Refreshing the Pages");
+					driver.navigate().refresh();
+					Log.info("Waiting For 20 Sec");
+					Thread.sleep(20000);
+				}
+			} catch (Exception e) {
+				Log.info(e.getMessage());
 			}
+		}
 	}
-	
-	public void waitandForElementDisplay(String locator, int timeout) throws InterruptedException
-	{
-			for(int i=0;i<=timeout*60/20;i++){
-				try {
-		            if (isElementPresent(locator)){
-		                break;
-		            }
-		            else{
-		            	Log.info("Refreshing the Pages");
-			        	//driver.navigate().refresh();
-			        	Log.info("Waiting For 20 Sec");
-			        	Thread.sleep(20000);
-		            }
-		            }
-		        catch (Exception e) {
-		        	Log.info(e.getMessage());
-		        }
+
+	public void waitandForElementDisplay(String locator, int timeout) throws InterruptedException {
+		for (int i = 0; i <= timeout * 60 / 20; i++) {
+			try {
+				if (isElementPresent(locator)) {
+					break;
+				} else {
+					Log.info("Refreshing the Pages");
+					// driver.navigate().refresh();
+					Log.info("Waiting For 20 Sec");
+					Thread.sleep(20000);
+				}
+			} catch (Exception e) {
+				Log.info(e.getMessage());
 			}
+		}
 	}
-	public void waitandForElementtobenotDisplay(String locator, int timeout) throws InterruptedException
-	{
-			for(int i=0;i<=timeout*60/20;i++){
-				try {
-		            if (isElementPresent(locator)){
-		            	Log.info("Refreshing the Pages");
-			        	//driver.navigate().refresh();
-			        	Log.info("Waiting For 20 Sec");
-			        	System.out.println("Waiting......");
-			        	Thread.sleep(3000);
-		            }
-		            else{
-		            	break;
-		            }
-		            }
-		        catch (Exception e) {
-		        	Log.info(e.getMessage());
-		        }
+
+	public void waitandForElementtobenotDisplay(String locator, int timeout) throws InterruptedException {
+		for (int i = 0; i <= timeout * 60 / 20; i++) {
+			try {
+				if (isElementPresent(locator)) {
+					Log.info("Refreshing the Pages");
+					// driver.navigate().refresh();
+					Log.info("Waiting For 20 Sec");
+					System.out.println("Waiting......");
+					Thread.sleep(3000);
+				} else {
+					break;
+				}
+			} catch (Exception e) {
+				Log.info(e.getMessage());
 			}
+		}
 	}
-	public void waitandForElementDisplay2(String locator, int timeout) throws InterruptedException
-	{
-			for(int i=0;i<=timeout*60/20;i++){
-				try {
-		            if (isElementPresent(locator)){
-		                break;
-		            }
-		            else{
-		            	//Log.info("Refreshing the Pages");
-			        	//driver.navigate().refresh();
-			        	Log.info("Waiting For 20 Sec");
-			        	Thread.sleep(3000);
-		            }
-		            }
-		        catch (Exception e) {
-		        	Log.info(e.getMessage());
-		        }
+
+	public void waitandForElementDisplay2(String locator, int timeout) throws InterruptedException {
+		for (int i = 0; i <= timeout * 60 / 20; i++) {
+			try {
+				if (isElementPresent(locator)) {
+					break;
+				} else {
+					// Log.info("Refreshing the Pages");
+					// driver.navigate().refresh();
+					Log.info("Waiting For 20 Sec");
+					Thread.sleep(3000);
+				}
+			} catch (Exception e) {
+				Log.info(e.getMessage());
 			}
+		}
 	}
-	public void Pagerefresh() throws InterruptedException
-	{
-			driver.navigate().refresh();
-			
-			        	
+
+	public void Pagerefresh() throws InterruptedException {
+		driver.navigate().refresh();
+
 	}
-	
-	public int getwebelementscount(final String locator) throws InterruptedException
-	{ 
-		ellist=driver.findElements(By.xpath(locator));
+
+	public int getwebelementscount(final String locator) throws InterruptedException {
+		ellist = driver.findElements(By.xpath(locator));
 		return ellist.size();
 	}
-	
-	
-	public List<WebElement> getwebelements(final String locator) throws InterruptedException{   //Log.info("Indriverhelper"+driver);
-		 //WebElement el;
-		final String[] finalval;
-			if(locator.startsWith("name"))
-			{
-				finalval=locator.split("=");
-				//Log.info(finalval[1]);
-				//Log.info("Indriverhelper"+driver);
-				//wait.until();
-				
-				wait.until(new Function<WebDriver, List<WebElement>>() {       
-					public List<WebElement> apply(WebDriver driver) { 
-						ellist= driver.findElements(By.name(finalval[1]));
-						//RemoteWebDriver dr;
-						
-						//wait.until(ExpectedConditions.elementToBeClickable(ellist)).isEnabled();
-						return ellist;     
-					 }  
-					}); 
-				//wait.until(ExpectedConditions.stalenessOf(element))
-			}
-			else if(locator.startsWith("id"))
-			{
-				finalval=locator.split("=");
-				//Log.info(finalval[1]);
-				//Log.info("Indriverhelper"+driver);
-				wait.until(new Function<WebDriver, List<WebElement>>() {       
-					public List<WebElement> apply(WebDriver driver) { 
-						ellist=driver.findElements(By.id(finalval[1]));
-						//wait.until(ExpectedConditions.elementToBeClickable(ellist)).isEnabled();
-						//wait.until(el.isEnabled());
-						return ellist;   
-					 }  
-					});
-				 //el= driver.findElement(By.id(finalval[1]));
-			}
-			else if (locator.startsWith("//")|| locator.startsWith("(//")||locator.startsWith("("))
-			{
-				wait.until(new Function<WebDriver, List<WebElement>>() {       
-					public List<WebElement> apply(WebDriver driver) { 
-						ellist=driver.findElements(By.xpath(locator)); 
-						//wait.until(ExpectedConditions.elementToBeClickable(ellist)).isEnabled();
-						return ellist;   
-					 }  
-					});
-				
-			}
-			//Thread.sleep(1000);
-			
-			return ellist;
-		}
-	
-	///////////////
-	
-	
-	
-	public void SendKeys(WebElement el,String value) throws InterruptedException, IOException {
-		
-		el.sendKeys(value);
-		
-	}
-	
-	
-	public void SendkeaboardKeys(WebElement el,Keys k) throws InterruptedException {
-		//Thread.sleep(3000);
-		el.sendKeys(k);
-		//Thread.sleep(3000);
-	}
-	
-	public String GetText(WebElement el) {
-			String actual=el.getText().toUpperCase().toString();
-	//		String actual1=el.getText().toUpperCase().toString();
-			return actual;
-		}
-	
-	public String GetInputValue(WebElement el) {
-		String actual=el.getAttribute("value");
-		return actual;
-		}
 
-	public String Getkeyvalue(String Key) throws IOException{ 
-			PropertyReader pr=new PropertyReader();
-		    String Keyvalue;
-			Keyvalue=pr.readproperty(Key);
-			return Keyvalue;
+	public List<WebElement> getwebelements(final String locator) throws InterruptedException { // Log.info("Indriverhelper"+driver);
+		// WebElement el;
+		final String[] finalval;
+		if (locator.startsWith("name")) {
+			finalval = locator.split("=");
+			// Log.info(finalval[1]);
+			// Log.info("Indriverhelper"+driver);
+			// wait.until();
+
+			wait.until(new Function<WebDriver, List<WebElement>>() {
+				public List<WebElement> apply(WebDriver driver) {
+					ellist = driver.findElements(By.name(finalval[1]));
+					// RemoteWebDriver dr;
+
+					// wait.until(ExpectedConditions.elementToBeClickable(ellist)).isEnabled();
+					return ellist;
+				}
+			});
+			// wait.until(ExpectedConditions.stalenessOf(element))
+		} else if (locator.startsWith("id")) {
+			finalval = locator.split("=");
+			// Log.info(finalval[1]);
+			// Log.info("Indriverhelper"+driver);
+			wait.until(new Function<WebDriver, List<WebElement>>() {
+				public List<WebElement> apply(WebDriver driver) {
+					ellist = driver.findElements(By.id(finalval[1]));
+					// wait.until(ExpectedConditions.elementToBeClickable(ellist)).isEnabled();
+					// wait.until(el.isEnabled());
+					return ellist;
+				}
+			});
+			// el= driver.findElement(By.id(finalval[1]));
+		} else if (locator.startsWith("//") || locator.startsWith("(//") || locator.startsWith("(")) {
+			wait.until(new Function<WebDriver, List<WebElement>>() {
+				public List<WebElement> apply(WebDriver driver) {
+					ellist = driver.findElements(By.xpath(locator));
+					// wait.until(ExpectedConditions.elementToBeClickable(ellist)).isEnabled();
+					return ellist;
+				}
+			});
+
 		}
-	
-	public void VerifyTextpresent(String text) throws IOException
-		{ 
-			Log.info(text);
-			Assert.assertFalse(driver.findElement(By.xpath("//*[text()='"+text+"']")).isDisplayed());
-		}
-	
-	public void VerifyText(String text) throws IOException
-		{ 
-			Log.info(text);
-			Assert.assertTrue(driver.findElement(By.xpath("//*[text()='"+text+"']")).isDisplayed());
-		}
-	
-	public void VerifyText2(String text, String expectedText, String message ) throws IOException
-	{ 
-		Log.info(text);
-		sa.assertEquals(driver.findElement(By.xpath("//*[text()='"+text+"']")), expectedText, message);
-		
-		//sa.assertAll();
+		// Thread.sleep(1000);
+
+		return ellist;
 	}
-	
-	public String Gettext(WebElement el) throws IOException
-		{ 
-			String text=el.getText().toString();
-			return text;
-		}
-	public String GetValueofInput(WebElement el) throws IOException
-	{ 
-		String text=el.getAttribute("value");
+
+	///////////////
+
+	public void SendKeys(WebElement el, String value) throws InterruptedException, IOException {
+
+		el.sendKeys(value);
+
+	}
+
+	public void SendkeaboardKeys(WebElement el, Keys k) throws InterruptedException {
+		// Thread.sleep(3000);
+		el.sendKeys(k);
+		// Thread.sleep(3000);
+	}
+
+	public String GetText(WebElement el) {
+		String actual = el.getText().toUpperCase().toString();
+		// String actual1=el.getText().toUpperCase().toString();
+		return actual;
+	}
+
+	public String GetInputValue(WebElement el) {
+		String actual = el.getAttribute("value");
+		return actual;
+	}
+
+	public String Getkeyvalue(String Key) throws IOException {
+		PropertyReader pr = new PropertyReader();
+		String Keyvalue;
+		Keyvalue = pr.readproperty(Key);
+		return Keyvalue;
+	}
+
+	public void VerifyTextpresent(String text) throws IOException {
+		Log.info(text);
+		Assert.assertFalse(driver.findElement(By.xpath("//*[text()='" + text + "']")).isDisplayed());
+	}
+
+	public void VerifyText(String text) throws IOException {
+		Log.info(text);
+		Assert.assertTrue(driver.findElement(By.xpath("//*[text()='" + text + "']")).isDisplayed());
+	}
+
+	public void VerifyText2(String text, String expectedText, String message) throws IOException {
+		Log.info(text);
+		sa.assertEquals(driver.findElement(By.xpath("//*[text()='" + text + "']")), expectedText, message);
+
+		// sa.assertAll();
+	}
+
+	public String Gettext(WebElement el) throws IOException {
+		String text = el.getText().toString();
 		return text;
 	}
-	
-	public String[] GetText2(WebElement el) throws IOException
-		{ 
-			String text=el.getText().toString();
-			String[] text2=text.split(" \\[");
-			Log.info("New Task Name is:"+text2);
-			return text2;
-		}
-	
-	public String GetText3(WebElement el, String string) throws IOException
-		{ 
-			String text=el.getText().toString();
-			return text;
-		}
-	
-	
-	
-	public String GetTheSelectedValueInsideDropdown(WebElement el) throws IOException, InterruptedException
-	{ //Thread.sleep(3000);
-		Select s1=new Select(el);
-		WebElement option = s1.getFirstSelectedOption();
-		String defaultItem = option.getText();		
-		return defaultItem;
-	
-	}
-	
-	
-	
-	public void Select(WebElement el, String value) throws IOException, InterruptedException
-		{ //Thread.sleep(2000);
-			Select s1=new Select(el);
-			s1.selectByVisibleText(value);
-			//Thread.sleep(2000);
-		}
-	public void Select2(WebElement el, String value) throws IOException, InterruptedException
-	{ //Thread.sleep(3000);
-		Select s1=new Select(el);
-		s1.selectByValue(value);
-		//Thread.sleep(3000);
+
+	public String GetValueofInput(WebElement el) throws IOException {
+		String text = el.getAttribute("value");
+		return text;
 	}
 
-	public List<String> getAllValuesInsideDropDown(WebElement el) throws IOException, InterruptedException
-	{ 
-		  Select sel = new Select(el);
-		    List<WebElement> we = sel.getOptions();
-		    List<String> ls = new ArrayList<String>();
-		    for(WebElement a : we)
-		    {
-		        if(!a.getText().equals("select")){
-		            ls.add(a.getText());
-		        }
-		    }
-		    return ls;
+	public String[] GetText2(WebElement el) throws IOException {
+		String text = el.getText().toString();
+		String[] text2 = text.split(" \\[");
+		Log.info("New Task Name is:" + text2);
+		return text2;
 	}
-	
-	
-	public List<String> getAllValuesInsideDropDown2(WebElement el) throws IOException, InterruptedException
-	{ 
-		  Select sel = new Select(el);
-		    List<WebElement> we = sel.getOptions();
-		    List<String> ls = new ArrayList<String>();
-		    for(WebElement a : we)
-		    {
-		        if(!a.getText().equals("Select")){
-		            ls.add(a.getText());
-		        }
-		    }
-		    return ls;
+
+	public String GetText3(WebElement el, String string) throws IOException {
+		String text = el.getText().toString();
+		return text;
 	}
-	
-	
-	
-	public void Clear(WebElement el) throws IOException, InterruptedException
-		{ //Thread.sleep(3000);
-			el.clear();
-			//Thread.sleep(3000);
+
+	public String GetTheSelectedValueInsideDropdown(WebElement el) throws IOException, InterruptedException { // Thread.sleep(3000);
+		Select s1 = new Select(el);
+		WebElement option = s1.getFirstSelectedOption();
+		String defaultItem = option.getText();
+		return defaultItem;
+
+	}
+
+	public void Select(WebElement el, String value) throws IOException, InterruptedException { // Thread.sleep(2000);
+		Select s1 = new Select(el);
+		s1.selectByVisibleText(value);
+		// Thread.sleep(2000);
+	}
+
+	public void Select2(WebElement el, String value) throws IOException, InterruptedException { // Thread.sleep(3000);
+		Select s1 = new Select(el);
+		s1.selectByValue(value);
+		// Thread.sleep(3000);
+	}
+
+	public List<String> getAllValuesInsideDropDown(WebElement el) throws IOException, InterruptedException {
+		Select sel = new Select(el);
+		List<WebElement> we = sel.getOptions();
+		List<String> ls = new ArrayList<String>();
+		for (WebElement a : we) {
+			if (!a.getText().equals("select")) {
+				ls.add(a.getText());
+			}
 		}
-	public void WaitforC4Cloader(String el, int timeout ) throws IOException, InterruptedException
-	{ Thread.sleep(3000);
+		return ls;
+	}
+
+	public List<String> getAllValuesInsideDropDown2(WebElement el) throws IOException, InterruptedException {
+		Select sel = new Select(el);
+		List<WebElement> we = sel.getOptions();
+		List<String> ls = new ArrayList<String>();
+		for (WebElement a : we) {
+			if (!a.getText().equals("Select")) {
+				ls.add(a.getText());
+			}
+		}
+		return ls;
+	}
+
+	public void Clear(WebElement el) throws IOException, InterruptedException { // Thread.sleep(3000);
+		el.clear();
+		// Thread.sleep(3000);
+	}
+
+	public void WaitforC4Cloader(String el, int timeout) throws IOException, InterruptedException {
+		Thread.sleep(3000);
 //		for(int i=0;i<=timeout*60/20;i++){
 //			try {
 //	            if (isElementPresent(el)){
@@ -856,47 +776,53 @@ public void Moveon(WebElement el) {
 //	        	Log.info(e.getMessage());
 //	        }
 //		}
-		//Thread.sleep(3000);
+		// Thread.sleep(3000);
 	}
-	public void AcceptJavaScriptMethod(){
-		
-			Alert alert = driver.switchTo().alert();
-			alert.accept();
-			driver.switchTo().defaultContent();
-		}
-	public void waitForpageload() throws InterruptedException
-	{
-		waitandForElementtobenotDisplay("//*[@id='overLayHtml_t-wrapper']",1);
-		wait.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));	
-		//Thread.sleep(1000);
+
+	public void AcceptJavaScriptMethod() {
+
+		Alert alert = driver.switchTo().alert();
+		alert.accept();
+		driver.switchTo().defaultContent();
 	}
-	public void Dragedrop(WebElement source,WebElement Destination){
+
+	public void waitForpageload() throws InterruptedException {
+		waitandForElementtobenotDisplay("//*[@id='overLayHtml_t-wrapper']", 1);
+		wait.until(
+				driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
+		// Thread.sleep(1000);
+	}
+
+	public void Dragedrop(WebElement source, WebElement Destination) {
 		Actions action = new Actions(driver);
-		//use dragAndDrop() method. It accepts two parametes source and target.
+		// use dragAndDrop() method. It accepts two parametes source and target.
 		action.dragAndDrop(source, Destination).build().perform();
 	}
-	
-	public void EnterText(String s){
-		Actions keyAction = new Actions(driver);     
+
+	public void EnterText(String s) {
+		Actions keyAction = new Actions(driver);
 		keyAction.sendKeys(s).perform();
 	}
-	public void savePage(){
-			Actions keyAction = new Actions(driver);     
-			keyAction.keyDown(Keys.CONTROL).sendKeys("s").keyUp(Keys.CONTROL).perform();
-		}
-	public void KeydownKey(Keys key){
-		Actions keyAction = new Actions(driver);     
+
+	public void savePage() {
+		Actions keyAction = new Actions(driver);
+		keyAction.keyDown(Keys.CONTROL).sendKeys("s").keyUp(Keys.CONTROL).perform();
+	}
+
+	public void KeydownKey(Keys key) {
+		Actions keyAction = new Actions(driver);
 		keyAction.keyDown(key).perform();
 	}
-	public void KeyupKey(Keys key){
-		Actions keyAction = new Actions(driver);     
+
+	public void KeyupKey(Keys key) {
+		Actions keyAction = new Actions(driver);
 		keyAction.keyUp(key).perform();
 	}
-	public void uploadafile(String  locator,String FileName)
-	{
-		String str = System.getProperty("user.dir")+"\\src\\Data\\"+FileName;
-		String[]  finalval=locator.split("=");
-		WebElement el=driver.findElement(By.id(finalval[1])); 
+
+	public void uploadafile(String locator, String FileName) {
+		String str = System.getProperty("user.dir") + "\\src\\Data\\" + FileName;
+		String[] finalval = locator.split("=");
+		WebElement el = driver.findElement(By.id(finalval[1]));
 		el.sendKeys(str);
 //		// + "\\Lib\\chromedriver.exe"
 //		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -906,102 +832,95 @@ public void Moveon(WebElement el) {
 //		Actions keyAction = new Actions(driver); 
 //		keyAction.keyDown(Keys.CONTROL).sendKeys("v").keyUp(Keys.CONTROL).perform();
 //		keyAction.sendKeys(Keys.ENTER);
-		
+
 	}
-	public String capturescreenshotforelement(WebElement ele) throws IOException
-	{
+
+	public String capturescreenshotforelement(WebElement ele) throws IOException {
 		String screenshot2;
-	File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-	BufferedImage  fullImg = ImageIO.read(screenshot);
+		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		BufferedImage fullImg = ImageIO.read(screenshot);
 
-	// Get the location of element on the page
-	org.openqa.selenium.Point point = ele.getLocation();
+		// Get the location of element on the page
+		org.openqa.selenium.Point point = ele.getLocation();
 
-	// Get width and height of the element
-	int eleWidth = ele.getSize().getWidth();
-	int eleHeight = ele.getSize().getHeight();
+		// Get width and height of the element
+		int eleWidth = ele.getSize().getWidth();
+		int eleHeight = ele.getSize().getHeight();
 
-	// Crop the entire page screenshot to get only element screenshot
-	BufferedImage eleScreenshot= fullImg.getSubimage(point.getX()-20, point.getY()-20,
-	    eleWidth+20, eleHeight+20);
-	ByteArrayOutputStream bos = new ByteArrayOutputStream();
-	ImageIO.write(eleScreenshot, "png", bos);
-	byte[] imageBytes = bos.toByteArray();
-    screenshot2 = "data:image/png;base64,"+Base64.getMimeEncoder().encodeToString(imageBytes);
-    bos.close();
-    return screenshot2;
+		// Crop the entire page screenshot to get only element screenshot
+		BufferedImage eleScreenshot = fullImg.getSubimage(point.getX() - 20, point.getY() - 20, eleWidth + 20,
+				eleHeight + 20);
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		ImageIO.write(eleScreenshot, "png", bos);
+		byte[] imageBytes = bos.toByteArray();
+		screenshot2 = "data:image/png;base64," + Base64.getMimeEncoder().encodeToString(imageBytes);
+		bos.close();
+		return screenshot2;
 	}
-	
-	public void clickUsingAction(WebElement el)
-	{
-		Actions act=new Actions(driver);
+
+	public void clickUsingAction(WebElement el) {
+		Actions act = new Actions(driver);
 		act.moveToElement(el).click().build().perform();
 	}
-	
-	public void waitforPagetobeenable() throws InterruptedException
-	 { 
-		 WebElement el=driver.findElement(By.xpath("//html"));
-		 Thread.sleep(2000);
-		 while(el.getAttribute("class").contains("colt-custom-siebui-busy"))
-		 {
-			 Thread.sleep(1000);
-		 }
-	 }
-	
-	
-	public static String getCurrentDate() {
-		java.util.Date date=java.util.Calendar.getInstance().getTime();  
-		String currentDate=String.valueOf(date);
-	return currentDate;	
+
+	public void waitforPagetobeenable() throws InterruptedException {
+		WebElement el = driver.findElement(By.xpath("//html"));
+		Thread.sleep(2000);
+		while (el.getAttribute("class").contains("colt-custom-siebui-busy")) {
+			Thread.sleep(1000);
+		}
 	}
-	
-	
+
+	public static String getCurrentDate() {
+		java.util.Date date = java.util.Calendar.getInstance().getTime();
+		String currentDate = String.valueOf(date);
+		return currentDate;
+	}
+
 //	DriverTestcase.logger.log(LogStatus.PASS, "Step : MCS page navigated");
 //	DriverTestcase dtc=new DriverTestcase();
 //	public static ExtentReports extent;
 //	public static ExtentTest logger;
-	
-	
-	public static void logStatus(WebElement ele,String customTextpass, String customtextfail) {
-		
+
+	public static void logStatus(WebElement ele, String customTextpass, String customtextfail) {
+
 		try {
 			boolean flag = ele.isDisplayed();
-			
-			if(flag) {
-				
+
+			if (flag) {
+
 				System.out.println(customTextpass);
-				DriverTestcase.logger.log(LogStatus.PASS,customTextpass );
-			}else {
-				
+				DriverTestcase.logger.log(LogStatus.PASS, customTextpass);
+			} else {
+
 				try {
 					System.out.println(customtextfail);
-					DriverTestcase.logger.log(LogStatus.FAIL,customtextfail );
+					DriverTestcase.logger.log(LogStatus.FAIL, customtextfail);
 				} catch (TimeoutException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					System.out.println("Element is not available");
-					DriverTestcase.logger.log(LogStatus.FAIL,customtextfail );
+					DriverTestcase.logger.log(LogStatus.FAIL, customtextfail);
 				}
 			}
 		} catch (NoSuchElementException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("element is not displayed");
-			
-		}catch (TimeoutException e) {
-			
+
+		} catch (TimeoutException e) {
+
 			// TODO Auto-generated catch block
-						e.printStackTrace();
-						System.out.println("element not available");
+			e.printStackTrace();
+			System.out.println("element not available");
 		}
-		
-	}
-	
-//Common Methods
-	public void scrolltoend() {//Or Scroll Down
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
 	}
 
+//Common Methods
+	public void scrolltoend() {// Or Scroll Down
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	}
 
 	public void scrollToTop() {
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0)");
@@ -1011,17 +930,16 @@ public void Moveon(WebElement el) {
 		driver.findElement(By.xpath("//body")).click();
 	}
 
-
-	//Scroll to particular webelement
-	public void ScrolltoElement(String application, String xpath, XMLReader xml) throws InterruptedException, DocumentException {
-		WebElement element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",(element));
+	// Scroll to particular webelement
+	public void ScrolltoElement(String application, String xpath, XMLReader xml)
+			throws InterruptedException, DocumentException {
+		WebElement element = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + ""));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", (element));
 	}
 
-
-
 	/**
-	 *   For text field commmon method _  Add
+	 * For text field commmon method _ Add
+	 * 
 	 * @param application
 	 * @param labelname
 	 * @param xpathname
@@ -1031,46 +949,49 @@ public void Moveon(WebElement el) {
 	 * @throws DocumentException
 	 * @throws IOException
 	 */
-	public void addtextFields_commonMethod(String application, String labelname, String xpathname, String expectedValueToAdd, XMLReader xml) throws InterruptedException, DocumentException, IOException {
-		boolean availability=false;
-	try {	
-		System.out.println("fai");
-		availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
-		if(availability) {
-			DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is displaying");
-			System.out.println(labelname + " text field is displaying");
-			
-			if(expectedValueToAdd.equalsIgnoreCase("null")) {
-				DriverTestcase.logger.log(LogStatus.PASS, "No values added to text field "+labelname);
-				System.out.println("No values added to text field "+labelname);
-			}else {
-				
-				SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")), expectedValueToAdd);
-				Thread.sleep(3000);
-				
-				String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
-				DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field value added as: "+ actualvalue);
+	public void addtextFields_commonMethod(String application, String labelname, String xpathname,
+			String expectedValueToAdd, XMLReader xml) throws InterruptedException, DocumentException, IOException {
+		boolean availability = false;
+		try {
+			System.out.println("fai");
+			availability = getwebelement(xml.getlocator("//locators/" + application + "/" + xpathname + ""))
+					.isDisplayed();
+			if (availability) {
+				DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is displaying");
+				System.out.println(labelname + " text field is displaying");
+
+				if (expectedValueToAdd.equalsIgnoreCase("null")) {
+					DriverTestcase.logger.log(LogStatus.PASS, "No values added to text field " + labelname);
+					System.out.println("No values added to text field " + labelname);
+				} else {
+
+					SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/" + xpathname + "")),
+							expectedValueToAdd);
+					Thread.sleep(3000);
+
+					String actualvalue = getwebelement(
+							xml.getlocator("//locators/" + application + "/" + xpathname + "")).getAttribute("value");
+					DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field value added as: " + actualvalue);
+				}
+
+			} else {
+				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
+				System.out.println(labelname + " text field is not displaying");
 			}
-			
-		}else {
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
 			System.out.println(labelname + " text field is not displaying");
+		} catch (Exception ee) {
+			ee.printStackTrace();
+			DriverTestcase.logger.log(LogStatus.FAIL, " Not able to add value to " + labelname + " text field");
+			System.out.println(" Not able to add value to " + labelname + " text field");
 		}
-	}catch(NoSuchElementException e) {
-		e.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
-		System.out.println(labelname + " text field is not displaying");
-	}catch(Exception ee) {
-		ee.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL, " Not able to add value to "+ labelname + " text field");
-		System.out.println(" Not able to add value to "+ labelname + " text field");
 	}
-}
-	
-	
-	
+
 	/**
-	 *   For Dropdown common method _  Add
+	 * For Dropdown common method _ Add
+	 * 
 	 * @param application
 	 * @param labelname
 	 * @param xpath
@@ -1079,67 +1000,71 @@ public void Moveon(WebElement el) {
 	 * @throws InterruptedException
 	 * @throws DocumentException
 	 */
-	public void addDropdownValues_commonMethod(String application, String labelname, String xpath, String expectedValueToAdd, XMLReader xml) throws InterruptedException, DocumentException {
-		  boolean availability=false;
-		try {  
-		  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
-		  if(availability) {
-			  DriverTestcase.logger.log(LogStatus.PASS, labelname + " dropdown is displaying");
-			  System.out.println(labelname + " dropdown is displaying");
-			  
-			  if(expectedValueToAdd.equalsIgnoreCase("null")) {
-				  
-				  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under "+ labelname + " dropdown");
-				  System.out.println(" No values selected under "+ labelname + " dropdown");
-			  }else {
-				  
-				  Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
-				  Thread.sleep(3000);
-				  
-				  //verify list of values inside dropdown
-				  List<WebElement> listofvalues = driver
+	public void addDropdownValues_commonMethod(String application, String labelname, String xpath,
+			String expectedValueToAdd, XMLReader xml) throws InterruptedException, DocumentException {
+		boolean availability = false;
+		try {
+			availability = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")).isDisplayed();
+			if (availability) {
+				DriverTestcase.logger.log(LogStatus.PASS, labelname + " dropdown is displaying");
+				System.out.println(labelname + " dropdown is displaying");
+
+				if (expectedValueToAdd.equalsIgnoreCase("null")) {
+
+					DriverTestcase.logger.log(LogStatus.PASS, " No values selected under " + labelname + " dropdown");
+					System.out.println(" No values selected under " + labelname + " dropdown");
+				} else {
+
+					Clickon(getwebelement("//div[label[text()='" + labelname + "']]//div[text()='×']"));
+					Thread.sleep(3000);
+
+					// verify list of values inside dropdown
+					List<WebElement> listofvalues = driver
 							.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-				  
-				  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside "+ labelname + " dropdown is:  ");
-				  System.out.println( " List of values inside "+ labelname + "dropdown is:  ");
-				  
+
+					DriverTestcase.logger.log(LogStatus.PASS,
+							" List of values inside " + labelname + " dropdown is:  ");
+					System.out.println(" List of values inside " + labelname + "dropdown is:  ");
+
 					for (WebElement valuetypes : listofvalues) {
-								Log.info("service sub types : " + valuetypes.getText());
-								DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-								System.out.println(" " + valuetypes.getText());
+						Log.info("service sub types : " + valuetypes.getText());
+						DriverTestcase.logger.log(LogStatus.PASS, " " + valuetypes.getText());
+						System.out.println(" " + valuetypes.getText());
 					}
-					
+
 					Thread.sleep(2000);
-				SendKeys(getwebelement("//div[label[text()='"+ labelname +"']]//input"), expectedValueToAdd);	
-				Thread.sleep(2000);
-					
-				  Clickon(getwebelement("(//span[contains(text(),'"+ expectedValueToAdd +"')])[1]"));
-				  Thread.sleep(3000);
-				  
-				  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
-				  DriverTestcase.logger.log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
-				  System.out.println( labelname + " dropdown value selected as: "+ actualValue);
-				  
-			  }
-		  }else {
-			  DriverTestcase.logger.log(LogStatus.FAIL, labelname + " is not displaying");
-			  System.out.println(labelname + " is not displaying");
-		  }
-		}catch(NoSuchElementException e) {
+					SendKeys(getwebelement("//div[label[text()='" + labelname + "']]//input"), expectedValueToAdd);
+					Thread.sleep(2000);
+
+					Clickon(getwebelement("(//span[contains(text(),'" + expectedValueToAdd + "')])[1]"));
+					Thread.sleep(3000);
+
+					String actualValue = getwebelement(
+							"//label[text()='" + labelname + "']/following-sibling::div//span").getText();
+					DriverTestcase.logger.log(LogStatus.PASS,
+							labelname + " dropdown value selected as: " + actualValue);
+					System.out.println(labelname + " dropdown value selected as: " + actualValue);
+
+				}
+			} else {
+				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " is not displaying");
+				System.out.println(labelname + " is not displaying");
+			}
+		} catch (NoSuchElementException e) {
 			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " is not displaying");
-			  System.out.println(labelname + " is not displaying");
-		}catch(Exception ee) {
+			System.out.println(labelname + " is not displaying");
+		} catch (Exception ee) {
 			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
-			System.out.println(" NO value selected under "+ labelname + " dropdown");
+			DriverTestcase.logger.log(LogStatus.FAIL,
+					" NOt able to perform selection under " + labelname + " dropdown");
+			System.out.println(" NO value selected under " + labelname + " dropdown");
 		}
-		
+
 	}
-	
-	
 
 	/**
-	 *  For checkbox common method _  Add
+	 * For checkbox common method _ Add
+	 * 
 	 * @param application
 	 * @param xpath
 	 * @param labelname
@@ -1149,140 +1074,144 @@ public void Moveon(WebElement el) {
 	 * @throws InterruptedException
 	 * @throws DocumentException
 	 */
-	public void addCheckbox_commonMethod(String application, String xpath, String labelname, String expectedValue, String DefaultSelection, XMLReader xml) throws InterruptedException, DocumentException {
-		
-		boolean availability=false;
-		try {	
-			availability = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
-			if(availability) {
-				
+	public void addCheckbox_commonMethod(String application, String xpath, String labelname, String expectedValue,
+			String DefaultSelection, XMLReader xml) throws InterruptedException, DocumentException {
+
+		boolean availability = false;
+		try {
+			availability = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")).isDisplayed();
+			if (availability) {
+
 				DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is displaying");
 				System.out.println(labelname + " checkbox is displaying");
-				
-			boolean isElementSelected=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isSelected();
-			Thread.sleep(2000);
-		
-		//verify whether checkbox is selected/unselected by default		
-			if(DefaultSelection.equalsIgnoreCase("yes")) {
-				if(isElementSelected) {
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is selected by default as expected");
-					System.out.println(labelname + " checkbox is selected by default as expected");
-				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is not selected by default");
-					System.out.println(labelname + " checkbox is not selected by default");
-				}
-				
-			}
-			else if(DefaultSelection.equalsIgnoreCase("no")) {
-				if(isElementSelected) {
-					DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is selected by default");
-					System.out.println(labelname + " checkbox is selected by default as expected");
-				}else {
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is not selected by default as expected");
-					System.out.println(labelname + " checkbox is not selected by default");
-				}
-				
-			}
-		
-		//Perform click on checkbox	
-			if(!expectedValue.equalsIgnoreCase("null")) {
-				if (expectedValue.equalsIgnoreCase("yes")) {
 
-					if(isElementSelected) {
-						DriverTestcase.logger.log(LogStatus.PASS, labelname +" checkbox is Selected by default");
-					}else {
-						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
-						Log.info(labelname + " check box is selected");
-						DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is selected");
+				boolean isElementSelected = getwebelement(
+						xml.getlocator("//locators/" + application + "/" + xpath + "")).isSelected();
+				Thread.sleep(2000);
+
+				// verify whether checkbox is selected/unselected by default
+				if (DefaultSelection.equalsIgnoreCase("yes")) {
+					if (isElementSelected) {
+						DriverTestcase.logger.log(LogStatus.PASS,
+								labelname + " checkbox is selected by default as expected");
+						System.out.println(labelname + " checkbox is selected by default as expected");
+					} else {
+						DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is not selected by default");
+						System.out.println(labelname + " checkbox is not selected by default");
 					}
-				}
-				else if (expectedValue.equalsIgnoreCase("no")) {
-					
-					if(isElementSelected) {
-						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
-						Log.info(labelname + " check box is unselected");
-						DriverTestcase.logger.log(LogStatus.PASS,labelname + " is selected");
-						
-					}else {
-						DriverTestcase.logger.log(LogStatus.PASS, "No changes made for "+ labelname +" checkbox");
-						System.out.println("No changes made for "+ labelname +" checkbox");
+
+				} else if (DefaultSelection.equalsIgnoreCase("no")) {
+					if (isElementSelected) {
+						DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is selected by default");
+						System.out.println(labelname + " checkbox is selected by default as expected");
+					} else {
+						DriverTestcase.logger.log(LogStatus.PASS,
+								labelname + " checkbox is not selected by default as expected");
+						System.out.println(labelname + " checkbox is not selected by default");
 					}
-					
+
 				}
-			}else {
-				DriverTestcase.logger.log(LogStatus.PASS, "No changes made for "+ labelname +" checkbox");
-				System.out.println("No changes made for "+ labelname +" checkbox");
-			}
-			}else {
+
+				// Perform click on checkbox
+				if (!expectedValue.equalsIgnoreCase("null")) {
+					if (expectedValue.equalsIgnoreCase("yes")) {
+
+						if (isElementSelected) {
+							DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is Selected by default");
+						} else {
+							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")));
+							Log.info(labelname + " check box is selected");
+							DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is selected");
+						}
+					} else if (expectedValue.equalsIgnoreCase("no")) {
+
+						if (isElementSelected) {
+							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")));
+							Log.info(labelname + " check box is unselected");
+							DriverTestcase.logger.log(LogStatus.PASS, labelname + " is selected");
+
+						} else {
+							DriverTestcase.logger.log(LogStatus.PASS, "No changes made for " + labelname + " checkbox");
+							System.out.println("No changes made for " + labelname + " checkbox");
+						}
+
+					}
+				} else {
+					DriverTestcase.logger.log(LogStatus.PASS, "No changes made for " + labelname + " checkbox");
+					System.out.println("No changes made for " + labelname + " checkbox");
+				}
+			} else {
 				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checbox is not available");
 				System.out.println(labelname + " checbox is not available");
 			}
-		}catch(NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, labelname +  " checkbox is not available ");
-			System.out.println( labelname +  " checkbox is not available ");
-		}catch(Exception er) {
+			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is not available ");
+			System.out.println(labelname + " checkbox is not available ");
+		} catch (Exception er) {
 			er.printStackTrace();
-			System.out.println("Not able to perform selection for "+ labelname+ " checkbox");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Not able to perform selection for "+ labelname+ " checkbox");
+			System.out.println("Not able to perform selection for " + labelname + " checkbox");
+			DriverTestcase.logger.log(LogStatus.FAIL, "Not able to perform selection for " + labelname + " checkbox");
 		}
 	}
 
-
-
-/**
- *  For Text field common Method _  Edit
- * @param application
- * @param labelname
- * @param xpathname
- * @param expectedValueToEdit
- * @param xml
- * @throws InterruptedException
- * @throws DocumentException
- * @throws IOException
- */
-	public void edittextFields_commonMethod(String application, String labelname, String xpathname, String expectedValueToEdit, XMLReader xml) throws InterruptedException, DocumentException, IOException {
-			boolean availability=false;
-		try {	
-			availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
-			if(availability) {
+	/**
+	 * For Text field common Method _ Edit
+	 * 
+	 * @param application
+	 * @param labelname
+	 * @param xpathname
+	 * @param expectedValueToEdit
+	 * @param xml
+	 * @throws InterruptedException
+	 * @throws DocumentException
+	 * @throws IOException
+	 */
+	public void edittextFields_commonMethod(String application, String labelname, String xpathname,
+			String expectedValueToEdit, XMLReader xml) throws InterruptedException, DocumentException, IOException {
+		boolean availability = false;
+		try {
+			availability = getwebelement(xml.getlocator("//locators/" + application + "/" + xpathname + ""))
+					.isDisplayed();
+			if (availability) {
 				DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is displaying");
 				System.out.println(labelname + " text field is displaying");
-				
-				if(expectedValueToEdit.equalsIgnoreCase("null")) {
+
+				if (expectedValueToEdit.equalsIgnoreCase("null")) {
 					DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is not edited as expected");
 					System.out.println(labelname + " text field is not edited as expected");
-				}else {
-					
-					getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).clear();
+				} else {
+
+					getwebelement(xml.getlocator("//locators/" + application + "/" + xpathname + "")).clear();
 					Thread.sleep(3000);
-					
-					SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")), expectedValueToEdit);
+
+					SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/" + xpathname + "")),
+							expectedValueToEdit);
 					Thread.sleep(3000);
-					
-					String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is edited as: "+ actualvalue);
+
+					String actualvalue = getwebelement(
+							xml.getlocator("//locators/" + application + "/" + xpathname + "")).getAttribute("value");
+					DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is edited as: " + actualvalue);
 				}
-				
-			}else {
+
+			} else {
 				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
 				System.out.println(labelname + " text field is not displaying");
 			}
-		}catch(NoSuchElementException e) {
+		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
 			System.out.println(labelname + " text field is not displaying");
-		}catch(Exception ee) {
+		} catch (Exception ee) {
 			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, " Not able to perform editing under"+ labelname + " text field");
-			System.out.println(" Not able to perform editing under "+ labelname + " text field");
+			DriverTestcase.logger.log(LogStatus.FAIL, " Not able to perform editing under" + labelname + " text field");
+			System.out.println(" Not able to perform editing under " + labelname + " text field");
 		}
-		}
-
-		
+	}
 
 	/**
-	 *  Mandatory field  Warning message validation
+	 * Mandatory field Warning message validation
+	 * 
 	 * @param application
 	 * @param xpath
 	 * @param fieldlabelName
@@ -1290,230 +1219,268 @@ public void Moveon(WebElement el) {
 	 * @throws InterruptedException
 	 * @throws DocumentException
 	 */
-	public void warningMessage_commonMethod(String application, String xpath, String fieldlabelName, XMLReader xml) throws InterruptedException, DocumentException {
-		 	boolean message=false;
-		 	//Field Error Message
-		 			try {
-		 				message = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath  +"")).isDisplayed();
-		 				Thread.sleep(3000);
-		 			sa.assertTrue(message, fieldlabelName + " field warning message is not displayed ");
-		 			if(message) {
-		 			String ErrMsg = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath  +"")).getText();
-		 			
-		 			System.out.println( fieldlabelName + " field warning  message displayed as : " + ErrMsg);
-		 			DriverTestcase.logger.log(LogStatus.PASS, "Step :  validation message for"+ fieldlabelName +"  field displayed as : " + ErrMsg);
-		 			Log.info(fieldlabelName + " field warning  message displayed as : " + ErrMsg);
-		 			}else{
-		 				DriverTestcase.logger.log(LogStatus.FAIL, "validation message for"+ fieldlabelName +"  field is not displaying");
-		 				System.out.println("validation message for"+ fieldlabelName +"  field is not displaying");
-		 			}
-		 			}catch(NoSuchElementException e) {
-		 				e.printStackTrace();
-		 				System.out.println( "No warning message displayed for "+ fieldlabelName);
-		 				DriverTestcase.logger.log(LogStatus.FAIL, "No warning message displayed for "+ fieldlabelName);
-		 			}catch(Exception ed) {
-		 				ed.printStackTrace();
-		 				System.out.println( "No warning message displayed for "+ fieldlabelName);
-		 				DriverTestcase.logger.log(LogStatus.FAIL, "No warning message displayed for "+ fieldlabelName);
-		 			}
-		 }
-		
-		
-		//Click Method
-		public void click(String application, String labelname, String xpath, XMLReader xml) throws InterruptedException, DocumentException {
-			WebElement element= null;
+	public void warningMessage_commonMethod(String application, String xpath, String fieldlabelName, XMLReader xml)
+			throws InterruptedException, DocumentException {
+		boolean message = false;
+		// Field Error Message
+		try {
+			message = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")).isDisplayed();
+			Thread.sleep(3000);
+			sa.assertTrue(message, fieldlabelName + " field warning message is not displayed ");
+			if (message) {
+				String ErrMsg = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")).getText();
 
-			try {
-				Thread.sleep(1000);
-				element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
-				if(element==null)
-				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
-				}
-				else {
-					element.click();	
-					DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
-				}
-
-			} catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
-				e.printStackTrace();
+				System.out.println(fieldlabelName + " field warning  message displayed as : " + ErrMsg);
+				DriverTestcase.logger.log(LogStatus.PASS,
+						"Step :  validation message for" + fieldlabelName + "  field displayed as : " + ErrMsg);
+				Log.info(fieldlabelName + " field warning  message displayed as : " + ErrMsg);
+			} else {
+				DriverTestcase.logger.log(LogStatus.FAIL,
+						"validation message for" + fieldlabelName + "  field is not displaying");
+				System.out.println("validation message for" + fieldlabelName + "  field is not displaying");
 			}
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			System.out.println("No warning message displayed for " + fieldlabelName);
+			DriverTestcase.logger.log(LogStatus.FAIL, "No warning message displayed for " + fieldlabelName);
+		} catch (Exception ed) {
+			ed.printStackTrace();
+			System.out.println("No warning message displayed for " + fieldlabelName);
+			DriverTestcase.logger.log(LogStatus.FAIL, "No warning message displayed for " + fieldlabelName);
 		}
-		
-		
+	}
+
+	// Click Method
+	public void click(String application, String labelname, String xpath, XMLReader xml)
+			throws InterruptedException, DocumentException {
+		WebElement element = null;
+
+		try {
+			Thread.sleep(1000);
+			element = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + ""));
+			if (element == null) {
+				DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '" + labelname + "' not found");
+			} else {
+				element.click();
+				DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked on '" + labelname + "' button");
+			}
+
+		} catch (Exception e) {
+			DriverTestcase.logger.log(LogStatus.FAIL, "Step: Clicking on '" + labelname + "' button is unsuccessful");
+			e.printStackTrace();
+		}
+	}
 
 	/**
-	 *  For checkbox common method _  Edit	
+	 * For checkbox common method _ Edit
+	 * 
 	 * @param application
 	 * @param expectedResult
 	 * @param xpath
 	 * @param labelname
 	 * @param xml
 	 */
-		public void editcheckbox_commonMethod(String application, String expectedResult, String xpath, String labelname, XMLReader xml) {
-			 
-			  boolean Availability=false;
-			  try {
-				  Availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
-			  
-			  if(Availability) {
-				  
-				  DriverTestcase.logger.log(LogStatus.PASS,  labelname+ " checkbox is displaying in edit page");
-				  System.out.println(labelname+ " checkbox is displaying in edit page");
-				  
-				if(!expectedResult.equalsIgnoreCase("null")) {
-					boolean isElementSelected=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isSelected();
+	public void editcheckbox_commonMethod(String application, String expectedResult, String xpath, String labelname,
+			XMLReader xml) {
+
+		boolean Availability = false;
+		try {
+			Availability = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")).isDisplayed();
+
+			if (Availability) {
+
+				DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is displaying in edit page");
+				System.out.println(labelname + " checkbox is displaying in edit page");
+
+				if (!expectedResult.equalsIgnoreCase("null")) {
+					boolean isElementSelected = getwebelement(
+							xml.getlocator("//locators/" + application + "/" + xpath + "")).isSelected();
 					Thread.sleep(2000);
-					
+
 					if (expectedResult.equalsIgnoreCase("yes")) {
-						
-						if(isElementSelected) {
-							DriverTestcase.logger.log(LogStatus.PASS, labelname +" checkbox is not edited and it is already Selected while creating");
-						}else {
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
+
+						if (isElementSelected) {
+							DriverTestcase.logger.log(LogStatus.PASS,
+									labelname + " checkbox is not edited and it is already Selected while creating");
+						} else {
+							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")));
 							Log.info(labelname + " check box is selected");
 							DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is selected");
 						}
-					}
-					else if (expectedResult.equalsIgnoreCase("no")) {
-						
-						if(isElementSelected) {
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
+					} else if (expectedResult.equalsIgnoreCase("no")) {
+
+						if (isElementSelected) {
+							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")));
 							Log.info(labelname + " check box is unselected");
-							DriverTestcase.logger.log(LogStatus.PASS,labelname + " is edited and gets unselected");
-						}else {
-							DriverTestcase.logger.log(LogStatus.PASS, labelname + " is not edited and it remains unselected");
+							DriverTestcase.logger.log(LogStatus.PASS, labelname + " is edited and gets unselected");
+						} else {
+							DriverTestcase.logger.log(LogStatus.PASS,
+									labelname + " is not edited and it remains unselected");
 						}
-						
+
 					}
-				}else {
-					DriverTestcase.logger.log(LogStatus.PASS,"No changes made for "+ labelname +"  chekbox");
+				} else {
+					DriverTestcase.logger.log(LogStatus.PASS, "No changes made for " + labelname + "  chekbox");
 				}
-			  }else {
-				  DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is not available in 'Edit Service' page");
-			  }
-
-				}catch(NoSuchElementException e) {
-					e.printStackTrace();
-					DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is not displaying under 'Edit service' page");
-					System.out.println(labelname+" checkbox is not displaying under 'Edit service' page");
-				}catch(Exception err) {
-					err.printStackTrace();
-					DriverTestcase.logger.log(LogStatus.FAIL, " Not able to click on "+ labelname + " checkbox");
-					System.out.println(" Not able to click on "+ labelname + " checkbox");
-				}
-		}
-
-		
-		/**
-		 *  For delete common method
-		 * @param application
-		 * @param xpath
-		 * @param labelname
-		 * @param expectedvalue
-		 * @throws InterruptedException
-		 * @throws DocumentException
-		 */
-		
-		public void delete(String application, String xpath, String labelname, String expectedvalue, XMLReader xml) throws InterruptedException, DocumentException{
-			Thread.sleep(1000);	
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
-			Thread.sleep(2000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on delete link");
-
-			WebElement DeleteAlertPopup= driver.findElement(By.xpath("//div[@class='modal-content']"));
-			if(DeleteAlertPopup.isDisplayed())
-			{
-				click_commonMethod(application, "Delete", "deletebutton", xml);
-				//scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup")));
-				WebDriverWait wait= new WebDriverWait(driver,50);
-				wait= (WebDriverWait) wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//locators/" + application + "/"+ xpath +"")));
-				compareText(application, "'"+ labelname +"' delete success message", "'"+ xpath +"'", "'"+expectedvalue+"'", xml);
+			} else {
+				DriverTestcase.logger.log(LogStatus.FAIL,
+						labelname + " checkbox is not available in 'Edit Service' page");
 			}
-			else
-			{
-				Log.info("Delete alert popup is not displayed");
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Delete alert popup is not displayed");
-			}
+
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			DriverTestcase.logger.log(LogStatus.FAIL,
+					labelname + " checkbox is not displaying under 'Edit service' page");
+			System.out.println(labelname + " checkbox is not displaying under 'Edit service' page");
+		} catch (Exception err) {
+			err.printStackTrace();
+			DriverTestcase.logger.log(LogStatus.FAIL, " Not able to click on " + labelname + " checkbox");
+			System.out.println(" Not able to click on " + labelname + " checkbox");
 		}
-		
-		
+	}
+
 	/**
-	 *  verify whether button is available for clicking and click on respective button	
+	 * For delete common method
+	 * 
+	 * @param application
+	 * @param xpath
+	 * @param labelname
+	 * @param expectedvalue
+	 * @throws InterruptedException
+	 * @throws DocumentException
+	 */
+
+	public void delete(String application, String xpath, String labelname, String expectedvalue, XMLReader xml)
+			throws InterruptedException, DocumentException {
+		Thread.sleep(1000);
+		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")));
+		Thread.sleep(2000);
+		DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on delete link");
+
+		WebElement DeleteAlertPopup = driver.findElement(By.xpath("//div[@class='modal-content']"));
+		if (DeleteAlertPopup.isDisplayed()) {
+			click_commonMethod(application, "Delete", "deletebutton", xml);
+			// scrolltoview(getwebelement(xml.getlocator("//locators/" + application +
+			// "/delete_alertpopup")));
+			WebDriverWait wait = new WebDriverWait(driver, 50);
+			wait = (WebDriverWait) wait.until(ExpectedConditions
+					.visibilityOfElementLocated(By.xpath("//locators/" + application + "/" + xpath + "")));
+			compareText(application, "'" + labelname + "' delete success message", "'" + xpath + "'",
+					"'" + expectedvalue + "'", xml);
+		} else {
+			Log.info("Delete alert popup is not displayed");
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : Delete alert popup is not displayed");
+		}
+	}
+
+	/**
+	 * verify whether button is available for clicking and click on respective
+	 * button
+	 * 
 	 * @param application
 	 * @param labelname
 	 * @param xpath
 	 * @throws InterruptedException
 	 * @throws DocumentException
 	 */
-		public void click_commonMethod(String application, String labelname, String xpath, XMLReader xml) throws InterruptedException, DocumentException {
-			WebElement element= null;
+	public void click_commonMethod(String application, String labelname, String xpath, XMLReader xml)
+			throws InterruptedException, DocumentException {
+		WebElement element = null;
 
-			try {
-				Thread.sleep(1000);
-				element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
-				if(element==null)
-				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
-				}
-				else {
-					element.click();	
-					DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
-				}
-
-			} catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
-				e.printStackTrace();
-			}
-		}
-		
-		
-		/**
-		 *  For Comparing the values 
-		 * @param application
-		 * @param labelname
-		 * @param xpath
-		 * @param ExpectedText
-		 * @param xml
-		 * @throws InterruptedException
-		 * @throws DocumentException
-		 */
-		public void compareText(String application, String labelname, String xpath, String ExpectedText, XMLReader xml) throws InterruptedException, DocumentException {
-
-			String text = null;
-			WebElement element = null;
-
-			try {
-				Thread.sleep(1000);
-				element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
-				String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
-				if(element==null)
-				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
-				}
-				else if (emptyele!=null && emptyele.isEmpty()) {
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
-				}else 
-				{   
-					text = element.getText();
-					if(text.equals(ExpectedText)) {
-						DriverTestcase.logger.log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
-					}
-					else if(text.contains(ExpectedText)) {
-						DriverTestcase.logger.log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
-					}
-					else
-					{
-						DriverTestcase.logger.log(LogStatus.FAIL,"Step: The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+text+"'");
-					}
-				}
-			}catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.FAIL,"Step: The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+text+"'");
-				e.printStackTrace();
+		try {
+			Thread.sleep(1000);
+			element = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + ""));
+			if (element == null) {
+				DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '" + labelname + "' not found");
+			} else {
+				element.click();
+				DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked on '" + labelname + "' button");
 			}
 
+		} catch (Exception e) {
+			DriverTestcase.logger.log(LogStatus.FAIL, "Step: Clicking on '" + labelname + "' button is unsuccessful");
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * For Comparing the values
+	 * 
+	 * @param application
+	 * @param labelname
+	 * @param xpath
+	 * @param ExpectedText
+	 * @param xml
+	 * @throws InterruptedException
+	 * @throws DocumentException
+	 */
+	public void compareText(String application, String labelname, String xpath, String ExpectedText, XMLReader xml)
+			throws InterruptedException, DocumentException {
+
+		String text = null;
+		WebElement element = null;
+
+		try {
+			Thread.sleep(1000);
+			element = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + ""));
+			String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + ""))
+					.getAttribute("value");
+			if (element == null) {
+				DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '" + labelname + "' not found");
+			} else if (emptyele != null && emptyele.isEmpty()) {
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : '" + labelname + "' value is empty");
+			} else {
+				text = element.getText();
+				if (text.equals(ExpectedText)) {
+					DriverTestcase.logger.log(LogStatus.PASS, "Step: The Expected Text for '" + labelname + "' field '"
+							+ ExpectedText + "' is same as the Acutal Text '" + text + "'");
+				} else if (text.contains(ExpectedText)) {
+					DriverTestcase.logger.log(LogStatus.PASS, "Step: The Expected Text for '" + labelname + "' field '"
+							+ ExpectedText + "' is same as the Acutal Text '" + text + "'");
+				} else {
+					DriverTestcase.logger.log(LogStatus.FAIL, "Step: The ExpectedText '" + ExpectedText
+							+ "' is not same as the Acutal Text '" + text + "'");
+				}
+			}
+		} catch (Exception e) {
+			DriverTestcase.logger.log(LogStatus.FAIL,
+					"Step: The ExpectedText '" + ExpectedText + "' is not same as the Acutal Text '" + text + "'");
+			e.printStackTrace();
 		}
 
-	
+	}
+
+	public void compareText_fromtextFields(String application, String labelname, String xpath, String ExpectedText,
+			XMLReader xml) throws InterruptedException, DocumentException {
+
+		WebElement element = null;
+
+		try {
+			Thread.sleep(1000);
+			element = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + ""));
+			String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + ""))
+					.getAttribute("value");
+			if (element == null) {
+				DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '" + labelname + "' not found");
+			} else if (emptyele != null && emptyele.isEmpty()) {
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : '" + labelname + "' value is empty");
+			} else {
+				if (emptyele.equals(ExpectedText)) {
+					DriverTestcase.logger.log(LogStatus.PASS, "Step: The Expected Text for '" + labelname + "' field '"
+							+ ExpectedText + "' is same as the Acutal Text '" + emptyele + "'");
+				} else if (emptyele.contains(ExpectedText)) {
+					DriverTestcase.logger.log(LogStatus.PASS, "Step: The Expected Text for '" + labelname + "' field '"
+							+ ExpectedText + "' is same as the Acutal Text '" + emptyele + "'");
+				} else {
+					DriverTestcase.logger.log(LogStatus.FAIL, "Step: The ExpectedText '" + ExpectedText
+							+ "' is not same as the Acutal Text '" + emptyele + "'");
+				}
+			}
+		} catch (Exception e) {
+			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
+			System.out.println(labelname + " field is not displaying");
+			e.printStackTrace();
+		}
+
+	}
 }

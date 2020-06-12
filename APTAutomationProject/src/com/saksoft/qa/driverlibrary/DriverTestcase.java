@@ -37,6 +37,10 @@ import com.relevantcodes.extentreports.LogStatus;
 import com.saksoft.qa.scripthelpers.APT_LoginHelper;
 
 import com.saksoft.qa.scripthelpers.APT_AutomationHelper;
+import com.saksoft.qa.scripthelpers.APT_NGINHelper;
+import com.saksoft.qa.scripthelpers.APT_DomainManagementHelper;
+import com.saksoft.qa.scripthelpers.APT_MSPLatencyHelper;
+import com.saksoft.qa.scripthelpers.APT_ManageNetworkHelper;
 
 
 public class DriverTestcase {
@@ -46,6 +50,10 @@ public class DriverTestcase {
 	
 	    public static final ThreadLocal<APT_LoginHelper> APTLogin = new InheritableThreadLocal<>();
 		public static final ThreadLocal<APT_AutomationHelper> APT_Helper = new InheritableThreadLocal<>();
+		public static final ThreadLocal<APT_NGINHelper> APT_NGIN = new InheritableThreadLocal<>();
+		public static final ThreadLocal<APT_DomainManagementHelper> APT_DomainManageHelper = new InheritableThreadLocal<>();
+		public static final ThreadLocal<APT_MSPLatencyHelper> APT_MSPLatencyHelper = new InheritableThreadLocal<>();
+		public static final ThreadLocal<APT_ManageNetworkHelper> APT_ManageNetworkHelper = new InheritableThreadLocal<>();
 		
 		public static com.saksoft.qa.listeners.TestListener Testlistener;
 		public ThreadLocal<String> TestName=new ThreadLocal();
@@ -134,10 +142,16 @@ public class DriverTestcase {
 			 */
 			APT_LoginHelper apt=new APT_LoginHelper(getwebdriver());
 			APTLogin.set(apt);
-						
+			APT_NGINHelper ngin = new APT_NGINHelper(getwebdriver());
+			APT_NGIN.set(ngin);		
 			APT_AutomationHelper aptautomation = new APT_AutomationHelper(getwebdriver());
 			APT_Helper.set(aptautomation);
-			
+			APT_DomainManagementHelper DM= new APT_DomainManagementHelper(getwebdriver());
+			APT_DomainManageHelper.set(DM);
+			APT_MSPLatencyHelper msplatency= new APT_MSPLatencyHelper(getwebdriver());
+			APT_MSPLatencyHelper.set(msplatency);
+			APT_ManageNetworkHelper managenetwork= new APT_ManageNetworkHelper(getwebdriver());
+			APT_ManageNetworkHelper.set(managenetwork);
 			
 			//APT_Login aptLogin=new APT_Login();
 			//aptLogin.APT_Login_1();

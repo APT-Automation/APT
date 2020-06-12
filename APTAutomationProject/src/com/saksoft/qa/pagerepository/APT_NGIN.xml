@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<locators>
+<nginservice>
+
+<ManageCustomerServiceLink>(//div[@class='ant-menu-submenu-title'])[2]</ManageCustomerServiceLink>
+<CreateOrderServiceLink>//li[text()='Create Order/Service']</CreateOrderServiceLink>
+<entercustomernamefield>//input[@id='customerName']</entercustomernamefield>
+<chooseCustomerdropdown>//div[label[text()='Customer']]//input</chooseCustomerdropdown>
+
+<Next_Button>//button//Span[text()='Next']</Next_Button>
+
+<mcslink>//a[contains(text(),"Manage Customer's Service")]</mcslink>
+<createcustomerlink>//li[text()='Create Customer']</createcustomerlink>
+<createorderlink>//li[text()='Create Order/Service']</createorderlink>
+
+<!-- Create Customer Page -->
+<createcustomer_header>//div[@class='heading-green-row row']//p</createcustomer_header>
+<nametextfield>//input[@id='name']</nametextfield>
+<maindomaintextfield>//input[@id='mainDomain']</maindomaintextfield>
+<country>//div[label[contains(text(),'Country')]]//input</country>
+<ocntextfield>//input[@id='ocn']</ocntextfield>
+<referencetextfield>//input[@id='reference']</referencetextfield>
+<technicalcontactnametextfield>//input[@id='techinicalContactName']</technicalcontactnametextfield>
+<typedropdown>//div[label[contains(text(),'Type')]]//input</typedropdown>
+<emailtextfield>//input[@id='email']</emailtextfield>
+<phonetextfield>//input[@id='phone']</phonetextfield>
+<faxtextfield>//input[@id='fax']</faxtextfield>
+<enablededicatedportalcheckbox>//input[@id='enabledDedicatedPortal']</enablededicatedportalcheckbox>
+<dedicatedportaldropdown>//div[label[text()='Dedicated Portal']]//input</dedicatedportaldropdown>
+<okbutton>//span[contains(text(),'OK')]</okbutton>
+<customercreationsuccessmsg>//div[@role='alert']//span</customercreationsuccessmsg>
+<clearbutton>//span[text()='Clear']</clearbutton>
+<clearcountryvalue>//label[text()='Country']/parent::div//div[text()='×']</clearcountryvalue>
+<cleartypevalue>//label[text()='Type']/parent::div//div[text()='×']</cleartypevalue>
+
+<!--  Verify warning messages -->
+<customernamewarngmsg>//input[@id='name']/parent::div//div</customernamewarngmsg>
+<countrywarngmsg>//div[label[contains(text(),'Country')]]/following-sibling::div</countrywarngmsg>
+<ocnwarngmsg>//input[@id='ocn']/parent::div//div</ocnwarngmsg>
+<typewarngmsg>//div[label[contains(text(),'Type')]]/following-sibling::div</typewarngmsg>
+<emailwarngmsg>//input[@id='email']/parent::div//div</emailwarngmsg>
+<customer_createorderpage_warngmsg>//div[text()='Customer']</customer_createorderpage_warngmsg>
+<sidwarngmsg>//input[@id='serviceIdentification']/parent::div//div</sidwarngmsg>
+
+
+<!--  Verify Customer details panel  -->
+<Name_Text>(//div//label[@for='name'])[1]</Name_Text>
+<Name_Value>//label[text()='Legal Customer Name']/parent::div/parent::div//div[2]</Name_Value>
+<MainDomain_Text>(//div//label[@for='name'])[2]</MainDomain_Text>
+<MainDomain_Value>//label[text()='Main Domain']/parent::div/parent::div//div[2]</MainDomain_Value>
+<Country_Text>(//div//label[@for='name'])[3]</Country_Text>
+<Country_Value>//label[text()='Country']/parent::div/parent::div//div[2]</Country_Value>
+<OCN_Text>(//div//label[@for='name'])[4]</OCN_Text>
+<OCN_Value>//label[text()='OCN']/parent::div/parent::div//div[2]</OCN_Value>
+<Reference_Text>(//div//label[@for='name'])[5]</Reference_Text>
+<Reference_Value>//label[text()='Reference']/parent::div/parent::div//div[2]</Reference_Value>
+<Type_Text>(//div//label[@for='name'])[6]</Type_Text>
+<Type_Value>//label[text()='Type']/parent::div/parent::div//div[2]</Type_Value>
+<TechnicalContactName_Text>(//div//label[@for='name'])[7]</TechnicalContactName_Text>
+<TechnicalContactName_Value>//label[text()='Technical Contact Name']/parent::div/parent::div//div[2]</TechnicalContactName_Value>
+<Email_Text>(//div//label[@for='name'])[8]</Email_Text>
+<Email_Value>//label[text()='Email']/parent::div/parent::div//div[2]</Email_Value>
+<Phone_Text>(//div//label[@for='name'])[9]</Phone_Text>
+<Phone_Value>//label[text()='Phone']/parent::div/parent::div//div[2]</Phone_Value>
+<Fax_Text>(//div//label[@for='name'])[10]</Fax_Text>
+<Fax_Value>//label[text()='Fax']/parent::div/parent::div//div[2]</Fax_Value>
+
+
+<!-- create order/service page -->
+<!-- <nametextfield>//input[@id='customerSearch']</nametextfield> -->
+<createordernametextfield>//input[@id='customerName']</createordernametextfield>
+<choosecustomerdropdown>//div[label[text()='Customer']]//input</choosecustomerdropdown>
+<customerdropdown>//div[label[text()='Customer']]/div</customerdropdown>
+<nextbutton>//span[contains(text(),'Next')]</nextbutton>
+<choosocustomerwarningmsg>//body/div[@id='root']/div/div[contains(@class,'app-container app-theme-white fixed-header fixed-sidebar fixed-footer')]/div[contains(@class,'app-main')]/div[contains(@class,'app-main__outer')]/div[contains(@class,'app-main__inner')]/div[contains(@class,'div-border div-margin container')]/form/div[contains(@class,'div-margin row')]/div[contains(@class,'col-12 col-sm-12 col-md-3')]/div[contains(@class,'position-relative form-group')]/div[2]</choosocustomerwarningmsg>
+<leaglcustomername>//div[div[label[text()='Legal Customer Name']]]/div[2]</leaglcustomername>
+<maindomain>//div[div[label[text()='Main Domain']]]/div[2]</maindomain>
+<country>//div[div[label[text()='Country']]]/div[2]</country>
+<ocn>//div[div[label[text()='OCN']]]/div[2]</ocn>
+<reference>//div[div[label[text()='Reference']]]/div[2]</reference>
+<type>//div[div[label[text()='Type']]]/div[2]</type>
+<technicalcontactname>//div[div[label[text()='Technical Contact Name']]]/div[2]</technicalcontactname>
+<email>//div[div[label[text()='Email']]]/div[2]</email>
+<phone>//div[div[label[text()='Phone']]]/div[2]</phone>
+<fax>//div[div[label[text()='Fax']]]/div[2]</fax>
+<dedicatedportal>//div[div[label[text()='Dedicated Portal']]]/div[2]</dedicatedportal>
+<useractionbutton>//button[@id='dropdown-basic-button']</useractionbutton>
+<adduserbutton>//a[contains(text(),'Add')]</adduserbutton>
+
+<!-- Create Order/service panel in view customer page -->
+<CreateOrderHeader>//div[text()='Create Order / Service']</CreateOrderHeader>
+<ordercontractnumber>//div[div[label[text()='Order/Contract Number']]]//input[@size='9']</ordercontractnumber>
+<selectorderswitch>(//div[@class='react-switch-bg'])[1]</selectorderswitch>
+<createorderswitch>//form[@name='createOrder']//div[2]//div[1]//div[3]//div[1]//div[1]//div[1]</createorderswitch>
+<rfireqiptextfield>//div[contains(@class,'col-md-3 col-sm-12 col-12')]//input[@id='rfiRfqIpVoiceLineNo']</rfireqiptextfield>
+<existingorderdropdown>//label[text()='Order/Contract Number(Parent SID)']/parent::div//div//input</existingorderdropdown>
+<existingorderdropdownvalue>//span[text()='12345']</existingorderdropdownvalue>
+<createorderbutton>//button//span[text()='Create Order']</createorderbutton>
+<newordertextfield>//input[@id='orderName']</newordertextfield>
+<newrfireqtextfield>//div[@class='form-group']//input[@id='rfiRfqIpVoiceLineNo']</newrfireqtextfield>
+<OrderCreatedSuccessMsg>//div[@role='alert']//span[text()='Order created successfully']</OrderCreatedSuccessMsg>
+
+<servicetypetextfield>//div[div[label[text()='Service Type']]]//input</servicetypetextfield>
+<networkconfigurationinputfield>//div[div[label[text()='Network Configuration']]]//input</networkconfigurationinputfield>
+<OrderContractNumber_Select>(//div[@class='react-dropdown-select-content react-dropdown-select-type-single css-jznujr-ContentComponent e1gn6jc30'])[1]</OrderContractNumber_Select>
+<changeorder_cancelbutton>//span[contains(text(),'Cancel')]</changeorder_cancelbutton>
+
+<!-- Service Creation Form -->
+<createorderservice_header>//div//div[text()='Create Order / Service']</createorderservice_header>
+<serviceidentificationtextfield>//input[@id='serviceIdentification']</serviceidentificationtextfield>
+<servicetypevalue>//div[label[text()='Service Type']]/div</servicetypevalue>
+<emailtextfield>//input[@id='email']</emailtextfield>
+<emailtextfieldvalue>//div[label[text()='Email']]//input</emailtextfieldvalue>
+<phonecontacttextfield>//input[@id='phoneContact']</phonecontacttextfield>
+<phonecontacttextfieldvalue>//div[label[text()='Phone Contact']]//input</phonecontacttextfieldvalue>
+<remarktextarea>//textarea[contains(@name,'remark')]</remarktextarea>
+<remarktextareavalue>//div[label[text()='Remark']]//textarea</remarktextareavalue>
+<performancereportingcheckbox>//input[@id='performanceReporting']</performancereportingcheckbox>
+<cancelbutton>//span[contains(text(),'Cancel')]</cancelbutton>
+<servicecreationmessage>//div[@role='alert']//span</servicecreationmessage>
+<customeradministrationcheckbox>//input[@id='custAdm']</customeradministrationcheckbox>
+<sanadministrationcheckbox>//input[@id='sanAdm']</sanadministrationcheckbox>
+<reselleradministrationcheckbox>//input[@id='resellerAdm']</reselleradministrationcheckbox>
+
+<servicetype_value>//label[text()='Service Type']/following-sibling::div</servicetype_value>
+<emailarrow>//label[text()='Email']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</emailarrow>
+<phonearrow>//label[text()='Phone Contact']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</phonearrow>
+
+<!-- <cancelbutton>//button[@type='submit']//span[text()='Cancel']</cancelbutton> -->
+
+<!--  Search order  -->
+<searchorderlink>//li[text()='Search Order/Service']</searchorderlink>
+<servicefield>//label[text()='Service']/following-sibling::input</servicefield>
+<searchbutton>//span[text()='Search']</searchbutton>
+<serviceradiobutton>//div[@role='gridcell']//span[contains(@class,'unchecked')]</serviceradiobutton>
+<searchorder_actiondropdown>//div[@class='dropdown']//button</searchorder_actiondropdown>
+
+<!-- order panel - view service page -->
+<orderactionbutton>//div[div[text()='Order']]//button</orderactionbutton>
+<editorderlink>//div[div[text()='Order']]//div//a[text()='Edit Order']</editorderlink>
+<changeorderlink>//a[contains(text(),'Change Order')]</changeorderlink>
+<ordernumbervalue>//label[text()='Order/Contract Number (Parent SID)']/parent::div/following-sibling::div[@class='customLabelValue form-label']</ordernumbervalue>
+<ordervoicelinenumbervalue>//label[text()='RFI/RFQ/IP Voice Line Number']/parent::div/following-sibling::div[@class='customLabelValue form-label']</ordervoicelinenumbervalue>
+<changeordervoicelinenumber>//label[text()='RFI / RFQ /IP Voice Line number']/following-sibling::input</changeordervoicelinenumber>
+<changeordernumber>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::input</changeordernumber>
+<changeorder_selectorderswitch>//div[@class='react-switch-bg']</changeorder_selectorderswitch>
+<changeorder_chooseorderdropdown>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::div//div[2]</changeorder_chooseorderdropdown>
+<changeorder_backbutton>//span[contains(text(),'Back')]</changeorder_backbutton>
+<changeorder_okbutton>//span[contains(text(),'OK')]</changeorder_okbutton>
+<orderpanelheader>//div[text()='Order']</orderpanelheader>
+<editorderheader>//div[text()='Edit Order']</editorderheader>
+<editorderno>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::input</editorderno>
+<editvoicelineno>//label[text()='RFI/RFQ/IP Voice Line Number']/following-sibling::input</editvoicelineno>
+<editorder_okbutton>(//span[contains(text(),'OK')])[1]</editorder_okbutton>
+<changeorderheader>//div[text()='Change Order']</changeorderheader>
+<createorder_button>//button//span[text()='Create Order']</createorder_button>
+<changeorder_dropdownlist>//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false']</changeorder_dropdownlist>
+
+
+<!-- service panel -->
+<servicepanel_serviceidentificationvalue>//div[label[contains(text(),'Service Identification')]]/div</servicepanel_serviceidentificationvalue>
+<servicepanel_servicetypevalue>//div[label[contains(text(),'Service Type')]]/div</servicepanel_servicetypevalue>
+<servicepanel_remarksvalue>//div[label[contains(text(),'Remark')]]/div</servicepanel_remarksvalue>
+<servicepanel_header>//div[text()='Service']</servicepanel_header>
+<serviceactiondropdown>//div[div[text()='Service']]//button</serviceactiondropdown>
+<serviceupdate_successmsg>//div[@role='alert']//span[text()='Service  successfully updated']</serviceupdate_successmsg>
+<manageLink>//div[@class='dropdown-menu show']//a[text()='Manage']</manageLink>
+<synchronizelink_servicepanel>//a[text()='Synchronize']</synchronizelink_servicepanel>
+<manageservice_header>//div[text()='Manage Service']</manageservice_header>
+<status_ordername>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='orderName']</status_ordername>
+<status_servicename>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceName']</status_servicename>
+<status_servicetype>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceType']</status_servicetype>
+<status_servicedetails>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceDetails']</status_servicedetails>
+<status_currentstatus>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='currentStatus']</status_currentstatus>
+<status_modificationtime>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='mTime']</status_modificationtime>
+<statuslink>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell']//a[text()='Status']</statuslink>
+<sync_ordername>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='orderName']</sync_ordername>
+<sync_servicename>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceName']</sync_servicename>
+<sync_servicetype>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceType']</sync_servicetype>
+<sync_servicedetails>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceDetails']</sync_servicedetails>
+<sync_status>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='syncStatus']</sync_status>
+<synchronizelink>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell']//a[text()='Synchronize']</synchronizelink>
+<managepage_backbutton>//span[text()='Back']</managepage_backbutton>
+<Servicestatus_popup>//div[@class='modal-content']</Servicestatus_popup>
+<servicestatus_popupclose>(//div[text()='Service Status']/following-sibling::button//span)[1]</servicestatus_popupclose>
+<changestatus_dropdown>//label[text()='Change Status']/parent::div//input</changestatus_dropdown>
+<changestatus_dropdownvalue>//label[text()='Change Status']/parent::div//span</changestatus_dropdownvalue>
+<servicestatushistory>//div[@class='modal-content']//div[@ref='eBodyViewport']//div[@role='row']</servicestatushistory>
+<Sync_successmsg>//div[@role='alert']//span</Sync_successmsg>
+<bulkinterfaceheader>//div[text()='Bulk Interface']</bulkinterfaceheader>
+<bulkjob_choosefilebutton>//label[text()='Submit Bulk Job']/parent::div/parent::div//input</bulkjob_choosefilebutton>
+<bulkjobsubmit>//span[text()='Submit']</bulkjobsubmit>
+<bulkjobcancel>(//span[text()='Cancel'])[1]</bulkjobcancel>
+<bulkinterfacelink>//a[text()='Bulk Interface']</bulkinterfacelink>
+<bulkinterface_archivelink>//a[text()='Archive']</bulkinterface_archivelink>
+<bulkinterface_refreshlink>//a[text()='Refresh']</bulkinterface_refreshlink>
+<bulkinterfacepage_cancel>(//span[text()='Cancel'])[2]</bulkinterfacepage_cancel>
+<successmsg>//div[@role='alert']//span</successmsg>
+<bulkinterface_actiondropdown>//div[contains(text(),'Bulk Interface')]/following-sibling::div/div//button[text()='Action']</bulkinterface_actiondropdown>
+
+<!-- Management Options -->
+<managementoptions_customeradminvalue>//div[label[text()='Customer Administration']]/div</managementoptions_customeradminvalue>
+<managementoptions_sanadminvalue>//div[label[text()='SAN Administration']]/div</managementoptions_sanadminvalue>
+<managementoptions_reselladminvalue>//div[label[text()='Reseller Administration']]/div</managementoptions_reselladminvalue>
+
+<!-- Users panel in view service page -->
+
+<LoginColumn>//div[@col-id='userName']</LoginColumn>
+<NameColumn>//div[@col-id='firstName']</NameColumn>
+<EmailColumn>//div[@col-id='email']</EmailColumn>
+<RolesColumn>//div[@col-id='roles']</RolesColumn>
+<AddressColumn>//div[@col-id='postalAddress']</AddressColumn>
+<ResourcesColumn>//div[@col-id='0']</ResourcesColumn>
+<ExistingUsers>//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']</ExistingUsers>
+<UserUnchecked>//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//span[@class='ag-icon ag-icon-checkbox-unchecked']</UserUnchecked>
+<UserChecked>//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//span[@class='ag-icon ag-icon-checkbox-checked']</UserChecked>
+
+
+<!-- New User creation in view service page -->
+
+<UserActionDropdown>//div[contains(text(),'Users')]/following-sibling::div/div//button[text()='Action']</UserActionDropdown>
+<AddLink>//div[@class='dropdown-menu show']//a[text()='Add']</AddLink>
+<CreateUserHeader>//div[@class='heading-green-row row']//p</CreateUserHeader>
+<UserName>(//div[@class='position-relative form-group'])[1]//input[@id='userName']</UserName>
+<FirstName>(//div[@class='position-relative form-group'])[2]//input[@id='firstName']</FirstName>
+<SurName>(//div[@class='position-relative form-group'])[3]//input[@id='surname']</SurName>
+<PostalAddress>(//div[@class='position-relative form-group'])[4]//textarea[@name='postalAddress']</PostalAddress>
+<Email>(//div[@class='position-relative form-group'])[5]//input[@id='email']</Email>
+<Phone>(//div[@class='position-relative form-group'])[6]//input[@id='phone']</Phone>
+<Password>(//div[@class='position-relative form-group'])[9]//input[@id='password']</Password>
+<GeneratePassword>//div//span[text()='Generate Password']</GeneratePassword>
+<OkButton>//button[@type='submit']//span[text()='Ok']</OkButton>
+<edituser_header>//div[@class='heading-green-row row']//p</edituser_header>
+<delete_alertpopup>//div[@class='modal-content']</delete_alertpopup>
+<deletebutton>//button[text()=' Delete']</deletebutton>
+<deletesuccessmsg>//div[@role='alert']//span</deletesuccessmsg>
+<userspanel_header>//div[text()='Users']</userspanel_header>
+<usernamevalue>//b[text()='User Name']/parent::label/parent::div/following-sibling::div</usernamevalue>
+<firstnamevalue>//b[text()='First Name']/parent::label/parent::div/following-sibling::div</firstnamevalue>
+<surnamevalue>//b[text()='Surname']/parent::label/parent::div/following-sibling::div</surnamevalue>
+<postaladdressvalue>//b[text()='Postal Address']/parent::label/parent::div/following-sibling::div</postaladdressvalue>
+<emailvalue>//b[text()='Email']/parent::label/parent::div/following-sibling::div</emailvalue>
+<phonevalue>//b[text()='Phone']/parent::label/parent::div/following-sibling::div</phonevalue>
+
+<!-- Management Options panel in view service page -->
+
+<managementoptions_header>//div[text()='Management Options']</managementoptions_header>
+<customeradmin_text>//label[text()='Customer Administration']</customeradmin_text>
+<customeradmin_value>(//div[@class='position-relative form-group']//div[text()='Yes'])[1]</customeradmin_value>
+<sanadmin_text>//label[text()='SAN Administration']</sanadmin_text>
+<sanadmin_value>(//div[@class='position-relative form-group']//div[text()='Yes'])[2]</sanadmin_value>
+<reselleradmin_text>//label[text()='Reseller Administration']</reselleradmin_text>
+<reselleradmin_value>(//div[@class='position-relative form-group']//div[text()='Yes'])[3]</reselleradmin_value>
+
+
+<!-- Reseller panel in view service page -->
+<resellerheader>//div[text()='Reseller']</resellerheader>
+<reseller_customername_column>//div[@col-id='name']//span[@role='columnheader']</reseller_customername_column>
+<statuscolumn>//div[@col-id='status']//span[@role='columnheader']</statuscolumn>
+<edit>//div[@class='dropdown-menu show']//a[text()='Edit']</edit>
+<view>//div[@class='dropdown-menu show']//a[text()='View']</view>
+<delete>//div[@class='dropdown-menu show']//a[contains(text(),'Delete')]</delete>
+<manageresellerheader_viewpage>//div[@class='heading-green-row row']//p</manageresellerheader_viewpage>
+<manageresellerheader>(//div[@class='heading-green-row row']//span)[1]</manageresellerheader>
+<resellername>//div[@class='position-relative form-group']//label[text()='Reseller Name']/following-sibling::input</resellername>
+<reseller_email>//div[@class='position-relative form-group']//label[text()='Email']/following-sibling::input</reseller_email>
+<reseller_city>//div[@class='position-relative form-group']//label[text()='City']/following-sibling::input</reseller_city>
+<reseller_streetname>//div[@class='position-relative form-group']//label[text()='Street Name']/following-sibling::input</reseller_streetname>
+<reseller_streetno>//div[@class='position-relative form-group']//label[text()='Street Number']/following-sibling::input</reseller_streetno>
+<reseller_pobox>//div[@class='position-relative form-group']//label[text()='PO Box']/following-sibling::input</reseller_pobox>
+<reseller_zipcode>//div[@class='position-relative form-group']//label[text()='ZIP Code']/following-sibling::input</reseller_zipcode>
+<reseller_phone>//div[@class='position-relative form-group']//label[text()='Phone']/following-sibling::input</reseller_phone>
+<reseller_fax>//div[@class='position-relative form-group']//label[text()='Fax']/following-sibling::input</reseller_fax>
+<reseller_webauthorised>//input[@id='webAccessAuthorized']</reseller_webauthorised>
+<customerdetailsheader>//div[text()='Customer Details']</customerdetailsheader>
+<resellercreated_successmsg>//div[@role='alert']//span[text()='Manage Reseller successfully created']</resellercreated_successmsg>
+<ResellerActionDropdown>//div[contains(text(),'Reseller')]/following-sibling::div/div//button[text()='Action']</ResellerActionDropdown>
+<Addedreseller_columnvalue>//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@col-id='name']</Addedreseller_columnvalue>
+<editreseller_successmsg>//div[@role='alert']//span</editreseller_successmsg>
+<viewpage_actiondropdown>//div[@align='right']//div//button[text()='Action']</viewpage_actiondropdown>
+<viewpage_backbutton>//span[text()='Back']</viewpage_backbutton>
+<associateresellerlink>//div[@class='dropdown-menu show']//a[text()='Associate Reseller with NGIN Objects']</associateresellerlink>
+
+<reselleremail_warngmsg>//label[text()='Email']/parent::div//div</reselleremail_warngmsg>
+<resellercity_warngmsg>//label[text()='City']/parent::div//div</resellercity_warngmsg>
+<resellerstreetname_warngmsg>//label[text()='Street Name']/parent::div//div</resellerstreetname_warngmsg>
+<resellerstreetno_warngmsg>//label[text()='Street Number']/parent::div//div</resellerstreetno_warngmsg>
+<resellerpobox_warngmsg>//label[text()='PO Box']/parent::div//div</resellerpobox_warngmsg>
+<resellerzipcode_warngmsg>//label[text()='ZIP Code']/parent::div//div</resellerzipcode_warngmsg>
+<resellerphone_warngmsg>//label[text()='Phone']/parent::div//div</resellerphone_warngmsg>
+
+<resellernamevalue>//b[text()='Reseller Name']/parent::label/parent::div/following-sibling::div</resellernamevalue>
+<reselleremailvalue>//b[text()='Email']/parent::label/parent::div/following-sibling::div</reselleremailvalue>
+<resellercityvalue>//b[text()='City']/parent::label/parent::div/following-sibling::div</resellercityvalue>
+<resellerstreetnamevalue>//b[text()='Street Name']/parent::label/parent::div/following-sibling::div</resellerstreetnamevalue>
+<resellerstreetnovalue>//b[text()='Street Number']/parent::label/parent::div/following-sibling::div</resellerstreetnovalue>
+<resellerpoboxvalue>//b[text()='PO Box']/parent::label/parent::div/following-sibling::div</resellerpoboxvalue>
+<resellerzipcodevalue>//b[text()='ZIP Code']/parent::label/parent::div/following-sibling::div</resellerzipcodevalue>
+<resellerphonevalue>//b[text()='Phone']/parent::label/parent::div/following-sibling::div</resellerphonevalue>
+<resellerfaxvalue>//b[text()='Fax']/parent::label/parent::div/following-sibling::div</resellerfaxvalue>
+<resellerwebaccessvalue>//b[text()='Web Access Authorized']/parent::label/parent::div/following-sibling::div</resellerwebaccessvalue>
+
+<!-- Customer panel in view service page -->
+<customerheader>//div[text()='Customer']</customerheader>
+<customerpanel_customername>(//label[text()='Customer Name']/parent::div/div//input)[1]</customerpanel_customername>
+<managecustomerheader>//div[@class='heading-green-row row']//span[text()='Manage Customer In OSP']</managecustomerheader>
+<customer_ocn>//div[@class='position-relative form-group']//label[text()='OCN']/following-sibling::input</customer_ocn>
+<customer_country>(//label[text()='Country']/parent::div//div//input)[1]</customer_country>
+<customername>(//label[text()='Customer Name']/parent::div//div//input)[1]</customername>
+<defaultcheckbox>//label[@class='form-label capitalize']//input[@value='defcustprof']</defaultcheckbox>
+<configurecheckbox>//label[@class='form-label capitalize']//input[@value='configcustprof']</configurecheckbox>
+<CustomerpanelActionDropdown>//div[contains(text(),'Customer')]/following-sibling::div/div//button[text()='Action']</CustomerpanelActionDropdown>
+<addcustomer_successmsg>//div[@role='alert']//span</addcustomer_successmsg>
+<customername_columnvalue>//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@col-id='trailCustomerName']</customername_columnvalue>
+<editcustomer_successmsg>(//div[@role='alert']//span)[1]</editcustomer_successmsg>
+<viewpage_editcustomer>//div[@class='dropdown-menu show']//a[text()='Edit Customer']</viewpage_editcustomer>
+<viewpage_deletecustomer>//div[@class='dropdown-menu show']//a[text()='Delete Customer']</viewpage_deletecustomer>
+<deletealertclose>//div[@class='modal-content']//button//span[text()='×']</deletealertclose>
+<customerpanel_customernamevalue>//label[text()='Customer Name']/parent::div/div//span</customerpanel_customernamevalue>
+<customerpanel_customernamecolumntext>//div[text()='Customer']/parent::div/following-sibling::div//span[text()='Customer Name']</customerpanel_customernamecolumntext>
+<customercountry_disabled>(//label[text()='Country']/parent::div//div//div)[1]</customercountry_disabled>
+<customername_disabled>(//label[text()='Customer Name']/parent::div//div//div)[1]</customername_disabled>
+
+<customer_countryvalue>//label[text()='Country']/parent::div/following-sibling::div</customer_countryvalue>
+<customer_customernamevalue>//label[text()='Customer Name']/parent::div/following-sibling::div</customer_customernamevalue>
+<customername_selectedtext>(//label[text()='Customer Name']/parent::div//div//span)[1]</customername_selectedtext>
+<addcustomer_country_warningmsg>//label[text()='Country']/parent::div/following-sibling::div</addcustomer_country_warningmsg>
+<addcustomer_customername_warningmsg>//label[text()='Customer Name']/parent::div/following-sibling::div</addcustomer_customername_warningmsg>
+<addcustomer_city_warningmsg>//label[text()='City']/parent::div/div</addcustomer_city_warningmsg>
+<addcustomer_streetname_warningmsg>//label[text()='Street Name']/parent::div/div</addcustomer_streetname_warningmsg>
+<addcustomer_streetno_warningmsg>//label[text()='Street Number']/parent::div/div</addcustomer_streetno_warningmsg>
+<addcustomer_pobox_warningmsg>//label[text()='PO Box']/parent::div/div</addcustomer_pobox_warningmsg>
+<addcustomer_zipcode_warningmsg>//label[text()='ZIP Code']/parent::div/div</addcustomer_zipcode_warningmsg>
+
+
+<!-- SAN panel in view service page -->
+	<!--  Add SAN  -->
+<sanheader>//div[text()='SAN/FRC']</sanheader>
+<SANActionDropdown>//div[contains(text(),'SAN/FRC')]/following-sibling::div/div//button[text()='Action']</SANActionDropdown>
+<san_customername>//div[@col-id='custNginName']//span[@role='columnheader']</san_customername>
+<frcnumber_column>//div[@col-id='frcNumber']//span[@role='columnheader']</frcnumber_column>
+<addsan_link>//div[@class='dropdown-menu show']//a[text()='Add SAN']</addsan_link>
+<addsan_header>//div[@class='heading-green-row row']//div[text()='Add SAN']</addsan_header>
+<san_number>//div[@class='position-relative form-group']//label[text()='SAN(FRC) Number ']/following-sibling::input</san_number>
+<serviceprofile>(//label[text()='Service Profile']/parent::div//div//input)[1]</serviceprofile>
+<supervisionfield>//div[@class='position-relative form-group']//label[text()='Supervision Mode']/parent::div//span</supervisionfield>
+<internationaloutgoingforbidden_checkbox>//label[text()='International Outgoing Calls Forbidden']/parent::div//input[@type='checkbox']</internationaloutgoingforbidden_checkbox>
+<internationalincomingbarring>//label[text()='International Incoming Calls Barring']/parent::div//input[@type='checkbox']</internationalincomingbarring>
+<mobilecallsallowed_checkbox>//label[text()='Mobile Calls Allowed']/parent::div//input[@type='checkbox']</mobilecallsallowed_checkbox>
+<noreplytimervalue>//label[text()='No Reply Timer Value']/parent::div//input</noreplytimervalue>
+<maxcallduration>//label[text()='Max Call Duration']/parent::div//input</maxcallduration>
+<chargebandname>//label[text()='Charge Band Name']/parent::div//input</chargebandname>
+<payphoneblockingenabled>//label[text()='Pay phone blocking enabled']/parent::div//input[@type='checkbox']</payphoneblockingenabled>
+<webaccessblocked>//label[text()='webAccessBlocked']/parent::div//input[@type='checkbox']</webaccessblocked>
+<sanblock>//label[text()='SAN Block']/parent::div//input[@type='checkbox']</sanblock>
+<focenabled>//label[text()='FOC Enabled']/parent::div//input[@type='checkbox']</focenabled>
+<predestinationnumber>//label[text()='Pre Destination Number']/parent::div//input</predestinationnumber>
+<cpsfreeformat>//label[text()='CPS (free format)']/parent::div//input</cpsfreeformat>
+<cpsproductcode>//label[text()='CPS: Product Code ']/parent::div//input</cpsproductcode>
+<cpsresellerid>//label[text()='CPS: Reseller ID ']/parent::div//input</cpsresellerid>
+<cpssanencoded>//label[text()='CPS: SAN encoded in modulo80']/parent::div//input</cpssanencoded>
+<ringtonumber_radiobutton>//label//input[@value='ringToNumber']</ringtonumber_radiobutton>
+<ringtonumber_field>//label[text()='Ring to Number']/following-sibling::input</ringtonumber_field>
+<announcementtoplay_radiobutton>//label//input[@value='annouceName']</announcementtoplay_radiobutton>
+<announcementtoplay_dropdown>//label[text()='Announcement To Play']/parent::div//div//input</announcementtoplay_dropdown>
+<announcementtoplay_dropdownvalue>(//label[text()='Announcement To Play']/parent::div//div//span)[1]</announcementtoplay_dropdownvalue>
+<complexroute_radiobutton>//label//input[@value='complexRoute']</complexroute_radiobutton>
+<routingforpayphone_field>//label[text()='Routing for Payphone']/following-sibling::input</routingforpayphone_field>
+<routingformobile>//label[text()='Routing for Mobile']/following-sibling::input</routingformobile>
+<defaultrouting>//label[text()='Default Routing']/following-sibling::input</defaultrouting>
+<enablelogicalrouting>//label[text()='Enable Logical Routing']/parent::div//input[@type='checkbox']</enablelogicalrouting>
+<enablepriceannouncement>//label[text()='Enable Price Announcement']/parent::div//input[@type='checkbox']</enablepriceannouncement>
+<managenewcustomer_link>//div[text()='Manage New Customer']</managenewcustomer_link>
+<defaultroutebusy>//label[text()='Default Route Busy']/following-sibling::input</defaultroutebusy>
+<noanswer>//label[text()='No Answer']/following-sibling::input</noanswer>
+<networkcongestion>//label[text()='Network Congestion']/following-sibling::input</networkcongestion>
+<customernamedropdown_valuesdisplay>(//label[text()='Customer Name']/parent::div//div[@role='list']//span)[1]</customernamedropdown_valuesdisplay>
+<customernamedropdown_nomatchesfound>(//label[text()='Customer Name']/parent::div//div[@role='list']//div)[1]</customernamedropdown_nomatchesfound>
+<viewsan_link>//div[@class='dropdown-menu show']//a[text()='View SAN']</viewsan_link>
+<editsan_link>//div[@class='dropdown-menu show']//a[text()='Edit SAN']</editsan_link>
+<deletesan_link>//div[@class='dropdown-menu show']//a[text()='Delete SAN']</deletesan_link>
+<sanmove_link>//div[@class='dropdown-menu show']//a[text()='San Move']</sanmove_link>
+<bulkmove_link>//div[@class='dropdown-menu show']//a[text()='Bulk Move']</bulkmove_link>
+<portin_link>//div[@class='dropdown-menu show']//a[text()='Port In SAN']</portin_link>
+<portout_link>//div[@class='dropdown-menu show']//a[text()='Port Out SAN']</portout_link>
+<manageaddnlfrc_link>//div[@class='dropdown-menu show']//a[text()='Manage Addnl FRC']</manageaddnlfrc_link>
+<portin_dialog>//div[@role='dialog']//div[@class='modal-content']</portin_dialog>
+<porttonumber>//label[text()='Port To Number']/following-sibling::input</porttonumber>
+<webaccessblocked_checkbox>//label[text()='Web Access Blocked']/following-sibling::div//input</webaccessblocked_checkbox>
+<portdate>//label[text()='Port Date']/parent::div/following-sibling::div//input</portdate>
+<porttime>//label[text()='Port Time']/following-sibling::input</porttime>
+<cancelporting>//span[text()='Cancel Porting']</cancelporting>
+<portingstatus>//label[text()='Porting Status :']/following-sibling::span</portingstatus>
+<viewsan_header>//div[text()='View SAN']</viewsan_header>
+<serviceprofilevalue>//label[text()='Service Profile']/parent::div/following-sibling::div</serviceprofilevalue>
+<supervisionmodevalue>//label[text()='Supervision Mode']/parent::div/following-sibling::div</supervisionmodevalue>
+<internationaloutgoingcallsvalue>//label[text()='International Outgoing Calls Forbidden']/parent::div/following-sibling::div</internationaloutgoingcallsvalue>
+<internationalincomingcallsvalue>//label[text()='International Incoming Calls Barring']/parent::div/following-sibling::div</internationalincomingcallsvalue>
+<mobilecallsallowedvalue>//label[text()='Mobile Calls Allowed']/parent::div/following-sibling::div</mobilecallsallowedvalue>
+<view_noreplytimervalue>//label[text()='No Reply Timer Value']/parent::div/following-sibling::div</view_noreplytimervalue>
+<maxcalldurationvalue>//label[text()='Max Call Duration']/parent::div/following-sibling::div</maxcalldurationvalue>
+<chargebandnamevalue>//label[text()='Charge Band Name']/parent::div/following-sibling::div</chargebandnamevalue>
+<payphoneblockingenabledvalue>//label[text()='Pay phone blocking enabled']/parent::div/following-sibling::div</payphoneblockingenabledvalue>
+<webaccessblockedvalue>//label[text()='Web Access Blocked']/parent::div/following-sibling::div</webaccessblockedvalue>
+<sanblockvalue>//label[text()='SAN Block']/parent::div/following-sibling::div</sanblockvalue>
+<focenabledvalue>//label[text()='FOC Enabled']/parent::div/following-sibling::div</focenabledvalue>
+<predestinationnumbervalue>//label[text()='Pre Destination Number']/parent::div/following-sibling::div</predestinationnumbervalue>
+<CPSvalue>//label[text()='CPS']/parent::div/following-sibling::div</CPSvalue>
+<ringtonumbervalue>//label[text()='Ring to Number']/parent::div/following-sibling::div</ringtonumbervalue>
+<announcementtoplay>//label[text()='Announcement to Play']/parent::div/following-sibling::div</announcementtoplay>
+<treenamevalue>//label[text()='Tree Name']/parent::div/following-sibling::div</treenamevalue>
+<addanothersanlink>//a[text()=' Add Another SAN']</addanothersanlink>
+<editsan_header>//div[text()='Edit SAN']</editsan_header>
+<sanmoveheader>//div[@class='modal-header']//div[text()='SAN Move']</sanmoveheader>
+<bulkmoveheader>//div[@class='modal-header']//div[text()='Bulk Move']</bulkmoveheader>
+<destinationcustomername>//div[label[text()='Destination Customer Name']]//input</destinationcustomername>
+<orderservice_dropdown>//div[label[text()='Order/Service']]//input</orderservice_dropdown>
+<movebutton_sanmove>//span[text()='Move']</movebutton_sanmove>
+<destinationcustomername_warningmsg>//div[label[text()='Destination Customer Name']]/following-sibling::div</destinationcustomername_warningmsg>
+<orderservice_warningmsg>//div[label[text()='Order/Service']]/following-sibling::div</orderservice_warningmsg>
+<bulkmove_countrywarngmsg>(//div[label[text()='Country']]/following-sibling::div)[2]</bulkmove_countrywarngmsg>
+<bulkmove_customerwarngmsg>//div[label[text()='Customer']]/following-sibling::div</bulkmove_customerwarngmsg>
+<filterfrcnumber_warngmsg>//div[label[text()='Filter FRC Number']]/following-sibling::div</filterfrcnumber_warngmsg>
+<bulkmove_Servicewarngmsg>//div[label[text()='Service']]/following-sibling::div</bulkmove_Servicewarngmsg>
+<bulkmove_countrydropdown>//div[label[text()='Country']]//input</bulkmove_countrydropdown>
+<bulkmove_customerdropdown>//div[label[text()='Customer']]//input</bulkmove_customerdropdown>
+<filterfrcnumberdropdown>(//div[label[text()='Filter FRC Number']]//div//input)[1]</filterfrcnumberdropdown>
+<bulkmove_servicedropdown>//div[label[text()='Service']]//input</bulkmove_servicedropdown>
+<manageaddnlfrc_header>//div[text()='Manage Addnl FRC']</manageaddnlfrc_header>
+<addaddnlfrc_link>//a[text()='Add Addnl FRC']</addaddnlfrc_link>
+<addpriceannouncement_header>//div[text()='Add Price Announcement']</addpriceannouncement_header>
+<sanfrcvalue>//label[text()='SAN/FRC']/parent::div/following-sibling::div</sanfrcvalue>
+<customernamevalue>//label[text()='Customer Name']/parent::div/following-sibling::div</customernamevalue>
+<enablepriceannouncement_checkbox>//label[text()='Enable Price Announcement']/parent::div//div//input[@type='checkbox']</enablepriceannouncement_checkbox>
+<priceannouncement_dropdown>(//label[text()='Price Announcement']/parent::div/div/div/div)[1]</priceannouncement_dropdown>
+<priceannorigin_dropdown>(//label[text()='Price Ann Origin']/parent::div/div/div/div)[1]</priceannorigin_dropdown>
+<interruptible_checkbox>//label[text()='Interruptiable Price Announcement']/parent::div//input[@type='checkbox']</interruptible_checkbox>
+<valueinprice_field>//label[text()='Value In Price In(Cents)']/parent::div//input[@id='valueInPrice']</valueinprice_field>
+<sendfci_checkbox>//label[text()='Send FCI']/parent::div//input[@type='checkbox']</sendfci_checkbox>
+<sendsci_checkbox>//label[text()='Send SCI']/parent::div//input[@type='checkbox']</sendsci_checkbox>
+<enablecallerconfirmation_checkbox>//label[text()='Enable Caller Confirmation']/parent::div//input[@type='checkbox']</enablecallerconfirmation_checkbox>
+<callerconfirmationannouncement_dropdown>(//label[text()='Caller Confirmation Announcement']/parent::div//input)[1]</callerconfirmationannouncement_dropdown>
+<callerconfirmationdigit_field>//label[text()='Caller Confirmation Digit']/parent::div//input</callerconfirmationdigit_field>
+<noofrepetitionallowed_field>//label[text()='Number Of Repetation Allowed']/parent::div//input</noofrepetitionallowed_field>
+<serviceprofile_dropdownvalue>(//label[text()='Service Profile']/parent::div//div//span[@role='option'])[1]</serviceprofile_dropdownvalue>
+<addsan_successmsg>//div[@role='alert']//span</addsan_successmsg>
+<manageaddnlfrc_actiondropdown>//div[contains(text(),'Manage Addnl FRC')]/following-sibling::div/div//button[text()='Action']</manageaddnlfrc_actiondropdown>
+<viewsan_customername>(//label[text()='Customer Name']/parent::div/parent::div//div)[2]</viewsan_customername>
+<viewsan_sannumber>(//label[text()='SAN(FRC) Number ']/parent::div/parent::div//div)[2]</viewsan_sannumber>
+<viewsan_serviceprofile>//label[text()='Service Profile']/parent::div//span</viewsan_serviceprofile>
+<viewsan_actiondropdown>//div[contains(text(),'View SAN')]/following-sibling::div/div//button[text()='Action']</viewsan_actiondropdown>
+<editsan_customername>//label[text()='Customer Name']/parent::div/parent::div//div//input</editsan_customername>
+<editsan_sannumber>//label[text()='SAN(FRC) Number ']/parent::div/parent::div//div//input</editsan_sannumber>
+<editsan_successmsg>//div[@role='alert']//span</editsan_successmsg>
+<sanpanel_searchsanmenu>//div[@col-id='frcNumber']//span[@ref='eMenu']//span</sanpanel_searchsanmenu>
+<select_sansearchtype>//div[text()='SAN/FRC']/parent::div/parent::div//div[@class='ag-menu']//select</select_sansearchtype>
+<sannumbersearchfield>//div[text()='SAN/FRC']/parent::div/parent::div//div[@class='ag-menu']//div[@class='ag-filter-body']//input[@id='filterText']</sannumbersearchfield>
+<Port_Customername>//label[text()='Customer Name']/parent::div/following-sibling::div</Port_Customername>
+<Port_SanNumber>//label[text()='SAN(FRC) Number']/parent::div/following-sibling::div</Port_SanNumber>
+<port_okbutton>//button[@type='button']//span[text()='Ok']</port_okbutton>
+<port_closesymbol>//span[text()='×']</port_closesymbol>
+<port_errordisplay>//div[@role='alert']//span</port_errordisplay>
+<sanmove_customername>//label[text()='Origin Customer Name']/parent::div/parent::div/parent::div/following-sibling::div//div//div</sanmove_customername>
+<sanmove_sannumber>//label[text()='SAN/FRC']/parent::div/parent::div/parent::div/following-sibling::div//div//div</sanmove_sannumber>
+<successmsgalert>//div[@role='alert']//span</successmsgalert>
+<manageaddnlfrc_frcnumber_column>//span[text()='FRC Number']</manageaddnlfrc_frcnumber_column>
+<manageaddnlfrc_priceannflag_column>//span[text()='Price Ann Flag']</manageaddnlfrc_priceannflag_column>
+<manageaddnlfrc_priceannorigin_column>//span[text()='Price Ann Origin']</manageaddnlfrc_priceannorigin_column>
+<manageaddnlfrc_priceannouncement_column>//span[text()='Price Annoncment']</manageaddnlfrc_priceannouncement_column>
+<manageaddnlfrc_maxcallflag_column>//span[text()='Max Call Flag']</manageaddnlfrc_maxcallflag_column>
+<manageaddnlfrc_maxcallorigin_column>//span[text()='Max Call Origin']</manageaddnlfrc_maxcallorigin_column>
+<manageaddnlfrc_maxcallduration_column>//span[text()='Max Call Duration']</manageaddnlfrc_maxcallduration_column>
+<manageaddnlfrc_frcnumber_value>//div[@role='gridcell'][@col-id='frcNumber']</manageaddnlfrc_frcnumber_value>
+<manageaddnlfrc_priceannflag_value>//div[@role='gridcell'][@col-id='fciFlag']</manageaddnlfrc_priceannflag_value>
+<manageaddnlfrc_priceannorigin_value>//div[@role='gridcell'][@col-id='priceAnnouncementOrigin']</manageaddnlfrc_priceannorigin_value>
+<manageaddnlfrc_priceannouncement_value>//div[@role='gridcell'][@col-id='priceAnnouncement']</manageaddnlfrc_priceannouncement_value>
+<manageaddnlfrc_maxcallflag_value>//div[@role='gridcell'][@col-id='maxCallEnabled']</manageaddnlfrc_maxcallflag_value>
+<manageaddnlfrc_maxcallorigin_value>//div[@role='gridcell'][@col-id='maxCallOrigin']</manageaddnlfrc_maxcallorigin_value>
+<manageaddnlfrc_maxcallduration_value>//div[@role='gridcell'][@col-id='maxCallDuration']</manageaddnlfrc_maxcallduration_value>
+<priceannouncementvalue_viewpage>(//label[text()='Price Announcement']/parent::div/div/div/div)[1]/span</priceannouncementvalue_viewpage>
+<priceannoriginvalue_viewpage>(//label[text()='Price Ann Origin']/parent::div/div/div/div)[1]/span</priceannoriginvalue_viewpage>
+<viewaddnlfrc_cancelbutton>(//span[contains(text(),'Cancel')])[2]</viewaddnlfrc_cancelbutton>
+<chargebandnamevalue_viewpage>//label[text()='Charge Band Name']/parent::div//div/span</chargebandnamevalue_viewpage>
+<callerconfirmationannouncementvalue_viewpage>(//label[text()='Caller Confirmation Announcement']/parent::div//div)[3]/span</callerconfirmationannouncementvalue_viewpage>
+
+<!--  SAN Management  -->
+<managecoltnetworklink>(//div[@class='ant-menu-submenu-title'])[4]</managecoltnetworklink>
+<searchsanlink>//li[text()='Search for SANs']</searchsanlink>
+<sansearchheader>//div[text()='SAN Search']</sansearchheader>
+<santextfield>//div[text()='SAN Search']/parent::div/following-sibling::form//div//input[@id='san']</santextfield>
+<san_searchbutton>//button[@type='submit']//span</san_searchbutton>
+<serviceprofilecolumn>//span[@role='columnheader'][text()='Service Profile']</serviceprofilecolumn>
+<customernamecolumn>//span[@role='columnheader'][text()='Customer Name']</customernamecolumn>
+<begindatecolumn>//span[@role='columnheader'][text()='Begin Date']</begindatecolumn>
+<ordernamecolumn>//span[@role='columnheader'][text()='Order Name']</ordernamecolumn>
+<downloadtoexcellink>//a//span[text()='Download to Excel']</downloadtoexcellink>
+<searchsan_actiondropdown>//button[text()='Action']</searchsan_actiondropdown>
+<searchsan_viewpageheader>//div//p[text()='View San']</searchsan_viewpageheader>
+<ordername_link>//div[@col-id='orderNumber']//a</ordername_link>
+<searchfororder_header>//div[@class='row']//h5//p</searchfororder_header>
+<searchfororder_viewlink>//div[@class='dropdown-menu show']//a[text()='View ']</searchfororder_viewlink>
+<searchfororder_managelink>//div[@class='dropdown-menu show']//a[text()='Manage']</searchfororder_managelink>
+<searchsan_announcementtoplayvalue>//label[text()='Announcement To Play']/parent::div/following-sibling::div</searchsan_announcementtoplayvalue>
+<searchsan_predestinationnumbervalue>//label[text()='Pre destination Number']/parent::div/following-sibling::div</searchsan_predestinationnumbervalue>
+<searchsan_internationalincomingcallsvalue>//label[text()='International Incoming Calls Barring']/parent::div/following-sibling::div</searchsan_internationalincomingcallsvalue>
+
+<!--  NGIN Message  -->
+<nginmessageslink>//li[text()='NGIN Messages']</nginmessageslink>
+<nginmessageheader>//div[contains(text(),'Manage Messages - Messages Search')]</nginmessageheader>
+<nginmsg_sannumber>//div[contains(text(),'Manage Messages')]/parent::div/following-sibling::form//div//input[@id='msgsan']</nginmsg_sannumber>
+<nginmsg_customername_textfield>//label[text()='Customer Name ']/following-sibling::input</nginmsg_customername_textfield>
+<nginmsg_frcnumbercolumn>//span[@role='columnheader'][text()='FRC Number ']</nginmsg_frcnumbercolumn>
+<nginmsg_namecolumn>//span[@role='columnheader'][text()='Name']</nginmsg_namecolumn>
+<editmessageheader>//div[text()='Edit Message']</editmessageheader>
+<editmessage_customername>//label[text()='Customer Name']/following-sibling::input</editmessage_customername>
+<editmessage_countrycode>//label[text()='Country Code']/following-sibling::input</editmessage_countrycode>
+<editmessage_sanreference>//label[text()='SAN Reference']/following-sibling::input</editmessage_sanreference>
+<editmessage_name>//label[text()='Name']/following-sibling::input</editmessage_name>
+<editmessage_description>//label[text()='Description']/following-sibling::input</editmessage_description>
+<editmessage_bodyfield>//label[text()='Body']/following-sibling::input</editmessage_bodyfield>
+<editmessage_prefixfield>//label[text()='Prefix']/following-sibling::input</editmessage_prefixfield>
+<editmessage_repetitionsfield>//label[text()='Repetitions']/following-sibling::input</editmessage_repetitionsfield>
+<editmessage_durationfield>//label[text()='Duration']/following-sibling::input</editmessage_durationfield>
+<editmessage_suffixfield>//label[text()='Suffix']/following-sibling::input</editmessage_suffixfield>
+<editmessage_startnetworkcharge>//label[text()='Start Network Charge']/following-sibling::div//input</editmessage_startnetworkcharge>
+<editmessage_okbutton>//button[@type='button']//span[text()='Ok']</editmessage_okbutton>
+<editmessage_successmessage>//div[@role='alert']//span</editmessage_successmessage>
+</nginservice>
+</locators>

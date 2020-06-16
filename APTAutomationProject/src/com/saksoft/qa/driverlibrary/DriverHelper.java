@@ -189,6 +189,194 @@ public class DriverHelper {
 
 	}
 
+	public void verifyEnteredvalues(String label, String expectedValue) throws InterruptedException {
+
+		try {
+
+			WebElement ele = getwebelement("//div[div[label[contains(text(),'" + label + "')]]]/div[2]");
+			String valueinfo = ele.getText().toString();
+			if ((valueinfo.equals("")) || (valueinfo.equalsIgnoreCase(null)) || (valueinfo.equals(" "))) {
+
+				System.out.println("value not displayed for " + label);
+				valueinfo = "Null";
+
+				sa.assertEquals(valueinfo, expectedValue, label + " value is not displaying as expected");
+
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : No value displaying for : " + label);
+				System.out.println("Step : No value displaying for : " + label);
+
+			} else {
+
+				System.out.println("value displayed for " + label + " is : " + valueinfo);
+
+				Log.info("Step : value displayed for" + label + "is : " + valueinfo);
+
+				sa.assertEquals(valueinfo, expectedValue, label + " value is not displaying as expected");
+
+				if (valueinfo.equalsIgnoreCase(expectedValue)) {
+					System.out.println("The valus is dipslaying as expected");
+					DriverTestcase.logger.log(LogStatus.PASS,
+							" Value is displaying as expected in 'view' page for " + label);
+					DriverTestcase.logger.log(LogStatus.PASS,
+							"Step : value displayed for" + label + "is : " + valueinfo);
+				} else {
+					System.out.println("the values are not dipslaying as expected for label: " + label);
+					DriverTestcase.logger.log(LogStatus.FAIL,
+							" Value is not displaying as expected in 'view' page for " + label);
+					DriverTestcase.logger.log(LogStatus.FAIL,
+							"Step : value displayed for " + label + "is : " + valueinfo);
+
+				}
+
+			}
+		} catch (AssertionError err) {
+			err.printStackTrace();
+			DriverTestcase.logger.log(LogStatus.FAIL, label + " value is not displaying as expected ");
+		} catch (NoSuchElementException e) {
+			System.out.println("value not displayed for " + label);
+			DriverTestcase.logger.log(LogStatus.FAIL, "Step : " + label + " is not displaying");
+
+		}
+	}
+
+	public void verifyenteredvaluesForEditPage_noneditableFields(String application, String labelname,
+			String ExpectedValue) throws InterruptedException {
+		boolean actualvalue = false;
+		try {
+			actualvalue = getwebelement(
+					"//div[div[label[text()='" + labelname + "']]]//div[text()='" + ExpectedValue + "']").isDisplayed();
+			if (actualvalue) {
+
+				System.out.println("Value is displaying as expected for the field: " + labelname);
+				DriverTestcase.logger.log(LogStatus.PASS, " Value displaying for " + labelname + " disabled field is: "
+						+ ExpectedValue + " . And it is displaying as expected");
+
+			} else {
+
+				System.out.println("Value is not displaying as expected for the text field: " + labelname);
+				DriverTestcase.logger.log(LogStatus.FAIL,
+						"Value is not displaying as expected for the text field: " + labelname);
+			}
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			DriverTestcase.logger.log(LogStatus.FAIL,
+					"Value is not displaying as expected for the text field: " + labelname);
+		}
+
+	}
+
+	@SuppressWarnings("unused")
+	public void compareText_InViewPage(String application, String labelname, String ExpectedText, XMLReader xml)
+			throws InterruptedException, DocumentException {
+
+		String text = null;
+		WebElement element = null;
+
+		try {
+			Thread.sleep(1000);
+			element = getwebelement("//div[div[label[contains(text(),'" + labelname + "')]]]/div[2]");
+			String emptyele = element.getText().toString();
+
+			if (element == null) {
+				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " not found");
+				System.out.println(labelname + " not found");
+			} else if (emptyele != null && emptyele.isEmpty()) {
+//	                  DriverTestcase.logger.log(LogStatus.PASS,  labelname + "' value is empty");
+
+				emptyele = "Null";
+
+				sa.assertEquals(emptyele, ExpectedText, labelname + " value is not displaying as expected");
+
+				if (emptyele.equalsIgnoreCase(ExpectedText)) {
+
+					DriverTestcase.logger.log(LogStatus.PASS, " The Expected value for '" + labelname + "' field '"
+							+ ExpectedText + "' is same as the Acutal value '" + text + "'");
+					System.out.println(" The Expected Text for '" + labelname + "' field '" + ExpectedText
+							+ "' is same as the Acutal Text '" + text + "'");
+
+				} else {
+					DriverTestcase.logger.log(LogStatus.FAIL,
+							"The Expected value '" + ExpectedText + "' is not same as the Acutal value '" + text + "'");
+					System.out.println(" The Expected value '" + ExpectedText + "' is not same as the Acutal value '"
+							+ text + "'");
+				}
+
+			} else {
+				text = element.getText();
+				if (text.equals(ExpectedText)) {
+					DriverTestcase.logger.log(LogStatus.PASS, " The Expected value for '" + labelname + "' field '"
+							+ ExpectedText + "' is same as the Acutal value '" + text + "'");
+					System.out.println(" The Expected value for '" + labelname + "' field '" + ExpectedText
+							+ "' is same as the Acutal value '" + text + "'");
+				} else if (text.contains(ExpectedText)) {
+					DriverTestcase.logger.log(LogStatus.PASS, "The Expected value for '" + labelname + "' field '"
+							+ ExpectedText + "' is same as the Acutal value '" + text + "'");
+					System.out.println("The Expected value for '" + labelname + "' field '" + ExpectedText
+							+ "' is same as the Acutal value '" + text + "'");
+
+				} else {
+					DriverTestcase.logger.log(LogStatus.FAIL, "The Expected value for '" + labelname + "' field '"
+							+ ExpectedText + "' is not same as the Acutal value '" + text + "'");
+					System.out.println("The Expected value for '" + labelname + "' field '" + ExpectedText
+							+ "' is not same as the Acutal value '" + text + "'");
+				}
+			}
+		} catch (Exception e) {
+			text = element.getText();
+			DriverTestcase.logger.log(LogStatus.FAIL, "The Expected value for '" + labelname + "' field '"
+					+ ExpectedText + "' is not same as the Acutal value '" + text + "'");
+			System.out.println("The Expected value for '" + labelname + "' field '" + ExpectedText
+					+ "' is not same as the Acutal value '" + text + "'");
+			e.printStackTrace();
+		}
+
+	}
+
+	public void verifyEnteredvalues_deviceName(String label, String expectedValue, String devicename)
+			throws InterruptedException {
+
+		try {
+
+			boolean deviceName = getwebelement(
+					"//div[div[label[text()='Name']]]//div[contains(text(),'" + expectedValue + "')]").isDisplayed();
+
+			if (deviceName) {
+				System.out.println("device name is displaying as expected");
+
+				DriverTestcase.logger.log(LogStatus.PASS,
+						"Device name is displaying as:  " + devicename + "as expected");
+			} else {
+
+				WebElement Actualvalue = getwebelement("//div[div[label[text()='Name']]]//div[2]");
+				System.out.println("Device name is not displaying as expected");
+				DriverTestcase.logger.log(LogStatus.FAIL, "Device name is displaying as:  " + Actualvalue.getText());
+			}
+		} catch (AssertionError err) {
+			err.printStackTrace();
+			DriverTestcase.logger.log(LogStatus.FAIL, label + " value is not displaying as expected ");
+		} catch (NoSuchElementException e) {
+			System.out.println("value not displayed for " + label);
+
+			DriverTestcase.logger.log(LogStatus.FAIL, "Step : value not displayed for : " + label);
+
+		}
+	}
+
+	public void scrollToright() {
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(2000,0)");
+	}
+
+	public void ClickOnCheckbox(WebElement el, String value) throws IOException, InterruptedException {
+		Thread.sleep(3000);
+		if (!el.isSelected() && value.equals("CHECK")) {
+			el.click();
+		} else if (el.isSelected() && value.equals("UNCHECK")) {
+			el.click();
+		} else {
+			Log.info("Please provide proper input for click check-kbox");
+		}
+	}
+
 	public void CloseProposalwindow() throws InterruptedException {
 		String parentWinHandle = driver.getWindowHandle();
 		Set<String> totalopenwindow = driver.getWindowHandles();

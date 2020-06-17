@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <locators>
-
 	<APT_headerlogin>
 		<Username>name=j_username</Username>
 		<Password>name=j_password</Password>

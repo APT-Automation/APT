@@ -7293,3 +7293,588 @@
 2020-05-26 13:55:09,766 INFO  [Log] //button//span[text()='Create Order'] 
 2020-05-26 13:55:14,985 INFO  [Log] //div[@role='alert']//span[text()='Order created successfully'] 
 2020-05-26 13:55:19,032 INFO  [Log] //div[@role='alert']//span[text()='Order created successfully'] 
+2020-06-16 12:39:14,863 INFO  [Log] URL 
+2020-06-16 12:39:24,980 INFO  [Log] APT_login_1_URL 
+2020-06-16 12:39:30,292 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-16 12:40:45,298 INFO  [Log] URL 
+2020-06-16 12:40:52,807 INFO  [Log] APT_login_1_URL 
+2020-06-16 12:40:57,966 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-16 12:42:11,226 INFO  [Log] I am on Start method APT login 
+2020-06-16 12:42:12,583 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-16 12:42:12,583 INFO  [Log] I am in onStart method null 
+2020-06-16 12:42:12,583 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-16 12:42:12,630 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-16 12:42:12,630 INFO  [Log] I am in onStart method null 
+2020-06-16 12:42:12,630 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-16 12:42:12,708 INFO  [Log] I am on Finish method APT login 
+2020-06-16 12:45:16,618 INFO  [Log] URL 
+2020-06-16 12:45:24,342 INFO  [Log] APT_login_1_URL 
+2020-06-16 12:45:29,475 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-16 12:45:35,697 INFO  [Log] I am on Start method APT login 
+2020-06-16 12:45:36,327 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-16 12:45:36,327 INFO  [Log] I am in onStart method null 
+2020-06-16 12:45:36,327 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-16 12:45:36,374 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-16 12:45:36,374 INFO  [Log] I am in onStart method null 
+2020-06-16 12:45:36,374 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-16 12:45:36,421 INFO  [Log] I am on Finish method APT login 
+2020-06-16 14:37:34,723 INFO  [Log] URL 
+2020-06-16 14:37:42,767 INFO  [Log] APT_login_1_URL 
+2020-06-16 14:37:47,927 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-16 14:39:01,127 INFO  [Log] I am on Start method APT login 
+2020-06-16 14:39:01,819 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-16 14:39:01,819 INFO  [Log] I am in onStart method null 
+2020-06-16 14:39:01,822 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-16 14:39:01,848 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-16 14:39:01,848 INFO  [Log] I am in onStart method null 
+2020-06-16 14:39:01,848 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-16 14:39:01,896 INFO  [Log] I am on Finish method APT login 
+2020-06-16 14:47:49,656 INFO  [Log] URL 
+2020-06-16 14:47:57,579 INFO  [Log] APT_login_1_URL 
+2020-06-16 14:48:02,674 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-16 14:49:19,130 INFO  [Log] URL 
+2020-06-16 14:49:27,015 INFO  [Log] APT_login_1_URL 
+2020-06-16 14:49:32,295 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-16 14:50:46,120 INFO  [Log] I am on Start method APT login 
+2020-06-16 14:50:46,142 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-16 14:50:46,147 INFO  [Log] I am in onTestSkipped method VerifyMSPLatency skipped 
+2020-06-16 14:50:46,758 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-16 14:50:46,758 INFO  [Log] I am in onStart method null 
+2020-06-16 14:50:46,761 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-16 14:50:46,767 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-16 14:50:46,776 INFO  [Log] I am in onTestSkipped method chooseCustomer skipped 
+2020-06-16 14:50:46,782 INFO  [Log] I am in onTestSkipped method manageColtNetwork skipped 
+2020-06-16 14:50:46,851 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-16 14:50:46,851 INFO  [Log] I am in onStart method null 
+2020-06-16 14:50:46,851 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-16 14:50:46,855 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-16 14:50:46,857 INFO  [Log] I am in onTestSkipped method verifyListofFieldsForOrderandServicetype skipped 
+2020-06-16 14:50:46,858 INFO  [Log] I am in onTestSkipped method verifyListofCountries skipped 
+2020-06-16 14:50:46,859 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-16 14:50:46,861 INFO  [Log] I am in onTestSkipped method verifySelectServicetype skipped 
+2020-06-16 14:50:46,862 INFO  [Log] I am in onTestSkipped method manageNumberTranslationinternal skipped 
+2020-06-16 14:50:46,864 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-16 14:50:46,865 INFO  [Log] I am in onTestSkipped method fillvaluesServiceOrder skipped 
+2020-06-16 14:50:46,866 INFO  [Log] I am in onTestSkipped method wildcardsearch skipped 
+2020-06-16 14:50:46,866 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-16 14:50:46,867 INFO  [Log] I am in onTestSkipped method VerifyServicecreatedPanel skipped 
+2020-06-16 14:50:46,869 INFO  [Log] I am in onTestSkipped method verifyAddTranslationfields skipped 
+2020-06-16 14:50:46,870 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-16 14:50:46,871 INFO  [Log] I am in onTestSkipped method VerifyManagementPanel skipped 
+2020-06-16 14:50:46,874 INFO  [Log] I am in onTestSkipped method entervaluesinAddTranslation skipped 
+2020-06-16 14:50:46,878 INFO  [Log] I am in onTestSkipped method VerifyOrderPanel skipped 
+2020-06-16 14:50:46,879 INFO  [Log] I am in onTestSkipped method Addnumbertranslationfunction skipped 
+2020-06-16 14:50:46,880 INFO  [Log] I am in onTestSkipped method VerifyAddDevice skipped 
+2020-06-16 14:50:46,880 INFO  [Log] I am in onTestSkipped method verifyUploadupdatefile skipped 
+2020-06-16 14:50:46,881 INFO  [Log] I am in onTestSkipped method verifyServicePanelAction skipped 
+2020-06-16 14:50:46,882 INFO  [Log] I am in onTestSkipped method verifyviewHistory skipped 
+2020-06-16 14:50:46,883 INFO  [Log] I am in onTestSkipped method verifydownlaodTranslationlink skipped 
+2020-06-16 14:50:46,883 INFO  [Log] I am in onTestSkipped method verifyviewUIHistory skipped 
+2020-06-16 14:50:46,973 INFO  [Log] I am on Finish method APT login 
+2020-06-16 14:52:13,101 INFO  [Log] URL 
+2020-06-16 14:52:20,979 INFO  [Log] APT_login_1_URL 
+2020-06-16 14:52:26,727 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-16 14:53:40,016 INFO  [Log] I am on Start method APT login 
+2020-06-16 14:53:40,089 INFO  [Log] I am in onTestSkipped method VerifyMSPLatency skipped 
+2020-06-16 14:53:40,158 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-16 14:53:40,165 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-16 14:53:40,179 INFO  [Log] I am in onTestSkipped method chooseCustomer skipped 
+2020-06-16 14:53:40,183 INFO  [Log] I am in onTestSkipped method manageColtNetwork skipped 
+2020-06-16 14:53:40,848 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-16 14:53:40,848 INFO  [Log] I am in onStart method null 
+2020-06-16 14:53:40,850 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-16 14:53:40,858 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-16 14:53:40,869 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-16 14:53:40,869 INFO  [Log] I am in onStart method null 
+2020-06-16 14:53:40,876 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-16 14:53:40,884 INFO  [Log] I am in onTestSkipped method verifyListofCountries skipped 
+2020-06-16 14:53:40,892 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-16 14:53:40,893 INFO  [Log] I am in onTestSkipped method verifySelectServicetype skipped 
+2020-06-16 14:53:40,895 INFO  [Log] I am in onTestSkipped method manageNumberTranslationinternal skipped 
+2020-06-16 14:53:40,897 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-16 14:53:40,898 INFO  [Log] I am in onTestSkipped method fillvaluesServiceOrder skipped 
+2020-06-16 14:53:40,899 INFO  [Log] I am in onTestSkipped method wildcardsearch skipped 
+2020-06-16 14:53:40,945 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-16 14:53:40,946 INFO  [Log] I am in onTestSkipped method VerifyServicecreatedPanel skipped 
+2020-06-16 14:53:40,947 INFO  [Log] I am in onTestSkipped method verifyAddTranslationfields skipped 
+2020-06-16 14:53:40,948 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-16 14:53:40,949 INFO  [Log] I am in onTestSkipped method VerifyManagementPanel skipped 
+2020-06-16 14:53:40,949 INFO  [Log] I am in onTestSkipped method verifyListofFieldsForOrderandServicetype skipped 
+2020-06-16 14:53:40,969 INFO  [Log] I am in onTestSkipped method VerifyOrderPanel skipped 
+2020-06-16 14:53:40,972 INFO  [Log] I am in onTestSkipped method entervaluesinAddTranslation skipped 
+2020-06-16 14:53:40,973 INFO  [Log] I am in onTestSkipped method Addnumbertranslationfunction skipped 
+2020-06-16 14:53:40,977 INFO  [Log] I am in onTestSkipped method verifyUploadupdatefile skipped 
+2020-06-16 14:53:40,994 INFO  [Log] I am in onTestSkipped method VerifyAddDevice skipped 
+2020-06-16 14:53:40,997 INFO  [Log] I am in onTestSkipped method verifyServicePanelAction skipped 
+2020-06-16 14:53:40,998 INFO  [Log] I am in onTestSkipped method verifydownlaodTranslationlink skipped 
+2020-06-16 14:53:40,999 INFO  [Log] I am in onTestSkipped method verifyviewUIHistory skipped 
+2020-06-16 14:53:41,010 INFO  [Log] I am in onTestSkipped method verifyviewHistory skipped 
+2020-06-16 14:53:41,086 INFO  [Log] I am on Finish method APT login 
+2020-06-16 16:01:04,908 INFO  [Log] URL 
+2020-06-16 16:01:13,072 INFO  [Log] APT_login_1_URL 
+2020-06-16 16:01:18,297 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-16 16:02:19,473 INFO  [Log] I am on Start method APT login 
+2020-06-16 16:02:19,505 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-16 16:02:19,517 INFO  [Log] I am in onTestSkipped method VerifyMSPLatency skipped 
+2020-06-16 16:02:19,518 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-16 16:02:19,534 INFO  [Log] I am in onTestSkipped method chooseCustomer skipped 
+2020-06-16 16:02:19,535 INFO  [Log] I am in onTestSkipped method manageColtNetwork skipped 
+2020-06-16 16:02:20,674 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-16 16:02:20,674 INFO  [Log] I am in onStart method null 
+2020-06-16 16:02:20,675 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-16 16:02:20,675 INFO  [Log] I am in onStart method null 
+2020-06-16 16:02:20,676 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-16 16:02:20,723 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-16 16:02:20,731 INFO  [Log] I am in onTestSkipped method verifyListofFieldsForOrderandServicetype skipped 
+2020-06-16 16:02:20,735 INFO  [Log] I am in onTestSkipped method verifyListofCountries skipped 
+2020-06-16 16:02:20,735 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-16 16:02:20,741 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-16 16:02:20,742 INFO  [Log] I am in onTestSkipped method verifySelectServicetype skipped 
+2020-06-16 16:02:20,749 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-16 16:02:20,755 INFO  [Log] I am in onTestSkipped method manageNumberTranslationinternal skipped 
+2020-06-16 16:02:20,756 INFO  [Log] I am in onTestSkipped method fillvaluesServiceOrder skipped 
+2020-06-16 16:02:20,762 INFO  [Log] I am in onTestSkipped method wildcardsearch skipped 
+2020-06-16 16:02:20,807 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-16 16:02:20,814 INFO  [Log] I am in onTestSkipped method verifyAddTranslationfields skipped 
+2020-06-16 16:02:20,815 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-16 16:02:20,809 INFO  [Log] I am in onTestSkipped method VerifyServicecreatedPanel skipped 
+2020-06-16 16:02:20,820 INFO  [Log] I am in onTestSkipped method VerifyManagementPanel skipped 
+2020-06-16 16:02:20,824 INFO  [Log] I am in onTestSkipped method VerifyOrderPanel skipped 
+2020-06-16 16:02:20,888 INFO  [Log] I am in onTestSkipped method Addnumbertranslationfunction skipped 
+2020-06-16 16:02:20,891 INFO  [Log] I am in onTestSkipped method entervaluesinAddTranslation skipped 
+2020-06-16 16:02:20,892 INFO  [Log] I am in onTestSkipped method verifyUploadupdatefile skipped 
+2020-06-16 16:02:21,026 INFO  [Log] I am in onTestSkipped method verifyServicePanelAction skipped 
+2020-06-16 16:02:21,037 INFO  [Log] I am in onTestSkipped method VerifyAddDevice skipped 
+2020-06-16 16:02:21,041 INFO  [Log] I am in onTestSkipped method verifydownlaodTranslationlink skipped 
+2020-06-16 16:02:21,042 INFO  [Log] I am in onTestSkipped method verifyviewUIHistory skipped 
+2020-06-16 16:02:21,056 INFO  [Log] I am in onTestSkipped method verifyviewHistory skipped 
+2020-06-16 16:02:21,141 INFO  [Log] I am on Finish method APT login 
+2020-06-16 16:02:41,435 INFO  [Log] URL 
+2020-06-16 16:02:49,542 INFO  [Log] APT_login_1_URL 
+2020-06-16 16:02:54,655 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-16 16:03:55,982 INFO  [Log] I am on Start method APT login 
+2020-06-16 16:03:56,022 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-16 16:03:56,046 INFO  [Log] I am in onTestSkipped method VerifyMSPLatency skipped 
+2020-06-16 16:03:56,048 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-16 16:03:56,064 INFO  [Log] I am in onTestSkipped method chooseCustomer skipped 
+2020-06-16 16:03:56,066 INFO  [Log] I am in onTestSkipped method manageColtNetwork skipped 
+2020-06-16 16:03:56,896 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-16 16:03:56,900 INFO  [Log] I am in onStart method null 
+2020-06-16 16:03:56,898 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-16 16:03:56,904 INFO  [Log] I am in onStart method null 
+2020-06-16 16:03:56,901 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-16 16:03:56,905 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-16 16:03:56,927 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-16 16:03:56,928 INFO  [Log] I am in onTestSkipped method verifyListofFieldsForOrderandServicetype skipped 
+2020-06-16 16:03:56,930 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-16 16:03:56,932 INFO  [Log] I am in onTestSkipped method verifySelectServicetype skipped 
+2020-06-16 16:03:56,944 INFO  [Log] I am in onTestSkipped method manageNumberTranslationinternal skipped 
+2020-06-16 16:03:56,945 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-16 16:03:56,950 INFO  [Log] I am in onTestSkipped method fillvaluesServiceOrder skipped 
+2020-06-16 16:03:56,951 INFO  [Log] I am in onTestSkipped method verifyListofCountries skipped 
+2020-06-16 16:03:56,954 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-16 16:03:56,954 INFO  [Log] I am in onTestSkipped method VerifyServicecreatedPanel skipped 
+2020-06-16 16:03:56,955 INFO  [Log] I am in onTestSkipped method verifyAddTranslationfields skipped 
+2020-06-16 16:03:56,956 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-16 16:03:57,000 INFO  [Log] I am in onTestSkipped method VerifyManagementPanel skipped 
+2020-06-16 16:03:57,001 INFO  [Log] I am in onTestSkipped method wildcardsearch skipped 
+2020-06-16 16:03:57,009 INFO  [Log] I am in onTestSkipped method entervaluesinAddTranslation skipped 
+2020-06-16 16:03:57,015 INFO  [Log] I am in onTestSkipped method Addnumbertranslationfunction skipped 
+2020-06-16 16:03:57,016 INFO  [Log] I am in onTestSkipped method VerifyAddDevice skipped 
+2020-06-16 16:03:57,020 INFO  [Log] I am in onTestSkipped method verifyUploadupdatefile skipped 
+2020-06-16 16:03:57,022 INFO  [Log] I am in onTestSkipped method verifyServicePanelAction skipped 
+2020-06-16 16:03:57,023 INFO  [Log] I am in onTestSkipped method verifyviewHistory skipped 
+2020-06-16 16:03:57,023 INFO  [Log] I am in onTestSkipped method verifydownlaodTranslationlink skipped 
+2020-06-16 16:03:57,024 INFO  [Log] I am in onTestSkipped method verifyviewUIHistory skipped 
+2020-06-16 16:03:57,028 INFO  [Log] I am in onTestSkipped method VerifyOrderPanel skipped 
+2020-06-16 16:03:57,169 INFO  [Log] I am on Finish method APT login 
+2020-06-17 10:46:10,230 INFO  [Log] URL 
+2020-06-17 10:46:17,446 INFO  [Log] APT_login_1_URL 
+2020-06-17 10:46:22,543 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 10:46:28,585 INFO  [Log] I am on Start method APT login 
+2020-06-17 10:46:28,599 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-17 10:46:28,602 INFO  [Log] I am in onTestSkipped method VerifyMSPLatency skipped 
+2020-06-17 10:46:29,065 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-17 10:46:29,065 INFO  [Log] I am in onStart method null 
+2020-06-17 10:46:29,066 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 10:46:29,068 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 10:46:29,070 INFO  [Log] I am in onTestSkipped method chooseCustomer skipped 
+2020-06-17 10:46:29,072 INFO  [Log] I am in onTestSkipped method manageColtNetwork skipped 
+2020-06-17 10:46:29,115 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-17 10:46:29,115 INFO  [Log] I am in onStart method null 
+2020-06-17 10:46:29,116 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 10:46:29,118 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 10:46:29,119 INFO  [Log] I am in onTestSkipped method verifyListofFieldsForOrderandServicetype skipped 
+2020-06-17 10:46:29,120 INFO  [Log] I am in onTestSkipped method verifyListofCountries skipped 
+2020-06-17 10:46:29,121 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-17 10:46:29,124 INFO  [Log] I am in onTestSkipped method verifySelectServicetype skipped 
+2020-06-17 10:46:29,126 INFO  [Log] I am in onTestSkipped method manageNumberTranslationinternal skipped 
+2020-06-17 10:46:29,127 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-17 10:46:29,141 INFO  [Log] I am in onTestSkipped method fillvaluesServiceOrder skipped 
+2020-06-17 10:46:29,148 INFO  [Log] I am in onTestSkipped method wildcardsearch skipped 
+2020-06-17 10:46:29,157 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-17 10:46:29,164 INFO  [Log] I am in onTestSkipped method VerifyServicecreatedPanel skipped 
+2020-06-17 10:46:29,172 INFO  [Log] I am in onTestSkipped method verifyAddTranslationfields skipped 
+2020-06-17 10:46:29,175 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-17 10:46:29,182 INFO  [Log] I am in onTestSkipped method VerifyManagementPanel skipped 
+2020-06-17 10:46:29,185 INFO  [Log] I am in onTestSkipped method entervaluesinAddTranslation skipped 
+2020-06-17 10:46:29,188 INFO  [Log] I am in onTestSkipped method VerifyOrderPanel skipped 
+2020-06-17 10:46:29,194 INFO  [Log] I am in onTestSkipped method Addnumbertranslationfunction skipped 
+2020-06-17 10:46:29,195 INFO  [Log] I am in onTestSkipped method VerifyAddDevice skipped 
+2020-06-17 10:46:29,198 INFO  [Log] I am in onTestSkipped method verifyUploadupdatefile skipped 
+2020-06-17 10:46:29,199 INFO  [Log] I am in onTestSkipped method verifyServicePanelAction skipped 
+2020-06-17 10:46:29,201 INFO  [Log] I am in onTestSkipped method verifyviewHistory skipped 
+2020-06-17 10:46:29,203 INFO  [Log] I am in onTestSkipped method verifydownlaodTranslationlink skipped 
+2020-06-17 10:46:29,204 INFO  [Log] I am in onTestSkipped method verifyviewUIHistory skipped 
+2020-06-17 10:46:29,284 INFO  [Log] I am on Finish method APT login 
+2020-06-17 10:49:46,916 INFO  [Log] URL 
+2020-06-17 10:49:54,004 INFO  [Log] APT_login_1_URL 
+2020-06-17 10:49:59,088 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 10:51:30,227 INFO  [Log] URL 
+2020-06-17 10:51:37,378 INFO  [Log] APT_login_1_URL 
+2020-06-17 10:51:56,572 INFO  [Log] URL 
+2020-06-17 10:52:03,624 INFO  [Log] APT_login_1_URL 
+2020-06-17 10:52:08,703 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 10:52:51,975 INFO  [Log] URL 
+2020-06-17 10:52:59,563 INFO  [Log] APT_login_1_URL 
+2020-06-17 10:53:04,641 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 10:53:08,743 INFO  [Log] I am on Start method APT login 
+2020-06-17 10:53:08,788 INFO  [Log] I am in onTestSkipped method VerifyMSPLatency skipped 
+2020-06-17 10:53:08,793 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-17 10:53:08,796 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 10:53:08,864 INFO  [Log] I am in onTestSkipped method chooseCustomer skipped 
+2020-06-17 10:53:08,873 INFO  [Log] I am in onTestSkipped method manageColtNetwork skipped 
+2020-06-17 10:53:09,487 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-17 10:53:09,488 INFO  [Log] I am in onStart method null 
+2020-06-17 10:53:09,490 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 10:53:09,493 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 10:53:09,495 INFO  [Log] I am in onTestSkipped method verifyListofFieldsForOrderandServicetype skipped 
+2020-06-17 10:53:09,496 INFO  [Log] I am in onTestSkipped method verifyListofCountries skipped 
+2020-06-17 10:53:09,497 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-17 10:53:09,497 INFO  [Log] I am in onTestSkipped method verifySelectServicetype skipped 
+2020-06-17 10:53:09,498 INFO  [Log] I am in onTestSkipped method manageNumberTranslationinternal skipped 
+2020-06-17 10:53:09,499 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-17 10:53:09,500 INFO  [Log] I am in onTestSkipped method fillvaluesServiceOrder skipped 
+2020-06-17 10:53:09,501 INFO  [Log] I am in onTestSkipped method wildcardsearch skipped 
+2020-06-17 10:53:09,501 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-17 10:53:09,502 INFO  [Log] I am in onTestSkipped method VerifyServicecreatedPanel skipped 
+2020-06-17 10:53:09,503 INFO  [Log] I am in onTestSkipped method verifyAddTranslationfields skipped 
+2020-06-17 10:53:09,504 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-17 10:53:09,505 INFO  [Log] I am in onTestSkipped method VerifyManagementPanel skipped 
+2020-06-17 10:53:09,506 INFO  [Log] I am in onTestSkipped method entervaluesinAddTranslation skipped 
+2020-06-17 10:53:09,507 INFO  [Log] I am in onTestSkipped method VerifyOrderPanel skipped 
+2020-06-17 10:53:09,508 INFO  [Log] I am in onTestSkipped method Addnumbertranslationfunction skipped 
+2020-06-17 10:53:09,508 INFO  [Log] I am in onTestSkipped method VerifyAddDevice skipped 
+2020-06-17 10:53:09,509 INFO  [Log] I am in onTestSkipped method verifyUploadupdatefile skipped 
+2020-06-17 10:53:09,510 INFO  [Log] I am in onTestSkipped method verifyServicePanelAction skipped 
+2020-06-17 10:53:09,525 INFO  [Log] I am in onTestSkipped method verifyviewHistory skipped 
+2020-06-17 10:53:09,531 INFO  [Log] I am in onTestSkipped method verifydownlaodTranslationlink skipped 
+2020-06-17 10:53:09,534 INFO  [Log] I am in onTestSkipped method verifyviewUIHistory skipped 
+2020-06-17 10:53:09,550 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-17 10:53:09,550 INFO  [Log] I am in onStart method null 
+2020-06-17 10:53:09,551 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 10:53:09,792 INFO  [Log] I am on Finish method APT login 
+2020-06-17 10:53:26,571 INFO  [Log] URL 
+2020-06-17 10:53:34,241 INFO  [Log] APT_login_1_URL 
+2020-06-17 10:53:39,375 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 10:53:45,469 INFO  [Log] I am on Start method APT login 
+2020-06-17 10:53:45,526 INFO  [Log] I am in onTestSkipped method VerifyMSPLatency skipped 
+2020-06-17 10:53:45,529 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-17 10:53:45,548 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 10:53:45,551 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 10:53:45,553 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-17 10:53:45,555 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-17 10:53:45,557 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-17 10:53:45,559 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-17 10:53:45,658 INFO  [Log] I am in onTestSkipped method chooseCustomer skipped 
+2020-06-17 10:53:45,662 INFO  [Log] I am in onTestSkipped method verifyListofFieldsForOrderandServicetype skipped 
+2020-06-17 10:53:45,664 INFO  [Log] I am in onTestSkipped method verifySelectServicetype skipped 
+2020-06-17 10:53:45,667 INFO  [Log] I am in onTestSkipped method fillvaluesServiceOrder skipped 
+2020-06-17 10:53:45,669 INFO  [Log] I am in onTestSkipped method VerifyServicecreatedPanel skipped 
+2020-06-17 10:53:45,720 INFO  [Log] I am in onTestSkipped method VerifyManagementPanel skipped 
+2020-06-17 10:53:45,732 INFO  [Log] I am in onTestSkipped method VerifyOrderPanel skipped 
+2020-06-17 10:53:45,736 INFO  [Log] I am in onTestSkipped method VerifyAddDevice skipped 
+2020-06-17 10:53:45,738 INFO  [Log] I am in onTestSkipped method verifyServicePanelAction skipped 
+2020-06-17 10:53:45,792 INFO  [Log] I am in onTestSkipped method manageColtNetwork skipped 
+2020-06-17 10:53:45,796 INFO  [Log] I am in onTestSkipped method verifyListofCountries skipped 
+2020-06-17 10:53:45,798 INFO  [Log] I am in onTestSkipped method manageNumberTranslationinternal skipped 
+2020-06-17 10:53:45,800 INFO  [Log] I am in onTestSkipped method wildcardsearch skipped 
+2020-06-17 10:53:45,802 INFO  [Log] I am in onTestSkipped method verifyAddTranslationfields skipped 
+2020-06-17 10:53:45,850 INFO  [Log] I am in onTestSkipped method entervaluesinAddTranslation skipped 
+2020-06-17 10:53:45,851 INFO  [Log] I am in onTestSkipped method Addnumbertranslationfunction skipped 
+2020-06-17 10:53:45,853 INFO  [Log] I am in onTestSkipped method verifyUploadupdatefile skipped 
+2020-06-17 10:53:45,854 INFO  [Log] I am in onTestSkipped method verifyviewHistory skipped 
+2020-06-17 10:53:45,856 INFO  [Log] I am in onTestSkipped method verifydownlaodTranslationlink skipped 
+2020-06-17 10:53:45,943 INFO  [Log] I am in onTestSkipped method verifyviewUIHistory skipped 
+2020-06-17 10:53:46,234 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-17 10:53:46,234 INFO  [Log] I am in onStart method null 
+2020-06-17 10:53:46,236 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 10:53:46,306 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-17 10:53:46,307 INFO  [Log] I am in onStart method null 
+2020-06-17 10:53:46,308 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 10:53:46,401 INFO  [Log] I am on Finish method APT login 
+2020-06-17 10:54:00,327 INFO  [Log] URL 
+2020-06-17 10:54:07,414 INFO  [Log] APT_login_1_URL 
+2020-06-17 10:54:12,527 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 10:54:18,523 INFO  [Log] I am on Start method APT login 
+2020-06-17 10:54:18,550 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-17 10:54:18,558 INFO  [Log] I am in onTestSkipped method VerifyMSPLatency skipped 
+2020-06-17 10:54:19,127 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-17 10:54:19,127 INFO  [Log] I am in onStart method null 
+2020-06-17 10:54:19,128 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 10:54:19,135 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 10:54:19,138 INFO  [Log] I am in onTestSkipped method chooseCustomer skipped 
+2020-06-17 10:54:19,139 INFO  [Log] I am in onTestSkipped method manageColtNetwork skipped 
+2020-06-17 10:54:19,174 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-17 10:54:19,174 INFO  [Log] I am in onStart method null 
+2020-06-17 10:54:19,175 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 10:54:19,177 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 10:54:19,178 INFO  [Log] I am in onTestSkipped method verifyListofFieldsForOrderandServicetype skipped 
+2020-06-17 10:54:19,179 INFO  [Log] I am in onTestSkipped method verifyListofCountries skipped 
+2020-06-17 10:54:19,184 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-17 10:54:19,185 INFO  [Log] I am in onTestSkipped method verifySelectServicetype skipped 
+2020-06-17 10:54:19,190 INFO  [Log] I am in onTestSkipped method manageNumberTranslationinternal skipped 
+2020-06-17 10:54:19,191 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-17 10:54:19,192 INFO  [Log] I am in onTestSkipped method fillvaluesServiceOrder skipped 
+2020-06-17 10:54:19,193 INFO  [Log] I am in onTestSkipped method wildcardsearch skipped 
+2020-06-17 10:54:19,198 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-17 10:54:19,201 INFO  [Log] I am in onTestSkipped method VerifyServicecreatedPanel skipped 
+2020-06-17 10:54:19,207 INFO  [Log] I am in onTestSkipped method verifyAddTranslationfields skipped 
+2020-06-17 10:54:19,210 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-17 10:54:19,218 INFO  [Log] I am in onTestSkipped method VerifyManagementPanel skipped 
+2020-06-17 10:54:19,222 INFO  [Log] I am in onTestSkipped method entervaluesinAddTranslation skipped 
+2020-06-17 10:54:19,225 INFO  [Log] I am in onTestSkipped method VerifyOrderPanel skipped 
+2020-06-17 10:54:19,232 INFO  [Log] I am in onTestSkipped method Addnumbertranslationfunction skipped 
+2020-06-17 10:54:19,234 INFO  [Log] I am in onTestSkipped method VerifyAddDevice skipped 
+2020-06-17 10:54:19,237 INFO  [Log] I am in onTestSkipped method verifyUploadupdatefile skipped 
+2020-06-17 10:54:19,239 INFO  [Log] I am in onTestSkipped method verifyServicePanelAction skipped 
+2020-06-17 10:54:19,243 INFO  [Log] I am in onTestSkipped method verifyviewHistory skipped 
+2020-06-17 10:54:19,246 INFO  [Log] I am in onTestSkipped method verifydownlaodTranslationlink skipped 
+2020-06-17 10:54:19,249 INFO  [Log] I am in onTestSkipped method verifyviewUIHistory skipped 
+2020-06-17 10:54:19,323 INFO  [Log] I am on Finish method APT login 
+2020-06-17 10:55:11,124 INFO  [Log] URL 
+2020-06-17 10:55:20,268 INFO  [Log] APT_login_1_URL 
+2020-06-17 10:55:25,350 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 10:55:31,385 INFO  [Log] I am on Start method APT login 
+2020-06-17 10:55:31,409 INFO  [Log] I am in onTestSkipped method VerifyMSPLatency skipped 
+2020-06-17 10:55:31,686 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-17 10:55:31,687 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 10:55:31,690 INFO  [Log] I am in onTestSkipped method chooseCustomer skipped 
+2020-06-17 10:55:31,692 INFO  [Log] I am in onTestSkipped method manageColtNetwork skipped 
+2020-06-17 10:55:32,185 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-17 10:55:32,186 INFO  [Log] I am in onStart method null 
+2020-06-17 10:55:32,186 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 10:55:32,190 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 10:55:32,191 INFO  [Log] I am in onTestSkipped method verifyListofFieldsForOrderandServicetype skipped 
+2020-06-17 10:55:32,192 INFO  [Log] I am in onTestSkipped method verifyListofCountries skipped 
+2020-06-17 10:55:32,202 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-17 10:55:32,206 INFO  [Log] I am in onTestSkipped method verifySelectServicetype skipped 
+2020-06-17 10:55:32,211 INFO  [Log] I am in onTestSkipped method manageNumberTranslationinternal skipped 
+2020-06-17 10:55:32,214 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-17 10:55:32,223 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-17 10:55:32,223 INFO  [Log] I am in onStart method null 
+2020-06-17 10:55:32,239 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 10:55:32,247 INFO  [Log] I am in onTestSkipped method fillvaluesServiceOrder skipped 
+2020-06-17 10:55:32,252 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-17 10:55:32,252 INFO  [Log] I am in onTestSkipped method wildcardsearch skipped 
+2020-06-17 10:55:32,254 INFO  [Log] I am in onTestSkipped method verifyAddTranslationfields skipped 
+2020-06-17 10:55:32,255 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-17 10:55:32,259 INFO  [Log] I am in onTestSkipped method VerifyManagementPanel skipped 
+2020-06-17 10:55:32,262 INFO  [Log] I am in onTestSkipped method VerifyServicecreatedPanel skipped 
+2020-06-17 10:55:32,263 INFO  [Log] I am in onTestSkipped method VerifyOrderPanel skipped 
+2020-06-17 10:55:32,271 INFO  [Log] I am in onTestSkipped method Addnumbertranslationfunction skipped 
+2020-06-17 10:55:32,272 INFO  [Log] I am in onTestSkipped method VerifyAddDevice skipped 
+2020-06-17 10:55:32,275 INFO  [Log] I am in onTestSkipped method entervaluesinAddTranslation skipped 
+2020-06-17 10:55:32,285 INFO  [Log] I am in onTestSkipped method verifyUploadupdatefile skipped 
+2020-06-17 10:55:32,287 INFO  [Log] I am in onTestSkipped method verifyviewHistory skipped 
+2020-06-17 10:55:32,288 INFO  [Log] I am in onTestSkipped method verifydownlaodTranslationlink skipped 
+2020-06-17 10:55:32,292 INFO  [Log] I am in onTestSkipped method verifyviewUIHistory skipped 
+2020-06-17 10:55:32,296 INFO  [Log] I am in onTestSkipped method verifyServicePanelAction skipped 
+2020-06-17 10:55:32,364 INFO  [Log] I am on Finish method APT login 
+2020-06-17 10:55:56,642 INFO  [Log] URL 
+2020-06-17 10:56:05,689 INFO  [Log] APT_login_1_URL 
+2020-06-17 10:56:10,772 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 10:56:16,813 INFO  [Log] I am on Start method APT login 
+2020-06-17 10:56:16,830 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-17 10:56:16,834 INFO  [Log] I am in onTestSkipped method VerifyMSPLatency skipped 
+2020-06-17 10:56:17,342 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-17 10:56:17,342 INFO  [Log] I am in onStart method null 
+2020-06-17 10:56:17,342 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 10:56:17,347 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 10:56:17,363 INFO  [Log] I am in onTestSkipped method chooseCustomer skipped 
+2020-06-17 10:56:17,366 INFO  [Log] I am in onTestSkipped method manageColtNetwork skipped 
+2020-06-17 10:56:17,395 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-17 10:56:17,395 INFO  [Log] I am in onStart method null 
+2020-06-17 10:56:17,396 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 10:56:17,412 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 10:56:17,413 INFO  [Log] I am in onTestSkipped method verifyListofFieldsForOrderandServicetype skipped 
+2020-06-17 10:56:17,414 INFO  [Log] I am in onTestSkipped method verifyListofCountries skipped 
+2020-06-17 10:56:17,414 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-17 10:56:17,415 INFO  [Log] I am in onTestSkipped method verifySelectServicetype skipped 
+2020-06-17 10:56:17,416 INFO  [Log] I am in onTestSkipped method manageNumberTranslationinternal skipped 
+2020-06-17 10:56:17,417 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-17 10:56:17,418 INFO  [Log] I am in onTestSkipped method fillvaluesServiceOrder skipped 
+2020-06-17 10:56:17,418 INFO  [Log] I am in onTestSkipped method wildcardsearch skipped 
+2020-06-17 10:56:17,419 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-17 10:56:17,420 INFO  [Log] I am in onTestSkipped method VerifyServicecreatedPanel skipped 
+2020-06-17 10:56:17,421 INFO  [Log] I am in onTestSkipped method verifyAddTranslationfields skipped 
+2020-06-17 10:56:17,421 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-17 10:56:17,423 INFO  [Log] I am in onTestSkipped method VerifyManagementPanel skipped 
+2020-06-17 10:56:17,430 INFO  [Log] I am in onTestSkipped method entervaluesinAddTranslation skipped 
+2020-06-17 10:56:17,431 INFO  [Log] I am in onTestSkipped method VerifyOrderPanel skipped 
+2020-06-17 10:56:17,432 INFO  [Log] I am in onTestSkipped method Addnumbertranslationfunction skipped 
+2020-06-17 10:56:17,433 INFO  [Log] I am in onTestSkipped method VerifyAddDevice skipped 
+2020-06-17 10:56:17,433 INFO  [Log] I am in onTestSkipped method verifyUploadupdatefile skipped 
+2020-06-17 10:56:17,434 INFO  [Log] I am in onTestSkipped method verifyServicePanelAction skipped 
+2020-06-17 10:56:17,435 INFO  [Log] I am in onTestSkipped method verifyviewHistory skipped 
+2020-06-17 10:56:17,436 INFO  [Log] I am in onTestSkipped method verifydownlaodTranslationlink skipped 
+2020-06-17 10:56:17,437 INFO  [Log] I am in onTestSkipped method verifyviewUIHistory skipped 
+2020-06-17 10:56:17,526 INFO  [Log] I am on Finish method APT login 
+2020-06-17 11:00:57,521 INFO  [Log] URL 
+2020-06-17 11:01:06,554 INFO  [Log] APT_login_1_URL 
+2020-06-17 11:01:11,639 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 11:01:17,684 INFO  [Log] I am on Start method APT login 
+2020-06-17 11:01:17,699 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-17 11:01:17,721 INFO  [Log] I am in onTestSkipped method VerifyMSPLatency skipped 
+2020-06-17 11:01:18,247 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-17 11:01:18,248 INFO  [Log] I am in onStart method null 
+2020-06-17 11:01:18,249 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 11:01:18,252 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 11:01:18,254 INFO  [Log] I am in onTestSkipped method chooseCustomer skipped 
+2020-06-17 11:01:18,256 INFO  [Log] I am in onTestSkipped method manageColtNetwork skipped 
+2020-06-17 11:01:18,316 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-17 11:01:18,316 INFO  [Log] I am in onStart method null 
+2020-06-17 11:01:18,318 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 11:01:18,324 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 11:01:18,326 INFO  [Log] I am in onTestSkipped method verifyListofFieldsForOrderandServicetype skipped 
+2020-06-17 11:01:18,328 INFO  [Log] I am in onTestSkipped method verifyListofCountries skipped 
+2020-06-17 11:01:18,329 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-17 11:01:18,331 INFO  [Log] I am in onTestSkipped method verifySelectServicetype skipped 
+2020-06-17 11:01:18,333 INFO  [Log] I am in onTestSkipped method manageNumberTranslationinternal skipped 
+2020-06-17 11:01:18,335 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-17 11:01:18,337 INFO  [Log] I am in onTestSkipped method fillvaluesServiceOrder skipped 
+2020-06-17 11:01:18,338 INFO  [Log] I am in onTestSkipped method wildcardsearch skipped 
+2020-06-17 11:01:18,340 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-17 11:01:18,342 INFO  [Log] I am in onTestSkipped method VerifyServicecreatedPanel skipped 
+2020-06-17 11:01:18,344 INFO  [Log] I am in onTestSkipped method verifyAddTranslationfields skipped 
+2020-06-17 11:01:18,345 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-17 11:01:18,349 INFO  [Log] I am in onTestSkipped method VerifyManagementPanel skipped 
+2020-06-17 11:01:18,355 INFO  [Log] I am in onTestSkipped method entervaluesinAddTranslation skipped 
+2020-06-17 11:01:18,357 INFO  [Log] I am in onTestSkipped method VerifyOrderPanel skipped 
+2020-06-17 11:01:18,358 INFO  [Log] I am in onTestSkipped method Addnumbertranslationfunction skipped 
+2020-06-17 11:01:18,359 INFO  [Log] I am in onTestSkipped method VerifyAddDevice skipped 
+2020-06-17 11:01:18,360 INFO  [Log] I am in onTestSkipped method verifyUploadupdatefile skipped 
+2020-06-17 11:01:18,361 INFO  [Log] I am in onTestSkipped method verifyServicePanelAction skipped 
+2020-06-17 11:01:18,362 INFO  [Log] I am in onTestSkipped method verifyviewHistory skipped 
+2020-06-17 11:01:18,363 INFO  [Log] I am in onTestSkipped method verifydownlaodTranslationlink skipped 
+2020-06-17 11:01:18,364 INFO  [Log] I am in onTestSkipped method verifyviewUIHistory skipped 
+2020-06-17 11:01:18,455 INFO  [Log] I am on Finish method APT login 
+2020-06-17 11:34:29,234 INFO  [Log] URL 
+2020-06-17 11:34:37,069 INFO  [Log] APT_login_1_URL 
+2020-06-17 11:34:42,188 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 11:35:53,318 INFO  [Log] URL 
+2020-06-17 11:36:01,285 INFO  [Log] APT_login_1_URL 
+2020-06-17 11:36:06,452 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 11:37:19,531 INFO  [Log] I am on Start method APT login 
+2020-06-17 11:37:19,550 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-17 11:37:19,555 INFO  [Log] I am in onTestSkipped method VerifyMSPLatency skipped 
+2020-06-17 11:37:20,255 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-17 11:37:20,256 INFO  [Log] I am in onStart method null 
+2020-06-17 11:37:20,266 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 11:37:20,273 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 11:37:20,282 INFO  [Log] I am in onTestSkipped method chooseCustomer skipped 
+2020-06-17 11:37:20,300 INFO  [Log] I am in onTestSkipped method manageColtNetwork skipped 
+2020-06-17 11:37:20,432 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-17 11:37:20,432 INFO  [Log] I am in onStart method null 
+2020-06-17 11:37:20,432 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 11:37:20,440 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 11:37:20,442 INFO  [Log] I am in onTestSkipped method verifyListofFieldsForOrderandServicetype skipped 
+2020-06-17 11:37:20,443 INFO  [Log] I am in onTestSkipped method verifyListofCountries skipped 
+2020-06-17 11:37:20,444 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-17 11:37:20,447 INFO  [Log] I am in onTestSkipped method verifySelectServicetype skipped 
+2020-06-17 11:37:20,449 INFO  [Log] I am in onTestSkipped method manageNumberTranslationinternal skipped 
+2020-06-17 11:37:20,451 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-17 11:37:20,453 INFO  [Log] I am in onTestSkipped method fillvaluesServiceOrder skipped 
+2020-06-17 11:37:20,454 INFO  [Log] I am in onTestSkipped method wildcardsearch skipped 
+2020-06-17 11:37:20,455 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-17 11:37:20,456 INFO  [Log] I am in onTestSkipped method VerifyServicecreatedPanel skipped 
+2020-06-17 11:37:20,458 INFO  [Log] I am in onTestSkipped method verifyAddTranslationfields skipped 
+2020-06-17 11:37:20,459 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-17 11:37:20,460 INFO  [Log] I am in onTestSkipped method VerifyManagementPanel skipped 
+2020-06-17 11:37:20,464 INFO  [Log] I am in onTestSkipped method entervaluesinAddTranslation skipped 
+2020-06-17 11:37:20,467 INFO  [Log] I am in onTestSkipped method VerifyOrderPanel skipped 
+2020-06-17 11:37:20,472 INFO  [Log] I am in onTestSkipped method Addnumbertranslationfunction skipped 
+2020-06-17 11:37:20,472 INFO  [Log] I am in onTestSkipped method VerifyAddDevice skipped 
+2020-06-17 11:37:20,474 INFO  [Log] I am in onTestSkipped method verifyUploadupdatefile skipped 
+2020-06-17 11:37:20,478 INFO  [Log] I am in onTestSkipped method verifyServicePanelAction skipped 
+2020-06-17 11:37:20,480 INFO  [Log] I am in onTestSkipped method verifyviewHistory skipped 
+2020-06-17 11:37:20,481 INFO  [Log] I am in onTestSkipped method verifydownlaodTranslationlink skipped 
+2020-06-17 11:37:20,482 INFO  [Log] I am in onTestSkipped method verifyviewUIHistory skipped 
+2020-06-17 11:37:20,611 INFO  [Log] I am on Finish method APT login 
+2020-06-17 11:38:37,886 INFO  [Log] URL 
+2020-06-17 11:38:45,888 INFO  [Log] APT_login_1_URL 
+2020-06-17 11:38:51,028 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 11:40:05,960 INFO  [Log] URL 
+2020-06-17 11:40:08,225 INFO  [Log] I am on Start method APT login2 
+2020-06-17 11:40:08,306 INFO  [Log] I am on Start method APT login1 
+2020-06-17 11:40:08,337 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-17 11:40:08,340 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 11:40:08,342 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 11:40:08,346 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-17 11:40:08,349 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-17 11:40:08,357 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-17 11:40:08,372 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-17 11:40:08,573 INFO  [Log] I am on Finish method APT login2 
+2020-06-17 11:40:08,574 INFO  [Log] I am on Start method APT login3 
+2020-06-17 11:40:08,584 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-06-17 11:40:08,588 INFO  [Log] I am in onTestSkipped method VerifyMSPLatency skipped 
+2020-06-17 11:40:09,177 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-17 11:40:09,177 INFO  [Log] I am in onStart method null 
+2020-06-17 11:40:09,182 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-06-17 11:40:09,182 INFO  [Log] I am in onStart method null 
+2020-06-17 11:40:09,182 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 11:40:09,184 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 11:40:09,288 INFO  [Log] I am in onTestSkipped method choosecustomer skipped 
+2020-06-17 11:40:09,292 INFO  [Log] I am in onTestSkipped method chooseCustomer skipped 
+2020-06-17 11:40:09,293 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-17 11:40:09,294 INFO  [Log] I am in onStart method null 
+2020-06-17 11:40:09,294 INFO  [Log] I am in onTestSkipped method manageColtNetwork skipped 
+2020-06-17 11:40:09,296 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 11:40:09,316 INFO  [Log] I am on Finish method APT login1 
+2020-06-17 11:40:09,387 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-06-17 11:40:09,387 INFO  [Log] I am in onStart method null 
+2020-06-17 11:40:09,388 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 11:40:09,458 INFO  [Log] I am in onTestSkipped method verifycreateorder skipped 
+2020-06-17 11:40:09,459 INFO  [Log] I am in onTestSkipped method verifyListofFieldsForOrderandServicetype skipped 
+2020-06-17 11:40:09,459 INFO  [Log] I am in onTestSkipped method verifyListofCountries skipped 
+2020-06-17 11:40:09,460 INFO  [Log] I am in onTestSkipped method verifyservicetypeselection skipped 
+2020-06-17 11:40:09,468 INFO  [Log] I am in onTestSkipped method verifySelectServicetype skipped 
+2020-06-17 11:40:09,469 INFO  [Log] I am in onTestSkipped method manageNumberTranslationinternal skipped 
+2020-06-17 11:40:09,469 INFO  [Log] I am in onTestSkipped method verifyservicecreation skipped 
+2020-06-17 11:40:09,471 INFO  [Log] I am in onTestSkipped method fillvaluesServiceOrder skipped 
+2020-06-17 11:40:09,471 INFO  [Log] I am in onTestSkipped method wildcardsearch skipped 
+2020-06-17 11:40:09,472 INFO  [Log] I am in onTestSkipped method verifyorderpanelinviewservicepage skipped 
+2020-06-17 11:40:09,472 INFO  [Log] I am in onTestSkipped method VerifyServicecreatedPanel skipped 
+2020-06-17 11:40:09,473 INFO  [Log] I am in onTestSkipped method verifyAddTranslationfields skipped 
+2020-06-17 11:40:09,539 INFO  [Log] I am in onTestSkipped method verifyservicepanelInformation skipped 
+2020-06-17 11:40:09,542 INFO  [Log] I am in onTestSkipped method VerifyManagementPanel skipped 
+2020-06-17 11:40:09,542 INFO  [Log] I am in onTestSkipped method entervaluesinAddTranslation skipped 
+2020-06-17 11:40:09,543 INFO  [Log] I am in onTestSkipped method VerifyOrderPanel skipped 
+2020-06-17 11:40:09,543 INFO  [Log] I am in onTestSkipped method Addnumbertranslationfunction skipped 
+2020-06-17 11:40:09,544 INFO  [Log] I am in onTestSkipped method VerifyAddDevice skipped 
+2020-06-17 11:40:09,545 INFO  [Log] I am in onTestSkipped method verifyUploadupdatefile skipped 
+2020-06-17 11:40:09,546 INFO  [Log] I am in onTestSkipped method verifyServicePanelAction skipped 
+2020-06-17 11:40:09,556 INFO  [Log] I am in onTestSkipped method verifyviewHistory skipped 
+2020-06-17 11:40:09,557 INFO  [Log] I am in onTestSkipped method verifydownlaodTranslationlink skipped 
+2020-06-17 11:40:09,557 INFO  [Log] I am in onTestSkipped method verifyviewUIHistory skipped 
+2020-06-17 11:40:09,647 INFO  [Log] I am on Finish method APT login3 
+2020-06-17 11:40:14,063 INFO  [Log] APT_login_1_URL 
+2020-06-17 11:40:19,205 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 12:36:12,853 INFO  [Log] URL 
+2020-06-17 12:36:20,514 INFO  [Log] APT_login_1_URL 
+2020-06-17 12:39:22,562 INFO  [Log] URL 
+2020-06-17 12:39:30,360 INFO  [Log] APT_login_1_URL 
+2020-06-17 12:39:35,531 INFO  [Log] //input[@placeholder='Username'] 
+2020-06-17 12:41:57,302 INFO  [Log] URL 
+2020-06-17 12:42:05,288 INFO  [Log] APT_login_1_URL 
+2020-06-17 12:42:10,441 INFO  [Log] //input[@placeholder='Username'] 

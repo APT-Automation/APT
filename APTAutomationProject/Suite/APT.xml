@@ -3,8 +3,7 @@
 <suite thread-count="2" verbose="1" name="APT_MCS Test Suite" parallel="classes">
 
 <listeners>
-      <listener class-name="org.uncommons.reportng.HTMLReporter"/>
-      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+      <listener class-name="com.saksoft.qa.listeners.TestListener" />
   </listeners>
 
 	<test name="APT_MCS_CustomerUser1" preserve-order="true">

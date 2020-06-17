@@ -102,7 +102,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 		
 		//Verifying list of Countries
 		//try {
-		List<WebElement> CountryPresent = driver.findElements(By.xpath("(//div[@class='ag-body-container ag-layout-normal']//div[@role='row'])"));
+		List<WebElement> CountryPresent = getwebelements("(//div[@class='ag-body-container ag-layout-normal']//div[@role='row'])");
 		for (WebElement Country: CountryPresent ) {
 			boolean match = false;
 			System.out.println("Country list displaying from application:"  +Country.getText());
@@ -409,7 +409,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			
 			String ExpWildcardmsg = "The following errors were encountered: At least 3 digits to be entered in the search field.";
 			System.out.println("Postcode message");
-			WebElement ActWildcardmsg = driver.findElement(By.xpath("//span[contains(text(),'The following errors were encountered: At least 3 digits to be entered in the search field.')]"));
+			WebElement ActWildcardmsg =getwebelement("//span[contains(text(),'The following errors were encountered: At least 3 digits to be entered in the search field.')]");
 			
 			if (ActWildcardmsg.getText().equals(ExpWildcardmsg))
 			{
@@ -458,7 +458,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				System.out.println("Country code field is displayed as:" +Countrycode.getText());
 				DriverTestcase.logger.log(LogStatus.PASS, "Country code field is displayed as:" +Countrycode.getText());
 				
-				WebElement ActCountrycode = driver.findElement(By.xpath("//label[contains(text(),'Country Code')]/following-sibling::*[1]"));
+				WebElement ActCountrycode =getwebelement("//label[contains(text(),'Country Code')]/following-sibling::*[1]");
 				if (ActCountrycode.getText().equals(Countrylist))
 				{
 					Log.info("Country Code is same as selected country" + ActCountrycode.getText());
@@ -532,7 +532,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				
 				//Verifying list of values from dropdown
 				
-				List<WebElement> listofaddress = driver.findElements(By.xpath("//div/span[@role='option']"));
+				List<WebElement> listofaddress = getwebelements("//div/span[@role='option']");
 				for (WebElement valueslist : listofaddress) 
 					
 				{
@@ -667,7 +667,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 					
 					String ExpTranslationmsg = "NumberTranslation successfully created.Sync started successfully. Please check the sync status of number translation.";
 					System.out.println("Translation message");
-					WebElement ActTranslationmsg = driver.findElement(By.xpath("//span[contains(text(),'NumberTranslation successfully created.Sync started successfully. Please check the sync status of number translation.')]"));
+					WebElement ActTranslationmsg =getwebelement("//span[contains(text(),'NumberTranslation successfully created.Sync started successfully. Please check the sync status of number translation.')]");
 					
 					if (ActTranslationmsg.getText().equals(ExpTranslationmsg))
 					{
@@ -702,7 +702,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 					//Verifying list of values from Action dropdown
 
 					
-					List<WebElement> ActualActionDD = driver.findElements(By.xpath("//a[@role='button']"));
+					List<WebElement> ActualActionDD = getwebelements("//a[@role='button']");
 					for (WebElement Dropdownlist : ActualActionDD) 
 						
 					{
@@ -770,7 +770,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				System.out.println("Country code field is displayed as:" +Countrycode.getText());
 				DriverTestcase.logger.log(LogStatus.PASS, "Country code field is displayed as:" +Countrycode.getText());
 				
-				WebElement ActCountrycode = driver.findElement(By.xpath("//label[contains(text(),'Country Code')]/following-sibling::*[1]"));
+				WebElement ActCountrycode =getwebelement("//label[contains(text(),'Country Code')]/following-sibling::*[1]");
 				if (ActCountrycode.getText().equals("BR"))
 				{
 					Log.info("Country Code is same as selected country" + ActCountrycode.getText());
@@ -878,7 +878,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				 
 				 String ExpUpdateTranslationmsg = "NumberTranslation successfully updated.Sync started successfully. Please check the sync status of number translation.";
 					System.out.println("Number Update Translation Message");
-					WebElement ActUpdateTranslationmsg = driver.findElement(By.xpath("//span[text()='NumberTranslation successfully updated.Sync started successfully. Please check the sync status of number translation.']"));
+					WebElement ActUpdateTranslationmsg =getwebelement("//span[text()='NumberTranslation successfully updated.Sync started successfully. Please check the sync status of number translation.']");
 					
 					if (ActUpdateTranslationmsg.getText().equals(ExpUpdateTranslationmsg))
 					{
@@ -928,7 +928,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 					
 					String ExpSyncTranslationmsg = "Sync started successfully. Please check the sync status of number translation.";
 					System.out.println("Number Update Sync Translation Message");
-					WebElement ActSyncTranslationmsg = driver.findElement(By.xpath("//span[text()='Sync started successfully. Please check the sync status of number translation.']"));
+					WebElement ActSyncTranslationmsg =getwebelement("//span[text()='Sync started successfully. Please check the sync status of number translation.']");
 					
 					if (ActSyncTranslationmsg.getText().equals(ExpSyncTranslationmsg))
 					{
@@ -981,7 +981,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 					Thread.sleep(10000);
 					String ExpTranDeletemsg = "NumberTranslation successfully marked for deletion.";
 					System.out.println("NumberTranslation Delete message");
-					WebElement ActTranDeletemsg = driver.findElement(By.xpath("//span[contains(text(),'NumberTranslation successfully marked for deletion.')]"));
+					WebElement ActTranDeletemsg =getwebelement("//span[contains(text(),'NumberTranslation successfully marked for deletion.')]");
 					
 					if (ActTranDeletemsg.getText().equals(ExpTranDeletemsg))
 					{
@@ -1052,7 +1052,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 					String ExpUpdatefiledmsg = "NumberTranslation successfully created.";
 					System.out.println("Upload file message");
 					Thread.sleep(2000);
-					WebElement ActUpdatefilemsg = driver.findElement(By.xpath("//span[contains(text(),'NumberTranslation successfully created.')]"));
+					WebElement ActUpdatefilemsg =getwebelement("//span[contains(text(),'NumberTranslation successfully created.')]");
 					
 					if (ActUpdatefilemsg.getText().equals(ExpUpdatefiledmsg))
 					{
@@ -1145,7 +1145,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				
 				DriverTestcase.logger.log(LogStatus.PASS, "Verifying values from Operation Dropdown");
 				
-				List<WebElement> ActualOperationDD = driver.findElements(By.xpath("//span[@role='option']"));
+				List<WebElement> ActualOperationDD = getwebelements("//span[@role='option']");
 				for (WebElement Dropdownlist : ActualOperationDD) 
 					
 				{
@@ -1460,7 +1460,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 		
 		String ExpPostcodemsg = "Postcode successfully created.";
 		System.out.println("Postcode message");
-		WebElement ActPostcodemsg = driver.findElement(By.xpath("//span[contains(text(),'Postcode successfully created.')]"));
+		WebElement ActPostcodemsg =getwebelement("//span[contains(text(),'Postcode successfully created.')]");
 		
 		if (ActPostcodemsg.getText().equals(ExpPostcodemsg))
 		{
@@ -1667,7 +1667,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			
 			String ExpPostcodemsg = "Postcode successfully created.";
 			System.out.println("Postcode message");
-			WebElement ActPostcodemsg = driver.findElement(By.xpath("//span[contains(text(),'Postcode successfully created.')]"));
+			WebElement ActPostcodemsg =getwebelement("//span[contains(text(),'Postcode successfully created.')]");
 			
 			if (ActPostcodemsg.getText().equals(ExpPostcodemsg))
 			{
@@ -1854,7 +1854,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			
 			String ExpPostcodemsg = "Postcode successfully created.";
 			System.out.println("Postcode message");
-			WebElement ActPostcodemsg = driver.findElement(By.xpath("//span[contains(text(),'Postcode successfully created.')]"));
+			WebElement ActPostcodemsg =getwebelement("//span[contains(text(),'Postcode successfully created.')]");
 			
 			if (ActPostcodemsg.getText().equals(ExpPostcodemsg))
 			{
@@ -2043,7 +2043,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 		
 		String ExpPostcodemsg = "Postcode successfully created.";
 		System.out.println("Postcode message");
-		WebElement ActPostcodemsg = driver.findElement(By.xpath("//span[contains(text(),'Postcode successfully created.')]"));
+		WebElement ActPostcodemsg =getwebelement("//span[contains(text(),'Postcode successfully created.')]");
 		
 		if (ActPostcodemsg.getText().equals(ExpPostcodemsg))
 		{
@@ -2229,7 +2229,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			
 			String ExpPostcodemsg = "Postcode successfully created.";
 			System.out.println("Postcode message");
-			WebElement ActPostcodemsg = driver.findElement(By.xpath("//span[contains(text(),'Postcode successfully created.')]"));
+			WebElement ActPostcodemsg =getwebelement("//span[contains(text(),'Postcode successfully created.')]");
 			
 			if (ActPostcodemsg.getText().equals(ExpPostcodemsg))
 			{
@@ -2415,7 +2415,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			
 			String ExpPostcodemsg = "Postcode successfully created.";
 			System.out.println("Postcode message");
-			WebElement ActPostcodemsg = driver.findElement(By.xpath("//span[contains(text(),'Postcode successfully created.')]"));
+			WebElement ActPostcodemsg =getwebelement("//span[contains(text(),'Postcode successfully created.')]");
 			
 			if (ActPostcodemsg.getText().equals(ExpPostcodemsg))
 			{
@@ -2602,7 +2602,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			
 			String ExpPostcodemsg = "Postcode successfully created.";
 			System.out.println("Postcode message");
-			WebElement ActPostcodemsg = driver.findElement(By.xpath("//span[contains(text(),'Postcode successfully created.')]"));
+			WebElement ActPostcodemsg =getwebelement("//span[contains(text(),'Postcode successfully created.')]");
 			
 			if (ActPostcodemsg.getText().equals(ExpPostcodemsg))
 			{
@@ -2790,7 +2790,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			
 			String ExpPostcodemsg = "Postcode successfully created.";
 			System.out.println("Postcode message");
-			WebElement ActPostcodemsg = driver.findElement(By.xpath("//span[contains(text(),'Postcode successfully created.')]"));
+			WebElement ActPostcodemsg =getwebelement("//span[contains(text(),'Postcode successfully created.')]");
 			
 			if (ActPostcodemsg.getText().equals(ExpPostcodemsg))
 			{
@@ -2853,7 +2853,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 		DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on View in Dropdown" );
 
 		
-		WebElement ViewPostcodeEAID = driver.findElement(By.xpath("//div[text()='161']"));
+		WebElement ViewPostcodeEAID =getwebelement("//div[text()='161']");
 		if (ViewPostcodeEAID.getText().equals("161"))
 		{
 			Log.info("Values Matched : " + ViewPostcodeEAID.getText());
@@ -2923,7 +2923,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 		
 		String ExpPostcodeUpdatemsg = "Postcode successfully updated.";
 		System.out.println("Postcode Updated message");
-		WebElement ActPostUpdatecodemsg = driver.findElement(By.xpath("//span[contains(text(),'Postcode successfully updated.')]"));
+		WebElement ActPostUpdatecodemsg =getwebelement("//span[contains(text(),'Postcode successfully updated.')]");
 		
 		if (ActPostUpdatecodemsg.getText().equals(ExpPostcodeUpdatemsg))
 		{
@@ -2979,7 +2979,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 		Thread.sleep(10000);
 		String ExpPostcodeDeletemsg = "Postcode deleted successfully..";
 		System.out.println("Postcode Delete message");
-		WebElement ActPostcodeDeletemsg = driver.findElement(By.xpath("//span[contains(text(),'Postcode deleted successfully..')]"));
+		WebElement ActPostcodeDeletemsg =getwebelement("//span[contains(text(),'Postcode deleted successfully..')]");
 		
 		if (ActPostcodeDeletemsg.getText().equals(ExpPostcodeDeletemsg))
 		{

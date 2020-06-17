@@ -153,9 +153,9 @@ public class APT_MCS_CreateAccessDeviceHelper extends DriverHelper{
 	
 	}
 	
-public void verifyisEmpty(String xpath,String fieldname) {
+public void verifyisEmpty(String xpath,String fieldname) throws InterruptedException {
     	
-    	String ele = driver.findElement(By.xpath(xpath)).getAttribute("value");
+    	String ele = getwebelement(xpath).getAttribute("value");
     	if (ele.isEmpty()) {
     		DriverTestcase.logger.log(LogStatus.PASS, "Step : selected field is empty " + fieldname);
     		
@@ -316,7 +316,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
     		Thread.sleep(3000);
     		DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected Existing City Name is : " + existingcityvalue );
     		
-    		WebElement Cityele = driver.findElement(By.xpath("//span[text()='"+existingcityvalue+"']"));
+    		WebElement Cityele = getwebelement("//span[text()='"+existingcityvalue+"']");
     		Cityele.click();
     		Thread.sleep(3000);
     		
@@ -325,7 +325,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
     		Thread.sleep(3000);
     		DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected Existing Site Name is : " + existingsitevalue );
     		
-    		WebElement siteele = driver.findElement(By.xpath("//span[text()='"+existingsitevalue+"']"));
+    		WebElement siteele = getwebelement("//span[text()='"+existingsitevalue+"']");
     		siteele.click();
     		Thread.sleep(3000);
     		
@@ -334,7 +334,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
     		Thread.sleep(3000);
     		DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected Existing Premise Name is : " + existingpremisevalue );
     		
-    		WebElement premiseele = driver.findElement(By.xpath("//span[text()='"+existingpremisevalue+"']"));
+    		WebElement premiseele = getwebelement("//span[text()='"+existingpremisevalue+"']");
     		premiseele.click();
     		Thread.sleep(3000);
     	}else {
@@ -449,7 +449,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -459,7 +459,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -496,7 +496,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -550,7 +550,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -560,7 +560,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -595,7 +595,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -649,7 +649,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -659,7 +659,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -694,7 +694,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -744,7 +744,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -754,7 +754,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -780,7 +780,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -830,7 +830,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -840,7 +840,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -866,7 +866,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -916,7 +916,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -926,7 +926,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -952,7 +952,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -1004,7 +1004,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -1014,7 +1014,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -1049,7 +1049,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -1099,7 +1099,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -1109,7 +1109,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -1135,7 +1135,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -1187,7 +1187,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -1197,7 +1197,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -1232,7 +1232,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -1282,7 +1282,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -1292,7 +1292,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -1318,7 +1318,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -1376,7 +1376,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -1386,7 +1386,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -1421,7 +1421,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -1473,7 +1473,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -1483,7 +1483,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -1520,7 +1520,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -1570,7 +1570,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -1580,7 +1580,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -1606,7 +1606,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -1655,7 +1655,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -1665,7 +1665,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -1691,7 +1691,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -1740,7 +1740,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -1750,7 +1750,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -1776,7 +1776,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			
@@ -1828,7 +1828,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered device type is : " + devicetype);
 			
-			WebElement devtype = driver.findElement(By.xpath("//span[text()='"+devicetype+"']"));
+			WebElement devtype = getwebelement("//span[text()='"+devicetype+"']");
 			String devtypevalue = devtype.getText();
 			devtype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : device type is selected : " + devtypevalue);
@@ -1838,7 +1838,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered vendor model is : " + vendormodel);
 			
-			WebElement ventype = driver.findElement(By.xpath("//span[text()='"+vendormodel+"']"));
+			WebElement ventype = getwebelement("//span[text()='"+vendormodel+"']");
 			String ventypevalue= ventype.getText();
 			ventype.click();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Vendor Model is selected : " + ventypevalue);
@@ -1875,7 +1875,7 @@ public void verifyisEmpty(String xpath,String fieldname) {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : selected country is : " + Country);
 			
-			WebElement countryele = driver.findElement(By.xpath("//span[text()='"+Country+"']"));
+			WebElement countryele = getwebelement("//span[text()='"+Country+"']");
 			countryele.click();
 			Thread.sleep(3000);
 			

@@ -146,10 +146,12 @@ public class APT_NGINHelper extends DriverHelper {
 	public void createorderservice(String application, String neworder, String neworderno, String newrfireqno, String existingorderservice, String existingordernumber)
 			throws InterruptedException, IOException, DocumentException {
 
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 		if (neworder.equalsIgnoreCase("YES")) {
 
-			WebElement CreateOrder_Header= driver.findElement(By.xpath("//div[text()='Create Order / Service']"));
+			//WebElement CreateOrder_Header= getwebelement("//div[text()='Create Order / Service']"));
+			WebElement CreateOrder_Header= getwebelement("//div[text()='Create Order / Service']");
 			scrolltoview(CreateOrder_Header);
 			Thread.sleep(2000);
 			
@@ -206,7 +208,7 @@ public class APT_NGINHelper extends DriverHelper {
 		}
 
 		//Create service
-		WebElement CreateOrder_Header= driver.findElement(By.xpath("//div[text()='Create Order / Service']"));
+		WebElement CreateOrder_Header= getwebelement("//div[text()='Create Order / Service']");
 		scrolltoview(CreateOrder_Header);
 		addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", orderno, xml);
 		addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
@@ -312,7 +314,7 @@ public class APT_NGINHelper extends DriverHelper {
 	public void createnewuser(String application, String Username, String Firstname, String Surname, String Postaladdress, String Email,String Phone, String EditUsername, String EditFirstname, String EditSurname, String EditPostaladdress, String EditEmail, String EditPhone)
 			throws InterruptedException, DocumentException, IOException {
 
-		WebElement UserGridCheck= driver.findElement(By.xpath("(//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement UserGridCheck= getwebelement("(//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String UserGrid= UserGridCheck.getAttribute("style");
 
 		if(UserGrid.contains("height: 1px"))
@@ -349,7 +351,8 @@ public class APT_NGINHelper extends DriverHelper {
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : User added successfully");
 
 			//Edit User
-			List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
+			//List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
+			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
 			int NoOfUsers = ExistingUsers.size();
 			System.out.println("Total users:"+ NoOfUsers);
 
@@ -360,8 +363,8 @@ public class APT_NGINHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				WebElement AddedUser = driver
-						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				//WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -372,7 +375,7 @@ public class APT_NGINHelper extends DriverHelper {
 			click_commonMethod(application, "Edit", "edit", xml);
 			Thread.sleep(2000);
 			compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+			CustomJavaScriptExecute("window.scrollTo(0, 0)");
 			cleartext(application, "User Name", "UserName");
 			addtextFields_commonMethod(application, "User Name", "UserName", EditUsername, xml);
 			cleartext(application, "First Name", "FirstName");
@@ -398,8 +401,8 @@ public class APT_NGINHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				WebElement AddedUser = driver
-						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				//WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -427,8 +430,7 @@ public class APT_NGINHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				WebElement AddedUser = driver
-						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -454,7 +456,7 @@ public class APT_NGINHelper extends DriverHelper {
 		else if(!UserGrid.contains("1px"))
 		{
 			//Edit User
-			List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
+			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
 			int NoOfUsers = ExistingUsers.size();
 			System.out.println("Total users:"+ NoOfUsers);
 
@@ -465,8 +467,7 @@ public class APT_NGINHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				WebElement AddedUser = driver
-						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -504,8 +505,8 @@ public class APT_NGINHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				WebElement AddedUser = driver
-						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				//WebElement AddedUser = driver.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -534,8 +535,7 @@ public class APT_NGINHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				WebElement AddedUser = driver
-						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -692,7 +692,7 @@ public class APT_NGINHelper extends DriverHelper {
 		compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-		//List<WebElement> ChangeOrder_DropdownList= driver.findElements(By.xpath(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist")));
+		//List<WebElement> ChangeOrder_DropdownList= getwebelements(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist")));
 		List<WebElement> ChangeOrder_DropdownList=getwebelements("//locators/" + application + "/changeorder_dropdownlist");
 		int ChangeOrder_Dropdown_count= ChangeOrder_DropdownList.size();
 		if(ChangeOrder_Dropdown_count> 1)
@@ -1076,15 +1076,15 @@ public class APT_NGINHelper extends DriverHelper {
 
 		//Added Reseller
 		ScrolltoElement(application, "servicepanel_header", xml);
-		WebElement ResellerGridCheck= driver.findElement(By.xpath("(//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement ResellerGridCheck= getwebelement("(//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String ResellerGrid= ResellerGridCheck.getAttribute("style");
-		WebElement AddedReseller= driver.findElement(By.xpath("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + ocn + "')]/parent::div//input[@type='radio']"));
+		WebElement AddedReseller= getwebelement("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + ocn + "')]/parent::div//input[@type='radio']");
 		if(!ResellerGrid.contains("height: 1px"))
 		{
 			Clickon(AddedReseller);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "ResellerActionDropdown", xml);
-			List<WebElement> ResellerLinks= driver.findElements(By.xpath("//div[contains(text(),'Reseller')]/following-sibling::div//div//a"));
+			List<WebElement> ResellerLinks= getwebelements("//div[contains(text(),'Reseller')]/following-sibling::div//div//a");
 			int ResellerLinksCount= ResellerLinks.size();
 			for(int i=0;i<ResellerLinksCount;i++)
 			{
@@ -1110,9 +1110,9 @@ public class APT_NGINHelper extends DriverHelper {
 
 	public void verifyResellerLinks(String application, String ocn, String editemail, String editcity, String editstreetname, String editstreetno, String editpobox, String editzipcode, String editphone, String editfax) throws InterruptedException, DocumentException, IOException {
 		ScrolltoElement(application, "servicepanel_header", xml);
-		WebElement ResellerGridCheck= driver.findElement(By.xpath("(//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement ResellerGridCheck= getwebelement("(//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String ResellerGrid= ResellerGridCheck.getAttribute("style");
-		WebElement AddedReseller= driver.findElement(By.xpath("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ ocn +"')]/parent::div//input[@type='radio']"));
+		WebElement AddedReseller= getwebelement("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ ocn +"')]/parent::div//input[@type='radio']");
 
 		//Edit Reseller
 		if(!ResellerGrid.contains("height: 1px"))
@@ -1161,9 +1161,9 @@ public class APT_NGINHelper extends DriverHelper {
 
 		//View reseller
 		ScrolltoElement(application, "servicepanel_header", xml);
-		//WebElement ResellerGridCheck= driver.findElement(By.xpath("(//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		//WebElement ResellerGridCheck= getwebelement("(//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
 		//String ResellerGrid= ResellerGridCheck.getAttribute("style");
-		WebElement AddedReseller1= driver.findElement(By.xpath("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ ocn +"')]/parent::div//input[@type='radio']"));
+		WebElement AddedReseller1= getwebelement("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ ocn +"')]/parent::div//input[@type='radio']");
 		if(!ResellerGrid.contains("height: 1px"))
 		{
 			Clickon(AddedReseller1);
@@ -1173,7 +1173,7 @@ public class APT_NGINHelper extends DriverHelper {
 			if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
 			{
 				click_commonMethod(application, "View", "view", xml);
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+				CustomJavaScriptExecute("window.scrollTo(0, 0)");
 				compareText(application, "Manage Reseller Header", "manageresellerheader_viewpage", "Manage Reseller in OSP", xml);
 				compareText(application, "Reseller Name", "resellernamevalue", ocn, xml);
 				compareText(application, "Email", "reselleremailvalue", editemail, xml);
@@ -1194,7 +1194,7 @@ public class APT_NGINHelper extends DriverHelper {
 				click_commonMethod(application, "View page Edit", "edit", xml);
 				compareText(application, "Manage Reseller Header", "manageresellerheader", "Manage Reseller in OSP", xml);
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : Edit Reseller page is displaying as expected");
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 				click_commonMethod(application, "Cancel", "cancelbutton", xml);
 
 				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
@@ -1210,7 +1210,7 @@ public class APT_NGINHelper extends DriverHelper {
 				DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
 			}
 			ScrolltoElement(application, "servicepanel_header", xml);
-			WebElement AddedReseller2= driver.findElement(By.xpath("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ ocn +"')]/parent::div//input[@type='radio']"));
+			WebElement AddedReseller2= getwebelement("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ ocn +"')]/parent::div//input[@type='radio']");
 			if(!ResellerGrid.contains("height: 1px"))
 			{
 				Clickon(AddedReseller2);
@@ -1220,7 +1220,7 @@ public class APT_NGINHelper extends DriverHelper {
 				{
 					click_commonMethod(application, "View", "view", xml);
 					compareText(application, "Manage Reseller Header", "manageresellerheader_viewpage", "Manage Reseller in OSP", xml);
-					((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+					CustomJavaScriptExecute("window.scrollTo(0, 0)");
 					click_commonMethod(application, "View page Action dropdown", "viewpage_actiondropdown", xml);
 
 					//Delete link in view reseller page
@@ -1292,9 +1292,9 @@ public class APT_NGINHelper extends DriverHelper {
 		click_commonMethod(application, "Action dropdown", "CustomerpanelActionDropdown", xml);
 		click_commonMethod(application, "Add", "AddLink", xml);
 		Thread.sleep(2000);
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+		CustomJavaScriptExecute("window.scrollTo(0, 0)");
 		compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 		Thread.sleep(1000);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
 		Thread.sleep(2000);
@@ -1393,17 +1393,17 @@ public class APT_NGINHelper extends DriverHelper {
 
 		//Added Customer
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
-		WebElement CustomerGridCheck= driver.findElement(By.xpath("(//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement CustomerGridCheck= getwebelement("(//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String CustomerGrid= CustomerGridCheck.getAttribute("style");
 
-		WebElement AddedCustomer= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName_viewpage + "')]/parent::div//input[@type='radio']"));
+		WebElement AddedCustomer= getwebelement("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName_viewpage + "')]/parent::div//input[@type='radio']");
 		if(!CustomerGrid.contains("height: 1px"))
 		{
 			Clickon(AddedCustomer);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "CustomerpanelActionDropdown", xml);
 
-			List<WebElement> CustomerLinks= driver.findElements(By.xpath("//div[contains(text(),'Customer')]/following-sibling::div//div//a"));
+			List<WebElement> CustomerLinks= getwebelements("//div[contains(text(),'Customer')]/following-sibling::div//div//a");
 			int CustomerLinksCount= CustomerLinks.size();
 			for(int i=0;i<CustomerLinksCount;i++)
 			{
@@ -1415,7 +1415,7 @@ public class APT_NGINHelper extends DriverHelper {
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/customerheader")));
 
 			//Added Customer grid verification
-			WebElement AddedCustomer1= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName_viewpage + "')]"));
+			WebElement AddedCustomer1= getwebelement("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName_viewpage + "')]");
 			String AddedCustomerName_value = AddedCustomer1.getText();
 			Log.info("Added Customer Name is displayed as : " + AddedCustomerName_value);
 			System.out.println("Added Customer Name:"+ AddedCustomerName_value);
@@ -1434,11 +1434,11 @@ public class APT_NGINHelper extends DriverHelper {
 	public void verifyCustomerLinks(String application, String editreseller, String editemail, String editcity, String editstreetname, String editstreetno, String editpobox, String editzipcode, String editphone, String editfax) throws InterruptedException, DocumentException, IOException {
 
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
-		WebElement CustomerGridCheck= driver.findElement(By.xpath("(//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement CustomerGridCheck= getwebelement("(//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String CustomerGrid= CustomerGridCheck.getAttribute("style");
 
-		//WebElement AddedCustomer= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName + "')]/parent::div//input[@type='radio']"));
-		WebElement AddedCustomer= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ Customername+"')]/parent::div//input[@type='radio']"));
+		//WebElement AddedCustomer= getwebelement("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName + "')]/parent::div//input[@type='radio']"));
+		WebElement AddedCustomer= getwebelement("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ Customername+"')]/parent::div//input[@type='radio']");
 
 		//Edit Customer
 		if(!CustomerGrid.contains("height: 1px"))
@@ -1447,7 +1447,7 @@ public class APT_NGINHelper extends DriverHelper {
 			Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "CustomerpanelActionDropdown", xml);
 			click_commonMethod(application, "Edit", "edit", xml);
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+			CustomJavaScriptExecute("window.scrollTo(0, 0)");
 			compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP", xml);
 			Thread.sleep(1000);
 
@@ -1489,7 +1489,7 @@ public class APT_NGINHelper extends DriverHelper {
 			addtextFields_commonMethod(application, "Phone", "reseller_phone", editphone, xml);
 			cleartext(application, "Fax", "reseller_fax");
 			addtextFields_commonMethod(application, "Fax", "reseller_fax", editfax, xml);
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 			click_commonMethod(application, "Ok", "okbutton", xml);
 
 			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
@@ -1508,8 +1508,8 @@ public class APT_NGINHelper extends DriverHelper {
 
 		//View customer
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
-		//WebElement AddedCustomer1= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName + "')]/parent::div//input[@type='radio']"));
-		WebElement AddedCustomer1= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ Customername +"')]/parent::div//input[@type='radio']"));
+		//WebElement AddedCustomer1= getwebelement("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName + "')]/parent::div//input[@type='radio']"));
+		WebElement AddedCustomer1= getwebelement("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ Customername +"')]/parent::div//input[@type='radio']");
 
 		if(!CustomerGrid.contains("height: 1px"))
 		{
@@ -1520,7 +1520,7 @@ public class APT_NGINHelper extends DriverHelper {
 			if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
 			{
 				click_commonMethod(application, "View", "view", xml);
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+				CustomJavaScriptExecute("window.scrollTo(0, 0)");
 				compareText(application, "Manage Customer in OSP header", "manageresellerheader_viewpage", "Manage Customer In OSP", xml);
 				Thread.sleep(1000);
 
@@ -1544,15 +1544,15 @@ public class APT_NGINHelper extends DriverHelper {
 				compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP", xml);
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : Edit Customer in view customer page is verified");
 				Thread.sleep(1000);
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 				click_commonMethod(application, "Cancel", "cancelbutton", xml);
 				Thread.sleep(1000);
 			}
 		}
 		//Delete customer in view customer page
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
-		//WebElement AddedCustomer2= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName + "')]/parent::div//input[@type='radio']"));
-		WebElement AddedCustomer2= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ Customername +"')]/parent::div//input[@type='radio']"));
+		//WebElement AddedCustomer2= getwebelement("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName + "')]/parent::div//input[@type='radio']"));
+		WebElement AddedCustomer2= getwebelement("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ Customername +"')]/parent::div//input[@type='radio']");
 
 		if(!CustomerGrid.contains("height: 1px"))
 		{
@@ -1563,11 +1563,11 @@ public class APT_NGINHelper extends DriverHelper {
 			if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
 			{
 				click_commonMethod(application, "View", "view", xml);
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+				CustomJavaScriptExecute("window.scrollTo(0, 0)");
 				compareText(application, "Manage Customer in OSP header", "manageresellerheader_viewpage", "Manage Customer In OSP", xml);
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : Delete Customer in view customer page is verified");
 				Thread.sleep(1000);
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+				CustomJavaScriptExecute("window.scrollTo(0, 0)");
 				click_commonMethod(application, "Action dropdown", "viewpage_actiondropdown", xml);
 
 				//Delete customer in view customer page
@@ -1768,7 +1768,7 @@ public class APT_NGINHelper extends DriverHelper {
 			addtextFields_commonMethod(application, "No Answer", "noanswer", noanswer_value, xml);
 			addtextFields_commonMethod(application, "Network Congestion", "networkcongestion", networkcongestion, xml);
 		}
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 		click_commonMethod(application, "Next", "nextbutton", xml);
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
@@ -1776,7 +1776,7 @@ public class APT_NGINHelper extends DriverHelper {
 			Log.info("Navigated to view SAN page");
 			System.out.println("Navigated to view SAN page");
 			compareText(application, "Add SAN success message", "addsan_successmsg", "SAN successfully created", xml);
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 			click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 		}
 		else
@@ -1797,15 +1797,15 @@ public class APT_NGINHelper extends DriverHelper {
 		}
 		//Added Customer
 		scrolltoend();
-		WebElement SANGridCheck= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement SANGridCheck= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid= SANGridCheck.getAttribute("style");
-		WebElement AddedSAN= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + SAN_Customername + "')]/parent::div//input[@type='radio']"));
+		WebElement AddedSAN= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + SAN_Customername + "')]/parent::div//input[@type='radio']");
 		if(!SANGrid.contains("height: 1px"))
 		{
 			Clickon(AddedSAN);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "SANActionDropdown", xml);
-			List<WebElement> SANLinks= driver.findElements(By.xpath("//div[contains(text(),'SAN/FRC')]/following-sibling::div//div//a"));
+			List<WebElement> SANLinks= getwebelements("//div[contains(text(),'SAN/FRC')]/following-sibling::div//div//a");
 			int SANLinksCount= SANLinks.size();
 			for(int i=0;i<SANLinksCount;i++)
 			{
@@ -1817,14 +1817,14 @@ public class APT_NGINHelper extends DriverHelper {
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/sanheader")));
 
 			//Added Customer grid verification
-			WebElement AddedSan= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + SANNumberValue + "')]"));
+			WebElement AddedSan= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + SANNumberValue + "')]");
 			String AddedSAN_FRCNumber = AddedSan.getText();
 			Log.info("FRC Number for Added SAN is displayed as : " + AddedSAN_FRCNumber);
 			System.out.println("FRC Number for Added SAN: "+ AddedSAN_FRCNumber);
 			sa.assertEquals(AddedSAN_FRCNumber,SANNumberValue);
 			DriverTestcase.logger.log(LogStatus.PASS, "FRC Number for Added SAN is displayed as : " + AddedSAN_FRCNumber);
 
-			WebElement AddedSan1= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + SAN_Customername + "')]"));
+			WebElement AddedSan1= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + SAN_Customername + "')]");
 			String AddedSAN_Customervalue = AddedSan1.getText();
 			Log.info("Customer Name for Added SAN is displayed as : " + AddedSAN_Customervalue);
 			System.out.println("Customer Name for Added SAN: "+ AddedSAN_Customervalue);
@@ -1854,9 +1854,9 @@ public class APT_NGINHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
 		
-		WebElement SANGridCheck= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement SANGridCheck= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid= SANGridCheck.getAttribute("style");
-		WebElement AddedSAN= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + customernamevalue + "')]/parent::div//input[@type='radio']"));
+		WebElement AddedSAN= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + customernamevalue + "')]/parent::div//input[@type='radio']");
 		
 		if(!SANGrid.contains("height: 1px"))
 		{
@@ -1986,7 +1986,7 @@ public class APT_NGINHelper extends DriverHelper {
 				click_commonMethod(application, "Enable price announcement checkbox", "enablepriceannouncement", xml);
 				Thread.sleep(1000);
 			}
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 			Thread.sleep(1000);
 			click_commonMethod(application, "Next", "nextbutton", xml);
 			Thread.sleep(2000);
@@ -1998,7 +1998,7 @@ public class APT_NGINHelper extends DriverHelper {
 				scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/editsan_successmsg")));
 				compareText(application, "San Updated Success message", "editsan_successmsg", "San successfully updated", xml);
 				Thread.sleep(3000);
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 				click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 				Thread.sleep(2000);
 				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
@@ -2038,10 +2038,10 @@ public class APT_NGINHelper extends DriverHelper {
 		getwebelement(xml.getlocator("//locators/" + application + "/select_sansearchtype")).sendKeys(Keys.ENTER);
 		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
-		WebElement SANGridCheck1= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement SANGridCheck1= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid1= SANGridCheck1.getAttribute("style");
 		System.out.println("Customer Name displaying: " +customernamevalue);
-		WebElement AddedSAN1= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']"));
+		WebElement AddedSAN1= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
 		if(!SANGrid1.contains("height: 1px"))
 		{
 			Clickon(AddedSAN1);
@@ -2074,14 +2074,14 @@ public class APT_NGINHelper extends DriverHelper {
 
 			//Edit SAN link in view SAN page
 			Thread.sleep(2000);
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+			CustomJavaScriptExecute("window.scrollTo(0, 0)");
 			click_commonMethod(application, "Action dropdown", "viewsan_actiondropdown", xml);
 			click_commonMethod(application, "Edit SAN", "editsan_link", xml);
 			if(getwebelement(xml.getlocator("//locators/" + application + "/editsan_header")).isDisplayed())
 			{
 			compareText(application, "Edit SAN Header", "editsan_header", "Edit SAN", xml);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to Edit SAN page");
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 			click_commonMethod(application, "Cancel", "cancelbutton", xml);
 			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 			{
@@ -2116,10 +2116,10 @@ public class APT_NGINHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
 		
-			WebElement SANGridCheck2= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+			WebElement SANGridCheck2= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 			String SANGrid2= SANGridCheck2.getAttribute("style");
 			System.out.println("Customer Name displaying: " +customernamevalue);
-			WebElement AddedSAN2= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']"));
+			WebElement AddedSAN2= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
 			if(!SANGrid2.contains("height: 1px"))
 			{
 				Clickon(AddedSAN2);
@@ -2128,7 +2128,7 @@ public class APT_NGINHelper extends DriverHelper {
 				click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
 				click_commonMethod(application, "View SAN link", "viewsan_link", xml);
 				compareText(application, "View SAN Header", "viewsan_header", "View SAN", xml);
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+				CustomJavaScriptExecute("window.scrollTo(0, 0)");
 			click_commonMethod(application, "Action dropdown", "viewsan_actiondropdown", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Add Another SAN", "addanothersanlink", xml);
@@ -2136,7 +2136,7 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				compareText(application, "Add SAN Header", "addsan_header", "Add SAN", xml);
 				DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to Add SAN page");
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 				click_commonMethod(application, "Cancel", "cancelbutton", xml);
 			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 			{
@@ -2172,10 +2172,10 @@ public class APT_NGINHelper extends DriverHelper {
 			addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 			getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
 			
-		WebElement SANGridCheck3= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement SANGridCheck3= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid3= SANGridCheck3.getAttribute("style");
 		System.out.println("Customer Name displaying: " +customernamevalue);
-		WebElement AddedSAN3= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']"));
+		WebElement AddedSAN3= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
 		if(!SANGrid3.contains("height: 1px"))
 		{
 			Clickon(AddedSAN3);
@@ -2183,7 +2183,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
 			click_commonMethod(application, "View SAN", "viewsan_link", xml);
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+			CustomJavaScriptExecute("window.scrollTo(0, 0)");
 			compareText(application, "View SAN Header", "viewsan_header", "View SAN", xml);
 			click_commonMethod(application, "Action dropdown", "viewsan_actiondropdown", xml);
 			click_commonMethod(application, "Delete SAN", "deletesan_link", xml);
@@ -2203,7 +2203,7 @@ public class APT_NGINHelper extends DriverHelper {
 			Log.info("SAN is not added in the grid");
 			System.out.println("SAN is not added in the grid");
 		}
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 		click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 		Thread.sleep(2000);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
@@ -2227,10 +2227,10 @@ public class APT_NGINHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
 
-		WebElement SANGridCheck4= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement SANGridCheck4= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid4= SANGridCheck4.getAttribute("style");
 		System.out.println("Customer Name displaying: " +customernamevalue);
-		WebElement AddedSAN4= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']"));
+		WebElement AddedSAN4= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
 		if(!SANGrid4.contains("height: 1px"))
 		{
 			Clickon(AddedSAN4);
@@ -2340,10 +2340,10 @@ public class APT_NGINHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
 
-		WebElement SANGridCheck5= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement SANGridCheck5= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid5= SANGridCheck5.getAttribute("style");
 		System.out.println("Customer Name displaying: " +customernamevalue);
-		WebElement AddedSAN5= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']"));
+		WebElement AddedSAN5= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
 		if(!SANGrid5.contains("height: 1px"))
 		{
 			Clickon(AddedSAN5);
@@ -2435,10 +2435,10 @@ public class APT_NGINHelper extends DriverHelper {
 				addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 				getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
 
-				WebElement SANGridCheck10= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+				WebElement SANGridCheck10= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 				String SANGrid10= SANGridCheck10.getAttribute("style");
 				System.out.println("Customer Name displaying: " +customernamevalue);
-				WebElement AddedSAN10= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']"));
+				WebElement AddedSAN10= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
 				if(!SANGrid10.contains("height: 1px"))
 				{
 					Clickon(AddedSAN10);
@@ -2520,10 +2520,10 @@ public class APT_NGINHelper extends DriverHelper {
 				addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 				getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
 
-				WebElement SANGridCheck11= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+				WebElement SANGridCheck11= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 				String SANGrid11= SANGridCheck11.getAttribute("style");
 				System.out.println("Customer Name displaying: " +customernamevalue);
-				WebElement AddedSAN11= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']"));
+				WebElement AddedSAN11= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
 				if(!SANGrid11.contains("height: 1px"))
 				{
 					Clickon(AddedSAN11);
@@ -2534,9 +2534,9 @@ public class APT_NGINHelper extends DriverHelper {
 				compareText(application, "Manage Addnl FRC Header", "manageaddnlfrc_header", "Manage Addnl FRC", xml);
 				
 				//verify edit addnl frc
-				WebElement AddnlFRCGridCheck= driver.findElement(By.xpath("//div[@ref='eBodyContainer']"));
+				WebElement AddnlFRCGridCheck= getwebelement("//div[@ref='eBodyContainer']");
 				String AddnlFRCGrid= AddnlFRCGridCheck.getAttribute("style");
-				WebElement AddedAddnlFRC= driver.findElement(By.xpath("//div[@ref='eBodyContainer']//span[@class='ag-selection-checkbox']//span[2]"));
+				WebElement AddedAddnlFRC= getwebelement("//div[@ref='eBodyContainer']//span[@class='ag-selection-checkbox']//span[2]");
 				String AddedAddnlFRC_checkbox= AddedAddnlFRC.getAttribute("class");
 				if(!AddnlFRCGrid.contains("height: 1px"))
 				{
@@ -2582,9 +2582,9 @@ public class APT_NGINHelper extends DriverHelper {
 					DriverTestcase.logger.log(LogStatus.FAIL, "Addnl FRC is not added in the grid");
 				}
 					//verify view addnl frc
-					WebElement AddnlFRCGridCheck1= driver.findElement(By.xpath("//div[@ref='eBodyContainer']"));
+					WebElement AddnlFRCGridCheck1= getwebelement("//div[@ref='eBodyContainer']");
 					String AddnlFRCGrid1= AddnlFRCGridCheck1.getAttribute("style");
-					WebElement AddedAddnlFRC1= driver.findElement(By.xpath("//div[@ref='eBodyContainer']//span[@class='ag-selection-checkbox']//span[2]"));
+					WebElement AddedAddnlFRC1= getwebelement("//div[@ref='eBodyContainer']//span[@class='ag-selection-checkbox']//span[2]");
 					String AddedAddnlFRC1_checkbox= AddedAddnlFRC1.getAttribute("class");
 					if(!AddnlFRCGrid1.contains("height: 1px"))
 					{
@@ -2631,9 +2631,9 @@ public class APT_NGINHelper extends DriverHelper {
 					}
 					
 					//verify Delete addnl frc
-					WebElement AddnlFRCGridCheck2= driver.findElement(By.xpath("//div[@ref='eBodyContainer']"));
+					WebElement AddnlFRCGridCheck2= getwebelement("//div[@ref='eBodyContainer']");
 					String AddnlFRCGrid2= AddnlFRCGridCheck2.getAttribute("style");
-					WebElement AddedAddnlFRC2= driver.findElement(By.xpath("//div[@ref='eBodyContainer']//span[@class='ag-selection-checkbox']//span[2]"));
+					WebElement AddedAddnlFRC2= getwebelement("//div[@ref='eBodyContainer']//span[@class='ag-selection-checkbox']//span[2]");
 					String AddedAddnlFRC2_checkbox= AddedAddnlFRC2.getAttribute("class");
 					if(!AddnlFRCGrid2.contains("height: 1px"))
 					{
@@ -2694,10 +2694,10 @@ public class APT_NGINHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
 
-		WebElement SANGridCheck6= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement SANGridCheck6= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid6= SANGridCheck6.getAttribute("style");
 		System.out.println("Customer Name displaying: " +customernamevalue);
-		WebElement AddedSAN6= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']"));
+		WebElement AddedSAN6= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
 		if(!SANGrid6.contains("height: 1px"))
 		{
 			Clickon(AddedSAN6);
@@ -2727,10 +2727,10 @@ public class APT_NGINHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
 
-		WebElement SANGridCheck7= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement SANGridCheck7= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid7= SANGridCheck7.getAttribute("style");
 		System.out.println("Customer Name displaying: " +customernamevalue);
-		WebElement AddedSAN7= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']"));
+		WebElement AddedSAN7= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
 		if(!SANGrid7.contains("height: 1px"))
 		{
 			Clickon(AddedSAN7);
@@ -2791,7 +2791,7 @@ public class APT_NGINHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
 		
-		WebElement AddedSAN11= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']"));
+		WebElement AddedSAN11= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
 		if(AddedSAN11.isDisplayed())
 		{
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN Move verification is successfull in destination customer");
@@ -2833,7 +2833,7 @@ public class APT_NGINHelper extends DriverHelper {
 		
 		click_commonMethod(application, "Action dropdown", "SANActionDropdown", xml);	
 		click_commonMethod(application, "Add SAN", "addsan_link", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+		CustomJavaScriptExecute("window.scrollTo(0, 0)");
 		compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
 
 		addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
@@ -2905,7 +2905,7 @@ public class APT_NGINHelper extends DriverHelper {
 					click_commonMethod(application, "Configure checkbox", "configurecheckbox", xml);
 				}
 			}
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 			Thread.sleep(1000);
 			click_commonMethod(application, "Next", "nextbutton", xml);
 			Thread.sleep(3000);	
@@ -2964,7 +2964,8 @@ public class APT_NGINHelper extends DriverHelper {
 			addtextFields_commonMethod(application, "No Answer", "noanswer", noanswer_value, xml);
 			addtextFields_commonMethod(application, "Network Congestion", "networkcongestion", networkcongestion, xml);
 		}
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 		click_commonMethod(application, "Next", "nextbutton", xml);
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
@@ -2972,7 +2973,7 @@ public class APT_NGINHelper extends DriverHelper {
 			Log.info("Navigated to view SAN page");
 			System.out.println("Navigated to view SAN page");
 			compareText(application, "Add SAN success message", "addsan_successmsg", "SAN successfully created", xml);
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 			click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 		}
 		else
@@ -2999,7 +3000,7 @@ public class APT_NGINHelper extends DriverHelper {
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
 		click_commonMethod(application, "Action dropdown", "SANActionDropdown", xml);	
 		click_commonMethod(application, "Add SAN", "addsan_link", xml);
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+		CustomJavaScriptExecute("window.scrollTo(0, 0)");
 				compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
 
 				addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
@@ -3071,7 +3072,8 @@ public class APT_NGINHelper extends DriverHelper {
 							click_commonMethod(application, "Configure checkbox", "configurecheckbox", xml);
 						}
 					}
-					((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+					//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+					CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 					Thread.sleep(1000);
 					click_commonMethod(application, "Next", "nextbutton", xml);
 					Thread.sleep(3000);	
@@ -3130,7 +3132,8 @@ public class APT_NGINHelper extends DriverHelper {
 					addtextFields_commonMethod(application, "No Answer", "noanswer", noanswer_value, xml);
 					addtextFields_commonMethod(application, "Network Congestion", "networkcongestion", networkcongestion, xml);
 				}
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 				click_commonMethod(application, "Next", "nextbutton", xml);
 
 				if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
@@ -3138,7 +3141,8 @@ public class APT_NGINHelper extends DriverHelper {
 					Log.info("Navigated to view SAN page");
 					System.out.println("Navigated to view SAN page");
 					compareText(application, "Add SAN success message", "addsan_successmsg", "SAN successfully created", xml);
-					((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+					//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+					CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 					click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 				}
 				else
@@ -3163,7 +3167,7 @@ public class APT_NGINHelper extends DriverHelper {
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/customerheader")));
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
 		
-		WebElement SANGridCheck8= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement SANGridCheck8= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid8= SANGridCheck8.getAttribute("style");
 		if(!SANGrid8.contains("height: 1px"))
 		{
@@ -3185,7 +3189,7 @@ public class APT_NGINHelper extends DriverHelper {
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/customerheader")));
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
 		
-		WebElement SANGridCheck9= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement SANGridCheck9= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid9= SANGridCheck9.getAttribute("style");
 		if(!SANGrid9.contains("height: 1px"))
 		{
@@ -3204,9 +3208,9 @@ public class APT_NGINHelper extends DriverHelper {
 		addDropdownValues_commonMethod(application, "Country", "bulkmove_countrydropdown", bulkmove_country, xml);
 		addDropdownValues_commonMethod(application, "Customer", "bulkmove_customerdropdown", bulkmove_customer, xml);
 		click_commonMethod(application, "Filter FRC Number Dropdown", "filterfrcnumberdropdown", xml);
-		WebElement FilterFRC_Dropdownvalueselect1= driver.findElement(By.xpath("//div[label[text()='Filter FRC Number']]//div[@role='list']//div//div[2]/div//div[contains(text(),'"+Bulkmove_SANNumberValue1+"')]/preceding-sibling::input[@type='checkbox']"));
+		WebElement FilterFRC_Dropdownvalueselect1= getwebelement("//div[label[text()='Filter FRC Number']]//div[@role='list']//div//div[2]/div//div[contains(text(),'"+Bulkmove_SANNumberValue1+"')]/preceding-sibling::input[@type='checkbox']");
 		Clickon(FilterFRC_Dropdownvalueselect1);
-		WebElement FilterFRC_Dropdownvalueselect2= driver.findElement(By.xpath("//div[label[text()='Filter FRC Number']]//div[@role='list']//div//div[2]/div//div[contains(text(),'"+Bulkmove_SANNumberValue2+"')]/preceding-sibling::input[@type='checkbox']"));
+		WebElement FilterFRC_Dropdownvalueselect2= getwebelement("//div[label[text()='Filter FRC Number']]//div[@role='list']//div//div[2]/div//div[contains(text(),'"+Bulkmove_SANNumberValue2+"')]/preceding-sibling::input[@type='checkbox']");
 		Clickon(FilterFRC_Dropdownvalueselect2);
 		Thread.sleep(2000);
 		addDropdownValues_commonMethod(application, "Service", "bulkmove_servicedropdown", bulkmove_service, xml);
@@ -3244,8 +3248,8 @@ public class APT_NGINHelper extends DriverHelper {
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/customerheader")));
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
 		
-		WebElement AddedSAN11= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+Bulkmove_SANNumberValue1+"')]/parent::div//input[@type='radio']"));
-		WebElement AddedSAN12= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+Bulkmove_SANNumberValue2+"')]/parent::div//input[@type='radio']"));
+		WebElement AddedSAN11= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+Bulkmove_SANNumberValue1+"')]/parent::div//input[@type='radio']");
+		WebElement AddedSAN12= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+Bulkmove_SANNumberValue2+"')]/parent::div//input[@type='radio']");
 		//		int AddedSANCount= AddedSAN11.size();
 //		System.out.println("BulkSANAdded");
 		if(AddedSAN11.isDisplayed() && AddedSAN12.isDisplayed())
@@ -3273,10 +3277,10 @@ public class APT_NGINHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
 		
-			WebElement SANGridCheck2= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+			WebElement SANGridCheck2= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 			String SANGrid2= SANGridCheck2.getAttribute("style");
 			System.out.println("Customer Name displaying: " +customernamevalue);
-			WebElement AddedSAN2= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']"));
+			WebElement AddedSAN2= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
 			if(!SANGrid2.contains("height: 1px"))
 			{
 				Clickon(AddedSAN2);
@@ -3304,9 +3308,9 @@ public class APT_NGINHelper extends DriverHelper {
 			}
 
 		//Delete Customer
-		WebElement CustomerGridCheck= driver.findElement(By.xpath("(//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement CustomerGridCheck= getwebelement("(//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String CustomerGrid= CustomerGridCheck.getAttribute("style");
-		WebElement AddedCustomer= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']"));
+		WebElement AddedCustomer= getwebelement("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
 		if(!CustomerGrid.contains("height: 1px"))
 		{
 			Clickon(AddedCustomer);
@@ -3332,10 +3336,10 @@ public class APT_NGINHelper extends DriverHelper {
 		}
 
 		//Delete Reseller
-		WebElement ResellerGridCheck= driver.findElement(By.xpath("(//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement ResellerGridCheck= getwebelement("(//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String ResellerGrid= ResellerGridCheck.getAttribute("style");
 
-		WebElement AddedReseller= driver.findElement(By.xpath("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + ResellerName + "')]/parent::div//input[@type='radio']"));
+		WebElement AddedReseller= getwebelement("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + ResellerName + "')]/parent::div//input[@type='radio']");
 
 		if(!ResellerGrid.contains("height: 1px"))
 		{
@@ -3393,7 +3397,7 @@ public class APT_NGINHelper extends DriverHelper {
 		click_commonMethod(application, "Download To Excel", "downloadtoexcellink", xml);
 		Thread.sleep(3000);
 		isFileDownloaded(searchSANfilename, browserfiles_downloadspath);
-		WebElement SelectSAN= driver.findElement(By.xpath("//div[contains(text(),'"+search_sannumber+"')]/parent::div//input[@type='radio']"));
+		WebElement SelectSAN= getwebelement("//div[contains(text(),'"+search_sannumber+"')]/parent::div//input[@type='radio']");
 
 		if(SelectSAN.isDisplayed())
 		{
@@ -3482,14 +3486,14 @@ public class APT_NGINHelper extends DriverHelper {
 		Thread.sleep(1000);
 		click_commonMethod(application, "Search", "san_searchbutton", xml);
 		Thread.sleep(3000);
-		WebElement SelectSAN1= driver.findElement(By.xpath("//div[contains(text(),'"+search_sannumber+"')]/parent::div//input[@type='radio']"));
+		WebElement SelectSAN1= getwebelement("//div[contains(text(),'"+search_sannumber+"')]/parent::div//input[@type='radio']");
 		if(SelectSAN1.isDisplayed())
 		{	
 			String OrderNumber= getwebelement(xml.getlocator("//locators/" + application + "/ordername_link")).getText();
 			click_commonMethod(application, "Order Name", "ordername_link", xml);
 			compareText(application, "Search For Order / Service Header", "searchfororder_header", "Search For Order / Service", xml);
 			Thread.sleep(1000);
-			WebElement SelectExistingOrder= driver.findElement(By.xpath("//div[contains(text(),'"+OrderNumber+"')]/parent::div//input[@type='radio']"));
+			WebElement SelectExistingOrder= getwebelement("//div[contains(text(),'"+OrderNumber+"')]/parent::div//input[@type='radio']");
 
 			if(SelectExistingOrder.isDisplayed())
 			{
@@ -3520,7 +3524,7 @@ public class APT_NGINHelper extends DriverHelper {
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : No existing SAN to display");
 		}
 
-		driver.navigate().back();
+		navigateBack();
 		Thread.sleep(2000);
 
 		//Verify manage link in search order page
@@ -3541,14 +3545,14 @@ public class APT_NGINHelper extends DriverHelper {
 		click_commonMethod(application, "Search", "san_searchbutton", xml);
 		Thread.sleep(3000);
 
-		WebElement SelectSAN2= driver.findElement(By.xpath("//div[contains(text(),'"+search_sannumber+"')]/parent::div//input[@type='radio']"));
+		WebElement SelectSAN2= getwebelement("//div[contains(text(),'"+search_sannumber+"')]/parent::div//input[@type='radio']");
 		if(SelectSAN2.isDisplayed())
 		{
 			String OrderNumber= getwebelement(xml.getlocator("//locators/" + application + "/ordername_link")).getText();
 			click_commonMethod(application, "Order Name", "ordername_link", xml);
 			compareText(application, "Search For Order / Service Header", "searchfororder_header", "Search For Order / Service", xml);
 			Thread.sleep(1000);
-			WebElement SelectExistingOrder= driver.findElement(By.xpath("//div[contains(text(),'"+OrderNumber+"')]/parent::div//input[@type='radio']"));
+			WebElement SelectExistingOrder= getwebelement("//div[contains(text(),'"+OrderNumber+"')]/parent::div//input[@type='radio']");
 			if(SelectExistingOrder.isDisplayed())
 			{
 				Clickon(SelectExistingOrder);
@@ -3578,7 +3582,7 @@ public class APT_NGINHelper extends DriverHelper {
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : No existing SAN to display");
 		}
 
-		driver.navigate().back();
+		navigateBack();
 		Thread.sleep(2000);
 
 		//Verify Delete SAN details
@@ -3586,7 +3590,7 @@ public class APT_NGINHelper extends DriverHelper {
 		Thread.sleep(1000);
 		click_commonMethod(application, "Search", "san_searchbutton", xml);
 		Thread.sleep(3000);
-		WebElement SelectSAN3= driver.findElement(By.xpath("//div[contains(text(),'"+search_sannumber+"')]/parent::div//input[@type='radio']"));
+		WebElement SelectSAN3= getwebelement("//div[contains(text(),'"+search_sannumber+"')]/parent::div//input[@type='radio']");
 		if(SelectSAN3.isDisplayed())
 		{
 			Clickon(SelectSAN3);
@@ -3631,7 +3635,7 @@ public class APT_NGINHelper extends DriverHelper {
 		Thread.sleep(2000);
 
 
-		WebElement SelectExistingSAN= driver.findElement(By.xpath("//div[text()='"+nginmessage_sannumber+"']/preceding-sibling::div//div//input[@type='radio']"));
+		WebElement SelectExistingSAN= getwebelement("//div[text()='"+nginmessage_sannumber+"']/preceding-sibling::div//div//input[@type='radio']");
 		if(SelectExistingSAN.isDisplayed())
 		{
 			//Verify existing SAN column headers
@@ -3795,7 +3799,7 @@ public class APT_NGINHelper extends DriverHelper {
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : No existing NGIN Messages to display");
 		}
 
-		WebElement SelectExistingSAN1= driver.findElement(By.xpath("//div[text()='"+nginmessage_sannumber+"']/preceding-sibling::div//div//input[@type='radio']"));
+		WebElement SelectExistingSAN1= getwebelement("//div[text()='"+nginmessage_sannumber+"']/preceding-sibling::div//div//input[@type='radio']");
 		if(SelectExistingSAN1.isDisplayed())
 		{
 			Clickon(SelectExistingSAN1);
@@ -3966,15 +3970,7 @@ public class APT_NGINHelper extends DriverHelper {
 	//	} 
 
 
-	public void scrolltoview(WebElement element) {
-
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-	}
 	
-	public void clickOnBankPage() {
-		driver.findElement(By.xpath("//body")).click();
-	}
-
 	public void writetoexcel(String filepath, String sheetname, int columnnumber, String inputvalue) throws IOException{
 
 		File file= new File(filepath);

@@ -52,6 +52,7 @@ import com.relevantcodes.extentreports.LogStatus;
 public class DriverHelper {
 
 	protected WebDriver driver;
+	//WebDriver driver;
 	Wait<WebDriver> wait;
 	WebElement el;
 	List<WebElement> ellist;

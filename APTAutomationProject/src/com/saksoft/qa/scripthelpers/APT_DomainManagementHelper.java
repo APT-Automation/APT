@@ -279,7 +279,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			throws InterruptedException, DocumentException, IOException {
 			
 		
-		WebElement UserGridCheck= driver.findElement(By.xpath("(//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		//WebElement UserGridCheck= driver.findElement(By.xpath("(//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
+		WebElement UserGridCheck= getwebelement("(//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String UserGrid= UserGridCheck.getAttribute("style");
 		
 		if(UserGrid.contains("height: 1px"))
@@ -386,7 +387,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : User added successfully");
 			
 			//Edit User
-			List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
+			//List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
+			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
 			int NoOfUsers = ExistingUsers.size();
 			System.out.println("Total users:"+ NoOfUsers);
 			
@@ -398,8 +400,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				WebElement AddedUser = driver
-						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				//WebElement AddedUser = driver.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -458,8 +460,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				WebElement AddedUser = driver
-						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				//WebElement AddedUser = driver.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -520,8 +522,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				WebElement AddedUser = driver
-						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				//WebElement AddedUser = driver.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -540,7 +542,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		{
 		
 			//Edit User
-			List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
+			//List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
+			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
 			int NoOfUsers = ExistingUsers.size();
 			System.out.println("Total users:"+ NoOfUsers);
 			
@@ -552,8 +555,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				WebElement AddedUser = driver
-						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				//WebElement AddedUser = driver.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -612,8 +615,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				WebElement AddedUser = driver
-						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				//WebElement AddedUser = driver.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				WebElement AddedUser =getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");			
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -674,8 +677,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				WebElement AddedUser = driver
-						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				//WebElement AddedUser = driver.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -799,15 +802,18 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		Thread.sleep(5000);
 		System.out.println("clicked on customer dropdown");
 
-		try {
-			customername = driver.findElement(By.xpath("//div[text()='No matches found']")).isDisplayed();
+		try 
+		{
+			//customername = driver.findElement(By.xpath("//div[text()='No matches found']")).isDisplayed();
+			customername = getwebelement("//div[text()='No matches found']").isDisplayed();
 			Thread.sleep(5000);
 			System.out.println("flag:" + customername);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
-			WebElement customername1 = driver.findElement(By.xpath("//span[text()='" + customer + "']"));
+			//WebElement customername1 = driver.findElement(By.xpath("//span[text()='" + customer + "']"));
+			WebElement customername1 = getwebelement("//span[text()='" + customer + "']");
 			Thread.sleep(5000);
 			customername1.click();
 		}
@@ -822,15 +828,18 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/choosecustomerdropdown")));
 			Thread.sleep(5000);
 			// System.out.println("clicked on customer dropdown")
-			try {
-				customername = driver.findElement(By.xpath("//div[text()='No matches found']")).isDisplayed();
+			try 
+			{
+				//customername = driver.findElement(By.xpath("//div[text()='No matches found']")).isDisplayed();
+				customername = getwebelement("//div[text()='No matches found']").isDisplayed();
 			} catch (Exception e) {
 				break;
 			}
 
 		}
 
-		WebElement customername1 = driver.findElement(By.xpath("//span[text()='" + customer + "']"));
+		//WebElement customername1 = driver.findElement(By.xpath("//span[text()='" + customer + "']"));
+		WebElement customername1 = getwebelement("//span[text()='" + customer + "']");
 		Thread.sleep(5000);
 		customername1.click();
 		// System.out.println("selected cutomer is : " +
@@ -845,7 +854,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	// verify create order/service panel
 	public void verifycreateorderservicepanel(String application) throws InterruptedException, DocumentException {
 
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
+		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
 		try {
 			boolean ordercontractnumbertextfield = getwebelement(
@@ -895,8 +905,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			System.out.println("clicked on switch to verify the presence of create order button");
 
 			try {
-				boolean actualcreateorder = getwebelement(
-						xml.getlocator("//locators/" + application + "/createorderbutton")).isDisplayed();
+				boolean actualcreateorder = getwebelement(xml.getlocator("//locators/" + application + "/createorderbutton")).isDisplayed();
 			} catch (Exception e) {
 
 				System.out.println("create order button is not displayed");
@@ -939,12 +948,14 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 	
 	public void createorderservice(String application, String neworder, String neworderno, String newrfireqno, String existingorderservice, String existingordernumber)
-			throws InterruptedException, IOException, DocumentException {
-
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			throws InterruptedException, IOException, DocumentException 
+	{
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
+		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		if (neworder.equalsIgnoreCase("YES")) {
 
-			WebElement CreateOrder_Header= driver.findElement(By.xpath("//div[text()='Create Order / Service']"));
+			//WebElement CreateOrder_Header= driver.findElement(By.xpath("//div[text()='Create Order / Service']"));
+			WebElement CreateOrder_Header= getwebelement("//div[text()='Create Order / Service']");
 			scrolltoview(CreateOrder_Header);
 			Thread.sleep(2000);
 			
@@ -977,8 +988,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			throws InterruptedException, IOException, DocumentException {
 
 			// select service type
-		((JavascriptExecutor) driver)
-	     .executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
+		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 			addDropdownValues(application, "Service Type", "servicetypetextfield", servicetype);
 			// click on next button
 			click(application, "Next", "nextbutton");	
@@ -1121,7 +1132,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		
 		//Create service
 		
-		WebElement CreateOrder_Header= driver.findElement(By.xpath("//div[text()='Create Order / Service']"));
+		//WebElement CreateOrder_Header= driver.findElement(By.xpath("//div[text()='Create Order / Service']"));
+		WebElement CreateOrder_Header=getwebelement("//div[text()='Create Order / Service']");
 		scrolltoview(CreateOrder_Header);
 		
 		addDropdownValues(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", orderno);
@@ -1148,7 +1160,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		WarningMessage(application, "emailfieldwarngmsg", "Email");
 		
 		//service creation
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+		CustomJavaScriptExecute("window.scrollTo(0, 0)");
 		Thread.sleep(1000);
 		EnterTextValue(application, sid, "Service Identification", "serviceidentificationtextfield");
 		compareText(application, "Service Type", "servicetype_value", servicetype);
@@ -1170,7 +1183,9 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		EnterTextValue(application, servicepostalcode, "Postal Code", "servicepostalcode");
 		EnterTextValue(application, servicecity, "City", "servicecity");
 		EnterTextValue(application, servicestate, "State", "servicestate");
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
+		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		addDropdownValues(application, "Country", "country", country);
 		EnterTextValue(application, servicephone, "Phone", "servicephone");
 		EnterTextValue(application, servicefax, "Fax", "servicefax");
@@ -1254,9 +1269,10 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	}
 	
 	
-	public void scrolltoview(WebElement element) {
-
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+	public void scrolltoview(WebElement element) 
+	{
+		scrolltoview(element);
+		//((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
 	}
 	
 public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
@@ -1347,7 +1363,8 @@ public void verifyorderpanel_editorder(String application, String editorderno, S
 		
 		click(application, "Choose order dropdown", "changeorder_chooseorderdropdown");
 				
-		List<WebElement> ChangeOrder_DropdownList= driver.findElements(By.xpath(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist")));
+		//List<WebElement> ChangeOrder_DropdownList= driver.findElements(By.xpath(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist")));
+		List<WebElement> ChangeOrder_DropdownList= getwebelements("//locators/" + application + "/changeorder_dropdownlist");
 		int ChangeOrder_Dropdown_count= ChangeOrder_DropdownList.size();
 		if(ChangeOrder_Dropdown_count>= 1)
 		{
@@ -1478,7 +1495,7 @@ public void verifyorderpanel_editorder(String application, String editorderno, S
 		
 	}
 	
-	public void verifyservicepanel_links(String application, String EditRemarks, String Remarks, String changeorderno, String sid, String editsid, String servicetype, String editemail, String editphonecontact, String edituser, String editdefaultemail, String editservicefirstname, String editservicelastname, String editorganizationname, String editserviceaddress, String editservicecomplement, String editservicepostalcode, String editservicecity, String editservicestate, String editcountry, String editservicephone, String editservicefax ) throws InterruptedException, DocumentException, IOException {
+	public void verifyservicepanel_links(String application, String EditRemarks, String Remarks, String changeorderno, String sid, String editsid, String servicetype, String editemail, String editphonecontact, String edituser, String editdefaultemail, String editservicefirstname, String editservicelastname, String editorganizationname, String editserviceaddress, String editservicecomplement, String editservicepostalcode, String editservicecity, String editservicestate, String editcountry, String editservicephone, String editservicefax ) throws Exception {
 
 		//Cancel edit service
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
@@ -1557,10 +1574,13 @@ public void verifyorderpanel_editorder(String application, String editorderno, S
 		cleartext(application, "Email", "serviceemail");
 		EnterTextValue(application, editemail, "Email", "serviceemail");
 		Thread.sleep(2000);
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		JavascriptExecutor executor =(JavascriptExecutor)driver;
+		
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
+		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		//JavascriptExecutor executor =(JavascriptExecutor)driver;
 		WebElement Nextbutton= getwebelement(xml.getlocator("//locators/" + application + "/editservice_next"));
-		((JavascriptExecutor)driver). executeScript("arguments[0]. click();", Nextbutton);
+		//((JavascriptExecutor)driver). executeScript("arguments[0]. click();", Nextbutton);
+		safeJavaScriptClick(Nextbutton);
 		//click(application, "Next", "nextbutton");
 							
 			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
@@ -1665,8 +1685,8 @@ public void verifyorderpanel_editorder(String application, String editorderno, S
 				  Thread.sleep(3000);
 				  
 				  //verify list of values inside dropdown
-				  List<WebElement> listofvalues = driver
-							.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+				 // List<WebElement> listofvalues = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+				  List<WebElement> listofvalues = getwebelements("//div[@role='list']//span[@role='option']");
 				  
 				  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside "+ fieldname + "dropdown is:  ");
 				  System.out.println( " List of values inside "+ fieldname + "dropdown is:  ");

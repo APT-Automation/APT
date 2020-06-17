@@ -35,7 +35,8 @@ import com.saksoft.qa.driverlibrary.XMLReader;
 
 public class APT_AutomationHelper extends DriverHelper {
 
-	public APT_AutomationHelper(WebDriver dr) {
+	public APT_AutomationHelper(WebDriver dr) 
+	{
 		super(dr);
 		// TODO Auto-generated constructor stub
 	}
@@ -170,10 +171,10 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 	public void createorderservice(String application, String neworder, String neworderno, String newrfireqno, String existingorderservice, String existingordernumber)
 			throws InterruptedException, IOException, DocumentException {
 
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 		if (neworder.equalsIgnoreCase("YES")) {
 
-			WebElement CreateOrder_Header= driver.findElement(By.xpath("//div[text()='Create Order / Service']"));
+			WebElement CreateOrder_Header= getwebelement("//div[text()='Create Order / Service']");
 			scrolltoview(CreateOrder_Header);
 			Thread.sleep(2000);
 			
@@ -206,10 +207,11 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 
 	//======================================  Common Methods  ===========================================
 
-	public void scrolltoview(WebElement element) {
-
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-	}
+	/*public void scrolltoview(WebElement element) throws InterruptedException 
+	{
+		javascriptexecutor(element);
+		//((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+	}*/
 	
 	public void addDropdownValues(String application, String fieldname, String xpath, String expectedValueToAdd) throws InterruptedException, DocumentException {
 		boolean availability=false;
@@ -229,8 +231,7 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 					Thread.sleep(3000);
 
 					//verify list of values inside dropdown
-					List<WebElement> listofvalues = driver
-							.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+					List<WebElement> listofvalues = getwebelements("//div[@role='list']//span[@role='option']");
 
 					DriverTestcase.logger.log(LogStatus.PASS, " List of values inside "+ fieldname + " dropdown is:  ");
 					System.out.println( " List of values inside "+ fieldname + "dropdown is:  ");

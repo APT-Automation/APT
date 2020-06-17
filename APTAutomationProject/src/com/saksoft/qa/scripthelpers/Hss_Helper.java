@@ -157,8 +157,8 @@ public class Hss_Helper extends DriverHelper{
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/chooseCustomerdropdown")));
 		Thread.sleep(000);
 		System.out.println("-----HAve clicked as expected-----");
-		WebElement el1 = driver
-				.findElement(By.xpath("//div[contains(text(),'" + ChooseCustomerToBeSelected + "')][1]"));
+		//WebElement el1 = driver.findElement(By.xpath("//div[contains(text(),'" + ChooseCustomerToBeSelected + "')][1]"));
+		WebElement el1 = getwebelement("//div[contains(text(),'" + ChooseCustomerToBeSelected + "')][1]");
 		el1.click();
 		
 		Log.info("=== Choose Customer selected===");
@@ -284,8 +284,8 @@ public class Hss_Helper extends DriverHelper{
 			throws IOException, InterruptedException, DocumentException {
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/OrderContractNumber_Select")));
 		Thread.sleep(1000);
-		WebElement el1 = driver
-				.findElement(By.xpath("(//div[contains(text(),'" + OrderContractNumberToBeSelected + "')])[1]"));
+		//WebElement el1 = driver.findElement(By.xpath("(//div[contains(text(),'" + OrderContractNumberToBeSelected + "')])[1]"));
+		WebElement el1 = getwebelement("(//div[contains(text(),'" + OrderContractNumberToBeSelected + "')])[1]");
 		el1.click();
 		Log.info("=== Order Contract Number selected===");
 	}
@@ -294,7 +294,8 @@ public class Hss_Helper extends DriverHelper{
 			throws IOException, InterruptedException, DocumentException {
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ServiceType_Select")));
 		Thread.sleep(1000);
-		WebElement el1 = driver.findElement(By.xpath("(//div[contains(text(),'" + ServiceTypeToBeSelected + "')])[1]"));
+		//WebElement el1 = driver.findElement(By.xpath("(//div[contains(text(),'" + ServiceTypeToBeSelected + "')])[1]"));
+		WebElement el1 = getwebelement("(//div[contains(text(),'" + ServiceTypeToBeSelected + "')])[1]");
 		el1.click();
 		Log.info("=== Service Type selected===");
 	}
@@ -306,8 +307,8 @@ public class Hss_Helper extends DriverHelper{
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/OrderContractNumber_Select_build3")));
 		Thread.sleep(1000);
-		WebElement el1 = driver
-				.findElement(By.xpath("(//span[contains(text(),'" + OrderContractNumberToBeSelected + "')])[1]"));
+		//WebElement el1 = driver.findElement(By.xpath("(//span[contains(text(),'" + OrderContractNumberToBeSelected + "')])[1]"));
+		WebElement el1 = getwebelement("(//span[contains(text(),'" + OrderContractNumberToBeSelected + "')])[1]");
 		el1.click();
 		Log.info("=== Order Contract Number selected===");
 
@@ -611,18 +612,19 @@ public class Hss_Helper extends DriverHelper{
 	public void VerifyTheValuesForTheServiceSelected(String application, String ServiceSelected,
 			String ServiceIdentificationNumber, String Email, String PhoneContact, String remark,
 			String PerformanceReporting, String ProactiveNotification,
-			String NotificationManagementValueForTransmissionLink) {
+			String NotificationManagementValueForTransmissionLink) throws InterruptedException {
 
 		if (ServiceSelected.equals("Transmission Link")) {
 
-			WebElement ForServiceIdentification = driver
-					.findElement(By.xpath("//div[contains(text(),'" + ServiceIdentificationNumber + "')]"));
+			//WebElement ForServiceIdentification = driver.findElement(By.xpath("//div[contains(text(),'" + ServiceIdentificationNumber + "')]"));
+			WebElement ForServiceIdentification = getwebelement("//div[contains(text(),'" + ServiceIdentificationNumber + "')]");
 			sa.assertTrue(ForServiceIdentification.isDisplayed());
 
 //    		  WebElement ForServicetype = driver.findElement(By.xpath("//div[contains(text(),'"+ServiceIdentificationNumber+"')]"));
 //    		  sa.assertTrue(ForServicetype.isDisplayed());
 
-			WebElement ForEmail = driver.findElement(By.xpath("//div[contains(text(),'" + Email + "')]"));
+			//WebElement ForEmail = driver.findElement(By.xpath("//div[contains(text(),'" + Email + "')]"));
+			WebElement ForEmail = getwebelement("//div[contains(text(),'" + Email + "')]");
 			sa.assertTrue(ForEmail.isDisplayed());
 
 			WebElement ForRemark = driver.findElement(By.xpath("//div[contains(text(),'" + remark + "')]"));
@@ -1536,7 +1538,8 @@ public class Hss_Helper extends DriverHelper{
 	        Thread.sleep(2000);
 			}
 	        
-		    safeJavaScriptClick(driver.findElement(By.xpath("(//a[text()='Edit'])")));
+		    //safeJavaScriptClick(driver.findElement(By.xpath("(//a[text()='Edit'])")));
+			safeJavaScriptClick(getwebelement("(//a[text()='Edit'])"));
 	        DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on  Edit Device option");
 	        Thread.sleep(1000);
 
@@ -1562,10 +1565,12 @@ public class Hss_Helper extends DriverHelper{
 		     scrolltoend();
 		     Thread.sleep(1000);
 			
-			 safeJavaScriptClick(driver.findElement(By.xpath("(//span[text()='Delete'])")));
+			 //safeJavaScriptClick(driver.findElement(By.xpath("(//span[text()='Delete'])")));
+		     safeJavaScriptClick(getwebelement("(//span[text()='Delete'])"));
 		     DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on  Delete Device option");
 		     
-		     safeJavaScriptClick(driver.findElement(By.xpath("(//button[text()='Delete'])")));
+		     //safeJavaScriptClick(driver.findElement(By.xpath("(//button[text()='Delete'])")));
+		     safeJavaScriptClick(getwebelement("(//button[text()='Delete'])"));
 		     DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on  Delete Device button");
 		     
 		     Thread.sleep(3000);
@@ -1808,8 +1813,8 @@ public class Hss_Helper extends DriverHelper{
 		 }else {
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceSpeed")));
 			Thread.sleep(3000);
-			WebElement interfacesped = driver
-					.findElement(By.xpath("//span[contains(text(),'" + Interfacespeed + "')]"));
+			//WebElement interfacesped = driver.findElement(By.xpath("//span[contains(text(),'" + Interfacespeed + "')]"));
+			WebElement interfacesped = getwebelement("//span[contains(text(),'" + Interfacespeed + "')]");
 			interfacesped.click();
 			Log.info("=== Interface speed has got selected===");
 			DriverTestcase.logger.log(LogStatus.PASS,Interfacespeed +" speed has been selected");
@@ -2602,14 +2607,16 @@ boolean customername;
 	Log.info("=== Clicked on customer dropdown ===");
 
 	try {
-		customername = driver.findElement(By.xpath("//div[text()='No matches found']")).isDisplayed();
+		//customername = driver.findElement(By.xpath("//div[text()='No matches found']")).isDisplayed();
+		customername = getwebelement("//div[text()='No matches found']").isDisplayed();
 		Thread.sleep(5000);
 		System.out.println("flag:" + customername);
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 
-		WebElement customername1 = driver.findElement(By.xpath("//span[text()='" + customer + "']"));
+		//WebElement customername1 = driver.findElement(By.xpath("//span[text()='" + customer + "']"));
+		WebElement customername1 = getwebelement("//span[text()='" + customer + "']");
 		Thread.sleep(5000);
 		customername1.click();
 
@@ -2631,15 +2638,20 @@ boolean customername;
 		// logStatus(ele2, "Customer Selected from dropdown"+ele2.getText(), "Customer
 		// not Selected from dropdown");
 
-		try {
-			customername = driver.findElement(By.xpath("//div[text()='No matches found']")).isDisplayed();
-		} catch (Exception e) {
+		try 
+		{
+			//customername = driver.findElement(By.xpath("//div[text()='No matches found']")).isDisplayed();
+			customername = getwebelement("//div[text()='No matches found']").isDisplayed();
+		} 
+		catch (Exception e) 
+		{
 			break;
 		}
 
 	}
 
-	WebElement customername1 = driver.findElement(By.xpath("//span[text()='" + customer + "']"));
+	//WebElement customername1 = driver.findElement(By.xpath("//span[text()='" + customer + "']"));
+	WebElement customername1 = getwebelement("//span[text()='" + customer + "']");
 	Thread.sleep(5000);
 	customername1.click();
 
@@ -2653,28 +2665,26 @@ boolean customername;
 	
 
 	// scroll to end
-	public void scrolltoend() {
-
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-	}
+	/*public void scrolltoend() throws Exception 
+	{
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
+		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	}*/
 	
 	
-	public void scrollToTop() {
+	/*public void scrollToTop() {
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0)");
-	}
+	}*/
 	
-	public void clickOnBankPage() {
-		driver.findElement(By.xpath("//body")).click();
-	}
+	/*public void clickOnBankPage() throws InterruptedException 
+	{
+		//driver.findElement(By.xpath("//body")).click();
+		getwebelement("//body").click();
+	}*/
 
 	
 //Scroll to particular webelement
-	public void ScrolltoElement(WebElement Element) {
-		
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",(Element));
-		
-	}
-
+	
 	public void Verifyfields(String application, String ServiceTypeToBeSelected, String modularMSP,
 			String autoCreateService) throws InterruptedException, DocumentException {
 
@@ -2741,7 +2751,8 @@ System.out.println("the webeleent is : "+ wb);
 
 		// verifying list of service types
 		try {
-		List<WebElement> listofservicetypes = driver.findElements(By.xpath("//div/span[@role='option']"));
+		//List<WebElement> listofservicetypes = driver.findElements(By.xpath("//div/span[@role='option']"));
+			List<WebElement> listofservicetypes = getwebelements("//div/span[@role='option']");
 		for (WebElement servicetype : listofservicetypes) {
 
 			boolean match = false;
@@ -2762,7 +2773,8 @@ System.out.println("the webeleent is : "+ wb);
 		// select lanlink service type
 
 	try {	
-		WebElement el2 = driver.findElement(By.xpath("//span[contains(text(),'" + ServiceTypeToBeSelected + "')]"));
+		//WebElement el2 = driver.findElement(By.xpath("//span[contains(text(),'" + ServiceTypeToBeSelected + "')]"));
+		WebElement el2 = getwebelement("//span[contains(text(),'" + ServiceTypeToBeSelected + "')]");
 		el2.click();
 	}catch(Exception e) {
 		e.printStackTrace();
@@ -2940,8 +2952,8 @@ System.out.println("the webeleent is : "+ wb);
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceSpeed")));
 
-		List<WebElement> listofinterfacespeed = driver
-				.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		//List<WebElement> listofinterfacespeed = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		List<WebElement> listofinterfacespeed = getwebelements("//div[@role='list']//span[@role='option']");
 		for (WebElement interfacespeed : listofinterfacespeed) {
 
 			boolean match = false;
@@ -2981,8 +2993,8 @@ System.out.println("the webeleent is : "+ wb);
 		// verify the list of service sub types
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ServiceSubtype")));
 		
-		List<WebElement> listofServicesubtypes = driver
-				.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		//List<WebElement> listofServicesubtypes = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		List<WebElement> listofServicesubtypes = getwebelements("//div[@role='list']//span[@role='option']");
 		for (WebElement servicesubtypes : listofServicesubtypes) {
 
 			boolean match = false;
@@ -3025,8 +3037,8 @@ System.out.println("the webeleent is : "+ wb);
 		// verify the list of service sub types
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ServiceSubtype")));
 		
-		List<WebElement> listofServicesubtypes = driver
-				.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		//List<WebElement> listofServicesubtypes = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		List<WebElement> listofServicesubtypes = getwebelements("//div[@role='list']//span[@role='option']");
 		for (WebElement servicesubtypes : listofServicesubtypes) {
 
 			boolean match = false;
@@ -3068,8 +3080,8 @@ System.out.println("the webeleent is : "+ wb);
 		// verify the list of service sub types
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ServiceSubtype")));
 
-		List<WebElement> listofServicesubtypes = driver
-				.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		//List<WebElement> listofServicesubtypes = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		List<WebElement> listofServicesubtypes = getwebelements("//div[@role='list']//span[@role='option']");
 		for (WebElement servicesubtypes : listofServicesubtypes) {
 
 			boolean match = false;
@@ -3113,8 +3125,8 @@ System.out.println("the webeleent is : "+ wb);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ServiceSubtype")));
 		
 
-		List<WebElement> listofServicesubtypes = driver
-				.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		//List<WebElement> listofServicesubtypes = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		List<WebElement> listofServicesubtypes = getwebelements("//div[@role='list']//span[@role='option']");
 		for (WebElement servicesubtypes : listofServicesubtypes) {
 
 			boolean match = false;
@@ -3174,8 +3186,8 @@ try {
 		// verify the list of A-End technolnogies
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/A_Endtechnology")));
 
-		List<WebElement> listofA_endTechnologies = driver
-				.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		//List<WebElement> listofA_endTechnologies = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		List<WebElement> listofA_endTechnologies = getwebelements("//div[@role='list']//span[@role='option']");
 		for (WebElement A_endTechnolnogies : listofA_endTechnologies) {
 
 			boolean match = false;
@@ -3215,8 +3227,8 @@ try {
 		// verify the list of A-End technolnogies
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/B_Endtechnology")));
 
-		List<WebElement> listofB_endTechnologies = driver
-				.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		//List<WebElement> listofB_endTechnologies = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		List<WebElement> listofB_endTechnologies = getwebelements("//div[@role='list']//span[@role='option']");
 		for (WebElement B_endTechnolnogies : listofB_endTechnologies) {
 
 			boolean match = false;
@@ -4529,8 +4541,8 @@ Thread.sleep(3000);
 	
 	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/notificationmanagement")));
 	try {
-		List<WebElement> listofnotificationmanagement = driver
-				.findElements(By.xpath("//span[@role='list']//span[@role='option']"));
+		//List<WebElement> listofnotificationmanagement = driver/.findElements(By.xpath("//span[@role='list']//span[@role='option']"));
+		List<WebElement> listofnotificationmanagement = getwebelements("//span[@role='list']//span[@role='option']");
 		for (WebElement notificationmanagementtypes : listofnotificationmanagement) {
 
 			boolean match = false;
@@ -4567,8 +4579,8 @@ Thread.sleep(3000);
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/deliverychannel_withclasskey")));
     try {
-		List<WebElement> listofdeliverychannel = driver
-				.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		//List<WebElement> listofdeliverychannel = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+    	List<WebElement> listofdeliverychannel = getwebelements("//div[@role='list']//span[@role='option']");
 		for (WebElement deliverychanneltypes : listofdeliverychannel) {
 
 			boolean match = false;
@@ -4619,7 +4631,8 @@ Thread.sleep(3000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/VPNtopology")));
 		
 		try {
-		List<WebElement> listofvpntopology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		//List<WebElement> listofvpntopology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		List<WebElement> listofvpntopology = getwebelements("//div[@role='list']//span[@role='option']");
 		for (WebElement vpntopologytyeps : listofvpntopology) {
 
 			boolean match = false;
@@ -4772,9 +4785,8 @@ Thread.sleep(3000);
 		
 	//Circuit type field		
 		try {
-		List<WebElement> listofcircuittypes = driver
-				.findElements(By.xpath("//div[@class='div-border div-margin container']//div[@class='row'][3]//span"));
-		
+		//List<WebElement> listofcircuittypes = driver.findElements(By.xpath("//div[@class='div-border div-margin container']//div[@class='row'][3]//span"));
+		List<WebElement> listofcircuittypes = getwebelements("//div[@class='div-border div-margin container']//div[@class='row'][3]//span");
 		for (WebElement CircuitTypes : listofcircuittypes) {
 			
 				Log.info("list of circuit types are : " + CircuitTypes.getText());
@@ -5129,8 +5141,8 @@ Thread.sleep(3000);
 	
 	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/notificationmanagement")));
 	try {
-		List<WebElement> listofnotificationmanagement = driver
-				.findElements(By.xpath("//span[@role='list']//span[@role='option']"));
+		//List<WebElement> listofnotificationmanagement = driver.findElements(By.xpath("//span[@role='list']//span[@role='option']"));
+		List<WebElement> listofnotificationmanagement = getwebelements("//span[@role='list']//span[@role='option']");
 		for (WebElement notificationmanagementtypes : listofnotificationmanagement) {
 
 			boolean match = false;
@@ -5167,8 +5179,8 @@ Thread.sleep(3000);
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/deliverychannel_withclasskey")));
     try {
-		List<WebElement> listofdeliverychannel = driver
-				.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		//List<WebElement> listofdeliverychannel = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+    	List<WebElement> listofdeliverychannel = getwebelements("//div[@role='list']//span[@role='option']");
 		for (WebElement deliverychanneltypes : listofdeliverychannel) {
 
 			boolean match = false;
@@ -5220,7 +5232,8 @@ Thread.sleep(3000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/VPNtopology")));
 		
 		try {
-		List<WebElement> listofvpntopology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		//List<WebElement> listofvpntopology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		List<WebElement> listofvpntopology = getwebelements("//div[@role='list']//span[@role='option']");
 		for (WebElement vpntopologytyeps : listofvpntopology) {
 
 			boolean match = false;
@@ -5384,8 +5397,8 @@ Thread.sleep(3000);
 		
 	//Circuit type field		
 		try {
-		List<WebElement> listofcircuittypes = driver
-				.findElements(By.xpath("//div[@class='div-border div-margin container']//div[@class='row'][3]//span"));
+		//List<WebElement> listofcircuittypes = driver.findElements(By.xpath("//div[@class='div-border div-margin container']//div[@class='row'][3]//span"));
+		List<WebElement> listofcircuittypes = getwebelements("//div[@class='div-border div-margin container']//div[@class='row'][3]//span");
 		
 		for (WebElement CircuitTypes : listofcircuittypes) {
 			
@@ -5548,8 +5561,8 @@ Thread.sleep(3000);
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/E_VPNtechnologyDropdown")));
 			try {
-				List<WebElement> listofEVPNtechnology = driver
-						.findElements(By.xpath("//span[@role='list']//span[@role='option']"));
+				//List<WebElement> listofEVPNtechnology = driver.findElements(By.xpath("//span[@role='list']//span[@role='option']"));
+				List<WebElement> listofEVPNtechnology = getwebelements("//span[@role='list']//span[@role='option']");
 				for (WebElement EVPNtechnologyTypes : listofEVPNtechnology) {
 
 							Log.info("list of 'E-VPN Technology' are : " + EVPNtechnologyTypes.getText());
@@ -5804,8 +5817,8 @@ try {
 	
 	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/notificationmanagement")));
 	try {
-		List<WebElement> listofnotificationmanagement = driver
-				.findElements(By.xpath("//span[@role='list']//span[@role='option']"));
+		//List<WebElement> listofnotificationmanagement = driver.findElements(By.xpath("//span[@role='list']//span[@role='option']"));
+		List<WebElement> listofnotificationmanagement = getwebelements("//span[@role='list']//span[@role='option']");
 		for (WebElement notificationmanagementtypes : listofnotificationmanagement) {
 
 			boolean match = false;
@@ -5850,8 +5863,8 @@ try {
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/deliverychannel_withclasskey")));
     try {
-		List<WebElement> listofdeliverychannel = driver
-				.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		//List<WebElement> listofdeliverychannel = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+    	List<WebElement> listofdeliverychannel =getwebelements("//div[@role='list']//span[@role='option']");
 		for (WebElement deliverychanneltypes : listofdeliverychannel) {
 
 			boolean match = false;
@@ -5904,7 +5917,8 @@ try {
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/VPNtopology")));
 		
 		try {
-		List<WebElement> listofvpntopology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		//List<WebElement> listofvpntopology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listofvpntopology = getwebelements("//div[@role='list']//span[@role='option']");
 		for (WebElement vpntopologytyeps : listofvpntopology) {
 
 			boolean match = false;
@@ -8705,8 +8719,9 @@ try {
 	public void clickonEditwithoutselectingrow(String application)
 			throws InterruptedException, DocumentException, IOException {
 
-		JavascriptExecutor js = ((JavascriptExecutor) driver);
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		//JavascriptExecutor js = ((JavascriptExecutor) driver);
+		//js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 		Thread.sleep(3000);
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Actiondropdown_siteorder")));
@@ -8731,8 +8746,9 @@ try {
 		Thread.sleep(5000);
 
 		Log.info("Deleting site order without selecting row");
-		JavascriptExecutor js = ((JavascriptExecutor) driver);
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		//JavascriptExecutor js = ((JavascriptExecutor) driver);
+		//js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 		Thread.sleep(3000);
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Actiondropdown_siteorder")));
@@ -8773,8 +8789,9 @@ try {
 //		System.out.println("got navigated back");
 
 		Log.info("View site order without selecting row");
-		JavascriptExecutor js = ((JavascriptExecutor) driver);
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		//JavascriptExecutor js = ((JavascriptExecutor) driver);
+		//js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
 		Thread.sleep(3000);
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Actiondropdown_siteorder")));
@@ -10359,7 +10376,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			//List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listoftechnology = getwebelements("//div[@role='list']//span[@role='option']");
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -10443,7 +10461,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 						DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_VLANEtherTypeDropdown")));
-						List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+						//List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+						List<WebElement> listofVLANethertype = getwebelements("//div[@role='list']//span[@role='option']");
 
 						if(listofVLANethertype.size()>=1) {
 						for (WebElement VLANEthertypes : listofVLANethertype) {
@@ -10539,7 +10558,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			//List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listoftechnology = getwebelements("//div[@role='list']//span[@role='option']");
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -10616,7 +10636,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 						DriverTestcase.logger.log(LogStatus.PASS, " 'GCR OLO Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_GCRoloTypeDropdown")));
-						List<WebElement> listofGcrOLOtype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+						//List<WebElement> listofGcrOLOtype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+						List<WebElement> listofGcrOLOtype = getwebelements("//div[@role='list']//span[@role='option']");
 
 						if(listofGcrOLOtype.size()>=1) {
 						for (WebElement GCROlotypes : listofGcrOLOtype) {
@@ -10668,8 +10689,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 						DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_VLANEtherTypeDropdown")));
-						List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+						//List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+						List<WebElement> listofVLANethertype = getwebelements("//div[@role='list']//span[@role='option']");
 						if(listofVLANethertype.size()>=1) {
 						for (WebElement VLANEthertypes : listofVLANethertype) {
 								boolean match = false;
@@ -10851,7 +10872,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_mappingModedropdown")));
 				Thread.sleep(3000);
 				
-				List<WebElement> listofMappingMode = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+				//List<WebElement> listofMappingMode = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+				List<WebElement> listofMappingMode = getwebelements("//div[@role='list']//span[@role='option']");
 				
 				if(listofMappingMode.size()>=1) {	
 					for (WebElement mappingModetypes : listofMappingMode) {
@@ -10943,8 +10965,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 				sa.assertTrue(technology, "Technology dropdown is not displayed");
 
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-				List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-				
+				//List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+				List<WebElement> listoftechnology = getwebelements("//div[@role='list']//span[@role='option']");				
 			if(listoftechnology.size()>=1) {	
 				for (WebElement technologytypes : listoftechnology) {
 
@@ -11065,7 +11087,8 @@ public void technologyDropdown_p2p_mspselected(String application) throws Interr
 				sa.assertTrue(technology, "Technology dropdown is not displayed");
 
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-				List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+				//List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+				List<WebElement> listoftechnology = getwebelements("//div[@role='list']//span[@role='option']");
 				
 			if(listoftechnology.size()>=1) {	
 				for (WebElement technologytypes : listoftechnology) {
@@ -11156,16 +11179,20 @@ public void technologyDropdownFor10GigE(String application) throws InterruptedEx
 				sa.assertTrue(technology, "Technology dropdown is not displayed");
 
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-				List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+				//List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+				List<WebElement> listoftechnology = getwebelements("//div[@role='list']//span[@role='option']");
 				
-			if(listoftechnology.size()>=1) {	
+			if(listoftechnology.size()>=1) 
+			{	
 				for (WebElement technologytypes : listoftechnology) {
 
 							Log.info("list of technology are : " + technologytypes.getText());
 							System.out.println("list of technology are : " + technologytypes.getText());
 							DriverTestcase.logger.log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 				}
-			}else {
+			}
+			else 
+			{
 				
 				System.out.println("no values are available inside technology dropdown for Add site order");
 				DriverTestcase.logger.log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
@@ -11210,7 +11237,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			//List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listoftechnology = getwebelements("//div[@role='list']//span[@role='option']");
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -11276,8 +11304,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 						DriverTestcase.logger.log(LogStatus.PASS, " 'GCR OLO Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_GCRoloTypeDropdown")));
-						List<WebElement> listofGcrOLOtype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+						//List<WebElement> listofGcrOLOtype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+						List<WebElement> listofGcrOLOtype = getwebelements("//div[@role='list']//span[@role='option']");
 						if(listofGcrOLOtype.size()>=1) {
 						for (WebElement GCROlotypes : listofGcrOLOtype) {
 								boolean match = false;
@@ -11336,8 +11364,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 						DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_VLANEtherTypeDropdown")));
-						List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+						//List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+						List<WebElement> listofVLANethertype = getwebelements("//div[@role='list']//span[@role='option']");
 						if(listofVLANethertype.size()>=1) {
 						for (WebElement VLANEthertypes : listofVLANethertype) {
 								boolean match = false;
@@ -11390,8 +11418,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 						DriverTestcase.logger.log(LogStatus.PASS, " 'Primary VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_primaryVLANEtherTypeDropdown")));
-						List<WebElement> listofprimaryVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+						//List<WebElement> listofprimaryVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+						List<WebElement> listofprimaryVLANethertype = getwebelements("//div[@role='list']//span[@role='option']");
 						if(listofprimaryVLANethertype.size()>=1) {
 						for (WebElement primaryVLANEthertypes : listofprimaryVLANethertype) {
 								boolean match = false;
@@ -11491,7 +11519,8 @@ public void technologyDropdown_MSPselected_HubAndSpoke_Access(String application
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			//List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listoftechnology = getwebelements("//div[@role='list']//span[@role='option']");
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -11548,8 +11577,8 @@ public void technologyDropdown_MSPselected_HubAndSpoke_Access(String application
 						DriverTestcase.logger.log(LogStatus.PASS, " 'GCR OLO Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_GCRoloTypeDropdown")));
-						List<WebElement> listofGcrOLOtype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+						//List<WebElement> listofGcrOLOtype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+						List<WebElement> listofGcrOLOtype = getwebelements("//div[@role='list']//span[@role='option']");
 						if(listofGcrOLOtype.size()>=1) {
 						for (WebElement GCROlotypes : listofGcrOLOtype) {
 								boolean match = false;
@@ -11608,7 +11637,8 @@ public void technologyDropdown_MSPselected_HubAndSpoke_Access(String application
 						DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_VLANEtherTypeDropdown")));
-						List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+						//List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+						List<WebElement> listofVLANethertype = getwebelements("//div[@role='list']//span[@role='option']");
 
 						if(listofVLANethertype.size()>=1) {
 						for (WebElement VLANEthertypes : listofVLANethertype) {
@@ -11662,8 +11692,8 @@ public void technologyDropdown_MSPselected_HubAndSpoke_Access(String application
 						DriverTestcase.logger.log(LogStatus.PASS, " 'Primary VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_primaryVLANEtherTypeDropdown")));
-						List<WebElement> listofprimaryVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+						//List<WebElement> listofprimaryVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+						List<WebElement> listofprimaryVLANethertype = getwebelements("//div[@role='list']//span[@role='option']");
 						if(listofprimaryVLANethertype.size()>=1) {
 						for (WebElement primaryVLANEthertypes : listofprimaryVLANethertype) {
 								boolean match = false;
@@ -11759,7 +11789,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			//List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listoftechnology = getwebelements("//div[@role='list']//span[@role='option']");
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -11806,8 +11837,9 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 			DriverTestcase.logger.log(LogStatus.PASS, " 'GCR OLO Type' drodpown field is displaying under 'Add Site Order' page as expected");
 				
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_GCRoloTypeDropdown")));
-			List<WebElement> listofGcrOLOtype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+			//List<WebElement> listofGcrOLOtype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listofGcrOLOtype = getwebelements("//div[@role='list']//span[@role='option']");
+			
 			if(listofGcrOLOtype.size()>=1) {
 			for (WebElement GCROlotypes : listofGcrOLOtype) {
 					boolean match = false;
@@ -11860,8 +11892,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 			DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 				
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_VLANEtherTypeDropdown")));
-			List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+			//List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listofVLANethertype = getwebelements("//div[@role='list']//span[@role='option']");
 			if(listofVLANethertype.size()>=1) {
 			for (WebElement VLANEthertypes : listofVLANethertype) {
 					boolean match = false;
@@ -11914,8 +11946,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 			DriverTestcase.logger.log(LogStatus.PASS, " 'Primary VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 				
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_primaryVLANEtherTypeDropdown")));
-			List<WebElement> listofprimaryVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+			//List<WebElement> listofprimaryVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listofprimaryVLANethertype = getwebelements("//div[@role='list']//span[@role='option']");
 			if(listofprimaryVLANethertype.size()>=1) {
 			for (WebElement primaryVLANEthertypes : listofprimaryVLANethertype) {
 					boolean match = false;
@@ -12117,7 +12149,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 					sa.assertTrue(technology, "Technology dropdown is not displayed");
 		
 					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-					List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+					//List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+					List<WebElement> listoftechnology = getwebelements("//div[@role='list']//span[@role='option']");
 					System.out.println("Number of technology sizes: "+listoftechnology.size());
 					
 					for (WebElement technologytypesSample : listoftechnology ) {
@@ -12126,7 +12159,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 					
 			try {		
 				if(listoftechnology.size()>=1) {	
-					for (WebElement technologytypes : listoftechnology ) {
+					for (WebElement technologytypes : listoftechnology ) 
+					{
 						
 						  driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
 						  System.out.println("tech value to be found: "+technologytypes.getText());
@@ -12237,8 +12271,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary_offnetselected(String
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-			
+			//List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listoftechnology = getwebelements("//div[@role='list']//span[@role='option']");
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
 
@@ -12348,8 +12382,8 @@ public void technologyDropdownFor10GigE_HubAndSpoke_Access(String application) t
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-			
+			//List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listoftechnology = getwebelements("//div[@role='list']//span[@role='option']");
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
 
@@ -12527,8 +12561,8 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 						DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_VLANEtherTypeDropdown")));
-						List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+						//List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+						List<WebElement> listofVLANethertype = getwebelements("//div[@role='list']//span[@role='option']");
 						if(listofVLANethertype.size()>=1) {
 						for (WebElement VLANEthertypes : listofVLANethertype) {
 								boolean match = false;
@@ -12955,7 +12989,8 @@ public void technologyDropdown_MSPselected_Primary(String application) throws In
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			//List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listoftechnology = getwebelements("//div[@role='list']//span[@role='option']");
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -12996,7 +13031,8 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			//List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listoftechnology = getwebelements("//div[@role='list']//span[@role='option']");
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -14655,7 +14691,8 @@ Thread.sleep(3000);
 					Thread.sleep(3000);
 					
 					//verify list of values inside technology dropdown
-					 List<WebElement> listofTechnololgy = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+					//List<WebElement> listofTechnololgy = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+					List<WebElement> listofTechnololgy = getwebelements("//div[@role='list']//span[@role='option']");
 						
 						if(listofTechnololgy.size()>0) {
 				
@@ -15545,11 +15582,10 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 	}
 	public void verifyInterfaceaddedToService(String application, String interfacenumber) {
 
-		try {
-		boolean result = driver
-				.findElement(By.xpath("//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//div[div[text()='"+ interfacenumber+"']]//input"))
-				.isDisplayed();
-		
+		try 
+		{
+		//boolean result = driver.findElement(By.xpath("//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//div[div[text()='"+ interfacenumber+"']]//input")).isDisplayed();
+		boolean result =getwebelement("//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//div[div[text()='"+ interfacenumber+"']]//input").isDisplayed();
 		if(result) {
 			
 			DriverTestcase.logger.log(LogStatus.PASS, "Verified: " +interfacenumber+ " has been added to service");
@@ -15656,8 +15692,8 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 						} catch (StaleElementReferenceException e) {
 							// TODO Auto-generated catch block
 							// e.printStackTrace();
-							results = driver.findElements(By.xpath("(//div[@class='row'])[8]//div[div[contains(text(),'"
-									+ interfacenumber + "')]]//input"));
+							//results = driver.findElements(By.xpath("(//div[@class='row'])[8]//div[div[contains(text(),'+ interfacenumber + "')]]//input"));
+							results = getwebelements("(//div[@class='row'])[8]//div[div[contains(text(),'"+ interfacenumber + "')]]//input");
 							numofrows = results.size();
 							// results.get(i).click();
 							Log.info("selected row is : " + i);
@@ -15709,8 +15745,8 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 
 				System.out.println("Currently we are in page number: " + Current_page);
 
-				List<WebElement> results = driver.findElements(By.xpath("//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//div[div[text()='" + interfacenumber +"']]//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
-				
+				//List<WebElement> results = driver.findElements(By.xpath("//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//div[div[text()='" + interfacenumber +"']]//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
+				List<WebElement> results = getwebelements("//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//div[div[text()='" + interfacenumber +"']]//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				int numofrows = results.size();
 				System.out.println("no of results: " + numofrows);
 				boolean resultflag;
@@ -20643,8 +20679,8 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 	}
 			
 	  try {
-	  List<WebElement> listofvender = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-			
+	  //List<WebElement> listofvender = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		  List<WebElement> listofvender = getwebelements("//div[@role='list']//span[@role='option']");	
 			if(listofvender.size()>0) {
 	
 			for (WebElement vendertypes : listofvender) {
@@ -20697,8 +20733,8 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 		}
 			
 		try {
-		List<WebElement> listofalarm = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+		//List<WebElement> listofalarm = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		List<WebElement> listofalarm = getwebelements("//div[@role='list']//span[@role='option']");
 		if(listofalarm.size()>0) {	
 			for (WebElement alarmtypes : listofalarm) {
 
@@ -20735,8 +20771,8 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 			DriverTestcase.logger.log(LogStatus.FAIL, "Mediaselection dropdown is not available");
 		}
 		try {	
-		List<WebElement> listofmedia = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+		//List<WebElement> listofmedia = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listofmedia = getwebelements("//div[@role='list']//span[@role='option']");
 		if(listofmedia.size()>0) {
 			for (WebElement mediatypes : listofmedia) {
 
@@ -20792,7 +20828,8 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Clicked on Country dropdown");
 			Log.info("Clicked on Country dropdown");
 
-			List<WebElement> cntrylist = driver.findElements(By.xpath("//span[@role='option']"));
+			//List<WebElement> cntrylist = driver.findElements(By.xpath("//span[@role='option']"));
+			List<WebElement> cntrylist = getwebelements("//span[@role='option']");
 			for (WebElement countrylist : cntrylist) {
 
 				System.out.println("Available Country name is : " + countrylist.getText().toString());
@@ -20808,7 +20845,8 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Clicked on City dropdown");
 			Log.info("Clicked on City dropdown");
 
-			List<WebElement> citylist = driver.findElements(By.xpath("//span[@role='option']"));
+			//List<WebElement> citylist = driver.findElements(By.xpath("//span[@role='option']"));
+			List<WebElement> citylist = getwebelements("//span[@role='option']");
 			for (WebElement ctylist : citylist) {
 
 				System.out.println("Available City name is : " + ctylist.getText().toString());
@@ -20866,7 +20904,8 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : Clicked on Site dropdown");
 				Log.info("Clicked on Site dropdown");
 
-				List<WebElement> stelist = driver.findElements(By.xpath("//span[@role='option']"));
+				//List<WebElement> stelist = driver.findElements(By.xpath("//span[@role='option']"));
+				List<WebElement> stelist = getwebelements("//span[@role='option']");
 				for (WebElement sitelist : stelist) {
 
 					System.out.println("Available site name is : " + sitelist.getText().toString());
@@ -20884,7 +20923,8 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : Clicked on Premise dropdown");
 				Log.info("Clicked on Premise dropdown");
 
-				List<WebElement> prmlist = driver.findElements(By.xpath("//span[@role='option']"));
+				//List<WebElement> prmlist = driver.findElements(By.xpath("//span[@role='option']"));
+				List<WebElement> prmlist = getwebelements("//span[@role='option']");
 					for (WebElement premiselist : prmlist) {
 
 					System.out.println("Available Premise name is : " + premiselist.getText().toString());
@@ -20936,7 +20976,8 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 						System.out.println("Clicked on City dropdown");
 						DriverTestcase.logger.log(LogStatus.PASS, "Step : Clicked on City dropdown");
 
-						List<WebElement> ctylist = driver.findElements(By.xpath("//span[@role='option']"));
+						//List<WebElement> ctylist = driver.findElements(By.xpath("//span[@role='option']"));
+						List<WebElement> ctylist = getwebelements("//span[@role='option']");
 						for (WebElement citylist : ctylist) {
 
 							System.out.println("Available City name is : " + citylist.getText().toString());
@@ -20946,7 +20987,8 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 
 
 						// click on City
-						WebElement cty = driver.findElement(By.xpath("//span[contains(text(),'" + city + "')]"));
+						//WebElement cty = driver.findElement(By.xpath("//span[contains(text(),'" + city + "')]"));
+						WebElement cty = getwebelement("//span[contains(text(),'" + city + "')]");
 						System.out.println("Selected City dropdowm is : " + cty.getText().toString());
 						DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected City dropdowm is : " + cty.getText().toString());
 						cty.click();
@@ -21025,7 +21067,8 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 					System.out.println("Clicked on Site dropdown");
 					DriverTestcase.logger.log(LogStatus.PASS, "Step : Clicked on Site dropdown");
 
-					List<WebElement> stelist = driver.findElements(By.xpath("//span[@role='option']"));
+					//List<WebElement> stelist = driver.findElements(By.xpath("//span[@role='option']"));
+					List<WebElement> stelist = getwebelements("//span[@role='option']");
 					for (WebElement sitelist : stelist) {
 
 						System.out.println("Available Site name is : " + sitelist.getText().toString());
@@ -21035,7 +21078,8 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 
 
 					// click on Site
-					WebElement ste = driver.findElement(By.xpath("//span[contains(text(),'" + site + "')]"));
+					//WebElement ste = driver.findElement(By.xpath("//span[contains(text(),'" + site + "')]"));
+					WebElement ste = getwebelement("//span[contains(text(),'" + site + "')]");
 					System.out.println("Selected Site dropdown is : " + ste.getText().toString());
 					DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected Site dropdown is : " + ste.getText().toString());
 					ste.click();
@@ -21152,7 +21196,8 @@ public void newSite_ClickOnSiteTogglebutton(String application, String newsitese
 						System.out.println("Clicked on Premise dropdown");
 						DriverTestcase.logger.log(LogStatus.PASS, "Step : Clicked on Premise dropdown");
 
-						List<WebElement> prmselist = driver.findElements(By.xpath("//span[@role='option']"));
+						//List<WebElement> prmselist = driver.findElements(By.xpath("//span[@role='option']"));
+						List<WebElement> prmselist = getwebelements("//span[@role='option']");
 						for (WebElement premiselist : prmselist) {
 
 							System.out.println("Available Premise name is : " + premiselist.getText().toString());
@@ -21161,7 +21206,8 @@ public void newSite_ClickOnSiteTogglebutton(String application, String newsitese
 						}
 
 						// click on Premise
-						WebElement prmse = driver.findElement(By.xpath("//span[contains(text(),'" + premise + "')]"));
+						//WebElement prmse = driver.findElement(By.xpath("//span[contains(text(),'" + premise + "')]"));
+						WebElement prmse = getwebelement("//span[contains(text(),'" + premise + "')]");
 						System.out.println("Selected Premise dropdown is : " + prmse.getText().toString());
 						DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected Premise dropdown is : " + prmse.getText().toString());
 						prmse.click();
@@ -21582,8 +21628,8 @@ public void validateCountry_AddSiteorder(String application) throws InterruptedE
 		System.out.println("Country dropdown is displaying");
 		
 	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Country")));
-	List<WebElement> listofcountry = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+	//List<WebElement> listofcountry = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+	List<WebElement> listofcountry = getwebelements("//div[@role='list']//span[@role='option']");
 	if(listofcountry.size()>=1) {
 	for (WebElement countrytypes : listofcountry) {
 		
@@ -21759,9 +21805,8 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 	
 				//check list of values inside Performance Reporting drodpown		
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_performancereporting")));
-			List<WebElement> listofperformancereporting = driver
-					.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-			
+			//List<WebElement> listofperformancereporting = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listofperformancereporting = getwebelements("//div[@role='list']//span[@role='option']");
 		if(listofperformancereporting.size()>=1) {	
 			for (WebElement perfoemancereportingtypes : listofperformancereporting) {
 				boolean match = false;
@@ -21835,9 +21880,8 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 				DriverTestcase.logger.log(LogStatus.PASS, proactiveMonitorDefaultValues+ " is displaying under 'roactive Monitoring' dropdown by default");
 	
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_proactivemonitoring")));
-			List<WebElement> listofproactivemonitoring = driver
-					.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-			
+			//List<WebElement> listofproactivemonitoring = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listofproactivemonitoring = getwebelements("//div[@role='list']//span[@role='option']");
 		if(listofproactivemonitoring.size()>=1) {	
 			for (WebElement proactivemonitoringtypes : listofproactivemonitoring) {
 
@@ -21909,9 +21953,8 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 				DriverTestcase.logger.log(LogStatus.PASS, smartmonitorDefaultValues+ " is displaying under 'Smart Monitoring' dropdown by default");
 	
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_smartmonitoring")));
-			List<WebElement> listofsmartmonitoring = driver
-					.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+			//List<WebElement> listofsmartmonitoring = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listofsmartmonitoring = getwebelements("//div[@role='list']//span[@role='option']");
 		if(listofsmartmonitoring.size()>=1) {	
 			for (WebElement smartmonitoringtypes : listofsmartmonitoring) {
 
@@ -22093,9 +22136,8 @@ try {
     					DriverTestcase.logger.log(LogStatus.PASS, " 'Cloud Service Provider' dropdown is displaying when 'DCA Enabled Site' checkbox is selected as expected");
 
     				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_cloudserviceProvider")));
-    				List<WebElement> listofcloudservices = driver
-    						.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-    				
+    				//List<WebElement> listofcloudservices = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+    				List<WebElement> listofcloudservices = getwebelements("//div[@role='list']//span[@role='option']");
     			if(listofcloudservices.size()>0) {	
     				for (WebElement cloudserviceprovidertypes : listofcloudservices) {
 
@@ -23084,8 +23126,9 @@ try {
  			if(IVReference) {
  				
  			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_IVreferencedropdown")));
- 			List<WebElement> listofIVreference= driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
- 			
+ 			//List<WebElement> listofIVreference= driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+ 			List<WebElement> listofIVreference= getwebelements("//div[@role='list']//span[@role='option']");
+
  		if(listofIVreference.size()>=1) {	
  			for (WebElement IVreferencetypes : listofIVreference) {
 
@@ -24097,8 +24140,8 @@ try {
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_vender")));
 				
 		  try {
-		  List<WebElement> listofvender = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-				
+		 // List<WebElement> listofvender = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			  List<WebElement> listofvender = getwebelements("//div[@role='list']//span[@role='option']");
 				if(listofvender.size()>0) {
 		
 				for (WebElement vendertypes : listofvender) {
@@ -24248,8 +24291,8 @@ try {
 		
 	//Check values inside Power Alarm dropdown	
 		try {
-		List<WebElement> listofalarm = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+		//List<WebElement> listofalarm = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+		List<WebElement> listofalarm = getwebelements("//div[@role='list']//span[@role='option']");
 		if(listofalarm.size()>0) {	
 			for (WebElement alarmtypes : listofalarm) {
 
@@ -24308,8 +24351,8 @@ try {
 		
 	//check list of values inside Media selection dropdown	
 		try {	
-		List<WebElement> listofmedia = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-
+		//List<WebElement> listofmedia = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+			List<WebElement> listofmedia = getwebelements("//div[@role='list']//span[@role='option']");
 		if(listofmedia.size()>0) {
 			for (WebElement mediatypes : listofmedia) {
 
@@ -24608,7 +24651,8 @@ public void device_MAcaddress(String application, String macAdressInput) {
 		DriverTestcase.logger.log(LogStatus.PASS, "Step : Clicked on Country dropdown");
 		Log.info("Clicked on Country dropdown");
 
-		List<WebElement> cntrylist = driver.findElements(By.xpath("//span[@role='option']"));
+		//List<WebElement> cntrylist = driver.findElements(By.xpath("//span[@role='option']"));
+		List<WebElement> cntrylist = getwebelements("//span[@role='option']");
 		for (WebElement countrylist : cntrylist) {
 
 			System.out.println("Available Country name is : " + countrylist.getText().toString());
@@ -24664,7 +24708,8 @@ public void device_MAcaddress(String application, String macAdressInput) {
 		DriverTestcase.logger.log(LogStatus.PASS, "For the selected country '"+ actualvalue + "' list of city populated are:  ");
 		Log.info("Clicked on City dropdown");
 
-		List<WebElement> citylist = driver.findElements(By.xpath("//span[@role='option']"));
+		//List<WebElement> citylist = driver.findElements(By.xpath("//span[@role='option']"));
+		List<WebElement> citylist = getwebelements("//span[@role='option']");
 		for (WebElement ctylist : citylist) {
 
 			System.out.println("Available City name is : " + ctylist.getText().toString());
@@ -27304,9 +27349,8 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 				  Thread.sleep(3000);
 				  
 				  //verify list of values inside dropdown
-				  List<WebElement> listofvalues = driver
-							.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-				  
+				  //List<WebElement> listofvalues = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
+				  List<WebElement> listofvalues = getwebelements("//div[@role='list']//span[@role='option']");
 				  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside "+ labelname + "dropdown is:  ");
 				  System.out.println( " List of values inside "+ labelname + "dropdown is:  ");
 				  
@@ -27625,8 +27669,8 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 					} catch (StaleElementReferenceException e) {
 						// TODO Auto-generated catch block
 						// e.printStackTrace();
-						results = driver.findElements(
-								By.xpath("(//div[@class='ag-root-wrapper ag-layout-auto-height ag-ltr'])[2]//div[text()='"+interfacename +"']"));
+						//results = driver.findElements(By.xpath("(//div[@class='ag-root-wrapper ag-layout-auto-height ag-ltr'])[2]//div[text()='"+interfacename +"']"));
+						results = getwebelements("(//div[@class='ag-root-wrapper ag-layout-auto-height ag-ltr'])[2]//div[text()='"+interfacename +"']");
 						numofrows = results.size();
 						// results.get(i).click();
 						Log.info("selected row is : " + i);

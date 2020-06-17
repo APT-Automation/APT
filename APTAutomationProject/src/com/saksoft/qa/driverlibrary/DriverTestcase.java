@@ -35,7 +35,20 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import com.saksoft.qa.scripthelpers.APT_LoginHelper;
-
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateAccessCoreDeviceHelper;
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateAccessSwitchCoreDeviceHelper;
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateCoreRouterDeviceHelper;
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateDCNDeviceHelper;
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateDSLAMDeviceHelper;
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateFirewallDeviceHelper;
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateKeyserverDeviceHelper;
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateLoadBalancerDeviceHelper;
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateMDFFirewallDeviceHelper;
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateMiniDSLAMDeviceHelper;
+import com.saksoft.qa.scripthelpers.APT_MCS_CreatePrizmnetDeviceHelper;
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateTrafficAggregatorDeviceHelper;
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateVOIPAccessDASSwitchDeviceHelper;
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateVoiceGatewayDeviceHelper;
 import com.saksoft.qa.scripthelpers.APT_AutomationHelper;
 import com.saksoft.qa.scripthelpers.APT_NGINHelper;
 import com.saksoft.qa.scripthelpers.APT_DomainManagementHelper;
@@ -43,6 +56,7 @@ import com.saksoft.qa.scripthelpers.APT_MSPLatencyHelper;
 import com.saksoft.qa.scripthelpers.APT_ManageNetworkHelper;
 import com.saksoft.qa.scripthelpers.Hss_Helper;
 import com.saksoft.qa.scripthelpers.ImsNmbrTranslator_Helper;
+import com.saksoft.qa.scripthelpers.APT_CreateAccessCoreDevice_ManageNetworkHelper;
 
 public class DriverTestcase {
 
@@ -51,13 +65,28 @@ public class DriverTestcase {
 	// new InheritableThreadLocal<>();
 
 	public static final ThreadLocal<APT_LoginHelper> APTLogin = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateAccessCoreDeviceHelper> APT_CreateAccessCoreDeviceHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_AutomationHelper> APT_Helper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_NGINHelper> APT_NGIN = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_DomainManagementHelper> APT_DomainManageHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_MSPLatencyHelper> APT_MSPLatencyHelper = new InheritableThreadLocal<>();
-	public static final ThreadLocal<APT_ManageNetworkHelper> APT_ManageNetworkHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_ManageNetworkHelper> APT_MainManageNetworkHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<Hss_Helper> Hss = new InheritableThreadLocal<>();
 	public static final ThreadLocal<ImsNmbrTranslator_Helper> ImsNmbrTranslator_Helper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_CreateAccessCoreDevice_ManageNetworkHelper> APT_ManageNetworkHelpr = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateAccessSwitchCoreDeviceHelper> APT_CreateAccessSwitchDeviceHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateCoreRouterDeviceHelper> APT_CreateCoreRouterDeviceHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateDCNDeviceHelper> APT_CreateDCNDeviceHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateDSLAMDeviceHelper> APT_CreateDSLAMDeviceHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateFirewallDeviceHelper> APT_CreateFirewallDeviceHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateKeyserverDeviceHelper> APT_CreateKeyserverDeviceHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateLoadBalancerDeviceHelper> APT_CreateLoadBalancerDeviceHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateMDFFirewallDeviceHelper> APT_CreateMDFFirewallDeviceHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateMiniDSLAMDeviceHelper> APT_CreateMiniDSLAMDeviceHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreatePrizmnetDeviceHelper> APT_CreatePrizmnetDeviceHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateTrafficAggregatorDeviceHelper> APT_CreateTrafficAggregatorDeviceHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateVoiceGatewayDeviceHelper> APT_CreateVoiceGatewayDeviceHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateVOIPAccessDASSwitchDeviceHelper> APT_CreateVOIPAccessDASSwitchDeviceHelper = new InheritableThreadLocal<>();
 
 	public static com.saksoft.qa.listeners.TestListener Testlistener;
 	public ThreadLocal<String> TestName = new ThreadLocal();
@@ -67,11 +96,12 @@ public class DriverTestcase {
 
 	public static ExtentReports extent;
 	public static ExtentTest logger;
-	public WebDriver dr = null;
+	//public WebDriver dr = null;
 
 	@org.testng.annotations.BeforeSuite
 	public void BeforeSuite() throws Exception {
 		itr = 0;
+		WebDriver dr = null;
 		DOMConfigurator.configure("log4j.xml"); // For log
 		Log.clearFile("E:\\APTSaiWorkspace\\APT_Automation_NGIN\\Logs\\logfile.log");
 
@@ -134,21 +164,69 @@ public class DriverTestcase {
 		 */
 		APT_LoginHelper apt = new APT_LoginHelper(getwebdriver());
 		APTLogin.set(apt);
+		APT_MCS_CreateAccessCoreDeviceHelper createdevice = new APT_MCS_CreateAccessCoreDeviceHelper(getwebdriver());
+		APT_CreateAccessCoreDeviceHelper.set(createdevice);
+		
 		APT_NGINHelper ngin = new APT_NGINHelper(getwebdriver());
 		APT_NGIN.set(ngin);
+		
 		APT_AutomationHelper aptautomation = new APT_AutomationHelper(getwebdriver());
 		APT_Helper.set(aptautomation);
+		
 		APT_DomainManagementHelper DM = new APT_DomainManagementHelper(getwebdriver());
 		APT_DomainManageHelper.set(DM);
+		
 		APT_MSPLatencyHelper msplatency = new APT_MSPLatencyHelper(getwebdriver());
 		APT_MSPLatencyHelper.set(msplatency);
-		APT_ManageNetworkHelper managenetwork = new APT_ManageNetworkHelper(getwebdriver());
-		APT_ManageNetworkHelper.set(managenetwork);
+		
+		APT_ManageNetworkHelper mainmanagenetwork = new APT_ManageNetworkHelper(getwebdriver());
+		APT_MainManageNetworkHelper.set(mainmanagenetwork);
+		
 		Hss_Helper Hs = new Hss_Helper(getwebdriver());
 		Hss.set(Hs);
+		
 		ImsNmbrTranslator_Helper imnt = new ImsNmbrTranslator_Helper(getwebdriver());
 		ImsNmbrTranslator_Helper.set(imnt);
-
+		
+		APT_CreateAccessCoreDevice_ManageNetworkHelper  devicemanagenetwork= new APT_CreateAccessCoreDevice_ManageNetworkHelper(getwebdriver());
+		APT_ManageNetworkHelpr.set(devicemanagenetwork);
+		
+		APT_MCS_CreateAccessSwitchCoreDeviceHelper createAccessSwitchdevice = new APT_MCS_CreateAccessSwitchCoreDeviceHelper(getwebdriver());
+		APT_CreateAccessSwitchDeviceHelper.set(createAccessSwitchdevice);
+		
+		APT_MCS_CreateCoreRouterDeviceHelper createCoreRouterdevice = new APT_MCS_CreateCoreRouterDeviceHelper(getwebdriver());
+		APT_CreateCoreRouterDeviceHelper.set(createCoreRouterdevice);
+		
+		APT_MCS_CreateDCNDeviceHelper createDCNdevice = new APT_MCS_CreateDCNDeviceHelper(getwebdriver());
+		APT_CreateDCNDeviceHelper.set(createDCNdevice);
+		
+		APT_MCS_CreateDSLAMDeviceHelper createDSLAMdevice = new APT_MCS_CreateDSLAMDeviceHelper(getwebdriver());
+		APT_CreateDSLAMDeviceHelper.set(createDSLAMdevice);
+		
+		APT_MCS_CreateFirewallDeviceHelper createFirewalldevice = new APT_MCS_CreateFirewallDeviceHelper(getwebdriver());
+		APT_CreateFirewallDeviceHelper.set(createFirewalldevice);
+		
+		APT_MCS_CreateLoadBalancerDeviceHelper createLoadBalancerdevice = new APT_MCS_CreateLoadBalancerDeviceHelper(getwebdriver());
+		APT_CreateLoadBalancerDeviceHelper.set(createLoadBalancerdevice);
+		
+		APT_MCS_CreateMDFFirewallDeviceHelper createMDFFirewalldevice = new APT_MCS_CreateMDFFirewallDeviceHelper(getwebdriver());
+		APT_CreateMDFFirewallDeviceHelper.set(createMDFFirewalldevice);
+		
+		APT_MCS_CreateMiniDSLAMDeviceHelper createMiniDSLAMdevice = new APT_MCS_CreateMiniDSLAMDeviceHelper(getwebdriver());
+		APT_CreateMiniDSLAMDeviceHelper.set(createMiniDSLAMdevice);
+		
+		APT_MCS_CreatePrizmnetDeviceHelper createPrizmnetdevice = new APT_MCS_CreatePrizmnetDeviceHelper(getwebdriver());
+		APT_CreatePrizmnetDeviceHelper.set(createPrizmnetdevice);
+		
+		APT_MCS_CreateTrafficAggregatorDeviceHelper createTrafficAggregatordevice = new APT_MCS_CreateTrafficAggregatorDeviceHelper(getwebdriver());
+		APT_CreateTrafficAggregatorDeviceHelper.set(createTrafficAggregatordevice);
+		
+		APT_MCS_CreateVoiceGatewayDeviceHelper createVoiceGatewaydevice = new APT_MCS_CreateVoiceGatewayDeviceHelper(getwebdriver());
+		APT_CreateVoiceGatewayDeviceHelper.set(createVoiceGatewaydevice);
+		
+		APT_MCS_CreateVOIPAccessDASSwitchDeviceHelper createVOIPAccessDASSwitchdevice = new APT_MCS_CreateVOIPAccessDASSwitchDeviceHelper(getwebdriver());
+		APT_CreateVOIPAccessDASSwitchDeviceHelper.set(createVOIPAccessDASSwitchdevice);
+	
 		// APT_Login aptLogin=new APT_Login();
 		// aptLogin.APT_Login_1();
 

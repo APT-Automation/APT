@@ -249,7 +249,8 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		compareText(application, "Device Name column header", "viewinterface_devicenamecolumnheader", "Device Name", xml);
 		compareText(application, "Interface Name column header", "interfacename_columnheader", "Interface Name", xml);
 		compareText(application, "Interface Address column header", "interfaceaddress_columnheader", "Interface Address", xml);
-		WebElement InterfaceAddressRowValue= driver.findElement(By.xpath("(//div[@role='gridcell'][@col-id='address'])[1]"));
+		//WebElement InterfaceAddressRowValue= driver.findElement(By.xpath("(//div[@role='gridcell'][@col-id='address'])[1]"));
+		WebElement InterfaceAddressRowValue= getwebelement("(//div[@role='gridcell'][@col-id='address'])[1]");
 		Clickon(InterfaceAddressRowValue);
 		InterfaceAddressRowValue.sendKeys(Keys.TAB);
 		compareText(application, "Interface Type column header", "interfacetype_columnheader", "Interface Type", xml);
@@ -313,7 +314,8 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 								DriverTestcase.logger.log(LogStatus.PASS, "Step: Interface Name value is displayed as : "+InterfaceNamevalue);
 								String InterfaceAddressvalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='address']").getText();
 								DriverTestcase.logger.log(LogStatus.PASS, "Step: Interface Address value is displayed as : "+InterfaceAddressvalue);
-								WebElement InterfaceAddressRowValue1= driver.findElement(By.xpath("(//div[@role='gridcell'][@col-id='address'])[1]"));
+								//WebElement InterfaceAddressRowValue1= driver.findElement(By.xpath("(//div[@role='gridcell'][@col-id='address'])[1]"));
+								WebElement InterfaceAddressRowValue1= getwebelement("(//div[@role='gridcell'][@col-id='address'])[1]");
 								Clickon(InterfaceAddressRowValue1);
 								InterfaceAddressRowValue1.sendKeys(Keys.TAB);
 								String InterfaceTypevalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='type.desc']").getText();
@@ -632,7 +634,8 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		Thread.sleep(2000);
 		compareText(application, "Search for Device header", "searchdevice_header", "Search For Device", xml);
 		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to 'Search for device' page");
-		driver.navigate().back();
+		//driver.navigate().back();
+		navigateBack();
 		Thread.sleep(1000);
 		
 		//verify device name link in synchronization panel
@@ -640,7 +643,8 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		Thread.sleep(2000);
 		compareText(application, "Search for Device header", "searchdevice_header", "Search For Device", xml);
 		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to 'Search for device' page");
-		driver.navigate().back();
+		//driver.navigate().back();
+		navigateBack();
 		Thread.sleep(1000);
 		scrolltoend();
 		click_commonMethod(application, "Back", "managenetwork_backbutton", xml);

@@ -72,7 +72,7 @@ public class APT_LoginHelper extends DriverHelper {
 		
 		
 		if (Application.equals("APT_login_1")) {
-
+			
 			openurl(Application);
 
 			Thread.sleep(2000);
@@ -86,9 +86,6 @@ public class APT_LoginHelper extends DriverHelper {
 			//ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Password");
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + Application + "/Loginbutton")));
-			//ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Clicked on login");
-
-			
 			
 			com.saksoft.qa.driverlibrary.Log.info("=== APT logged in successfully ===");
 			System.out.println("APT logged in successfully");
@@ -149,5 +146,4 @@ public class APT_LoginHelper extends DriverHelper {
 		
 	}
 
-	
 }

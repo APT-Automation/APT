@@ -17,8 +17,8 @@ public class APT_ManageNetworkTest extends DriverTestcase{
 	public void managenetwork(Map<String, String> map) throws Exception {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("managenetwork");
-		APT_ManageNetworkHelper.get().searchdevice("ManageNetwork", map.get("DeviceName"));
-		APT_ManageNetworkHelper.get().managenetwork("ManageNetwork", map.get("DeviceName"), map.get("InServiceStatus"), map.get("InMaintenanceStatus"), map.get("VendorModel"), map.get("ManagementAddress"), map.get("Snmpro"), map.get("Country"), map.get("City"), map.get("Site"), map.get("Premise"), map.get("InterfaceName"));
+		APT_MainManageNetworkHelper.get().searchdevice("ManageNetwork", map.get("DeviceName"));
+		APT_MainManageNetworkHelper.get().managenetwork("ManageNetwork", map.get("DeviceName"), map.get("InServiceStatus"), map.get("InMaintenanceStatus"), map.get("VendorModel"), map.get("ManagementAddress"), map.get("Snmpro"), map.get("Country"), map.get("City"), map.get("Site"), map.get("Premise"), map.get("InterfaceName"));
 		
 	} 
 	

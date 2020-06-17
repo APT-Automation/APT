@@ -247,7 +247,8 @@ public class APT_MSPLatencyHelper extends DriverHelper {
 
 				if((getwebelement(xml.getlocator("//locators/" + application + "/circuithistorydata"))).isDisplayed())
 				{
-					List<WebElement> CircuitHistoryvalues= driver.findElements(By.xpath("//div[@class='row']//ul//li//a"));
+					//List<WebElement> CircuitHistoryvalues= driver.findElements(By.xpath("//div[@class='row']//ul//li//a"));
+					List<WebElement> CircuitHistoryvalues= getwebelements("//div[@class='row']//ul//li//a");
 					int CircuitHistoryvalues_count= CircuitHistoryvalues.size();
 					DriverTestcase.logger.log(LogStatus.PASS, "Step : Circuit History data is displayed as: ");
 					for(int i=0; i<CircuitHistoryvalues_count; i++)
@@ -382,7 +383,8 @@ public class APT_MSPLatencyHelper extends DriverHelper {
 			
 			if((getwebelement(xml.getlocator("//locators/" + application + "/removedcircuithistorydata"))).isDisplayed())
 			{
-				List<WebElement> RemovedCircuitHistoryvalues= driver.findElements(By.xpath("//div[@class='row']//ul//li//a"));
+				//List<WebElement> RemovedCircuitHistoryvalues= driver.findElements(By.xpath("//div[@class='row']//ul//li//a"));
+				List<WebElement> RemovedCircuitHistoryvalues= getwebelements("//div[@class='row']//ul//li//a");
 				int RemovedCircuitHistoryvalues_count= RemovedCircuitHistoryvalues.size();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : Removed Circuit History data is displayed as: ");
 				for(int i=0; i<RemovedCircuitHistoryvalues_count; i++)

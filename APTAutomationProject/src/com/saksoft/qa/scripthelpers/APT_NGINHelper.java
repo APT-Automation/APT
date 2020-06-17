@@ -692,7 +692,8 @@ public class APT_NGINHelper extends DriverHelper {
 		compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-		List<WebElement> ChangeOrder_DropdownList= driver.findElements(By.xpath(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist")));
+		//List<WebElement> ChangeOrder_DropdownList= driver.findElements(By.xpath(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist")));
+		List<WebElement> ChangeOrder_DropdownList=getwebelements("//locators/" + application + "/changeorder_dropdownlist");
 		int ChangeOrder_Dropdown_count= ChangeOrder_DropdownList.size();
 		if(ChangeOrder_Dropdown_count> 1)
 		{
@@ -951,11 +952,13 @@ public class APT_NGINHelper extends DriverHelper {
 		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
 		click_commonMethod(application, "Archive", "bulkinterface_archivelink", xml);
 		compareText(application, "Status history found message", "successmsg", "Service Status History Found Successfully.", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
+		//((JavascriptExecutor) driver).executeScript();
 		click_commonMethod(application, "Cancel", "bulkinterfacepage_cancel", xml);
 
 		//Refresh link in bulk interface page
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+		CustomJavaScriptExecute("window.scrollTo(0, 0)");
+		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
 		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
 		click_commonMethod(application, "Archive", "bulkinterface_refreshlink", xml);
 		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
@@ -1862,7 +1865,8 @@ public class APT_NGINHelper extends DriverHelper {
 			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
 			click_commonMethod(application, "Edit SAN", "editsan_link", xml);
 			Thread.sleep(2000);
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+			CustomJavaScriptExecute("window.scrollTo(0, 0)");
+			//((JavascriptExecutor) driver).executeScript("");
 			compareText(application, "Edit SAN Header", "editsan_header", "Edit SAN", xml);
 			
 			//verify Customer Name field

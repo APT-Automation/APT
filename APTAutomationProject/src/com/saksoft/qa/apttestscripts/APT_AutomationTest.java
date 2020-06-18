@@ -14,7 +14,7 @@ import com.saksoft.qa.scripthelpers.APT_LoginHelper;
 public class APT_AutomationTest extends DriverTestcase{
 	
 	
-//	@Test(description = "TC-01",dataProviderClass = DataReader_PK.class, dataProvider = "Finaldatareader", priority=0)
+	@Test(description = "TC-01",dataProviderClass = DataReader_PK.class, dataProvider = "Finaldatareader", priority=0)
 	public void CreateCustomer(Map<String, String> map) throws Exception {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("CreateCustomer"); 

@@ -4448,7 +4448,6 @@ public class APT_NGINHelper extends DriverHelper {
 		work.write(fos);
 		work.close();
 		fis.close();
-
 		
 	}
 

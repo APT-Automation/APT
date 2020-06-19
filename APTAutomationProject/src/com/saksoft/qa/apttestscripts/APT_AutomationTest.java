@@ -11,8 +11,8 @@ import com.saksoft.qa.driverlibrary.DataReader_PK;
 import com.saksoft.qa.driverlibrary.DriverTestcase;
 import com.saksoft.qa.scripthelpers.APT_LoginHelper;
 
-public class APT_AutomationTest extends DriverTestcase{
-	
+public class APT_AutomationTest extends DriverTestcase
+{
 	
 	@Test(description = "TC-01",dataProviderClass = DataReader_PK.class, dataProvider = "Finaldatareader", priority=0)
 	public void CreateCustomer(Map<String, String> map) throws Exception {

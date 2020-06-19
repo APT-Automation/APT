@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -56,6 +57,9 @@ import com.saksoft.qa.scripthelpers.APT_MSPLatencyHelper;
 import com.saksoft.qa.scripthelpers.APT_ManageNetworkHelper;
 import com.saksoft.qa.scripthelpers.Hss_Helper;
 import com.saksoft.qa.scripthelpers.ImsNmbrTranslator_Helper;
+
+
+
 import com.saksoft.qa.scripthelpers.APT_CreateAccessCoreDevice_ManageNetworkHelper;
 
 public class DriverTestcase {
@@ -93,21 +97,27 @@ public class DriverTestcase {
 	public static SessionId session_id;
 	public static ChromeDriver driver;
 	public static int itr;
-
 	public static ExtentReports extent;
 	public static ExtentTest logger;
-	//public WebDriver dr = null;
 
-	@org.testng.annotations.BeforeSuite
-	public void BeforeSuite() throws Exception {
-		itr = 0;
+	
+	@BeforeMethod
+	public void BeforeMethod(Method method, ITestContext ctx, Object[] data) throws IOException, Exception 
+	{
+		setup();
+		Object[] st = null;
+		try
+		{
+			st = (Object[]) data[0];
+		} 
+		catch (Exception e) 
+		{
+			st = new Object[][] { { "" } };
+		}
+	}
+	public void setup() throws Exception 
+	{
 		WebDriver dr = null;
-		DOMConfigurator.configure("log4j.xml"); // For log
-		Log.clearFile("E:\\APTSaiWorkspace\\APT_Automation_NGIN\\Logs\\logfile.log");
-
-		// Open Browser
-		System.out.println("Method started");
-
 		PropertyReader pr = new PropertyReader();
 		String targatedbrowser = pr.readproperty("browser");
 		String url = pr.readproperty("URL");
@@ -115,55 +125,31 @@ public class DriverTestcase {
 		if (targatedbrowser.equals("chrome")) {
 			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 			Map<String, Object> prefs = new HashMap<String, Object>();
-			// Set the notification setting it will override the default setting
 			prefs.put("profile.default_content_setting_values.notifications", 2);
-
-			// Create object of ChromeOption class
 			ChromeOptions options = new ChromeOptions();
 			options.setExperimentalOption("prefs", prefs);
 			capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "none");
 			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 			System.setProperty("webdriver.chrome.driver", ".\\lib\\chromedriver.exe");
 			dr = new ChromeDriver(capabilities);
-		} else if (targatedbrowser.equalsIgnoreCase("firefox")) {
+			dr.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS );
+		} 
+		else if (targatedbrowser.equals("ie")) 
+		{
+			Log.info("For IE inprogress");
+		}
+
+		else {
 			Log.info("For FF inprogress");
-			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-			Map<String, Object> prefs = new HashMap<String, Object>();
-			// Set the notification setting it will override the default setting
-			prefs.put("profile.default_content_setting_values.notifications", 2);
-			// Create object of FirefoxOptions class
-			FirefoxOptions options2 = new FirefoxOptions();
-//				options2.setExperimentalOption("prefs", prefs);
-			capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "none");
-//				capabilities.setCapability(FirefoxOptions.CAPABILITY, options2);
-			System.setProperty("webdriver.gecko.driver", ".\\lib\\geckodriver.exe");
-			dr = new FirefoxDriver(capabilities);
-		} else if (targatedbrowser.equalsIgnoreCase("ie")) {
-			DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-			Map<String, Object> prefs = new HashMap<String, Object>();
-			// Set the notification setting it will override the default setting
-			prefs.put("profile.default_content_setting_values.notifications", 2);
-			// Create object of ieOptions class
-			InternetExplorerOptions options3 = new InternetExplorerOptions();
-			// options3.ignoreZoomSettings();
-			capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "none");
-			// capabilities.setCapability(InternetExplorerOptions.CAPABILITY, options3);
-			System.setProperty("webdriver.ie.driver", ".\\lib\\IEDriverServer.exe");
-			dr = new InternetExplorerDriver(capabilities);
-		} else {
-			Log.info("For MS Edge is in progress");
 		}
 
 		dr.manage().window().maximize();
 		WEB_DRIVER_THREAD_LOCAL.set(dr);
-		dr.manage().deleteAllCookies();
 		Thread.sleep(3000);
-
-		/**
-		 * For APT projects
-		 */
+		
 		APT_LoginHelper apt = new APT_LoginHelper(getwebdriver());
 		APTLogin.set(apt);
+		
 		APT_MCS_CreateAccessCoreDeviceHelper createdevice = new APT_MCS_CreateAccessCoreDeviceHelper(getwebdriver());
 		APT_CreateAccessCoreDeviceHelper.set(createdevice);
 		
@@ -235,11 +221,32 @@ public class DriverTestcase {
 
 		System.out.println("Method started");
 	}
+	
+	@org.testng.annotations.BeforeSuite
+	public void BeforeSuite() 
+	{
+		itr = 0;
+		DOMConfigurator.configure("log4j.xml");
+	}
 
+	@AfterClass
+	public void Teardown() 
+	{
+		// dr.close();
+	}
+
+	public static WebDriver getwebdriver() 
+	{
+		WebDriver dr = WEB_DRIVER_THREAD_LOCAL.get();
+		return dr;
+	}
+
+	
 	@org.testng.annotations.Parameters({ "test-name" })
 	@BeforeTest
 	// @org.testng.annotations.Parameters("browser")
-	public void startReport() {
+	public void startReport() 
+	{
 
 		String dateName1 = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 
@@ -252,7 +259,8 @@ public class DriverTestcase {
 				"Sai12345");
 	}
 
-	public static String getScreenhot(WebDriver driver, String screenshotName) throws Exception {
+	public static String getScreenhot(WebDriver driver, String screenshotName) throws Exception 
+	{
 		String dateName2 = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
@@ -263,10 +271,7 @@ public class DriverTestcase {
 		return destination;
 	}
 
-	@BeforeClass
-	public void setup() throws Exception {
 
-	}
 
 	@AfterMethod
 	public void getResult(ITestResult result) throws Exception {
@@ -281,18 +286,9 @@ public class DriverTestcase {
 		}
 	}
 
-	@AfterClass
-	public void Teardown() {
-		// dr.close();
-	}
-
-	public static WebDriver getwebdriver() {
-		WebDriver dr = WEB_DRIVER_THREAD_LOCAL.get();
-		return dr;
-	}
-
 	@AfterTest
-	public void endReport() {
+	public void endReport() 
+	{
 		extent.endTest(logger);
 		extent.flush();
 
@@ -300,20 +296,6 @@ public class DriverTestcase {
 
 	}
 
-	@BeforeMethod
-	public void BeforeMethod(Method method, ITestContext ctx, Object[] data) throws IOException, Exception {
-		// setup();
-
-		Object[] st = null;
-
-		try
-
-		{
-			st = (Object[]) data[0];
-		} catch (Exception e) {
-			st = new Object[][] { { "" } };
-		}
-
-	}
+	
 
 }

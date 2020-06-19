@@ -52,58 +52,53 @@ public class APT_DomainManagementHelper extends DriverHelper {
 
 	}
 	
-	public void createnewcustomer(String application, String name, String maindomain, String country, String ocn,
+	public void createcustomer(String application, String name, String maindomain, String country, String ocn,
 			String reference, String tcn, String type, String email, String phone, String fax)
 			throws Exception {
 
-		// webelementpresencelogger(getwebelement(xml.getlocator("//locators/" +
-		// application + "/createcustomerlink")), "Create Customer link");
-	//	WebDriverWait wait= new WebDriverWait(driver,50);
-	//	wait= (WebDriverWait) wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='ant-menu-submenu-title'])[2]")));
-		
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(2000);
-		System.out.println("Mouser hovered on Manage Customer's Service");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouser hovered on 'Manage Customers Service' menu item");
-		
-		click(application, "create customer link", "createcustomerlink");
+		System.out.println("Mouse hovered on Manage Customer's Service");
+		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+
+		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
 		Thread.sleep(2000);
-		compareText(application, "create customer page header", "createcustomer_header", "Customer");
+		compareText(application, "create customer page header", "createcustomer_header", "Customer", xml);
+		click_commonMethod(application, "Ok", "okbutton", xml);
 		
-		click(application, "Ok", "okbutton");
 		//Warning msg check
-		WarningMessage(application, "customernamewarngmsg", "Customer Name");
-		WarningMessage(application, "countrywarngmsg", "Country");
-		WarningMessage(application, "ocnwarngmsg", "OCN");
-		WarningMessage(application, "typewarngmsg", "Type");
-		WarningMessage(application, "emailwarngmsg", "Email");
-		
+		warningMessage_commonMethod(application, "customernamewarngmsg", "Legal Customer Name", xml);
+		warningMessage_commonMethod(application, "countrywarngmsg", "Country", xml);
+		warningMessage_commonMethod(application, "ocnwarngmsg", "OCN", xml);
+		warningMessage_commonMethod(application, "typewarngmsg", "Type", xml);
+		warningMessage_commonMethod(application, "emailwarngmsg", "Email", xml);
+
 		//Clear customer info
-		EnterTextValue(application, name, "Customer Name", "nametextfield");
-		EnterTextValue(application, maindomain, "Main Domain", "maindomaintextfield");
-		EnterTextValue(application, ocn, "OCN", "ocntextfield");
-		EnterTextValue(application, reference, "Reference", "referencetextfield");
-		EnterTextValue(application, tcn, "Technical Contact Name", "technicalcontactnametextfield");
-		EnterTextValue(application, email, "Email", "emailtextfield");
-		EnterTextValue(application, phone, "Phone", "phonetextfield");
-		EnterTextValue(application, fax, "Fax", "faxtextfield");
-		click(application, "Clear button", "clearbutton");
+		addtextFields_commonMethod(application, "Customer Name", "nametextfield", name, xml);
+		addtextFields_commonMethod(application, "Main Domain", "maindomaintextfield", maindomain, xml);
+		addtextFields_commonMethod(application, "OCN", "ocntextfield", ocn, xml);
+		addtextFields_commonMethod(application, "Reference", "referencetextfield", reference, xml);
+		addtextFields_commonMethod(application, "Technical Contact Name", "technicalcontactnametextfield", tcn, xml);
+		addtextFields_commonMethod(application, "Email", "emailtextfield", email, xml);
+		addtextFields_commonMethod(application, "Phone", "phonetextfield", phone, xml);
+		addtextFields_commonMethod(application, "Fax", "faxtextfield", fax, xml);
+		click_commonMethod(application, "Clear", "clearbutton", xml);
 		DriverTestcase.logger.log(LogStatus.PASS, "All text field values are cleared");
-		
+
 		//Create customer by providing all info
-		EnterTextValue(application, name, "Customer Name", "nametextfield");
-		EnterTextValue(application, maindomain, "Main Domain", "maindomaintextfield");
-		addDropdownValues(application, "Country", "country", country);
-		EnterTextValue(application, ocn, "OCN", "ocntextfield");
-		EnterTextValue(application, reference, "Reference", "referencetextfield");
-		EnterTextValue(application, tcn, "Technical Contact Name", "technicalcontactnametextfield");
-		addDropdownValues(application, "Type", "typedropdown", type);
-		EnterTextValue(application, email, "Email", "emailtextfield");
-		EnterTextValue(application, phone, "Phone", "phonetextfield");
-		EnterTextValue(application, fax, "Fax", "faxtextfield");
-		click(application, "Ok", "okbutton");
-		compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.");
-		sa.assertAll();
+		addtextFields_commonMethod(application, "Customer Name", "nametextfield", name, xml);
+		addtextFields_commonMethod(application, "Main Domain", "maindomaintextfield", maindomain, xml);
+		addDropdownValues_commonMethod(application, "Country", "country", country, xml);
+		addtextFields_commonMethod(application, "OCN", "ocntextfield", ocn, xml);
+		addtextFields_commonMethod(application, "Reference", "referencetextfield", reference, xml);
+		addtextFields_commonMethod(application, "Technical Contact Name", "technicalcontactnametextfield", tcn, xml);
+		addDropdownValues_commonMethod(application, "Type", "typedropdown", type, xml);
+		addtextFields_commonMethod(application, "Email", "emailtextfield", email, xml);
+		addtextFields_commonMethod(application, "Phone", "phonetextfield", phone, xml);
+		addtextFields_commonMethod(application, "Fax", "faxtextfield", fax, xml);
+		click_commonMethod(application, "Ok", "okbutton", xml);
+		compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.", xml);
+		sa.assertAll();	
 
 	}
 
@@ -114,25 +109,25 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(3000);
-		System.out.println("Mouser hovered on Manage Customer's Service");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouser hovered on 'Manage Customers Service' menu item");
-		
-		click(application, "Create Order/Service Link", "CreateOrderServiceLink");	
+		System.out.println("Mouse hovered on Manage Customer's Service");
+		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+
+		click_commonMethod(application, "Create Order/Service", "CreateOrderServiceLink", xml);
 		Log.info("=== Create Order/Service navigated ===");
-		
-	//click on Next button to check mandatory messages	
-		click(application, "Next", "nextbutton");
-		
+
+		//click on Next button to check mandatory messages
+		click_commonMethod(application, "Next", "nextbutton", xml);
+
 		//Customer Error message	
-			WarningMessage(application, "customer_createorderpage_warngmsg", "Customer");
-			
-		//Entering Customer name	
-			EnterTextValue(application, customerName1, "Customer Name", "entercustomernamefield");
-			EnterTextValue(application, customerName2, "Customer Name", "entercustomernamefield");	
-		
+		warningMessage_commonMethod(application, "customer_createorderpage_warngmsg", "Customer", xml);
+
+		//Entering Customer name
+		addtextFields_commonMethod(application, "Customer Name", "entercustomernamefield", customerName1, xml);
+		addtextFields_commonMethod(application, "Customer Name", "entercustomernamefield", customerName2, xml);
+
 		//Select Customer from dropdown
-			addDropdownValues(application, "Customer", "chooseCustomerdropdown", ChooseCustomerToBeSelected);
-			click(application, "Next", "Next_Button");
+		addDropdownValues_commonMethod(application, "Customer", "chooseCustomerdropdown", ChooseCustomerToBeSelected, xml);
+		click_commonMethod(application, "Next", "Next_Button", xml);
 	}
 	
 	
@@ -140,8 +135,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			String reference, String tcn, String type, String email, String phone, String fax)
 			throws InterruptedException, DocumentException, IOException {
 		
-		WebElement CustomerDetailsHeader=getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader"));
-		scrolltoview(CustomerDetailsHeader);
+		ScrolltoElement(application, "customerdetailsheader", xml);
 		
 		// verify Name information
 		String Name_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Name_Text")));
@@ -279,8 +273,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			throws InterruptedException, DocumentException, IOException {
 			
 		
-		//WebElement UserGridCheck= driver.findElement(By.xpath("(//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
-		WebElement UserGridCheck= getwebelement("(//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
+		WebElement UserGridCheck= driver.findElement(By.xpath("(//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
 		String UserGrid= UserGridCheck.getAttribute("style");
 		
 		if(UserGrid.contains("height: 1px"))
@@ -324,26 +317,15 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : entered phone number is : " + Phone);
 			
-			WebElement CancelButton= getwebelement(xml.getlocator("//locators/" + application + "/cancelbutton"));
-			scrolltoview(CancelButton);
-			Clickon(CancelButton);
+			ScrolltoElement(application, "cancelbutton", xml);
+			click_commonMethod(application, "Cancel", "cancelbutton", xml);
 			Thread.sleep(1000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on cancel button");
 			
-			Boolean UsersPanel_Header = getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")).isDisplayed();
-			Log.info("Users panel header text is displayed as : " + UsersPanel_Header);
-			System.out.println("Users panel header text:"+ UsersPanel_Header);
-			sa.assertTrue(UsersPanel_Header,"Users panel in view service page is displayed");
+			compareText(EditPostaladdress, "Users panel header", "userspanel_header", "Users", xml);
 			
 			//Create User
-			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/UserActionDropdown")));
-			Thread.sleep(1000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Action dropdown button");
-			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddLink")));
-			Thread.sleep(1000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Add link");
+			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+			click_commonMethod(application, "Add", "AddLink", xml);
 			Thread.sleep(3000);
 			
 			Log.info("Create user header text is displayed as : " + CreateUser_Header);
@@ -379,7 +361,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on generate password button");
 			
 			WebElement OKButton= getwebelement(xml.getlocator("//locators/" + application + "/OkButton"));
-			scrolltoview(OKButton);
+			ScrolltoElement(application, "OkButton", xml);
 			Clickon(OKButton);
 			Thread.sleep(2000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Ok button");
@@ -387,8 +369,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : User added successfully");
 			
 			//Edit User
-			//List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
-			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+			List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
 			int NoOfUsers = ExistingUsers.size();
 			System.out.println("Total users:"+ NoOfUsers);
 			
@@ -400,8 +381,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				//WebElement AddedUser = driver.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
-				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+				WebElement AddedUser = driver
+						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -460,8 +441,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				//WebElement AddedUser = driver.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
-				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+				WebElement AddedUser = driver
+						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -522,19 +503,29 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				//WebElement AddedUser = driver.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
-				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+				WebElement AddedUser = driver
+						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
 			else
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
 			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/UserActionDropdown")));
+			//delete user
+			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+			click_commonMethod(application, "Delete", "delete", xml);
 			Thread.sleep(2000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Action dropdown");
-			
-			delete(application, "delete", "User", "User successfully deleted");
+			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
+			if(DeleteAlertPopup.isDisplayed())
+			{
+				click_commonMethod(application, "Delete", "deletebutton", xml);
+			}
+			else
+			{
+				Log.info("Delete alert popup is not displayed");
+				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+			}
+			compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
 			
 		}
 		
@@ -542,8 +533,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		{
 		
 			//Edit User
-			//List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
-			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+			List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
 			int NoOfUsers = ExistingUsers.size();
 			System.out.println("Total users:"+ NoOfUsers);
 			
@@ -555,8 +545,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				//WebElement AddedUser = driver.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
-				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+				WebElement AddedUser = driver
+						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -615,8 +605,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				//WebElement AddedUser = driver.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
-				WebElement AddedUser =getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");			
+				WebElement AddedUser = driver
+						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
@@ -677,20 +667,29 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			}
 			else if(NoOfUsers>1)
 			{
-				//WebElement AddedUser = driver.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
-				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+				WebElement AddedUser = driver
+						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
 			else
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
 			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/UserActionDropdown")));
+			//delete user
+			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+			click_commonMethod(application, "Delete", "delete", xml);
 			Thread.sleep(2000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Action dropdown");
-			
-			delete(application, "delete", "User", "User successfully deleted");
-		
+			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
+			if(DeleteAlertPopup.isDisplayed())
+			{
+				click_commonMethod(application, "Delete", "deletebutton", xml);
+			}
+			else
+			{
+				Log.info("Delete alert popup is not displayed");
+				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+			}
+			compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
 		}
 	}
 	
@@ -724,254 +723,30 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	//============================================================================================
 	
 
-
-	String value;
-
-	public void verifyvaluedisplayed(WebElement ele) {
-
-		try {
-
-			Boolean flag = ele.isDisplayed();
-
-			if (flag) {
-
-				value = ele.getText();
-
-				if (value.isEmpty()) {
-
-					Reporter.log("No values displayed");
-				} else {
-
-					Reporter.log("value displayed is : " + value);
-				}
-
-			} else {
-
-				Reporter.log("value displayed is : " + value);
-			}
-
-		} catch (Exception e) {
-
-			Reporter.log("No values displaying under remark");
-		}
-	}
-
-	public void navigateToManageCustomerServicePage(String application) throws InterruptedException, DocumentException {
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/mcslink")));
-		Thread.sleep(2000);
-		Reporter.log("=== MCS page navigated ===");
-		Thread.sleep(2000);
-	}
-
-	public void navigateToCreateOrderServicePage(String application) throws InterruptedException, DocumentException {
-
-		navigateToManageCustomerServicePage(application);
-
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/createorderlink")));
-		Thread.sleep(2000);
-		Reporter.log("=== Create Order/Service navigated ===");
-	}
-
-	boolean customername;
-
-	public void verifychoosecustomer(String application, String name, String customer)
-			throws InterruptedException, IOException, DocumentException {
-
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/nextbutton")));
-		Thread.sleep(5000);
-
-		boolean choosocustomerwarningmsg = getwebelement(
-				xml.getlocator("//locators/" + application + "/choosocustomerwarningmsg")).isDisplayed();
-		sa.assertTrue(choosocustomerwarningmsg, "next button is displayed");
-		System.out.println("choose customer is required message is displayed");
-		Log.info("===choose customer is required message is displayed ===");
-
-		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/nametextfield")), name);
-		Thread.sleep(10000);
-		System.out.println("Entered Name is : " + name);
-
-		/*
-		 * SendKeys(getwebelement(xml.getlocator("//locators/" + application +
-		 * "/choosecustomerdropdown")), customer); Thread.sleep(5000);
-		 * System.out.println("Entered customer Name is : " + customer);
-		 */
-
-		Thread.sleep(5000);
-
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/choosecustomerdropdown")));
-		Thread.sleep(5000);
-		System.out.println("clicked on customer dropdown");
-
-		try 
-		{
-			//customername = driver.findElement(By.xpath("//div[text()='No matches found']")).isDisplayed();
-			customername = getwebelement("//div[text()='No matches found']").isDisplayed();
-			Thread.sleep(5000);
-			System.out.println("flag:" + customername);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-			//WebElement customername1 = driver.findElement(By.xpath("//span[text()='" + customer + "']"));
-			WebElement customername1 = getwebelement("//span[text()='" + customer + "']");
-			Thread.sleep(5000);
-			customername1.click();
-		}
-
-		while (customername) {
-
-			getwebelement(xml.getlocator("//locators/" + application + "/nametextfield")).clear();
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/nametextfield")));
-			SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/nametextfield")), name);
-			Thread.sleep(10000);
-			getwebelement(xml.getlocator("//locators/" + application + "/choosecustomerdropdown")).clear();
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/choosecustomerdropdown")));
-			Thread.sleep(5000);
-			// System.out.println("clicked on customer dropdown")
-			try 
-			{
-				//customername = driver.findElement(By.xpath("//div[text()='No matches found']")).isDisplayed();
-				customername = getwebelement("//div[text()='No matches found']").isDisplayed();
-			} catch (Exception e) {
-				break;
-			}
-
-		}
-
-		//WebElement customername1 = driver.findElement(By.xpath("//span[text()='" + customer + "']"));
-		WebElement customername1 = getwebelement("//span[text()='" + customer + "']");
-		Thread.sleep(5000);
-		customername1.click();
-		// System.out.println("selected cutomer is : " +
-		// customername1.getText().toString());
-
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/nextbutton")));
-		Thread.sleep(5000);
-		System.out.println("clicked on next button");
-
-	}
-
-	// verify create order/service panel
-	public void verifycreateorderservicepanel(String application) throws InterruptedException, DocumentException {
-
-		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
-		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-
-		try {
-			boolean ordercontractnumbertextfield = getwebelement(
-					xml.getlocator("//locators/" + application + "/ordercontractnumber")).isDisplayed();
-			sa.assertTrue(ordercontractnumbertextfield, "order contract number textfield is displayed");
-			// DriverTestcase.logger.log(LogStatus.PASS, "order contract number textfield is
-			// displayed");
-			System.out.println("order contract number textfield is displayed");
-
-			boolean selectorderswitch = getwebelement(
-					xml.getlocator("//locators/" + application + "/selectorderswitch")).isDisplayed();
-			sa.assertTrue(selectorderswitch, "c");
-			// DriverTestcase.logger.log(LogStatus.PASS, "select order switch is
-			// displayed");
-			System.out.println("select order switch is displayed");
-
-			boolean rfireqiptextfield = getwebelement(
-					xml.getlocator("//locators/" + application + "/rfireqiptextfield")).isDisplayed();
-			sa.assertTrue(rfireqiptextfield, "RFI / RFQ /IP Voice Line number text field is displayed ");
-			// DriverTestcase.logger.log(LogStatus.PASS, "RFI / RFQ /IP Voice Line number
-			// text field is displayed ");
-			System.out.println("RFI / RFQ /IP Voice Line number text field is displayed ");
-
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/selectorderswitch")));
-			Thread.sleep(5000);
-
-			System.out.println("clicked on the switch to verify the presence of create order button");
-			// DriverTestcase.logger.log(LogStatus.PASS, "clicked on the switch to verify
-			// the presence of create order button ");
-
-			boolean createorderbutton1 = getwebelement(
-					xml.getlocator("//locators/" + application + "/createorderbutton")).isDisplayed();
-
-			if (createorderbutton1) {
-
-				System.out.println("create order button is displayed");
-			} else {
-
-				sa.fail("create order button is not displayed");
-			}
-
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/createorderswitch")));
-			Thread.sleep(5000);
-			// DriverTestcase.logger.log(LogStatus.PASS, "clicked on the switch to verify
-			// the presence of create order button ");
-
-			System.out.println("clicked on switch to verify the presence of create order button");
-
-			try {
-				boolean actualcreateorder = getwebelement(xml.getlocator("//locators/" + application + "/createorderbutton")).isDisplayed();
-			} catch (Exception e) {
-
-				System.out.println("create order button is not displayed");
-			}
-
-			sa.assertAll();
-
-		} catch (TimeoutException e) {
-
-			e.printStackTrace();
-		}
-
-	}
-
-//	public static String SelectOrderNumber;
-//
-//	public void createexistingorderservice(String application, String existingorderservice, String existingordernumber)
-//			throws InterruptedException, IOException, DocumentException {
-//
-//		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-//
-//		if (existingorderservice.equalsIgnoreCase("YES")) {
-//
-//			addDropdownValues(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber);
-//			Log.info("=== Order Contract Number selected===");
-//
-//			Thread.sleep(3000);
-//
-//			SelectOrderNumber = existingordernumber;
-//		
-//
-//		} else {
-//
-//			System.out.println("existing order not selected");
-//			DriverTestcase.logger.log(LogStatus.INFO, "Step :existing order not selected");
-//		}
-//
-//	}
-
 	public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 	
 	public void createorderservice(String application, String neworder, String neworderno, String newrfireqno, String existingorderservice, String existingordernumber)
-			throws InterruptedException, IOException, DocumentException 
-	{
-		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
-		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			throws InterruptedException, IOException, DocumentException {
+
+		scrolltoend();
 		if (neworder.equalsIgnoreCase("YES")) {
 
-			//WebElement CreateOrder_Header= driver.findElement(By.xpath("//div[text()='Create Order / Service']"));
-			WebElement CreateOrder_Header= getwebelement("//div[text()='Create Order / Service']");
-			scrolltoview(CreateOrder_Header);
+			ScrolltoElement(application, "CreateOrderHeader", xml);
 			Thread.sleep(2000);
 			
-			click(application, "select order switch", "selectorderswitch");	
-			EnterTextValue(application, neworderno, "Order/Contract Number", "newordertextfield");
-			EnterTextValue(application, newrfireqno, "RFI Voice line Number", "newrfireqtextfield");
-			click(application, "create order", "createorderbutton");	
-			compareText(application, "create order success message", "OrderCreatedSuccessMsg", "Order created successfully");			
-			scrolltoview(CreateOrder_Header);
+			click_commonMethod(application, "select order switch", "selectorderswitch", xml);
+			addtextFields_commonMethod(application, "Order/Contract Number", "newordertextfield", neworderno, xml);
+			addtextFields_commonMethod(application, "RFI Voice line Number", "newrfireqtextfield", newrfireqno, xml);
+			click_commonMethod(application, "create order", "createorderbutton", xml);
+			compareText(application, "create order success message", "OrderCreatedSuccessMsg", "Order created successfully", xml);			
+			ScrolltoElement(application, "CreateOrderHeader", xml);
 
 			newordernumber = neworderno;
 			newVoiceLineNumber = newrfireqno;
 		} 
 		
 		else if (existingorderservice.equalsIgnoreCase("YES")) {
-			addDropdownValues(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber);
+			addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber, xml);
 			Log.info("=== Order Contract Number selected===");
 
 			Thread.sleep(3000);
@@ -987,142 +762,24 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	public void verifyselectservicetype(String application, String servicetype)
 			throws InterruptedException, IOException, DocumentException {
 
-			// select service type
-			CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
-		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			addDropdownValues(application, "Service Type", "servicetypetextfield", servicetype);
-			// click on next button
-			click(application, "Next", "nextbutton");	
-			compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service");
-			
-	}
-
-	public void servicecreationfields(String application) throws InterruptedException, DocumentException {
-
-		try {
-
-			// service identification
-			boolean serviceidentificationtextfield = getwebelement(
-					xml.getlocator("//locators/" + application + "/serviceidentificationtextfield")).isDisplayed();
-			sa.assertTrue(serviceidentificationtextfield, "service identification textfield is not displayed");
-
-			String serviceidentificationtextfieldvalue = getwebelement(
-					xml.getlocator("//locators/" + application + "/serviceidentificationtextfield"))
-							.getAttribute("value");
-			if (!(serviceidentificationtextfieldvalue.isEmpty())) {
-
-				sa.fail("service identification textfield is not empty");
-				DriverTestcase.logger.log(LogStatus.FAIL,
-						"Step : service identification textfield is not empty, value displayed is : "
-								+ serviceidentificationtextfieldvalue);
-			} else {
-
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : service identification textfield is empty ");
-			}
-
-			// service type
-			boolean servicetype = getwebelement(xml.getlocator("//locators/" + application + "/servicetypevalue")).isDisplayed();
-			sa.assertTrue(servicetype, "service type value is not displayed");
-
-			String servicetypevalue = getwebelement(xml.getlocator("//locators/" + application + "/servicetypevalue")).getText();
-			if (servicetypevalue != null && servicetypevalue.equalsIgnoreCase("NGIN")) {
-
-				DriverTestcase.logger.log(LogStatus.PASS,
-						"Step : Service Type value is not empty  and displayed service type is : " + servicetypevalue);
-			}
-
-			// remarks
-			boolean remarktextarea = getwebelement(xml.getlocator("//locators/" + application + "/remarktextarea"))
-					.isDisplayed();
-			sa.assertTrue(remarktextarea, "remarks textarea is not displayed");
-
-			String remarktextareavalue = getwebelement(
-					xml.getlocator("//locators/" + application + "/remarktextareavalue")).getAttribute("value");
-			if (!(remarktextareavalue).isEmpty()) {
-
-				sa.fail("remarks textarea is not empty");
-				DriverTestcase.logger.log(LogStatus.FAIL,
-						"Step : remarks textarea is not empty, value displayed is : " + remarktextareavalue);
-			} else {
-
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : remarks textarea is empty ");
-			}
-
-			// management options- customer administration
-			boolean customeradministrationcheckbox = getwebelement(
-					xml.getlocator("//locators/" + application + "/customeradministrationcheckbox")).isEnabled();
-			boolean customeradministrationcheckbox2 = getwebelement(
-					xml.getlocator("//locators/" + application + "/customeradministrationcheckbox")).isSelected();
-
-			if (customeradministrationcheckbox == true && customeradministrationcheckbox2 == false) {
-
-				DriverTestcase.logger.log(LogStatus.PASS,
-						"Step : customer administration checkbox is unselected by default ");
-
-			} else {
-
-				sa.fail("customer administration checkbox is disabled or selected by default");
-				DriverTestcase.logger.log(LogStatus.FAIL,
-						"Step : customer administration checkbox is disabled or selected by default ");
-			}
-
-			// management options- SAN administration
-			boolean SANadministrationcheckbox1 = getwebelement(
-					xml.getlocator("//locators/" + application + "/sanadministrationcheckbox")).isEnabled();
-			boolean SANadministrationcheckbox2 = getwebelement(
-					xml.getlocator("//locators/" + application + "/sanadministrationcheckbox")).isSelected();
-
-			if (SANadministrationcheckbox1 == true && SANadministrationcheckbox2 == false) {
-
-				DriverTestcase.logger.log(LogStatus.PASS,
-						"Step : SAN administration checkbox is unselected by default ");
-
-			} else {
-
-				sa.fail("SAN administration checkbox is disabled or selected by default");
-				DriverTestcase.logger.log(LogStatus.FAIL,
-						"Step : SAN administration checkbox is disabled or selected by default ");
-			}
-
-			// management options- Reseller Administration
-			boolean Reselleradministrationcheckbox1 = getwebelement(
-					xml.getlocator("//locators/" + application + "/reselleradministrationcheckbox")).isEnabled();
-			boolean Reselleradministrationcheckbox2 = getwebelement(
-					xml.getlocator("//locators/" + application + "/reselleradministrationcheckbox")).isSelected();
-
-			if (Reselleradministrationcheckbox1 == true && Reselleradministrationcheckbox2 == false) {
-
-				DriverTestcase.logger.log(LogStatus.PASS,
-						"Step : Reseller Administration checkbox is unselected by default ");
-
-			} else {
-
-				sa.fail("Reseller Administration checkbox is disabled or selected by default");
-				DriverTestcase.logger.log(LogStatus.FAIL,
-						"Step : Reseller Administration checkbox is disabled or selected by default ");
-			}
-
-			// next and cancel buttons
-			boolean nextbutton = getwebelement(xml.getlocator("//locators/" + application + "/nextbutton")).isDisplayed();
-			sa.assertTrue(nextbutton, "Next button is not displayed");
-
-			boolean cancelbutton = getwebelement(xml.getlocator("//locators/" + application + "/cancelbutton")).isDisplayed();
-			sa.assertTrue(cancelbutton, "Cancel button is not displayed");
-			sa.assertAll();
-
-		} catch (NoSuchElementException e) {
-			e.printStackTrace();
-			System.out.println("Element is not displayed in UI");
-		}
+		// select service type
+				scrolltoend();
+				addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
+				// click on next button
+				click_commonMethod(application, "Next", "nextbutton", xml);
+				Thread.sleep(2000);
+				scrollToTop();
+				compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
 
 	}
 
-	public void verifyingservicecreation(String application, String sid, String Remarks, String email, String phonecontact, String country, String passwordvalue, String defaultemail, String user, String servicefirstname, String servicelastname, String organizationname, String serviceaddress, String servicecomplement, String servicepostalcode, String servicecity, String servicestate, String servicephone, String servicefax, String orderno, String rfireqno, String servicetype) throws InterruptedException, IOException, DocumentException {
+
+	public void verifyservicecreation(String application, String sid, String Remarks, String email, String phonecontact, String servicecountry, String passwordvalue, String defaultemail, String user, String servicefirstname, String servicelastname, String organizationname, String serviceaddress, String servicecomplement, String servicepostalcode, String servicecity, String servicestate, String servicephone, String servicefax, String orderno, String rfireqno, String servicetype) throws InterruptedException, IOException, DocumentException {
 		
 		//Cancel service creation
-		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service");
-		
-		click(application, "Cancel", "cancelbutton");
+		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
+		scrolltoend();
+		click_commonMethod(application, "Cancel", "cancelbutton", xml);
 			
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
@@ -1131,68 +788,177 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		}
 		
 		//Create service
+	
+		ScrolltoElement(application, "createorderservice_header", xml);
 		
-		//WebElement CreateOrder_Header= driver.findElement(By.xpath("//div[text()='Create Order / Service']"));
-		WebElement CreateOrder_Header=getwebelement("//div[text()='Create Order / Service']");
-		scrolltoview(CreateOrder_Header);
+		//addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", orderno, xml);
 		
-		addDropdownValues(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", orderno);
-		addDropdownValues(application, "Service Type", "servicetypetextfield", servicetype);
+		//Existing order no select
+		boolean availability=false;
+		try {  
+		  availability=getwebelement(xml.getlocator("//locators/" + application + "/existingorderdropdown")).isDisplayed();
+		  if(availability) {
+			  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown is displaying");
+			  System.out.println("Order/Contract Number(Parent SID) dropdown is displaying");
+			  
+			  if(orderno.equalsIgnoreCase("null")) {
+				  
+				  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Order/Contract Number(Parent SID) dropdown");
+				  System.out.println(" No values selected under Order/Contract Number(Parent SID) dropdown");
+			  }else {
+				  
+				  Clickon(getwebelement("//div[label[text()='Order/Contract Number(Parent SID)']]//div[text()='×']"));
+				  Thread.sleep(3000);
+				  
+				  //verify list of values inside dropdown
+				  List<WebElement> listofvalues = driver
+							.findElements(By.xpath("(//div[@role='list']//div)[3]"));
+				  
+				  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
+				  System.out.println( " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
+				  
+					for (WebElement valuetypes : listofvalues) {
+								Log.info("service sub types : " + valuetypes.getText());
+								DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+								System.out.println(" " + valuetypes.getText());
+					}
+					
+					Thread.sleep(2000);
+				SendKeys(getwebelement("//div[label[text()='Order/Contract Number(Parent SID)']]//input"), orderno);	
+				Thread.sleep(2000);
+					
+				  Clickon(getwebelement("(//div[contains(text(),'"+ orderno +"')])[2]"));
+				  Thread.sleep(3000);
+				  
+				  String actualValue=getwebelement("//label[text()='Order/Contract Number(Parent SID)']/following-sibling::div//div/span").getText();
+				  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue );
+				  System.out.println("Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue);
+				  
+			  }
+		  }else {
+			  DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
+			  System.out.println("Order/Contract Number(Parent SID) is not displaying");
+		  }
+		}catch(NoSuchElementException e) {
+			DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
+			  System.out.println("Order/Contract Number(Parent SID) is not displaying");
+		}catch(Exception ee) {
+			ee.printStackTrace();
+			DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Order/Contract Number(Parent SID) dropdown");
+			System.out.println(" NO value selected under Order/Contract Number(Parent SID) dropdown");
+		}
+		
+		addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
 		// click on next button
-		click(application, "Next", "nextbutton");
-		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service");
+		click_commonMethod(application, "Next", "nextbutton", xml);
+		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
 					
 		// verify warning messages
-		click(application, "Next", "nextbutton");
+		click_commonMethod(application, "Next", "nextbutton", xml);
 		Thread.sleep(1000);
-		WarningMessage(application, "sidwarngmsg", "Service Identification");
-		WarningMessage(application, "userfieldwarngmsg", "User");
-		WarningMessage(application, "passwordfieldwarngmsg", "Password");
-		WarningMessage(application, "defaultemailwarngmsg", "Default Email");
-		WarningMessage(application, "firstnamefieldwarngmsg", "First Name");
-		WarningMessage(application, "lastnamefieldwarngmsg", "Last Name");
-		WarningMessage(application, "organizationnamewarngmsg", "Organization Name");
-		WarningMessage(application, "addressfieldwarngmsg", "Address");
-		WarningMessage(application, "postalcodewarngmsg", "Postal Code");
-		WarningMessage(application, "cityfieldwarngmsg", "City");
-		WarningMessage(application, "phonefieldwarngmsg", "Phone");
-		WarningMessage(application, "faxfieldwarngmsg", "Fax");
-		WarningMessage(application, "emailfieldwarngmsg", "Email");
+		warningMessage_commonMethod(application, "sidwarngmsg", "Service Identification", xml);
+		warningMessage_commonMethod(application, "userfieldwarngmsg", "User", xml);
+		warningMessage_commonMethod(application, "passwordfieldwarngmsg", "Password", xml);
+		warningMessage_commonMethod(application, "defaultemailwarngmsg", "Default Email", xml);
+		warningMessage_commonMethod(application, "firstnamefieldwarngmsg", "First Name", xml);
+		warningMessage_commonMethod(application, "lastnamefieldwarngmsg", "Last Name", xml);
+		warningMessage_commonMethod(application, "organizationnamewarngmsg", "Organization Name", xml);
+		warningMessage_commonMethod(application, "addressfieldwarngmsg", "Address", xml);
+		warningMessage_commonMethod(application, "postalcodewarngmsg", "Postal Code", xml);
+		warningMessage_commonMethod(application, "cityfieldwarngmsg", "City", xml);
+		warningMessage_commonMethod(application, "phonefieldwarngmsg", "Phone", xml);
+		warningMessage_commonMethod(application, "faxfieldwarngmsg", "Fax", xml);
+		warningMessage_commonMethod(application, "emailfieldwarngmsg", "Email", xml);
 		
 		//service creation
-		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
-		CustomJavaScriptExecute("window.scrollTo(0, 0)");
+		scrollToTop();
 		Thread.sleep(1000);
-		EnterTextValue(application, sid, "Service Identification", "serviceidentificationtextfield");
-		compareText(application, "Service Type", "servicetype_value", servicetype);
-		EnterTextValue(application, Remarks, "Remarks", "remarktextarea");
-		EnterTextValue(application, email, "Email", "emailtextfieldvalue");
-		click(application, "Email adding Arrow", "emailaddarrow");
-		EnterTextValue(application, phonecontact, "Phone Contact", "phonecontacttextfieldvalue");
-		click(application, "phone contact adding Arrow", "phoneaddarrow");
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/phonecontacttextfieldvalue")));
-		EnterTextValue(application, user, "User", "userfield");
+		addtextFields_commonMethod(application, "Service Identification", "serviceidentificationtextfield", sid, xml);
+		compareText(application, "Service Type", "servicetype_value", servicetype, xml);
+		addtextFields_commonMethod(application, "Remarks", "remarktextarea", Remarks, xml);
+		addtextFields_commonMethod(application, "Email", "emailtextfieldvalue", email, xml);
+		click_commonMethod(application, "Email adding Arrow", "emailaddarrow", xml);
+		addtextFields_commonMethod(application, "Phone Contact", "phonecontacttextfieldvalue", phonecontact, xml);
+		click_commonMethod(application, "phone contact adding Arrow", "phoneaddarrow", xml);
+		ScrolltoElement(application, "phonecontacttextfieldvalue", xml);
+		addtextFields_commonMethod(application, "User", "userfield", user, xml);
 		//EnterTextValue(application, passwordvalue, "Password", "Password");
-		click(application, "Generate Password", "GeneratePassword");
-		EnterTextValue(application, defaultemail, "Default Email", "defaultemail");
-		EnterTextValue(application, servicefirstname, "First Name", "servicefirstname");
-		EnterTextValue(application, servicelastname, "Last Name", "servicelastname");
-		EnterTextValue(application, organizationname, "Organization Name", "organizationname");
-		EnterTextValue(application, serviceaddress, "Address", "serviceaddress");
-		EnterTextValue(application, servicecomplement, "Complement", "servicecomplement");
-		EnterTextValue(application, servicepostalcode, "Postal Code", "servicepostalcode");
-		EnterTextValue(application, servicecity, "City", "servicecity");
-		EnterTextValue(application, servicestate, "State", "servicestate");
+		click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
+		addtextFields_commonMethod(application, "Default Email", "defaultemail", defaultemail, xml);
+		addtextFields_commonMethod(application, "First Name", "servicefirstname", servicefirstname, xml);
+		addtextFields_commonMethod(application, "Last Name", "servicelastname", servicelastname, xml);
+		addtextFields_commonMethod(application, "Organization Name", "organizationname", organizationname, xml);
+		addtextFields_commonMethod(application, "Address", "serviceaddress", serviceaddress, xml);
+		addtextFields_commonMethod(application, "Complement", "servicecomplement", servicecomplement, xml);
+		addtextFields_commonMethod(application, "Postal Code", "servicepostalcode", servicepostalcode, xml);
+		addtextFields_commonMethod(application, "City", "servicecity", servicecity, xml);
+		addtextFields_commonMethod(application, "State", "servicestate", servicestate, xml);
+		scrolltoend();
 		
-		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
-		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		addDropdownValues(application, "Country", "country", country);
-		EnterTextValue(application, servicephone, "Phone", "servicephone");
-		EnterTextValue(application, servicefax, "Fax", "servicefax");
-		EnterTextValue(application, email, "Email", "serviceemail");
+		//addDropdown(application, "Country", "service_country", country);
 		
-		click(application, "Next", "nextbutton");
-		compareText(application, "Service creation success msg", "servicecreationmessage", "Service successfully created.");
+		//select country from dropdown
+				boolean availability1=false;
+				try {  
+				  availability1=getwebelement(xml.getlocator("//locators/" + application + "/service_country")).isDisplayed();
+				  if(availability1) {
+					  DriverTestcase.logger.log(LogStatus.PASS, "Country dropdown is displaying");
+					  System.out.println("Country dropdown is displaying");
+					  
+					  if(servicecountry.equalsIgnoreCase("null")) {
+						  
+						  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Country dropdown");
+						  System.out.println(" No values selected under Country dropdown");
+					  }else {
+						  
+						  Clickon(getwebelement("//div[label[text()='Country']]//div[text()='×']"));
+						  Thread.sleep(3000);
+						  
+						  //verify list of values inside dropdown
+						  List<WebElement> listofvalues = driver
+									.findElements(By.xpath("(//div[@role='list']//div)[3]"));
+						  
+						  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Country dropdown is:  ");
+						  System.out.println( " List of values inside Country dropdown is:  ");
+						  
+							for (WebElement valuetypes : listofvalues) {
+										Log.info("service sub types : " + valuetypes.getText());
+										DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+										System.out.println(" " + valuetypes.getText());
+							}
+							
+							Thread.sleep(2000);
+						SendKeys(getwebelement("(//div[label[text()='Country']]//input)[1]"), servicecountry);	
+						Thread.sleep(2000);
+							
+						  Clickon(getwebelement("(//div[contains(text(),'"+ servicecountry +"')])[1]"));
+						  Thread.sleep(3000);
+						  
+						  String actualValue=getwebelement("//label[text()='Country']/following-sibling::div//div/span").getText();
+						  DriverTestcase.logger.log(LogStatus.PASS, "Country dropdown value selected as: "+ actualValue );
+						  System.out.println("Country) dropdown value selected as: "+ actualValue);
+						  
+					  }
+				  }else {
+					  DriverTestcase.logger.log(LogStatus.FAIL, "Country is not displaying");
+					  System.out.println("Country is not displaying");
+				  }
+				}catch(NoSuchElementException e) {
+					DriverTestcase.logger.log(LogStatus.FAIL, "Country is not displaying");
+					  System.out.println("Country is not displaying");
+				}catch(Exception ee) {
+					ee.printStackTrace();
+					DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Country dropdown");
+					System.out.println(" NO value selected under Country dropdown");
+				}
+				
+		addtextFields_commonMethod(application, "Phone", "servicephone", servicephone, xml);
+		addtextFields_commonMethod(application, "Fax", "servicefax", servicefax, xml);
+		addtextFields_commonMethod(application, "Email", "serviceemail", email, xml);
+		Thread.sleep(1000);
+		click_commonMethod(application, "Next", "nextbutton", xml);
+		Thread.sleep(3000);
+		compareText(application, "Service creation success msg", "servicecreationmessage", "Service successfully created.", xml);
 			sa.assertAll();
 	
 	}
@@ -1233,362 +999,292 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	public void verifyorderpanelinformation_Neworder(String application, String neworder, String expectedneworderno,
 			String expectednewvoicelineno) throws InterruptedException, DocumentException {
 
-		WebElement UsersPanel_Header= getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header"));
-		scrolltoview(UsersPanel_Header);
-		
+		ScrolltoElement(application, "userspanel_header", xml);
+
 		if (neworder.equalsIgnoreCase("YES")) {
 
-			String actualorderno = getwebelement(xml.getlocator("//locators/" + application + "/ordernumbervalue"))
-					.getText();
-			System.out.println("actual order number displayed in order panel is : " + actualorderno);
+			String actualorderno= GetText(application, "Order number", "ordernumbervalue");
+			String actualvoicelineno= GetText(application, "Voice line number", "ordervoicelinenumbervalue");
 
-			String actualvoicelineno = getwebelement(xml.getlocator("//locators/" + application + "/ordervoicelinenumbervalue"))
-					.getText();
-			System.out.println("actual voice line number displayed in order panel is : " + actualvoicelineno);
+			if (expectedneworderno.equalsIgnoreCase(actualorderno)&& expectednewvoicelineno.equalsIgnoreCase(actualvoicelineno)) {
 
-			if (expectedneworderno.equalsIgnoreCase(actualorderno)
-					&& expectednewvoicelineno.equalsIgnoreCase(actualvoicelineno)) {
-
-				System.out.println("order information is matched");
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : order information is matched");				
 			} else {
-				sa.fail("order information is not matched");
 				DriverTestcase.logger.log(LogStatus.FAIL, "Step : order information is not matched");
-				System.out.println("order information is not matched");
 			}
 
 		} else {
-
-			System.out.println("new order is not selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : new order is not selected");
 		}
 
 		sa.assertAll();
 		
-		
 	}
 	
-	
-	public void scrolltoview(WebElement element) 
-	{
-		scrolltoview(element);
-		//((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-	}
 	
 public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
 		
-	WebElement UsersPanel_Header= getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header"));
-	scrolltoview(UsersPanel_Header);
-	
-	//Cancel Edit order in Order panel
-	click(application, "Action dropdown", "orderactionbutton");
-	click(application, "Edit Order", "editorderlink");
-	
-	Boolean EditOrder_Header = getwebelement(xml.getlocator("//locators/" + application + "/editorderheader")).isDisplayed();
-	Log.info("Edit Order header text is displayed as : " + EditOrder_Header);
-	System.out.println("Edit Order header text:"+ EditOrder_Header);
-	sa.assertTrue(EditOrder_Header,"Edit Order");
-	DriverTestcase.logger.log(LogStatus.PASS, "Step: Edit Order header text is displayed as : "+ EditOrder_Header);
-	Thread.sleep(1000);
-	
-	WebElement EditOrderNo= getwebelement(xml.getlocator("//locators/" + application + "/editorderno"));
-	click(application, "Order Number", "editorderno");
-	Thread.sleep(2000);
-	Clear(EditOrderNo);
-	Thread.sleep(2000);
-	EnterTextValue(application, editorderno, "Order Number", "editorderno");
+	ScrolltoElement(application, "userspanel_header", xml);
 
-	WebElement EditVoiceLineNo= getwebelement(xml.getlocator("//locators/" + application + "/editvoicelineno"));
-	click(application, "RFI Voice Line Number", "editvoicelineno");
-	Thread.sleep(2000);
-	Clear(EditVoiceLineNo);
-	Thread.sleep(2000);
-	EnterTextValue(application, editvoicelineno, "Order Number", "editvoicelineno");
-	click(application, "Cancel", "cancelbutton");
-		
-	Boolean OrderHeader = getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed();
-	sa.assertTrue(OrderHeader,"Order");
-	Log.info("Navigated to order panel in view service page");
-	DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-	
-	//Edit Order
-	click(application, "Action dropdown", "orderactionbutton");
-	click(application, "Edit Order", "editorderlink");
-		
-	Boolean EditOrder1_Header = getwebelement(xml.getlocator("//locators/" + application + "/editorderheader")).isDisplayed();
-	Log.info("Edit Order header text is displayed as : " + EditOrder1_Header);
-	System.out.println("Edit Order header text:"+ EditOrder1_Header);
-	sa.assertTrue(EditOrder1_Header,"Edit Order");
+	//Cancel Edit order in Order panel
+	click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+	click_commonMethod(application, "Edit Order", "editorderlink", xml);
+	compareText(application, "Edit Order", "editorderheader", "Edit Order", xml);
 	Thread.sleep(1000);
-	
-	click(application, "Order Number", "editorderno");
-	Thread.sleep(2000);
-	Clear(EditOrderNo);
-	Thread.sleep(2000);
-	EnterTextValue(application, editorderno, "Order Number", "editorderno");
-	
-	click(application, "RFI Voice Line Number", "editvoicelineno");
-	Thread.sleep(2000);
-	Clear(EditVoiceLineNo);
-	Thread.sleep(2000);
-	EnterTextValue(application, editvoicelineno, "Order Number", "editvoicelineno");
-	click(application, "OK", "editorder_okbutton");
-	Thread.sleep(2000);
-	compareText(application, "Edit Order success msg", "successmsg", "Order successfully updated");
-		
-	//Boolean OrderHeader1 = getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed();
-	sa.assertTrue(OrderHeader,"Order");
+
+	click_commonMethod(application, "Order Number", "editorderno", xml);
+	Thread.sleep(1000);
+	cleartext(application, "Order Number", "editorderno");
+	Thread.sleep(1000);
+	addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
+
+	click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
+	Thread.sleep(1000);
+	cleartext(application, "RFI Voice Line Number", "editvoicelineno");
+	Thread.sleep(1000);
+	addtextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
+	click_commonMethod(application, "Cancel", "cancelbutton", xml);
+	compareText(application, "Order Header", "orderpanelheader", "Order", xml);
 	Log.info("Navigated to order panel in view service page");
 	DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-	
-	compareText(application, "Order Number", "ordernumbervalue", editorderno);
-	compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno);
+
+	//Edit Order
+	Thread.sleep(1000);
+	ScrolltoElement(application, "userspanel_header", xml);
+	Thread.sleep(1000);
+	click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+	click_commonMethod(application, "Edit Order", "editorderlink", xml);
+	compareText(application, "Edit Order Header", "editorderheader", "Edit Order", xml);
+	Thread.sleep(1000);
+	click_commonMethod(application, "Order Number", "editorderno", xml);
+	Thread.sleep(2000);
+	cleartext(application, "Order Number", "editorderno");
+	Thread.sleep(2000);
+	addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
+	click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
+	Thread.sleep(2000);
+	cleartext(application, "RFI Voice Line Number", "editvoicelineno");
+	Thread.sleep(2000);
+	addtextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
+	click_commonMethod(application, "OK", "editorder_okbutton", xml);
+	Thread.sleep(1000);
+	ScrolltoElement(application, "userspanel_header", xml);
+	Thread.sleep(1000);
+	compareText(application, "Order Header", "orderpanelheader", "Order", xml);
+	Log.info("Navigated to order panel in view service page");
+	DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+
+	compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
+	compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
 	Log.info("------ Edit Order is successful ------");
 	
 }
 		
 	public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
 		
-		WebElement UsersPanel_Header= getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header"));
-		scrolltoview(UsersPanel_Header);
-		
-		click(application, "Action dropdown", "orderactionbutton");
-		click(application, "Change Order", "changeorderlink");
-				
-		Boolean ChangeOrder_Header = getwebelement(xml.getlocator("//locators/" + application + "/changeorderheader")).isDisplayed();
-		Log.info("Change Order header text is displayed as : " + ChangeOrder_Header);
-		System.out.println("Change Order header text:"+ ChangeOrder_Header);
-		sa.assertTrue(ChangeOrder_Header,"Change Order");
+		ScrolltoElement(application, "userspanel_header", xml);
 		Thread.sleep(1000);
-		
-		click(application, "Choose order dropdown", "changeorder_chooseorderdropdown");
-				
-		//List<WebElement> ChangeOrder_DropdownList= driver.findElements(By.xpath(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist")));
-		List<WebElement> ChangeOrder_DropdownList= getwebelements("//locators/" + application + "/changeorder_dropdownlist");
+		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+		click_commonMethod(application, "Change Order", "changeorderlink", xml);
+		compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
+		Thread.sleep(1000);
+		click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
+		List<WebElement> ChangeOrder_DropdownList= driver.findElements(By.xpath(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist")));
 		int ChangeOrder_Dropdown_count= ChangeOrder_DropdownList.size();
-		if(ChangeOrder_Dropdown_count>= 1)
+		if(ChangeOrder_Dropdown_count> 1)
 		{
 			Clickon(getwebelement("//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false'][1]"));
 			Thread.sleep(3000);
-			
+
 			//Cancel change order
-			click(application, "Cancel", "changeorder_cancelbutton");
-						
-			Boolean OrderHeader = getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed();
-			sa.assertTrue(OrderHeader,"Order");
+			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
+			Thread.sleep(1000);
+			ScrolltoElement(application, "userspanel_header", xml);
+			Thread.sleep(1000);
+			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
 			Log.info("Navigated to order panel in view service page");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-			
+
 			//Change order
-			click(application, "Action dropdown", "orderactionbutton");
-			click(application, "Change Order", "changeorderlink");
-						
-			Boolean ChangeOrder1_Header = getwebelement(xml.getlocator("//locators/" + application + "/changeorderheader")).isDisplayed();
-			Log.info("Change Order header text is displayed as : " + ChangeOrder1_Header);
-			System.out.println("Change Order header text:"+ ChangeOrder1_Header);
-			sa.assertTrue(ChangeOrder1_Header,"Change Order");
+			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
 			Thread.sleep(1000);
-			
-			click(application, "Choose order dropdown", "changeorder_chooseorderdropdown");
+			click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
 			Clickon(getwebelement("//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false'][1]"));
 			Thread.sleep(3000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected order from dropdown");
-			
-			click(application, "OK", "changeorder_okbutton");
-			Thread.sleep(2000);
-			compareText(application, "Change Order success msg", "successmsg", "Order successufully changed.");
-						
-			Boolean OrderHeader1 = getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed();
-			sa.assertTrue(OrderHeader1,"Order");
+			click_commonMethod(application, "OK", "changeorder_okbutton", xml);
+			Thread.sleep(1000);
+			ScrolltoElement(application, "userspanel_header", xml);
+			Thread.sleep(1000);
+			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
 			Log.info("Navigated to order panel in view service page");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-			
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno);
-			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno);
-			
+			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
+			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
-			
+
 		}
 		else
 		{
-			//Cancel change order
-			click(application, "Select order switch", "changeorder_selectorderswitch");
+			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
+			//click_commonMethod(application, "Order Number", "changeordernumber", xml);
+			Thread.sleep(2000);
+			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
+			//click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
+			Thread.sleep(2000);
+			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
+			Thread.sleep(1000);
+			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
+			ScrolltoElement(application, "userspanel_header", xml);
+			Thread.sleep(1000);
+			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
+			Log.info("Navigated to order panel in view service page");
 
-	//	WebElement ChangeOrderNo= getwebelement(xml.getlocator("//locators/" + application + "/changeordernumber"));
-		click(application, "Order Number", "changeordernumber");
-		Thread.sleep(2000);
-		EnterTextValue(application, changeorderno, "Order Number", "changeordernumber");
-				
-	//	WebElement ChangeVoiceLineNo= getwebelement(xml.getlocator("//locators/" + application + "/changeordervoicelinenumber"));
-		click(application, "RFI Voice Line Number", "changeordervoicelinenumber");
-		Thread.sleep(3000);
-		EnterTextValue(application, changevoicelineno, "RFI Voice Line Number", "changeordervoicelinenumber");
-		//scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/cancelbutton")));
-		click(application, "Cancel", "changeorder_cancelbutton");
-
-		Boolean OrderHeader = getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed();
-		sa.assertTrue(OrderHeader,"Order");
-		Log.info("Navigated to order panel in view service page");
-		
-		//Change Order
-		click(application, "Action dropdown", "orderactionbutton");
-		click(application, "Change Order", "changeorderlink");
-				
-		Boolean ChangeOrder1_Header = getwebelement(xml.getlocator("//locators/" + application + "/changeorderheader")).isDisplayed();
-		Log.info("Change Order header text is displayed as : " + ChangeOrder1_Header);
-		System.out.println("Change Order header text:"+ ChangeOrder1_Header);
-		sa.assertTrue(ChangeOrder1_Header,"Change Order");
-		Thread.sleep(1000);
-		
-		click(application, "Select order switch", "changeorder_selectorderswitch");
-		click(application, "Order Number", "changeordernumber");
-		Thread.sleep(2000);
-		EnterTextValue(application, changeorderno, "Order Number", "changeordernumber");
-		click(application, "RFI Voice Line Number", "changeordervoicelinenumber");
-		Thread.sleep(3000);
-		EnterTextValue(application, changevoicelineno, "RFI Voice Line Number", "changeordervoicelinenumber");
-		click(application, "Create Order", "createorder_button");
-		Thread.sleep(2000);
-		compareText(application, "Change Order success msg", "successmsg", "Order successufully changed.");
-				
-		Boolean OrderHeader1 = getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed();
-		sa.assertTrue(OrderHeader1,"Order");
-		Log.info("Navigated to order panel in view service page");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
-		
-		compareText(application, "Order Number", "ordernumbervalue", changeorderno);
-		compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno);
-		Log.info("------ Change Order is successful ------");
+			//Change Order
+			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
+			Thread.sleep(1000);
+			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
+			click_commonMethod(application, "Order Number", "changeordernumber", xml);
+			Thread.sleep(2000);
+			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
+			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
+			Thread.sleep(3000);
+			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
+//			WebElement CreateOrderButton= getwebelement(xml.getlocator("//locators/" + application + "/createorder_button"));
+//			((JavascriptExecutor) driver).executeScript("arguments[0].click();", CreateOrderButton);
+			click_commonMethod(application, "Create Order", "createorder_button", xml);
+			Thread.sleep(1000);
+			ScrolltoElement(application, "userspanel_header", xml);
+			Thread.sleep(1000);
+			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
+			Log.info("Navigated to order panel in view service page");
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
+			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
+			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
+			Log.info("------ Change Order is successful ------");
 		}
-		
 	}
 
 	public void verifyservicepanelInformationinviewservicepage(String application, String sid, String servicetype, String Remarks, String email, String phonecontact, String country, String defaultemail, String servicefirstname, String servicelastname, String organizationname, String serviceaddress, String servicecomplement, String servicepostalcode, String servicecity, String servicestate, String servicephone, String servicefax, String user, String orderno, String rfireqno) throws InterruptedException, DocumentException, IOException {
 		
-		
-		Boolean Servicepanel_Header = getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")).isDisplayed();
-		Log.info("Service panel header text is displayed as : " + Servicepanel_Header);
-		System.out.println("Service panel header text:"+ Servicepanel_Header);
-		sa.assertTrue(Servicepanel_Header,"Service");
+		compareText(application, "Service panel header", "servicepanel_header", "Service", xml);
 		Thread.sleep(1000);
-		WebElement cityelement= getwebelement(xml.getlocator("//locators/" + application + "/servicecityvalue"));
-		scrolltoview(cityelement);
-		compareText(application, "Service Identification", "sidvalue", sid);
-		compareText(application, "Service Type", "servicepanel_servicetypevalue", servicetype);
-		compareText(application, "Email", "emailvalue", email);
-		compareText(application, "Phone Contact", "phonecontactvalue", phonecontact);
-		compareText(application, "Remarks", "remarksvalue", Remarks);
-		compareText(application, "User", "userfieldvalue", user);
-		compareText(application, "Default Email", "defaultemailvalue", defaultemail);
-		compareText(application, "First Name", "servicefirstnamevalue", servicefirstname);
-		compareText(application, "Last Name", "servicelastnamevalue", servicelastname);
-		compareText(application, "Organisation Name", "organizationnamevalue", organizationname);
-		compareText(application, "Address", "serviceaddressvalue", serviceaddress);
-		compareText(application, "Complement", "servicecomplementvalue", servicecomplement);
-		compareText(application, "Postal Code", "servicepostalcodevalue", servicepostalcode);
-		compareText(application, "City", "servicecityvalue", servicecity);
-		compareText(application, "State", "servicestatevalue", servicestate);
-		compareText(application, "Country", "servicecountryvalue", country);
-		compareText(application, "Phone", "servicephonevalue", servicephone);
-		compareText(application, "Fax", "servicefaxvalue", servicefax);
-		compareText(application, "Email", "serviceemailvalue", email);
+		ScrolltoElement(application, "servicecityvalue", xml);
+		compareText(application, "Service Identification", "sidvalue", sid, xml);
+		compareText(application, "Service Type", "servicepanel_servicetypevalue", servicetype, xml);
+		GetText(application, "Email", "emailvalue");
+		//compareText(application, "Email", "emailvalue", email, xml);
+		compareText(application, "Phone Contact", "phonecontactvalue", phonecontact, xml);
+		compareText(application, "Remarks", "remarksvalue", Remarks, xml);
+		compareText(application, "User", "userfieldvalue", user, xml);
+		compareText(application, "Default Email", "defaultemailvalue", defaultemail, xml);
+		compareText(application, "First Name", "servicefirstnamevalue", servicefirstname, xml);
+		compareText(application, "Last Name", "servicelastnamevalue", servicelastname, xml);
+		compareText(application, "Organisation Name", "organizationnamevalue", organizationname, xml);
+		compareText(application, "Address", "serviceaddressvalue", serviceaddress, xml);
+		compareText(application, "Complement", "servicecomplementvalue", servicecomplement, xml);
+		compareText(application, "Postal Code", "servicepostalcodevalue", servicepostalcode, xml);
+		compareText(application, "City", "servicecityvalue", servicecity, xml);
+		compareText(application, "State", "servicestatevalue", servicestate, xml);
+		compareText(application, "Country", "servicecountryvalue", country, xml);
+		compareText(application, "Phone", "servicephonevalue", servicephone, xml);
+		compareText(application, "Fax", "servicefaxvalue", servicefax, xml);
+		compareText(application, "Email", "serviceemailvalue", email, xml);
 		
 	}
 	
-	public void verifyservicepanel_links(String application, String EditRemarks, String Remarks, String changeorderno, String sid, String editsid, String servicetype, String editemail, String editphonecontact, String edituser, String editdefaultemail, String editservicefirstname, String editservicelastname, String editorganizationname, String editserviceaddress, String editservicecomplement, String editservicepostalcode, String editservicecity, String editservicestate, String editcountry, String editservicephone, String editservicefax ) throws Exception {
+	public void verifyservicepanel_links(String application, String EditRemarks, String Remarks, String changeorderno, String sid, String editsid, String servicetype, String editemail, String editphonecontact, String edituser, String editdefaultemail, String editservicefirstname, String editservicelastname, String editorganizationname, String editserviceaddress, String editservicecomplement, String editservicepostalcode, String editservicecity, String editservicestate, String editcountry, String editservicephone, String editservicefax ) throws InterruptedException, DocumentException, IOException {
 
 		//Cancel edit service
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
-		click(application, "Action dropdown", "serviceactiondropdown");
-		click(application, "Edit", "edit");
+		ScrolltoElement(application, "orderpanelheader", xml);
+		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
+		click_commonMethod(application, "Edit", "edit", xml);
 		isDisplayed(application, "editservice", "Edit Service Header");
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/editservice")));
+		ScrolltoElement(application, "editservice", xml);
 		cleartext(application, "Service Identification", "serviceidentificationtextfield");
-		EnterTextValue(application, editsid, "Service Identification", "serviceidentificationtextfield");
+		addtextFields_commonMethod(application, "Service Identification", "serviceidentificationtextfield", editsid, xml);
 		cleartext(application, "Remarks", "remarktextarea");
-		EnterTextValue(application, EditRemarks, "Remarks", "remarktextarea");
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/cancelbutton")));
-		click(application, "Cancel", "cancelbutton");
+		addtextFields_commonMethod(application, "Remarks", "remarktextarea", EditRemarks, xml);
+		scrolltoend();
+		click_commonMethod(application, "Cancel", "cancelbutton", xml);
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")).isDisplayed())
 		{
-			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
-			compareText(application, "Service Identification", "sidvalue", sid);
-			compareText(application, "Remarks", "remarksvalue", Remarks);
+			ScrolltoElement(application, "orderpanelheader", xml);
+			compareText(application, "Service Identification", "sidvalue", sid, xml);
+			compareText(application, "Remarks", "remarksvalue", Remarks, xml);
 		}
 		else
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
 	
 		//Edit service
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
-		click(application, "Action dropdown", "serviceactiondropdown");
-		click(application, "Edit", "edit");
+		ScrolltoElement(application, "orderpanelheader", xml);
+		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
+		click_commonMethod(application, "Edit", "edit", xml);
 		isDisplayed(application, "editservice", "Edit Service Header");
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/editservice")));
+		ScrolltoElement(application, "editservice", xml);
 		cleartext(application, "Service Identification", "serviceidentificationtextfield");
-		EnterTextValue(application, editsid, "Service Identification", "serviceidentificationtextfield");
-		compareText(application, "Service Type", "servicetype_value", servicetype);
+		addtextFields_commonMethod(application, "Service Identification", "serviceidentificationtextfield", editsid, xml);
+		compareText(application, "Service Type", "servicetype_value", servicetype, xml);
 		cleartext(application, "Remarks", "remarktextarea");
-		EnterTextValue(application, EditRemarks, "Remarks", "remarktextarea");
+		addtextFields_commonMethod(application, "Remarks", "remarktextarea", EditRemarks, xml);
 		//Edit email
-		click(application, "Selected Email", "selectedemail");
-		click(application, "Email remove arrow", "emailremovearrow");
+		click_commonMethod(application, "Selected Email", "selectedemail", xml);
+		click_commonMethod(application, "Email remove arrow", "emailremovearrow", xml);
 		cleartext(application, "Email", "emailtextfieldvalue");
-		EnterTextValue(application, editemail, "Email", "emailtextfieldvalue");
-		click(application, "Email adding arrow", "emailaddarrow");
+		addtextFields_commonMethod(application, "Email", "emailtextfieldvalue", editemail, xml);
+		click_commonMethod(application, "Email adding arrow", "emailaddarrow", xml);
 		//Edit phone contact
-		click(application, "Selected phone contact", "selectedphone");
-		click(application, "Phonecontact remove arrow", "phoneremovearrow");
+		click_commonMethod(application, "Selected phone contact", "selectedphone", xml);
+		click_commonMethod(application, "Phonecontact remove arrow", "phoneremovearrow", xml);
 		cleartext(application, "Phone Contact", "phonecontacttextfieldvalue");
-		EnterTextValue(application, editphonecontact, "Phone Contact", "phonecontacttextfieldvalue");
-		click(application, "phonecontact adding Arrow", "phoneaddarrow");
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/phonecontacttextfieldvalue")));
+		addtextFields_commonMethod(application, "Phone Contact", "phonecontacttextfieldvalue", editphonecontact, xml);
+		click_commonMethod(application, "phonecontact adding Arrow", "phoneaddarrow", xml);
+		ScrolltoElement(application, "phonecontacttextfieldvalue", xml);
 		cleartext(application, "User", "userfield");
-		EnterTextValue(application, edituser, "User", "userfield");
+		addtextFields_commonMethod(application, "User", "userfield", edituser, xml);
 		cleartext(application, "Password", "Password");
-		click(application, "Generate Password", "GeneratePassword");
+		click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
 		cleartext(application, "Default Email", "defaultemail");
-		EnterTextValue(application, editdefaultemail, "Default Email", "defaultemail");
+		addtextFields_commonMethod(application, "Default Email", "defaultemail", editdefaultemail, xml);
 		cleartext(application, "First Name", "servicefirstname");
-		EnterTextValue(application, editservicefirstname, "First Name", "servicefirstname");
+		addtextFields_commonMethod(application, "First Name", "servicefirstname", editservicefirstname, xml);
 		cleartext(application, "Last Name", "servicelastname");
-		EnterTextValue(application, editservicelastname, "Last Name", "servicelastname");
+		addtextFields_commonMethod(application, "Last Name", "servicelastname", editservicelastname, xml);
 		cleartext(application, "Organization Name", "organizationname");
-		EnterTextValue(application, editorganizationname, "Organization Name", "organizationname");
+		addtextFields_commonMethod(application, "Organization Name", "organizationname", editorganizationname, xml);
 		cleartext(application, "Address", "serviceaddress");
-		EnterTextValue(application, editserviceaddress, "Address", "serviceaddress");
+		addtextFields_commonMethod(application, "Address", "serviceaddress", editserviceaddress, xml);
 		cleartext(application, "Complement", "servicecomplement");
-		EnterTextValue(application, editservicecomplement, "Complement", "servicecomplement");
+		addtextFields_commonMethod(application, "Complement", "servicecomplement", editservicecomplement, xml);
 		cleartext(application, "Postal Code", "servicepostalcode");
-		EnterTextValue(application, editservicepostalcode, "Postal Code", "servicepostalcode");
+		addtextFields_commonMethod(application, "Postal Code", "servicepostalcode", editservicepostalcode, xml);
 		cleartext(application, "City", "servicecity");
-		EnterTextValue(application, editservicecity, "City", "servicecity");
+		addtextFields_commonMethod(application, "City", "servicecity", editservicecity, xml);
 		cleartext(application, "State", "servicestate");
-		EnterTextValue(application, editservicestate, "State", "servicestate");
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/country")));
-		addDropdownValues(application, "Country", "country", editcountry);
+		addtextFields_commonMethod(application, "State", "servicestate", editservicestate, xml);
+		ScrolltoElement(application, "country", xml);
+		addDropdownValues_commonMethod(application, "Country", "country", editcountry, xml);
 		cleartext(application, "Phone", "servicephone");
-		EnterTextValue(application, editservicephone, "Phone", "servicephone");
+		addtextFields_commonMethod(application, "Phone", "servicephone", editservicephone, xml);
 		cleartext(application, "Fax", "servicefax");
-		EnterTextValue(application, editservicefax, "Fax", "servicefax");
+		addtextFields_commonMethod(application, "Fax", "servicefax", editservicefax, xml);
 		cleartext(application, "Email", "serviceemail");
-		EnterTextValue(application, editemail, "Email", "serviceemail");
+		addtextFields_commonMethod(application, "Email", "serviceemail", editemail, xml);
 		Thread.sleep(2000);
-		
-		CustomJavaScriptExecute("window.scrollTo(0, document.body.scrollHeight)");
-		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		//JavascriptExecutor executor =(JavascriptExecutor)driver;
-		WebElement Nextbutton= getwebelement(xml.getlocator("//locators/" + application + "/editservice_next"));
-		//((JavascriptExecutor)driver). executeScript("arguments[0]. click();", Nextbutton);
-		safeJavaScriptClick(Nextbutton);
-		//click(application, "Next", "nextbutton");
+		scrolltoend();
+		click_commonMethod(application, "Next", "editservice_next", xml);
 							
 			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 			{
 			Log.info("Navigated to view service page");
 			System.out.println("Navigated to view service page");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to view service page");
-			compareText(application, "Service updated success msg", "serviceupdate_successmsg", "Service successfully updated.");
+			compareText(application, "Service updated success msg", "serviceupdate_successmsg", "Service successfully updated.", xml);
 			sa.assertAll();
 			}
 			else
@@ -1596,40 +1292,41 @@ public void verifyorderpanel_editorder(String application, String editorderno, S
 				System.out.println("Service not updated");
 			
 			//verify edit service details in view service page
-				WebElement cityelement= getwebelement(xml.getlocator("//locators/" + application + "/servicecityvalue"));
-				scrolltoview(cityelement);
-				compareText(application, "Service Identification", "sidvalue", editsid);
-				compareText(application, "Service Type", "servicepanel_servicetypevalue", servicetype);
-				compareText(application, "Email", "emailvalue", editemail);
-				compareText(application, "Phone Contact", "phonecontactvalue", editphonecontact);
-				compareText(application, "Remarks", "remarksvalue", EditRemarks);
-				compareText(application, "User", "userfieldvalue", edituser);
-				compareText(application, "Default Email", "defaultemailvalue", editdefaultemail);
-				compareText(application, "First Name", "servicefirstnamevalue", editservicefirstname);
-				compareText(application, "Last Name", "servicelastnamevalue", editservicelastname);
-				compareText(application, "Organisation Name", "organizationnamevalue", editorganizationname);
-				compareText(application, "Address", "serviceaddressvalue", editserviceaddress);
-				compareText(application, "Complement", "servicecomplementvalue", editservicecomplement);
-				compareText(application, "Postal Code", "servicepostalcodevalue", editservicepostalcode);
-				compareText(application, "City", "servicecityvalue", editservicecity);
-				compareText(application, "State", "servicestatevalue", editservicestate);
-				compareText(application, "Country", "servicecountryvalue", editcountry);
-				compareText(application, "Phone", "servicephonevalue", editservicephone);
-				compareText(application, "Fax", "servicefaxvalue", editservicefax);
-				compareText(application, "Email", "serviceemailvalue", editemail);
+				
+				ScrolltoElement(application, "servicecityvalue", xml);
+				compareText(application, "Service Identification", "sidvalue", editsid, xml);
+				compareText(application, "Service Type", "servicepanel_servicetypevalue", servicetype, xml);
+				//compareText(application, "Email", "emailvalue", editemail, xml);
+				GetText(application, "Email", "emailvalue");
+				compareText(application, "Phone Contact", "phonecontactvalue", editphonecontact, xml);
+				compareText(application, "Remarks", "remarksvalue", EditRemarks, xml);
+				compareText(application, "User", "userfieldvalue", edituser, xml);
+				compareText(application, "Default Email", "defaultemailvalue", editdefaultemail, xml);
+				compareText(application, "First Name", "servicefirstnamevalue", editservicefirstname, xml);
+				compareText(application, "Last Name", "servicelastnamevalue", editservicelastname, xml);
+				compareText(application, "Organisation Name", "organizationnamevalue", editorganizationname, xml);
+				compareText(application, "Address", "serviceaddressvalue", editserviceaddress, xml);
+				compareText(application, "Complement", "servicecomplementvalue", editservicecomplement, xml);
+				compareText(application, "Postal Code", "servicepostalcodevalue", editservicepostalcode, xml);
+				compareText(application, "City", "servicecityvalue", editservicecity, xml);
+				compareText(application, "State", "servicestatevalue", editservicestate, xml);
+				compareText(application, "Country", "servicecountryvalue", editcountry, xml);
+				compareText(application, "Phone", "servicephonevalue", editservicephone, xml);
+				compareText(application, "Fax", "servicefaxvalue", editservicefax, xml);
+				compareText(application, "Email", "serviceemailvalue", editemail, xml);
 				
 			//synchronize link in view service page
-			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
+				ScrolltoElement(application, "orderpanelheader", xml);
 			Thread.sleep(1000);
-			click(application, "Action dropdown", "serviceactiondropdown");
-			click(application, "Synchronize", "synchronizelink_servicepanel");
+			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
+			click_commonMethod(application, "Synchronize", "synchronizelink_servicepanel", xml);
 			Thread.sleep(2000);
-			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/Sync_successmsg")));
-			compareText(application, "Syncronize success message", "Sync_successmsg", "Sync started successfully. Please check the sync status of this service.");
+			ScrolltoElement(application, "Sync_successmsg", xml);
+			compareText(application, "Syncronize success message", "Sync_successmsg", "Sync started successfully. Please check the sync status of this service.", xml);
 
 			//Delete Service
-			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
-			click(application, "Action dropdown", "serviceactiondropdown");
+			ScrolltoElement(application, "orderpanelheader", xml);
+			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 			click_commonMethod(application, "Delete", "delete", xml);
 			Thread.sleep(2000);
 			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
@@ -1657,9 +1354,10 @@ public void verifyorderpanel_editorder(String application, String editorderno, S
 		Thread.sleep(1000);
 		
 		WebElement searchbutton= getwebelement(xml.getlocator("//locators/" + application + "/searchbutton"));
-		scrolltoview(searchbutton);
+		ScrolltoElement(application, "searchbutton", xml);
 		Clickon(searchbutton);
 		Thread.sleep(2000);
+		scrolltoend();
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/serviceradiobutton")));
 		Thread.sleep(3000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorder_actiondropdown")));
@@ -1667,187 +1365,8 @@ public void verifyorderpanel_editorder(String application, String editorderno, S
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/view")));
 		Thread.sleep(3000);
 	}
-	 public void addDropdownValues(String application, String fieldname, String xpath, String expectedValueToAdd) throws InterruptedException, DocumentException {
-		  boolean availability=false;
-		try {  
-		  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
-		  if(availability) {
-			  DriverTestcase.logger.log(LogStatus.PASS, fieldname + " dropdown is displaying as expected");
-			  System.out.println(fieldname + " dropdown is displaying as expected");
-			  
-			  if(expectedValueToAdd.equalsIgnoreCase("null")) {
-				  
-				  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under "+ fieldname + " dropdown");
-				  System.out.println(" No values selected under "+ fieldname + " dropdown");
-			  }else {
-				  
-				  Clickon(getwebelement("//div[label[text()='"+ fieldname +"']]//div[text()='×']"));
-				  Thread.sleep(3000);
-				  
-				  //verify list of values inside dropdown
-				 // List<WebElement> listofvalues = driver.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
-				  List<WebElement> listofvalues = getwebelements("//div[@role='list']//span[@role='option']");
-				  
-				  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside "+ fieldname + "dropdown is:  ");
-				  System.out.println( " List of values inside "+ fieldname + "dropdown is:  ");
-				  
-					for (WebElement valuetypes : listofvalues) {
-
-								Log.info("service sub types : " + valuetypes.getText());
-								DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-								System.out.println(" " + valuetypes.getText());
-
-					}
-					
-					Thread.sleep(3000);
-				  Clickon(getwebelement("//span[text()='"+ expectedValueToAdd +"']"));
-				  Thread.sleep(3000);
-				  
-				  String actualValue=getwebelement("//div[label[text()='"+ fieldname +"']]//span").getText();
-				  DriverTestcase.logger.log(LogStatus.PASS, fieldname + " dropdown value selected as: "+ actualValue );
-				  System.out.println( fieldname + " dropdown value selected as: "+ actualValue);
-				  
-			  }
-		  }else {
-			  DriverTestcase.logger.log(LogStatus.FAIL, fieldname + " is not displaying");
-			  System.out.println(fieldname + " is not displaying");
-		  }
-		}catch(NoSuchElementException e) {
-			DriverTestcase.logger.log(LogStatus.FAIL, fieldname + " is not displaying");
-			  System.out.println(fieldname + " is not displaying");
-		}catch(Exception ee) {
-			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, " NO value selected under "+ fieldname + " dropdown");
-			System.out.println(" NO value selected under "+ fieldname + " dropdown");
-		}
-		
-	  }
 	 
-	 public void delete(String application, String xpath, String labelname, String expectedvalue) throws InterruptedException, DocumentException{
-		 Thread.sleep(1000);	
-		 Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
-			Thread.sleep(2000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on delete link");
-			
-			if(getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup")).isDisplayed())
-			{
-				click(application, "Delete", "deletebutton");
-				scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
-				compareText(application, "'"+ labelname +"' delete success message", "'"+ xpath +"'", "'"+expectedvalue+"'");
-			}
-			else
-				Log.info("Delete alert popup is not displayed");
-			}
-			
-	 
-	 public void EnterTextValue(String application, String value, String labelname, String xpath) {
-		 WebElement element = null;
-		 
-		 try {
-			 Thread.sleep(1000);
-			 element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
-			 if(element==null)
-			 {
-				 DriverTestcase.logger.log(LogStatus.FAIL, "Step: '"+labelname+"' text field not found");
-				 System.out.println(element);
-			 }
-			 else 
-			 {
-				 element.sendKeys(value);
-				 DriverTestcase.logger.log(LogStatus.PASS, "Step: Entered '"+value+"' into '"+labelname+"' text field");
-			 }
-
-		 } catch (Exception e) {
-			 DriverTestcase.logger.log(LogStatus.FAIL,"Not able to enter '"+value+"' into '"+labelname+"' text field");
-			 e.printStackTrace();
-		 }
-
-	 }
-	 
-	 public void click(String application, String labelname, String xpath) throws InterruptedException, DocumentException {
-		 WebElement element= null;
-		 		 	 
-		 try {
-			 Thread.sleep(1000);
-			 element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
-			 if(element==null)
-			 {
-				 DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
-			 }
-			 else {
-				 element.click();	
-				 DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
-			 }
-
-		 } catch (Exception e) {
-			 DriverTestcase.logger.log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
-			 e.printStackTrace();
-		 }
-	 }
-	 
-	 public void compareText(String application, String labelname, String xpath, String ExpectedText) throws InterruptedException, DocumentException {
-		 
-		 String text = null;
-		 WebElement element = null;
-		           
-		 try {
-			 Thread.sleep(1000);
-			 element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
-			 String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
-			 if(element==null)
-			 {
-				 DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
-			 }
-			 else if (emptyele!=null && emptyele.isEmpty()) {
-				 DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
-			 }else 
-			 {   
-				 text = element.getText();
-				 if(text.equals(ExpectedText)) {
-					 DriverTestcase.logger.log(LogStatus.PASS,"Step: The ExpectedText '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
-				 }
-				 else if(text.contains(ExpectedText)) {
-					 DriverTestcase.logger.log(LogStatus.PASS,"Step: The ExpectedText '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
-				 }
-				 else
-				 {
-					 DriverTestcase.logger.log(LogStatus.FAIL,"Step: The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+text+"'");
-				 }
-			 }
-		 }catch (Exception e) {
-			 DriverTestcase.logger.log(LogStatus.FAIL,"Step: The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+text+"'");
-			 e.printStackTrace();
-		 }
-
-	 }
-	 
-	 public void WarningMessage(String application, String xpath, String labelname) throws InterruptedException, DocumentException {
-		 	WebElement element= null;
-		 	try {
-		 		Thread.sleep(1000);
-		 		element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
-		 		Thread.sleep(2000);
-		 		if(element==null) {
-		 			DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
-		 		}
-		 		else
-		 		{
-		 			String WarningMsg = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getText();
-
-		 			System.out.println("'"+labelname+"' field warning  message displayed as : " + WarningMsg);
-		 			DriverTestcase.logger.log(LogStatus.PASS,
-		 					"Step : validation message for '"+labelname+"' text field displayed as : " + WarningMsg);
-		 			Log.info("'"+labelname+"' field warning message displayed as : " + WarningMsg);
-		 		}
-		 	}catch(NoSuchElementException e) {
-		 		e.printStackTrace();
-		 		System.out.println("'"+labelname+"' field warning message is not dipslaying");
-		 		DriverTestcase.logger.log(LogStatus.FAIL, "Step: '"+labelname+"' field warning message is not displaying");
-		 	}catch(Exception ed) {
-		 		ed.printStackTrace();
-		 	}
-	 }
-
+	
 	 	public void cleartext(String application, String labelname, String xpath) throws InterruptedException, DocumentException {
 	 		 WebElement element= null;
 	 		 try {

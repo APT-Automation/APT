@@ -128,6 +128,7 @@
 <phonecontacttextfieldvalue>//label[text()='Phone Contact']/following-sibling::input</phonecontacttextfieldvalue>
 <remarktextarea>//textarea[contains(@name,'remark')]</remarktextarea>
 <remarktextareavalue>//div[label[text()='Remark']]//textarea</remarktextareavalue>
+<service_country>(//label[text()='Country']/parent::div//div)[3]</service_country>
 <performancereportingcheckbox>//input[@id='performanceReporting']</performancereportingcheckbox>
 <okbutton>//span[contains(text(),'OK')]</okbutton>
 <cancelbutton>//span[contains(text(),'Cancel')]</cancelbutton>
@@ -172,7 +173,7 @@
 <ordernumbervalue>//label[text()='Order/Contract Number (Parent SID)']/parent::div/following-sibling::div[@class='customLabelValue form-label']</ordernumbervalue>
 <ordervoicelinenumbervalue>//label[text()='RFI/RFQ/IP Voice Line Number']/parent::div/following-sibling::div[@class='customLabelValue form-label']</ordervoicelinenumbervalue>
 <changeordervoicelinenumber>//label[text()='RFI / RFQ /IP Voice Line number']/following-sibling::input</changeordervoicelinenumber>
-<changeordernumber>(//label[text()='Order/Contract Number (Parent SID)']/following-sibling::input)[2]</changeordernumber>
+<changeordernumber>//input[@id='orderNameNew']</changeordernumber>
 <changeorder_selectorderswitch>//div[@class='react-switch-bg']</changeorder_selectorderswitch>
 <changeorder_chooseorderdropdown>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::div//div[2]</changeorder_chooseorderdropdown>
 <changeorder_backbutton>//span[contains(text(),'Back')]</changeorder_backbutton>
@@ -185,7 +186,7 @@
 <changeorderheader>//div[text()='Change Order']</changeorderheader>
 <createorder_button>//button//span[text()='Create Order']</createorder_button>
 <changeorder_dropdownlist>//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false']</changeorder_dropdownlist>
-<changeorder_cancelbutton>(//span[contains(text(),'Cancel')])[2]</changeorder_cancelbutton>
+<changeorder_cancelbutton>//span[contains(text(),'Cancel')]</changeorder_cancelbutton>
 
 <!-- service panel -->
 <servicepanel_serviceidentificationvalue>//div[label[contains(text(),'Service Identification')]]/div</servicepanel_serviceidentificationvalue>
@@ -293,6 +294,5 @@
 
 
 </DomainManagementservice>
-
 
 </locators>

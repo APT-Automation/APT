@@ -88,7 +88,7 @@ public class APT_NGINTest extends DriverTestcase{
 	 public void verifyServicepanelinviewservicepage(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyServicepanelinviewservicepage");
-		APT_NGIN.get().searchorder("nginservice", map.get("ServiceIdentification"));
+		//APT_NGIN.get().searchorder("nginservice", map.get("ServiceIdentification"));
 		APT_NGIN.get().verifyservicepanelInformationinviewservicepage("nginservice", map.get("ServiceIdentification"), map.get("ServiceType"), map.get("Remarks"));
 		APT_NGIN.get().verifyservicepanel_links("nginservice", map.get("EditRemarks"), map.get("Remarks"), map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"), map.get("BulkJob_FilePath"));
 	}
@@ -142,7 +142,7 @@ public class APT_NGINTest extends DriverTestcase{
 	 public void AddCustomer(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyAddCustomer");
-		APT_NGIN.get().searchorder("nginservice", map.get("ServiceIdentification"));
+		//APT_NGIN.get().searchorder("nginservice", map.get("ServiceIdentification"));
 		APT_NGIN.get().AddCustomer("nginservice", map.get("ResellerName"), map.get("DefaultValue_checkbox"), map.get("Configure_checkbox"), map.get("Customer_Country"), map.get("Email"), map.get("Phone"), map.get("Fax"), map.get("Reseller_City"), map.get("Reseller_StreetName"), map.get("Reseller_StreetNumber"), map.get("Reseller_POBox"), map.get("Reseller_Zipcode"));
 	
 	}
@@ -151,7 +151,7 @@ public class APT_NGINTest extends DriverTestcase{
 	 public void verifyCustomerLinks(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyCustomerLinksinviewservicepage");
-		APT_NGIN.get().searchorder("nginservice", map.get("ServiceIdentification"));
+		//APT_NGIN.get().searchorder("nginservice", map.get("ServiceIdentification"));
 		APT_NGIN.get().verifyCustomerLinks("nginservice", map.get("Reseller_EditResellerName"), map.get("Reseller_EditEmail"), map.get("Reseller_EditCity"), map.get("Reseller_EditStreetName"), map.get("Reseller_EditStreetNumber"), map.get("Reseller_EditPOBox"), map.get("Reseller_EditZipcode"), map.get("Reseller_EditPhone"), map.get("Reseller_EditFax"));
 	
 	}
@@ -160,7 +160,7 @@ public class APT_NGINTest extends DriverTestcase{
 	 public void verifySANpanelinviewservicepage(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifySANpanelinviewservicepage");
-		//APT_NGIN.get().searchorder("nginservice", map.get("ServiceIdentification"));
+		APT_NGIN.get().searchorder("nginservice", map.get("ServiceIdentification"));
 		APT_NGIN.get().verifySANpanel("nginservice");
 	
 	}
@@ -169,8 +169,8 @@ public class APT_NGINTest extends DriverTestcase{
 	 public void AddSAN(Map<String, String> map) throws InterruptedException, DocumentException, IOException, InvalidFormatException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyAddSAN");
-		APT_NGIN.get().searchorder("nginservice", map.get("ServiceIdentification"));
-		APT_NGIN.get().AddSAN("nginservice", map.get("Customer_Country"), map.get("AddSAN_SANNumber"), map.get("PreDestinationNumber"), map.get("Ringtonumber"), map.get("Routingforpayphone_value"), map.get("Routingformobile_value"), map.get("Defaultrouting_value"), map.get("RingToNumber_Checkbox"), map.get("AnnouncementToPlay_Checkbox"), map.get("ComplexRouting_Checkbox"), map.get("defaultroutebusy_value"), map.get("noanswer_value"), map.get("networkcongestion"), map.get("ResellerName"), map.get("DefaultValue_checkbox"), map.get("Configure_checkbox"), map.get("Email"), map.get("Phone"), map.get("Fax"), map.get("Reseller_City"), map.get("Reseller_StreetName"), map.get("Reseller_StreetNumber"), map.get("Reseller_POBox"), map.get("Reseller_Zipcode"), map.get("ServiceProfile"));
+		//APT_NGIN.get().searchorder("nginservice", map.get("ServiceIdentification"));
+		APT_NGIN.get().AddSAN("nginservice", map.get("Customer_Country"), map.get("AddSAN_SANNumber"), map.get("PreDestinationNumber"), map.get("Ringtonumber"), map.get("Routingforpayphone_value"), map.get("Routingformobile_value"), map.get("Defaultrouting_value"), map.get("RingToNumber_Checkbox"), map.get("AnnouncementToPlay_Checkbox"), map.get("ComplexRouting_Checkbox"), map.get("defaultroutebusy_value"), map.get("noanswer_value"), map.get("networkcongestion"), map.get("ResellerName"), map.get("DefaultValue_checkbox"), map.get("Configure_checkbox"), map.get("Email"), map.get("Phone"), map.get("Fax"), map.get("Reseller_City"), map.get("Reseller_StreetName"), map.get("Reseller_StreetNumber"), map.get("Reseller_POBox"), map.get("Reseller_Zipcode"), map.get("ServiceProfile"), map.get("Maxcallduration"), map.get("Chargebandname"), map.get("InternationalOutgoingCalls_checkbox"), map.get("InternationalIncomingCalls_checkbox"), map.get("MobileCallsAllowed_checkbox"), map.get("PayphoneBlockingenabled_checkbox"), map.get("Supervisionfieldvalue"), map.get("NoReplyTimerValue"), map.get("WebAccessBlocked_checkbox"), map.get("CPSFreeFormatValue"), map.get("SANBlock_Checkbox"), map.get("FOCEnabled_Checkbox"), map.get("EnableLogicalRouting_Checkbox"), map.get("EnablePriceAnnouncement_Checkbox"));
 	
 	}
 	
@@ -179,10 +179,11 @@ public class APT_NGINTest extends DriverTestcase{
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifySANLinks");
 		APT_NGIN.get().searchorder("nginservice", map.get("ServiceIdentification"));
-		APT_NGIN.get().verifySANLinks("nginservice", map.get("CustomerNameValue"), map.get("SANNumberValue"), map.get("PortInNumber"), map.get("PortOutNumber"), map.get("ServiceProfile"), map.get("Maxcallduration"), map.get("Chargebandname"), map.get("PreDestinationNumber"), map.get("Ringtonumber"), map.get("AnnouncementToPlay_value"), map.get("Routingforpayphone_value"), map.get("Routingformobile_value"), map.get("Defaultrouting_value"), map.get("RingToNumber_Checkbox"), map.get("AnnouncementToPlay_Checkbox"), map.get("ComplexRouting_Checkbox"), map.get("defaultroutebusy_value"), map.get("noanswer_value"), map.get("networkcongestion"), map.get("PriceAnnouncementValue"), map.get("PriceAnnOriginvalue"), map.get("InternationalOutgoingCalls_checkedvalue"), map.get("InternationalIncomingCalls_checkedvalue"), map.get("MobileCallsAllowed_checkedvalue"), map.get("PayphoneBlockingenabled_checkedvalue"), map.get("Supervisionfieldvalue"), map.get("NoReplyTimerValue"), map.get("WebAccessBlockedvalue"), map.get("CPSFreeFormatValue"), map.get("SANBlockEnabled_Checkedvalue"), map.get("FOCEnabled_Checkedvalue"), map.get("EnablePriceAnnouncement_Checkedvalue"), map.get("SelectSANSearchType"), map.get("InterruptiblePriceAnnouncement_Checkbox"), map.get("EnablePriceAnnouncement_Checkbox"), map.get("ValueInPrice"), map.get("SendFCI_Checkbox"), map.get("SendSCI_Checkbox"), map.get("EnableCallerConfirmation_Checkbox"), map.get("CallerConfirmationAnnouncementValue"), map.get("CallerConfirmationDigitValue"), map.get("NumberOfRepetitionsAllowedValue"), map.get("Edit_InterruptiblePriceAnnouncement_Checkbox"), map.get("Edit_EnablePriceAnnouncement_Checkbox"), map.get("Edit_ValueInPrice"), map.get("Edit_SendFCI_Checkbox"), map.get("Edit_SendSCI_Checkbox"), map.get("Edit_EnableCallerConfirmation_Checkbox"), map.get("Edit_CallerConfirmationAnnouncementValue"), map.get("Edit_CallerConfirmationDigitValue"), map.get("Edit_NumberOfRepetitionsAllowedValue"), map.get("Edit_ChargeBandName"), map.get("Edit_PriceAnnouncementValue"), map.get("Edit_PriceAnnOriginvalue"));
+		APT_NGIN.get().verifySANLinks("nginservice", map.get("CustomerNameValue"), map.get("SANNumberValue"), map.get("PortInNumber"), map.get("PortOutNumber"), map.get("Edit_ServiceProfile"), map.get("Supervisionfieldvalue"), map.get("Edit_SupervisionValue"), map.get("Maxcallduration"), map.get("Chargebandname"), map.get("PreDestinationNumber"), map.get("Ringtonumber"), map.get("AnnouncementToPlay_value"), map.get("Routingforpayphone_value"), map.get("Routingformobile_value"), map.get("Defaultrouting_value"), map.get("RingToNumber_Checkbox"), map.get("AnnouncementToPlay_Checkbox"), map.get("ComplexRouting_Checkbox"), map.get("defaultroutebusy_value"), map.get("noanswer_value"), map.get("networkcongestion"), map.get("PriceAnnouncementValue"), map.get("PriceAnnOriginvalue"), map.get("InternationalOutgoingCalls_checkbox"), map.get("InternationalIncomingCalls_checkbox"), map.get("MobileCallsAllowed_checkbox"), map.get("PayphoneBlockingenabled_checkbox"), map.get("NoReplyTimerValue"), map.get("WebAccessBlocked_checkbox"), map.get("CPSFreeFormatValue"), map.get("SANBlock_Checkbox"), map.get("FOCEnabled_Checkbox"), map.get("EnablePriceAnnouncement_Checkbox"), map.get("SelectSANSearchType"), map.get("InterruptiblePriceAnnouncement_Checkbox"), map.get("ValueInPrice"), map.get("SendFCI_Checkbox"), map.get("SendSCI_Checkbox"), map.get("EnableCallerConfirmation_Checkbox"), map.get("CallerConfirmationAnnouncementValue"), map.get("CallerConfirmationDigitValue"), map.get("NumberOfRepetitionsAllowedValue"), map.get("Edit_InterruptiblePriceAnnouncement_Checkbox"), map.get("Edit_EnablePriceAnnouncement_Checkbox"), map.get("Edit_ValueInPrice"), map.get("Edit_SendFCI_Checkbox"), map.get("Edit_SendSCI_Checkbox"), map.get("Edit_EnableCallerConfirmation_Checkbox"), map.get("Edit_CallerConfirmationAnnouncementValue"), map.get("Edit_CallerConfirmationDigitValue"), map.get("Edit_NumberOfRepetitionsAllowedValue"), map.get("Edit_ChargeBandName"), map.get("Edit_PriceAnnouncementValue"), map.get("Edit_PriceAnnOriginvalue"), map.get("Edit_InternationalOutgoingCalls_checkbox"), map.get("Edit_InternationalIncomingCalls_checkbox"), map.get("Edit_MobileCallsAllowed_checkbox"), map.get("Edit_NoReplyTimerValue"), map.get("Edit_MaxCallDuration"), map.get("Edit_PayphoneBlockingenabled_checkbox"), map.get("Edit_WebAccessBlocked_checkbox"), map.get("Edit_SANBlock_Checkbox"), map.get("Edit_FOCEnabled_Checkbox"), map.get("Edit_RingToNumber_Checkbox"), map.get("Edit_AnnouncementToPlay_Checkbox"), map.get("Edit_ComplexRouting_Checkbox"), map.get("Edit_PreDestinationNumber"));
 		APT_NGIN.get().verifySANMove("nginservice", map.get("CustomerNameValue"), map.get("SANNumberValue"), map.get("SelectSANSearchType"), map.get("DestinationCustomerName"), map.get("SANMove_Orderno"));
 		APT_NGIN.get().verifyBulkMove("nginservice", map.get("ServiceIdentification"), map.get("CustomerNameValue"), map.get("SANNumberValue"), map.get("SelectSANSearchType"), map.get("Bulkmove_Country"), map.get("Bulkmove_Customer"), map.get("Filterfrcnumber"), map.get("Bulkmove_Service"), map.get("Customer_Country"), map.get("AddSAN_SANNumber"), map.get("Ringtonumber"), map.get("Routingforpayphone_value"), map.get("Routingformobile_value"), map.get("Defaultrouting_value"), map.get("RingToNumber_Checkbox"), map.get("AnnouncementToPlay_Checkbox"), map.get("ComplexRouting_Checkbox"), map.get("defaultroutebusy_value"), map.get("noanswer_value"), map.get("networkcongestion"), map.get("ResellerName"), map.get("DefaultValue_checkbox"), map.get("Configure_checkbox"), map.get("Email"), map.get("Phone"), map.get("Fax"), map.get("Reseller_City"), map.get("Reseller_StreetName"), map.get("Reseller_StreetNumber"), map.get("Reseller_POBox"), map.get("Reseller_Zipcode"), map.get("ServiceProfile"), map.get("Bulkmove_SANNumberValue1"), map.get("Bulkmove_SANNumberValue2"));
-		APT_NGIN.get().verifyAllDeleteOperations("nginservice", map.get("CustomerNameValue"), map.get("SelectSANSearchType"), map.get("SANNumberValue"));
+		//APT_NGIN.get().searchorder("nginservice", map.get("ServiceIdentification"));
+		//APT_NGIN.get().verifyAllDeleteOperations("nginservice", map.get("CustomerNameValue"), map.get("SelectSANSearchType"), map.get("SANNumberValue"));
 	
 	}
 
@@ -218,9 +219,8 @@ public class APT_NGINTest extends DriverTestcase{
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyNGINMessage");
 		APT_NGIN.get().verifyNGINMessage("nginservice", map.get("NGINMessage_SANNumber"));
 		
-	
 	}
 	
-	
+
 	
 }

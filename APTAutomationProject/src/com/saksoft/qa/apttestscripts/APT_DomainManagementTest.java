@@ -17,7 +17,7 @@ public class APT_DomainManagementTest extends DriverTestcase{
 	public void CreateCustomer(Map<String, String> map) throws Exception {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("CreateCustomer"); 
-		APT_DomainManageHelper.get().createnewcustomer("DomainManagementservice", map.get("Name"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
+		APT_DomainManageHelper.get().createcustomer("DomainManagementservice", map.get("Name"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
 		
 	} 
 	
@@ -50,7 +50,7 @@ public class APT_DomainManagementTest extends DriverTestcase{
 	 public void verifyservicecreation(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyservicecreation");
-		APT_DomainManageHelper.get().verifyingservicecreation("DomainManagementservice", map.get("ServiceIdentification"), map.get("Remarks"), map.get("ServiceEmail"), map.get("ServicePhoneContact"), map.get("ServiceCountry"), map.get("Passwordvalue"), map.get("ServiceDefaultEmail"), map.get("ServiceUser"), map.get("ServiceFirstName"), map.get("ServiceLastName"), map.get("OrganizationName"), map.get("ServiceAddress"), map.get("ServiceComplement"), map.get("ServicePostalCode"), map.get("ServiceCity"), map.get("ServiceState"), map.get("ServicePhone"), map.get("ServiceFax"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ServiceType"));
+		APT_DomainManageHelper.get().verifyservicecreation("DomainManagementservice", map.get("ServiceIdentification"), map.get("Remarks"), map.get("ServiceEmail"), map.get("ServicePhoneContact"), map.get("ServiceCountry"), map.get("Passwordvalue"), map.get("ServiceDefaultEmail"), map.get("ServiceUser"), map.get("ServiceFirstName"), map.get("ServiceLastName"), map.get("OrganizationName"), map.get("ServiceAddress"), map.get("ServiceComplement"), map.get("ServicePostalCode"), map.get("ServiceCity"), map.get("ServiceState"), map.get("ServicePhone"), map.get("ServiceFax"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ServiceType"));
 	}
 	
 
@@ -65,7 +65,7 @@ public class APT_DomainManagementTest extends DriverTestcase{
 	}
 		
 	@Test(description = "TC-07",dataProviderClass = DataReader_PK.class, dataProvider = "Finaldatareader_Domain", priority=6)
-	public void verifyservicepanelInformation(Map<String, String> map) throws Exception {
+	public void verifyservicepanelInformation(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 			
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyservicepanelInformation");
 		//APT_DomainManageHelper.get().searchorder("DomainManagementservice", map.get("ServiceIdentification"));
@@ -73,4 +73,7 @@ public class APT_DomainManagementTest extends DriverTestcase{
 		APT_DomainManageHelper.get().verifyservicepanel_links("DomainManagementservice", map.get("Edit_Remarks"), map.get("Remarks"), map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("Edit_ServiceIdentification"), map.get("ServiceType"), map.get("Edit_ServiceEmail"), map.get("Edit_ServicePhoneContact"), map.get("Edit_ServiceUser"), map.get("Edit_ServiceDefaultEmail"), map.get("Edit_ServiceFirstName"), map.get("Edit_ServiceLastName"), map.get("Edit_OrganizationName"), map.get("Edit_ServiceAddress"), map.get("Edit_ServiceComplement"), map.get("Edit_ServicePostalCode"), map.get("Edit_ServiceCity"), map.get("Edit_ServiceState"), map.get("Edit_ServiceCountry"), map.get("Edit_ServicePhone"), map.get("Edit_ServiceFax"));
 		
 	}
+	
+	
+
 }

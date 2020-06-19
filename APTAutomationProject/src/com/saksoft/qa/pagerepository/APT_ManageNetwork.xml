@@ -99,7 +99,7 @@
 <interface_statuspage_changedbyvalue>(//div[@role='gridcell'][@col-id='user'])[1]</interface_statuspage_changedbyvalue>
 <interface_statuspage_closebutton>(//div[@class='modal-header']//button[@type='button'])[2]</interface_statuspage_closebutton>
 <interface_statuspage_statusheader>(//div[@class='modal-body']//div[@class='heading-green-row row']//div)[2]</interface_statuspage_statusheader>
-
+<searchdevice_header>(//div[@class='heading-green-row row'])[1]//div</searchdevice_header>
 
 
 

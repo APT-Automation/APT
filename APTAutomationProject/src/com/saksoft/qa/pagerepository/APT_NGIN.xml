@@ -233,7 +233,7 @@
 <OkButton>//button[@type='submit']//span[text()='Ok']</OkButton>
 <edituser_header>//div[@class='heading-green-row row']//p</edituser_header>
 <delete_alertpopup>//div[@class='modal-content']</delete_alertpopup>
-<deletebutton>//button[text()=' Delete']</deletebutton>
+<deletebutton>//button[text()='Delete']</deletebutton>
 <deletesuccessmsg>//div[@role='alert']//span</deletesuccessmsg>
 <userspanel_header>//div[text()='Users']</userspanel_header>
 <usernamevalue>//b[text()='User Name']/parent::label/parent::div/following-sibling::div</usernamevalue>
@@ -242,7 +242,7 @@
 <postaladdressvalue>//b[text()='Postal Address']/parent::label/parent::div/following-sibling::div</postaladdressvalue>
 <emailvalue>//b[text()='Email']/parent::label/parent::div/following-sibling::div</emailvalue>
 <phonevalue>//b[text()='Phone']/parent::label/parent::div/following-sibling::div</phonevalue>
-
+<OK_button>//button[@type='submit']//span[text()='OK']</OK_button>
 <!-- Management Options panel in view service page -->
 
 <managementoptions_header>//div[text()='Management Options']</managementoptions_header>
@@ -375,7 +375,7 @@
 <defaultroutebusy>//label[text()='Default Route Busy']/following-sibling::input</defaultroutebusy>
 <noanswer>//label[text()='No Answer']/following-sibling::input</noanswer>
 <networkcongestion>//label[text()='Network Congestion']/following-sibling::input</networkcongestion>
-<customernamedropdown_valuesdisplay>(//label[text()='Customer Name']/parent::div//div[@role='list']//span)[1]</customernamedropdown_valuesdisplay>
+<customernamedropdown_valuesdisplay>(//label[text()='Customer Name']/parent::div//div[@role='list']//div[@class='sc-ifAKCX oLlzc'])[1]</customernamedropdown_valuesdisplay>
 <customernamedropdown_nomatchesfound>(//label[text()='Customer Name']/parent::div//div[@role='list']//div)[1]</customernamedropdown_nomatchesfound>
 <viewsan_link>//div[@class='dropdown-menu show']//a[text()='View SAN']</viewsan_link>
 <editsan_link>//div[@class='dropdown-menu show']//a[text()='Edit SAN']</editsan_link>
@@ -447,7 +447,7 @@
 <addsan_successmsg>//div[@role='alert']//span</addsan_successmsg>
 <manageaddnlfrc_actiondropdown>//div[contains(text(),'Manage Addnl FRC')]/following-sibling::div/div//button[text()='Action']</manageaddnlfrc_actiondropdown>
 <viewsan_customername>(//label[text()='Customer Name']/parent::div/parent::div//div)[2]</viewsan_customername>
-<viewsan_sannumber>(//label[text()='SAN(FRC) Number ']/parent::div/parent::div//div)[2]</viewsan_sannumber>
+<viewsan_sannumber>(//label[text()='SAN(FRC) Number']/parent::div/parent::div//div)[2]</viewsan_sannumber>
 <viewsan_serviceprofile>//label[text()='Service Profile']/parent::div//span</viewsan_serviceprofile>
 <viewsan_actiondropdown>//div[contains(text(),'View SAN')]/following-sibling::div/div//button[text()='Action']</viewsan_actiondropdown>
 <editsan_customername>//label[text()='Customer Name']/parent::div/parent::div//div//input</editsan_customername>
@@ -483,6 +483,9 @@
 <viewaddnlfrc_cancelbutton>(//span[contains(text(),'Cancel')])[2]</viewaddnlfrc_cancelbutton>
 <chargebandnamevalue_viewpage>//label[text()='Charge Band Name']/parent::div//div/span</chargebandnamevalue_viewpage>
 <callerconfirmationannouncementvalue_viewpage>(//label[text()='Caller Confirmation Announcement']/parent::div//div)[3]/span</callerconfirmationannouncementvalue_viewpage>
+<addsan_addbutton>//span[text()='Add']</addsan_addbutton>
+<addfrc_chargebandname>(//label[text()='Charge Band Name']/parent::div//div/input)[1]</addfrc_chargebandname>
+<editfrc_cancelbutton>(//span[contains(text(),'Cancel')])[2]</editfrc_cancelbutton>
 
 <!--  SAN Management  -->
 <managecoltnetworklink>(//div[@class='ant-menu-submenu-title'])[4]</managecoltnetworklink>
@@ -504,6 +507,8 @@
 <searchsan_announcementtoplayvalue>//label[text()='Announcement To Play']/parent::div/following-sibling::div</searchsan_announcementtoplayvalue>
 <searchsan_predestinationnumbervalue>//label[text()='Pre destination Number']/parent::div/following-sibling::div</searchsan_predestinationnumbervalue>
 <searchsan_internationalincomingcallsvalue>//label[text()='International Incoming Calls Barring']/parent::div/following-sibling::div</searchsan_internationalincomingcallsvalue>
+<searchsan_deletebutton>//button[text()='Delete']</searchsan_deletebutton>
+
 
 <!--  NGIN Message  -->
 <nginmessageslink>//li[text()='NGIN Messages']</nginmessageslink>

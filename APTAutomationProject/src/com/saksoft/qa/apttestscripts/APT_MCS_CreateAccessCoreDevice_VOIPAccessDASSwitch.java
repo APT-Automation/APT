@@ -48,21 +48,6 @@ public class APT_MCS_CreateAccessCoreDevice_VOIPAccessDASSwitch extends DriverTe
 	}
 	
 	
-	@Test(description = "TC-03",dataProviderClass = DataReader_PK.class, dataProvider = "DataReader_VOIPAccessDASSwitch_Device", priority=2)
-	public void createVOIPaccessDASswitchdevice_GitTest(Map<String, String> map) throws InterruptedException, IOException, DocumentException {
-		DriverTestcase.logger = DriverTestcase.extent.startTest("createVOIPaccessDASswitchdevice");
-		
-		APT_CreateVOIPAccessDASSwitchDeviceHelper.get().verifydevicecreation_AccessRouter("CreateAccessCoreDevice", map.get("Name"), map.get("DeviceType"), map.get("VendorModel"),map.get("Modular MSP"), 
-		map.get("Full IQNET"), map.get("IOSXR"), map.get("Telnet"), map.get("SSH"), map.get("Snmp2C"), map.get("SnmPro"), map.get("Snmprw"), 
-		map.get("SnmProNewValue"), map.get("SnmprwNewValue"), map.get("Snmp3"), map.get("Snmpv3Username"),
-		map.get("Snmpv3Authpassword"), map.get("Snmpv3Privpassword"), map.get("Snmpv3UsernameNewValue"), 
-		map.get("Snmpv3AuthpasswordNewValue"), map.get("Snmpv3PrivpasswordNewValue"), map.get("RouterID"),
-		map.get("Country"), map.get("Management Address"), map.get("ExistingCity"), map.get("ExistingCityValue"), map.get("ExistingSite"),
-		map.get("Existing SiteValue"), map.get("ExistingPremise"), map.get("Existing PremiseValue"), map.get("NewCity"), map.get("NewCityName"), map.get("NewCityCode"), 
-		map.get("NewSiteName"),map.get("NewSiteCode"), map.get("NewPremiseName"), map.get("NewPremiseCode"), map.get("NewSite"), map.get("NewPremise"));
-	
-	}
-
 	@Test(description = "TC-03", priority=3)
 	public void verifyDeviceCreationMessagefor_VOIPaccessDASswitchDevice() throws IOException, InterruptedException, DocumentException{
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyDeviceCreationMessagefor_VOIPaccessDASswitchDevice");

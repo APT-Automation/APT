@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
@@ -181,7 +182,26 @@ public class DriverHelper {
 
 		}
 	}
+	public int GetRandomNumber(int limit)
+	{
+		Random rndm = new Random();
+		return (rndm.nextInt(limit));
+	}
+	
+	public String GetRandomString(int length)
+	{
+		String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < length) 
+        { 
+            int index =  GetRandomNumber(SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
 
+	}
 	public void Getloadingcomplete(final String locator) throws InterruptedException {
 		wait.until(ExpectedConditions.attributeToBe(By.xpath(locator), "style", "display: none;"));
 		// getwebelement(xml.getlocator("//locators/StandrdQuote"));

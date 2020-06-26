@@ -53,6 +53,7 @@ import com.saksoft.qa.scripthelpers.APT_MCS_CreateVoiceGatewayDeviceHelper;
 import com.saksoft.qa.scripthelpers.APT_AutomationHelper;
 import com.saksoft.qa.scripthelpers.APT_NGINHelper;
 import com.saksoft.qa.scripthelpers.APT_DomainManagementHelper;
+import com.saksoft.qa.scripthelpers.APT_IPTransitHelper;
 import com.saksoft.qa.scripthelpers.APT_MSPLatencyHelper;
 import com.saksoft.qa.scripthelpers.APT_ManageNetworkHelper;
 import com.saksoft.qa.scripthelpers.Hss_Helper;
@@ -91,7 +92,8 @@ public class DriverTestcase {
 	public static final ThreadLocal<APT_MCS_CreateTrafficAggregatorDeviceHelper> APT_CreateTrafficAggregatorDeviceHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_MCS_CreateVoiceGatewayDeviceHelper> APT_CreateVoiceGatewayDeviceHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_MCS_CreateVOIPAccessDASSwitchDeviceHelper> APT_CreateVOIPAccessDASSwitchDeviceHelper = new InheritableThreadLocal<>();
-
+	public static final ThreadLocal<APT_IPTransitHelper> APT_IPTransitHelper = new InheritableThreadLocal<>();
+	
 	public static com.saksoft.qa.listeners.TestListener Testlistener;
 	public ThreadLocal<String> TestName = new ThreadLocal();
 	public static SessionId session_id;
@@ -168,6 +170,9 @@ public class DriverTestcase {
 		APT_ManageNetworkHelper mainmanagenetwork = new APT_ManageNetworkHelper(getwebdriver());
 		APT_MainManageNetworkHelper.set(mainmanagenetwork);
 		
+		APT_IPTransitHelper iptransit= new APT_IPTransitHelper(getwebdriver());
+		APT_IPTransitHelper.set(iptransit);
+				
 		Hss_Helper Hs = new Hss_Helper(getwebdriver());
 		Hss.set(Hs);
 		

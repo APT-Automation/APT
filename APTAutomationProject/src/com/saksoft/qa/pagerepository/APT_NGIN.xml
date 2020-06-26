@@ -531,5 +531,6 @@
 <editmessage_startnetworkcharge>//label[text()='Start Network Charge']/following-sibling::div//input</editmessage_startnetworkcharge>
 <editmessage_okbutton>//button[@type='button']//span[text()='Ok']</editmessage_okbutton>
 <editmessage_successmessage>//div[@role='alert']//span</editmessage_successmessage>
+
 </nginservice>
 </locators>

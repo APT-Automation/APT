@@ -201,8 +201,7 @@ public class APT_NGINHelper extends DriverHelper {
 					  Thread.sleep(3000);
 					  
 					  //verify list of values inside dropdown
-					  List<WebElement> listofvalues = driver
-								.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+					  List<WebElement> listofvalues = getwebelements("//div[@class='sc-ifAKCX oLlzc']");
 					  
 					  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Service Type dropdown is:  ");
 					  System.out.println( " List of values inside Service Type dropdown is:  ");
@@ -247,7 +246,7 @@ public class APT_NGINHelper extends DriverHelper {
 	}
 	
 
-	public void verifyingservicecreation(String application, String sid, String Remarks, String customadm,
+	public void verifyservicecreation(String application, String sid, String Remarks, String customadm,
 			String sanadm, String reselladm, String orderno, String rfireqno, String servicetype) throws InterruptedException, IOException, DocumentException {
 
 		//Cancel service creation
@@ -1300,7 +1299,8 @@ public class APT_NGINHelper extends DriverHelper {
 			Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "ResellerActionDropdown", xml);
 			click_commonMethod(application, "Edit", "edit", xml);
-			compareText(application, "Manage Reseller Header", "manageresellerheader", "Manage Reseller in OSP", xml);
+			GetText(application, "Manage Reseller Header", "manageresellerheader");
+			//compareText(application, "Manage Reseller Header", "manageresellerheader", "Manage Reseller in OSP", xml);
 			cleartext(application, "Email", "reseller_email");
 			addtextFields_commonMethod(application, "Email", "reseller_email", editemail, xml);
 			cleartext(application, "City", "reseller_city");
@@ -1400,8 +1400,8 @@ public class APT_NGINHelper extends DriverHelper {
 				if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
 				{
 					click_commonMethod(application, "View", "view", xml);
-					compareText(application, "Manage Reseller Header", "manageresellerheader_viewpage", "Manage Reseller in OSP", xml);
-					((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+					GetText(application, "Manage Reseller Header", "manageresellerheader_viewpage");
+					scrollToTop();
 					click_commonMethod(application, "View page Action dropdown", "viewpage_actiondropdown", xml);
 
 					//Delete link in view reseller page
@@ -4448,7 +4448,7 @@ public class APT_NGINHelper extends DriverHelper {
 		work.write(fos);
 		work.close();
 		fis.close();
-		
+
 	}
 
 }

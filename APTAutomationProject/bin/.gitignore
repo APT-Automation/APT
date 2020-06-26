@@ -1,3 +1,10 @@
+/.classpath
+/.classpath.xml
+/.project
+/.project.xml
+/.settings/
+/CreateAccessCoreDevice_Screenshots/
+/Excelfiles/
 /ExtentReports/
 /Logs/
 /Suite/
@@ -6,9 +13,9 @@
 /_classpath.xml
 /_project(1).xml
 /_project.xml
+/com/
 /debug.log
 /lib/
-/com/
 /log4j.xml
 /reportng/
 /runscript1.bat

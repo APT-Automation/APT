@@ -5367,7 +5367,7 @@ public class APT_MCS_CreateOrder_IPVPNHelper extends DriverHelper {
 //		click(application, "ACTION link", "MAS_View_ActionLink");
 		
 		
-		Log.info("---- Verified Added MAS Switch Information successfully ----");
+		Log.info("------ Verified Added MAS Switch Information successfully ------");
 	}
 
 	

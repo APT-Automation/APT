@@ -144,7 +144,7 @@ public class DriverTestcase {
 			Log.info("For FF inprogress");
 		}
 
-		dr.manage().window().maximize();
+		dr.manage().window().maximize();//a
 		WEB_DRIVER_THREAD_LOCAL.set(dr);
 		Thread.sleep(3000);
 		

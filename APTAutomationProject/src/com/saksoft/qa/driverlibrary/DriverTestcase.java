@@ -57,7 +57,7 @@ import com.saksoft.qa.scripthelpers.APT_MSPLatencyHelper;
 import com.saksoft.qa.scripthelpers.APT_ManageNetworkHelper;
 import com.saksoft.qa.scripthelpers.Hss_Helper;
 import com.saksoft.qa.scripthelpers.ImsNmbrTranslator_Helper;
-
+import com.saksoft.qa.scripthelpers.APT_MCS_CreateOrder_IPVPNHelper;
 
 
 import com.saksoft.qa.scripthelpers.APT_CreateAccessCoreDevice_ManageNetworkHelper;
@@ -76,6 +76,7 @@ public class DriverTestcase {
 	public static final ThreadLocal<APT_MSPLatencyHelper> APT_MSPLatencyHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_ManageNetworkHelper> APT_MainManageNetworkHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<Hss_Helper> Hss = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateOrder_IPVPNHelper> APT_IPVPNHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<ImsNmbrTranslator_Helper> ImsNmbrTranslator_Helper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_CreateAccessCoreDevice_ManageNetworkHelper> APT_ManageNetworkHelpr = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_MCS_CreateAccessSwitchCoreDeviceHelper> APT_CreateAccessSwitchDeviceHelper = new InheritableThreadLocal<>();
@@ -209,6 +210,9 @@ public class DriverTestcase {
 		
 		APT_MCS_CreateVoiceGatewayDeviceHelper createVoiceGatewaydevice = new APT_MCS_CreateVoiceGatewayDeviceHelper(getwebdriver());
 		APT_CreateVoiceGatewayDeviceHelper.set(createVoiceGatewaydevice);
+		
+		APT_MCS_CreateOrder_IPVPNHelper ipvpn = new APT_MCS_CreateOrder_IPVPNHelper(getwebdriver());
+		APT_IPVPNHelper.set(ipvpn);
 		
 		APT_MCS_CreateVOIPAccessDASSwitchDeviceHelper createVOIPAccessDASSwitchdevice = new APT_MCS_CreateVOIPAccessDASSwitchDeviceHelper(getwebdriver());
 		APT_CreateVOIPAccessDASSwitchDeviceHelper.set(createVOIPAccessDASSwitchdevice);

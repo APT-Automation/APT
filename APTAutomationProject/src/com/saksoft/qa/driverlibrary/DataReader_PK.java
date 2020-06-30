@@ -22,7 +22,71 @@ public class DataReader_PK {
 	}
 	
 	
-	
+	@DataProvider
+	public static Object[][] Finaldatareader_IPVPN() throws IOException {
+		
+		String filename = "APT_CreateOrder_IPVPN.xlsx";
+
+		File file = new File("src\\com\\saksoft\\qa\\datalibrary\\APT_IPVPN.xlsx");
+		
+		FileInputStream inputStream = new FileInputStream(file);
+
+		Workbook workbook = null;
+
+		String fileExtensionName = filename.substring(filename.indexOf("."));
+
+		if (fileExtensionName.equals(".xlsx")) {
+
+			workbook = new XSSFWorkbook(inputStream);
+
+		}
+
+		else if (fileExtensionName.equals(".xls")) {
+
+			workbook = new HSSFWorkbook(inputStream);
+
+		}
+
+		Sheet sheet = workbook.getSheet("IPVPN");
+		
+		int rowCount = sheet.getLastRowNum();
+		
+		System.out.println("total row count: "+rowCount);
+
+		int colCount = sheet.getRow(0).getLastCellNum();
+
+		System.out.println("Column count: "+colCount);
+		
+		Object[][] obj = new Object[rowCount][1];
+
+		for (int i = 0; i < rowCount; i++) {
+
+			Map<Object, Object> datamap = new HashMap<Object, Object>();
+
+			for (int j = 0; j < colCount; j++) {
+				//if(sheet.getRow(i)==null&& sheet.getRow(i).getCell(j)==null)
+				if(sheet.getRow(i)==null)
+				{
+					System.out.println("Excel has null rows or columns");
+					break;
+				}
+				//else 
+				else
+				{
+				String value= sheet.getRow(i+1).getCell(j)==null?null:sheet.getRow(i + 1).getCell(j).toString();
+				//datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+				datamap.put(sheet.getRow(0).getCell(j).toString(), value);
+				}
+			}
+
+			obj[i][0] = datamap;
+			
+
+			System.out.println("The values found are " + obj[i][0]);
+		}
+
+		return obj;
+	}
 	
 	@DataProvider(parallel =true)
 	public static Object[][] Finaldatareader() throws IOException {

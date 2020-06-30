@@ -17,7 +17,7 @@ public class IMSN_Translator extends DriverTestcase {
 
 		DriverTestcase.logger = DriverTestcase.extent.startTest("manageColtNetwork");
 
-		System.out.println("-------Login functionality------------1");
+		System.out.println("--Login functionality--");
 		login.APT_Login_1();
 
 		System.out.println("Login is done");

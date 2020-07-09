@@ -16784,8 +16784,6 @@ if(CircuitReference.equalsIgnoreCase("null")) {
 	   //Get back to prevoius tab
 //	   driver.close();
 	  
-	   
-//	   sa.assertAll();
    		
    }
    	

@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<locators>
+<voiceline>
+
+<ManageCustomerServiceLink>(//div[@class='ant-menu-submenu-title'])[2]</ManageCustomerServiceLink>
+<CreateOrderServiceLink>//li[text()='Create Order/Service']</CreateOrderServiceLink>
+<entercustomernamefield>//input[@id='customerName']</entercustomernamefield>
+<chooseCustomerdropdown>//div[label[text()='Customer']]//input</chooseCustomerdropdown>
+
+<Next_Button>//button//Span[text()='Next']</Next_Button>
+
+<mcslink>//a[contains(text(),"Manage Customer's Service")]</mcslink>
+<createcustomerlink>//li[text()='Create Customer']</createcustomerlink>
+<createorderlink>//li[text()='Create Order/Service']</createorderlink>
+
+<!-- Create Customer Page -->
+<createcustomer_header>//div[@class='heading-green-row row']//p</createcustomer_header>
+<nametextfield>//input[@id='name']</nametextfield>
+<maindomaintextfield>//input[@id='mainDomain']</maindomaintextfield>
+<country>//div[label[contains(text(),'Country')]]//input</country>
+<ocntextfield>//input[@id='ocn']</ocntextfield>
+<referencetextfield>//input[@id='reference']</referencetextfield>
+<technicalcontactnametextfield>//input[@id='techinicalContactName']</technicalcontactnametextfield>
+<typedropdown>//div[label[contains(text(),'Type')]]//input</typedropdown>
+<emailtextfield>//input[@id='email']</emailtextfield>
+<phonetextfield>//input[@id='phone']</phonetextfield>
+<faxtextfield>//input[@id='fax']</faxtextfield>
+<enablededicatedportalcheckbox>//input[@id='enabledDedicatedPortal']</enablededicatedportalcheckbox>
+<dedicatedportaldropdown>//div[label[text()='Dedicated Portal']]//input</dedicatedportaldropdown>
+<okbutton>//span[contains(text(),'OK')]</okbutton>
+<customercreationsuccessmsg>//div[@role='alert']//span</customercreationsuccessmsg>
+<clearbutton>//span[text()='Clear']</clearbutton>
+<clearcountryvalue>//label[text()='Country']/parent::div//div[text()='×']</clearcountryvalue>
+<cleartypevalue>//label[text()='Type']/parent::div//div[text()='×']</cleartypevalue>
+
+<!--  Verify warning messages -->
+<customernamewarngmsg>//input[@id='name']/parent::div//div</customernamewarngmsg>
+<countrywarngmsg>//div[label[contains(text(),'Country')]]/following-sibling::div</countrywarngmsg>
+<ocnwarngmsg>//input[@id='ocn']/parent::div//div</ocnwarngmsg>
+<typewarngmsg>//div[label[contains(text(),'Type')]]/following-sibling::div</typewarngmsg>
+<emailwarngmsg>//input[@id='email']/parent::div//div</emailwarngmsg>
+<customer_createorderpage_warngmsg>//div[text()='Customer']</customer_createorderpage_warngmsg>
+<sidwarngmsg>//input[@id='serviceIdentification']/parent::div//div</sidwarngmsg>
+
+
+<!--  Verify Customer details panel  -->
+<customerdetailsheader>//div[text()='Customer Details']</customerdetailsheader>
+<Name_Text>(//div//label[@for='name'])[1]</Name_Text>
+<Name_Value>//label[text()='Legal Customer Name']/parent::div/parent::div//div[2]</Name_Value>
+<MainDomain_Text>(//div//label[@for='name'])[2]</MainDomain_Text>
+<MainDomain_Value>//label[text()='Main Domain']/parent::div/parent::div//div[2]</MainDomain_Value>
+<Country_Text>(//div//label[@for='name'])[3]</Country_Text>
+<Country_Value>//label[text()='Country']/parent::div/parent::div//div[2]</Country_Value>
+<OCN_Text>(//div//label[@for='name'])[4]</OCN_Text>
+<OCN_Value>//label[text()='OCN']/parent::div/parent::div//div[2]</OCN_Value>
+<Reference_Text>(//div//label[@for='name'])[5]</Reference_Text>
+<Reference_Value>//label[text()='Reference']/parent::div/parent::div//div[2]</Reference_Value>
+<Type_Text>(//div//label[@for='name'])[6]</Type_Text>
+<Type_Value>//label[text()='Type']/parent::div/parent::div//div[2]</Type_Value>
+<TechnicalContactName_Text>(//div//label[@for='name'])[7]</TechnicalContactName_Text>
+<TechnicalContactName_Value>//label[text()='Technical Contact Name']/parent::div/parent::div//div[2]</TechnicalContactName_Value>
+<Email_Text>(//div//label[@for='name'])[8]</Email_Text>
+<Email_Value>//label[text()='Email']/parent::div/parent::div//div[2]</Email_Value>
+<Phone_Text>(//div//label[@for='name'])[9]</Phone_Text>
+<Phone_Value>//label[text()='Phone']/parent::div/parent::div//div[2]</Phone_Value>
+<Fax_Text>(//div//label[@for='name'])[10]</Fax_Text>
+<Fax_Value>//label[text()='Fax']/parent::div/parent::div//div[2]</Fax_Value>
+
+
+<!-- create order/service page -->
+<!-- <nametextfield>//input[@id='customerSearch']</nametextfield> -->
+<createordernametextfield>//input[@id='customerName']</createordernametextfield>
+<choosecustomerdropdown>//div[label[text()='Customer']]//input</choosecustomerdropdown>
+<customerdropdown>//div[label[text()='Customer']]/div</customerdropdown>
+<nextbutton>//span[contains(text(),'Next')]</nextbutton>
+<choosocustomerwarningmsg>//body/div[@id='root']/div/div[contains(@class,'app-container app-theme-white fixed-header fixed-sidebar fixed-footer')]/div[contains(@class,'app-main')]/div[contains(@class,'app-main__outer')]/div[contains(@class,'app-main__inner')]/div[contains(@class,'div-border div-margin container')]/form/div[contains(@class,'div-margin row')]/div[contains(@class,'col-12 col-sm-12 col-md-3')]/div[contains(@class,'position-relative form-group')]/div[2]</choosocustomerwarningmsg>
+<leaglcustomername>//div[div[label[text()='Legal Customer Name']]]/div[2]</leaglcustomername>
+<maindomain>//div[div[label[text()='Main Domain']]]/div[2]</maindomain>
+<country>//div[div[label[text()='Country']]]/div[2]</country>
+<ocn>//div[div[label[text()='OCN']]]/div[2]</ocn>
+<reference>//div[div[label[text()='Reference']]]/div[2]</reference>
+<type>//div[div[label[text()='Type']]]/div[2]</type>
+<technicalcontactname>//div[div[label[text()='Technical Contact Name']]]/div[2]</technicalcontactname>
+<email>//div[div[label[text()='Email']]]/div[2]</email>
+<phone>//div[div[label[text()='Phone']]]/div[2]</phone>
+<fax>//div[div[label[text()='Fax']]]/div[2]</fax>
+<dedicatedportal>//div[div[label[text()='Dedicated Portal']]]/div[2]</dedicatedportal>
+<useractionbutton>//button[@id='dropdown-basic-button']</useractionbutton>
+<adduserbutton>//a[contains(text(),'Add')]</adduserbutton>
+<viewpage_backbutton>//span[text()='Back']</viewpage_backbutton>
+
+<!-- Create Order/service panel in view customer page -->
+<CreateOrderHeader>//div[text()='Create Order / Service']</CreateOrderHeader>
+<ordercontractnumber>//div[div[label[text()='Order/Contract Number']]]//input[@size='9']</ordercontractnumber>
+<selectorderswitch>(//div[@class='react-switch-bg'])[1]/following-sibling::div[@class='react-switch-handle']</selectorderswitch>
+<createorderswitch>//form[@name='createOrder']//div[2]//div[1]//div[3]//div[1]//div[1]//div[1]</createorderswitch>
+<rfireqiptextfield>//div[contains(@class,'col-md-3 col-sm-12 col-12')]//input[@id='rfiRfqIpVoiceLineNo']</rfireqiptextfield>
+<existingorderdropdown>//label[text()='Order/Contract Number(Parent SID)']/parent::div//div//input</existingorderdropdown>
+<existingorderdropdownvalue>//span[text()='12345']</existingorderdropdownvalue>
+<createorderbutton>//button//span[text()='Create Order']</createorderbutton>
+<newordertextfield>//input[@id='orderName']</newordertextfield>
+<newrfireqtextfield>//div[@class='form-group']//input[@id='rfiRfqIpVoiceLineNo']</newrfireqtextfield>
+<OrderCreatedSuccessMsg>//div[@role='alert']//span[text()='Order created successfully']</OrderCreatedSuccessMsg>
+
+<order_contractnumber_warngmsg>//div[label[contains(text(),'Order/Contract Number(Parent SID)')]]/following-sibling::span</order_contractnumber_warngmsg>
+<servicetype_warngmsg>//div[label[contains(text(),'Service Type')]]/following-sibling::span</servicetype_warngmsg>
+<createorder_header>//div[text()='Create Order / Service']</createorder_header>
+<servicetypetextfield>//div[div[label[text()='Service Type']]]//input</servicetypetextfield>
+<networkconfigurationinputfield>//div[div[label[text()='Network Configuration']]]//input</networkconfigurationinputfield>
+<OrderContractNumber_Select>(//div[@class='react-dropdown-select-content react-dropdown-select-type-single css-jznujr-ContentComponent e1gn6jc30'])[1]</OrderContractNumber_Select>
+<changeorder_cancelbutton>//span[contains(text(),'Cancel')]</changeorder_cancelbutton>
+
+<!-- Service Creation Form -->
+<createorderservice_header>//div//p[text()='Create Order / Service']</createorderservice_header>
+<serviceidentificationtextfield>//input[@id='serviceIdentification']</serviceidentificationtextfield>
+<servicetypevalue>//div[label[text()='Service Type']]/following-sibling::div</servicetypevalue>
+<resellercode_textfield>//input[@id='resellerCode']</resellercode_textfield>
+<thirdpartyinternet_checkbox>//input[@id='thirdPartyInternet']</thirdpartyinternet_checkbox>
+<emailtextfield>//input[@id='email']</emailtextfield>
+<emailtextfieldvalue>//div[label[text()='Email']]//input</emailtextfieldvalue>
+<phonecontacttextfield>//input[@id='phoneContact']</phonecontacttextfield>
+<phonecontacttextfieldvalue>//div[label[text()='Phone Contact']]//input</phonecontacttextfieldvalue>
+<remarktextarea>//textarea[contains(@name,'remark')]</remarktextarea>
+<remarktextareavalue>//div[label[text()='Remark']]//textarea</remarktextareavalue>
+<packagefield>(//div[label[text()='Package']]//div/div)[1]</packagefield>
+<managedservice_checkbox>//label[text()='Managed Service']/parent::div//input</managedservice_checkbox>
+<syslogevent_checkbox>//label[text()='Syslog Event View']/parent::div//input</syslogevent_checkbox>
+<servicestatusview_checkbox>//label[text()='Service Status View']/parent::div//input</servicestatusview_checkbox>
+<routerconfigview_checkbox>//label[text()='Router Configuration View']/parent::div//input</routerconfigview_checkbox>
+<performancereporting_checkbox>//label[text()='Performance Reporting']/parent::div//input</performancereporting_checkbox>
+<proactivenotification_checkbox>//label[text()='Pro-active Notification']/parent::div//input</proactivenotification_checkbox>
+<dialuseradministration_checkbox>//label[text()='Dial User Administration']/parent::div//input</dialuseradministration_checkbox>
+<cancelbutton>//span[contains(text(),'Cancel')]</cancelbutton>
+<servicecreationmessage>//div[@role='alert']//span</servicecreationmessage>
+<servicetype_value>//label[text()='Service Type']/following-sibling::div</servicetype_value>
+<emailaddarrow>//label[text()='Email']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</emailaddarrow>
+<phoneaddarrow>//label[text()='Phone Contact']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</phoneaddarrow>
+<emailremovearrow>(//label[text()='Email']/parent::div/parent::div/following-sibling::div//button//span)[2]</emailremovearrow>
+<phoneremovearrow>(//label[text()='Phone Contact']/parent::div/parent::div/following-sibling::div//button//span)[2]</phoneremovearrow>
+<selectedemail>//select[@name='selectedEmail']//option</selectedemail>
+<selectedphone>//select[@name='selectedPhoneContact']//option</selectedphone>
+<notificationmanagementteam_dropdown>//label[text()='Notification Management Team']/parent::div//input</notificationmanagementteam_dropdown>
+<managesubnets_link>//div[@class='dropdown-menu show']//a[text()='Manage Subnets']</managesubnets_link>
+<managesubnet_header>//div[@class='modal-header']//div[contains(text(),'Manage')]</managesubnet_header>
+<managesubnet_successmsg>//div[@class='modal-content']//div[@role='alert']//span</managesubnet_successmsg>
+<spacename_column>//span[text()='Space Name']</spacename_column>
+<blockname_column>//span[text()='Block Name']</blockname_column>
+<subnetname_column>//span[text()='Subnet Name']</subnetname_column>
+<startaddress_column>//span[text()='Start Address']</startaddress_column>
+<size_column>//span[text()='Size']</size_column>
+<closesymbol>//button[@type='button']//span[text()='×']</closesymbol>
+<dumppage_header>//div[@class='modal-header']//div[contains(text(),'Service')]</dumppage_header>
+<serviceretrieved_text>//div[@class='div-margin row']//textarea[contains(text(),'Service retrieved')]</serviceretrieved_text>
+<service_header>//label[text()='Service']</service_header>
+<dumppage_text>//label[text()='Service']/following-sibling::textarea</dumppage_text>
+
+<managesubnetsipv6_link>//div[@class='dropdown-menu show']//a[text()='Manage Subnets Ipv6']</managesubnetsipv6_link>
+<shownewinfovistareport_link>//div[@class='dropdown-menu show']//a[text()='Show New Infovista Report']</shownewinfovistareport_link>
+<dump_link>//div[@class='dropdown-menu show']//a[text()='Dump']</dump_link>
+
+<!-- <cancelbutton>//button[@type='submit']//span[text()='Cancel']</cancelbutton> -->
+
+<!--  Search order  -->
+<searchorderlink>//li[text()='Search Order/Service']</searchorderlink>
+<servicefield>//label[text()='Service']/following-sibling::input</servicefield>
+<searchbutton>//span[text()='Search']</searchbutton>
+<serviceradiobutton>//div[@role='gridcell']//span[contains(@class,'unchecked')]</serviceradiobutton>
+<searchorder_actiondropdown>//div[@class='dropdown']//button</searchorder_actiondropdown>
+
+<!-- order panel - view service page -->
+<orderactionbutton>//div[div[text()='Order']]//button</orderactionbutton>
+<editorderlink>//div[div[text()='Order']]//div//a[text()='Edit Order']</editorderlink>
+<changeorderlink>//a[contains(text(),'Change Order')]</changeorderlink>
+<ordernumbervalue>//label[text()='Order/Contract Number (Parent SID)']/parent::div/following-sibling::div[@class='customLabelValue form-label']</ordernumbervalue>
+<ordervoicelinenumbervalue>//label[text()='RFI/RFQ/IP Voice Line Number']/parent::div/following-sibling::div[@class='customLabelValue form-label']</ordervoicelinenumbervalue>
+<changeordervoicelinenumber>//label[text()='RFI / RFQ /IP Voice Line number']/following-sibling::input</changeordervoicelinenumber>
+<changeordernumber>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::input</changeordernumber>
+<changeorder_selectorderswitch>//div[@class='react-switch-bg']</changeorder_selectorderswitch>
+<changeorder_chooseorderdropdown>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::div//div[2]</changeorder_chooseorderdropdown>
+<changeorder_backbutton>//span[contains(text(),'Back')]</changeorder_backbutton>
+<changeorder_okbutton>//span[contains(text(),'OK')]</changeorder_okbutton>
+<orderpanelheader>//div[text()='Order']</orderpanelheader>
+<editorderheader>//div[text()='Edit Order']</editorderheader>
+<editorderno>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::input</editorderno>
+<editvoicelineno>//label[text()='RFI/RFQ/IP Voice Line Number']/following-sibling::input</editvoicelineno>
+<editorder_okbutton>(//span[contains(text(),'OK')])[1]</editorder_okbutton>
+<changeorderheader>//div[text()='Change Order']</changeorderheader>
+<createorder_button>//button//span[text()='Create Order']</createorder_button>
+<changeorder_dropdownlist>//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false']</changeorder_dropdownlist>
+
+
+<!-- service panel -->
+<servicepanel_serviceidentificationvalue>//div[label[contains(text(),'Service Identification')]]/following-sibling::div</servicepanel_serviceidentificationvalue>
+<servicepanel_servicetypevalue>//div[label[contains(text(),'Service Type')]]/following-sibling::div</servicepanel_servicetypevalue>
+<servicepanel_remarksvalue>//div[label[contains(text(),'Remark')]]/div</servicepanel_remarksvalue>
+<servicepanel_resellercode>//div[label[contains(text(),'Reseller Code')]]/following-sibling::div</servicepanel_resellercode>
+<servicepanel_email>//div[text()='Service']/parent::div/following-sibling::div[@class='row']//div[label[contains(text(),'Email')]]/following-sibling::div</servicepanel_email>
+<servicepanel_phonecontact>//div[label[contains(text(),'Phone Contact')]]/following-sibling::div</servicepanel_phonecontact>
+<servicepanel_thirdpartyinternet>//div[label[contains(text(),'3rd Party Internet')]]/following-sibling::div</servicepanel_thirdpartyinternet>
+<servicepanel_header>//div[text()='Service']</servicepanel_header>
+<serviceactiondropdown>//div[div[text()='Service']]//button</serviceactiondropdown>
+<serviceupdate_successmsg>(//div[@role='alert'])[1]</serviceupdate_successmsg>
+<manageLink>//div[@class='dropdown-menu show']//a[text()='Manage']</manageLink>
+<synchronizelink_servicepanel>//a[text()='Synchronize']</synchronizelink_servicepanel>
+<manageservice_header>//div[text()='Manage Service']</manageservice_header>
+<status_ordername>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='orderName']</status_ordername>
+<status_servicename>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceName']</status_servicename>
+<status_servicetype>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceType']</status_servicetype>
+<status_servicedetails>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceDetails']</status_servicedetails>
+<status_currentstatus>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='currentStatus']</status_currentstatus>
+<status_modificationtime>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='mTime']</status_modificationtime>
+<statuslink>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell']//a[text()='Status']</statuslink>
+<sync_ordername>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='orderName']</sync_ordername>
+<sync_servicename>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceName']</sync_servicename>
+<sync_servicetype>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceType']</sync_servicetype>
+<sync_servicedetails>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceDetails']</sync_servicedetails>
+<sync_status>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='syncStatus']</sync_status>
+<synchronizelink>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell']//a[text()='Synchronize']</synchronizelink>
+<managepage_backbutton>//span[text()='Back']</managepage_backbutton>
+<Servicestatus_popup>//div[@class='modal-content']</Servicestatus_popup>
+<servicestatus_popupclose>(//div[text()='Service Status']/following-sibling::button//span)[1]</servicestatus_popupclose>
+<changestatus_dropdown>//label[text()='Change Status']/parent::div//input</changestatus_dropdown>
+<changestatus_dropdownvalue>//label[text()='Change Status']/parent::div//span</changestatus_dropdownvalue>
+<servicestatushistory>//div[@class='modal-content']//div[@ref='eBodyViewport']//div[@role='row']</servicestatushistory>
+<Sync_successmsg>//div[@role='alert']//span</Sync_successmsg>
+<successmsg>(//div[@role='alert']//span)[1]</successmsg>
+
+<!-- Users panel in view service page -->
+
+<LoginColumn>//div[@col-id='userName']</LoginColumn>
+<NameColumn>//div[@col-id='firstName']</NameColumn>
+<EmailColumn>//div[@col-id='email']</EmailColumn>
+<RolesColumn>//div[@col-id='roles']</RolesColumn>
+<AddressColumn>//div[@col-id='postalAddress']</AddressColumn>
+<ResourcesColumn>//div[@col-id='0']</ResourcesColumn>
+<ExistingUsers>//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']</ExistingUsers>
+<UserUnchecked>//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//span[@class='ag-icon ag-icon-checkbox-unchecked']</UserUnchecked>
+<UserChecked>//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//span[@class='ag-icon ag-icon-checkbox-checked']</UserChecked>
+
+
+<!-- New User creation in view service page -->
+
+<UserActionDropdown>//div[contains(text(),'Users')]/following-sibling::div/div//button[text()='Action']</UserActionDropdown>
+<AddLink>//div[@class='dropdown-menu show']//a[text()='Add']</AddLink>
+<CreateUserHeader>//div[@class='heading-green-row row']//p</CreateUserHeader>
+<UserName>(//div[@class='position-relative form-group'])[1]//input[@id='userName']</UserName>
+<FirstName>(//div[@class='position-relative form-group'])[2]//input[@id='firstName']</FirstName>
+<SurName>(//div[@class='position-relative form-group'])[3]//input[@id='surname']</SurName>
+<PostalAddress>(//div[@class='position-relative form-group'])[4]//textarea[@name='postalAddress']</PostalAddress>
+<Email>(//div[@class='position-relative form-group'])[5]//input[@id='email']</Email>
+<Phone>(//div[@class='position-relative form-group'])[6]//input[@id='phone']</Phone>
+<Password>(//div[@class='position-relative form-group'])[9]//input[@id='password']</Password>
+<GeneratePassword>//div//span[text()='Generate Password']</GeneratePassword>
+<OkButton>//button[@type='submit']//span[text()='Ok']</OkButton>
+<edituser_header>//div[@class='heading-green-row row']//p</edituser_header>
+<delete_alertpopup>//div[@class='modal-content']</delete_alertpopup>
+<deletebutton>//button[text()='Delete']</deletebutton>
+<deletesuccessmsg>//div[@role='alert']//span</deletesuccessmsg>
+<userspanel_header>//div[@class='heading-green-row row']//div[text()='Users']</userspanel_header>
+<usernamevalue>//b[text()='User Name']/parent::label/parent::div/following-sibling::div</usernamevalue>
+<firstnamevalue>//b[text()='First Name']/parent::label/parent::div/following-sibling::div</firstnamevalue>
+<surnamevalue>//b[text()='Surname']/parent::label/parent::div/following-sibling::div</surnamevalue>
+<postaladdressvalue>//b[text()='Postal Address']/parent::label/parent::div/following-sibling::div</postaladdressvalue>
+<emailvalue>//b[text()='Email']/parent::label/parent::div/following-sibling::div</emailvalue>
+<phonevalue>//b[text()='Phone']/parent::label/parent::div/following-sibling::div</phonevalue>
+<OK_button>//button[@type='submit']//span[text()='OK']</OK_button>
+
+<!-- Management Options panel in view service page -->
+
+<managementoptions_header>//div[text()='Management Options']</managementoptions_header>
+<viewservice_managedservicevalue>//label[contains(text(),'Managed Service')]/parent::div/following-sibling::div</viewservice_managedservicevalue>
+<viewservice_syslogeventview>//label[contains(text(),'Syslog Event View')]/parent::div/following-sibling::div</viewservice_syslogeventview>
+<viewservice_servicestatusview>//label[contains(text(),'Service Status View')]/parent::div/following-sibling::div</viewservice_servicestatusview>
+<viewservice_routerconfigview>//label[contains(text(),'Router Configuration View')]/parent::div/following-sibling::div</viewservice_routerconfigview>
+<viewservice_performancereporting>//label[contains(text(),'Performance Reporting')]/parent::div/following-sibling::div</viewservice_performancereporting>
+<viewservice_proactivenotification>//label[contains(text(),'Pro-active Notification')]/parent::div/following-sibling::div</viewservice_proactivenotification>
+<viewservice_dialuseradministration>//label[contains(text(),'Dial User Administration')]/parent::div/following-sibling::div</viewservice_dialuseradministration>
+
+<edit>//div[@class='dropdown-menu show']//a[text()='Edit']</edit>
+<view>//div[@class='dropdown-menu show']//a[text()='View']</view>
+<delete>//div[@class='dropdown-menu show']//a[contains(text(),'Delete')]</delete>
+
+<breadcrumb>//ol[@class='breadcrumb']//a[text()='value']</breadcrumb>
+
+<!--  Device -->
+<asrdevice_header>//div[text()='ASR Device']</asrdevice_header>
+<adddevice_link>//a[text()='Add ASR Device']</adddevice_link>
+<adddevice_header>//p[text()='Add ASR Device']</adddevice_header>
+<imspoplocation_dropdown>//label[text()='IMS POP Location']/parent::div//input</imspoplocation_dropdown>
+<imspoplocation_warngmsg>//div[label[contains(text(),'IMS POP Location')]]/following-sibling::div</imspoplocation_warngmsg>
+<existingdevicegrid>(//div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row'])[2]</existingdevicegrid>
+<addeddevicename>(//div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row'])//b</addeddevicename>
+<addeddevice_viewlink>//div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='View']</addeddevice_viewlink>
+<addeddevice_editlink>//div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Edit']</addeddevice_editlink>
+<addeddevice_Deletefromservicelink>//div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Delete from Service']</addeddevice_Deletefromservicelink>
+<addeddevice_SelectInterfaceslink>//div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Select Interfaces']</addeddevice_SelectInterfaceslink>
+
+<!--  Edit ASR Device  -->
+<editasrdevice_header>//div[@class='heading-green-row row']//p</editasrdevice_header>
+<edit_asrdevicename>//input[@id='deviceName']</edit_asrdevicename>
+<edit_asrvendormodel>//label[text()='Vendor/Model']/parent::div//span</edit_asrvendormodel>
+<edit_managementaddressvalue>//input[@id='managementAddress']</edit_managementaddressvalue>
+<edit_asrdevice_snmpro>//input[@id='snmpro']</edit_asrdevice_snmpro>
+
+<!--  View ASR Device -->
+<viewdevice_Actiondropdown>//div[text()='Device']/following-sibling::div//button[text()='Action']</viewdevice_Actiondropdown>
+<viewdevice_Edit>//div[text()='Device']/following-sibling::div//a[text()='Edit']</viewdevice_Edit>
+<viewdevice_delete>//div[text()='Device']/following-sibling::div//a[text()='Delete']</viewdevice_delete>
+<deletealertclose>//div[@class='modal-content']//button//span[text()='×']</deletealertclose>
+<viewasrdevice_header>//div[@class='heading-green-row row']/div[text()='Device']</viewasrdevice_header>
+<asrdevicename_viewpage>//label[text()='Name']/parent::div/following-sibling::div</asrdevicename_viewpage>
+<asrvendormodel_viewpage>//label[text()='Vendor/Model']/parent::div/following-sibling::div</asrvendormodel_viewpage>
+<asrmanagementaddess_viewpage>//label[text()='Management Address']/parent::div/following-sibling::div</asrmanagementaddess_viewpage>
+<asrsnmpro_viewpage>//label[text()='Snmpro']/parent::div/following-sibling::div</asrsnmpro_viewpage>
+<asrcountry_viewpage>//label[text()='Country']/parent::div/following-sibling::div</asrcountry_viewpage>
+<asrcity_viewpage>//label[text()='City']/parent::div/following-sibling::div</asrcity_viewpage>
+<asrsite_viewpage>//label[text()='Site']/parent::div/following-sibling::div</asrsite_viewpage>
+<asrpremise_viewpage>//label[text()='Premise']/parent::div/following-sibling::div</asrpremise_viewpage>
+
+<!--  Fetch Interface -->
+<viewdevice_fetchinterfacelink>//div[text()='Device']/following-sibling::div//a[text()='Fetch Device Interfaces']</viewdevice_fetchinterfacelink>
+<fetchsuccessmsg>(//div[@role='alert']//span)[1]</fetchsuccessmsg>
+<herelink_fetchinterface>(//div[@role='alert']//span)[1]/a</herelink_fetchinterface>
+
+<!--  Manage Network  -->
+<managenetwork_header>(//div[@class='heading-green-row row'])[1]//div</managenetwork_header>
+<status_header>(//div[@class='heading-green-row row'])[2]//div</status_header>
+<synchronization_header>(//div[@class='heading-green-row row'])[3]//div</synchronization_header>
+<status_devicecolumn>//div[text()='Status']/parent::div/following-sibling::div//label[text()='Device']</status_devicecolumn>
+<status_statuscloumn>//div[text()='Status']/parent::div/following-sibling::div//label[text()='Status']</status_statuscloumn>
+<status_lastmodificationcolumn>//div[text()='Status']/parent::div/following-sibling::div//label[text()='Last Modification']</status_lastmodificationcolumn>
+<status_Action>//div[text()='Status']/parent::div/following-sibling::div//label[text()='Action']</status_Action>
+<synchronization_devicecolumn>//div[text()='Synchronization']/parent::div/following-sibling::div//label[text()='Device']</synchronization_devicecolumn>
+<synchronization_syncstatuscolumn>//div[text()='Synchronization']/parent::div/following-sibling::div//label[text()='Sync Status']</synchronization_syncstatuscolumn>
+<synchronization_fmccolumn>//div[text()='Synchronization']/parent::div/following-sibling::div//label[text()='FMC']</synchronization_fmccolumn>
+<synchronization_smartscolumn>//div[text()='Synchronization']/parent::div/following-sibling::div//label[text()='Smarts']</synchronization_smartscolumn>
+<synchronization_dcsdevice>//div[text()='Synchronization']/parent::div/following-sibling::div//label[text()='DCS']</synchronization_dcsdevice>
+<synchronization_FetchInterfacescolumn>//div[text()='Synchronization']/parent::div/following-sibling::div//label[text()='Fetch Interfaces']</synchronization_FetchInterfacescolumn>
+<synchronization_vistamartdevicecolumn>//div[text()='Synchronization']/parent::div/following-sibling::div//label[text()='VistaMart Device']</synchronization_vistamartdevicecolumn>
+<synchronization_pgwcolumn>//div[text()='Synchronization']/parent::div/following-sibling::div//label[text()='PGW']</synchronization_pgwcolumn>
+<synchronization_actioncolumn>//div[text()='Synchronization']/parent::div/following-sibling::div//label[text()='Action']</synchronization_actioncolumn>
+<status_devicevalue>(//div[text()='Status']/parent::div/following-sibling::div[@class='div-margin row']//a)[1]</status_devicevalue>
+<status_statusvalue>//div[text()='Status']/parent::div/following-sibling::div[@class='div-margin row']/div[2]</status_statusvalue>
+<status_lastmodificationvalue>//div[text()='Status']/parent::div/following-sibling::div[@class='div-margin row']/div[3]</status_lastmodificationvalue>
+<status_statuslink>(//div[text()='Status']/parent::div/following-sibling::div[@class='div-margin row']//a)[2]</status_statuslink>
+<status_viewinterfaceslink>(//div[text()='Status']/parent::div/following-sibling::div[@class='div-margin row']//a)[3]</status_viewinterfaceslink>
+<synchronization_devicevalue>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//a)[1]</synchronization_devicevalue>
+<synchronization_syncstatusvalue>//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']/div[2]/span</synchronization_syncstatusvalue>
+<synchronization_fmcvalue>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[3]//span</synchronization_fmcvalue>
+<synchronization_smartsvalue>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[4]//span</synchronization_smartsvalue>
+<synchronization_dcsvalue>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[5]//span</synchronization_dcsvalue>
+<synchronization_fetchinterfacesvalue>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[6]//span</synchronization_fetchinterfacesvalue>
+<synchronization_vistamartdevicevalue>(//div[@class='div-margin row']//div)[10]//span</synchronization_vistamartdevicevalue>
+<synchronization_pgwvalue>(//div[@class='div-margin row']//div)[11]//span</synchronization_pgwvalue>
+<synchronization_synchronizelink>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//a)[2]</synchronization_synchronizelink>
+<managenetwork_backbutton>(//div[@class='div-margin row'])[4]//button</managenetwork_backbutton>
+<fmc_datetimevalue>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[3]//span/parent::div</fmc_datetimevalue>
+<smarts_datetimevalue>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[4]//span/parent::div</smarts_datetimevalue>
+<dcs_datetime>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[5]//span/parent::div</dcs_datetime>
+<fetchinterfaces_datetime>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[6]//span/parent::div</fetchinterfaces_datetime>
+<vistamartdevice_datetime>(//div[@class='div-margin row']//div)[10]//span/parent::div</vistamartdevice_datetime>
+<pgw_datetime>(//div[@class='div-margin row']//div)[11]//span/parent::div</pgw_datetime>
+<Sync_successmsg>//div[@role='alert']//span</Sync_successmsg>
+<staus_statuspopup>//div[@class='modal-content']</staus_statuspopup>
+<Statuspage_header>//div[@class='modal-header']//div</Statuspage_header>
+<statuspage_nameheader>(//div[@class='modal-body']//div[@class='row'])[1]//label[text()='Name']</statuspage_nameheader>
+<statuspage_vendormodelheader>(//div[@class='modal-body']//div[@class='row'])[1]//label[text()='Vendor/Model']</statuspage_vendormodelheader>
+<statuspage_managementaddressheader>(//div[@class='modal-body']//div[@class='row'])[1]//label[text()='Management Address']</statuspage_managementaddressheader>
+<statuspage_snmproheader>(//div[@class='modal-body']//div[@class='row'])[1]//label[text()='Snmpro']</statuspage_snmproheader>
+<statuspage_countryheader>(//div[@class='modal-body']//div[@class='row'])[2]//label[text()='Country']</statuspage_countryheader>
+<statuspage_cityheader>(//div[@class='modal-body']//div[@class='row'])[2]//label[text()='City']</statuspage_cityheader>
+<statuspage_siteheader>(//div[@class='modal-body']//div[@class='row'])[2]//label[text()='Site']</statuspage_siteheader>
+<statuspage_premiseheader>(//div[@class='modal-body']//div[@class='row'])[2]//label[text()='Premise']</statuspage_premiseheader>
+<statuspage_namevalue>(//div[@class='modal-body']//div[@class='row'])[1]//label[text()='Name']/following-sibling::div</statuspage_namevalue>
+<statuspage_vendormodelvalue>(//div[@class='modal-body']//div[@class='row'])[1]//label[text()='Vendor/Model']/following-sibling::div</statuspage_vendormodelvalue>
+<statuspage_managementaddressvalue>(//div[@class='modal-body']//div[@class='row'])[1]//label[text()='Management Address']/following-sibling::div</statuspage_managementaddressvalue>
+<statuspage_snmprovalue>(//div[@class='modal-body']//div[@class='row'])[1]//label[text()='Snmpro']/following-sibling::div</statuspage_snmprovalue>
+<statuspage_countryvalue>(//div[@class='modal-body']//div[@class='row'])[2]//label[text()='Country']/following-sibling::div</statuspage_countryvalue>
+<statuspage_cityvalue>(//div[@class='modal-body']//div[@class='row'])[2]//label[text()='City']/following-sibling::div</statuspage_cityvalue>
+<statuspage_sitevalue>(//div[@class='modal-body']//div[@class='row'])[2]//label[text()='Site']/following-sibling::div</statuspage_sitevalue>
+<statuspage_premisevalue>(//div[@class='modal-body']//div[@class='row'])[2]//label[text()='Premise']/following-sibling::div</statuspage_premisevalue>
+<Statuspage_statusheader>//div[@class='modal-content']//div[@class='heading-green-row row']//div</Statuspage_statusheader>
+<statuspage_currentstatusfieldheader>//div[text()='Status']/parent::div/following-sibling::div[@class='div-margin row']//label[text()='Current Status']</statuspage_currentstatusfieldheader>
+<statuspage_newstatusfieldheader>//div[text()='Status']/parent::div/following-sibling::div[@class='div-margin row']//label[text()='New Status']</statuspage_newstatusfieldheader>
+<statuspage_currentstatusvalue>//div[text()='Status']/parent::div/following-sibling::div[@class='div-margin row']//label[text()='Current Status']/following-sibling::div</statuspage_currentstatusvalue>
+<statuspage_newstatusdropdown>(//div[text()='Status']/parent::div/following-sibling::div[@class='div-margin row']//label)[2]/following-sibling::select</statuspage_newstatusdropdown>
+<statuspage_newstatusdropdownvalue>((//div[text()='Status']/parent::div/following-sibling::div[@class='div-margin row']//label)[2]/following-sibling::select//option)[1]</statuspage_newstatusdropdownvalue>
+<statuspage_okbutton>(//div[@class='modal-content']//button[@type='button']//span)[3]</statuspage_okbutton>
+<statuspage_statuscolumnheader>//span[@role='columnheader'][text()='Status']</statuspage_statuscolumnheader>
+<statuspage_changedon_columnheader>//span[@role='columnheader'][text()='Changed On']</statuspage_changedon_columnheader>
+<statuspage_changedby_columnheader>//span[@role='columnheader'][text()='Changed By']</statuspage_changedby_columnheader>
+<statuspage_newstatusvalue>(//span[@role='columnheader'][text()='Status']/ancestor::div[@role='row']/following-sibling::div//div[@role='gridcell'])[1]</statuspage_newstatusvalue>
+<statuspage_changedonvalue>(//span[@role='columnheader'][text()='Status']/ancestor::div[@role='row']/following-sibling::div//div[@role='gridcell'])[2]</statuspage_changedonvalue>
+<statuspage_changedbyvalue>(//span[@role='columnheader'][text()='Status']/ancestor::div[@role='row']/following-sibling::div//div[@role='gridcell'])[3]</statuspage_changedbyvalue>
+<statuspage_closebutton>(//div[@class='modal-content']//button[@type='button'])[1]</statuspage_closebutton>
+<viewinterfacepage_header>//div[@class='modal-header']//div</viewinterfacepage_header>
+<viewinterfacepage_interfacesubheader>//div[@class='modal-body']//div[@class='heading-green-row row']/div</viewinterfacepage_interfacesubheader>
+<viewinterface_devicenamecolumnheader>(//div[@col-id='deviceName']//div[@ref='eLabel'])[1]/span[1]</viewinterface_devicenamecolumnheader>
+<interfacename_columnheader>(//div[@col-id='name']//div[@ref='eLabel'])[1]/span[1]</interfacename_columnheader>
+<interfaceaddress_columnheader>(//div[@col-id='address']//div[@ref='eLabel'])[1]/span[1]</interfaceaddress_columnheader>
+<interfacetype_columnheader>(//div[@col-id='type.desc']//div[@ref='eLabel'])[1]/span[1]</interfacetype_columnheader>
+<interfaceaddress_rowvalue>(//div[@role='row']//div[@role='gridcell'][@col-id='address'])[1]</interfaceaddress_rowvalue>
+<interfacetype_rowvalue>(//div[@role='row']//div[@role='gridcell'][@col-id='type.desc'])[1]</interfacetype_rowvalue>
+<viewinterface_status_columnheader>(//div[@col-id='currentStatus.desc']//div[@ref='eLabel'])[1]/span[1]</viewinterface_status_columnheader>
+<viewinterface_status_rowvalue>(//div[@role='row']//div[@role='gridcell'][@col-id='currentStatus.desc'])[1]</viewinterface_status_rowvalue>
+<viewinterface_lastmod_columnheader>(//div[@col-id='m_time']//div[@ref='eLabel'])[1]/span[1]</viewinterface_lastmod_columnheader>
+<viewinterface_lastmod_rowvalue>(//div[@role='row']//div[@role='gridcell'][@col-id='m_time'])[1]</viewinterface_lastmod_rowvalue>
+<viewinterface_closebutton>(//div[@class='modal-header']//button[@type='button']/span)[1]</viewinterface_closebutton>
+<statuspage_interfaceheader>(//div[@class='modal-header']//div)[2]</statuspage_interfaceheader>
+<interface_statuspage_namefield>//label[text()='Name']</interface_statuspage_namefield>
+<interface_statuspage_interfaceaddressfield>//label[text()='Interface Address']</interface_statuspage_interfaceaddressfield>
+<interface_statuspage_currentstatusfield>//label[text()='Current Status']</interface_statuspage_currentstatusfield>
+<interface_statuspage_newstatusfield>//label[text()='New Status']</interface_statuspage_newstatusfield>
+<interface_statuspage_namevalue>//label[text()='Name']/following-sibling::div</interface_statuspage_namevalue>
+<interface_statuspage_interfaceaddressvalue>//label[text()='Interface Address']/following-sibling::div</interface_statuspage_interfaceaddressvalue>
+<interface_statuspage_currentstatusvalue>//label[text()='Current Status']/following-sibling::div</interface_statuspage_currentstatusvalue>
+<interface_statuspage_newstatusdropdown>//label[text()='New Status']/parent::div//select</interface_statuspage_newstatusdropdown>
+<interface_statuspage_newstatusdropdownvalue>//label[text()='New Status']/parent::div//select/option</interface_statuspage_newstatusdropdownvalue>
+<interface_statuspage_okbutton>//div[text()='Status']/parent::div/following-sibling::div[@class='div-margin row']//button[@type='button']//span</interface_statuspage_okbutton>
+<interface_statuspage_statuscolumnheader>(//div[@ref='eLabel']//span[text()='Status'])[2]</interface_statuspage_statuscolumnheader>
+<interface_statuspage_changedon_columnheader>//div[@ref='eLabel']//span[text()='Changed On']</interface_statuspage_changedon_columnheader>
+<interface_statuspage_changedby_columnheader>//div[@ref='eLabel']//span[text()='Changed By']</interface_statuspage_changedby_columnheader>
+<interface_statuspage_newstatusvalue>(//div[@role='gridcell'][@col-id='status.desc'])[1]</interface_statuspage_newstatusvalue>
+<interface_statuspage_changedonvalue>(//div[@role='gridcell'][@col-id='changeDate'])[1]</interface_statuspage_changedonvalue>
+<interface_statuspage_changedbyvalue>(//div[@role='gridcell'][@col-id='user'])[1]</interface_statuspage_changedbyvalue>
+<interface_statuspage_closebutton>(//div[@class='modal-header']//button[@type='button'])[2]</interface_statuspage_closebutton>
+<interface_statuspage_statusheader>(//div[@class='modal-body']//div[@class='heading-green-row row']//div)[2]</interface_statuspage_statusheader>
+<searchdevice_header>(//div[@class='heading-green-row row'])[1]//div</searchdevice_header>
+
+<routertools_header>//div[text()='Router Tools']</routertools_header>
+
+<!--  Add Interface  -->
+<interfaces_header>//div[text()='Interfaces']</interfaces_header>
+<interfacepanel_actiondropdown>//div[text()='Interfaces']/parent::div//button[@id='dropdown-basic-button']</interfacepanel_actiondropdown>
+<addinterface_link>//a[text()='Add Interface']</addinterface_link>
+<addinterface_header>//div[text()='Add Interface']</addinterface_header>
+<interface_warngmsg>//input[@id='interfaceName']/parent::div//div</interface_warngmsg>
+<allocate_button>//button//span[text()='Allocate']</allocate_button>
+<interfacename_textfield>//input[@id='interfaceName']</interfacename_textfield>
+<interfaceaddress_textfield>//input[@id='interfaceAddress']</interfaceaddress_textfield>
+<virtualtemplate_textfield>//input[@id='virtualTemplate']</virtualtemplate_textfield>
+<cpeaddressrange_textfield>//input[@id='cpeAddressRange']</cpeaddressrange_textfield>
+<localpresharekey_textfield>//input[@id='localPreShareKey']</localpresharekey_textfield>
+<remotepresharekey_textfield>//input[@id='remotePreShareKey']</remotepresharekey_textfield>
+<identityemail_textfield>//input[@id='identityEmail']</identityemail_textfield>
+<configuration_header>//div[text()='Configuration']</configuration_header>
+<configuration_dropdown>(//label[text()='Configuration']/parent::div//input)[1]</configuration_dropdown>
+<generateconfiguration_link>//div/a[text()='Generate Configuration']</generateconfiguration_link>
+<configuration_textarea>//label[@for='configurationDetails']/following-sibling::textarea</configuration_textarea>
+<saveconfiguration_link>//div/a[text()='Save Configuration']</saveconfiguration_link>
+
+<interface_column>//span[text()='Interface']</interface_column>
+<link_column>//span[text()='Link/Circuit Id']</link_column>
+<interfaceaddressrange_column>//span[text()='Interface Address Range']</interfaceaddressrange_column>
+<interfaceaddress_column>//span[text()='Interface Address']</interfaceaddress_column>
+<bearertype_column>//span[text()='Bearer Type']</bearertype_column>
+<bandwidth_column>//span[text()='Bandwidth']</bandwidth_column>
+<vlanid_column>//span[text()='VLAN Id']</vlanid_column>
+<ifinoctets_column>//span[text()='IfInOctets']</ifinoctets_column>
+<ivmanagement_column>//span[text()='IV Management']</ivmanagement_column>
+<interfacename_value>//div[@role='gridcell'][@col-id='interfaceName']</interfacename_value>
+<link_value>//div[@role='gridcell'][@col-id='linkId']</link_value>
+<interfaceaddressrange_value>//div[@role='gridcell'][@col-id='interfaceAddressRange']</interfaceaddressrange_value>
+<interfaceaddress_value>//div[@role='gridcell'][@col-id='interfaceAddress']</interfaceaddress_value>
+<bearertype_value>//div[@role='gridcell'][@col-id='bearerType']</bearertype_value>
+<bandwidth_value>//div[@role='gridcell'][@col-id='bandWidth']</bandwidth_value>
+<vlanid_value>//div[@role='gridcell'][@col-id='vlanId']</vlanid_value>
+<ifinoctets_value>//div[@role='gridcell'][@col-id='ifInOctets']</ifinoctets_value>
+<interfaces_header>//div[text()='Interfaces']</interfaces_header>
+<showinterfaces_link>//a[text()='Show Interfaces']</showinterfaces_link>
+<editinterface_header>//div[@class='modal-header']//div[text()='Edit Interface']</editinterface_header>
+<selectinterface>//div[@role='gridcell'][@col-id='name'][text()='value']/parent::div//span[contains(@class,'unchecked')]</selectinterface>
+
+<!--  Trunk -->
+<trunkPanel>//div[div[text()='Trunk Group/Site Orders']]</trunkPanel>
+<addTrunkSiteOrderlink>//a[text()='Add Trunk Group/Site Order']</addTrunkSiteOrderlink>
+<addtrunkSiteorderPage_panelheader>//div[div[p[text()='Trunk Group/Site Order']]]</addtrunkSiteorderPage_panelheader>
+<trunkGroupOrder_checkbox>//div[label[text()='Trunk Group Order']]//input</trunkGroupOrder_checkbox>
+<trunkGrouporder_warningmsg>//div[text()='Trunk Group Order']</trunkGrouporder_warningmsg>
+<trunkGroupOrderName_textField>//div[label[text()='Trunk Group Order Number']]//input</trunkGroupOrderName_textField>
+<trunkGroupOrderName_warningmsg>//div[text()='Trunk Group Order Number']</trunkGroupOrderName_warningmsg>
+<trunkGroupOrderName_errMsg>//div[@role='alert']</trunkGroupOrderName_errMsg>
+<alertMSg_siteorderCreation>(//div[@role='alert']/span)[1]</alertMSg_siteorderCreation>
+<trunk_okButton>//span[text()='OK']</trunk_okButton>
+<customerid>//input[@id='custId']</customerid>
+<voipProtocol_Dropdown>//select[@id='voipProtocol']/option</voipProtocol_Dropdown>
+<billingCoutry_Dropdown>//select[@id='billingCountry']</billingCoutry_Dropdown>
+<CDRdelivery_Dropdown>//select[@id='cdrDelivery']</CDRdelivery_Dropdown>
+<gateway_Dropdown>//select[@id='gateway']</gateway_Dropdown>
+<quality_Dropdown>//select[@id='quality']</quality_Dropdown>
+<cosprofile>//select[@id='cosProfile']</cosprofile>
+<lanrange>//input[@id='ipRangeField']</lanrange>
+<IPaddresstype_Dropdown>//select[@id='ipAddressType']</IPaddresstype_Dropdown>
+<subInterfaceSlot_Dropdown>//select[@id='sifSlot']</subInterfaceSlot_Dropdown>
+<signallingTransportProtocol_Dropdown>//select[@id='transProt']</signallingTransportProtocol_Dropdown>
+<sourceAddressFiltering_Dropdown>//select[@id='sourceAddressFiltering']</sourceAddressFiltering_Dropdown>
+<callLimit_Dropdown>//select[@id='callLimit']</callLimit_Dropdown>
+<primaryTrunkGroup_Dropdown>//select[@id='priTgName']</primaryTrunkGroup_Dropdown>
+<resellerid>//input[@id='resellerId']</resellerid>
+<SIPURI_textField>//input[@id='sipUri']</SIPURI_textField>
+<SIPURI_defaultValue_textvalue>//div[label[text()='SIP URI']]/div</SIPURI_defaultValue_textvalue>
+<trunkGroupDEscription_textField>//input[@id='tgDescription']</trunkGroupDEscription_textField>
+<trunkGroupName_TextField>//input[@id='tgName']</trunkGroupName_TextField>
+<SIPsignallingport_textField>//input[@id='sipSignalingPort']</SIPsignallingport_textField>
+<SIPsignallingPOrt_defaultValue_textvalue>//div[label[text()='SIP Signalling Port']]/div</SIPsignallingPOrt_defaultValue_textvalue>
+<vlanTag_textField>//input[@id='vlanTg']</vlanTag_textField>
+<signallingZone_textField>//input[@id='sigZone']</signallingZone_textField>
+<subInterfaceName_textField>//input[@id='sifName']</subInterfaceName_textField>
+<NIFgrouopp_textField>//input[@id='nifGroup']</NIFgrouopp_textField>
+<signallingPort_textField>//input[@id='sigPort']</signallingPort_textField>
+<ipInterface_textField>//input[@id='ipIinterface']</ipInterface_textField>
+<AddressContext_textField>//input[@id='addContext']</AddressContext_textField>
+<ipInterfaceGroup_textField>//input[@id='ipifgroup']</ipInterfaceGroup_textField>
+<COSprofile_TextField>//input[@id='cosProfileNew']</COSprofile_TextField>
+<limitNumber_textField>//input[@id='limit']</limitNumber_textField>
+<callRateLimitt_textField>//input[@id='callrateLimit']</callRateLimitt_textField>
+<internetBasedCustomer_checkbox>//div[label[text()='Internet Based Customer']]//input</internetBasedCustomer_checkbox>
+<numberporting_checkbox>//input[@id='numberPorting']</numberporting_checkbox>
+<callAdmissionControl_checkbox>//input[@id='cac']</callAdmissionControl_checkbox>
+<callrateLimit_checkbox>//input[@id='cacrt']</callrateLimit_checkbox>
+<COSprofile_checkbox>//input[@id='endiscosprof']</COSprofile_checkbox>
+<clipscreeningandclir_radio>//input[@value='CLIP Screening and CLIR per Call (DEFAULT)']</clipscreeningandclir_radio>
+<clirPermanent_radio>//input[@value='CLIR Permanent']</clirPermanent_radio>
+<clipNoScreening_radio>//input[@value='CLIP NO Screening']</clipNoScreening_radio>
+<clipmainnumber_radio>//input[@value='CLIP Main Number']</clipmainnumber_radio>
+<presentationnumbers_radio>//input[@value='Presentation Numbers']</presentationnumbers_radio>
+<presentationnumber_textfield>//input[@id='presNosText']</presentationnumber_textfield>
+<presentationnumber_addarrow>//input[@id='presNosText']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</presentationnumber_addarrow>
+<customerdefaultnumber_textfield>//input[@id='custDefNum']</customerdefaultnumber_textfield>
+<multisitedefaultnumber>//input[@id='multiSiteDefaultNumber']</multisitedefaultnumber>
+<invalidclitreatment_allow>//input[@name='subruleChange'][@value='1']</invalidclitreatment_allow>
+<invalidclitreatment_block>//input[@name='subruleChange'][@value='2']</invalidclitreatment_block>
+<egressnumberformat_dropdown>//select[@id='egressNumberFormat']</egressnumberformat_dropdown>
+<incomingroutingonDDIlevel_checkbox>//input[@id='incomingRouting']</incomingroutingonDDIlevel_checkbox>
+<DRusingTDM_checkbox>//input[@id='drtdm']</DRusingTDM_checkbox>
+<codec_dropdown>//select[@id='numberofCODECPorts']</codec_dropdown>
+<faxdiversionnumbers_textfield>//input[@id='faxDiversionNumberText']</faxdiversionnumbers_textfield>
+<faxdiversion_addarrow>//input[@id='faxDiversionNumberText']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</faxdiversion_addarrow>
+<partialnumberreplacement_checkbox>//input[@id='partialNumberReplacement']</partialnumberreplacement_checkbox>
+<cpemanualconfig_checkbox>//input[@id='cpeManualConfig']</cpemanualconfig_checkbox>
+<PSXmanualConfigTG_checkbox>//input[@id='psxManualConfigTG']</PSXmanualConfigTG_checkbox>
+<PSXmanualConfigDDIRange_checkbox>//input[@id='psxManualConfigDDI']</PSXmanualConfigDDIRange_checkbox>
+<GSXmanualConfig_checkbox>//input[@id='gsxManualConfig']</GSXmanualConfig_checkbox>
+<SBCmanualconfig_checkbox>//input[@id='sbcManualConfig']</SBCmanualconfig_checkbox>
+ 
+<country_warningMessage>//div[text()='Billing Country']</country_warningMessage>
+<viewtrunk_resellerid>//label[text()='Reseller ID']/parent::div/following-sibling::div</viewtrunk_resellerid>
+<viewtrunk_customerid>//label[text()='Customer ID']/parent::div/following-sibling::div</viewtrunk_customerid>
+<viewtrunk_trunkgroupname>//label[text()='Trunk Group Name']/parent::div/following-sibling::div</viewtrunk_trunkgroupname>
+<GSXconfigurationDropdown_viewtrunk>(//div[label[text()='GSX Configuration']]//input)[1]</GSXconfigurationDropdown_viewtrunk>
+<PSXconfigurationDropdown_viewtrunk>(//div[label[text()='PSX Configuration']]//input)[1]</PSXconfigurationDropdown_viewtrunk>
+<SBCconfigurationDropdown_viewtrunk>(//div[label[text()='SBC Configuration']]//input)[1]</SBCconfigurationDropdown_viewtrunk>
+<viewTrunk_GSX_generateConfigurationButton>//button/span[text()='Generate Configuration']</viewTrunk_GSX_generateConfigurationButton>
+<viewTrunk_PSX_executeButton>//div[div[div[label[text()='PSX Configuration']]]]//following-sibling::div//button/span[text()='Execute']</viewTrunk_PSX_executeButton>
+<viewTrunk_SBC_executeButton>(//div[div[div[label[text()='SBC Configuration']]]]//following-sibling::div//button/span[text()='Execute'])[1]</viewTrunk_SBC_executeButton>
+
+
+<!-- SBC Manual Execution panel -->
+<SBCmanualConfig_PanelHeader>//div[contains(text(),'SBC Manually Executed Configurations')]</SBCmanualConfig_PanelHeader>
+<SBCManualConfig_actionDropdown>//div[div[contains(text(),'SBC Manually Executed Configurations')]]//button</SBCManualConfig_actionDropdown>
+<SBC_addLink>//a[text()='Add']</SBC_addLink>
+<SBC_editLink>//a[text()='Edit']</SBC_editLink>
+<SBC_deleteLink>//a[text()='Delete']</SBC_deleteLink>
+<SBC_selectCreatedValue>(//div[div[text()='SBC Manually Executed Configurations']]//following-sibling::div//div[contains(text(),'manualcfg')])[1]</SBC_selectCreatedValue>
+
+
+<!-- PSX Manual Execution panel -->
+<PSXmanualConfig_PanelHeader>//div[contains(text(),'PSX Manually Executed Configurations')]</PSXmanualConfig_PanelHeader>
+<PSXManualConfig_actionDropdown>//div[div[contains(text(),'PSX Manually Executed Configurations')]]//button</PSXManualConfig_actionDropdown>
+
+
+<manualConfiguration_textArea>//textarea[@name='manualConfigNote']</manualConfiguration_textArea>
+<saveButton_manualConfiguration>//span[contains(text(),'SAVE')]</saveButton_manualConfiguration>
+
+<!--  Disaster Recovery Status -->
+<codecfield_viewpage>//label[text()='Codec']</codecfield_viewpage>
+<disasterrecoverystatus_header>//div[text()='GSX/PSX Disaster Recovery Status']</disasterrecoverystatus_header>
+<psx_tdm_drstatus_value>//label[text()='PSX TDM DR Status']/parent::div/following-sibling::div</psx_tdm_drstatus_value>
+
+<!--  Voice Resiliency -->
+<ddirange_header>//h5[text()='DDI Range']</ddirange_header>
+<voiceresiliency_header>//div[text()='Voice Resiliency']</voiceresiliency_header>
+<backupnumber_value>//label[text()='Backup Number']/parent::div/following-sibling::div</backupnumber_value>
+<obackupnumber_value>//label[text()='OBackup Number']/parent::div/following-sibling::div</obackupnumber_value>
+<billingnumber_value>//label[text()='Billing Number']/parent::div/following-sibling::div</billingnumber_value>
+<voiceresiliency_actiondropdown>//div[text()='Voice Resiliency']/parent::div/following-sibling::div//button[text()='Action']</voiceresiliency_actiondropdown>
+<voiceresiliency_Edit>//div[text()='Voice Resiliency']/parent::div/following-sibling::div//a[text()='Edit']</voiceresiliency_Edit>
+<voiceresiliency_popup>//div[@class='modal-content']</voiceresiliency_popup>
+<backupnumber_checkbox>//input[@id='backupNumber']</backupnumber_checkbox>
+<obackupnumber_textfield>//input[@id='oBackupNumber']</obackupnumber_textfield>
+<billingnumber_textield>//input[@id='billingNumber']</billingnumber_textield>
+<savebutton_voiceresiliency>//button/span[text()='SAVE']</savebutton_voiceresiliency>
+
+<!--  Add Voice CPE Device  -->
+<addvoicecpe_link>//a/span[text()='Add Voice CPE Device']</addvoicecpe_link>
+<addvoicecpe_header>//div[@class='heading-green-row row']/div/p[contains(text(),'Add')]</addvoicecpe_header>
+<voicecpe_devicename>//input[@id='deviceName']</voicecpe_devicename>
+<vendormodel_dropdown>//label[text()='Vendor/Model']/parent::div//input</vendormodel_dropdown>
+<managementaddress_voicecpe>//input[@id='ipRangeField']</managementaddress_voicecpe>
+<snmpro_textfield>//input[@id='snmpro']</snmpro_textfield>
+<countryinput>//div[label[contains(text(),'Country')]]//input</countryinput>
+<citydropdowninput>//div[label[@class='form-label labelStyle'][contains(text(),'City')]]//input</citydropdowninput>
+<sitedropdowninput>//div[label[@class='form-label labelStyle'][contains(text(),'Site')]]//input</sitedropdowninput>
+<premisedropdowninput>//div[label[@class='form-label labelStyle'][contains(text(),'Premise')]]//input</premisedropdowninput>
+<addcityswitch>//div[label[contains(text(),'Add City')]]/preceding-sibling::div//div[@class='react-switch']</addcityswitch>
+<addsiteswitch>//div[label[contains(text(),'Add Site')]]/preceding-sibling::div//div[@class='react-switch']</addsiteswitch>
+<addpremiseswitch>//div[label[contains(text(),'Add Premise')]]/preceding-sibling::div//div[@class='react-switch']</addpremiseswitch>
+<selectpremiseswitch>//div[label[contains(text(),'Select Premise')]]/preceding-sibling::div//div[@class='react-switch']</selectpremiseswitch>
+<selectsiteswitch>//div[label[contains(text(),'Select Site')]]/preceding-sibling::div//div[@class='react-switch']</selectsiteswitch>
+<selectcityswitch>//div[label[contains(text(),'Select City')]]/preceding-sibling::div//div[@class='react-switch']</selectcityswitch>
+<cpetoprovidedialtone_checkbox>//input[@id='cpeProvideDialTone']</cpetoprovidedialtone_checkbox>
+<cpelinepowerrequired_checkbox>//input[@id='cpeLinePowerrequired']</cpelinepowerrequired_checkbox>
+<numberporting_checkbox>//input[@id='numberPorting']</numberporting_checkbox>
+<briportmapping_checkbox>//input[@id='briPortMapping']</briportmapping_checkbox>
+<crcsettings_dropdown>//label[text()='CRC Settings']/parent::div//input</crcsettings_dropdown>
+<numberofpriports_dropdown>//label[text()='Number of PRI Ports']/parent::div//input</numberofpriports_dropdown>
+<numberofbriports_dropdown>//label[text()='Number of BRI Ports']/parent::div//input</numberofbriports_dropdown>
+<briport1_textfield>//input[@id='briPort1Number']</briport1_textfield>
+<briport1_addarrow>//label[text()='BRI Port 1 Number']/parent::div/parent::div/following-sibling::div//button/span[text()='>>']</briport1_addarrow>
+<briport2_textfield>//input[@id='briPort2Number']</briport2_textfield>
+<briport2_addarrow>//label[text()='BRI Port 2 Number']/parent::div/parent::div/following-sibling::div//button/span[text()='>>']</briport2_addarrow>
+<briport3_textfield>//input[@id='briPort3Number']</briport3_textfield>
+<briport3_addarrow>//label[text()='BRI Port 3 Number']/parent::div/parent::div/following-sibling::div//button/span[text()='>>']</briport3_addarrow>
+<briport4_textfield>//input[@id='briPort4Number']</briport4_textfield>
+<briport4_addarrow>//label[text()='BRI Port 4 Number']/parent::div/parent::div/following-sibling::div//button/span[text()='>>']</briport4_addarrow>
+<briport5_textfield>//input[@id='briPort5Number']</briport5_textfield>
+<briport5_addarrow>//label[text()='BRI Port 5 Number']/parent::div/parent::div/following-sibling::div//button/span[text()='>>']</briport5_addarrow>
+<briport6_textfield>//input[@id='briPort6Number']</briport6_textfield>
+<briport6_addarrow>//label[text()='BRI Port 6 Number']/parent::div/parent::div/following-sibling::div//button/span[text()='>>']</briport6_addarrow>
+<briport7_textfield>//input[@id='briPort7Number']</briport7_textfield>
+<briport7_addarrow>//label[text()='BRI Port 7 Number']/parent::div/parent::div/following-sibling::div//button/span[text()='>>']</briport7_addarrow>
+<briport8_textfield>//input[@id='briPort8Number']</briport8_textfield>
+<briport8_addarrow>//label[text()='BRI Port 8 Number']/parent::div/parent::div/following-sibling::div//button/span[text()='>>']</briport8_addarrow>
+
+<numberoffxsports_dropdown>//label[text()='Number of FXS Ports']/parent::div//input</numberoffxsports_dropdown>
+<fxsnumber1_textfield>//input[@id='fxsnumber1']</fxsnumber1_textfield>
+<fxsnumber2_textfield>//input[@id='fxsnumber2']</fxsnumber2_textfield>
+
+<!--  View page VOice CPE Device -->
+<viewpage_voicecpedevice_header>//div[@class='heading-green-row row']/div[text()='Voice CPE Device']</viewpage_voicecpedevice_header>
+<city_voiceCPE_viewpage>//label[text()='City']/parent::div/following-sibling::div</city_voiceCPE_viewpage>
+<site_voiceCPE_viewpage>//label[text()='Site']/parent::div/following-sibling::div</site_voiceCPE_viewpage>
+<premise_voiceCPE_viewpage>//label[text()='Premise']/parent::div/following-sibling::div</premise_voiceCPE_viewpage>
+<briport1number_viewpage>//label[text()='BRI Port 1 Number']/parent::div/following-sibling::div</briport1number_viewpage>
+<briport2number_viewpage>//label[text()='BRI Port 2 Number']/parent::div/following-sibling::div</briport2number_viewpage>
+<briport3number_viewpage>//label[text()='BRI Port 3 Number']/parent::div/following-sibling::div</briport3number_viewpage>
+<briport4number_viewpage>//label[text()='BRI Port 4 Number']/parent::div/following-sibling::div</briport4number_viewpage>
+<briport5number_viewpage>//label[text()='BRI Port 5 Number']/parent::div/following-sibling::div</briport5number_viewpage>
+<briport6number_viewpage>//label[text()='BRI Port 6 Number']/parent::div/following-sibling::div</briport6number_viewpage>
+<briport7number_viewpage>//label[text()='BRI Port 7 Number']/parent::div/following-sibling::div</briport7number_viewpage>
+<briport8number_viewpage>//label[text()='BRI Port 8 Number']/parent::div/following-sibling::div</briport8number_viewpage>
+
+
+
+
+
+
+
+</voiceline>
+</locators>

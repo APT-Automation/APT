@@ -101,6 +101,9 @@
 <newrfireqtextfield>//div[@class='form-group']//input[@id='rfiRfqIpVoiceLineNo']</newrfireqtextfield>
 <OrderCreatedSuccessMsg>//div[@role='alert']//span[text()='Order created successfully']</OrderCreatedSuccessMsg>
 
+<order_contractnumber_warngmsg>//div[label[contains(text(),'Order/Contract Number(Parent SID)')]]/following-sibling::span</order_contractnumber_warngmsg>
+<servicetype_warngmsg>//div[label[contains(text(),'Service Type')]]/following-sibling::span</servicetype_warngmsg>
+
 <servicetypetextfield>//div[div[label[text()='Service Type']]]//input</servicetypetextfield>
 <networkconfigurationinputfield>//div[div[label[text()='Network Configuration']]]//input</networkconfigurationinputfield>
 <OrderContractNumber_Select>(//div[@class='react-dropdown-select-content react-dropdown-select-type-single css-jznujr-ContentComponent e1gn6jc30'])[1]</OrderContractNumber_Select>
@@ -410,7 +413,7 @@
 <ringtonumbervalue>//label[text()='Ring to Number']/parent::div/following-sibling::div</ringtonumbervalue>
 <announcementtoplay>//label[text()='Announcement to Play']/parent::div/following-sibling::div</announcementtoplay>
 <treenamevalue>//label[text()='Tree Name']/parent::div/following-sibling::div</treenamevalue>
-<addanothersanlink>//a[text()=' Add Another SAN']</addanothersanlink>
+<addanothersanlink>//a[text()='Add Another SAN']</addanothersanlink>
 <editsan_header>//div[text()='Edit SAN']</editsan_header>
 <sanmoveheader>//div[@class='modal-header']//div[text()='SAN Move']</sanmoveheader>
 <bulkmoveheader>//div[@class='modal-header']//div[text()='Bulk Move']</bulkmoveheader>
@@ -430,6 +433,7 @@
 <manageaddnlfrc_header>//div[text()='Manage Addnl FRC']</manageaddnlfrc_header>
 <addaddnlfrc_link>//a[text()='Add Addnl FRC']</addaddnlfrc_link>
 <addpriceannouncement_header>//div[text()='Add Price Announcement']</addpriceannouncement_header>
+<viewpriceannouncement_header>//div[text()='View Price Announcement ']</viewpriceannouncement_header>
 <sanfrcvalue>//label[text()='SAN/FRC']/parent::div/following-sibling::div</sanfrcvalue>
 <customernamevalue>//label[text()='Customer Name']/parent::div/following-sibling::div</customernamevalue>
 <enablepriceannouncement_checkbox>//label[text()='Enable Price Announcement']/parent::div//div//input[@type='checkbox']</enablepriceannouncement_checkbox>
@@ -447,8 +451,8 @@
 <addsan_successmsg>//div[@role='alert']//span</addsan_successmsg>
 <manageaddnlfrc_actiondropdown>//div[contains(text(),'Manage Addnl FRC')]/following-sibling::div/div//button[text()='Action']</manageaddnlfrc_actiondropdown>
 <viewsan_customername>(//label[text()='Customer Name']/parent::div/parent::div//div)[2]</viewsan_customername>
-<viewsan_sannumber>(//label[text()='SAN(FRC) Number']/parent::div/parent::div//div)[2]</viewsan_sannumber>
-<viewsan_serviceprofile>//label[text()='Service Profile']/parent::div//span</viewsan_serviceprofile>
+<viewsan_sannumber>(//label[text()='SAN(FRC) Number ']/parent::div/parent::div//div)[2]</viewsan_sannumber>
+<viewsan_serviceprofile>//label[text()='Service Profile']/parent::div/following-sibling::div</viewsan_serviceprofile>
 <viewsan_actiondropdown>//div[contains(text(),'View SAN')]/following-sibling::div/div//button[text()='Action']</viewsan_actiondropdown>
 <editsan_customername>//label[text()='Customer Name']/parent::div/parent::div//div//input</editsan_customername>
 <editsan_sannumber>//label[text()='SAN(FRC) Number ']/parent::div/parent::div//div//input</editsan_sannumber>

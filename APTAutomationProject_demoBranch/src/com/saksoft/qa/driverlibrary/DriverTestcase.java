@@ -59,7 +59,7 @@ import com.saksoft.qa.scripthelpers.APT_MSPLatencyHelper;
 import com.saksoft.qa.scripthelpers.APT_ManageNetworkHelper;
 import com.saksoft.qa.scripthelpers.Hss_Helper;
 import com.saksoft.qa.scripthelpers.ImsNmbrTranslator_Helper;
-
+import com.saksoft.qa.scripthelpers.APT_VoiceLineHelper;
 
 
 import com.saksoft.qa.scripthelpers.APT_CreateAccessCoreDevice_ManageNetworkHelper;
@@ -95,7 +95,7 @@ public class DriverTestcase {
 	public static final ThreadLocal<APT_MCS_CreateVOIPAccessDASSwitchDeviceHelper> APT_CreateVOIPAccessDASSwitchDeviceHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_wholeSaleHelper> APT_wholesaleHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_MCS_CreateCustomerSeparateHelper>  createCustomerSeparateHelper = new InheritableThreadLocal<>();
-	
+	public static final ThreadLocal<APT_VoiceLineHelper> APT_VoiceLineHelper = new InheritableThreadLocal<>();
 	
 	public static com.saksoft.qa.listeners.TestListener Testlistener;
 	public ThreadLocal<String> TestName = new ThreadLocal();
@@ -224,6 +224,8 @@ public class DriverTestcase {
 		APT_MCS_CreateCustomerSeparateHelper customer = new APT_MCS_CreateCustomerSeparateHelper(getwebdriver());
 		createCustomerSeparateHelper.set(customer);
 		
+		APT_VoiceLineHelper vlv= new APT_VoiceLineHelper(getwebdriver());
+		APT_VoiceLineHelper.set(vlv);
 	
 		// APT_Login aptLogin=new APT_Login();
 		// aptLogin.APT_Login_1();

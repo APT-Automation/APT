@@ -23,6 +23,14 @@ public class APT_wholesale extends DriverTestcase{
 		APT_wholesaleHelper.get().CreateCustomer("apt", map.get("Name"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));		
 	} 
 	
+	@Test(description = "TC-01",dataProviderClass = DataReader_PK.class, dataProvider = "Finaldatareader_wholeSale", priority=0)
+	public void searchCreatedService(Map<String, String> map) throws Exception {
+	
+		DriverTestcase.logger = DriverTestcase.extent.startTest("searchCreatedService"); 
+		
+		APT_wholesaleHelper.get().searchorder("apt", map.get("ServiceIdentification"));
+	}
+	
 	@Test(description = "TC-02",dataProviderClass = DataReader_PK.class, dataProvider = "Finaldatareader_wholeSale", priority=1)
     public void choosecustomer(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		

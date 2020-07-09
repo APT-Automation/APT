@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" data-provider-thread-count="1"  name="APT_MCS Test Suite" parallel="classes" verbose="1">
+
+	<listeners>
+      <listener class-name="com.saksoft.qa.listeners.TestListener" />
+  	</listeners>
+  	
+	<test name ="NGIN"> 
+		<classes>
+			<class name="com.saksoft.qa.apttestscripts.APT_NGINTest">
+			 <methods>
+        			<include name="CreateCustomer" />
+       		<!--  	<include name="choosecustomer" />
+       			 	<include name="verifycreateorder" />
+       			 	<include name="verifyservicetypeselection" />
+       			 	<include name="verifyservicecreation" />
+       			 	<include name="verifyCustomerDetailsInformation" />
+       			 	<include name="verifyUserDetailsInformation" />
+       			 	<include name="verifyOrderDetailsInformation" />
+       			 	<include name="verifyServicepanelinviewservicepage" />
+       			 	<include name="verifyManagementOptionspanel" />
+       			 	<include name="verifyResellerpanelinviewservicepage" />
+       			 	<include name="AddReseller" />
+       			 	<include name="verifyResellerLinks" />    -->
+    		  </methods>
+    		</class> 
+    	</classes>	
+  	</test> 
+   	
+   	
+   	 <test name="Wholesale">  
+		<classes>	
+			<class name="com.saksoft.qa.apttestscripts.APT_wholesale">
+			<methods>
+				<include name="searchCreatedService" />
+				<include name="addMASswitch" />
+				<include name="viewMASswitch" />
+				
+			</methods>
+		  </class>	
+		</classes>
+	</test> 	
+	
+   	 	
+   	<test name ="VoiceLineV"> 	
+    	<classes>	  
+			<class name="com.saksoft.qa.apttestscripts.APT_VoiceLineTest"/>
+			
+		</classes>
+		
+		
+	</test> 
+	
+	
+</suite>
+
+
+

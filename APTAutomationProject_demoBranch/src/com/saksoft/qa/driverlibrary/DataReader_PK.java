@@ -472,7 +472,224 @@ public class DataReader_PK {
 
 		return obj;
 	}
+	
+	
 
+	 @DataProvider
+	    public static Object[][] DataReader_createService() throws IOException {
+
+			String filename1 = "src\\com\\saksoft\\qa\\datalibrary\\APT_MCS_TESTDATA_SS.xlsx";
+
+			File file = new File(filename1);
+
+			FileInputStream inputStream = new FileInputStream(file);
+
+			Workbook workbook = null;
+
+			String fileExtensionName = filename1.substring(filename1.indexOf("."));
+
+			if (fileExtensionName.equals(".xlsx")) {
+
+				workbook = new XSSFWorkbook(inputStream);
+
+			}
+
+			else if (fileExtensionName.equals(".xls")) {
+
+				workbook = new HSSFWorkbook(inputStream);
+
+			}
+
+			Sheet sheet = workbook.getSheet("Lanlink");
+
+			int rowCount = sheet.getLastRowNum();
+			 
+			int colCount = sheet.getRow(0).getLastCellNum();
+		 
+
+			Object[][] obj = new Object[rowCount][1];
+
+			for (int i = 0; i < rowCount; i++) {
+
+				Map<Object, Object> datamap = new HashMap<Object, Object>();
+
+				for (int j = 0; j < colCount; j++) {
+
+					datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+
+				}
+
+				obj[i][0] = datamap;
+
+				System.out.println("The values found are " + obj[i][0]);
+			}
+
+			return obj;
+		}
+
+
+	 
+	 
+	 @DataProvider
+	    public static Object[][] DataReader_createService_Metro() throws IOException {
+
+			String filename1 = "src\\com\\saksoft\\qa\\datalibrary\\APT_MCS_TESTDATA_SS.xlsx";
+
+			File file = new File(filename1);
+
+			FileInputStream inputStream = new FileInputStream(file);
+
+			Workbook workbook = null;
+
+			String fileExtensionName = filename1.substring(filename1.indexOf("."));
+
+			if (fileExtensionName.equals(".xlsx")) {
+
+				workbook = new XSSFWorkbook(inputStream);
+
+			}
+
+			else if (fileExtensionName.equals(".xls")) {
+
+				workbook = new HSSFWorkbook(inputStream);
+
+			}
+
+			Sheet sheet = workbook.getSheet("Metro");
+
+			int rowCount = sheet.getLastRowNum();
+			 
+			int colCount = sheet.getRow(0).getLastCellNum();
+		 
+
+			Object[][] obj = new Object[rowCount][1];
+
+			for (int i = 0; i < rowCount; i++) {
+
+				Map<Object, Object> datamap = new HashMap<Object, Object>();
+
+				for (int j = 0; j < colCount; j++) {
+
+					datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+
+				}
+
+				obj[i][0] = datamap;
+
+				System.out.println("The values found are " + obj[i][0]);
+			}
+
+			return obj;
+		}
+
+	 
+	 @DataProvider
+	    public static Object[][] DataReader_createService_OLO() throws IOException {
+
+			String filename1 = "src\\com\\saksoft\\qa\\datalibrary\\APT_MCS_TESTDATA_SS.xlsx";
+
+			File file = new File(filename1);
+
+			FileInputStream inputStream = new FileInputStream(file);
+
+			Workbook workbook = null;
+
+			String fileExtensionName = filename1.substring(filename1.indexOf("."));
+
+			if (fileExtensionName.equals(".xlsx")) {
+
+				workbook = new XSSFWorkbook(inputStream);
+
+			}
+
+			else if (fileExtensionName.equals(".xls")) {
+
+				workbook = new HSSFWorkbook(inputStream);
+
+			}
+
+			Sheet sheet = workbook.getSheet("OLO");
+
+			int rowCount = sheet.getLastRowNum();
+			 
+			int colCount = sheet.getRow(0).getLastCellNum();
+		 
+
+			Object[][] obj = new Object[rowCount][1];
+
+			for (int i = 0; i < rowCount; i++) {
+
+				Map<Object, Object> datamap = new HashMap<Object, Object>();
+
+				for (int j = 0; j < colCount; j++) {
+
+					datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+
+				}
+
+				obj[i][0] = datamap;
+
+				System.out.println("The values found are " + obj[i][0]);
+			}
+
+			return obj;
+		}
+
+
+	 @DataProvider
+	    public static Object[][] DataReader_createService_International() throws IOException {
+
+			String filename1 = "src\\com\\saksoft\\qa\\datalibrary\\APT_MCS_TESTDATA_SS.xlsx";
+
+			File file = new File(filename1);
+
+			FileInputStream inputStream = new FileInputStream(file);
+
+			Workbook workbook = null;
+
+			String fileExtensionName = filename1.substring(filename1.indexOf("."));
+
+			if (fileExtensionName.equals(".xlsx")) {
+
+				workbook = new XSSFWorkbook(inputStream);
+
+			}
+
+			else if (fileExtensionName.equals(".xls")) {
+
+				workbook = new HSSFWorkbook(inputStream);
+
+			}
+
+			Sheet sheet = workbook.getSheet("International");
+
+			int rowCount = sheet.getLastRowNum();
+			 
+			int colCount = sheet.getRow(0).getLastCellNum();
+		 
+
+			Object[][] obj = new Object[rowCount][1];
+
+			for (int i = 0; i < rowCount; i++) {
+
+				Map<Object, Object> datamap = new HashMap<Object, Object>();
+
+				for (int j = 0; j < colCount; j++) {
+
+					datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+
+				}
+
+				obj[i][0] = datamap;
+
+				System.out.println("The values found are " + obj[i][0]);
+			}
+
+			return obj;
+		}
+
+	 
+	 
 
 
 }

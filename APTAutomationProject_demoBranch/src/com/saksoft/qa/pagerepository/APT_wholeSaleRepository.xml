@@ -85,6 +85,15 @@
 <fax>//div[div[label[text()='Fax']]]/div[2]</fax>
 <dedicatedportal>//div[div[label[text()='Dedicated Portal']]]/div[2]</dedicatedportal>
 
+<!--  Search order -->
+<searchorderlink>//li[text()='Search Order/Service']</searchorderlink>
+<servicefield>//label[text()='Service']/following-sibling::input</servicefield>
+<searchbutton>//span[text()='Search']</searchbutton>
+<serviceradiobutton>//div[@role='gridcell']//span[contains(@class,'unchecked')]</serviceradiobutton>
+<searchorder_actiondropdown>//div[@class='dropdown']//button</searchorder_actiondropdown>
+<view>//a[text()='View']</view>
+
+
 <!-- Create Order/service panel in view customer page -->
 <CreateOrderHeader>//div[text()='Create Order / Service']</CreateOrderHeader>
 <ordercontractnumber>//div[div[label[text()='Order/Contract Number']]]//input[@size='9']</ordercontractnumber>

@@ -1,5 +1,4 @@
 package com.saksoft.qa.driverlibrary;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -7,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -32,13 +30,15 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
+import com.saksoft.qa.scripthelpers.APT_AutomationHelper;
+import com.saksoft.qa.scripthelpers.APT_CreateAccessCoreDevice_ManageNetworkHelper;
+import com.saksoft.qa.scripthelpers.APT_DomainManagementHelper;
 import com.saksoft.qa.scripthelpers.APT_LoginHelper;
+//import com.saksoft.qa.scripthelpers.APT_MCN_SearchDeviceHelper;
 import com.saksoft.qa.scripthelpers.APT_MCS_CreateAccessCoreDeviceHelper;
 import com.saksoft.qa.scripthelpers.APT_MCS_CreateAccessSwitchCoreDeviceHelper;
 import com.saksoft.qa.scripthelpers.APT_MCS_CreateCoreRouterDeviceHelper;
+//import com.saksoft.qa.scripthelpers.APT_MCS_CreateCustomerHelper3Set;
 import com.saksoft.qa.scripthelpers.APT_MCS_CreateCustomerSeparateHelper;
 import com.saksoft.qa.scripthelpers.APT_MCS_CreateDCNDeviceHelper;
 import com.saksoft.qa.scripthelpers.APT_MCS_CreateDSLAMDeviceHelper;
@@ -51,25 +51,36 @@ import com.saksoft.qa.scripthelpers.APT_MCS_CreatePrizmnetDeviceHelper;
 import com.saksoft.qa.scripthelpers.APT_MCS_CreateTrafficAggregatorDeviceHelper;
 import com.saksoft.qa.scripthelpers.APT_MCS_CreateVOIPAccessDASSwitchDeviceHelper;
 import com.saksoft.qa.scripthelpers.APT_MCS_CreateVoiceGatewayDeviceHelper;
-import com.saksoft.qa.scripthelpers.APT_AutomationHelper;
-import com.saksoft.qa.scripthelpers.APT_NGINHelper;
-import com.saksoft.qa.scripthelpers.APT_wholeSaleHelper;
-import com.saksoft.qa.scripthelpers.APT_DomainManagementHelper;
+//import com.saksoft.qa.scripthelpers.APT_MCS_SearchCustomerHelper;
 import com.saksoft.qa.scripthelpers.APT_MSPLatencyHelper;
 import com.saksoft.qa.scripthelpers.APT_ManageNetworkHelper;
+import com.saksoft.qa.scripthelpers.APT_NGINHelper;
+import com.saksoft.qa.scripthelpers.APT_VoiceLineHelper;
+import com.saksoft.qa.scripthelpers.APT_wholeSaleHelper;
 import com.saksoft.qa.scripthelpers.Hss_Helper;
 import com.saksoft.qa.scripthelpers.ImsNmbrTranslator_Helper;
-import com.saksoft.qa.scripthelpers.APT_VoiceLineHelper;
+import com.saksoft.qa.scripthelpers.Lanlink_DirectFiberHelpr;
+import com.saksoft.qa.scripthelpers.Lanlink_InternationalHelper;
+import com.saksoft.qa.scripthelpers.Lanlink_MetroHelper;
+import com.saksoft.qa.scripthelpers.Lanlink_National;
+import com.saksoft.qa.scripthelpers.Lanlink_OLOHelper;
+import com.saksoft.qa.scripthelpers.Lanlink_Outbandmanagementhelper;
+//import com.saksoft.qa.scripthelpers.PerformOrder_SupplyHelper;
+import com.saksoft.qa.scripthelpers.manageNetwork_Lanlink;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+import com.saksoft.qa.apttestscripts.APT_Login;
 
 
-import com.saksoft.qa.scripthelpers.APT_CreateAccessCoreDevice_ManageNetworkHelper;
 
 public class DriverTestcase {
-
+	
 	public static final ThreadLocal<WebDriver> WEB_DRIVER_THREAD_LOCAL = new InheritableThreadLocal<>();
-	// public static final ThreadLocal<RemoteWebDriver> WEB_DRIVER_THREAD_LOCAL =
-	// new InheritableThreadLocal<>();
+		
 
+		
+		
 	public static final ThreadLocal<APT_LoginHelper> APTLogin = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_MCS_CreateAccessCoreDeviceHelper> APT_CreateAccessCoreDeviceHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_AutomationHelper> APT_Helper = new InheritableThreadLocal<>();
@@ -94,65 +105,109 @@ public class DriverTestcase {
 	public static final ThreadLocal<APT_MCS_CreateVoiceGatewayDeviceHelper> APT_CreateVoiceGatewayDeviceHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_MCS_CreateVOIPAccessDASSwitchDeviceHelper> APT_CreateVOIPAccessDASSwitchDeviceHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_wholeSaleHelper> APT_wholesaleHelper = new InheritableThreadLocal<>();
-	public static final ThreadLocal<APT_MCS_CreateCustomerSeparateHelper>  createCustomerSeparateHelper = new InheritableThreadLocal<>();
+//	public static final ThreadLocal<APT_MCS_CreateCustomerSeparateHelper>  createCustomerSeparateHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_VoiceLineHelper> APT_VoiceLineHelper = new InheritableThreadLocal<>();
-	
-	public static com.saksoft.qa.listeners.TestListener Testlistener;
-	public ThreadLocal<String> TestName = new ThreadLocal();
-	public static SessionId session_id;
-	public static ChromeDriver driver;
-	public static int itr;
-	public static ExtentReports extent;
-	public static ExtentTest logger;
-
-	
-	@BeforeMethod
-	public void BeforeMethod(Method method, ITestContext ctx, Object[] data) throws IOException, Exception 
-	{
-		setup();
-		Object[] st = null;
-		try
-		{
-			st = (Object[]) data[0];
-		} 
-		catch (Exception e) 
-		{
-			st = new Object[][] { { "" } };
-		}
-	}
-	public void setup() throws Exception 
-	{
-		WebDriver dr = null;
-		PropertyReader pr = new PropertyReader();
-		String targatedbrowser = pr.readproperty("browser");
-		String url = pr.readproperty("URL");
+	public static final ThreadLocal<Lanlink_DirectFiberHelpr> DirectFiber = new ThreadLocal<>();
+	public static final ThreadLocal<Lanlink_MetroHelper> Metro=new ThreadLocal<>();
+	public static final ThreadLocal<Lanlink_OLOHelper> OLO=new ThreadLocal<>();
+	public static final ThreadLocal<Lanlink_Outbandmanagementhelper> Outband = new InheritableThreadLocal<>();
+	public static final ThreadLocal<Lanlink_InternationalHelper> International = new InheritableThreadLocal<>();
+	public static final ThreadLocal<Lanlink_National> National= new InheritableThreadLocal<>();
+	public static final ThreadLocal<manageNetwork_Lanlink> manageNetwork= new InheritableThreadLocal<>();
+//	public static final ThreadLocal<APT_MCS_CreateCustomerHelper3Set> createCustomerHelper= new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_MCS_CreateCustomerSeparateHelper> createCustomerSeparateHelper= new InheritableThreadLocal<>();
+//		public static final ThreadLocal<APT_MCS_SearchCustomerHelper> searchCustomerHelper= new InheritableThreadLocal<>();
+//		public static final ThreadLocal<PerformOrder_SupplyHelper> supply= new InheritableThreadLocal<>();
+//		public static final ThreadLocal<APT_MCN_SearchDeviceHelper> APT_SearchDeviceHelper= new InheritableThreadLocal<>();
+		
+		
+		
+		public static com.saksoft.qa.listeners.TestListener Testlistener;
+		public ThreadLocal<String> TestName=new ThreadLocal(); 
+		public static SessionId session_id;
+		public static ChromeDriver driver;
+		public static int  itr;
+		
+		
+		public static ExtentReports extent;
+		public static ExtentTest logger;
+		
+		
+		/**
+		 * 
+		 * @throws Exception 
+		 * 
+		 */
+		
+		@org.testng.annotations.BeforeSuite
+		public void BeforeSuite() throws Exception{
+		itr=0;
+		DOMConfigurator.configure("log4j.xml");	//For log
+		Log.clearFile("E:\\Pramod_Workspace\\APT_Automation_Demo11\\Logs\\logfile.log");
+		
+		// Open Browser
+		  
+		
+		PropertyReader pr=new PropertyReader();
+		String targatedbrowser=pr.readproperty("browser");	
+		String url=pr.readproperty("URL");
 		Log.info("URL");
-		if (targatedbrowser.equals("chrome")) {
+		if(targatedbrowser.equals("chrome"))
+		{ 
 			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 			Map<String, Object> prefs = new HashMap<String, Object>();
+			 // Set the notification setting it will override the default setting
 			prefs.put("profile.default_content_setting_values.notifications", 2);
+
+            // Create object of ChromeOption class
 			ChromeOptions options = new ChromeOptions();
 			options.setExperimentalOption("prefs", prefs);
 			capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "none");
 			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-			System.setProperty("webdriver.chrome.driver", ".\\lib\\chromedriver.exe");
-			dr = new ChromeDriver(capabilities);
-			dr.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS );
-		} 
-		else if (targatedbrowser.equals("ie")) 
+			System.setProperty("webdriver.chrome.driver",".\\lib\\chromedriver.exe");
+			dr= new ChromeDriver(capabilities);
+		}
+		else if (targatedbrowser.equalsIgnoreCase("firefox"))
 		{
-			Log.info("For IE inprogress");
-		}
-
-		else {
 			Log.info("For FF inprogress");
+			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+			Map<String, Object> prefs = new HashMap<String, Object>();
+			 // Set the notification setting it will override the default setting
+			prefs.put("profile.default_content_setting_values.notifications", 2);
+            // Create object of FirefoxOptions class
+			FirefoxOptions options2 = new FirefoxOptions();
+//			options2.setExperimentalOption("prefs", prefs);
+			capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "none");
+//			capabilities.setCapability(FirefoxOptions.CAPABILITY, options2);
+			System.setProperty("webdriver.gecko.driver",".\\lib\\geckodriver.exe");
+			dr= new FirefoxDriver(capabilities);
 		}
-
+		else if (targatedbrowser.equalsIgnoreCase("ie"))
+		{
+			DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+			Map<String, Object> prefs = new HashMap<String, Object>();
+			 // Set the notification setting it will override the default setting
+			prefs.put("profile.default_content_setting_values.notifications", 2);
+            // Create object of ieOptions class
+			InternetExplorerOptions options3 = new InternetExplorerOptions();
+			//options3.ignoreZoomSettings();
+			capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "none");
+			//capabilities.setCapability(InternetExplorerOptions.CAPABILITY, options3);
+			System.setProperty("webdriver.ie.driver",".\\lib\\IEDriverServer.exe");
+			dr= new InternetExplorerDriver(capabilities);
+		}
+		else
+		{
+			Log.info("For MS Edge is in progress");
+		}
+		
+		
+		
 		dr.manage().window().maximize();
 		WEB_DRIVER_THREAD_LOCAL.set(dr);
 		Thread.sleep(3000);
 		
-		APT_LoginHelper apt = new APT_LoginHelper(getwebdriver());
+		APT_LoginHelper apt=new APT_LoginHelper(getwebdriver());
 		APTLogin.set(apt);
 		
 		APT_MCS_CreateAccessCoreDeviceHelper createdevice = new APT_MCS_CreateAccessCoreDeviceHelper(getwebdriver());
@@ -226,90 +281,222 @@ public class DriverTestcase {
 		
 		APT_VoiceLineHelper vlv= new APT_VoiceLineHelper(getwebdriver());
 		APT_VoiceLineHelper.set(vlv);
-	
-		// APT_Login aptLogin=new APT_Login();
-		// aptLogin.APT_Login_1();
+		
+		Lanlink_DirectFiberHelpr dirctFbr = new Lanlink_DirectFiberHelpr(getwebdriver());
+		DirectFiber.set(dirctFbr);
+		
+		Lanlink_MetroHelper metro= new Lanlink_MetroHelper(getwebdriver());
+		Metro.set(metro);
+		
+		Lanlink_OLOHelper olo=new Lanlink_OLOHelper(getwebdriver());
+		OLO.set(olo);
+		
+		Lanlink_Outbandmanagementhelper out= new Lanlink_Outbandmanagementhelper(getwebdriver());
+		Outband.set(out);
+		
+		Lanlink_InternationalHelper intnal = new Lanlink_InternationalHelper(getwebdriver());
+		International.set(intnal);
+		
+		Lanlink_National natnal=new Lanlink_National(getwebdriver());
+		National.set(natnal);
+		
+		manageNetwork_Lanlink manageNet=new manageNetwork_Lanlink(getwebdriver());
+		manageNetwork.set(manageNet);
+		
+//		APT_MCS_CreateCustomerHelper3Set cc1=new APT_MCS_CreateCustomerHelper3Set(getwebdriver());
+//		createCustomerHelper.set(cc1);
+		
+		APT_MCS_CreateCustomerSeparateHelper cc2=new APT_MCS_CreateCustomerSeparateHelper(getwebdriver());
+		createCustomerSeparateHelper.set(cc2);
 
-		// OR
+//		APT_MCS_SearchCustomerHelper sc=new APT_MCS_SearchCustomerHelper(getwebdriver());
+//		searchCustomerHelper.set(sc);
+
+		
+//		PerformOrder_SupplyHelper sply= new PerformOrder_SupplyHelper(getwebdriver());
+//		supply.set(sply);
+		
+//		APT_MCN_SearchDeviceHelper searchDevice= new APT_MCN_SearchDeviceHelper(getwebdriver());
+//		APT_SearchDeviceHelper.set(searchDevice);
+
+		
 		apt.Login("APT_login_1");
-
-		System.out.println("Method started");
-	}
-	
-	@org.testng.annotations.BeforeSuite
-	public void BeforeSuite() 
-	{
-		itr = 0;
-		DOMConfigurator.configure("log4j.xml");
-	}
-
-	@AfterClass
-	public void Teardown() 
-	{
-		// dr.close();
-	}
-
-	public static WebDriver getwebdriver() 
-	{
-		WebDriver dr = WEB_DRIVER_THREAD_LOCAL.get();
-		return dr;
-	}
-
-	
-	@org.testng.annotations.Parameters({ "test-name" })
-	@BeforeTest
-	// @org.testng.annotations.Parameters("browser")
-	public void startReport() 
-	{
-
-		String dateName1 = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-
-		// E:\Sai Workspace\APT_Automation_NGIN
-		// extent = new ExtentReports
-		// ("C:/Automation/ExtentReports/SS_ExtentReport-"+dateName1+".html", true);
-		extent = new ExtentReports(
-				System.getProperty("user.dir") + "/ExtentReports/" + "SS_ExtentReport-" + dateName1 + ".html", true);
-		extent.addSystemInfo("Host Name", "APT_QA_Colt").addSystemInfo("Environment", "QA").addSystemInfo("User Name",
-				"Sai12345");
-	}
-
-	public static String getScreenhot(WebDriver driver, String screenshotName) throws Exception 
-	{
-		String dateName2 = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		TakesScreenshot ts = (TakesScreenshot) driver;
-		File source = ts.getScreenshotAs(OutputType.FILE);
-		String destination = System.getProperty("user.dir") + "/FailedTestsScreenshots/" + screenshotName + "-"
-				+ dateName2 + ".png";
-		File finalDestination = new File(destination);
-		FileUtils.copyFile(source, finalDestination);
-		return destination;
-	}
-
-
-
-	@AfterMethod
-	public void getResult(ITestResult result) throws Exception {
-		if (result.getStatus() == ITestResult.FAILURE) {
-			logger.log(LogStatus.FAIL, "Test Case Failed is : " + result.getName());
-			logger.log(LogStatus.FAIL, "Test Case Failed is : " + result.getThrowable());
-			String base64ScreenshotPath = "data:image/png;base64,"
-					+ ((TakesScreenshot) getwebdriver()).getScreenshotAs(OutputType.BASE64);
-			logger.log(LogStatus.FAIL, logger.addScreenCapture(base64ScreenshotPath));
-		} else if (result.getStatus() == ITestResult.SKIP) {
-			logger.log(LogStatus.SKIP, "Test Case Skipped is :" + result.getName());
+		
+		
 		}
-	}
+		
+		
+		
+		@org.testng.annotations.Parameters({ "test-name" })	
+		@BeforeTest
+		//@org.testng.annotations.Parameters("browser")
+		 public void startReport() throws Exception{
+			
+		String dateName1 = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+		extent = new ExtentReports (System.getProperty("user.dir") +"/ExtentReports/"+"PK_ExtentReport-"+dateName1+".html", true);
+		extent.addSystemInfo("Host Name", "APT_QA_Colt").addSystemInfo("Environment", "QA").addSystemInfo("User Name", "PramodKumar12345");
+		
 
-	@AfterTest
-	public void endReport() 
-	{
-		extent.endTest(logger);
+		 }
+		
+		
+		 public static String getScreenhot(WebDriver driver, String screenshotName) throws Exception {
+		 String dateName2 = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+		 TakesScreenshot ts = (TakesScreenshot) driver;
+		 File source = ts.getScreenshotAs(OutputType.FILE);
+		 String destination = System.getProperty("user.dir") + "/FailedTestsScreenshots/"+screenshotName+"-"+dateName2+".png";
+		 File finalDestination = new File(destination);
+		 FileUtils.copyFile(source, finalDestination);
+		 return destination;
+		 }
+		 
+		 
+		 
+		 
+		 public WebDriver dr = null;
+			@BeforeClass
+			public void setup() throws Exception
+			{
+//				// Open Browser
+//			  
+//				
+//				PropertyReader pr=new PropertyReader();
+//				String targatedbrowser=pr.readproperty("browser");	
+//				String url=pr.readproperty("URL");
+//				Log.info("URL");
+//				if(targatedbrowser.equals("chrome"))
+//				{ 
+//					DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+//					Map<String, Object> prefs = new HashMap<String, Object>();
+//					 // Set the notification setting it will override the default setting
+//					prefs.put("profile.default_content_setting_values.notifications", 2);
+//
+//		            // Create object of ChromeOption class
+//					ChromeOptions options = new ChromeOptions();
+//					options.setExperimentalOption("prefs", prefs);
+//					capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "none");
+//					capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+//					System.setProperty("webdriver.chrome.driver",".\\lib\\chromedriver.exe");
+//					dr= new ChromeDriver(capabilities);
+//				}
+//				else if (targatedbrowser.equalsIgnoreCase("firefox"))
+//				{
+//					Log.info("For FF inprogress");
+//					DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+//					Map<String, Object> prefs = new HashMap<String, Object>();
+//					 // Set the notification setting it will override the default setting
+//					prefs.put("profile.default_content_setting_values.notifications", 2);
+//		            // Create object of FirefoxOptions class
+//					FirefoxOptions options2 = new FirefoxOptions();
+////					options2.setExperimentalOption("prefs", prefs);
+//					capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "none");
+////					capabilities.setCapability(FirefoxOptions.CAPABILITY, options2);
+//					System.setProperty("webdriver.gecko.driver",".\\lib\\geckodriver.exe");
+//					dr= new FirefoxDriver(capabilities);
+//				}
+//				else if (targatedbrowser.equalsIgnoreCase("ie"))
+//				{
+//					DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+//					Map<String, Object> prefs = new HashMap<String, Object>();
+//					 // Set the notification setting it will override the default setting
+//					prefs.put("profile.default_content_setting_values.notifications", 2);
+//		            // Create object of ieOptions class
+//					InternetExplorerOptions options3 = new InternetExplorerOptions();
+//					//options3.ignoreZoomSettings();
+//					capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "none");
+//					//capabilities.setCapability(InternetExplorerOptions.CAPABILITY, options3);
+//					System.setProperty("webdriver.ie.driver",".\\lib\\IEDriverServer.exe");
+//					dr= new InternetExplorerDriver(capabilities);
+//				}
+//				else
+//				{
+//					Log.info("For MS Edge is in progress");
+//				}
+//				
+//				
+//				
+//				dr.manage().window().maximize();
+//				WEB_DRIVER_THREAD_LOCAL.set(dr);
+//				Thread.sleep(3000);
+
+				
+				/**
+				 * For APT projects
+				 */
+				APT_LoginHelper apt=new APT_LoginHelper(getwebdriver());
+				APTLogin.set(apt);
+				
+			//LANLINK SERVICES
+				
+				
+
+				
+//				apt.Login("APT_login_1");
+			}
+		 
+		 
+		 
+			@AfterMethod
+			 public void getResult(ITestResult result) throws Exception{
+			 if(result.getStatus() == ITestResult.FAILURE){
+			 logger.log(LogStatus.FAIL, "Test Case Failed is : "+result.getName());
+			 logger.log(LogStatus.FAIL, "Test Case Failed is : "+result.getThrowable());
+			 String base64ScreenshotPath = "data:image/png;base64,"+((TakesScreenshot)getwebdriver()).getScreenshotAs(OutputType.BASE64);		 
+			 logger.log(LogStatus.FAIL, logger.addScreenCapture(base64ScreenshotPath));
+			 }else if(result.getStatus() == ITestResult.SKIP){
+			 logger.log(LogStatus.SKIP, "Test Case Skipped is :"+result.getName());
+			 												}
+			 }
+		 
+		
+		
+		
+		@AfterClass
+		public void Teardown()
+		{
+//			dr.close();
+		}
+		
+		public static WebDriver getwebdriver() {
+			WebDriver dr = WEB_DRIVER_THREAD_LOCAL.get();
+			return dr;
+		}
+		
+		
+		
+		 @AfterTest
+		 public void endReport(){
 		extent.flush();
-
-		// extent.close();
-
+		extent.endTest(logger);
+		//           extent.close();
+			 
+		    }
+		 
+		
+		
+		
+		
+	@BeforeMethod
+	   public void BeforeMethod(Method method,ITestContext ctx, Object[] data) throws IOException, Exception{
+	//	setup();
+		
+		Object[] st = null;
+		
+		try 
+		
+		{
+	 	st=(Object[]) data[0];
+		}
+		catch(Exception e)
+		{
+			st=new Object[][] {{""}};
+		}
+	 
+	 
+	
 	}
+
+   
 
 	
-
 }

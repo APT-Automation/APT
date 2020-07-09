@@ -36,6 +36,15 @@
 				<include name="searchCreatedService" />
 				<include name="addMASswitch" />
 				<include name="viewMASswitch" />
+				<include name="editMASswitch" />
+				<include name="verifyAddInterfaceFunction_MAS" />
+				<include name="verifyAddedInterface_MAS" />
+				<include name="MAS_routerToolsPanel" />
+				<include name="configureInterface" />
+				<include name="editInterface" />
+				<include name="selectInterface_MAS" />
+				<include name="deletInterfce" />
+				<include name="delete_MASdevice" />
 				
 			</methods>
 		  </class>	
@@ -46,6 +55,7 @@
    	<test name ="VoiceLineV"> 	
     	<classes>	  
 			<class name="com.saksoft.qa.apttestscripts.APT_VoiceLineTest"/>
+			
 			
 		</classes>
 		

@@ -1081,6 +1081,23 @@ public void IntermediateEquipment(Map<String, String> map) throws Exception {
 					DirectFiber.get().successMessage_deleteFromService("LANLINK");
 
 		}
+		
+		
+		@Test(dataProviderClass = DataReader_PK.class, dataProvider = "DataReader_createService", priority=34)
+		public void PAMTest(Map<String, String> map) throws Exception {
+			
+			DriverTestcase.logger = DriverTestcase.extent.startTest("PAMTest");
+			Thread.sleep(3000);
+			
+			System.out.println("----- PAM Test-----------9");
+			
+			DirectFiber.get().returnbacktoviewsiteorderpage("LANLINK");
+			
+			DirectFiber.get().selectRowForsiteorder("LANLINK", map.get("Siteordernumber"), map.get("siteOrderNumber_PointToPoint"), 
+					map.get("vpnTopology"), map.get("Interfacespeed"), map.get("siteOrderNumber_10G_PointToPoint"));
+			
+		
+		}	
 
 
 

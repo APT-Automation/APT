@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <locators>
-	<APT_headerlogin>
-		<Username>name=j_username</Username>
-		<Password>name=j_password</Password>
-		<Loginbutton>//input[@class='formButton']</Loginbutton>
-	</APT_headerlogin>
 	
-	<APT_invalidHeaderLogin>
-		<Username>name=j_username</Username>
-		<Password>name=j_password</Password>
-		<Loginbutton>//input[@class='formButton']</Loginbutton>
-	</APT_invalidHeaderLogin>
 	
     <APT_login_1>
 		<Username>//input[@placeholder='Username']</Username>
 		<Password>//input[@placeholder='Password']</Password>
 		<Loginbutton>//button[text()='Login']</Loginbutton>
+		<fetchErrorMessage>(//div[@class='p-4 card']//span)[1]</fetchErrorMessage>
 	</APT_login_1>
 	
 	
@@ -29,11 +20,6 @@
 	</APT_login>
 	
 
-	<APT_invalidLogin>
-		<Username>name=j_username</Username>
-		<Password>name=j_password</Password>
-		<Loginbutton>//button[text()='Login']</Loginbutton>
-	</APT_invalidLogin>
 
 
 	<APT_reset>

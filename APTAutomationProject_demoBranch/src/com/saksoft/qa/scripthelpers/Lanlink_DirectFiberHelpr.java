@@ -24323,6 +24323,13 @@ Thread.sleep(3000);
  	   fetchValueFromViewPage(application, "City");
  	   fetchValueFromViewPage(application, "Site");
     }
+	
+	
+	public void pamTest(String application) throws InterruptedException, DocumentException {
+		
+		click_commonMethod(application, "PAMtest_Link", "PAMtest_Link" , xml);
+	}
+	
     
 			
 }

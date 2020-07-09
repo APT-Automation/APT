@@ -155,7 +155,7 @@ public class APT_MCS_CreateAccessCoreDevice_AccessRouter extends DriverTestcase 
 
 
 	
-	@Test(description = "TC-010",dataProviderClass = DataReader_PK.class, dataProvider = "DataReader_AccessRouter_Device", priority=10)
+//	@Test(description = "TC-010",dataProviderClass = DataReader_PK.class, dataProvider = "DataReader_AccessRouter_Device", priority=10)
 	public void fetchDeviceInterface(Map<String, String> map) throws InterruptedException, IOException, DocumentException, ParseException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("fetchDeviceInterface");

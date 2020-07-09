@@ -934,6 +934,11 @@
     
     <devicePanelHeaders_InViewSiteOrderPage>//div[div[text()='value']]</devicePanelHeaders_InViewSiteOrderPage>
     
+    
+    <!-- PAM Test -->
+    <PAMtest_Link>//a[contains(text(),'PAM Test')]</PAMtest_Link>
+    
+    
      </LANLINK>   
  
 </locators>

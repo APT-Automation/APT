@@ -10,11 +10,19 @@
    	 <test name="LANLINK">  
 		<classes>	
 			<class name="com.saksoft.qa.apttestscripts.Lanlink_DirectFiber">
-	<!-- 		<methods>
-				<include name="searchCreatedService" />
-				<include name="addMASswitch" />
-				<include name="viewMASswitch" />
-			</methods>    -->
+	 		<methods>
+				<include name="verifyAddSiteOrderFieldsfortheServiceSubtypeSelectedunderLANLINK" />
+				<include name="SuccessmessageforCreationofSiteOrder" />
+				<include name="verifytheDataEnteredforAddSiteOrderfortheServiceSubtypeSelectedunderLANLINK" />
+				<include name="EditSiteOrderfortheServiceSubtypeSelectedunderLANLINK" />
+				<include name="Actelis" />
+				<include name="AdddeviceforEquipment" />
+				<include name="configureEquipment" />
+				<include name="showInterface_Equipment" />
+				<include name="deleteDevice_Equipment" />
+				<include name="PAMTest" />
+				
+			</methods>   
 		  </class>	
 		</classes>
 	</test> 	

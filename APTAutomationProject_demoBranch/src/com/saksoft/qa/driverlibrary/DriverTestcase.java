@@ -139,11 +139,18 @@ public class DriverTestcase {
 		 * 
 		 */
 		
+		@org.testng.annotations.Parameters({ "test-name" })
 		@org.testng.annotations.BeforeSuite
+		 
 		public void BeforeSuite() throws Exception{
+			
+			String dateName1 = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+			extent = new ExtentReports (System.getProperty("user.dir") +"/ExtentReports/"+"PK_ExtentReport-"+dateName1+".html", true);
+			extent.addSystemInfo("Host Name", "APT_QA_Colt").addSystemInfo("Environment", "QA").addSystemInfo("User Name", "PramodKumar12345");
+			
 		itr=0;
 		DOMConfigurator.configure("log4j.xml");	//For log
-		Log.clearFile("E:\\Pramod_Workspace\\APT_Automation_Demo11\\Logs\\logfile.log");
+		Log.clearFile("C:\\Users\\SKathiresan-ADM\\APTAutomation_APTdemo_sanjeev\\APTAutomationProject_demoBranch\\Logs");
 		
 		// Open Browser
 		  
@@ -321,34 +328,36 @@ public class DriverTestcase {
 
 		
 		apt.Login("APT_login_1");
-		
-		
 		}
 		
 		
 		
-		@org.testng.annotations.Parameters({ "test-name" })	
-		@BeforeTest
-		//@org.testng.annotations.Parameters("browser")
-		 public void startReport() throws Exception{
-			
-		String dateName1 = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		extent = new ExtentReports (System.getProperty("user.dir") +"/ExtentReports/"+"PK_ExtentReport-"+dateName1+".html", true);
-		extent.addSystemInfo("Host Name", "APT_QA_Colt").addSystemInfo("Environment", "QA").addSystemInfo("User Name", "PramodKumar12345");
-		
-
-		 }
 		
 		
-		 public static String getScreenhot(WebDriver driver, String screenshotName) throws Exception {
-		 String dateName2 = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		 TakesScreenshot ts = (TakesScreenshot) driver;
-		 File source = ts.getScreenshotAs(OutputType.FILE);
-		 String destination = System.getProperty("user.dir") + "/FailedTestsScreenshots/"+screenshotName+"-"+dateName2+".png";
-		 File finalDestination = new File(destination);
-		 FileUtils.copyFile(source, finalDestination);
-		 return destination;
-		 }
+//		@org.testng.annotations.Parameters({ "test-name" })	
+//		@org.testng.annotations.Parameters({"driver", "test-name"})
+//		@BeforeTest
+//		@org.testng.annotations.Parameters("browser")
+//		 public void startReport() throws Exception{
+//			
+//		String dateName1 = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+//		extent = new ExtentReports (System.getProperty("user.dir") +"/ExtentReports/"+"PK_ExtentReport-"+dateName1+".html", true);
+//		extent.addSystemInfo("Host Name", "APT_QA_Colt").addSystemInfo("Environment", "QA").addSystemInfo("User Name", "PramodKumar12345");
+//		
+//
+//		 }
+		
+		
+//		
+//		 public static String getScreenhot(WebDriver driver, String screenshotName) throws Exception {
+//		 String dateName2 = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+//		 TakesScreenshot ts = (TakesScreenshot) driver;
+//		 File source = ts.getScreenshotAs(OutputType.FILE);
+//		 String destination = System.getProperty("user.dir") + "/FailedTestsScreenshots/"+screenshotName+"-"+dateName2+".png";
+//		 File finalDestination = new File(destination);
+//		 FileUtils.copyFile(source, finalDestination);
+//		 return destination;
+//		 }
 		 
 		 
 		 

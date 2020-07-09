@@ -1155,7 +1155,7 @@ public class DriverHelper {
 
 					SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/" + xpathname + "")),
 							expectedValueToAdd);
-					Thread.sleep(3000);
+					Thread.sleep(1000);
 
 					String actualvalue = getwebelement(
 							xml.getlocator("//locators/" + application + "/" + xpathname + "")).getAttribute("value");
@@ -1204,7 +1204,7 @@ public class DriverHelper {
 				} else {
 
 					Clickon(getwebelement("//div[label[text()='" + labelname + "']]//div[text()='×']"));
-					Thread.sleep(3000);
+					Thread.sleep(2000);
 
 					// verify list of values inside dropdown
 					List<WebElement> listofvalues = driver
@@ -1418,7 +1418,7 @@ public class DriverHelper {
 		// Field Error Message
 		try {
 			message = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")).isDisplayed();
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 			sa.assertTrue(message, fieldlabelName + " field warning message is not displayed ");
 			if (message) {
 				String ErrMsg = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")).getText();

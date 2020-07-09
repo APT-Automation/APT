@@ -565,9 +565,11 @@ public class APT_wholesale extends DriverTestcase{
 
 		
 		@Test(description = "TC-12",dataProviderClass = DataReader_PK.class, dataProvider = "Finaldatareader_wholeSale", priority=32)
-		public void viewTrunk_GSX_PSX_SBC_configuration(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
+		public void viewTrunk_GSX_PSX_SBC_configuration(Map<String, String> map) throws Exception {
 		
 			DriverTestcase.logger = DriverTestcase.extent.startTest("viewTrunk_GSX_PSX_configuration");
+			
+			APT_wholesaleHelper.get().clickOnViewLink("wholesaleService", "ITLNASD0E3708", "SiVA_A45");
 			
 			APT_wholesaleHelper.get().viewTrunk_PSX_executeConfiguration("wholesaleService", map.get("viewtrunk_PSXconfiguration"));
 			

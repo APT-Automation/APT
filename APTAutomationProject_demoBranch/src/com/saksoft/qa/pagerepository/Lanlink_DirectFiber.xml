@@ -935,9 +935,13 @@
     <devicePanelHeaders_InViewSiteOrderPage>//div[div[text()='value']]</devicePanelHeaders_InViewSiteOrderPage>
     
     
-    <!-- PAM Test -->
+   <!-- PAM Test -->
     <PAMtest_Link>//a[contains(text(),'PAM Test')]</PAMtest_Link>
-    
+    <PAMtest_popupPage>//div[div[div[text()='PAM Test']]]</PAMtest_popupPage>
+    <PAMTest_TypeFieldValue>//div[div[div[text()='PAM Test']]]//div[label[text()='Type']]//following-sibling::div</PAMTest_TypeFieldValue>
+    <PAMTest_ServiceValue>//div[div[div[text()='PAM Test']]]//div[label[text()='Service']]//following-sibling::div</PAMTest_ServiceValue>
+    <PAMTest_ToolResponse>//div[div[div[text()='PAM Test']]]//div[label[text()='Tool Response']]//following-sibling::div</PAMTest_ToolResponse>
+    <PAMTest_xButton>//div[div[text()='PAM Test']]//span[text()='×']</PAMTest_xButton>
     
      </LANLINK>   
  

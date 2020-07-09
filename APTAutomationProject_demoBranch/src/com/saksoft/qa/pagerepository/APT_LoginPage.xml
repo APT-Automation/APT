@@ -7,7 +7,6 @@
 		<Username>//input[@placeholder='Username']</Username>
 		<Password>//input[@placeholder='Password']</Password>
 		<Loginbutton>//button[text()='Login']</Loginbutton>
-		<fetchErrorMessage>(//div[@class='p-4 card']//span)[1]</fetchErrorMessage>
 	</APT_login_1>
 	
 	

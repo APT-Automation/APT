@@ -76,16 +76,22 @@ public class APT_LoginHelper extends DriverHelper {
 			openurl(Application);
 
 			Thread.sleep(2000);
+//			click_commonMethod(Application, "Login", "Loginbutton" , xml);
+//			
+//			compareText(Application, "Error Message in login page", "fetchErrorMessage", "You have entered incorrect Login Id or Password" , xml);
+			
 			
 			SendKeys(getwebelement(xml.getlocator("//locators/" + Application + "/Username")),
 					Getkeyvalue(Application + "_Username"));
-			//ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter User Name");
-
+//			addtextFields_commonMethod(Application, "Username", "Username", Getkeyvalue(Application + "_Username"), xml);
+			
 			SendKeys(getwebelement(xml.getlocator("//locators/" + Application + "/Password")),
 					Getkeyvalue(Application + "_Password"));
-			//ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Password");
-
+//			addtextFields_commonMethod(Application, "Password", "Password", Getkeyvalue(Application + "_Password"), xml);
+			
 			Clickon(getwebelement(xml.getlocator("//locators/" + Application + "/Loginbutton")));
+
+			
 			
 			com.saksoft.qa.driverlibrary.Log.info("=== APT logged in successfully ===");
 			System.out.println("APT logged in successfully");

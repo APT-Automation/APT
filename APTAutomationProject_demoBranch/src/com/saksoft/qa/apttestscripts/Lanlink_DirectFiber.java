@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import com.relevantcodes.extentreports.LogStatus;
 import com.saksoft.qa.driverlibrary.DataReader_PK;
 import com.saksoft.qa.driverlibrary.DriverTestcase;
+import com.saksoft.qa.excellibrary.APT_DataReader_SS;
 
 import javafx.scene.control.ScrollToEvent;
 
@@ -1083,12 +1084,19 @@ public void IntermediateEquipment(Map<String, String> map) throws Exception {
 		}
 		
 		
-		@Test(dataProviderClass = DataReader_PK.class, dataProvider = "DataReader_createService", priority=34)
+		@Test(dataProviderClass = APT_DataReader_SS.class, dataProvider = "DataReader_createService", priority=34)
 		public void PAMTest(Map<String, String> map) throws Exception {
 			
 			DriverTestcase.logger = DriverTestcase.extent.startTest("PAMTest");
 			Thread.sleep(3000);
 			
+			String ServiceID = null;
+			
+			if(map.get("Edit_serviceNumber").equalsIgnoreCase("null")) {
+				ServiceID=map.get("serviceNumber");
+			}else {
+				ServiceID=map.get("Edit_serviceNumber");
+			}
 			System.out.println("----- PAM Test-----------9");
 			
 			DirectFiber.get().returnbacktoviewsiteorderpage("LANLINK");
@@ -1096,6 +1104,7 @@ public void IntermediateEquipment(Map<String, String> map) throws Exception {
 			DirectFiber.get().selectRowForsiteorder("LANLINK", map.get("Siteordernumber"), map.get("siteOrderNumber_PointToPoint"), 
 					map.get("vpnTopology"), map.get("Interfacespeed"), map.get("siteOrderNumber_10G_PointToPoint"));
 			
+			DirectFiber.get().pamTest("LANLINK", ServiceID);
 		
 		}	
 

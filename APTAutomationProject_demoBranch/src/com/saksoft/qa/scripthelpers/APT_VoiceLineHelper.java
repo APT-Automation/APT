@@ -6327,7 +6327,7 @@ public void VerifyVoiceResiliency(String application, String backupnumber_checkb
      click_commonMethod(application, "Show New Infovista Report", "shownewinfovistareport_link", xml);
      Thread.sleep(6000);
      
-     String expectedPageName= "SSO login Page";
+     String expectedPageName= "SSO Login Page";
      
      //Switch to new tab
      List<String> browserTabs = new ArrayList<String> (driver.getWindowHandles());

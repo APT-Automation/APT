@@ -66,6 +66,7 @@ public class APT_NGINHelper extends DriverHelper {
 		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
+		Thread.sleep(2000);
 		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
 		Thread.sleep(2000);
 		compareText(application, "create customer page header", "createcustomer_header", "Customer", xml);

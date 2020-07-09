@@ -6,12 +6,13 @@
       <listener class-name="com.saksoft.qa.listeners.TestListener" />
   	</listeners>
   	
+  	
 	<test name ="NGIN"> 
 		<classes>
 			<class name="com.saksoft.qa.apttestscripts.APT_NGINTest">
 			 <methods>
         			<include name="CreateCustomer" />
-       		<!--  	<include name="choosecustomer" />
+       			  	<include name="choosecustomer" />
        			 	<include name="verifycreateorder" />
        			 	<include name="verifyservicetypeselection" />
        			 	<include name="verifyservicecreation" />
@@ -22,11 +23,27 @@
        			 	<include name="verifyManagementOptionspanel" />
        			 	<include name="verifyResellerpanelinviewservicepage" />
        			 	<include name="AddReseller" />
-       			 	<include name="verifyResellerLinks" />    -->
+       			 	<include name="verifyResellerLinks" />    
     		  </methods>
     		</class> 
     	</classes>	
   	</test> 
+  	
+  	
+  	<test name ="Voice line Service"> 	
+    	<classes>	  
+			<class name="com.saksoft.qa.apttestscripts.APT_VoiceLineTest">
+			  <methods>
+			  	<include name="verifyServicepanelinviewservicepage" />
+			   	<include name="verifyASRDevice" />
+			  	<include name="verifyAddTrunk" />
+			  	<include name="viewTrunk" />   
+			  
+			  </methods>
+			</class>
+		</classes>
+		</test>
+  		
    	
    	
    	 <test name="Wholesale">  
@@ -45,24 +62,14 @@
 				<include name="selectInterface_MAS" />
 				<include name="deletInterfce" />
 				<include name="delete_MASdevice" />
-				
+				<include name="viewTrunk_GSX_PSX_SBC_configuration" />
+				<include name="PSXmanualConfig" />   
 			</methods>
 		  </class>	
 		</classes>
 	</test> 	
 	
    	 	
-   	<test name ="VoiceLineV"> 	
-    	<classes>	  
-			<class name="com.saksoft.qa.apttestscripts.APT_VoiceLineTest"/>
-			
-			
-		</classes>
-		
-		
-	</test> 
-	
-	
 </suite>
 
 

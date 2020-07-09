@@ -24325,10 +24325,65 @@ Thread.sleep(3000);
     }
 	
 	
-	public void pamTest(String application) throws InterruptedException, DocumentException {
+public void pamTest(String application, String serviceID) throws InterruptedException, DocumentException {
 		
 		click_commonMethod(application, "PAMtest_Link", "PAMtest_Link" , xml);
+		
+		boolean pamTestPage=false;
+		try {	
+		pamTestPage=getwebelement(xml.getlocator("//locators/" + application + "/PAMtest_popupPage")).isDisplayed();
+		if(pamTestPage) {
+			DriverTestcase.logger.log(LogStatus.PASS, "'PAM Test' popup page is displaying");
+			System.out.println("'PAM Test' popup page is displaying");
+			
+		//Type Value	
+			String typeValue=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/PAMTest_TypeFieldValue")));
+			if(typeValue.isEmpty()) {
+				DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'Type' field");
+				System.out.println("No values displaying under 'Type' field");
+			}else {
+				DriverTestcase.logger.log(LogStatus.PASS, "Under 'Type' field, value is dispaying as: "+typeValue);
+				System.out.println("Under 'Type' field, value is dispaying as: "+typeValue);
+			}
+			
+		//Service
+			String serviceValue=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/PAMTest_ServiceValue")));
+			if(serviceValue.isEmpty()) {
+				DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'Service' field");
+				System.out.println("No values displaying under 'Service' field");
+			}else {
+				compareText(application, "Service", "PAMTest_ServiceValue" , serviceID, xml);
+			}
+			
+			
+			
+			
+		//Tool Response
+			String toolResponse=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/PAMTest_ToolResponse")));
+			if(toolResponse.isEmpty()) {
+				DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'Tool Response' field");
+				System.out.println("No values displaying under 'Tool Response' field");
+			}else {
+				DriverTestcase.logger.log(LogStatus.PASS, "Under 'Tool Response' field, value is dispaying as: "+toolResponse);
+				System.out.println("Under 'Tool Response' field, value is dispaying as: "+toolResponse);
+			}
+			
+			
+		//click on x button
+			click_commonMethod(application, "X", "PAMTest_xButton", xml);
+			
+		}else {
+			DriverTestcase.logger.log(LogStatus.FAIL, "'PAM Test' popup page is not displaying");
+			System.out.println("'PAM Test' popup page is not displaying");
+		}
+	}catch(Exception e) {
+		e.printStackTrace();
+		DriverTestcase.logger.log(LogStatus.FAIL, "'PAM Test' popup page is not displaying");
+		System.out.println("'PAM Test' popup page is not displaying");
 	}
+		
+	}
+
 	
     
 			

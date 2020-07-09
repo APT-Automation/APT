@@ -6753,5 +6753,25 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 	}
 	
 	
+		public void clickOnViewLink(String application, String trunkGroupName, String siteOrderName) throws Exception {
+		
+		scrolltoend();
+		
+		WebElement getTrunkRow=getwebelement(xml.getlocator("//locators/" + application + "/selectCreatedTrunk_InViewServicePage").replace("value", trunkGroupName));
+		safeJavaScriptClick(getTrunkRow);
+		
+		
+		//click on Action dropdown under Trunk Panel	
+			WebElement trukPanel_actionDropdown=getwebelement(xml.getlocator("//locators/" + application + "/trunkPanel_ActionDropdown").replace("value", siteOrderName));
+			safeJavaScriptClick(trukPanel_actionDropdown);
+			
+		
+		//Add CPE link
+			Clickon(getwebelement("//a[contains(text(),'View')]"));
+			DriverTestcase.logger.log(LogStatus.PASS, "clicked on view link");
+		
+	}
+	
+	
 }	
 		

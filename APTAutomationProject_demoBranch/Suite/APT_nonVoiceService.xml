@@ -32,7 +32,17 @@
 	 <test name="CREATE ACCESS CORE DEVICE">  
 		<classes>	
 			<class name="com.saksoft.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter">
+			<methods>
+				<include name="verifynavigationtocreatedevicepage" />
+				<include name="verifycreateaccessrouterdevice" />
+				<include name="verifyDeviceCreationMessagefor_AccessRouterDevice" />
+				<include name="verifyEnteredValueForDevice" />
+				<include name="verifyaccessrouterdeviceEdit" />
+				<include name="verifyDeviceUpdationSuccessMessagefor_AccessRouterDevice" />
+				<include name="verifyTestCommandAndStatus" />
+				<include name="verifyaccessrouterdeviceDelete" />
 			
+			</methods>
 		  </class>	
 		</classes>
 	</test> 

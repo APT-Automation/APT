@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<locators>
+
+
+<CreateCustomer>
+<ManageCustomerServiceLink>//span[contains(text(),"Manage Customer's Service")]</ManageCustomerServiceLink>
+<SearchCustomerLink>//li[contains(text(),'Search Customer')]</SearchCustomerLink>
+<CreateCustomerLink>//li[contains(text(),'Create Customer')]</CreateCustomerLink>
+
+<!--  warning message create customer page -->
+<name_validationmsg>//div[text()='Legal Customer Name']</name_validationmsg>
+<country_validationmsg>//div[text()='Country']</country_validationmsg>
+<OCN_validationmsg>//div[text()='OCN']</OCN_validationmsg>
+<type_validationmsg>//div[text()='Type']</type_validationmsg>
+<email_Validationmsg>//div[text()='Email']</email_Validationmsg>
+
+
+<Name>//input[@id='name']</Name>
+<Name_Textfield>//label[text()='Name']</Name_Textfield>	
+<Nameisrequired_Text>//div[contains(text(),'Name')]</Nameisrequired_Text>
+<MainDomain>//input[@id='mainDomain']</MainDomain>
+<MainDomain_Textfield>//label[contains(text(),'Main Domain')]</MainDomain_Textfield>
+<MainDomainisrequired_Text>//div[contains(text(),'Main Domain')]</MainDomainisrequired_Text>
+<CountrySelect>//div[label[contains(text(),'Country')]]//input</CountrySelect> 					 
+<CountrySelectold>//select[@id='country_Id']</CountrySelectold>
+<Country_Textfield>//label[contains(text(),'Country')]</Country_Textfield>
+<Countryisrequired_Text>//div[contains(text(),'Country')]</Countryisrequired_Text>	
+<OCN>//input[@id='ocn']</OCN>
+<OCN_Textfield>//label[contains(text(),'OCN')]</OCN_Textfield>
+<OCNisrequired_Text>//div[contains(text(),'OCN')]</OCNisrequired_Text>	
+<Reference>//input[@id='reference']</Reference>	
+<Search_Button>//button/span[contains(text(),'Search')]</Search_Button>
+<Reference_Textfield>//label[contains(text(),'Reference')]</Reference_Textfield>
+<TechnicalContactName>//input[@id='technicalContactName']</TechnicalContactName>
+<TechnicalContactName_Textfield>//label[contains(text(),'Technical Contact Name')]</TechnicalContactName_Textfield>
+<TypeSelect>//div[label[contains(text(),'Type')]]//div[@class='react-dropdown-select-clear css-w49n55-ClearComponent e11qlq5e0']</TypeSelect>	
+<Type_Textfield>//label[contains(text(),'Type')]</Type_Textfield>
+<Typeisrequired_Text>//div[contains(text(),'Name')]</Typeisrequired_Text>
+<Email>//input[@id='email']</Email>
+<EmailLabelname>//label[text()='Email']</EmailLabelname>
+<Email_Textfield>//label[contains(text(),'Email')]</Email_Textfield>
+<Emailisrequired_Text>//div[contains(text(),'Email')]</Emailisrequired_Text>	
+<Phone>//input[@id='phone']</Phone>
+<Phone_Textfield>//label[contains(text(),'Phone')]</Phone_Textfield>	
+<Fax>//input[@id='fax']</Fax>
+<Fax_Textfield>//label[contains(text(),'Fax')]</Fax_Textfield>	
+<EnableDedicatedPortalCheckbox>//input[@id='enabledDedicatedPortal']</EnableDedicatedPortalCheckbox>
+<EnableDedicatedPortal_TextField>//label[contains(text(),'Enable Dedicated Portal')]</EnableDedicatedPortal_TextField>
+<DedicatePortal_Text>//body//div[4]//div[4]//div[1]//label[1]</DedicatePortal_Text>
+<DedicatePortal_Select>//select[@id='dedicatedPortal']</DedicatePortal_Select>
+<OkButton_CreateCustomer>//span[contains(text(),'OK')]</OkButton_CreateCustomer>
+<CancelButton_CreateCustomer>//span[contains(text(),'Cancel')]</CancelButton_CreateCustomer>
+<ClearButton_CreateCustomer>//span[contains(text(),'Clear')]</ClearButton_CreateCustomer>
+<CustomerCreatedSuccessfullyMessage_Text>//div[text()='Customer Created successfully']</CustomerCreatedSuccessfullyMessage_Text>
+<!--  --><CustomerCreatedSuccessfullyMessage_Text>//div[contains(text(),'Customer Created successfully')]</CustomerCreatedSuccessfullyMessage_Text>
+
+
+<SearchCustomerResult_Actionmenu>//button[@id='dropdown-basic-button']</SearchCustomerResult_Actionmenu>
+<SearchResultRowsRadioButton>//span[@class='ag-selection-checkbox']//span[@class='ag-icon ag-icon-checkbox-unchecked']</SearchResultRowsRadioButton>
+<View_Link>//a[text()='View']</View_Link>
+<Order_Service_Action>(//button[@id='dropdown-basic-button'])[4]</Order_Service_Action>
+<Supply_Link>//a[contains(text(),'Supply')]</Supply_Link>
+<SupplyServicetoCustomer_Name>//input[@id='customerName']</SupplyServicetoCustomer_Name>
+<SupplyServicetoCustomer_ChooseACustomer>//div[label[text()='Choose a customer']]//input</SupplyServicetoCustomer_ChooseACustomer>
+<OK_Button>//span[contains(text(),'Ok')]</OK_Button>
+<SubscriberPanel>//div[div[@class='heading-green-row row']//div[text()='Subscribes']]</SubscriberPanel>
+<order_viewLink>//a[contains(text(),'View')]</order_viewLink>
+<alertPopupForviewLink_underOrderpanel>//div[@class='modal-content']</alertPopupForviewLink_underOrderpanel>
+<alertmsgForviewlink_underOrderPanel>//div[@class='modal-body']</alertmsgForviewlink_underOrderPanel>
+<xbuttonForviewlink_underOrderPanel>//span[contains(text(),'×')]</xbuttonForviewlink_underOrderPanel>
+
+<viewServicepage_OrderPanel>//div[text()='Order']</viewServicepage_OrderPanel>
+<Editservice_actiondropdown>//div[div[text()='Service']]//button[text()='Action']</Editservice_actiondropdown>
+<viewService_deletLink>//a[contains(text(),'Delete')]</viewService_deletLink>
+<viweServicepage_deleteButton>//button[@class='btn btn-danger']</viweServicepage_deleteButton>
+<service_deleteSuccessMessage>//span[contains(text(),'Service successfully deleted.')]</service_deleteSuccessMessage>
+
+<actionbutton_orderDeletion>//button[@id='dropdown-basic-button']</actionbutton_orderDeletion>
+
+<SupplyHeadertab>//div[div[div[text()='Supplies']]]</SupplyHeadertab>
+<CreatedCustomer_LegalCustomerName_Value>(//div[@class='position-relative form-group']/div[2])[1]</CreatedCustomer_LegalCustomerName_Value>
+<CreatedCustomer_MainDomain_Value>(//div[@class='position-relative form-group']/div[2])[2]</CreatedCustomer_MainDomain_Value>
+<CreatedCustomer_Country_Value>(//div[@class='position-relative form-group']/div[2])[3]</CreatedCustomer_Country_Value>
+<CreatedCustomer_OCN_Value>(//div[@class='position-relative form-group']/div[2])[4]</CreatedCustomer_OCN_Value>
+<CreatedCustomer_Reference_Value>(//div[@class='position-relative form-group']/div[2])[5]</CreatedCustomer_Reference_Value>
+<CreatedCustomer_Type_Value>(//div[@class='position-relative form-group']/div[2])[6]</CreatedCustomer_Type_Value>
+<CreatedCustomer_TechnicalContactName_Value>(//div[@class='position-relative form-group']/div[2])[7]</CreatedCustomer_TechnicalContactName_Value>
+<CreatedCustomer_Email_Value>(//div[@class='position-relative form-group']/div[2])[8]</CreatedCustomer_Email_Value>
+<CreatedCustomer_Phone_Value>(//div[@class='position-relative form-group']/div[2])[9]</CreatedCustomer_Phone_Value>
+<CreatedCustomer_Fax_Value>(//div[@class='position-relative form-group']/div[2])[10]</CreatedCustomer_Fax_Value>
+
+<FirstRowTexts>//*[@id="root"]/div/div/main/div[2]/div[2]/div[4]/div/div/div/div[2]/div/div[1]/div/div[3]/div[2]/div/div/div[1]</FirstRowTexts>
+<CustomerDetails_Action>(//button[@id='dropdown-basic-button'])[1]</CustomerDetails_Action>
+<EditCustomerLink>//a[contains(text(),'Edit')]</EditCustomerLink>
+<OkButton_EditCustomer>(//span[contains(text(),'OK')])[1]</OkButton_EditCustomer>
+<CancelButton_EditCustomer>//span[contains(text(),'Cancel')]</CancelButton_EditCustomer>
+<BackButton_EditCustomer>//span[contains(text(),'Back')]</BackButton_EditCustomer>
+<DeleteCustomerLink>//a[contains(text(),'Delete')]</DeleteCustomerLink>
+<DeleteButton_DeleteCustomer>//button[@class='btn btn-danger']</DeleteButton_DeleteCustomer>
+<ManageServiceLink>//a[contains(text(),'Manage Service')]</ManageServiceLink>
+
+<Name_EditCustomer>//input[@id='name']</Name_EditCustomer>
+<domain_EditCustomer>//input[@id='mainDomain']</domain_EditCustomer>
+<country_EditCustomer>//select[@id='country_Id']</country_EditCustomer>
+<ocn_EditCustomer>//input[@id='ocn']</ocn_EditCustomer>
+<reference_EditCustomer>//input[@id='reference']</reference_EditCustomer>
+<Technicalname_EditCustomer>//input[@id='techinicalContactName']</Technicalname_EditCustomer>
+<type_EditCustomer>//select[@id='type']</type_EditCustomer>
+<Email_EditCustomer>//input[@id='email']</Email_EditCustomer>
+<phone_EditCustomer>//input[@id='phone']</phone_EditCustomer>
+<fax_EditCustomer>//input[@id='fax']</fax_EditCustomer>
+<enablededicatedPortal_EditCustomer>//div[label[contains(text(),'Enable Dedicated Portal')]]//input</enablededicatedPortal_EditCustomer>
+<EditCustomerTabname_EditCustomer>//div[contains(text(),'Edit Customer')]</EditCustomerTabname_EditCustomer>
+				
+<Header_name>//div[div[label[text()='Legal Customer Name']]]/div[2]</Header_name>
+<Header_Domain>//div[div[label[text()='Main Domain']]]/div[2]</Header_Domain>
+<Header_Country>//div[div[label[text()='Country']]]/div[2]</Header_Country>
+<Header_OCN>//div[div[label[text()='OCN']]]/div[2]</Header_OCN>
+<Header_Reference>//div[div[label[text()='Reference']]]/div[2]</Header_Reference>
+<Header_TechnicalContact>//div[div[label[text()='Technical Contact Name']]]/div[2]</Header_TechnicalContact>
+<Header_TypeToBeSelected>//div[div[label[text()='Type']]]/div[2]</Header_TypeToBeSelected>
+<Header_Email>//div[div[label[text()='Email']]]/div[2]</Header_Email>
+<Header_Phone>//div[div[label[text()='Phone']]]/div[2]</Header_Phone>
+<Header_Fax>//div[div[label[text()='Fax']]]/div[2]</Header_Fax>
+<Header_Portal>//div[div[label[text()='Dedicated Portal']]]/div[2]</Header_Portal>
+
+<CountrySelect_Build4>(//input[@placeholder='Select...'])[1]</CountrySelect_Build4>
+<Referance_Build4>//input[@id='reference']</Referance_Build4>
+<TechinicalContactName_Build4>//input[@id='techinicalContactName']</TechinicalContactName_Build4>
+<TypeSelect_Build4>//div[label[contains(text(),'Type')]]//input</TypeSelect_Build4>
+<DedicatePortal_Select_Build4>///div[label[text()='Dedicated Portal']]//input</DedicatePortal_Select_Build4>
+
+<Users_Action>(//button[@id='dropdown-basic-button'])[2]</Users_Action>
+<Users_Action1>//div[@class='position-relative form-group']//button[@id='dropdown-basic-button']</Users_Action1>
+<Users_Action3>//div[div[text()='Users']]//div//button[text()='Action']</Users_Action3>
+<EditUserLink>//a[contains(text(),'Edit')]</EditUserLink>
+<ViewuserLink>//a[text()='View']</ViewuserLink>
+<backbutton>//span[contains(text(),'Back')]</backbutton>
+<DeleteUserLink>//a[text()='Delete']</DeleteUserLink>
+<DeleteButton_DeleteUser>//button[@class='btn btn-danger']</DeleteButton_DeleteUser>		
+<FirstRowRadioButtonInUsers>//span[@class='ag-selection-checkbox']//span[@class='ag-icon ag-icon-checkbox-unchecked']</FirstRowRadioButtonInUsers>
+<FirstRowRadioButtonInOrderService>(//span[@class='ag-selection-checkbox']//span[@class='ag-icon ag-icon-checkbox-unchecked'])[2]</FirstRowRadioButtonInOrderService>
+<adduserbutton>//a[contains(text(),'Add')]</adduserbutton>
+<AddUserLink>//a[contains(text(),'Add')]</AddUserLink>
+<UserName>//input[@id='userName']</UserName>
+<UserName_Text>//label[contains(text(),'User Name')]</UserName_Text>
+<FirstName>//input[@id='firstName']</FirstName>	
+<FirstName_Text>//label[contains(text(),'First Name')]</FirstName_Text>
+<SurName>//input[@id='surname']</SurName>	
+<SurName_Text>//label[contains(text(),'Surname')]</SurName_Text>
+<PostalAddress>//textarea[contains(@name,'postalAddress')]</PostalAddress>
+<PostalAddress_Text>//label[contains(text(),'Postal Address')]</PostalAddress_Text>	
+<IPGuardianAccountGroup>//input[@id='ipGuardianAccountGrp']</IPGuardianAccountGroup>
+<IPGuardianAccountGroup_Text>//label[contains(text(),'IPGuardian Account Group')]</IPGuardianAccountGroup_Text>
+<ColtOnlineUser>//input[@id='onlineUser']</ColtOnlineUser>
+<ColtOnlineUser_Text>//label[contains(text(),'Colt Online User')]</ColtOnlineUser_Text>
+<Password_Text>//label[contains(text(),'Password')]</Password_Text>
+<Password_Textfield>//input[@id='password']</Password_Textfield>
+<GeneratePasswordLink>//span[text()='Generate Password']</GeneratePasswordLink>
+<GeneratePasswordLink_Text>//span[@class='badge-success badge badge-secondary']</GeneratePasswordLink_Text>
+<RolesSelect>//div[contains(@class,'div-border container')]/form/div[4]/div[1]/div[1]/div[1]/div[1]</RolesSelect>
+<Roles_Text>//label[contains(text(),'Roles')]</Roles_Text>
+<Roles_Texfield>//input[@placeholder='Select...' and @xpath='1']</Roles_Texfield>
+<HideRouterToolsIPv6Commands_CiscoSelect2>//div[label[text()='Hide Router Tools IPv6 Commands(Cisco)']]//input</HideRouterToolsIPv6Commands_CiscoSelect2>
+<HideRouterToolsIPv6Commands_CiscoSelect>//div[4]//div[2]//div[1]//div[1]//div[1]//div[1]//div[1]</HideRouterToolsIPv6Commands_CiscoSelect>
+
+
+<HideRouterToolsIPv6CommandsCisco_Text>//div[label[text()='Hide Router Tools IPv6 Commands(Cisco)']]</HideRouterToolsIPv6CommandsCisco_Text>
+<HideRouterToolsIPv4Commands_HuiwaiSelect>//div[label[text()='Hide Router Tools IPv4 Commands(Huawai)']]//input</HideRouterToolsIPv4Commands_HuiwaiSelect>
+<HideRouterToolsIPv4CommandsHuiwai_Text>//div[label[text()='Hide Router Tools IPv4 Commands(Huawai)']]</HideRouterToolsIPv4CommandsHuiwai_Text>
+<HideRouterToolsIPv4Commands_CiscoSelect>//div[label[text()='Hide Router Tools IPv4 Commands(Cisco)']]//input</HideRouterToolsIPv4Commands_CiscoSelect>
+<HideRouterToolsIPv4CommandsCisco_Text>//div[label[text()='Hide Router Tools IPv4 Commands(Cisco)']]</HideRouterToolsIPv4CommandsCisco_Text>
+<HideServicesSelect>//div[label[text()='Hide Services']]//input</HideServicesSelect>
+<HideService_Text>//div[label[text()='Hide Services']]</HideService_Text>
+<HideSiteOrderSelect>//div[label[text()='Hide Site Order']]//input</HideSiteOrderSelect>
+<HideSiteOrder_Text>//div[label[text()='Hide Site Order']]</HideSiteOrder_Text>
+<CrealAllButton>//button[contains(text(),'Clear all')]</CrealAllButton>
+<OutSideOfDropdown>//div[@class='col']</OutSideOfDropdown>
+<OkButton_AddUser>//span[text()='OK']</OkButton_AddUser>
+<CancelButton_AddUser>//span[contains(text(),'Cancel')]</CancelButton_AddUser>
+<BackButton_AddCustomer>//span[contains(text(),'Back')]</BackButton_AddCustomer>
+
+<EdituserTabname_EditUser>//p[text()='User']</EdituserTabname_EditUser>
+
+<NoRowsToShow_ResultText>//div[contains(text(),'Total Record : ') and text()='0']</NoRowsToShow_ResultText>
+
+
+<AddedUser_LoginUserName_Value>(//div[div[@role='gridcell']]//div[2])[1]</AddedUser_LoginUserName_Value>
+<AddedUser_Name_Value>(//div[div[@role='gridcell']]//div[3])[1]</AddedUser_Name_Value>
+<AddedUser_Email_Value>(//div[div[@role='gridcell']]//div[4])[1]</AddedUser_Email_Value>
+<AddedUser_Roles_Value>(//div[div[@role='gridcell']]//div[5])[1]</AddedUser_Roles_Value>
+<AddedUser_Resources_Value>(//div[div[@role='gridcell']]//div[6])[1]</AddedUser_Resources_Value>
+<AddedUser_Address_Value>(//div[div[@role='gridcell']]//div[7])[1]</AddedUser_Address_Value>
+
+<UserNameisrequired_Text>//div[contains(text(),'User Name')]</UserNameisrequired_Text>
+<FirstNameisrequired_Text>//div[contains(text(),'First Name')]</FirstNameisrequired_Text>
+<Surnameisrequired_Text>//div[contains(text(),'Surname')]</Surnameisrequired_Text>
+<PostalAddressisrequired_Text>//div[contains(text(),'Postal Address')]</PostalAddressisrequired_Text>
+<Emailisrequired_AddUser_Text>//div[contains(text(),'Email')]</Emailisrequired_AddUser_Text>
+<Phoneisrequired_Text>//div[contains(text(),'Phone')]</Phoneisrequired_Text>
+<Passwordisrequired_Text>//div[contains(text(),'Password')]</Passwordisrequired_Text>
+
+<Username_EditUserText></Username_EditUserText>
+<Firstname_EditUserText></Firstname_EditUserText>
+<Surname_EditUserText></Surname_EditUserText>
+<PostalAddress_EditUserText></PostalAddress_EditUserText>
+<Email_EditUserText></Email_EditUserText>
+<Phone_EditUserText></Phone_EditUserText>
+<IPGuardianAccountGroup_EditUserText></IPGuardianAccountGroup_EditUserText>
+<ColtOnlineUser_EditUserText></ColtOnlineUser_EditUserText>
+<Password_EditUserText></Password_EditUserText>
+<Roles_EditUserText></Roles_EditUserText>
+<HideRouterToolsIPv6Commands_Cisco_EditUserText></HideRouterToolsIPv6Commands_Cisco_EditUserText>
+<HideRouterToolsIPv4Commands_Huawai_EditUserText></HideRouterToolsIPv4Commands_Huawai_EditUserText>
+<HideRouterToolsIPv4Commands_Cisco_EditUserText></HideRouterToolsIPv4Commands_Cisco_EditUserText>
+<HideServices_EditUserText></HideServices_EditUserText>
+<HideSiteOrder_EditUserText></HideSiteOrder_EditUserText>
+<OKButton_EditUser></OKButton_EditUser>
+<BackButton_EditUser></BackButton_EditUser>
+
+
+ <AlertForServiceCreationSuccessMessage>//div[@role='alert']/span</AlertForServiceCreationSuccessMessage>
+ <serivceAlert>//div[@role='alert']</serivceAlert>
+
+
+<!-- ===  SUPLY SERVICE === -->
+
+<Orders_Services_Action>(//button[@id='dropdown-basic-button'])[4]</Orders_Services_Action>
+<AddOrder_Link>//a[@class='dropdown-item']</AddOrder_Link>
+
+<!-- create order/service page -->
+<createordernametextfield>//input[@id='customerName']</createordernametextfield>
+<choosecustomerdropdown>//div[label[text()='Customer']]//input</choosecustomerdropdown>
+<customerdropdown>//div[label[text()='Customer']]/div</customerdropdown>
+
+
+
+<!-- Enter data for Order/ContractNumber and RFI/RFQ/IPVoiceLinenumber -->
+<ordercontractnumber>//div[div[label[text()='Order/Contract Number']]]//input[@size='9']</ordercontractnumber>
+
+<selectorderswitch>(//div[div[label[text()='Select Order']]]//div[@class='react-switch-bg'])[1]</selectorderswitch>  <!--This is for SIT  -->
+<selectorderswitch2>//div[@class='div-border div-margin marginTop-30px container']//div[1]//div[1]//div[2]//div[1]//div[1]//div[1]</selectorderswitch2>  <!--This is for 8090  -->
+
+<createorderswitch>//form[@name='createOrder']//div[2]//div[1]//div[3]//div[1]//div[1]//div[1]</createorderswitch>
+<rfireqiptextfield>//input[@id='rfiRfqIpVoiceLineNo']</rfireqiptextfield>
+<existingorderdropdown>//div[label[text()='Order/Contract Number(Parent SID)']]//input[@placeholder='Select ...']</existingorderdropdown>
+<existingorderdropdownvalue>//span[text()='12345']</existingorderdropdownvalue>
+<createorderbutton>//button[@class='btn btnSquar btnWitdh undefined btn-secondary   ']</createorderbutton>
+<newordertextfield>//input[@id='orderName']</newordertextfield>
+<newrfireqtextfield>//div[@class='form-group']//input[@id='rfiRfqIpVoiceLineNo']</newrfireqtextfield>
+
+
+<!-- Select Type and Subtype -->
+<servicetypetextfield>//div[div[label[text()='Service Type']]]//input</servicetypetextfield>
+<serviceSubtypeInputfield>//div[div[label[text()='Service Subtype:']]]//input</serviceSubtypeInputfield>
+<networkconfigurationinputfield>//div[div[label[text()='Network Configuration']]]//input</networkconfigurationinputfield>
+<nextbutton>//span[contains(text(),'Next')]</nextbutton>
+
+<servicetypevalue>//div[label[contains(text(),'Service Type')]]/div</servicetypevalue>
+<networkconfigurationvalue>//div[label[contains(text(),'Network Configuration')]]/div</networkconfigurationvalue>
+<serviceidentificationerror>//span[contains(@class,'error')]</serviceidentificationerror>
+<billingtypeerror>//div[div[label[contains(text(),'Billing Type')]]]/div[2]</billingtypeerror>
+
+<serviceidentificationtextfield>//input[@id='serviceName']</serviceidentificationtextfield>
+<billingtypeinputfield>//div[label[text()='Billing Type']]//input</billingtypeinputfield>
+<terminationinputfield>//input[contains(@name,'terminationDate')]</terminationinputfield>
+<emailtextfield>//input[@id='emailsText']</emailtextfield>
+<phonecontacttextfield>//input[@id='phoneContactText']</phonecontacttextfield>
+<remarktextfield>//textarea[@name='serviceRmark']</remarktextfield>
+
+
+<topologydropdownerror>//div[div[label[contains(text(),'Topology')]]]/div[2]</topologydropdownerror>
+
+<!-- Management Options -->
+<managedservicecheckbox>//div[label[contains(text(),'Managed Service')]]//input[@type='checkbox']</managedservicecheckbox>
+<performancereportingcheckbox>//div[label[contains(text(),'Performance Reporting')]]//input[@type='checkbox']</performancereportingcheckbox>
+<ipguardianchecbox>//div[label[contains(text(),'IP Guardian')]]//input[@type='checkbox']</ipguardianchecbox>
+<routerconfigurationviewipv4checkbox>//div[label[contains(text(),'Router Configuration View IPv4')]]//input[@type='checkbox']</routerconfigurationviewipv4checkbox>
+<routerconfigurationviewipv6checkbox>//div[label[contains(text(),'Router Configuration View IPv6')]]//input[@type='checkbox']</routerconfigurationviewipv6checkbox>
+<snmpNotificationcheckbox>//div[label[contains(text(),'SNMP Notification')]]//input[@type='checkbox']</snmpNotificationcheckbox>
+<deliverychannelinput>//div[label[contains(text(),'Delivery Channel')]]//input</deliverychannelinput>
+<traptargetAddress>//div[label[contains(text(),'Trap Target Address')]]//input</traptargetAddress>
+
+<!-- Configuration Options -->
+
+<routerbasedfirewalcheckbox>//div[label[contains(text(),'Router Based Firewall')]]//input[@type='checkbox']</routerbasedfirewalcheckbox>
+<Qoscheckbox>//div[label[contains(text(),'Qos')]]//input[@type='checkbox']</Qoscheckbox>
+<cancelbutton>//span[contains(text(),'Cancel')]</cancelbutton>
+
+<!--  view service page -->
+<servicecreationsuccessmsg>//span[contains(text(),'Service successfully created')]</servicecreationsuccessmsg>
+
+<!--  Subscribe panel -->
+<subscribePanel_totalPage>//div[div[text()='Subscribes']]/following-sibling::div//span[@ref='lbTotal']</subscribePanel_totalPage>
+<subscribePanel_currentPage>//div[div[text()='Subscribes']]/following-sibling::div//span[@ref='lbCurrent']</subscribePanel_currentPage>
+<subscribePanel_nextPage>//div[div[text()='Subscribes']]/following-sibling::div//button[@ref='btNext']</subscribePanel_nextPage>
+<subscribePanel_ActionDropdown>//div[div[text()='Subscribes']]//button[text()='Action']</subscribePanel_ActionDropdown>
+<subscribePanel_viewlink>//a[text()='View']</subscribePanel_viewlink>
+
+
+<!-- Select Dropdown -->
+<roleDropdown_available>//select[@id='availableRoles']//option</roleDropdown_available>
+<roleDropdown_addButton>//div[label[text()='Roles']]//following-sibling::div//span[text()='>>']</roleDropdown_addButton>
+<roleDropdown_removeButton></roleDropdown_removeButton>
+<roleDropdown_selectedValues>//select[@id='selectedRoles']</roleDropdown_selectedValues>
+
+
+<hideRouterToolIPv4_Huawei_available>//select[@id='availableIPV4CommandHuawei']//option</hideRouterToolIPv4_Huawei_available>
+<hideRouterToolIPv4__Huawei_addButton>//div[label[text()='Hide Router Tools IPv4 Commands(Huawei)']]//following-sibling::div//span[text()='>>']</hideRouterToolIPv4__Huawei_addButton>
+<hideRouterToolIpv4_Huawei_selectedvalues>//select[@id='selectedIPV4CommandHuawei']</hideRouterToolIpv4_Huawei_selectedvalues>
+
+<hideRouterToolIPv4_Cisco_Available>//select[@id='availableIPV4CommandCisco']//option</hideRouterToolIPv4_Cisco_Available>
+<hideRouterToolIPv4_Cisco_addButton>//div[label[text()='Hide Router Tools IPv4 Commands(Cisco)']]//following-sibling::div//span[text()='>>']</hideRouterToolIPv4_Cisco_addButton>
+<hideRouterToolIpv4_Cisco_selectedvalues>//select[@id='selectedIPV4CommandCisco']</hideRouterToolIpv4_Cisco_selectedvalues>
+
+<HideService_Available>//select[@id='availableHideService']//option</HideService_Available>
+<HideService_addButton>//div[label[text()='Hide Services']]//following-sibling::div//span[text()='>>']</HideService_addButton>
+<HideServicesDropdown_selectedValues>//select[@id='selectedHideService']</HideServicesDropdown_selectedValues>
+
+
+<HideSiteOrder_Available>//select[@id='availableHideSiteOrder']//option</HideSiteOrder_Available>
+<hideSiteOrder_addbutton>//div[label[text()='Hide Site Order']]//following-sibling::div//span[text()='>>']</hideSiteOrder_addbutton>
+<HideSiteOrderDropdown_selectedValues>//select[@id='selectedHideSiteOrder']</HideSiteOrderDropdown_selectedValues>
+
+
+<HideRouterToolIPv6_Cisco_Available>//select[@id='availableIPV6Command']//option</HideRouterToolIPv6_Cisco_Available>
+<hideRouterToolIPv6_Cisco_addButton>//div[label[text()='Hide Router Tools IPv6 Commands(Cisco)']]//following-sibling::div//span[text()='>>']</hideRouterToolIPv6_Cisco_addButton>
+
+
+
+
+</CreateCustomer>
+
+</locators>
+
+

@@ -879,182 +879,183 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		compareText(application, "Remarks", "servicepanel_remarksvalue", Remarks, xml);
 	}
 
-	public void verifyservicepanel_links(String application, String EditRemarks, String Remarks, String changeorderno, String sid, String servicetype, String servicestatus, String syncstatus, String servicestatuschangerequired, String resellercodevalue, String thirdpartyinternet_checkbox, String phonecontact, String edit_resellercodevalue, String edit_thirdpartyinternet_checkbox, String edit_email, String edit_phonecontact, String edit_performancereporting_checkbox, String edit_proactivenotification_checkbox, String edit_notificationmanagementteam_value) throws InterruptedException, DocumentException, IOException {
+	public void verifyservicepanel_links(String application, String EditRemarks, String Remarks, String changeorderno, String sid, String servicetype, String servicestatus, String syncstatus, String servicestatuschangerequired, String resellercodevalue, String thirdpartyinternet_checkbox, String phonecontact, String edit_resellercodevalue, String edit_thirdpartyinternet_checkbox, String edit_email, String edit_phonecontact, String edit_performancereporting_checkbox, String edit_proactivenotification_checkbox, String edit_notificationmanagementteam_value) throws Exception {
 
-		//Cancel edit service
-		ScrolltoElement(application, "orderpanelheader", xml);
-		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
-		click_commonMethod(application, "Edit", "edit", xml);
-		scrolltoend();
-		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		Thread.sleep(2000);
-		ScrolltoElement(application, "orderpanelheader", xml);
-		
-		//Edit service
-		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
-		click_commonMethod(application, "Edit", "edit", xml);
-		
-		String ServiceIdentification= getwebelement(xml.getlocator("//locators/" + application + "/serviceidentificationtextfield")).getAttribute("value");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Service Identification number is displayed as: "+sid);
-		GetText(application, "Service Type", "servicetypevalue");
-		if(!edit_resellercodevalue.equalsIgnoreCase("null"))
-		{
-			cleartext(application, "Reseller Code", "resellercode_textfield");
-			edittextFields_commonMethod(application, "Reseller Code", "resellercode_textfield", edit_resellercodevalue, xml);
-		}
-		else
-		{
-			edittextFields_commonMethod(application, "Reseller Code", "resellercode_textfield", edit_resellercodevalue, xml);
-		}
-		editcheckbox_commonMethod(application, edit_thirdpartyinternet_checkbox, "thirdpartyinternet_checkbox", "3rd Party Internet", xml);
-		if(!EditRemarks.equalsIgnoreCase("null"))
-		{
-			cleartext(application, "Remarks", "remarktextarea");
-			edittextFields_commonMethod(application, "Remarks", "remarktextarea", EditRemarks, xml);
-		}
-		else
-		{
-			edittextFields_commonMethod(application, "Remarks", "remarktextarea", EditRemarks, xml);
-		}
-		//Edit email
-				ScrolltoElement(application, "servicetypevalue", xml);
-				click_commonMethod(application, "Selected Email", "selectedemail", xml);
-				click_commonMethod(application, "Email remove arrow", "emailremovearrow", xml);
-				Thread.sleep(1000);
-				cleartext(application, "Email", "emailtextfieldvalue");
-				addtextFields_commonMethod(application, "Email", "emailtextfieldvalue", edit_email, xml);
-				click_commonMethod(application, "Email adding arrow", "emailaddarrow", xml);
-				scrolltoend();
-				//Edit phone contact
-				click_commonMethod(application, "Selected phone contact", "selectedphone", xml);
-				click_commonMethod(application, "Phonecontact remove arrow", "phoneremovearrow", xml);
-				cleartext(application, "Phone Contact", "phonecontacttextfieldvalue");
-				addtextFields_commonMethod(application, "Phone Contact", "phonecontacttextfieldvalue", edit_phonecontact, xml);
-				click_commonMethod(application, "phonecontact adding Arrow", "phoneaddarrow", xml);
-				Thread.sleep(1000);
-				
-		compareText(application, "Management Options", "managementoptions_header", "Management Options", xml);
-		String Package= getwebelement(xml.getlocator("//locators/" + application + "/packagefield")).getAttribute("disabled");
-		if(Package!=null)
-		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Package dropdown field is disabled as expected");
-		}
-		else
-		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Package dropdown field is not disabled");
-		}
-		String ManagedService_Disabled= getwebelement(xml.getlocator("//locators/" + application + "/managedservice_checkbox")).getAttribute("disabled");
-		String ManagedService_Checked= getwebelement(xml.getlocator("//locators/" + application + "/managedservice_checkbox")).getAttribute("checked");
-		if(ManagedService_Disabled!=null && ManagedService_Checked!=null)
-		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Managed Service Checkbox is disabled & checked by default as expected");
-		}
-		else
-		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Managed Service Checkbox is not disabled & checked by default");
-		}
-		//syslog event view checkbox
-		String SyslogEvent_Disabled= getwebelement(xml.getlocator("//locators/" + application + "/syslogevent_checkbox")).getAttribute("disabled");
-		if(SyslogEvent_Disabled!=null)
-		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Syslog Event View Checkbox is disabled as expected");
-		}
-		else
-		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Syslog Event View Checkbox is not disabled");
-		}
-		//service status view checkbox
-				String ServiceStatusView_Disabled= getwebelement(xml.getlocator("//locators/" + application + "/servicestatusview_checkbox")).getAttribute("disabled");
-				if(ServiceStatusView_Disabled!=null)
-				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Service Status View Checkbox is disabled as expected");
-				}
-				else
-				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Service Status View Checkbox is not disabled");
-				}
-				//Router configuration view checkbox
-				String RouterConfigurationView_Disabled= getwebelement(xml.getlocator("//locators/" + application + "/routerconfigview_checkbox")).getAttribute("disabled");
-				if(RouterConfigurationView_Disabled!=null)
-				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Router Configuration View Checkbox is disabled as expected");
-				}
-				else
-				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Router Configuration View Checkbox is not disabled");
-				}
-				editcheckbox_commonMethod(application, edit_performancereporting_checkbox, "performancereporting_checkbox", "Performance Reporting", xml);
-				editcheckbox_commonMethod(application, edit_proactivenotification_checkbox, "proactivenotification_checkbox", "Pro-active Notification", xml);
-				if(edit_proactivenotification_checkbox.equalsIgnoreCase("Yes"))
-				{
-					addDropdownValues_commonMethod(application, "Notification Management Team", "notificationmanagementteam_dropdown", edit_notificationmanagementteam_value, xml);
-				}
-				//Dial user administration checkbox
-				String DialUserAdministration_Disabled= getwebelement(xml.getlocator("//locators/" + application + "/dialuseradministration_checkbox")).getAttribute("disabled");
-				if(DialUserAdministration_Disabled!=null)
-				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Dial User Administration Checkbox is disabled as expected");
-				}
-				else
-				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Dial User Administration Checkbox is not disabled");
-				}
-				scrolltoend();
-		click_commonMethod(application, "OK", "okbutton", xml);
-		Thread.sleep(2000);
-		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-		{
-			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
-			compareText(application, "Service updated success message", "serviceupdate_successmsg", "Service successfully updated", xml);	
-		}
-		else
-		{
-			Log.info("Service not updated");
-			System.out.println("Service not updated");
-		}
+//		//Cancel edit service
+//		ScrolltoElement(application, "orderpanelheader", xml);
+//		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
+//		click_commonMethod(application, "Edit", "edit", xml);
+//		scrolltoend();
+//		click_commonMethod(application, "Cancel", "cancelbutton", xml);
+//		Thread.sleep(2000);
+//		ScrolltoElement(application, "orderpanelheader", xml);
+//		
+//		//Edit service
+//		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
+//		click_commonMethod(application, "Edit", "edit", xml);
+//		
+//		String ServiceIdentification= getwebelement(xml.getlocator("//locators/" + application + "/serviceidentificationtextfield")).getAttribute("value");
+//		DriverTestcase.logger.log(LogStatus.PASS, "Step : Service Identification number is displayed as: "+sid);
+//		GetText(application, "Service Type", "servicetypevalue");
+//		if(!edit_resellercodevalue.equalsIgnoreCase("null"))
+//		{
+//			cleartext(application, "Reseller Code", "resellercode_textfield");
+//			edittextFields_commonMethod(application, "Reseller Code", "resellercode_textfield", edit_resellercodevalue, xml);
+//		}
+//		else
+//		{
+//			edittextFields_commonMethod(application, "Reseller Code", "resellercode_textfield", edit_resellercodevalue, xml);
+//		}
+//		editcheckbox_commonMethod(application, edit_thirdpartyinternet_checkbox, "thirdpartyinternet_checkbox", "3rd Party Internet", xml);
+//		if(!EditRemarks.equalsIgnoreCase("null"))
+//		{
+//			cleartext(application, "Remarks", "remarktextarea");
+//			edittextFields_commonMethod(application, "Remarks", "remarktextarea", EditRemarks, xml);
+//		}
+//		else
+//		{
+//			edittextFields_commonMethod(application, "Remarks", "remarktextarea", EditRemarks, xml);
+//		}
+//		//Edit email
+//				ScrolltoElement(application, "servicetypevalue", xml);
+//				click_commonMethod(application, "Selected Email", "selectedemail", xml);
+//				click_commonMethod(application, "Email remove arrow", "emailremovearrow", xml);
+//				Thread.sleep(1000);
+//				cleartext(application, "Email", "emailtextfieldvalue");
+//				addtextFields_commonMethod(application, "Email", "emailtextfieldvalue", edit_email, xml);
+//				click_commonMethod(application, "Email adding arrow", "emailaddarrow", xml);
+//				scrolltoend();
+//				//Edit phone contact
+//				click_commonMethod(application, "Selected phone contact", "selectedphone", xml);
+//				click_commonMethod(application, "Phonecontact remove arrow", "phoneremovearrow", xml);
+//				cleartext(application, "Phone Contact", "phonecontacttextfieldvalue");
+//				addtextFields_commonMethod(application, "Phone Contact", "phonecontacttextfieldvalue", edit_phonecontact, xml);
+//				click_commonMethod(application, "phonecontact adding Arrow", "phoneaddarrow", xml);
+//				Thread.sleep(1000);
+//				
+//		compareText(application, "Management Options", "managementoptions_header", "Management Options", xml);
+//		String Package= getwebelement(xml.getlocator("//locators/" + application + "/packagefield")).getAttribute("disabled");
+//		if(Package!=null)
+//		{
+//			DriverTestcase.logger.log(LogStatus.PASS, "Step : Package dropdown field is disabled as expected");
+//		}
+//		else
+//		{
+//			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Package dropdown field is not disabled");
+//		}
+//		String ManagedService_Disabled= getwebelement(xml.getlocator("//locators/" + application + "/managedservice_checkbox")).getAttribute("disabled");
+//		String ManagedService_Checked= getwebelement(xml.getlocator("//locators/" + application + "/managedservice_checkbox")).getAttribute("checked");
+//		if(ManagedService_Disabled!=null && ManagedService_Checked!=null)
+//		{
+//			DriverTestcase.logger.log(LogStatus.PASS, "Step : Managed Service Checkbox is disabled & checked by default as expected");
+//		}
+//		else
+//		{
+//			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Managed Service Checkbox is not disabled & checked by default");
+//		}
+//		//syslog event view checkbox
+//		String SyslogEvent_Disabled= getwebelement(xml.getlocator("//locators/" + application + "/syslogevent_checkbox")).getAttribute("disabled");
+//		if(SyslogEvent_Disabled!=null)
+//		{
+//			DriverTestcase.logger.log(LogStatus.PASS, "Step : Syslog Event View Checkbox is disabled as expected");
+//		}
+//		else
+//		{
+//			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Syslog Event View Checkbox is not disabled");
+//		}
+//		//service status view checkbox
+//				String ServiceStatusView_Disabled= getwebelement(xml.getlocator("//locators/" + application + "/servicestatusview_checkbox")).getAttribute("disabled");
+//				if(ServiceStatusView_Disabled!=null)
+//				{
+//					DriverTestcase.logger.log(LogStatus.PASS, "Step : Service Status View Checkbox is disabled as expected");
+//				}
+//				else
+//				{
+//					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Service Status View Checkbox is not disabled");
+//				}
+//				//Router configuration view checkbox
+//				String RouterConfigurationView_Disabled= getwebelement(xml.getlocator("//locators/" + application + "/routerconfigview_checkbox")).getAttribute("disabled");
+//				if(RouterConfigurationView_Disabled!=null)
+//				{
+//					DriverTestcase.logger.log(LogStatus.PASS, "Step : Router Configuration View Checkbox is disabled as expected");
+//				}
+//				else
+//				{
+//					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Router Configuration View Checkbox is not disabled");
+//				}
+//				editcheckbox_commonMethod(application, edit_performancereporting_checkbox, "performancereporting_checkbox", "Performance Reporting", xml);
+//				editcheckbox_commonMethod(application, edit_proactivenotification_checkbox, "proactivenotification_checkbox", "Pro-active Notification", xml);
+//				if(edit_proactivenotification_checkbox.equalsIgnoreCase("Yes"))
+//				{
+//					addDropdownValues_commonMethod(application, "Notification Management Team", "notificationmanagementteam_dropdown", edit_notificationmanagementteam_value, xml);
+//				}
+//				//Dial user administration checkbox
+//				String DialUserAdministration_Disabled= getwebelement(xml.getlocator("//locators/" + application + "/dialuseradministration_checkbox")).getAttribute("disabled");
+//				if(DialUserAdministration_Disabled!=null)
+//				{
+//					DriverTestcase.logger.log(LogStatus.PASS, "Step : Dial User Administration Checkbox is disabled as expected");
+//				}
+//				else
+//				{
+//					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Dial User Administration Checkbox is not disabled");
+//				}
+//				scrolltoend();
+//		click_commonMethod(application, "OK", "okbutton", xml);
+//		Thread.sleep(2000);
+//		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
+//		{
+//			Log.info("Navigated to view service page");
+//			System.out.println("Navigated to view service page");
+//			compareText(application, "Service updated success message", "serviceupdate_successmsg", "Service successfully updated", xml);	
+//		}
+//		else
+//		{
+//			Log.info("Service not updated");
+//			System.out.println("Service not updated");
+//		}
+//
+//		//view service details
+//		Thread.sleep(2000);
+//		ScrolltoElement(application, "orderpanelheader", xml);
+//		compareText(application, "Service panel Header", "servicepanel_header", "Service", xml);
+//		GetText(application, "Service Identification", "servicepanel_serviceidentificationvalue");
+//		GetText(application, "Service Type", "servicepanel_servicetypevalue");
+//		if(edit_resellercodevalue.equalsIgnoreCase("null"))
+//		{
+//		compareText(application, "Reseller Code", "servicepanel_resellercode", resellercodevalue, xml);
+//		}
+//		else
+//		{
+//			compareText(application, "Reseller Code", "servicepanel_resellercode", edit_resellercodevalue, xml);
+//		}
+//		GetText(application, "Email", "servicepanel_email");
+//		if(edit_phonecontact.equalsIgnoreCase("null"))
+//		{
+//		compareText(application, "Phone Contact", "servicepanel_phonecontact", phonecontact, xml);
+//		}
+//		else
+//		{
+//			compareText(application, "Phone Contact", "servicepanel_phonecontact", edit_phonecontact, xml);
+//		}
+//		if(edit_thirdpartyinternet_checkbox.equalsIgnoreCase("null"))
+//		{
+//		compareText(application, "3rd Party Internet", "servicepanel_thirdpartyinternet", thirdpartyinternet_checkbox, xml);
+//		}
+//		else
+//		{
+//			compareText(application, "3rd Party Internet", "servicepanel_thirdpartyinternet", edit_thirdpartyinternet_checkbox, xml);
+//		}
+//		if(EditRemarks.equalsIgnoreCase("null"))
+//		{
+//		compareText(application, "Remarks", "servicepanel_remarksvalue", Remarks, xml);
+//		}
+//		else
+//		{
+//			compareText(application, "Remarks", "servicepanel_remarksvalue", EditRemarks, xml);
+//		}
 
-		//view service details
-		Thread.sleep(2000);
-		ScrolltoElement(application, "orderpanelheader", xml);
-		compareText(application, "Service panel Header", "servicepanel_header", "Service", xml);
-		GetText(application, "Service Identification", "servicepanel_serviceidentificationvalue");
-		GetText(application, "Service Type", "servicepanel_servicetypevalue");
-		if(edit_resellercodevalue.equalsIgnoreCase("null"))
-		{
-		compareText(application, "Reseller Code", "servicepanel_resellercode", resellercodevalue, xml);
-		}
-		else
-		{
-			compareText(application, "Reseller Code", "servicepanel_resellercode", edit_resellercodevalue, xml);
-		}
-		GetText(application, "Email", "servicepanel_email");
-		if(edit_phonecontact.equalsIgnoreCase("null"))
-		{
-		compareText(application, "Phone Contact", "servicepanel_phonecontact", phonecontact, xml);
-		}
-		else
-		{
-			compareText(application, "Phone Contact", "servicepanel_phonecontact", edit_phonecontact, xml);
-		}
-		if(edit_thirdpartyinternet_checkbox.equalsIgnoreCase("null"))
-		{
-		compareText(application, "3rd Party Internet", "servicepanel_thirdpartyinternet", thirdpartyinternet_checkbox, xml);
-		}
-		else
-		{
-			compareText(application, "3rd Party Internet", "servicepanel_thirdpartyinternet", edit_thirdpartyinternet_checkbox, xml);
-		}
-		if(EditRemarks.equalsIgnoreCase("null"))
-		{
-		compareText(application, "Remarks", "servicepanel_remarksvalue", Remarks, xml);
-		}
-		else
-		{
-			compareText(application, "Remarks", "servicepanel_remarksvalue", EditRemarks, xml);
-		}
 		
-				//manage subnets IPv6
+		//manage subnets IPv6
 				ScrolltoElement(application, "orderpanelheader", xml);
 				Thread.sleep(1000);
 				click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
@@ -1072,26 +1073,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				Thread.sleep(2000);
 
 				//Show new infovista report
-				ScrolltoElement(application, "orderpanelheader", xml);
-				click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
-				click_commonMethod(application, "Show New Infovista Report", "shownewinfovistareport_link", xml);
-				Thread.sleep(4000);
-				String parentWinHandle = driver.getWindowHandle();
-				Set<String> totalopenwindow=driver.getWindowHandles();
-				Iterator<String> itr= totalopenwindow.iterator();
-				while(itr.hasNext()){
-				String childWindow=itr.next();
-				// Compare whether the main windows is not equal to child window. If not equal, we will close.
-				if(!parentWinHandle.equals(childWindow)){
-				driver.switchTo().window(childWindow);
-//				String showinfovistapage= driver.switchTo().window(childWindow).getTitle();
-//				System.out.println(showinfovistapage);
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : 'Show new infovista report' link navigated to: ");
-				driver.close();
-				}
-				}
-				// This is to switch to the main window
-				driver.switchTo().window(parentWinHandle);
+				shownewInfovista(application);
 				Thread.sleep(2000);
 
 
@@ -1108,15 +1090,16 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				click_commonMethod(application, "Close", "closesymbol", xml);
 				Thread.sleep(2000);
 				
-//		//synchronize link in view service page
-//		ScrolltoElement(application, "orderpanelheader", xml);
-//		Thread.sleep(1000);
-//		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
-//		click_commonMethod(application, "Synchronize", "synchronizelink_servicepanel", xml);
-//		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")));
-//		compareText(application, "Synchronize Success Msg", "Sync_successmsg", "Sync started successfully. Please check the sync status of this service.", xml);
-//
-//		Thread.sleep(2000);
+		//synchronize link in view service page
+		ScrolltoElement(application, "orderpanelheader", xml);
+		Thread.sleep(1000);
+		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
+		click_commonMethod(application, "Synchronize", "synchronizelink_servicepanel", xml);
+		ScrolltoElement(application, "customerdetailsheader", xml);
+		compareText(application, "Synchronize Success Msg", "Sync_successmsg", "Sync started successfully. Please check the sync status of this service.", xml);
+
+		Thread.sleep(2000);
+		
 		//Service delete is performed in the last test case
 	}
 
@@ -2378,14 +2361,7 @@ public void verifyFetchInterface(String application, String imspoplocation_dropd
 		//verify status page field values
 		compareText(application, "Name", "interface_statuspage_namevalue", interfacename, xml);
 		compareText(application, "Interface Address", "interface_statuspage_interfaceaddressvalue", InterfaceAddress, xml);
-		if(ServiceStatus.equalsIgnoreCase(Inservice_status))
-		{
-			compareText(application, "Status", "status_statusvalue", Inservice_status, xml);
-		}
-		else
-		{
-			compareText(application, "Status", "status_statusvalue", Inmaintenance_status, xml);
-		}
+		GetText(application, "Status", "status_statusvalue");
 		click_commonMethod(application, "New Status Dropdown", "interface_statuspage_newstatusdropdown", xml);
 		WebElement selectNewStatusvalue1= getwebelement(xml.getlocator("//locators/" + application + "/interface_statuspage_newstatusdropdownvalue"));
 		Clickon(selectNewStatusvalue1);
@@ -2514,11 +2490,11 @@ public void verifyFetchInterface(String application, String imspoplocation_dropd
 	GetText(application, "Sync Status", "synchronization_syncstatusvalue");
 
 	//verify smarts value
-	GetText(application, "Smarts", "synchronization_smartsvalue");
+	GetText(application, "Smarts", "smartsvalue_asrdevicepanel");
 	//verify smarts date time 
 	try {
 		String GMTValue;
-		String Smartsvalue= getwebelement(xml.getlocator("//locators/" + application + "/smarts_datetimevalue")).getText();
+		String Smartsvalue= getwebelement(xml.getlocator("//locators/" + application + "/smarts_datetime_asrdevicepanel")).getText();
 		String SmartsDateTimevalue= "";
 		if (Smartsvalue.length() > 20) 
 		{
@@ -2548,11 +2524,11 @@ public void verifyFetchInterface(String application, String imspoplocation_dropd
 	}
 
 	//verify fetch interfaces value
-	GetText(application, "Fetch Interfaces", "synchronization_fetchinterfacesvalue");
+	GetText(application, "Fetch Interfaces", "fetchinterfacevalue_asrdevicepanel");
 	//verify fetch interfaces date time
 	try {
 		String GMTValue;
-		String FetchInterfacesvalue= getwebelement(xml.getlocator("//locators/" + application + "/fetchinterfaces_datetime")).getText();
+		String FetchInterfacesvalue= getwebelement(xml.getlocator("//locators/" + application + "/fetchinterface_datetime_asrdevicepanel")).getText();
 		String FetchInterfaces_DateTimevalue= "";
 		if (FetchInterfacesvalue.length() > 20) 
 		{
@@ -2583,11 +2559,11 @@ public void verifyFetchInterface(String application, String imspoplocation_dropd
 	}
 
 	//verify vistamart device value
-	GetText(application, "VistaMart Device", "synchronization_vistamartdevicevalue");
+	GetText(application, "VistaMart Device", "vistamartvalue_asrdevicepanel");
 	//verify vistamart device date time
 	try {
 		String GMTValue;
-		String VistaMartDevicevalue= getwebelement(xml.getlocator("//locators/" + application + "/vistamartdevice_datetime")).getText();
+		String VistaMartDevicevalue= getwebelement(xml.getlocator("//locators/" + application + "/vistamart_datetime_asrdevicepanel")).getText();
 		String VistaMartDevice_DateTimevalue= "";
 		if (VistaMartDevicevalue.length() > 20) 
 		{
@@ -6247,7 +6223,7 @@ public void VerifyVoiceResiliency(String application, String backupnumber_checkb
 	//======================================  Common Methods  ===========================================
 
 
-	public void searchorder(String application, String sid) throws InterruptedException, DocumentException, IOException {
+	public void searchservice(String application, String sid) throws InterruptedException, DocumentException, IOException {
 
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(2000);
@@ -6340,6 +6316,51 @@ public void VerifyVoiceResiliency(String application, String backupnumber_checkb
 		}
 		return text;
 
+	}
+	
+	public void shownewInfovista(String application) throws Exception {
+        
+		ScrolltoElement(application, "orderpanelheader", xml);
+        Thread.sleep(3000);
+        click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
+     Thread.sleep(2000);
+     click_commonMethod(application, "Show New Infovista Report", "shownewinfovistareport_link", xml);
+     Thread.sleep(6000);
+     
+     String expectedPageName= "SSO login Page";
+     
+     //Switch to new tab
+     List<String> browserTabs = new ArrayList<String> (driver.getWindowHandles());
+     driver.switchTo().window(browserTabs .get(1));
+     Thread.sleep(10000);
+
+    try { 
+     // Get Tab name
+     String pageTitle=driver.switchTo().window(browserTabs .get(1)).getTitle();
+     System.out.println("page title displays as: "+pageTitle);
+    
+     
+     Thread.sleep(3000);
+     driver.switchTo().window(browserTabs.get(0)); 
+     
+     assertEquals(pageTitle, expectedPageName, " on clicking 'Show Infovista link', it got naviagted to "+pageTitle);
+     
+    DriverTestcase.logger.log(LogStatus.PASS, "on clicking 'Show Infovista link', it got naviagted to "+ pageTitle + " as expected");
+     Thread.sleep(3000);
+     
+     DriverTestcase.logger.log(LogStatus.PASS, "show info vista page actual title: "+pageTitle );
+     DriverTestcase.logger.log(LogStatus.PASS, "show info vista page expected title: "+ expectedPageName);
+     
+    }catch(Exception e) {
+          
+          e.printStackTrace();
+          
+          Thread.sleep(3000);
+          driver.switchTo().window(browserTabs.get(0));
+          
+          DriverTestcase.logger.log(LogStatus.FAIL, expectedPageName + " page is not displaying");
+           
+    }
 	}
 
 	/**

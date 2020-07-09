@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -493,9 +494,36 @@ public class APT_NGINHelper extends DriverHelper {
 	}
 
 
-	public void createnewuser(String application, String Username, String Firstname, String Surname, String Postaladdress, String Email,String Phone, String EditUsername, String EditFirstname, String EditSurname, String EditPostaladdress, String EditEmail, String EditPhone)
-			throws InterruptedException, DocumentException, IOException {
+	public void VerifyUsersPanel(String application, String Username, String Firstname, String Surname, String Postaladdress, String Email, String Phone, String EditUsername, 
+			String EditFirstname, String EditSurname, String EditPostaladdress, String EditEmail, String EditPhone, String IPGuardianAccountGroup,String ColtOnlineUser, 
+			String GeneratePassword, String RolesToBeSelected,String HideRouterToolsIPv6CommandsCisco_ToBeSelected, String HideRouterToolsIPv4CommandsHuiwai_ToBeSelected, 
+			String HideRouterToolsIPv4CommandsCisco_ToBeSelected,String HideServicesToBeSelected,String HideSiteOrderToBeSelected, String editRolesToBeSelected, 
+			String edit_RoleToBeHidden, String RouterToolsIPv6CommandsCisco_ToBeAvailable, String RouterToolsIPv6CommandsCisco_ToBeHidden, String RouterToolsIPv4CommandsHuiwai_ToBeAvailable, 
+			String HideRouterToolsIPv4CommandsHuiwai_ToBeHidden, String HideRouterToolsIPv4CommandsCisco_ToBeAvailable, String HideRouterToolsIPv4CommandsCisco_ToBeHidden,
+			String Services_ToBeAvailable, String Services_ToBeHidden, String SiteOrders_ToBeAvailable, String SiteOrders_ToBeHidden) throws InterruptedException, DocumentException, IOException {
 
+		String[] rolestobeSelectedList=RolesToBeSelected.split(",");
+		String[] routerToolIPv4CiscoTobeSelectedList = HideRouterToolsIPv4CommandsCisco_ToBeSelected.split(",");
+		String[] routerToolIPv4HuaweiTobeSelectedList =  HideRouterToolsIPv4CommandsHuiwai_ToBeSelected.split(",");
+		String[] ServicesTobeSelectedlist= HideServicesToBeSelected.split(",");
+		String[] siteOrdersToBeselectedList = HideSiteOrderToBeSelected.split(",");
+		
+		String[] rolestobeAvailableList=editRolesToBeSelected.split(",");
+		String[] rolestobeHiddenList=edit_RoleToBeHidden.split(",");
+		
+		String[] routerToolIPv4CiscoTobeAvailableList = HideRouterToolsIPv4CommandsCisco_ToBeAvailable.split(",");
+		String[] routerToolIPv4CiscoTobeHiddenList = HideRouterToolsIPv4CommandsCisco_ToBeHidden.split(",");
+		
+		String[] routerToolIPv4HuaweiTobeAvailableList =  RouterToolsIPv4CommandsHuiwai_ToBeAvailable.split(",");
+		String[] routerToolIPv4HuaweiTobeHiddenList =  HideRouterToolsIPv4CommandsHuiwai_ToBeHidden.split(",");
+		
+		
+		String[] ServicesTobeAvailablelist= Services_ToBeAvailable.split(",");
+		String[] ServicesTobeHiddenlist= Services_ToBeHidden.split(",");
+		
+		String[] siteOrdersToBeAvailableList = SiteOrders_ToBeAvailable.split(",");
+		String[] siteOrdersToBeHiddenList = SiteOrders_ToBeHidden.split(",");
+		
 		ScrolltoElement(application, "customerdetailsheader", xml);
 		WebElement UserGridCheck= getwebelement("(//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String UserGrid= UserGridCheck.getAttribute("style");
@@ -506,10 +534,6 @@ public class APT_NGINHelper extends DriverHelper {
 			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
 			click_commonMethod(application, "Add", "AddLink", xml);
 			compareText(application, "Create User Header", "CreateUserHeader", "Create User", xml);
-			addtextFields_commonMethod(application, "User Name", "UserName", Username, xml);
-			addtextFields_commonMethod(application, "First Name", "FirstName", Firstname, xml);
-			addtextFields_commonMethod(application, "SurName", "SurName", Surname, xml);
-
 			scrolltoend();
 			click_commonMethod(application, "Cancel", "cancelbutton", xml);
 			compareText(application, "User panel Header", "userspanel_header", "Users", xml);
@@ -519,16 +543,85 @@ public class APT_NGINHelper extends DriverHelper {
 			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
 			click_commonMethod(application, "Add", "AddLink", xml);
 			compareText(application, "Create User Header", "CreateUserHeader", "Create User", xml);
+			
+			//Warning messages verify
+			scrolltoend();
+			Thread.sleep(1000);
+			click_commonMethod(application, "OK", "OK_button", xml);
+			scrollToTop();
+			warningMessage_commonMethod(application, "warningmsg_username", "User Name", xml);
+			warningMessage_commonMethod(application, "warningmsg_firstname", "First Name", xml);
+			warningMessage_commonMethod(application, "warningmsg_surname", "Surname", xml);
+			warningMessage_commonMethod(application, "warningmsg_postaladdress", "Postal Address", xml);
+			warningMessage_commonMethod(application, "warningmsg_useremail", "Email", xml);
+			warningMessage_commonMethod(application, "warningmsg_userphone", "Phone", xml);
+			warningMessage_commonMethod(application, "warningmsg_userpassword", "Password", xml);
+			
 			addtextFields_commonMethod(application, "User Name", "UserName", Username, xml);
 			addtextFields_commonMethod(application, "First Name", "FirstName", Firstname, xml);
 			addtextFields_commonMethod(application, "SurName", "SurName", Surname, xml);
 			addtextFields_commonMethod(application, "Postal Address", "PostalAddress", Postaladdress, xml);
 			addtextFields_commonMethod(application, "Email", "Email", Email, xml);
 			addtextFields_commonMethod(application, "Phone", "Phone", Phone, xml);
+			addtextFields_commonMethod(application, "IPGuardian Account Group" , "IPGuardianAccountGroup" , IPGuardianAccountGroup, xml);
+			addtextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
 			click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
+			String  password=getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")).getAttribute("value");
+			System.out.println("Generated Password is : "+password);
+			
+			if(password.isEmpty()) {
+				
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying after clicked on 'Generate password link");
+
+				SendKeys(getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")), GeneratePassword);	
+				Thread.sleep(1000);
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : Password entered manually not automatically generated :  "+GeneratePassword);
+				Log.info("===Password entered manually not automatically generated ===");
+
+			}else {
+				Log.info("Automatically generated Password value is : "+ password);
+				DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+password);
+			}
+
+			ScrolltoElement(application, "Email", xml);
+			Thread.sleep(2000);
+			
+		//Role	
+			selectAndAddValueFromLeftDropdown(application, "Role", "roleDropdown_available" , rolestobeSelectedList, "roleDropdown_addButton");
+			verifySelectedValuesInsideRightDropdown(application, "Role", "roleDropdown_selectedValues");
+			
+			
+		//Hide Service
+			selectAndAddValueFromLeftDropdown(application, "Hide Service", "HideService_Available", ServicesTobeSelectedlist, "HideService_addButton");
+			verifySelectedValuesInsideRightDropdown(application, "Hide Services", "HideServicesDropdown_selectedValues");
+		
+			
+		//Hide Site Order
+			selectAndAddValueFromLeftDropdown(application, "Hide Site Order", "HideSiteOrder_Available" , siteOrdersToBeselectedList , "hideSiteOrder_addbutton");
+			verifySelectedValuesInsideRightDropdown(application, "Hide Site Order" , "HideSiteOrderDropdown_selectedValues");
+			
 			scrolltoend();
+			Thread.sleep(1000);
+			
+		//Hide Router Tool IPv4 Commands(Cisco)
+			selectAndAddValueFromLeftDropdown(application, "Hide Router Tool IPv4 Commands(Cisco)", "hideRouterToolIPv4_Cisco_Available", routerToolIPv4CiscoTobeSelectedList, "hideRouterToolIPv4_Cisco_addButton");
+			verifySelectedValuesInsideRightDropdown(application, "Hide Router Tool IPv4 Commands(Cisco)", "hideRouterToolIpv4_Cisco_selectedvalues");
+			
+			
+		//Hide Router Tool IPv4 Commands(Huawei)
+			selectAndAddValueFromLeftDropdown(application, "Hide Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIPv4_Huawei_available" , routerToolIPv4HuaweiTobeSelectedList, "hideRouterToolIPv4__Huawei_addButton");
+			verifySelectedValuesInsideRightDropdown(application, "Hide Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
+			
+			
+//		//Hide Router Tool IPv6 Commands(Cisco)	
+//			selectAndAddValueFromLeftDropdown(application, "Hide Router Tool IPv6 Commands(Cisco)" , "HideRouterToolIPv6_Cisco_Available" , selectValue, xpathForAddButton);
+//			verifySelectedValuesInsideRightDropdown(application, "Hide Router Tool IPv6 Commands(Cisco)" , xpath);
+			
+			scrolltoend();
+			Thread.sleep(1000);
 			click_commonMethod(application, "OK", "OK_button", xml);
 			Thread.sleep(2000);
+			compareText(application, "Create User success message", "successmsg", "User successfully created", xml);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : User added successfully");
 			Log.info("User added successfully");
 
@@ -538,66 +631,103 @@ public class APT_NGINHelper extends DriverHelper {
 			int NoOfUsers = ExistingUsers.size();
 			System.out.println("Total users:"+ NoOfUsers);
 
-			if(NoOfUsers==1)
-			{
-				click_commonMethod(application, "User Radio button", "UserUnchecked", xml);
-				Thread.sleep(3000);
-			}
-			else if(NoOfUsers>1)
+			if(NoOfUsers==1 || NoOfUsers>1)
 			{
 				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 				Log.info("clicked on Existing user radio button");
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-			Log.info("No users displayed");
-			}
+			
 			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
 			click_commonMethod(application, "Edit", "edit", xml);
 			Thread.sleep(2000);
 			compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
 			scrollToTop();
-			cleartext(application, "User Name", "UserName");
-			addtextFields_commonMethod(application, "User Name", "UserName", EditUsername, xml);
-			cleartext(application, "First Name", "FirstName");
-			addtextFields_commonMethod(application, "First Name", "FirstName", EditFirstname, xml);
-			cleartext(application, "SurName", "SurName");
-			addtextFields_commonMethod(application, "SurName", "SurName", EditSurname, xml);
-			cleartext(application, "Postal Address", "PostalAddress");
-			addtextFields_commonMethod(application, "Postal Address", "PostalAddress", EditPostaladdress, xml);
-			cleartext(application, "Email", "Email");
-			addtextFields_commonMethod(application, "Email", "Email", EditEmail, xml);
-			cleartext(application, "Phone", "Phone");
-			addtextFields_commonMethod(application, "Phone", "Phone", EditPhone, xml);
-			cleartext(application, "Password", "Password");
-			click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
+			edittextFields_commonMethod(application, "User Name", "UserName" , EditUsername, xml);
+			edittextFields_commonMethod(application, "First Name", "FirstName" , EditFirstname, xml);
+			edittextFields_commonMethod(application, "Sur Name", "SurName" , EditSurname, xml);
+			edittextFields_commonMethod(application, "Postal Address", "PostalAddress" , EditPostaladdress, xml);
+			edittextFields_commonMethod(application, "Email", "Email" , EditEmail, xml);
+			edittextFields_commonMethod(application, "Phone", "Phone" , EditPhone, xml);
+			edittextFields_commonMethod(application, "IPGuardian Account Group" , "IPGuardianAccountGroup" , IPGuardianAccountGroup, xml);
+			edittextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
+			
+			String editpassword=getwebelement(xml.getlocator("//locators/"+application+"/Password")).getAttribute("value");
+			System.out.println("Generated Password is : "+editpassword);
+			
+			if(editpassword.isEmpty()) {
+				
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying under'Generate password link");
+				
+				click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
+				
+			}else {
+				Log.info("Automatically generated Password value is : "+ editpassword);
+				DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+editpassword);
+			}
+
+			ScrolltoElement(application, "Email", xml);
+			
+			//Role	
+			selectAndRemoveValueFromRightDropdown(application, "Roles_Hidden", "roleDropdown_selectedValues", rolestobeAvailableList, "roleDropdown_removeButton");
+			selectAndAddValueFromLeftDropdown(application, "Role_Available", "roleDropdown_available" , rolestobeHiddenList, "roleDropdown_addButton");
+			verifySelectedValuesInsideRightDropdown(application, "Role_Hidden", "roleDropdown_selectedValues");
+			
+		//Hide Service
+			selectAndRemoveValueFromRightDropdown(application, "Service_Hidden" , "HideServicesDropdown_selectedValues" , ServicesTobeAvailablelist, "HideService_removeButton");
+			selectAndAddValueFromLeftDropdown(application, "Service_Available", "HideService_Available", ServicesTobeHiddenlist, "HideService_addButton");
+			verifySelectedValuesInsideRightDropdown(application, "Hidden Services", "HideServicesDropdown_selectedValues");
+			
+		//Hide Site Order
+			selectAndRemoveValueFromRightDropdown(application, "SiteOrder_Hidden" , "HideSiteOrderDropdown_selectedValues", siteOrdersToBeAvailableList, "hideSiteOrder_removeButton");
+			selectAndAddValueFromLeftDropdown(application, "SiteOrder_Available", "HideSiteOrder_Available" , siteOrdersToBeHiddenList , "hideSiteOrder_addbutton");
+			verifySelectedValuesInsideRightDropdown(application, "Hiden Site Orders" , "HideSiteOrderDropdown_selectedValues");
+			
 			scrolltoend();
+			Thread.sleep(1000);
+			
+		//Hide Router Tool IPv4 Commands(Cisco)
+			selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Cisco)_Available", "hideRouterToolIpv4_Cisco_selectedvalues", routerToolIPv4CiscoTobeAvailableList, "hideRouterToolIPv4_Cisco_removeButton");
+			selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Cisco)_Hidden", "hideRouterToolIPv4_Cisco_Available", routerToolIPv4CiscoTobeHiddenList, "hideRouterToolIPv4_Cisco_addButton");
+			verifySelectedValuesInsideRightDropdown(application, "Hiden Router Tool IPv4 Commands(Cisco)", "hideRouterToolIpv4_Cisco_selectedvalues");
+			
+		//Hide Router Tool IPv4 Commands(Huawei)
+			selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Huawei)_Hidden", "hideRouterToolIpv4_Huawei_selectedvalues", routerToolIPv4HuaweiTobeAvailableList, "hideRouterToolIPv4_Huawei_removeButton");
+			selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Huawei)_Available" , "hideRouterToolIPv4_Huawei_available" , routerToolIPv4HuaweiTobeHiddenList, "hideRouterToolIPv4__Huawei_addButton");
+			verifySelectedValuesInsideRightDropdown(application, "Hideen Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
+		
+			scrolltoend();
+			Thread.sleep(1000);
 			click_commonMethod(application, "OK", "OK_button", xml);
 			Thread.sleep(2000);
-			//compareText(application, "User update success message", "successmsg", "User updated successfully", xml);
+			compareText(application, "User update success message", "successmsg", "User successfully updated", xml);
+			}
+			else
+			{
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+			Log.info("No users displayed");
+			}
 			
 			//View User
 			ScrolltoElement(application, "customerdetailsheader", xml);
-			if(NoOfUsers==1)
+			List<WebElement> ExistingUsers1= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+			int NoOfUsers1 = ExistingUsers1.size();
+			System.out.println("Total users:"+ NoOfUsers1);
+			if(NoOfUsers1==1 || NoOfUsers1>1)
 			{
-				click_commonMethod(application, "User Radio button", "UserUnchecked", xml);
-				Thread.sleep(3000);
-			}
-			else if(NoOfUsers>1)
-			{
-				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+				if(!EditUsername.equalsIgnoreCase("null"))
+				{
+				WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+					EditedUserName.click();
+				}
+				else
+				{
+					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
+				}
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 				Log.info("clicked on Existing user radio button");
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-			Log.info("No users displayed");
-			}
+			
 			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
 			click_commonMethod(application, "view", "view", xml);
 			ScrolltoElement(application, "usernamevalue", xml);
@@ -607,146 +737,79 @@ public class APT_NGINHelper extends DriverHelper {
 			compareText(application, "Postal Address", "postaladdressvalue", EditPostaladdress, xml);
 			compareText(application, "Email", "emailvalue", EditEmail, xml);
 			compareText(application, "Phone", "phonevalue", EditPhone, xml);
-			scrolltoend();
-			click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-			Log.info("------ View User successful ------");
-
-			//Delete User
-			ScrolltoElement(application, "customerdetailsheader", xml);
-			if(NoOfUsers==1)
-			{
-				click_commonMethod(application, "User Radio button", "UserUnchecked", xml);
-				Thread.sleep(3000);
-			}
-			else if(NoOfUsers>1)
-			{
-				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-				AddedUser.click();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
-				Log.info("clicked on Existing user radio button");
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-			Log.info("No users displayed");
-			}
-			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-			click_commonMethod(application, "Delete", "delete", xml);
-			Thread.sleep(2000);
-			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-			if(DeleteAlertPopup.isDisplayed())
-			{
-				click_commonMethod(application, "Delete", "deletebutton", xml);
-			}
-			else
-			{
-				Log.info("Delete alert popup is not displayed");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-			}
-			compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
+			
+			//IP Guardian Accouunt Group
+			compareText_InViewPage(application, "IPGuardian Account Group" , IPGuardianAccountGroup, xml);
+			
+		//Colt Online User
+			compareText_InViewPage(application, "Colt Online User"  , ColtOnlineUser, xml);
+			
+			ScrolltoElement(application, "usernamevalue", xml);
+			Thread.sleep(1000);
+			
+		//Roles
+			//compareTextForViewUserPage(application, labelname, ExpectedText, xml);
+	
+		
+			//Hidden Router Tools IPv4 (Cisco)
+		List<WebElement> HRcisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolIPv4Cisco"));	
+		
+		for(WebElement listofHiddenCiscoValues : HRcisco) {
+			System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
+			DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
 		}
 
-		else if(!UserGrid.contains("1px"))
-		{
-			//Edit User
-			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
-			int NoOfUsers = ExistingUsers.size();
-			System.out.println("Total users:"+ NoOfUsers);
-
-			if(NoOfUsers==1)
-			{
-				click_commonMethod(application, "User Radio button", "UserUnchecked", xml);
-				Thread.sleep(3000);
-			}
-			else if(NoOfUsers>1)
-			{
-				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-				AddedUser.click();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
-				Log.info("clicked on Existing user radio button");
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-				Log.info("No users displayed");
-			}
-
-			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-			click_commonMethod(application, "Edit", "edit", xml);
-			Thread.sleep(1000);
-			ScrolltoElement(application, "edituser_header", xml);
-			compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
-			cleartext(application, "User Name", "UserName");
-			addtextFields_commonMethod(application, "User Name", "UserName", EditUsername, xml);
-			cleartext(application, "First Name", "FirstName");
-			addtextFields_commonMethod(application, "First Name", "FirstName", EditFirstname, xml);
-			cleartext(application, "SurName", "SurName");
-			addtextFields_commonMethod(application, "SurName", "SurName", EditSurname, xml);
-			cleartext(application, "Postal Address", "PostalAddress");
-			addtextFields_commonMethod(application, "Postal Address", "PostalAddress", EditPostaladdress, xml);
-			cleartext(application, "Email", "Email");
-			addtextFields_commonMethod(application, "Email", "Email", EditEmail, xml);
-			cleartext(application, "Phone", "Phone");
-			addtextFields_commonMethod(application, "Phone", "Phone", EditPhone, xml);
-			cleartext(application, "Password", "Password");
-			click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
-			scrolltoend();
-			Thread.sleep(1000);
-			click_commonMethod(application, "OK", "okbutton", xml);
-
-			//View User
-
-			if(NoOfUsers==1)
-			{
-				click_commonMethod(application, "User Radio button", "UserUnchecked", xml);
-				Thread.sleep(3000);
-			}
-			else if(NoOfUsers>1)
-			{
-				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-				AddedUser.click();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
-				Log.info("clicked on Existing user radio button");
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-			Log.info("No users displayed");
-			}
-
-			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-			click_commonMethod(application, "view", "view", xml);
-			ScrolltoElement(application, "usernamevalue", xml);
-			compareText(application, "User Name", "usernamevalue", EditUsername, xml);
-			compareText(application, "First Name", "firstnamevalue", EditFirstname, xml);
-			compareText(application, "SurName", "surnamevalue", EditSurname, xml);
-			compareText(application, "Postal Address", "postaladdressvalue", EditPostaladdress, xml);
-			compareText(application, "Email", "emailvalue", EditEmail, xml);
-			compareText(application, "Phone", "phonevalue", EditPhone, xml);
-			ScrolltoElement(application, "viewpage_backbutton", xml);
+		scrolltoend();
+		Thread.sleep(2000);
+		
+	//Hidden Router Tool IPv4 (Huawei)
+		List<WebElement> Ipv4CommandHuawei = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv4Huawei"));	
+		
+		for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
+			System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
+			DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
+		}	
+		
+	
+	//Hidden Router Tools IPv6 (Cisco)
+		List<WebElement> HiddenIPv6cisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv6Cisco"));	
+		
+		for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
+			System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
+			DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
+		}			
+		
+		scrolltoend();
+		Thread.sleep(2000);
 			click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 			Log.info("------ View User successful ------");
-
-			//Delete User
-
-			if(NoOfUsers==1)
-			{
-				click_commonMethod(application, "User Radio button", "UserUnchecked", xml);
-				Thread.sleep(3000);
-			}
-			else if(NoOfUsers>1)
-			{
-				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-				AddedUser.click();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
-				Log.info("clicked on Existing user radio button");
 			}
 			else
 			{
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
 			Log.info("No users displayed");
 			}
-
+			
+			//Delete User
+			ScrolltoElement(application, "customerdetailsheader", xml);
+			List<WebElement> ExistingUsers2= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+			int NoOfUsers2 = ExistingUsers2.size();
+			System.out.println("Total users:"+ NoOfUsers2);
+			if(NoOfUsers2==1 || NoOfUsers2>1)
+			{
+				if(!EditUsername.equalsIgnoreCase("null"))
+				{
+				WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+					EditedUserName.click();
+				}
+				else
+				{
+					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+				AddedUser.click();
+				}
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+				Log.info("clicked on Existing user radio button");
+			
 			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
 			click_commonMethod(application, "Delete", "delete", xml);
 			Thread.sleep(2000);
@@ -754,16 +817,363 @@ public class APT_NGINHelper extends DriverHelper {
 			if(DeleteAlertPopup.isDisplayed())
 			{
 				click_commonMethod(application, "Delete", "deletebutton", xml);
+				compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
 			}
 			else
 			{
 				Log.info("Delete alert popup is not displayed");
 				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
 			}
-			compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
+			}
+			else
+			{
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+			Log.info("No users displayed");
+			}
+		}
+		else if(!UserGrid.contains("1px"))
+		{
+//			//Edit User
+//			ScrolltoElement(application, "customerdetailsheader", xml);
+//			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+//			int NoOfUsers = ExistingUsers.size();
+//			System.out.println("Total users:"+ NoOfUsers);
+//
+//			if(NoOfUsers==1 || NoOfUsers>1)
+//			{
+//				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+//				AddedUser.click();
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+//				Log.info("clicked on Existing user radio button");
+//			
+//			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+//			click_commonMethod(application, "Edit", "edit", xml);
+//			Thread.sleep(2000);
+//			compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
+//			scrollToTop();
+//			edittextFields_commonMethod(application, "User Name", "UserName" , EditUsername, xml);
+//			edittextFields_commonMethod(application, "First Name", "FirstName" , EditFirstname, xml);
+//			edittextFields_commonMethod(application, "Sur Name", "SurName" , EditSurname, xml);
+//			edittextFields_commonMethod(application, "Postal Address", "PostalAddress" , EditPostaladdress, xml);
+//			edittextFields_commonMethod(application, "Email", "Email" , EditEmail, xml);
+//			edittextFields_commonMethod(application, "Phone", "Phone" , EditPhone, xml);
+//			edittextFields_commonMethod(application, "IPGuardian Account Group" , "IPGuardianAccountGroup" , IPGuardianAccountGroup, xml);
+//			edittextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
+//			
+//			String editpassword=getwebelement(xml.getlocator("//locators/"+application+"/Password")).getAttribute("value");
+//			System.out.println("Generated Password is : "+editpassword);
+//			
+//			if(editpassword.isEmpty()) {
+//				
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying under'Generate password link");
+//				
+//				click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
+//				
+//			}else {
+//				Log.info("Automatically generated Password value is : "+ editpassword);
+//				DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+editpassword);
+//			}
+//
+//			ScrolltoElement(application, "Email", xml);
+//			
+//			//Role	
+//			selectAndRemoveValueFromRightDropdown(application, "Roles_Hidden", "roleDropdown_selectedValues", rolestobeAvailableList, "roleDropdown_removeButton");
+//			selectAndAddValueFromLeftDropdown(application, "Role_Available", "roleDropdown_available" , rolestobeHiddenList, "roleDropdown_addButton");
+//			verifySelectedValuesInsideRightDropdown(application, "Role_Hidden", "roleDropdown_selectedValues");
+//			
+//		//Hide Service
+//			selectAndRemoveValueFromRightDropdown(application, "Service_Hidden" , "HideServicesDropdown_selectedValues" , ServicesTobeAvailablelist, "HideService_removeButton");
+//			selectAndAddValueFromLeftDropdown(application, "Service_Available", "HideService_Available", ServicesTobeHiddenlist, "HideService_addButton");
+//			verifySelectedValuesInsideRightDropdown(application, "Hidden Services", "HideServicesDropdown_selectedValues");
+//			
+//		//Hide Site Order
+//			selectAndRemoveValueFromRightDropdown(application, "SiteOrder_Hidden" , "HideSiteOrderDropdown_selectedValues", siteOrdersToBeAvailableList, "hideSiteOrder_removeButton");
+//			selectAndAddValueFromLeftDropdown(application, "SiteOrder_Available", "HideSiteOrder_Available" , siteOrdersToBeHiddenList , "hideSiteOrder_addbutton");
+//			verifySelectedValuesInsideRightDropdown(application, "Hiden Site Orders" , "HideSiteOrderDropdown_selectedValues");
+//			
+//			scrolltoend();
+//			Thread.sleep(1000);
+//			
+//		//Hide Router Tool IPv4 Commands(Cisco)
+//			selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Cisco)_Available", "hideRouterToolIpv4_Cisco_selectedvalues", routerToolIPv4CiscoTobeAvailableList, "hideRouterToolIPv4_Cisco_removeButton");
+//			selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Cisco)_Hidden", "hideRouterToolIPv4_Cisco_Available", routerToolIPv4CiscoTobeHiddenList, "hideRouterToolIPv4_Cisco_addButton");
+//			verifySelectedValuesInsideRightDropdown(application, "Hiden Router Tool IPv4 Commands(Cisco)", "hideRouterToolIpv4_Cisco_selectedvalues");
+//			
+//		//Hide Router Tool IPv4 Commands(Huawei)
+//			selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Huawei)_Hidden", "hideRouterToolIpv4_Huawei_selectedvalues", routerToolIPv4HuaweiTobeAvailableList, "hideRouterToolIPv4_Huawei_removeButton");
+//			selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Huawei)_Available" , "hideRouterToolIPv4_Huawei_available" , routerToolIPv4HuaweiTobeHiddenList, "hideRouterToolIPv4__Huawei_addButton");
+//			verifySelectedValuesInsideRightDropdown(application, "Hideen Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
+//		
+//			scrolltoend();
+//			Thread.sleep(1000);
+//			click_commonMethod(application, "OK", "OK_button", xml);
+//			Thread.sleep(2000);
+//			compareText(application, "User update success message", "successmsg", "User successfully updated", xml);
+//			}
+//			else
+//			{
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+//			Log.info("No users displayed");
+//			}
+//			
+			//View User
+			ScrolltoElement(application, "customerdetailsheader", xml);
+			List<WebElement> ExistingUsers1= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+			int NoOfUsers1 = ExistingUsers1.size();
+			System.out.println("Total users:"+ NoOfUsers1);
+			if(NoOfUsers1==1 || NoOfUsers1>1)
+			{
+				if(!EditUsername.equalsIgnoreCase("null"))
+				{
+				WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+					EditedUserName.click();
+				}
+				else
+				{
+					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+				AddedUser.click();
+				}
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+				Log.info("clicked on Existing user radio button");
+			
+			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+			click_commonMethod(application, "view", "view", xml);
+			scrollToTop();
+			compareText(application, "User Name", "usernamevalue", EditUsername, xml);
+			compareText(application, "First Name", "firstnamevalue", EditFirstname, xml);
+			compareText(application, "SurName", "surnamevalue", EditSurname, xml);
+			compareText(application, "Postal Address", "postaladdressvalue", EditPostaladdress, xml);
+			compareText(application, "Email", "emailvalue", EditEmail, xml);
+			compareText(application, "Phone", "phonevalue", EditPhone, xml);
+			
+			//IP Guardian Accouunt Group
+			GetText(application, "IPGuardian Account Group", "IPGuardianAccountGroup_viewpage");
+			
+		//Colt Online User
+			GetText(application, "Colt Online User", "coltonlineuser_viewpage");
+			
+			ScrolltoElement(application, "phonevalue", xml);
+			Thread.sleep(1000);
+			
+		//Roles
+			//compareTextForViewUserPage(application, labelname, ExpectedText, xml);
+	
+		
+			//Hidden Router Tools IPv4 (Cisco)
+		List<WebElement> HRcisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolIPv4Cisco"));	
+		
+		for(WebElement listofHiddenCiscoValues : HRcisco) {
+			System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
+			DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
+		}
+
+		scrolltoend();
+		Thread.sleep(2000);
+		
+	//Hidden Router Tool IPv4 (Huawei)
+		List<WebElement> Ipv4CommandHuawei = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv4Huawei"));	
+		
+		for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
+			System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
+			DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
+		}	
+	
+	//Hidden Router Tools IPv6 (Cisco)
+		List<WebElement> HiddenIPv6cisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv6Cisco"));	
+		
+		for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
+			System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
+			DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
+		}			
+		
+		scrolltoend();
+		Thread.sleep(2000);
+		
+			click_commonMethod(application, "Back", "viewpage_backbutton", xml);
+			Log.info("------ View User successful ------");
+			}
+			else
+			{
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+			Log.info("No users displayed");
+			}
+			
+			//Delete User
+			ScrolltoElement(application, "customerdetailsheader", xml);
+			List<WebElement> ExistingUsers2= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+			int NoOfUsers2 = ExistingUsers2.size();
+			System.out.println("Total users:"+ NoOfUsers2);
+			if(NoOfUsers2==1 || NoOfUsers2>1)
+			{
+				if(!EditUsername.equalsIgnoreCase("null"))
+				{
+				WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+					EditedUserName.click();
+				}
+				else
+				{
+					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+				AddedUser.click();
+				}
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+				Log.info("clicked on Existing user radio button");
+			
+			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+			click_commonMethod(application, "Delete", "delete", xml);
+			Thread.sleep(2000);
+			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
+			if(DeleteAlertPopup.isDisplayed())
+			{
+				click_commonMethod(application, "Delete", "deletebutton", xml);
+				compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
+			}
+			else
+			{
+				Log.info("Delete alert popup is not displayed");
+				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+			}
+			}
+			else
+			{
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+			Log.info("No users displayed");
+			}
 		}
 	}
 
+	public void selectAndAddValueFromLeftDropdown(String application, String labelname, String xpath, String[] selectValue, String xpathForAddButton) {
+		
+		WebElement availability=null;
+		List<String> ls = new ArrayList<String>();
+		 
+        try{
+        	
+              List<WebElement> elements= getwebelements(xml.getlocator("//locators/" + application + "/"+ xpath +""));
+              int element_count= elements.size();
+              
+          if(element_count>=1) {
+        	  
+           //Print list of values inside Dropdown 
+              for(WebElement a : elements) {
+			            ls.add(a.getText());
+			    }
+		
+			    DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
+	            System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+	            
+	      //select value inside the dropdown     
+              for(int i=0; i<selectValue.length; i++)
+              {
+            	 Thread.sleep(5000);
+                 for(int j=0; j<ls.size() ; j++) {
+            	  System.out.println("ls value "+ ls.get(j));
+                    if(selectValue[i].equals(ls.get(j)))
+                    {
+                    	  elements.get(j).click();
+                    	  DriverTestcase.logger.log(LogStatus.PASS, elements.get(j) + " got selected" );
+                          Thread.sleep(1000);
+                          click_commonMethod(application, "Add", xpathForAddButton , xml);
+                          Thread.sleep(5000);
+                    }
+                 }
+              }
+              
+          }else {
+        	  DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
+        	  
+        	  System.out.println("No values displaying under " + labelname + " available dropdown");
+          }
+        }catch(Exception e) {
+              e.printStackTrace();
+              DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
+              System.out.println( "No values displaying under "+labelname + " available dropdown");
+        }
+	}
+
+	
+	public void verifySelectedValuesInsideRightDropdown(String application, String labelname, String xpath) {
+
+		//getAllValuesInsideDropDown
+			 boolean availability=false;
+			 List<String> ls = new ArrayList<String>();
+			 
+			 try{
+	            	
+                 List<WebElement> elements= getwebelements(xml.getlocator("//locators/" + application + "/"+ xpath +""));
+                 int element_count= elements.size();
+                 
+             if(element_count>=1) {
+           	  
+              //Print list of values inside Dropdown 
+                 for(WebElement a : elements) {
+				            ls.add(a.getText());
+				    }
+			
+				    DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
+		            System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+             }else {
+           	  DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
+           	  
+           	  System.out.println("No values displaying under " + labelname + " available dropdown");
+             }
+           }catch(Exception e) {
+                 e.printStackTrace();
+                 DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
+                 System.out.println( "No values displaying under "+labelname + " available dropdown");
+           }
+	}
+	
+	public void selectAndRemoveValueFromRightDropdown(String application, String labelname, String xpath, String[] selectValue, String xpathForRemoveButton) {
+		
+		WebElement availability=null;
+		List<String> ls = new ArrayList<String>();
+		 
+        try{
+              List<WebElement> elements= getwebelements(xml.getlocator("//locators/" + application + "/"+ xpath +""));
+              int element_count= elements.size();
+              
+          if(element_count>=1) {
+        	  
+           //Print list of values inside Dropdown 
+              for(WebElement a : elements) {
+			            ls.add(a.getText());
+			    }
+		
+			    DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
+	            System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+	            
+	      //select value inside the dropdown     
+              for(int i=0; i<selectValue.length; i++)
+              {
+            	 Thread.sleep(2000);
+                 for(int j=0; j<ls.size() ; j++) {
+            	  System.out.println("ls value "+ ls.get(j));
+                    if(selectValue[i].equals(ls.get(j)))
+                    {
+                    	  elements.get(j).click();
+                    	  DriverTestcase.logger.log(LogStatus.PASS, elements.get(j) + " got selected" );
+                          Thread.sleep(1000);
+                          WebElement removeButton=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathForRemoveButton +"").replace("value", "<<"));
+                          Clickon(removeButton);
+                          DriverTestcase.logger.log(LogStatus.PASS, "clicked on remove '<<' button");
+                          Thread.sleep(3000);
+                    }
+                 }
+              }
+              
+          }else {
+        	  DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
+        	  
+        	  System.out.println("No values displaying under " + labelname + " available dropdown");
+          }
+        }catch(Exception e) {
+              e.printStackTrace();
+              DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
+              System.out.println( "No values displaying under "+labelname + " available dropdown");
+        }
+	}
+
+	
 	public void verifyorderpanelinformation_Existingorder(String application, String existingorder,
 			String expectedorderno, String expectedvoicelineno) throws InterruptedException, DocumentException {
 
@@ -1139,58 +1549,58 @@ public class APT_NGINHelper extends DriverHelper {
 
 		//Bulk interface
 
-		//cancel bulk interface
-		ScrolltoElement(application, "orderpanelheader", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
-		click_commonMethod(application, "Bulk Interface", "bulkinterfacelink", xml);
-		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
-		click_commonMethod(application, "Cancel", "bulkjobcancel", xml);
-		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-		{
-			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
-		}
-
-		//submit bulk job
-		ScrolltoElement(application, "orderpanelheader", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
-		click_commonMethod(application, "Bulk Interface", "bulkinterfacelink", xml);
-		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
-		WebElement BulkJob_Choosefile_button= getwebelement(xml.getlocator("//locators/" + application + "/bulkjob_choosefilebutton"));
-		BulkJob_Choosefile_button.sendKeys(bulkjob_filepath);
-		click_commonMethod(application, "Submit", "bulkjobsubmit", xml);
-		String bulkjob_successmsg= GetText(application, "BulkJob_msg", "successmsg");
-		if(bulkjob_successmsg.contains("success"))
-		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step :" + bulkjob_successmsg);
-			Log.info(bulkjob_successmsg);
-		}
-		else
-		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step :" + bulkjob_successmsg);
-			Log.info(bulkjob_successmsg);
-		}
-		
-		//Archive link in bulk interface page
-		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
-		click_commonMethod(application, "Archive", "bulkinterface_archivelink", xml);
-		compareText(application, "Status history found message", "successmsg", "Service Status History Found Successfully.", xml);
-		scrolltoend();
-		click_commonMethod(application, "Cancel", "bulkinterfacepage_cancel", xml);
-
-		//Refresh link in bulk interface page
-		scrollToTop();
-		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
-		click_commonMethod(application, "Archive", "bulkinterface_refreshlink", xml);
-		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Bulk Interface page refresh successful");
-		Log.info("Bulk Interface page refresh successful");
-		Thread.sleep(1000);
-		scrolltoend();
-		click_commonMethod(application, "Cancel", "bulkinterfacepage_cancel", xml);
-		Thread.sleep(2000);
+//		//cancel bulk interface
+//		ScrolltoElement(application, "orderpanelheader", xml);
+//		Thread.sleep(1000);
+//		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
+//		click_commonMethod(application, "Bulk Interface", "bulkinterfacelink", xml);
+//		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
+//		click_commonMethod(application, "Cancel", "bulkjobcancel", xml);
+//		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
+//		{
+//			Log.info("Navigated to view service page");
+//			System.out.println("Navigated to view service page");
+//		}
+//
+//		//submit bulk job
+//		ScrolltoElement(application, "orderpanelheader", xml);
+//		Thread.sleep(1000);
+//		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
+//		click_commonMethod(application, "Bulk Interface", "bulkinterfacelink", xml);
+//		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
+//		WebElement BulkJob_Choosefile_button= getwebelement(xml.getlocator("//locators/" + application + "/bulkjob_choosefilebutton"));
+//		BulkJob_Choosefile_button.sendKeys(bulkjob_filepath);
+//		click_commonMethod(application, "Submit", "bulkjobsubmit", xml);
+//		String bulkjob_successmsg= GetText(application, "BulkJob_msg", "successmsg");
+//		if(bulkjob_successmsg.contains("success"))
+//		{
+//			DriverTestcase.logger.log(LogStatus.PASS, "Step :" + bulkjob_successmsg);
+//			Log.info(bulkjob_successmsg);
+//		}
+//		else
+//		{
+//			DriverTestcase.logger.log(LogStatus.FAIL, "Step :" + bulkjob_successmsg);
+//			Log.info(bulkjob_successmsg);
+//		}
+//		
+//		//Archive link in bulk interface page
+//		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
+//		click_commonMethod(application, "Archive", "bulkinterface_archivelink", xml);
+//		compareText(application, "Status history found message", "successmsg", "Service Status History Found Successfully.", xml);
+//		scrolltoend();
+//		click_commonMethod(application, "Cancel", "bulkinterfacepage_cancel", xml);
+//
+//		//Refresh link in bulk interface page
+//		scrollToTop();
+//		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
+//		click_commonMethod(application, "Archive", "bulkinterface_refreshlink", xml);
+//		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
+//		DriverTestcase.logger.log(LogStatus.PASS, "Step : Bulk Interface page refresh successful");
+//		Log.info("Bulk Interface page refresh successful");
+//		Thread.sleep(1000);
+//		scrolltoend();
+//		click_commonMethod(application, "Cancel", "bulkinterfacepage_cancel", xml);
+//		Thread.sleep(2000);
 		//Service delete is performed in the last test case
 	}
 
@@ -4535,7 +4945,7 @@ public class APT_NGINHelper extends DriverHelper {
 		return flag;
 	}
 
-	public void searchorder(String application, String sid) throws InterruptedException, DocumentException, IOException {
+	public void searchservice(String application, String sid) throws InterruptedException, DocumentException, IOException {
 
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(2000);

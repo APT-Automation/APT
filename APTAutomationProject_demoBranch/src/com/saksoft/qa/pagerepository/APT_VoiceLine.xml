@@ -354,6 +354,12 @@
 <synchronization_vistamartdevicevalue>(//div[@class='div-margin row']//div)[10]//span</synchronization_vistamartdevicevalue>
 <synchronization_pgwvalue>(//div[@class='div-margin row']//div)[11]//span</synchronization_pgwvalue>
 <synchronization_synchronizelink>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//a)[2]</synchronization_synchronizelink>
+<smartsvalue_asrdevicepanel>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[3]//span</smartsvalue_asrdevicepanel>
+<smarts_datetime_asrdevicepanel>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[3]//span/parent::div</smarts_datetime_asrdevicepanel>
+<fetchinterfacevalue_asrdevicepanel>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[5]//span</fetchinterfacevalue_asrdevicepanel>
+<fetchinterface_datetime_asrdevicepanel>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[5]//span/parent::div</fetchinterface_datetime_asrdevicepanel>
+<vistamartvalue_asrdevicepanel>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[6]//span</vistamartvalue_asrdevicepanel>
+<vistamart_datetime_asrdevicepanel>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[6]//span/parent::div</vistamart_datetime_asrdevicepanel>
 <managenetwork_backbutton>(//div[@class='div-margin row'])[4]//button</managenetwork_backbutton>
 <fmc_datetimevalue>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[3]//span/parent::div</fmc_datetimevalue>
 <smarts_datetimevalue>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[4]//span/parent::div</smarts_datetimevalue>
@@ -650,11 +656,6 @@
 <briport6number_viewpage>//label[text()='BRI Port 6 Number']/parent::div/following-sibling::div</briport6number_viewpage>
 <briport7number_viewpage>//label[text()='BRI Port 7 Number']/parent::div/following-sibling::div</briport7number_viewpage>
 <briport8number_viewpage>//label[text()='BRI Port 8 Number']/parent::div/following-sibling::div</briport8number_viewpage>
-
-
-
-
-
 
 
 </voiceline>

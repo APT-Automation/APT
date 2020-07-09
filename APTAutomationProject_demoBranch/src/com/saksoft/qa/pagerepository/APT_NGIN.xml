@@ -225,6 +225,15 @@
 <UserActionDropdown>//div[contains(text(),'Users')]/following-sibling::div/div//button[text()='Action']</UserActionDropdown>
 <AddLink>//div[@class='dropdown-menu show']//a[text()='Add']</AddLink>
 <CreateUserHeader>//div[@class='heading-green-row row']//p</CreateUserHeader>
+
+<!--  Warning messages -->
+<warningmsg_username>//label[text()='User Name']/parent::div//div</warningmsg_username>
+<warningmsg_firstname>//label[text()='First Name']/parent::div//div</warningmsg_firstname>
+<warningmsg_surname>//label[text()='Surname']/parent::div//div</warningmsg_surname>
+<warningmsg_postaladdress>//label[text()='Postal Address']/parent::div/following-sibling::div</warningmsg_postaladdress>
+<warningmsg_useremail>//label[text()='Email']/parent::div//div</warningmsg_useremail>
+<warningmsg_userphone>//label[text()='Phone']/parent::div//div</warningmsg_userphone>
+<warningmsg_userpassword>//label[text()='Password']/parent::div//div</warningmsg_userpassword>
 <UserName>(//div[@class='position-relative form-group'])[1]//input[@id='userName']</UserName>
 <FirstName>(//div[@class='position-relative form-group'])[2]//input[@id='firstName']</FirstName>
 <SurName>(//div[@class='position-relative form-group'])[3]//input[@id='surname']</SurName>
@@ -246,8 +255,54 @@
 <emailvalue>//b[text()='Email']/parent::label/parent::div/following-sibling::div</emailvalue>
 <phonevalue>//b[text()='Phone']/parent::label/parent::div/following-sibling::div</phonevalue>
 <OK_button>//button[@type='submit']//span[text()='OK']</OK_button>
-<!-- Management Options panel in view service page -->
 
+<!-- Select Dropdown -->
+<legalcustomerName_labelName>//label[text()='Legal Customer Name']</legalcustomerName_labelName>
+
+<IPGuardianAccountGroup>//input[@id='ipGuardianAccountGrp']</IPGuardianAccountGroup>
+<IPGuardianAccountGroup_Text>//label[contains(text(),'IPGuardian Account Group')]</IPGuardianAccountGroup_Text>
+<IPGuardianAccountGroup_viewpage>//div[div[label//b[contains(text(),'IPGuardian Account Group')]]]/div[2]</IPGuardianAccountGroup_viewpage>
+<ColtOnlineUser>//input[@id='onlineUser']</ColtOnlineUser>
+<ColtOnlineUser_Text>//label[contains(text(),'Colt Online User')]</ColtOnlineUser_Text>
+<coltonlineuser_viewpage>//div[div[label//b[contains(text(),'Colt Online User')]]]/div[2]</coltonlineuser_viewpage>
+<Password_Text>//label[contains(text(),'Password')]</Password_Text>
+<Password_Textfield>//input[@id='password']</Password_Textfield>
+<GeneratePasswordLink>//span[text()='Generate Password']</GeneratePasswordLink>
+<GeneratePasswordLink_Text>//span[@class='badge-success badge badge-secondary']</GeneratePasswordLink_Text>
+
+<roleDropdown_available>//select[@id='availableRoles']//option</roleDropdown_available>
+<roleDropdown_addButton>//div[label[text()='Roles']]//following-sibling::div//span[text()='>>']</roleDropdown_addButton>
+<roleDropdown_removeButton>//div[label[text()='Roles']]//following-sibling::div//span[text()='value']</roleDropdown_removeButton>
+<roleDropdown_selectedValues>//select[@id='selectedRoles']//option</roleDropdown_selectedValues>
+
+<hideRouterToolIPv4_Huawei_available>//select[@id='availableIPV4CommandHuawei']//option</hideRouterToolIPv4_Huawei_available>
+<hideRouterToolIPv4__Huawei_addButton>//div[label[text()='Hide Router Tools IPv4 Commands(Huawei)']]//following-sibling::div//span[text()='>>']</hideRouterToolIPv4__Huawei_addButton>
+<hideRouterToolIPv4_Huawei_removeButton>//div[label[text()='Hide Router Tools IPv4 Commands(Huawei)']]//following-sibling::div//span[text()='value']</hideRouterToolIPv4_Huawei_removeButton>
+<hideRouterToolIpv4_Huawei_selectedvalues>//select[@id='selectedIPV4CommandHuawei']//option</hideRouterToolIpv4_Huawei_selectedvalues>
+
+<hideRouterToolIPv4_Cisco_Available>//select[@id='availableIPV4CommandCisco']//option</hideRouterToolIPv4_Cisco_Available>
+<hideRouterToolIPv4_Cisco_addButton>//div[label[text()='Hide Router Tools IPv4 Commands(Cisco)']]//following-sibling::div//span[text()='>>']</hideRouterToolIPv4_Cisco_addButton>
+<hideRouterToolIPv4_Cisco_removeButton>//div[label[text()='Hide Router Tools IPv4 Commands(Cisco)']]//following-sibling::div//span[text()='value']</hideRouterToolIPv4_Cisco_removeButton>
+<hideRouterToolIpv4_Cisco_selectedvalues>//select[@id='selectedIPV4CommandCisco']//option</hideRouterToolIpv4_Cisco_selectedvalues>
+
+<HideService_Available>//select[@id='availableHideService']//option</HideService_Available>
+<HideService_addButton>//div[label[text()='Hide Services']]//following-sibling::div//span[text()='>>']</HideService_addButton>
+<HideService_removeButton>//div[label[text()='Hide Services']]//following-sibling::div//span[text()='value']</HideService_removeButton>
+<HideServicesDropdown_selectedValues>//select[@id='selectedHideService']//option</HideServicesDropdown_selectedValues>
+
+<HideSiteOrder_Available>//select[@id='availableHideSiteOrder']//option</HideSiteOrder_Available>
+<hideSiteOrder_addbutton>//div[label[text()='Hide Site Order']]//following-sibling::div//span[text()='>>']</hideSiteOrder_addbutton>
+<hideSiteOrder_removeButton>//div[label[text()='Hide Site Order']]//following-sibling::div//span[text()='value']</hideSiteOrder_removeButton>
+<HideSiteOrderDropdown_selectedValues>//select[@id='selectedHideSiteOrder']//option</HideSiteOrderDropdown_selectedValues>
+
+<HideRouterToolIPv6_Cisco_Available>//select[@id='availableIPV6Command']//option</HideRouterToolIPv6_Cisco_Available>
+<hideRouterToolIPv6_Cisco_addButton>//div[label[text()='Hide Router Tools IPv6 Commands(Cisco)']]//following-sibling::div//span[text()='>>']</hideRouterToolIPv6_Cisco_addButton>
+
+<viewUser_HiddenRouterToolIPv4Cisco>//div[div[label[text()='Hide Router Tools IPv4 Commands(Cisco)']]]//following-sibling::div</viewUser_HiddenRouterToolIPv4Cisco>
+<viewUser_HiddenRouterToolCommandIPv4Huawei>//div[label[text()='Hide Router Tools IPv4 Commands(Huawei)']]//following-sibling::div</viewUser_HiddenRouterToolCommandIPv4Huawei>
+<viewUser_HiddenRouterToolCommandIPv6Cisco>//div[div[label[text()='Hide Router Tools IPv6 Commands(Cisco)']]]//following-sibling::div</viewUser_HiddenRouterToolCommandIPv6Cisco>
+
+<!-- Management Options panel in view service page -->
 <managementoptions_header>//div[text()='Management Options']</managementoptions_header>
 <customeradmin_text>//label[text()='Customer Administration']</customeradmin_text>
 <customeradmin_value>(//div[@class='position-relative form-group']//div[text()='Yes'])[1]</customeradmin_value>

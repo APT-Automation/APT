@@ -1,32 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="13" total="17" passed="4">
+<testng-results skipped="0" failed="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="APT_MCS Test Suite" duration-ms="579843" started-at="2020-07-09T15:07:24Z" finished-at="2020-07-09T15:17:04Z">
+  <suite name="APT_MCS Test Suite" duration-ms="532476" started-at="2020-07-09T23:10:36Z" finished-at="2020-07-09T23:19:29Z">
     <groups>
     </groups>
-    <test name="NGIN" duration-ms="313228" started-at="2020-07-09T15:07:24Z" finished-at="2020-07-09T15:12:37Z">
+    <test name="NGIN" duration-ms="294754" started-at="2020-07-09T23:10:36Z" finished-at="2020-07-09T23:15:31Z">
       <class name="com.saksoft.qa.apttestscripts.APT_NGINTest">
-        <test-method status="PASS" signature="startReport()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@26653222]" name="startReport" is-config="true" duration-ms="131" started-at="2020-07-09T20:37:24Z" finished-at="2020-07-09T20:37:24Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- startReport -->
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@26653222]" name="setup" is-config="true" duration-ms="4" started-at="2020-07-09T20:37:24Z" finished-at="2020-07-09T20:37:24Z">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@5e5792a0]" name="setup" is-config="true" duration-ms="0" started-at="2020-07-10T04:40:36Z" finished-at="2020-07-10T04:40:36Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="CreateCustomer(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@26653222]" name="CreateCustomer" duration-ms="311051" started-at="2020-07-09T20:37:25Z" description="TC-01" data-provider="Finaldatareader_NGIN" finished-at="2020-07-09T20:42:37Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{ServiceProfile=AT-Wizard3, Existing RFIREQNumber=NGINRFI_9720, EditPhone=9856372451, EmailColumn=Email, ExistingOrderService=NO, EditUserName=NGINUseredit9720, Reseller_EditStreetName=KR street, DedicatedPortalStatus=NO, ServiceType=NGIN, Customer_Country=AT (Austria), SelectOrderContractNumber=NGINOrder_9720, Reseller_EditCity=Pondi, PriceAnnouncementValue=FR-A009, NewRFIREQNumber=NGINRFI_9720, Routingformobile_value=87684, Search_SANNumber=3314785453, Edit_EnableCallerConfirmation_Checkbox=null, PostalAddress=Bangalore, MobileCallsAllowed_checkbox=Yes, ChooseCustomerToBeSelected=NGIN9720, Routingforpayphone_value=Payphone1, Reseller_StreetNumber=35, Supervisionfieldvalue=Full (2), Edit_PayphoneBlockingenabled_checkbox=No, Edit_NoReplyTimerValue=40, ResellerName=Reseller9720, networkcongestion=nocongestion1, Reseller_City=Pondicherry, Reseller_Zipcode=875642, CallerConfirmationDigitValue=null, ExistingOrderNumber=NGINOrder_9720, SANBlock_Checkbox=No, NameColumn=Name, SANMove_Orderno=NGINService_22, Customer Administration=NO, FOCEnabled_Checkbox=No, Edit_InternationalOutgoingCalls_checkbox=No, ChangeOrder_VoicelineNumber=NGINRFI_9720, BulkJob_FilePath=E:\Sai\APT_Automation_AllScripts\NumberTranslation.csv, UserEmail=NGINUser_9720@gmail.com, CustomerNameValue=AT-nginocn9720, EditOrder_VoicelineNumber=NGINRFIedit_9720, EditSurName=NGINUseredit, ChangeOrder_OrderNumber=NGINOrder_9720, Edit_AnnouncementToPlay_Checkbox=NO, EditEmail=NGINUseredit_9720@gmail.com, noanswer_value=noanswer1, Edit_SupervisionValue=null, MainDomain=ngindomain9720.com, Reseller_EditFax=9976763093, SelectSANSearchType=Equals, NewOrderNumber=NGINOrder_9720, InternationalOutgoingCalls_checkbox=No, Edit_ServiceProfile=null, EditPostalAddress=Chennai, Reference=testreference9720, FirstName=User_9720, Edit_ComplexRouting_Checkbox=NO, Edit_RingToNumber_Checkbox=NO, SurName=NGIN, ResourceColumn=Resources, Edit_WebAccessBlocked_checkbox=No, EditFirstName=Useredit9720, NewOrderService=YES, WebAccessBlocked_checkbox=No, PriceAnnOriginvalue=DEFAULT, PayphoneBlockingenabled_checkbox=No, DestinationCustomerName=FR-nginocn20, Reseller_EditEmail=nginreselleredit9720@gmail.com, Edit_InterruptiblePriceAnnouncement_Checkbox=yes, Email=ngin9720@test.com, Reseller_StreetName=KR Nagar, CreateOrderCustomer=Test_Colt_Customer_QA_23, DefaultValue_checkbox=YES, Bulkmove_Country=FR (France), SendSCI_Checkbox=null, Edit_SendSCI_Checkbox=null, RolesColumn=Roles, Browserfiles_Downloadspath=C:\\Users\\SSUPRAJA-adm\\Downloads, Name=NGIN9720, AnnouncementToPlay_Checkbox=NO, Bulkmove_SANNumberValue1=14439475, Edit_SANBlock_Checkbox=No, Bulkmove_SANNumberValue2=14572921, ServiceStatusChangeRequired=No, Remarks=TestRemarks, EnableLogicalRouting_Checkbox=no, ServiceStatus=In Service, Reseller_Email=nginreseller9720@gmail.com, ServiceIdentification=NGINService_9720, Name1=NGIN9720, Name2=*, AddressColumn=Address, RingToNumber_Checkbox=YES, syncstatus=Ok, CPSFreeFormatValue=1228346, PreDestinationNumber=null, DedicatedPortal=Vodafone Portal, AddSAN_SANNumber=1228346, SendFCI_Checkbox=null, NumberOfRepetitionsAllowedValue=null, Edit_ChargeBandName=CHBNO-1, Bulkmove_Service=NGINService_10, SAN Administration=NO, Reseller_EditZipcode=978292, PortOutNumber=9854356567, Edit_SendFCI_Checkbox=null, Configure_checkbox=NO, Edit_MobileCallsAllowed_checkbox=Yes, EnableCallerConfirmation_Checkbox=null, Edit_ValueInPrice=null, InternationalIncomingCalls_checkbox=No, Reseller_EditPOBox=82673, NGINMessage_SANNumber=390209720891, Chargebandname=CHBNO-3, SearchSANfilename=SearchSan, Reseller_EditPhone=9972654372, PortInNumber=9854356567, Edit_EnablePriceAnnouncement_Checkbox=null, LoginColumn=Login, Edit_MaxCallDuration=null, CallerConfirmationAnnouncementValue=null, Edit_PriceAnnOriginvalue=DEFAULT, TechnicalContactName=ngincontact9720, Reseller_Phone=9973738994, Edit_FOCEnabled_Checkbox=No, Ringtonumber=9854352787, Phone=9643202738, Edit_PreDestinationNumber=null, CreateOrderName=Test_Colt_Customer_QA_23, Reseller_EditStreetNumber=37, Maxcallduration=43, Edit_CallerConfirmationDigitValue=null, Reseller_Fax=9973726713, TypeToBeSelected=Colt Telecom - internal, EditRemarks=TestRemarksedit, Defaultrouting_value=route1, SANNumberValue=431228346, UserName=NGINUser_9720, defaultroutebusy_value=default1, Reseller Administration=NO, CountryToBeSelected=BE (Belgium), EnablePriceAnnouncement_Checkbox=null, NoReplyTimerValue=35, Edit_CallerConfirmationAnnouncementValue=null, ValueInPrice=null, Bulkmove_Customer=FR-nginocn10, Edit_InternationalIncomingCalls_checkbox=No, ComplexRouting_Checkbox=NO, OCN=nginocn9720, EditOrder_OrderNumber=NGINOrderedit_9720, Reseller_POBox=623183, Fax=3892753, Reseller_EditResellerName=Reselleredit9720, Edit_PriceAnnouncementValue=FR-A009, Edit_NumberOfRepetitionsAllowedValue=null, InterruptiblePriceAnnouncement_Checkbox=yes}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CreateCustomer -->
-        <test-method status="PASS" signature="BeforeMethod(java.lang.reflect.Method, org.testng.ITestContext, [Ljava.lang.Object;)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@26653222]" name="BeforeMethod" is-config="true" duration-ms="0" started-at="2020-07-09T20:37:25Z" finished-at="2020-07-09T20:37:25Z">
+        <test-method status="PASS" signature="BeforeMethod(java.lang.reflect.Method, org.testng.ITestContext, [Ljava.lang.Object;)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@5e5792a0]" name="BeforeMethod" is-config="true" duration-ms="5" started-at="2020-07-10T04:40:39Z" finished-at="2020-07-10T04:40:39Z">
           <params>
             <param index="0">
               <value>
@@ -35,50 +20,98 @@
             </param>
             <param index="1">
               <value>
-                <![CDATA[org.testng.TestRunner@6722db6e]]>
+                <![CDATA[org.testng.TestRunner@4d098f9b]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[[Ljava.lang.Object;@18f20260]]>
+                <![CDATA[[Ljava.lang.Object;@2dbf4cbd]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@26653222]" name="getResult" is-config="true" duration-ms="2" started-at="2020-07-09T20:42:37Z" finished-at="2020-07-09T20:42:37Z">
+        <test-method status="PASS" signature="CreateCustomer(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@5e5792a0]" name="CreateCustomer" duration-ms="291756" started-at="2020-07-10T04:40:39Z" description="TC-01" data-provider="Finaldatareader_NGIN" finished-at="2020-07-10T04:45:31Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=CreateCustomer status=SUCCESS method=APT_NGINTest.CreateCustomer(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@26653222] output={null}]]]>
+                <![CDATA[{ServiceProfile=AT-Wizard3, Existing RFIREQNumber=NGINRFI_8722, EditPhone=9856372451, EmailColumn=Email, ExistingOrderService=NO, EditUserName=NGINUseredit8722, Reseller_EditStreetName=KR street, DedicatedPortalStatus=NO, ServiceType=NGIN, Customer_Country=AT (Austria), SelectOrderContractNumber=NGINOrder_8722, Reseller_EditCity=Pondi, PriceAnnouncementValue=FR-A009, GeneratePassword=Pass#*%word, NewRFIREQNumber=NGINRFI_8722, Routingformobile_value=87684, Search_SANNumber=3314785453, Edit_EnableCallerConfirmation_Checkbox=null, editRolesToBeSelected=IVManagerAdmin, PostalAddress=Bangalore, MobileCallsAllowed_checkbox=Yes, Role_ToBeAvailable=viewOnly, HideRouterToolsIPv4CommandsCisco_ToBeAvailable=ping vrf,show ip accounting, ChooseCustomerToBeSelected=NGIN8722, Routingforpayphone_value=Payphone1, Reseller_StreetNumber=35, Supervisionfieldvalue=Full (2), HideSiteOrderToBeSelected=Ping, Edit_PayphoneBlockingenabled_checkbox=No, IPGuardianAccountGroup=Group A, Edit_NoReplyTimerValue=40, ResellerName=Reseller8722, networkcongestion=nocongestion1, Reseller_City=Pondicherry, Reseller_Zipcode=875642, CallerConfirmationDigitValue=null, ExistingOrderNumber=NGINOrder_8722, SANBlock_Checkbox=No, RouterToolsIPv6CommandsCisco_ToBeAvailable=ping ipv6, NameColumn=Name, SANMove_Orderno=NGINService_22, HideServicesToBeSelected=111001213, Customer Administration=NO, FOCEnabled_Checkbox=No, Edit_InternationalOutgoingCalls_checkbox=No, ChangeOrder_VoicelineNumber=NGINRFI_8722, BulkJob_FilePath=E:\Sai\APT_Automation_AllScripts\NumberTranslation.csv, UserEmail=NGINUser_8722@gmail.com, CustomerNameValue=AT-nginocn8722, SiteOrders_ToBeAvailable=null, EditOrder_VoicelineNumber=NGINRFIedit_8722, EditSurName=NGINUseredit, ChangeOrder_OrderNumber=NGINOrder_8722, Edit_AnnouncementToPlay_Checkbox=NO, EditEmail=NGINUseredit_8722@gmail.com, noanswer_value=noanswer1, Edit_SupervisionValue=null, RouterToolsIPv6CommandsCisco_ToBeHidden=null, MainDomain=ngindomain8722.com, Reseller_EditFax=9976763093, SelectSANSearchType=Equals, NewOrderNumber=NGINOrder_8722, InternationalOutgoingCalls_checkbox=No, Edit_ServiceProfile=null, EditPostalAddress=Chennai, Reference=testreference8722, FirstName=User_8722, Edit_ComplexRouting_Checkbox=NO, Edit_RingToNumber_Checkbox=NO, SurName=NGIN, ResourceColumn=Resources, HideRouterToolsIPv4CommandsHuiwai_ToBeSelected=ping -vpn-instance, HideRouterToolsIPv4CommandsHuiwai_ToBeHidden=display arp, Edit_WebAccessBlocked_checkbox=No, EditFirstName=Useredit8722, NewOrderService=YES, RouterToolsIPv4CommandsHuiwai_ToBeAvailable=ping -vpn-instance, WebAccessBlocked_checkbox=No, PriceAnnOriginvalue=DEFAULT, PayphoneBlockingenabled_checkbox=No, DestinationCustomerName=FR-nginocn20, HideRouterToolsIPv6CommandsCisco_ToBeSelected=ping ipv6, Reseller_EditEmail=nginreselleredit8722@gmail.com, Edit_InterruptiblePriceAnnouncement_Checkbox=yes, Email=ngin8722@test.com, Reseller_StreetName=KR Nagar, CreateOrderCustomer=Test_Colt_Customer_QA_23, DefaultValue_checkbox=YES, Bulkmove_Country=FR (France), SendSCI_Checkbox=null, Edit_SendSCI_Checkbox=null, RolesColumn=Roles, Browserfiles_Downloadspath=C:\\Users\\SSUPRAJA-adm\\Downloads, Name=NGIN8722, AnnouncementToPlay_Checkbox=NO, Bulkmove_SANNumberValue1=14439475, Edit_SANBlock_Checkbox=No, Bulkmove_SANNumberValue2=14572921, ServiceStatusChangeRequired=No, Remarks=TestRemarks, EnableLogicalRouting_Checkbox=no, ServiceStatus=In Service, Reseller_Email=nginreseller8722@gmail.com, ServiceIdentification=NGINService_8722, edit_RoleToBeHidden=null, Name1=NGIN8722, Name2=*, AddressColumn=Address, HideRouterToolsIPv4CommandsCisco_ToBeSelected=ping vrf,show ip accounting, Services_ToBeHidden=null, RingToNumber_Checkbox=YES, syncstatus=Ok, CPSFreeFormatValue=1223782, PreDestinationNumber=null, SiteOrders_ToBeHidden=null, ColtOnlineUser=test online, DedicatedPortal=Vodafone Portal, AddSAN_SANNumber=1223782, SendFCI_Checkbox=null, NumberOfRepetitionsAllowedValue=null, Edit_ChargeBandName=CHBNO-1, Bulkmove_Service=NGINService_10, SAN Administration=NO, Reseller_EditZipcode=978292, PortOutNumber=9854356567, Edit_SendFCI_Checkbox=null, Configure_checkbox=NO, Edit_MobileCallsAllowed_checkbox=Yes, EnableCallerConfirmation_Checkbox=null, Edit_ValueInPrice=null, InternationalIncomingCalls_checkbox=No, Services_ToBeAvailable=null, Reseller_EditPOBox=82673, NGINMessage_SANNumber=390208722891, Chargebandname=CHBNO-3, SearchSANfilename=SearchSan, Reseller_EditPhone=9972654372, PortInNumber=9854356567, Edit_EnablePriceAnnouncement_Checkbox=null, LoginColumn=Login, Edit_MaxCallDuration=null, RolesToBeSelected=IVCustomerAdmin,viewOnly, CallerConfirmationAnnouncementValue=null, Edit_PriceAnnOriginvalue=DEFAULT, TechnicalContactName=ngincontact8722, Reseller_Phone=9973738994, Edit_FOCEnabled_Checkbox=No, Ringtonumber=9854352787, Phone=9643202738, Edit_PreDestinationNumber=null, CreateOrderName=Test_Colt_Customer_QA_23, Reseller_EditStreetNumber=37, Maxcallduration=43, Edit_CallerConfirmationDigitValue=null, Reseller_Fax=9973726713, TypeToBeSelected=Colt Telecom - internal, EditRemarks=TestRemarksedit, Defaultrouting_value=route1, SANNumberValue=431223782, UserName=NGINUser_8722, defaultroutebusy_value=default1, Reseller Administration=NO, CountryToBeSelected=BE (Belgium), EnablePriceAnnouncement_Checkbox=null, HideRouterToolsIPv4CommandsCisco_ToBeHidden=clear loop, NoReplyTimerValue=35, Edit_CallerConfirmationAnnouncementValue=null, editGeneratePassword=Pass#*%word, ValueInPrice=null, Bulkmove_Customer=FR-nginocn10, Edit_InternationalIncomingCalls_checkbox=No, Role_ToBeHidden=customerIpWebMailAdmin, ComplexRouting_Checkbox=NO, OCN=nginocn8722, EditOrder_OrderNumber=NGINOrderedit_8722, Reseller_POBox=623183, Fax=3892753, Reseller_EditResellerName=Reselleredit8722, Edit_PriceAnnouncementValue=FR-A009, Edit_NumberOfRepetitionsAllowedValue=null, InterruptiblePriceAnnouncement_Checkbox=yes, editIPGuardianAccountGroup=Group A, editColtOnlineUser=test online}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CreateCustomer -->
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@5e5792a0]" name="getResult" is-config="true" duration-ms="1" started-at="2020-07-10T04:45:31Z" finished-at="2020-07-10T04:45:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=CreateCustomer status=SUCCESS method=APT_NGINTest.CreateCustomer(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@5e5792a0] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method status="PASS" signature="Teardown()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@26653222]" name="Teardown" is-config="true" duration-ms="0" started-at="2020-07-09T20:42:37Z" finished-at="2020-07-09T20:42:37Z">
+        <test-method status="PASS" signature="Teardown()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@5e5792a0]" name="Teardown" is-config="true" duration-ms="0" started-at="2020-07-10T04:45:31Z" finished-at="2020-07-10T04:45:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Teardown -->
-        <test-method status="PASS" signature="endReport()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@26653222]" name="endReport" is-config="true" duration-ms="412" started-at="2020-07-09T20:42:37Z" finished-at="2020-07-09T20:42:37Z">
+        <test-method status="PASS" signature="endReport()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_NGINTest@5e5792a0]" name="endReport" is-config="true" duration-ms="380" started-at="2020-07-10T04:45:31Z" finished-at="2020-07-10T04:45:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endReport -->
       </class> <!-- com.saksoft.qa.apttestscripts.APT_NGINTest -->
     </test> <!-- NGIN -->
-    <test name="Wholesale" duration-ms="266143" started-at="2020-07-09T15:12:37Z" finished-at="2020-07-09T15:17:03Z">
-      <class name="com.saksoft.qa.apttestscripts.APT_wholesale">
-        <test-method status="PASS" signature="startReport()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e]" name="startReport" is-config="true" duration-ms="3" started-at="2020-07-09T20:42:37Z" finished-at="2020-07-09T20:42:37Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- startReport -->
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e]" name="setup" is-config="true" duration-ms="3" started-at="2020-07-09T20:42:37Z" finished-at="2020-07-09T20:42:37Z">
+    <test name="Voice line Service" duration-ms="187640" started-at="2020-07-09T23:15:31Z" finished-at="2020-07-09T23:18:39Z">
+      <class name="com.saksoft.qa.apttestscripts.APT_VoiceLineTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@4dfa3a9d]" name="setup" is-config="true" duration-ms="1" started-at="2020-07-10T04:45:31Z" finished-at="2020-07-10T04:45:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method status="PASS" signature="BeforeMethod(java.lang.reflect.Method, org.testng.ITestContext, [Ljava.lang.Object;)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e]" name="BeforeMethod" is-config="true" duration-ms="0" started-at="2020-07-09T20:42:37Z" finished-at="2020-07-09T20:42:37Z">
+        <test-method status="PASS" signature="BeforeMethod(java.lang.reflect.Method, org.testng.ITestContext, [Ljava.lang.Object;)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@4dfa3a9d]" name="BeforeMethod" is-config="true" duration-ms="0" started-at="2020-07-10T04:45:32Z" finished-at="2020-07-10T04:45:32Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyServicepanelinviewservicepage(java.util.Map) throws java.lang.Exception]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[org.testng.TestRunner@20b5f2ac]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@7fc44dec]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeMethod -->
+        <test-method status="PASS" signature="Teardown()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@4dfa3a9d]" name="Teardown" is-config="true" duration-ms="0" started-at="2020-07-10T04:48:39Z" finished-at="2020-07-10T04:48:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Teardown -->
+        <test-method status="PASS" signature="endReport()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@4dfa3a9d]" name="endReport" is-config="true" duration-ms="277" started-at="2020-07-10T04:48:39Z" finished-at="2020-07-10T04:48:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endReport -->
+      </class> <!-- com.saksoft.qa.apttestscripts.APT_VoiceLineTest -->
+    </test> <!-- Voice line Service -->
+    <test name="Wholesale" duration-ms="49741" started-at="2020-07-09T23:18:39Z" finished-at="2020-07-09T23:19:29Z">
+      <class name="com.saksoft.qa.apttestscripts.APT_wholesale">
+        <test-method status="PASS" signature="BeforeSuite()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@31ef45e3]" name="BeforeSuite" is-config="true" duration-ms="28020" started-at="2020-07-10T04:40:08Z" finished-at="2020-07-10T04:40:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeSuite -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@31ef45e3]" name="setup" is-config="true" duration-ms="0" started-at="2020-07-10T04:48:39Z" finished-at="2020-07-10T04:48:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="BeforeMethod(java.lang.reflect.Method, org.testng.ITestContext, [Ljava.lang.Object;)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@31ef45e3]" name="BeforeMethod" is-config="true" duration-ms="0" started-at="2020-07-10T04:48:39Z" finished-at="2020-07-10T04:48:39Z">
           <params>
             <param index="0">
               <value>
@@ -87,19 +120,19 @@
             </param>
             <param index="1">
               <value>
-                <![CDATA[org.testng.TestRunner@4ae33a11]]>
+                <![CDATA[org.testng.TestRunner@7e3060d8]]>
               </value>
             </param>
             <param index="2">
               <value>
-                <![CDATA[[Ljava.lang.Object;@7a48e6e2]]>
+                <![CDATA[[Ljava.lang.Object;@293d0107]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="searchCreatedService(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e]" name="searchCreatedService" duration-ms="47512" started-at="2020-07-09T20:42:37Z" description="TC-01" data-provider="Finaldatareader_wholeSale" finished-at="2020-07-09T20:43:25Z">
+        <test-method status="PASS" signature="searchCreatedService(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@31ef45e3]" name="searchCreatedService" duration-ms="49157" started-at="2020-07-10T04:48:39Z" description="TC-01" data-provider="Finaldatareader_wholeSale" finished-at="2020-07-10T04:49:29Z">
           <params>
             <param index="0">
               <value>
@@ -110,461 +143,26 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchCreatedService -->
-        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e]" name="getResult" is-config="true" duration-ms="0" started-at="2020-07-09T20:43:25Z" finished-at="2020-07-09T20:43:25Z">
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@31ef45e3]" name="getResult" is-config="true" duration-ms="0" started-at="2020-07-10T04:49:29Z" finished-at="2020-07-10T04:49:29Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=searchCreatedService status=SUCCESS method=APT_wholesale.searchCreatedService(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e] output={null}]]]>
+                <![CDATA[[TestResult name=searchCreatedService status=SUCCESS method=APT_wholesale.searchCreatedService(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@31ef45e3] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method status="PASS" signature="BeforeMethod(java.lang.reflect.Method, org.testng.ITestContext, [Ljava.lang.Object;)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e]" name="BeforeMethod" is-config="true" duration-ms="0" started-at="2020-07-09T20:43:25Z" finished-at="2020-07-09T20:43:25Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.saksoft.qa.apttestscripts.APT_wholesale.addMASswitch(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[org.testng.TestRunner@4ae33a11]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[[Ljava.lang.Object;@b40bb6e]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="addMASswitch(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e]" name="addMASswitch" duration-ms="74832" started-at="2020-07-09T20:43:25Z" description="TC-06" data-provider="Finaldatareader_wholeSale" finished-at="2020-07-09T20:44:40Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{editCarrier_existingFieldSelection=null, Existing RFIREQNumber=null, properMailId=test@test.com, PE_editCountry=AE (United Arab Emirates), EgressIPsignal_newValue=egres01, PE_VRRPTrackInterface=null, ExistingOrderService=yes, MAS_HSRPIP=null, edit_callAdmissionControl=null, CPEdevice_SNMPv3securityUsername=SNMpusr2, edit_signallingZone=null, MAS_editNetwork=XFER, editPSPGname_existingFieldSelection=yes, retryInvite=2, DedicatedPortalStatus=NO, editSignallingTransport=sip-tcp, MAS_editNewPremiseName=prmi, mediaIP=10.23.46.70, viewtrunk_SBCconfiguration=Synchronize All, EgressIPsignal_existingValue=SN_DEFAULT_OUT_TCP, edit_callrateLimitvalue=52, editIPsignalProfile_existingValue=SN_DEFAULT_IN, trafficDirection_resiltrunk=null, addressReachability=SA_DEFAULT, MAS_PrimaryIPv6onMas1=null, editGateway=null, editLocalProfile_existingvalue=DefaultNHLocal, MAS_editInterfaceAddressRange=null, carrierIPterminating=10.3.61.20, ChooseCustomerToBeSelected=NGIN_23, GSXmanualConfigValue=GSXconfigExecution004, MAS_HSRPTrackInterface=null, editTrafficDirection=null, InDMPMrule_existingValue=SN_BE_IN_LIGHT, editPSXmanualConfigValue=editPSXexecution001, IPsignallingProfile_newFieldSelection=Yes, editSBCmanualConfigvalue=editSBCexection001, editExistingCity=Null, editLocalProfile_existingFieldSelection=No, ExistingOrderNumber=NewOrderTest01, MAS_Network=XFER, COSprofile_newFieldSelection=No, voipProtocol=SIP-I, CPEdevice_routerID=1313, editCPEdevice_SNMPv3Contextname=sn8, NewOrderNumber=wholeSaleTest01, edit_serviceId=null, reuseNIFgroup=Yes, edit_TLSproflile=editedTL, CPEdevice_vendorModel=Cisco 1721, signallingtransportProtocol=sip-tcp, MAS_GroupNumber=15, gateway_resilientTrunk=null, editFeatureControlprofile_newFieldSelection=No, CPE_command_ipv6=ping vrf :1 ipv6, NewOrderService=no, SIPsignallingPort=5090, CPE_command_ipv4=ping, MAS_SecondaryIPv6onMas2=null, CPEdevice_SNMPv3AutoProto=null, routePriority=Round Robin, Email=ngin23@test.com, OutDMPMrule_newValue=DMPM01, localRingBackTone_existingValue=DE, InServiceStatus=In Service, edit_reuseSigZonePart=null, editCOSprofile_existingValue=HA_COS_IE_BARALL, editQuality=null, MAS_editInterfaceAddressRangeIPV6=null, edit_routePriority=Sequence, edit_subInterfaceSlot=7, editPrefferedPSP_existingFieldSelection=No, MAS_editVendor=null, editOutDMPMrule_existingFieldSelection=Yes, edit_CDRdelivery=null, MAS_editIVManagement=yes, featureControlprofile_newValue=fet001, edit_BillingCountry=null, NewPremiseCode=R03, MAS_editGenerateConfiguration=Vlan Configuration, vlanTag=301, sipSessionkeepAliveTimer=1801, editExistingCityValue=Null, TechnicalContactName=ngincontact23, PE_editNewSitename=SI, editFeatureControlprofile_existingFieldSelection=Yes, editLocalRingBackTone_newValue=123, callAdmissionControl=Yes, carrier_existingValue=RIT_NAT, CPEdevice_SNMPv3Contextname=sn8, pspgName_existingValue=TR_729, edit_TrunkType=null, TypeToBeSelected=Colt Telecom - internal, InMaintenanceStatus=In Maintenance, PE_editVendor=null, CountryToBeSelected=BE (Belgium), edit_relSupport=null, PE_command_ipv6=ping vrf :1 ipv6, PE_command_ipv4=ping, OCN=nginocn23, MAS_editHSRPBGP=null, internetBasedCustomer=Yes, CPE_vrf_Ipv6=10.83.99.1, CPE_vrf_Ipv4=10.83.99.1, editIPsignalProfile_existingFieldSelection=No, MAS_editExistingCity=45 (1452), IPsignallingProfile_newValue=signal21, sourceAddressFiltering=disable, localProfile_newvalue=Local01, featureControlprofile_newFieldSelection=No, editLocalRingBackTone_existingValue=DE, edit_PSXmanualConfigvalue=no, editIPsignalProfile_newFieldSelection=Yes, InDMPMrule_newValue=DMPM01, PE_editNewCityname=Ciu, MAS_InterfaceAddressRangeIPV6=null, editSIPsignallingPort=null, edit_phone=877edit, NewRFIREQNumber=WholeSale, globalProfile_ExistingSelection=Yes, PSXmanualConfigValue=PSXexecution002, srtp=Yes, MAS_editNewCityCode=34, InDMPMrule_newFieldSelection=No, carrier_newFieldSelection=no, carrier_existingFieldSelection=yes, CPEdevice_SNMPv3ContextEngineId=snmpEng6, MAS-devicename2=lo0-mas2.BHX.router.colt.net, editInDMPMrule_newValue=DMPM01, editInDMPMrule_newFieldSelection=No, PE_newSiteSelection=no, MAS_VLANID=150, PE_VRRPIPv6Address=null, editExistingPremiseValue=Null, editglobalProfile_newSelection=No, TLSfield=12, MAS_AccessMedia=VPN, CDRdelivery=No delivery to COCOM, MAS_editNewCityname=Ciu, ExistingCity=Yes, PerformanceReporting=Yes, MAS_ExistingCitySelection=Yes, PE_manageAddress=null, carrier_newValue=car001, MAS_IVManagement=Yes, BillingCountry=IT (Italy), editCarrier_existingValue=RIE_NAT, editEgressIpsignal_existingFieldSelection=Yes, edit_limitNumber=15, PE_editNewCityCode=34, carierIPterminat_resiltrunk=10.23.4.65, MAS_ExistingSiteSelection=Yes, editCPEdevice_SNMPv3ContextEngineId=snmpEng6, MAS_vrf_Ipv4=10.83.99.1, editCPEdevice_SNMPv3AuthProto=null, MAS_vrf_Ipv6=10.83.99.1, featureControlprofile_existingFieldSelection=Yes, coltSignalingIP=10.23.45.71, MAS_editHSRPIP=null, editCPEdevice_Snmprw=098Oi8, prefferedPSP_newFieldSelection=yes, editglobalProfile_ExistingSelection=Yes, globalProfile_newSelection=No, GSXmanualConfigvalue=Yes, SBCmanualconfigValue=Yes, MAS_editName=2502lo0-mas1.lua.fua.gua.patna12441, PE_editNewSiteCode=23, PE_AddInterface_Selection=Yes, editCPEdevice_Snmpro=Jdquh1, serviceToBeSelected=Wholesale SIP Trunking, NewCityName=Bengaluru, editLocalProfile_newFieldSelection=yes, editNewSite=Null, editPSPGname_newFieldSelection=No, editLocalRingBackTone_existingFieldSelection=No, PSPGname_newFieldSelection=No, localProfile_existingFieldSelection=No, PE_deviceName=vr1.blb.dcn.colt.net, MAS_HSRPBGP=BGP, MAS_editPrimaryIPv6onMas1=null, MAS_editAccessMedia=VPN, editPreferredPSP_newvalue=142psp, edit_addressReachability=null, MAS_editInterfaceAddressMask=null, limitNumber=48, editCarrierIPterminating=null, NewSite=No, Phone=987163024, PE_editExistingCity=45 (1452), globalProfile_newValue=global01, MAS_Snmpro=null, editOutDMPMrule_newValue=DMPM01, Existing PremiseValue=PremiseTest1, PE_editExistingPremise=null, MAS_ExistingPremiseSelection=no, MAS_newCitySelection=no, edit_remark=serviceEdited, editEgressIPsignal_newValue=egres01, edit_VOIPprotocol=SIP-I, CPEdevice_managementAddress=15.21.33.80, PE_VRRP_GroupName=null, NewSiteCode=J05, MAS_deviceName=2502lo0-mas1.lua.fua.gua.patna12441, MAS_newSiteSelection=no, editEgressIPsignal_existingValue=SN_DEFAULT_OUT_TCP, editExistingPremise=Null, MAS_InterfaceAddressMask=241, editInDMPMrule_existingValue=SN_BE_IN_LIGHT, NewCityCode=KA25, editCPEdevice_managementAddress=15.21.33.80, viewtrunk_GSXconfiguration=Update trunk group, edit_sourceAddressFiltering=null, editExistingSite=Null, ImproperEmailID=sshtr, prefferedPSP_existingFieldSelection=No, PE_InterfaceAddressRange=255.255.255.255/32, editCOSprofile_newValue=123COS, trafficDirection=Incoming Colt to customer only, MAS_editHSRPAuthentication=yes, MAS_editNewSitename=SI, MAS_editCountry=AE (United Arab Emirates), NewCity=No, editOutDMPMrule_newFieldSelection=No, Existing SiteValue= (gsdfgsdfgsdfg), editpspgName_newValue=PSPG01, preferredPSP_newvalue=142psp, quality=8-Premium, edit_vlantag=316, PE_newCitySelection=no, TrunkGroupOrder=Yes, COSprofile_newValue=123COS, edit_internetBasedCustomer=null, localProfile_newFieldSelection=yes, PE_ExistingSiteSelection=Yes, CPEdevice_Snmprw=098Oi8, edit_TrunkGroupOrderNumber=Null, ExistingPremise=NO, editCPEdevice_vendorModel=Cisco 1721, MAS_Interface=Ox84, editNewPremiseName=Null, PE_PrimaryIPv6onMAS1=null, editPreferredPSP_exitingvalue=None, voip_resilientTrunk=null, editCOSprofile_existingFieldSelection=null, CPEdevice_Snmpro=Jdquh1, edit_GSXmanualConfigvalue=Yes, EgressIpsignal_existingFieldSelection=Yes, MAS_editNewSiteCode=23, editIPsignalProfile_newValue=signal21, MAS_IMSPOPLocation=Birmingham, OutDMPMrule_newFieldSelection=No, carierIPOrient_resiltrunk=10.2.43.6/27, edit_email=null, preferredPSP_exitingvalue=None, IPsignallingProfile_existingFieldSelection=No, MAS_HSRPAuthentication=yes, PE_InterfaceAddressMask=255.255.255.255/255.255.255.255, PE_GroupNumber=null, edit_SRTP=null, ExistingCityValue=INJ (Injune), PSPGname_existingFieldSelection=yes, Name=NGIN_23, editCPEdevice_SNMPv3AuthPasswrd=null, editFeatureControlprofile_newValue=fet001, ServiceIdentification=wholeSale00486, PE_editName=lo1-sar5.blb.router.colt, Name1=NGIN_, Name2=23, PE_Interface=PE67, NewSiteName=Jayanagar, editCOSprofile_newFieldSelection=null, IPsignallingProfile_existingValue=SN_DEFAULT_IN, PE_IVManagement=yes, MAS_newPremiseSelection=yes, DedicatedPortal=Vodafone Portal, editExistingSiteValue=Null, localRingBackTone_newValue=123, editCarrier_newFieldSelection=null, PE_GenerateConfiguration=Full Configuration, editCPEdevice_routerID=null, callrateLimiteValue=25, edit_TrunkGroupOrder=Yes, editInDMPMrule_existingFieldSelection=Yes, PE_Network=XFER, COSprofile_existingFieldSelection=Yes, MAS_RemoveInterface_Selection=Yes, globalProfile_ExistingValue=DefaultNHGlobal, PE_VRRPAuthentication=yes, PE_VLANID=2721, PE_InterfaceDefaultValue=ae1., PE_RemoveInterface_Selection=Yes, localProfile_existingvalue=DefaultNHLocal, edit_mediaIP=12, carrierIPoriginating=10.0.0.1/27, MAS_command_ipv6=ping vrf :1 ipv6, MAS_command_ipv4=ping, PE_newPremiseSelection=yes, editLocalProfile_newvalue=Local01, PE_ExistingPremiseSelection=no, MAS_AddInterface_Selection=Yes, Fax=238883, gateway=LONNBS1, MAS_editHSRPIPv6Address=null, prefix=EE37, edit_sipSessionkeepAliveTimer=null, MAS_editLink=null, edit_callLimit=null, editLocalRingBackTone_newFieldSelection=Yes, PE_editNewPremiseCode=01, PE_AccessMedia=VPN, editFeatureControlprofile_existingValue=SN_DEFAULT, MAS_editGroupNumber=null, createLowerCaseRoutervalue=Yes, editCarrier_newValue=car001, MAS_Link=10, PE_Link=null, signallngZone=Trusted, TrunkGroupOrderNumber=SiVA_A45, MAS_GenerateConfiguration=Full Configuration, editNewSiteName=Null, NewPremise=Yes, Country=AU (Australia), OutDMPMrule_existingValue=SN_BE_OUT, MAS_manageAddress=null, PE_SecondaryIPv6onMAS2=null, PE_IMSPOPLocation=Bangalore-1, ipAddressType_resilTrunk=null, trunkType=IN over Carrier VoIP, InDMPMrule_existingFieldSelection=Yes, editNewCityCode=Null, OutDMPMrule_existingFieldSelection=Yes, ipAddresstype=IPv4, MAS_editExistingSite= (007), pspgName_newValue=PSPG01, COSprofile_existingValue=HA_COS_IT_BARALL, PE_ExistingCitySelection=Yes, MainDomain=ngindomain23.com, edit_retryInvite=edited3, editOutDMPMrule_existingValue=SN_BE_OUT, editPrefix=null, subInterfaceSlot=null, PE_vrf_Ipv4=10.83.99.1, editEgressIpsignal_newFieldSelection=No, PE_vrf_Ipv6=10.83.99.1, ExistingSite=Yes, localRingBackTone_existingFieldSelection=No, Reference=testreference23, CPEdevice_SNMPv3AuthPasswrd=null, callLimit=Unlimited, edit_callrateLimit=Yes, editGSXmanualConfigValue=EditGSXexution001, editGlobalProfile_newValue=global01, MAS_editInterface=null, SBCmanualConfigvalue=SBCExecution005, edit_reuseNIFgroup=null, editCountry=Null, MAS_HSRPIPv6Address=null, editCPEdevice_SNMPv3securityUsername=SNMpusr2, PE_editExistingSite= (007), editpspgName_existingValue=TR_729, EgressIpsignal_newFieldSelection=No, editNewPremise=Null, reuseSigZonePart=Yes, PE_deviceName2=lo1-sar5.blb.router.colt, MAS_editSecondaryIPv6onMas2=null, edit_coltSignalIP=null, MAS_editHSRPTrackInterface=null, MAS_editNewPremiseCode=02, PE_editNewPremiseName=pre, relSupport=disable, MAS_editVLANID=null, PE_VRF=null, MAS_editExistingPremise=null, featureControlprofile_existingValue=SN_DEFAULT, editPrefferedPSP_newFieldSelection=yes, edit_performanceReport=Yes, PE_Snmpro=null, PE_VRRPBGP=BGP, PE_VRRPIP=null, viewtrunk_PSXconfiguration=Delete Trunk Group, remark=Service creation, edit_IpAddressType=null, PSXmanualConfigvalue=Yes, editNewSiteCode=Null, MAS_InterfaceAddressRange=255.255.255.255/32, callrateLimitselection=Yes, NewPremiseName=Cr89, editGlobalProfile_ExistingValue=DefaultNHGlobal, PE_InterfaceAddressRangeIPV6=255.255.255.255/32, editNewPremiseCode=Null, editCreateLowerCaseRoutervalue=null, editNewCityName=Null, editNewCity=Null, localRingBackTone_newFieldSelection=Yes, editCarrierIPoriginating=null}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addMASswitch -->
-        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e]" name="getResult" is-config="true" duration-ms="0" started-at="2020-07-09T20:44:40Z" finished-at="2020-07-09T20:44:40Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=addMASswitch status=SUCCESS method=APT_wholesale.addMASswitch(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- getResult -->
-        <test-method status="PASS" signature="BeforeMethod(java.lang.reflect.Method, org.testng.ITestContext, [Ljava.lang.Object;)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e]" name="BeforeMethod" is-config="true" duration-ms="0" started-at="2020-07-09T20:44:40Z" finished-at="2020-07-09T20:44:40Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.saksoft.qa.apttestscripts.APT_wholesale.viewMASswitch(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[org.testng.TestRunner@4ae33a11]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[[Ljava.lang.Object;@3a94964]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="viewMASswitch(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e]" name="viewMASswitch" duration-ms="143028" started-at="2020-07-09T20:44:40Z" description="TC-07" data-provider="Finaldatareader_wholeSale" finished-at="2020-07-09T20:47:03Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{editCarrier_existingFieldSelection=null, Existing RFIREQNumber=null, properMailId=test@test.com, PE_editCountry=AE (United Arab Emirates), EgressIPsignal_newValue=egres01, PE_VRRPTrackInterface=null, ExistingOrderService=yes, MAS_HSRPIP=null, edit_callAdmissionControl=null, CPEdevice_SNMPv3securityUsername=SNMpusr2, edit_signallingZone=null, MAS_editNetwork=XFER, editPSPGname_existingFieldSelection=yes, retryInvite=2, DedicatedPortalStatus=NO, editSignallingTransport=sip-tcp, MAS_editNewPremiseName=prmi, mediaIP=10.23.46.70, viewtrunk_SBCconfiguration=Synchronize All, EgressIPsignal_existingValue=SN_DEFAULT_OUT_TCP, edit_callrateLimitvalue=52, editIPsignalProfile_existingValue=SN_DEFAULT_IN, trafficDirection_resiltrunk=null, addressReachability=SA_DEFAULT, MAS_PrimaryIPv6onMas1=null, editGateway=null, editLocalProfile_existingvalue=DefaultNHLocal, MAS_editInterfaceAddressRange=null, carrierIPterminating=10.3.61.20, ChooseCustomerToBeSelected=NGIN_23, GSXmanualConfigValue=GSXconfigExecution004, MAS_HSRPTrackInterface=null, editTrafficDirection=null, InDMPMrule_existingValue=SN_BE_IN_LIGHT, editPSXmanualConfigValue=editPSXexecution001, IPsignallingProfile_newFieldSelection=Yes, editSBCmanualConfigvalue=editSBCexection001, editExistingCity=Null, editLocalProfile_existingFieldSelection=No, ExistingOrderNumber=NewOrderTest01, MAS_Network=XFER, COSprofile_newFieldSelection=No, voipProtocol=SIP-I, CPEdevice_routerID=1313, editCPEdevice_SNMPv3Contextname=sn8, NewOrderNumber=wholeSaleTest01, edit_serviceId=null, reuseNIFgroup=Yes, edit_TLSproflile=editedTL, CPEdevice_vendorModel=Cisco 1721, signallingtransportProtocol=sip-tcp, MAS_GroupNumber=15, gateway_resilientTrunk=null, editFeatureControlprofile_newFieldSelection=No, CPE_command_ipv6=ping vrf :1 ipv6, NewOrderService=no, SIPsignallingPort=5090, CPE_command_ipv4=ping, MAS_SecondaryIPv6onMas2=null, CPEdevice_SNMPv3AutoProto=null, routePriority=Round Robin, Email=ngin23@test.com, OutDMPMrule_newValue=DMPM01, localRingBackTone_existingValue=DE, InServiceStatus=In Service, edit_reuseSigZonePart=null, editCOSprofile_existingValue=HA_COS_IE_BARALL, editQuality=null, MAS_editInterfaceAddressRangeIPV6=null, edit_routePriority=Sequence, edit_subInterfaceSlot=7, editPrefferedPSP_existingFieldSelection=No, MAS_editVendor=null, editOutDMPMrule_existingFieldSelection=Yes, edit_CDRdelivery=null, MAS_editIVManagement=yes, featureControlprofile_newValue=fet001, edit_BillingCountry=null, NewPremiseCode=R03, MAS_editGenerateConfiguration=Vlan Configuration, vlanTag=301, sipSessionkeepAliveTimer=1801, editExistingCityValue=Null, TechnicalContactName=ngincontact23, PE_editNewSitename=SI, editFeatureControlprofile_existingFieldSelection=Yes, editLocalRingBackTone_newValue=123, callAdmissionControl=Yes, carrier_existingValue=RIT_NAT, CPEdevice_SNMPv3Contextname=sn8, pspgName_existingValue=TR_729, edit_TrunkType=null, TypeToBeSelected=Colt Telecom - internal, InMaintenanceStatus=In Maintenance, PE_editVendor=null, CountryToBeSelected=BE (Belgium), edit_relSupport=null, PE_command_ipv6=ping vrf :1 ipv6, PE_command_ipv4=ping, OCN=nginocn23, MAS_editHSRPBGP=null, internetBasedCustomer=Yes, CPE_vrf_Ipv6=10.83.99.1, CPE_vrf_Ipv4=10.83.99.1, editIPsignalProfile_existingFieldSelection=No, MAS_editExistingCity=45 (1452), IPsignallingProfile_newValue=signal21, sourceAddressFiltering=disable, localProfile_newvalue=Local01, featureControlprofile_newFieldSelection=No, editLocalRingBackTone_existingValue=DE, edit_PSXmanualConfigvalue=no, editIPsignalProfile_newFieldSelection=Yes, InDMPMrule_newValue=DMPM01, PE_editNewCityname=Ciu, MAS_InterfaceAddressRangeIPV6=null, editSIPsignallingPort=null, edit_phone=877edit, NewRFIREQNumber=WholeSale, globalProfile_ExistingSelection=Yes, PSXmanualConfigValue=PSXexecution002, srtp=Yes, MAS_editNewCityCode=34, InDMPMrule_newFieldSelection=No, carrier_newFieldSelection=no, carrier_existingFieldSelection=yes, CPEdevice_SNMPv3ContextEngineId=snmpEng6, MAS-devicename2=lo0-mas2.BHX.router.colt.net, editInDMPMrule_newValue=DMPM01, editInDMPMrule_newFieldSelection=No, PE_newSiteSelection=no, MAS_VLANID=150, PE_VRRPIPv6Address=null, editExistingPremiseValue=Null, editglobalProfile_newSelection=No, TLSfield=12, MAS_AccessMedia=VPN, CDRdelivery=No delivery to COCOM, MAS_editNewCityname=Ciu, ExistingCity=Yes, PerformanceReporting=Yes, MAS_ExistingCitySelection=Yes, PE_manageAddress=null, carrier_newValue=car001, MAS_IVManagement=Yes, BillingCountry=IT (Italy), editCarrier_existingValue=RIE_NAT, editEgressIpsignal_existingFieldSelection=Yes, edit_limitNumber=15, PE_editNewCityCode=34, carierIPterminat_resiltrunk=10.23.4.65, MAS_ExistingSiteSelection=Yes, editCPEdevice_SNMPv3ContextEngineId=snmpEng6, MAS_vrf_Ipv4=10.83.99.1, editCPEdevice_SNMPv3AuthProto=null, MAS_vrf_Ipv6=10.83.99.1, featureControlprofile_existingFieldSelection=Yes, coltSignalingIP=10.23.45.71, MAS_editHSRPIP=null, editCPEdevice_Snmprw=098Oi8, prefferedPSP_newFieldSelection=yes, editglobalProfile_ExistingSelection=Yes, globalProfile_newSelection=No, GSXmanualConfigvalue=Yes, SBCmanualconfigValue=Yes, MAS_editName=2502lo0-mas1.lua.fua.gua.patna12441, PE_editNewSiteCode=23, PE_AddInterface_Selection=Yes, editCPEdevice_Snmpro=Jdquh1, serviceToBeSelected=Wholesale SIP Trunking, NewCityName=Bengaluru, editLocalProfile_newFieldSelection=yes, editNewSite=Null, editPSPGname_newFieldSelection=No, editLocalRingBackTone_existingFieldSelection=No, PSPGname_newFieldSelection=No, localProfile_existingFieldSelection=No, PE_deviceName=vr1.blb.dcn.colt.net, MAS_HSRPBGP=BGP, MAS_editPrimaryIPv6onMas1=null, MAS_editAccessMedia=VPN, editPreferredPSP_newvalue=142psp, edit_addressReachability=null, MAS_editInterfaceAddressMask=null, limitNumber=48, editCarrierIPterminating=null, NewSite=No, Phone=987163024, PE_editExistingCity=45 (1452), globalProfile_newValue=global01, MAS_Snmpro=null, editOutDMPMrule_newValue=DMPM01, Existing PremiseValue=PremiseTest1, PE_editExistingPremise=null, MAS_ExistingPremiseSelection=no, MAS_newCitySelection=no, edit_remark=serviceEdited, editEgressIPsignal_newValue=egres01, edit_VOIPprotocol=SIP-I, CPEdevice_managementAddress=15.21.33.80, PE_VRRP_GroupName=null, NewSiteCode=J05, MAS_deviceName=2502lo0-mas1.lua.fua.gua.patna12441, MAS_newSiteSelection=no, editEgressIPsignal_existingValue=SN_DEFAULT_OUT_TCP, editExistingPremise=Null, MAS_InterfaceAddressMask=241, editInDMPMrule_existingValue=SN_BE_IN_LIGHT, NewCityCode=KA25, editCPEdevice_managementAddress=15.21.33.80, viewtrunk_GSXconfiguration=Update trunk group, edit_sourceAddressFiltering=null, editExistingSite=Null, ImproperEmailID=sshtr, prefferedPSP_existingFieldSelection=No, PE_InterfaceAddressRange=255.255.255.255/32, editCOSprofile_newValue=123COS, trafficDirection=Incoming Colt to customer only, MAS_editHSRPAuthentication=yes, MAS_editNewSitename=SI, MAS_editCountry=AE (United Arab Emirates), NewCity=No, editOutDMPMrule_newFieldSelection=No, Existing SiteValue= (gsdfgsdfgsdfg), editpspgName_newValue=PSPG01, preferredPSP_newvalue=142psp, quality=8-Premium, edit_vlantag=316, PE_newCitySelection=no, TrunkGroupOrder=Yes, COSprofile_newValue=123COS, edit_internetBasedCustomer=null, localProfile_newFieldSelection=yes, PE_ExistingSiteSelection=Yes, CPEdevice_Snmprw=098Oi8, edit_TrunkGroupOrderNumber=Null, ExistingPremise=NO, editCPEdevice_vendorModel=Cisco 1721, MAS_Interface=Ox84, editNewPremiseName=Null, PE_PrimaryIPv6onMAS1=null, editPreferredPSP_exitingvalue=None, voip_resilientTrunk=null, editCOSprofile_existingFieldSelection=null, CPEdevice_Snmpro=Jdquh1, edit_GSXmanualConfigvalue=Yes, EgressIpsignal_existingFieldSelection=Yes, MAS_editNewSiteCode=23, editIPsignalProfile_newValue=signal21, MAS_IMSPOPLocation=Birmingham, OutDMPMrule_newFieldSelection=No, carierIPOrient_resiltrunk=10.2.43.6/27, edit_email=null, preferredPSP_exitingvalue=None, IPsignallingProfile_existingFieldSelection=No, MAS_HSRPAuthentication=yes, PE_InterfaceAddressMask=255.255.255.255/255.255.255.255, PE_GroupNumber=null, edit_SRTP=null, ExistingCityValue=INJ (Injune), PSPGname_existingFieldSelection=yes, Name=NGIN_23, editCPEdevice_SNMPv3AuthPasswrd=null, editFeatureControlprofile_newValue=fet001, ServiceIdentification=wholeSale00486, PE_editName=lo1-sar5.blb.router.colt, Name1=NGIN_, Name2=23, PE_Interface=PE67, NewSiteName=Jayanagar, editCOSprofile_newFieldSelection=null, IPsignallingProfile_existingValue=SN_DEFAULT_IN, PE_IVManagement=yes, MAS_newPremiseSelection=yes, DedicatedPortal=Vodafone Portal, editExistingSiteValue=Null, localRingBackTone_newValue=123, editCarrier_newFieldSelection=null, PE_GenerateConfiguration=Full Configuration, editCPEdevice_routerID=null, callrateLimiteValue=25, edit_TrunkGroupOrder=Yes, editInDMPMrule_existingFieldSelection=Yes, PE_Network=XFER, COSprofile_existingFieldSelection=Yes, MAS_RemoveInterface_Selection=Yes, globalProfile_ExistingValue=DefaultNHGlobal, PE_VRRPAuthentication=yes, PE_VLANID=2721, PE_InterfaceDefaultValue=ae1., PE_RemoveInterface_Selection=Yes, localProfile_existingvalue=DefaultNHLocal, edit_mediaIP=12, carrierIPoriginating=10.0.0.1/27, MAS_command_ipv6=ping vrf :1 ipv6, MAS_command_ipv4=ping, PE_newPremiseSelection=yes, editLocalProfile_newvalue=Local01, PE_ExistingPremiseSelection=no, MAS_AddInterface_Selection=Yes, Fax=238883, gateway=LONNBS1, MAS_editHSRPIPv6Address=null, prefix=EE37, edit_sipSessionkeepAliveTimer=null, MAS_editLink=null, edit_callLimit=null, editLocalRingBackTone_newFieldSelection=Yes, PE_editNewPremiseCode=01, PE_AccessMedia=VPN, editFeatureControlprofile_existingValue=SN_DEFAULT, MAS_editGroupNumber=null, createLowerCaseRoutervalue=Yes, editCarrier_newValue=car001, MAS_Link=10, PE_Link=null, signallngZone=Trusted, TrunkGroupOrderNumber=SiVA_A45, MAS_GenerateConfiguration=Full Configuration, editNewSiteName=Null, NewPremise=Yes, Country=AU (Australia), OutDMPMrule_existingValue=SN_BE_OUT, MAS_manageAddress=null, PE_SecondaryIPv6onMAS2=null, PE_IMSPOPLocation=Bangalore-1, ipAddressType_resilTrunk=null, trunkType=IN over Carrier VoIP, InDMPMrule_existingFieldSelection=Yes, editNewCityCode=Null, OutDMPMrule_existingFieldSelection=Yes, ipAddresstype=IPv4, MAS_editExistingSite= (007), pspgName_newValue=PSPG01, COSprofile_existingValue=HA_COS_IT_BARALL, PE_ExistingCitySelection=Yes, MainDomain=ngindomain23.com, edit_retryInvite=edited3, editOutDMPMrule_existingValue=SN_BE_OUT, editPrefix=null, subInterfaceSlot=null, PE_vrf_Ipv4=10.83.99.1, editEgressIpsignal_newFieldSelection=No, PE_vrf_Ipv6=10.83.99.1, ExistingSite=Yes, localRingBackTone_existingFieldSelection=No, Reference=testreference23, CPEdevice_SNMPv3AuthPasswrd=null, callLimit=Unlimited, edit_callrateLimit=Yes, editGSXmanualConfigValue=EditGSXexution001, editGlobalProfile_newValue=global01, MAS_editInterface=null, SBCmanualConfigvalue=SBCExecution005, edit_reuseNIFgroup=null, editCountry=Null, MAS_HSRPIPv6Address=null, editCPEdevice_SNMPv3securityUsername=SNMpusr2, PE_editExistingSite= (007), editpspgName_existingValue=TR_729, EgressIpsignal_newFieldSelection=No, editNewPremise=Null, reuseSigZonePart=Yes, PE_deviceName2=lo1-sar5.blb.router.colt, MAS_editSecondaryIPv6onMas2=null, edit_coltSignalIP=null, MAS_editHSRPTrackInterface=null, MAS_editNewPremiseCode=02, PE_editNewPremiseName=pre, relSupport=disable, MAS_editVLANID=null, PE_VRF=null, MAS_editExistingPremise=null, featureControlprofile_existingValue=SN_DEFAULT, editPrefferedPSP_newFieldSelection=yes, edit_performanceReport=Yes, PE_Snmpro=null, PE_VRRPBGP=BGP, PE_VRRPIP=null, viewtrunk_PSXconfiguration=Delete Trunk Group, remark=Service creation, edit_IpAddressType=null, PSXmanualConfigvalue=Yes, editNewSiteCode=Null, MAS_InterfaceAddressRange=255.255.255.255/32, callrateLimitselection=Yes, NewPremiseName=Cr89, editGlobalProfile_ExistingValue=DefaultNHGlobal, PE_InterfaceAddressRangeIPV6=255.255.255.255/32, editNewPremiseCode=Null, editCreateLowerCaseRoutervalue=null, editNewCityName=Null, editNewCity=Null, localRingBackTone_newFieldSelection=Yes, editCarrierIPoriginating=null}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- viewMASswitch -->
-        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e]" name="getResult" is-config="true" duration-ms="0" started-at="2020-07-09T20:47:03Z" finished-at="2020-07-09T20:47:03Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=viewMASswitch status=SUCCESS method=APT_wholesale.viewMASswitch(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- getResult -->
-        <test-method status="PASS" signature="Teardown()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e]" name="Teardown" is-config="true" duration-ms="0" started-at="2020-07-09T20:47:03Z" finished-at="2020-07-09T20:47:03Z">
+        <test-method status="PASS" signature="Teardown()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@31ef45e3]" name="Teardown" is-config="true" duration-ms="0" started-at="2020-07-10T04:49:29Z" finished-at="2020-07-10T04:49:29Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Teardown -->
-        <test-method status="PASS" signature="endReport()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@6eebc39e]" name="endReport" is-config="true" duration-ms="286" started-at="2020-07-09T20:47:03Z" finished-at="2020-07-09T20:47:03Z">
+        <test-method status="PASS" signature="endReport()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_wholesale@31ef45e3]" name="endReport" is-config="true" duration-ms="139" started-at="2020-07-10T04:49:29Z" finished-at="2020-07-10T04:49:29Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endReport -->
       </class> <!-- com.saksoft.qa.apttestscripts.APT_wholesale -->
     </test> <!-- Wholesale -->
-    <test name="VoiceLineV" duration-ms="210" started-at="2020-07-09T15:17:03Z" finished-at="2020-07-09T15:17:04Z">
-      <class name="com.saksoft.qa.apttestscripts.APT_VoiceLineTest">
-        <test-method status="PASS" signature="BeforeSuite()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="BeforeSuite" is-config="true" duration-ms="27901" started-at="2020-07-09T20:36:56Z" finished-at="2020-07-09T20:37:24Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- BeforeSuite -->
-        <test-method status="PASS" signature="startReport()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="startReport" is-config="true" duration-ms="3" started-at="2020-07-09T20:47:03Z" finished-at="2020-07-09T20:47:03Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- startReport -->
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="setup" is-config="true" duration-ms="0" started-at="2020-07-09T20:47:03Z" finished-at="2020-07-09T20:47:03Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method status="FAIL" signature="CreateCustomer(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="CreateCustomer" duration-ms="0" started-at="2020-07-09T20:47:03Z" description="TC-01" data-provider="Finaldatareader_VoiceLine" finished-at="2020-07-09T20:47:03Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.CreateCustomer(java.util.Map) throws java.lang.Exception requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.CreateCustomer(java.util.Map) throws java.lang.Exception requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK
-	at org.testng.internal.Parameters.findDataProvider(Parameters.java:268)
-	at org.testng.internal.Parameters.handleParameters(Parameters.java:417)
-	at org.testng.internal.Invoker.handleParameters(Invoker.java:1383)
-	at org.testng.internal.Invoker.createParameters(Invoker.java:1075)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1180)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CreateCustomer -->
-        <test-method status="FAIL" signature="choosecustomer(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="choosecustomer" duration-ms="0" started-at="2020-07-09T20:47:03Z" description="TC-02" data-provider="Finaldatareader_VoiceLine" finished-at="2020-07-09T20:47:03Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.choosecustomer(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.choosecustomer(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK
-	at org.testng.internal.Parameters.findDataProvider(Parameters.java:268)
-	at org.testng.internal.Parameters.handleParameters(Parameters.java:417)
-	at org.testng.internal.Invoker.handleParameters(Invoker.java:1383)
-	at org.testng.internal.Invoker.createParameters(Invoker.java:1075)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1180)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- choosecustomer -->
-        <test-method status="FAIL" signature="verifycreateorder(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="verifycreateorder" duration-ms="0" started-at="2020-07-09T20:47:03Z" description="TC-03" data-provider="Finaldatareader_VoiceLine" finished-at="2020-07-09T20:47:03Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifycreateorder(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifycreateorder(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK
-	at org.testng.internal.Parameters.findDataProvider(Parameters.java:268)
-	at org.testng.internal.Parameters.handleParameters(Parameters.java:417)
-	at org.testng.internal.Invoker.handleParameters(Invoker.java:1383)
-	at org.testng.internal.Invoker.createParameters(Invoker.java:1075)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1180)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifycreateorder -->
-        <test-method status="FAIL" signature="verifyservicetypeselection(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="verifyservicetypeselection" duration-ms="0" started-at="2020-07-09T20:47:03Z" description="TC-04" data-provider="Finaldatareader_VoiceLine" finished-at="2020-07-09T20:47:03Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyservicetypeselection(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyservicetypeselection(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK
-	at org.testng.internal.Parameters.findDataProvider(Parameters.java:268)
-	at org.testng.internal.Parameters.handleParameters(Parameters.java:417)
-	at org.testng.internal.Invoker.handleParameters(Invoker.java:1383)
-	at org.testng.internal.Invoker.createParameters(Invoker.java:1075)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1180)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyservicetypeselection -->
-        <test-method status="FAIL" signature="verifyservicecreation(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="verifyservicecreation" duration-ms="0" started-at="2020-07-09T20:47:03Z" description="TC-05" data-provider="Finaldatareader_VoiceLine" finished-at="2020-07-09T20:47:03Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyservicecreation(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyservicecreation(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK
-	at org.testng.internal.Parameters.findDataProvider(Parameters.java:268)
-	at org.testng.internal.Parameters.handleParameters(Parameters.java:417)
-	at org.testng.internal.Invoker.handleParameters(Invoker.java:1383)
-	at org.testng.internal.Invoker.createParameters(Invoker.java:1075)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1180)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyservicecreation -->
-        <test-method status="FAIL" signature="verifyCustomerDetailsInformation(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="verifyCustomerDetailsInformation" duration-ms="0" started-at="2020-07-09T20:47:03Z" description="TC-06" data-provider="Finaldatareader_VoiceLine" finished-at="2020-07-09T20:47:03Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyCustomerDetailsInformation(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyCustomerDetailsInformation(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK
-	at org.testng.internal.Parameters.findDataProvider(Parameters.java:268)
-	at org.testng.internal.Parameters.handleParameters(Parameters.java:417)
-	at org.testng.internal.Invoker.handleParameters(Invoker.java:1383)
-	at org.testng.internal.Invoker.createParameters(Invoker.java:1075)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1180)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyCustomerDetailsInformation -->
-        <test-method status="FAIL" signature="verifyUserDetailsInformation(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="verifyUserDetailsInformation" duration-ms="0" started-at="2020-07-09T20:47:03Z" description="TC-07" data-provider="Finaldatareader_VoiceLine" finished-at="2020-07-09T20:47:03Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyUserDetailsInformation(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyUserDetailsInformation(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK
-	at org.testng.internal.Parameters.findDataProvider(Parameters.java:268)
-	at org.testng.internal.Parameters.handleParameters(Parameters.java:417)
-	at org.testng.internal.Invoker.handleParameters(Invoker.java:1383)
-	at org.testng.internal.Invoker.createParameters(Invoker.java:1075)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1180)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyUserDetailsInformation -->
-        <test-method status="FAIL" signature="verifyOrderDetailsInformation(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="verifyOrderDetailsInformation" duration-ms="0" started-at="2020-07-09T20:47:03Z" description="TC-08" data-provider="Finaldatareader_VoiceLine" finished-at="2020-07-09T20:47:03Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyOrderDetailsInformation(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyOrderDetailsInformation(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK
-	at org.testng.internal.Parameters.findDataProvider(Parameters.java:268)
-	at org.testng.internal.Parameters.handleParameters(Parameters.java:417)
-	at org.testng.internal.Invoker.handleParameters(Invoker.java:1383)
-	at org.testng.internal.Invoker.createParameters(Invoker.java:1075)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1180)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyOrderDetailsInformation -->
-        <test-method status="FAIL" signature="verifyServicepanelinviewservicepage(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="verifyServicepanelinviewservicepage" duration-ms="0" started-at="2020-07-09T20:47:03Z" description="TC-09" data-provider="Finaldatareader_VoiceLine" finished-at="2020-07-09T20:47:03Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyServicepanelinviewservicepage(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyServicepanelinviewservicepage(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK
-	at org.testng.internal.Parameters.findDataProvider(Parameters.java:268)
-	at org.testng.internal.Parameters.handleParameters(Parameters.java:417)
-	at org.testng.internal.Invoker.handleParameters(Invoker.java:1383)
-	at org.testng.internal.Invoker.createParameters(Invoker.java:1075)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1180)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyServicepanelinviewservicepage -->
-        <test-method status="FAIL" signature="verifyManagementOptionspanel(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="verifyManagementOptionspanel" duration-ms="0" started-at="2020-07-09T20:47:03Z" description="TC-10" data-provider="Finaldatareader_VoiceLine" finished-at="2020-07-09T20:47:03Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyManagementOptionspanel(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyManagementOptionspanel(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK
-	at org.testng.internal.Parameters.findDataProvider(Parameters.java:268)
-	at org.testng.internal.Parameters.handleParameters(Parameters.java:417)
-	at org.testng.internal.Invoker.handleParameters(Invoker.java:1383)
-	at org.testng.internal.Invoker.createParameters(Invoker.java:1075)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1180)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyManagementOptionspanel -->
-        <test-method status="FAIL" signature="verifyASRDevice(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="verifyASRDevice" duration-ms="0" started-at="2020-07-09T20:47:03Z" description="TC-11" data-provider="Finaldatareader_VoiceLine" finished-at="2020-07-09T20:47:03Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyASRDevice(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyASRDevice(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK
-	at org.testng.internal.Parameters.findDataProvider(Parameters.java:268)
-	at org.testng.internal.Parameters.handleParameters(Parameters.java:417)
-	at org.testng.internal.Invoker.handleParameters(Invoker.java:1383)
-	at org.testng.internal.Invoker.createParameters(Invoker.java:1075)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1180)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyASRDevice -->
-        <test-method status="FAIL" signature="verifyAddTrunk(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="verifyAddTrunk" duration-ms="0" started-at="2020-07-09T20:47:03Z" description="TC-12" data-provider="Finaldatareader_VoiceLine" finished-at="2020-07-09T20:47:03Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyAddTrunk(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyAddTrunk(java.util.Map) throws java.lang.InterruptedException,org.dom4j.DocumentException,java.io.IOException requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK
-	at org.testng.internal.Parameters.findDataProvider(Parameters.java:268)
-	at org.testng.internal.Parameters.handleParameters(Parameters.java:417)
-	at org.testng.internal.Invoker.handleParameters(Invoker.java:1383)
-	at org.testng.internal.Invoker.createParameters(Invoker.java:1075)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1180)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyAddTrunk -->
-        <test-method status="FAIL" signature="viewTrunk(java.util.Map)[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="viewTrunk" duration-ms="0" started-at="2020-07-09T20:47:03Z" description="TC-13" data-provider="Finaldatareader_VoiceLine" finished-at="2020-07-09T20:47:03Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.viewTrunk(java.util.Map) throws java.lang.Exception requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Method public void com.saksoft.qa.apttestscripts.APT_VoiceLineTest.viewTrunk(java.util.Map) throws java.lang.Exception requires a @DataProvider named : Finaldatareader_VoiceLine in class com.saksoft.qa.driverlibrary.DataReader_PK
-	at org.testng.internal.Parameters.findDataProvider(Parameters.java:268)
-	at org.testng.internal.Parameters.handleParameters(Parameters.java:417)
-	at org.testng.internal.Invoker.handleParameters(Invoker.java:1383)
-	at org.testng.internal.Invoker.createParameters(Invoker.java:1075)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1180)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- viewTrunk -->
-        <test-method status="PASS" signature="Teardown()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="Teardown" is-config="true" duration-ms="0" started-at="2020-07-09T20:47:03Z" finished-at="2020-07-09T20:47:03Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Teardown -->
-        <test-method status="PASS" signature="endReport()[pri:0, instance:com.saksoft.qa.apttestscripts.APT_VoiceLineTest@598067a5]" name="endReport" is-config="true" duration-ms="0" started-at="2020-07-09T20:47:04Z" finished-at="2020-07-09T20:47:04Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- endReport -->
-      </class> <!-- com.saksoft.qa.apttestscripts.APT_VoiceLineTest -->
-    </test> <!-- VoiceLineV -->
   </suite> <!-- APT_MCS Test Suite -->
 </testng-results>

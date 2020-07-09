@@ -9177,3 +9177,755 @@
 2020-07-09 21:05:02,962 INFO  [Log] I am in onStart method null 
 2020-07-09 21:05:05,699 INFO  [Log] Element Found: False 
 2020-07-09 21:05:10,754 INFO  [Log] //div[@role='alert'] 
+2020-07-10 03:08:04,377 INFO  [Log] URL 
+2020-07-10 03:08:13,929 INFO  [Log] APT_login_1_URL 
+2020-07-10 03:08:19,684 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 03:09:22,542 INFO  [Log] URL 
+2020-07-10 03:09:32,950 INFO  [Log] APT_login_1_URL 
+2020-07-10 03:09:38,710 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 03:09:44,930 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 03:09:49,716 INFO  [Log] //button[text()='Login'] 
+2020-07-10 03:09:50,924 INFO  [Log] === APT logged in successfully === 
+2020-07-10 03:09:50,925 INFO  [Log] I am on Start method NGIN 
+2020-07-10 03:09:52,618 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 03:09:52,618 INFO  [Log] I am in onStart method null 
+2020-07-10 03:09:55,845 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 03:09:59,151 INFO  [Log] Mouse hovered on 'Manage Customers Service' menu item 
+2020-07-10 03:10:03,317 INFO  [Log] //li[text()='Create Customer'] 
+2020-07-10 03:13:42,795 INFO  [Log] URL 
+2020-07-10 03:13:53,582 INFO  [Log] APT_login_1_URL 
+2020-07-10 03:14:00,742 INFO  [Log] //button[text()='Login'] 
+2020-07-10 03:14:02,530 INFO  [Log] I am on Start method NGIN 
+2020-07-10 03:14:04,367 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 03:14:04,367 INFO  [Log] I am in onStart method null 
+2020-07-10 03:14:04,369 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-07-10 03:14:04,530 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 03:14:04,531 INFO  [Log] I am on Start method VoiceLineV 
+2020-07-10 03:14:04,562 INFO  [Log] I am in onTestSkipped method verifyServicepanelinviewservicepage skipped 
+2020-07-10 03:14:04,664 INFO  [Log] I am on Finish method VoiceLineV 
+2020-07-10 03:14:04,670 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 03:14:05,317 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 03:14:05,317 INFO  [Log] I am in onStart method null 
+2020-07-10 03:14:05,318 INFO  [Log] I am in onTestSkipped method searchCreatedService skipped 
+2020-07-10 03:14:05,695 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 03:15:20,988 INFO  [Log] URL 
+2020-07-10 03:15:30,991 INFO  [Log] APT_login_1_URL 
+2020-07-10 03:15:38,073 INFO  [Log] //button[text()='Login'] 
+2020-07-10 03:15:39,464 INFO  [Log] I am on Start method NGIN 
+2020-07-10 03:15:41,010 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 03:15:41,010 INFO  [Log] I am in onStart method null 
+2020-07-10 03:15:41,013 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-07-10 03:15:41,136 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 03:15:41,137 INFO  [Log] I am on Start method VoiceLineV 
+2020-07-10 03:15:41,209 INFO  [Log] I am in onTestSkipped method verifyServicepanelinviewservicepage skipped 
+2020-07-10 03:15:41,280 INFO  [Log] I am on Finish method VoiceLineV 
+2020-07-10 03:15:41,280 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 03:15:41,618 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 03:15:41,618 INFO  [Log] I am in onStart method null 
+2020-07-10 03:15:41,626 INFO  [Log] I am in onTestSkipped method searchCreatedService skipped 
+2020-07-10 03:15:41,707 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 03:19:24,289 INFO  [Log] URL 
+2020-07-10 03:19:34,616 INFO  [Log] APT_login_1_URL 
+2020-07-10 03:19:41,083 INFO  [Log] //button[text()='Login'] 
+2020-07-10 03:19:42,444 INFO  [Log] I am on Start method NGIN 
+2020-07-10 03:19:43,970 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 03:19:43,970 INFO  [Log] I am in onStart method null 
+2020-07-10 03:19:43,971 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-07-10 03:19:47,057 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 03:19:47,060 INFO  [Log] I am on Start method VoiceLineV 
+2020-07-10 03:19:47,112 INFO  [Log] I am in onTestSkipped method verifyServicepanelinviewservicepage skipped 
+2020-07-10 03:19:47,302 INFO  [Log] I am on Finish method VoiceLineV 
+2020-07-10 03:19:47,315 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 03:19:48,020 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 03:19:48,020 INFO  [Log] I am in onStart method null 
+2020-07-10 03:19:48,021 INFO  [Log] I am in onTestSkipped method searchCreatedService skipped 
+2020-07-10 03:19:48,401 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 03:21:11,368 INFO  [Log] URL 
+2020-07-10 03:21:21,221 INFO  [Log] APT_login_1_URL 
+2020-07-10 03:21:26,457 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 03:21:31,012 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 03:21:36,329 INFO  [Log] //button[text()='Login'] 
+2020-07-10 03:21:37,517 INFO  [Log] I am on Start method NGIN 
+2020-07-10 03:21:40,446 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 03:21:40,446 INFO  [Log] I am in onStart method null 
+2020-07-10 03:21:40,451 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-07-10 03:21:42,313 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 03:21:42,315 INFO  [Log] I am on Start method VoiceLineV 
+2020-07-10 03:21:42,352 INFO  [Log] I am in onTestSkipped method verifyServicepanelinviewservicepage skipped 
+2020-07-10 03:21:42,446 INFO  [Log] I am on Finish method VoiceLineV 
+2020-07-10 03:21:42,447 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 03:21:43,732 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 03:21:43,733 INFO  [Log] I am in onStart method null 
+2020-07-10 03:21:43,738 INFO  [Log] I am in onTestSkipped method searchCreatedService skipped 
+2020-07-10 03:21:44,114 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 03:24:41,297 INFO  [Log] URL 
+2020-07-10 03:24:51,338 INFO  [Log] APT_login_1_URL 
+2020-07-10 03:24:56,717 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 03:25:01,932 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 03:25:07,296 INFO  [Log] //button[text()='Login'] 
+2020-07-10 03:25:08,544 INFO  [Log] I am on Start method NGIN 
+2020-07-10 03:25:12,451 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 03:25:12,451 INFO  [Log] I am in onStart method null 
+2020-07-10 03:25:12,459 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-07-10 03:25:13,905 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 03:25:13,907 INFO  [Log] I am on Start method VoiceLineV 
+2020-07-10 03:25:13,951 INFO  [Log] I am in onTestSkipped method verifyServicepanelinviewservicepage skipped 
+2020-07-10 03:25:14,049 INFO  [Log] I am on Finish method VoiceLineV 
+2020-07-10 03:25:14,050 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 03:25:15,685 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 03:25:15,685 INFO  [Log] I am in onStart method null 
+2020-07-10 03:25:15,691 INFO  [Log] I am in onTestSkipped method searchCreatedService skipped 
+2020-07-10 03:25:15,790 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 03:26:42,682 INFO  [Log] URL 
+2020-07-10 03:26:52,814 INFO  [Log] APT_login_1_URL 
+2020-07-10 03:26:58,528 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 03:27:03,576 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 03:27:07,847 INFO  [Log] //button[text()='Login'] 
+2020-07-10 03:27:08,988 INFO  [Log] === APT logged in successfully === 
+2020-07-10 03:27:08,990 INFO  [Log] I am on Start method NGIN 
+2020-07-10 03:27:11,428 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 03:27:11,428 INFO  [Log] I am in onStart method null 
+2020-07-10 03:27:14,527 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 03:27:17,748 INFO  [Log] Mouse hovered on 'Manage Customers Service' menu item 
+2020-07-10 03:27:21,796 INFO  [Log] //li[text()='Create Customer'] 
+2020-07-10 03:27:29,143 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 03:28:33,993 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 03:32:08,013 INFO  [Log] URL 
+2020-07-10 03:32:16,742 INFO  [Log] APT_login_1_URL 
+2020-07-10 03:32:22,267 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 03:32:27,307 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 03:32:31,834 INFO  [Log] //button[text()='Login'] 
+2020-07-10 03:32:32,982 INFO  [Log] === APT logged in successfully === 
+2020-07-10 03:32:32,984 INFO  [Log] I am on Start method NGIN 
+2020-07-10 03:32:34,616 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 03:32:34,616 INFO  [Log] I am in onStart method null 
+2020-07-10 03:32:37,782 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 03:32:41,421 INFO  [Log] Mouse hovered on 'Manage Customers Service' menu item 
+2020-07-10 03:32:47,597 INFO  [Log] //li[text()='Create Customer'] 
+2020-07-10 03:32:58,348 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 03:33:02,395 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 03:33:08,074 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 03:33:12,288 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 03:33:19,464 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 03:33:20,500 INFO  [Log] Legal Customer Name field warning  message displayed as : Legal Customer Name is required 
+2020-07-10 03:33:23,528 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 03:33:30,575 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 03:33:31,610 INFO  [Log] Country field warning  message displayed as : Country is required 
+2020-07-10 03:33:34,615 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 03:33:41,664 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 03:33:42,702 INFO  [Log] OCN field warning  message displayed as : OCN is required 
+2020-07-10 03:33:45,726 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 03:33:52,813 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 03:33:53,868 INFO  [Log] Type field warning  message displayed as : Type is required 
+2020-07-10 03:33:56,903 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 03:34:03,979 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 03:34:05,182 INFO  [Log] Email field warning  message displayed as : Email is required 
+2020-07-10 03:34:08,187 INFO  [Log] //input[@id='name'] 
+2020-07-10 03:34:12,233 INFO  [Log] //input[@id='name'] 
+2020-07-10 03:34:20,352 INFO  [Log] //input[@id='name'] 
+2020-07-10 03:34:24,398 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 03:34:28,840 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 03:34:37,811 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 03:34:45,392 INFO  [Log] //span[text()='Clear'] 
+2020-07-10 03:34:47,267 INFO  [Log] All text field values are cleared 
+2020-07-10 03:34:50,273 INFO  [Log] //input[@id='name'] 
+2020-07-10 03:34:54,308 INFO  [Log] //input[@id='name'] 
+2020-07-10 03:35:01,600 INFO  [Log] //input[@id='name'] 
+2020-07-10 03:35:05,629 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 03:35:10,079 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 03:35:17,719 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 03:35:21,805 INFO  [Log] //div[label[contains(text(),'Country')]]//input 
+2020-07-10 03:35:40,880 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 03:35:45,006 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 03:35:52,479 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 03:35:56,536 INFO  [Log] //input[@id='reference'] 
+2020-07-10 03:36:00,827 INFO  [Log] //input[@id='reference'] 
+2020-07-10 03:36:08,670 INFO  [Log] //input[@id='reference'] 
+2020-07-10 03:36:12,840 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 03:36:17,005 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 03:36:24,672 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 03:36:29,018 INFO  [Log] //div[label[contains(text(),'Type')]]//input 
+2020-07-10 03:36:48,742 INFO  [Log] //input[@id='email'] 
+2020-07-10 03:36:52,882 INFO  [Log] //input[@id='email'] 
+2020-07-10 03:37:00,440 INFO  [Log] //input[@id='email'] 
+2020-07-10 03:37:04,755 INFO  [Log] //input[@id='phone'] 
+2020-07-10 03:37:09,135 INFO  [Log] //input[@id='phone'] 
+2020-07-10 03:37:17,187 INFO  [Log] //input[@id='phone'] 
+2020-07-10 03:37:21,244 INFO  [Log] //input[@id='fax'] 
+2020-07-10 03:37:25,350 INFO  [Log] //input[@id='fax'] 
+2020-07-10 03:37:32,920 INFO  [Log] //input[@id='fax'] 
+2020-07-10 03:37:38,964 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 03:37:44,423 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 03:37:48,984 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 03:37:50,358 INFO  [Log] I am on TestSuccess method CreateCustomer succeed 
+2020-07-10 03:37:51,085 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 03:37:51,086 INFO  [Log] I am on Start method VoiceLineV 
+2020-07-10 03:37:51,328 INFO  [Log] I am in onTestSkipped method verifyServicepanelinviewservicepage skipped 
+2020-07-10 03:37:52,144 INFO  [Log] I am on Finish method VoiceLineV 
+2020-07-10 03:37:52,144 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 03:37:53,070 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 03:37:53,070 INFO  [Log] I am in onStart method null 
+2020-07-10 03:37:56,079 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 03:38:02,618 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-10 03:38:07,189 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-10 03:38:12,858 INFO  [Log] //span[text()='Search'] 
+2020-07-10 03:38:16,893 INFO  [Log] //span[text()='Search'] 
+2020-07-10 03:38:23,382 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-10 03:38:30,776 INFO  [Log] //div[@class='dropdown']//button 
+2020-07-10 03:38:35,988 INFO  [Log] //a[text()='View'] 
+2020-07-10 03:38:40,224 INFO  [Log] I am on TestSuccess method searchCreatedService succeed 
+2020-07-10 03:38:41,480 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 03:47:20,970 INFO  [Log] URL 
+2020-07-10 03:47:29,503 INFO  [Log] APT_login_1_URL 
+2020-07-10 03:47:34,811 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 03:47:42,609 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 03:47:47,166 INFO  [Log] //button[text()='Login'] 
+2020-07-10 03:47:48,880 INFO  [Log] === APT logged in successfully === 
+2020-07-10 03:47:48,882 INFO  [Log] I am on Start method NGIN 
+2020-07-10 03:47:50,663 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 03:47:50,663 INFO  [Log] I am in onStart method null 
+2020-07-10 03:47:53,935 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 03:47:57,063 INFO  [Log] Mouse hovered on 'Manage Customers Service' menu item 
+2020-07-10 03:48:03,385 INFO  [Log] //li[text()='Create Customer'] 
+2020-07-10 03:48:14,991 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 03:48:19,065 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 03:48:24,394 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 03:48:29,253 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 03:48:34,408 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 03:48:35,480 INFO  [Log] Legal Customer Name field warning  message displayed as : Legal Customer Name is required 
+2020-07-10 03:48:38,489 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 03:48:43,714 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 03:48:44,752 INFO  [Log] Country field warning  message displayed as : Country is required 
+2020-07-10 03:48:47,759 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 03:48:53,208 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 03:48:54,242 INFO  [Log] OCN field warning  message displayed as : OCN is required 
+2020-07-10 03:48:57,262 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 03:49:02,322 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 03:49:03,361 INFO  [Log] Type field warning  message displayed as : Type is required 
+2020-07-10 03:49:06,458 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 03:49:11,517 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 03:49:12,554 INFO  [Log] Email field warning  message displayed as : Email is required 
+2020-07-10 03:49:15,560 INFO  [Log] //input[@id='name'] 
+2020-07-10 03:49:19,620 INFO  [Log] //input[@id='name'] 
+2020-07-10 03:49:25,320 INFO  [Log] //input[@id='name'] 
+2020-07-10 03:49:29,713 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 03:49:33,844 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 03:49:40,135 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 03:49:46,307 INFO  [Log] //span[text()='Clear'] 
+2020-07-10 03:49:47,474 INFO  [Log] All text field values are cleared 
+2020-07-10 03:49:50,478 INFO  [Log] //input[@id='name'] 
+2020-07-10 03:49:54,511 INFO  [Log] //input[@id='name'] 
+2020-07-10 03:49:59,786 INFO  [Log] //input[@id='name'] 
+2020-07-10 03:50:03,823 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 03:50:07,939 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 03:50:13,515 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 03:50:17,547 INFO  [Log] //div[label[contains(text(),'Country')]]//input 
+2020-07-10 03:50:36,959 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 03:50:41,190 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 03:50:46,681 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 03:50:50,763 INFO  [Log] //input[@id='reference'] 
+2020-07-10 03:50:55,419 INFO  [Log] //input[@id='reference'] 
+2020-07-10 03:51:02,284 INFO  [Log] //input[@id='reference'] 
+2020-07-10 03:51:06,513 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 03:51:11,061 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 03:51:17,518 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 03:51:22,098 INFO  [Log] //div[label[contains(text(),'Type')]]//input 
+2020-07-10 03:51:41,173 INFO  [Log] //input[@id='email'] 
+2020-07-10 03:51:45,344 INFO  [Log] //input[@id='email'] 
+2020-07-10 03:51:52,173 INFO  [Log] //input[@id='email'] 
+2020-07-10 03:51:56,228 INFO  [Log] //input[@id='phone'] 
+2020-07-10 03:52:00,330 INFO  [Log] //input[@id='phone'] 
+2020-07-10 03:52:05,806 INFO  [Log] //input[@id='phone'] 
+2020-07-10 03:52:09,859 INFO  [Log] //input[@id='fax'] 
+2020-07-10 03:52:13,905 INFO  [Log] //input[@id='fax'] 
+2020-07-10 03:52:19,162 INFO  [Log] //input[@id='fax'] 
+2020-07-10 03:52:25,426 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 03:52:30,978 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 03:52:35,002 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 03:52:36,172 INFO  [Log] I am on TestSuccess method CreateCustomer succeed 
+2020-07-10 03:52:36,527 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 03:52:36,528 INFO  [Log] I am on Start method Voice line Service 
+2020-07-10 03:52:36,861 INFO  [Log] I am on TestStart method verifyServicepanelinviewservicepage start 
+2020-07-10 03:52:36,861 INFO  [Log] I am in onStart method null 
+2020-07-10 03:52:39,885 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 03:52:46,307 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-10 03:52:50,840 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-10 03:52:57,167 INFO  [Log] //span[text()='Search'] 
+2020-07-10 03:53:01,354 INFO  [Log] //span[text()='Search'] 
+2020-07-10 03:53:07,640 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-10 03:53:45,644 INFO  [Log] //div[@class='dropdown']//button 
+2020-07-10 03:53:51,476 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='View'] 
+2020-07-10 03:53:58,857 INFO  [Log] //div[text()='Order'] 
+2020-07-10 03:54:04,959 INFO  [Log] //div[div[text()='Service']]//button 
+2020-07-10 03:54:10,175 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='Manage Subnets Ipv6'] 
+2020-07-10 03:54:18,543 INFO  [Log] //div[@class='modal-header']//div[contains(text(),'Manage')] 
+2020-07-10 03:54:22,775 INFO  [Log] //div[@class='modal-header']//div[contains(text(),'Manage')] 
+2020-07-10 03:54:27,896 INFO  [Log] //div[@class='modal-content']//div[@role='alert']//span 
+2020-07-10 03:54:31,936 INFO  [Log] //div[@class='modal-content']//div[@role='alert']//span 
+2020-07-10 03:54:36,986 INFO  [Log] //span[text()='Space Name'] 
+2020-07-10 03:54:41,014 INFO  [Log] //span[text()='Space Name'] 
+2020-07-10 03:54:46,271 INFO  [Log] //span[text()='Block Name'] 
+2020-07-10 03:54:50,472 INFO  [Log] //span[text()='Block Name'] 
+2020-07-10 03:54:55,565 INFO  [Log] //span[text()='Subnet Name'] 
+2020-07-10 03:54:59,688 INFO  [Log] //span[text()='Subnet Name'] 
+2020-07-10 03:55:04,829 INFO  [Log] //span[text()='Start Address'] 
+2020-07-10 03:55:08,870 INFO  [Log] //span[text()='Start Address'] 
+2020-07-10 03:55:14,457 INFO  [Log] //span[text()='Size'] 
+2020-07-10 03:55:18,512 INFO  [Log] //span[text()='Size'] 
+2020-07-10 03:55:25,748 INFO  [Log] //button[@type='button']//span[text()='×'] 
+2020-07-10 03:55:32,458 INFO  [Log] //div[text()='Order'] 
+2020-07-10 03:55:40,501 INFO  [Log] //div[div[text()='Service']]//button 
+2020-07-10 03:55:47,692 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='Show New Infovista Report'] 
+2020-07-10 03:56:10,663 INFO  [Log] I am on Finish method Voice line Service 
+2020-07-10 03:56:10,663 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 03:56:11,223 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 03:56:11,223 INFO  [Log] I am in onStart method null 
+2020-07-10 03:56:14,242 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 03:56:20,400 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-10 03:56:25,382 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-10 03:56:31,853 INFO  [Log] //span[text()='Search'] 
+2020-07-10 03:56:35,969 INFO  [Log] //span[text()='Search'] 
+2020-07-10 03:56:42,153 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-10 03:56:49,523 INFO  [Log] //div[@class='dropdown']//button 
+2020-07-10 03:56:54,769 INFO  [Log] //a[text()='View'] 
+2020-07-10 03:56:59,116 INFO  [Log] I am on TestSuccess method searchCreatedService succeed 
+2020-07-10 03:56:59,412 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 04:00:31,427 INFO  [Log] URL 
+2020-07-10 04:00:40,108 INFO  [Log] APT_login_1_URL 
+2020-07-10 04:00:45,471 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 04:00:52,789 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 04:00:57,473 INFO  [Log] //button[text()='Login'] 
+2020-07-10 04:00:58,694 INFO  [Log] === APT logged in successfully === 
+2020-07-10 04:00:58,696 INFO  [Log] I am on Start method Voice line Service 
+2020-07-10 04:01:00,709 INFO  [Log] I am on TestStart method verifyServicepanelinviewservicepage start 
+2020-07-10 04:01:00,710 INFO  [Log] I am in onStart method null 
+2020-07-10 04:01:03,751 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 04:01:10,698 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-10 04:01:18,898 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-10 04:01:25,118 INFO  [Log] //span[text()='Search'] 
+2020-07-10 04:01:29,818 INFO  [Log] //span[text()='Search'] 
+2020-07-10 04:01:36,100 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-10 04:03:12,562 INFO  [Log] URL 
+2020-07-10 04:03:21,387 INFO  [Log] APT_login_1_URL 
+2020-07-10 04:03:26,534 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 04:03:31,645 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 04:03:36,000 INFO  [Log] //button[text()='Login'] 
+2020-07-10 04:03:37,180 INFO  [Log] === APT logged in successfully === 
+2020-07-10 04:03:37,182 INFO  [Log] I am on Start method Voice line Service 
+2020-07-10 04:03:38,143 INFO  [Log] I am on TestStart method verifyServicepanelinviewservicepage start 
+2020-07-10 04:03:38,143 INFO  [Log] I am in onStart method null 
+2020-07-10 04:03:41,184 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 04:03:48,491 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-10 04:03:56,331 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-10 04:04:02,752 INFO  [Log] //span[text()='Search'] 
+2020-07-10 04:04:07,079 INFO  [Log] //span[text()='Search'] 
+2020-07-10 04:04:13,384 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-10 04:04:21,320 INFO  [Log] //div[@class='dropdown']//button 
+2020-07-10 04:04:26,579 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='View'] 
+2020-07-10 04:04:33,903 INFO  [Log] //div[text()='Order'] 
+2020-07-10 04:04:40,405 INFO  [Log] //div[div[text()='Service']]//button 
+2020-07-10 04:08:46,581 INFO  [Log] URL 
+2020-07-10 04:08:54,845 INFO  [Log] APT_login_1_URL 
+2020-07-10 04:09:00,121 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 04:09:07,611 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 04:09:12,327 INFO  [Log] //button[text()='Login'] 
+2020-07-10 04:09:13,481 INFO  [Log] === APT logged in successfully === 
+2020-07-10 04:09:13,483 INFO  [Log] I am on Start method NGIN 
+2020-07-10 04:09:14,925 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 04:09:14,925 INFO  [Log] I am in onStart method null 
+2020-07-10 04:09:14,931 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-07-10 04:09:15,154 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 04:09:15,155 INFO  [Log] I am on Start method Voice line Service 
+2020-07-10 04:09:15,722 INFO  [Log] I am on TestStart method verifyServicepanelinviewservicepage start 
+2020-07-10 04:09:15,722 INFO  [Log] I am in onStart method null 
+2020-07-10 04:09:15,725 INFO  [Log] I am in onTestSkipped method verifyServicepanelinviewservicepage skipped 
+2020-07-10 04:09:16,713 INFO  [Log] I am on Finish method Voice line Service 
+2020-07-10 04:09:16,713 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 04:09:18,254 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 04:09:18,254 INFO  [Log] I am in onStart method null 
+2020-07-10 04:09:18,255 INFO  [Log] I am in onTestSkipped method searchCreatedService skipped 
+2020-07-10 04:09:18,468 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 04:12:07,294 INFO  [Log] URL 
+2020-07-10 04:12:15,938 INFO  [Log] APT_login_1_URL 
+2020-07-10 04:12:21,252 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 04:12:28,117 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 04:12:32,680 INFO  [Log] //button[text()='Login'] 
+2020-07-10 04:12:33,826 INFO  [Log] === APT logged in successfully === 
+2020-07-10 04:12:33,828 INFO  [Log] I am on Start method NGIN 
+2020-07-10 04:12:34,977 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 04:12:34,978 INFO  [Log] I am in onStart method null 
+2020-07-10 04:12:38,238 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 04:12:41,864 INFO  [Log] Mouse hovered on 'Manage Customers Service' menu item 
+2020-07-10 04:12:48,117 INFO  [Log] //li[text()='Create Customer'] 
+2020-07-10 04:12:59,220 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 04:17:02,209 INFO  [Log] I am on Start method NGIN 
+2020-07-10 04:17:03,258 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 04:17:03,258 INFO  [Log] I am in onStart method null 
+2020-07-10 04:17:03,261 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-07-10 04:17:03,305 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 04:17:03,307 INFO  [Log] I am on Start method Voice line Service 
+2020-07-10 04:17:03,610 INFO  [Log] I am on TestStart method verifyServicepanelinviewservicepage start 
+2020-07-10 04:17:03,610 INFO  [Log] I am in onStart method null 
+2020-07-10 04:17:03,611 INFO  [Log] I am in onTestSkipped method verifyServicepanelinviewservicepage skipped 
+2020-07-10 04:17:03,714 INFO  [Log] I am on Finish method Voice line Service 
+2020-07-10 04:17:03,714 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 04:17:04,008 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 04:17:04,008 INFO  [Log] I am in onStart method null 
+2020-07-10 04:17:04,009 INFO  [Log] I am in onTestSkipped method searchCreatedService skipped 
+2020-07-10 04:17:04,130 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 04:18:23,024 INFO  [Log] URL 
+2020-07-10 04:18:32,461 INFO  [Log] APT_login_1_URL 
+2020-07-10 04:18:37,596 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 04:18:42,772 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 04:18:48,230 INFO  [Log] //button[text()='Login'] 
+2020-07-10 04:18:49,582 INFO  [Log] === APT logged in successfully === 
+2020-07-10 04:18:49,585 INFO  [Log] I am on Start method NGIN 
+2020-07-10 04:18:50,567 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 04:18:50,568 INFO  [Log] I am in onStart method null 
+2020-07-10 04:18:50,569 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-07-10 04:18:50,650 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 04:18:50,652 INFO  [Log] I am on Start method Voice line Service 
+2020-07-10 04:18:51,101 INFO  [Log] I am on TestStart method verifyServicepanelinviewservicepage start 
+2020-07-10 04:18:51,101 INFO  [Log] I am in onStart method null 
+2020-07-10 04:18:51,105 INFO  [Log] I am in onTestSkipped method verifyServicepanelinviewservicepage skipped 
+2020-07-10 04:18:51,162 INFO  [Log] I am on Finish method Voice line Service 
+2020-07-10 04:18:51,162 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 04:18:53,671 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 04:18:53,671 INFO  [Log] I am in onStart method null 
+2020-07-10 04:18:53,673 INFO  [Log] I am in onTestSkipped method searchCreatedService skipped 
+2020-07-10 04:18:53,754 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 04:22:09,820 INFO  [Log] URL 
+2020-07-10 04:22:19,338 INFO  [Log] APT_login_1_URL 
+2020-07-10 04:22:24,645 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 04:22:29,805 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 04:22:34,344 INFO  [Log] //button[text()='Login'] 
+2020-07-10 04:22:35,490 INFO  [Log] === APT logged in successfully === 
+2020-07-10 04:22:35,492 INFO  [Log] I am on Start method NGIN 
+2020-07-10 04:22:36,416 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 04:22:36,417 INFO  [Log] I am in onStart method null 
+2020-07-10 04:22:36,418 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-07-10 04:22:37,732 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 04:22:37,734 INFO  [Log] I am on Start method Voice line Service 
+2020-07-10 04:22:38,083 INFO  [Log] I am on TestStart method verifyServicepanelinviewservicepage start 
+2020-07-10 04:22:38,083 INFO  [Log] I am in onStart method null 
+2020-07-10 04:22:38,086 INFO  [Log] I am in onTestSkipped method verifyServicepanelinviewservicepage skipped 
+2020-07-10 04:22:38,251 INFO  [Log] I am on Finish method Voice line Service 
+2020-07-10 04:22:38,252 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 04:22:40,236 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 04:22:40,236 INFO  [Log] I am in onStart method null 
+2020-07-10 04:22:40,242 INFO  [Log] I am in onTestSkipped method searchCreatedService skipped 
+2020-07-10 04:22:40,345 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 04:28:22,368 INFO  [Log] URL 
+2020-07-10 04:28:31,648 INFO  [Log] APT_login_1_URL 
+2020-07-10 04:28:36,877 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 04:28:45,262 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 04:28:50,414 INFO  [Log] //button[text()='Login'] 
+2020-07-10 04:28:51,560 INFO  [Log] === APT logged in successfully === 
+2020-07-10 04:28:51,562 INFO  [Log] I am on Start method NGIN 
+2020-07-10 04:28:53,508 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 04:28:53,508 INFO  [Log] I am in onStart method null 
+2020-07-10 04:28:53,517 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-07-10 04:28:53,583 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 04:28:53,585 INFO  [Log] I am on Start method Voice line Service 
+2020-07-10 04:28:54,334 INFO  [Log] I am on TestStart method verifyServicepanelinviewservicepage start 
+2020-07-10 04:28:54,334 INFO  [Log] I am in onStart method null 
+2020-07-10 04:28:54,337 INFO  [Log] I am in onTestSkipped method verifyServicepanelinviewservicepage skipped 
+2020-07-10 04:28:54,369 INFO  [Log] I am on Finish method Voice line Service 
+2020-07-10 04:28:54,370 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 04:28:56,790 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 04:28:56,790 INFO  [Log] I am in onStart method null 
+2020-07-10 04:28:56,821 INFO  [Log] I am in onTestSkipped method searchCreatedService skipped 
+2020-07-10 04:28:56,938 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 04:35:02,580 INFO  [Log] URL 
+2020-07-10 04:35:11,696 INFO  [Log] APT_login_1_URL 
+2020-07-10 04:35:17,082 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 04:35:21,748 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 04:35:26,547 INFO  [Log] //button[text()='Login'] 
+2020-07-10 04:35:27,734 INFO  [Log] === APT logged in successfully === 
+2020-07-10 04:35:27,736 INFO  [Log] I am on Start method NGIN 
+2020-07-10 04:35:30,064 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 04:35:30,064 INFO  [Log] I am in onStart method null 
+2020-07-10 04:35:30,066 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-07-10 04:35:30,289 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 04:35:30,291 INFO  [Log] I am on Start method Voice line Service 
+2020-07-10 04:35:30,924 INFO  [Log] I am on TestStart method verifyServicepanelinviewservicepage start 
+2020-07-10 04:35:30,924 INFO  [Log] I am in onStart method null 
+2020-07-10 04:35:30,928 INFO  [Log] I am in onTestSkipped method verifyServicepanelinviewservicepage skipped 
+2020-07-10 04:35:31,100 INFO  [Log] I am on Finish method Voice line Service 
+2020-07-10 04:35:31,100 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 04:35:33,302 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 04:35:33,302 INFO  [Log] I am in onStart method null 
+2020-07-10 04:35:33,303 INFO  [Log] I am in onTestSkipped method searchCreatedService skipped 
+2020-07-10 04:35:33,517 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 04:38:39,649 INFO  [Log] URL 
+2020-07-10 04:38:49,062 INFO  [Log] APT_login_1_URL 
+2020-07-10 04:38:54,391 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 04:38:59,911 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 04:39:04,177 INFO  [Log] //button[text()='Login'] 
+2020-07-10 04:39:05,950 INFO  [Log] === APT logged in successfully === 
+2020-07-10 04:39:05,952 INFO  [Log] I am on Start method NGIN 
+2020-07-10 04:39:09,788 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 04:39:09,788 INFO  [Log] I am in onStart method null 
+2020-07-10 04:39:09,790 INFO  [Log] I am in onTestSkipped method CreateCustomer skipped 
+2020-07-10 04:39:10,753 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 04:39:10,755 INFO  [Log] I am on Start method Voice line Service 
+2020-07-10 04:39:11,097 INFO  [Log] I am on TestStart method verifyServicepanelinviewservicepage start 
+2020-07-10 04:39:11,097 INFO  [Log] I am in onStart method null 
+2020-07-10 04:39:11,101 INFO  [Log] I am in onTestSkipped method verifyServicepanelinviewservicepage skipped 
+2020-07-10 04:39:11,250 INFO  [Log] I am on Finish method Voice line Service 
+2020-07-10 04:39:11,251 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 04:39:13,074 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 04:39:13,074 INFO  [Log] I am in onStart method null 
+2020-07-10 04:39:13,075 INFO  [Log] I am in onTestSkipped method searchCreatedService skipped 
+2020-07-10 04:39:13,228 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 04:40:09,348 INFO  [Log] URL 
+2020-07-10 04:40:19,732 INFO  [Log] APT_login_1_URL 
+2020-07-10 04:40:24,929 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 04:40:30,980 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 04:40:35,680 INFO  [Log] //button[text()='Login'] 
+2020-07-10 04:40:36,835 INFO  [Log] === APT logged in successfully === 
+2020-07-10 04:40:36,837 INFO  [Log] I am on Start method NGIN 
+2020-07-10 04:40:39,453 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 04:40:39,453 INFO  [Log] I am in onStart method null 
+2020-07-10 04:40:42,579 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 04:40:45,994 INFO  [Log] Mouse hovered on 'Manage Customers Service' menu item 
+2020-07-10 04:40:52,257 INFO  [Log] //li[text()='Create Customer'] 
+2020-07-10 04:41:03,244 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 04:41:07,289 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 04:41:12,937 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 04:41:17,561 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 04:41:22,910 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 04:41:23,950 INFO  [Log] Legal Customer Name field warning  message displayed as : Legal Customer Name is required 
+2020-07-10 04:41:26,963 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 04:41:32,432 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 04:41:33,998 INFO  [Log] Country field warning  message displayed as : Country is required 
+2020-07-10 04:41:37,010 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 04:41:42,479 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 04:41:43,867 INFO  [Log] OCN field warning  message displayed as : OCN is required 
+2020-07-10 04:41:46,880 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 04:41:51,921 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 04:41:53,089 INFO  [Log] Type field warning  message displayed as : Type is required 
+2020-07-10 04:41:56,127 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 04:42:01,449 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 04:42:02,752 INFO  [Log] Email field warning  message displayed as : Email is required 
+2020-07-10 04:42:05,775 INFO  [Log] //input[@id='name'] 
+2020-07-10 04:42:10,316 INFO  [Log] //input[@id='name'] 
+2020-07-10 04:42:16,321 INFO  [Log] //input[@id='name'] 
+2020-07-10 04:42:20,367 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 04:42:24,515 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 04:42:31,231 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 04:42:37,799 INFO  [Log] //span[text()='Clear'] 
+2020-07-10 04:42:39,123 INFO  [Log] All text field values are cleared 
+2020-07-10 04:42:42,137 INFO  [Log] //input[@id='name'] 
+2020-07-10 04:42:46,408 INFO  [Log] //input[@id='name'] 
+2020-07-10 04:42:52,385 INFO  [Log] //input[@id='name'] 
+2020-07-10 04:42:56,588 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 04:43:00,939 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 04:43:06,913 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 04:43:10,998 INFO  [Log] //div[label[contains(text(),'Country')]]//input 
+2020-07-10 04:43:30,223 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 04:43:34,659 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 04:43:40,295 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 04:43:44,504 INFO  [Log] //input[@id='reference'] 
+2020-07-10 04:43:49,149 INFO  [Log] //input[@id='reference'] 
+2020-07-10 04:43:55,169 INFO  [Log] //input[@id='reference'] 
+2020-07-10 04:43:59,596 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 04:44:04,015 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 04:44:11,040 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 04:44:15,327 INFO  [Log] //div[label[contains(text(),'Type')]]//input 
+2020-07-10 04:44:34,699 INFO  [Log] //input[@id='email'] 
+2020-07-10 04:44:39,088 INFO  [Log] //input[@id='email'] 
+2020-07-10 04:44:44,996 INFO  [Log] //input[@id='email'] 
+2020-07-10 04:44:49,220 INFO  [Log] //input[@id='phone'] 
+2020-07-10 04:44:53,256 INFO  [Log] //input[@id='phone'] 
+2020-07-10 04:44:59,386 INFO  [Log] //input[@id='phone'] 
+2020-07-10 04:45:03,721 INFO  [Log] //input[@id='fax'] 
+2020-07-10 04:45:08,194 INFO  [Log] //input[@id='fax'] 
+2020-07-10 04:45:13,551 INFO  [Log] //input[@id='fax'] 
+2020-07-10 04:45:19,732 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 04:45:25,413 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 04:45:29,849 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 04:45:31,202 INFO  [Log] I am on TestSuccess method CreateCustomer succeed 
+2020-07-10 04:45:31,873 INFO  [Log] I am on Finish method NGIN 
+2020-07-10 04:45:31,875 INFO  [Log] I am on Start method Voice line Service 
+2020-07-10 04:45:32,094 INFO  [Log] I am on TestStart method verifyServicepanelinviewservicepage start 
+2020-07-10 04:45:32,095 INFO  [Log] I am in onStart method null 
+2020-07-10 04:45:35,107 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 04:45:41,684 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-10 04:45:46,762 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-10 04:45:53,308 INFO  [Log] //span[text()='Search'] 
+2020-07-10 04:45:57,828 INFO  [Log] //span[text()='Search'] 
+2020-07-10 04:46:04,559 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-10 04:46:12,188 INFO  [Log] //div[@class='dropdown']//button 
+2020-07-10 04:46:17,381 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='View'] 
+2020-07-10 04:46:25,073 INFO  [Log] //div[text()='Order'] 
+2020-07-10 04:46:31,387 INFO  [Log] //div[div[text()='Service']]//button 
+2020-07-10 04:46:36,690 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='Manage Subnets Ipv6'] 
+2020-07-10 04:46:45,507 INFO  [Log] //div[@class='modal-header']//div[contains(text(),'Manage')] 
+2020-07-10 04:46:50,072 INFO  [Log] //div[@class='modal-header']//div[contains(text(),'Manage')] 
+2020-07-10 04:46:55,666 INFO  [Log] //div[@class='modal-content']//div[@role='alert']//span 
+2020-07-10 04:47:00,032 INFO  [Log] //div[@class='modal-content']//div[@role='alert']//span 
+2020-07-10 04:47:05,335 INFO  [Log] //span[text()='Space Name'] 
+2020-07-10 04:47:09,825 INFO  [Log] //span[text()='Space Name'] 
+2020-07-10 04:47:15,273 INFO  [Log] //span[text()='Block Name'] 
+2020-07-10 04:47:19,456 INFO  [Log] //span[text()='Block Name'] 
+2020-07-10 04:47:24,737 INFO  [Log] //span[text()='Subnet Name'] 
+2020-07-10 04:47:28,935 INFO  [Log] //span[text()='Subnet Name'] 
+2020-07-10 04:47:34,451 INFO  [Log] //span[text()='Start Address'] 
+2020-07-10 04:47:38,516 INFO  [Log] //span[text()='Start Address'] 
+2020-07-10 04:47:43,575 INFO  [Log] //span[text()='Size'] 
+2020-07-10 04:47:47,663 INFO  [Log] //span[text()='Size'] 
+2020-07-10 04:47:54,753 INFO  [Log] //button[@type='button']//span[text()='×'] 
+2020-07-10 04:48:01,157 INFO  [Log] //div[text()='Order'] 
+2020-07-10 04:48:09,229 INFO  [Log] //div[div[text()='Service']]//button 
+2020-07-10 04:48:16,325 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='Show New Infovista Report'] 
+2020-07-10 04:48:39,570 INFO  [Log] I am on Finish method Voice line Service 
+2020-07-10 04:48:39,570 INFO  [Log] I am on Start method Wholesale 
+2020-07-10 04:48:39,980 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-10 04:48:39,980 INFO  [Log] I am in onStart method null 
+2020-07-10 04:48:43,002 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 04:48:49,311 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-10 04:48:53,835 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-10 04:49:00,301 INFO  [Log] //span[text()='Search'] 
+2020-07-10 04:49:04,564 INFO  [Log] //span[text()='Search'] 
+2020-07-10 04:49:11,434 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-10 04:49:18,608 INFO  [Log] //div[@class='dropdown']//button 
+2020-07-10 04:49:24,241 INFO  [Log] //a[text()='View'] 
+2020-07-10 04:49:29,168 INFO  [Log] I am on TestSuccess method searchCreatedService succeed 
+2020-07-10 04:49:29,332 INFO  [Log] I am on Finish method Wholesale 
+2020-07-10 04:55:53,710 INFO  [Log] URL 
+2020-07-10 04:56:04,391 INFO  [Log] APT_login_1_URL 
+2020-07-10 04:56:09,660 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 04:56:15,233 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 04:56:19,988 INFO  [Log] //button[text()='Login'] 
+2020-07-10 04:56:21,677 INFO  [Log] === APT logged in successfully === 
+2020-07-10 04:56:21,679 INFO  [Log] I am on Start method NGIN 
+2020-07-10 04:56:25,330 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 04:56:25,330 INFO  [Log] I am in onStart method null 
+2020-07-10 04:56:28,444 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 04:56:31,618 INFO  [Log] Mouse hovered on 'Manage Customers Service' menu item 
+2020-07-10 04:56:38,028 INFO  [Log] //li[text()='Create Customer'] 
+2020-07-10 04:56:49,339 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 04:56:53,458 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 04:56:58,772 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 04:57:03,626 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 04:57:09,091 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 04:57:10,157 INFO  [Log] Legal Customer Name field warning  message displayed as : Legal Customer Name is required 
+2020-07-10 04:57:13,185 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 04:57:18,240 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 04:57:19,501 INFO  [Log] Country field warning  message displayed as : Country is required 
+2020-07-10 04:57:22,507 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 04:57:27,579 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 04:57:28,768 INFO  [Log] OCN field warning  message displayed as : OCN is required 
+2020-07-10 04:57:31,790 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 04:57:37,170 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 04:57:38,207 INFO  [Log] Type field warning  message displayed as : Type is required 
+2020-07-10 04:57:41,289 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 04:57:46,621 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 04:57:47,712 INFO  [Log] Email field warning  message displayed as : Email is required 
+2020-07-10 04:57:50,887 INFO  [Log] //input[@id='name'] 
+2020-07-10 04:57:55,154 INFO  [Log] //input[@id='name'] 
+2020-07-10 04:58:01,300 INFO  [Log] //input[@id='name'] 
+2020-07-10 04:58:05,657 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 04:58:09,972 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 04:58:16,026 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 04:58:22,085 INFO  [Log] //span[text()='Clear'] 
+2020-07-10 04:58:23,257 INFO  [Log] All text field values are cleared 
+2020-07-10 04:58:26,260 INFO  [Log] //input[@id='name'] 
+2020-07-10 04:58:30,381 INFO  [Log] //input[@id='name'] 
+2020-07-10 04:58:35,940 INFO  [Log] //input[@id='name'] 
+2020-07-10 04:58:40,011 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 04:58:44,061 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 04:58:51,197 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 04:58:55,645 INFO  [Log] //div[label[contains(text(),'Country')]]//input 
+2020-07-10 04:59:15,222 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 04:59:19,565 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 04:59:24,921 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 04:59:29,121 INFO  [Log] //input[@id='reference'] 
+2020-07-10 04:59:33,369 INFO  [Log] //input[@id='reference'] 
+2020-07-10 04:59:38,805 INFO  [Log] //input[@id='reference'] 
+2020-07-10 04:59:43,070 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 04:59:47,488 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 04:59:53,467 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 04:59:57,681 INFO  [Log] //div[label[contains(text(),'Type')]]//input 
+2020-07-10 05:00:17,898 INFO  [Log] //input[@id='email'] 
+2020-07-10 05:00:22,091 INFO  [Log] //input[@id='email'] 
+2020-07-10 05:00:28,051 INFO  [Log] //input[@id='email'] 
+2020-07-10 05:00:32,389 INFO  [Log] //input[@id='phone'] 
+2020-07-10 05:00:37,014 INFO  [Log] //input[@id='phone'] 
+2020-07-10 05:00:42,762 INFO  [Log] //input[@id='phone'] 
+2020-07-10 05:00:47,151 INFO  [Log] //input[@id='fax'] 
+2020-07-10 05:00:51,305 INFO  [Log] //input[@id='fax'] 
+2020-07-10 05:00:57,412 INFO  [Log] //input[@id='fax'] 
+2020-07-10 05:01:03,943 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 05:01:09,439 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 05:01:13,465 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 05:01:14,759 INFO  [Log] I am on TestSuccess method CreateCustomer succeed 
+2020-07-10 05:01:15,201 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-07-10 05:01:15,201 INFO  [Log] I am in onStart method null 
+2020-07-10 05:01:18,318 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 05:01:22,930 INFO  [Log] Mouse hovered on 'Manage Customers Service' menu item 
+2020-07-10 05:01:26,936 INFO  [Log] //li[text()='Create Order/Service'] 
+2020-07-10 05:07:11,267 INFO  [Log] URL 
+2020-07-10 05:07:21,041 INFO  [Log] APT_login_1_URL 
+2020-07-10 05:07:26,396 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 05:07:33,056 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 05:07:37,286 INFO  [Log] //button[text()='Login'] 
+2020-07-10 05:07:38,748 INFO  [Log] === APT logged in successfully === 
+2020-07-10 05:07:38,750 INFO  [Log] I am on Start method NGIN 
+2020-07-10 05:07:40,413 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 05:07:40,413 INFO  [Log] I am in onStart method null 
+2020-07-10 05:07:43,533 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 05:07:46,731 INFO  [Log] Mouse hovered on 'Manage Customers Service' menu item 
+2020-07-10 05:07:52,804 INFO  [Log] //li[text()='Create Customer'] 
+2020-07-10 05:08:04,606 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 05:08:08,855 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 05:08:14,207 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 05:08:18,720 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 05:08:23,826 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 05:08:24,872 INFO  [Log] Legal Customer Name field warning  message displayed as : Legal Customer Name is required 
+2020-07-10 05:08:27,898 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 05:08:32,944 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 05:08:33,986 INFO  [Log] Country field warning  message displayed as : Country is required 
+2020-07-10 05:08:36,992 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 05:08:42,339 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 05:08:43,619 INFO  [Log] OCN field warning  message displayed as : OCN is required 
+2020-07-10 05:08:46,644 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 05:08:51,946 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 05:08:53,055 INFO  [Log] Type field warning  message displayed as : Type is required 
+2020-07-10 05:08:56,122 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 05:09:01,173 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 05:09:02,507 INFO  [Log] Email field warning  message displayed as : Email is required 
+2020-07-10 05:09:05,553 INFO  [Log] //input[@id='name'] 
+2020-07-10 05:09:10,118 INFO  [Log] //input[@id='name'] 
+2020-07-10 05:09:16,245 INFO  [Log] //input[@id='name'] 
+2020-07-10 05:09:20,924 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 05:09:25,069 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 05:09:31,129 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 05:09:37,252 INFO  [Log] //span[text()='Clear'] 
+2020-07-10 05:09:38,791 INFO  [Log] All text field values are cleared 
+2020-07-10 05:09:41,795 INFO  [Log] //input[@id='name'] 
+2020-07-10 05:09:46,018 INFO  [Log] //input[@id='name'] 
+2020-07-10 05:09:51,714 INFO  [Log] //input[@id='name'] 
+2020-07-10 05:09:55,760 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 05:09:59,836 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 05:10:05,433 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 05:10:09,687 INFO  [Log] //div[label[contains(text(),'Country')]]//input 
+2020-07-10 05:10:28,823 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 05:10:32,875 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 05:10:38,236 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 05:10:42,664 INFO  [Log] //input[@id='reference'] 
+2020-07-10 05:10:47,030 INFO  [Log] //input[@id='reference'] 
+2020-07-10 05:10:52,813 INFO  [Log] //input[@id='reference'] 
+2020-07-10 05:10:56,984 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 05:11:01,210 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 05:11:06,965 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 05:11:11,063 INFO  [Log] //div[label[contains(text(),'Type')]]//input 
+2020-07-10 05:11:31,958 INFO  [Log] //input[@id='email'] 
+2020-07-10 05:11:36,311 INFO  [Log] //input[@id='email'] 
+2020-07-10 05:11:42,144 INFO  [Log] //input[@id='email'] 
+2020-07-10 05:11:46,419 INFO  [Log] //input[@id='phone'] 
+2020-07-10 05:11:50,666 INFO  [Log] //input[@id='phone'] 
+2020-07-10 05:11:56,497 INFO  [Log] //input[@id='phone'] 
+2020-07-10 05:12:00,522 INFO  [Log] //input[@id='fax'] 
+2020-07-10 05:12:04,622 INFO  [Log] //input[@id='fax'] 

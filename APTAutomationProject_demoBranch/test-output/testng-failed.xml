@@ -4,50 +4,42 @@
   <listeners>
     <listener class-name="com.saksoft.qa.listeners.TestListener"/>
   </listeners>
-  <test name="VoiceLineV(failed)" parallel="classes">
+  <test name="NGIN(failed)" parallel="classes">
     <classes>
       <class name="com.saksoft.qa.apttestscripts.APT_NGINTest">
         <methods>
-          <include name="setup"/>
-          <include name="startReport"/>
-          <include name="endReport"/>
-          <include name="Teardown"/>
-          <include name="BeforeMethod"/>
-          <include name="getResult"/>
+          <include name="CreateCustomer"/>
         </methods>
       </class> <!-- com.saksoft.qa.apttestscripts.APT_NGINTest -->
       <class name="com.saksoft.qa.apttestscripts.APT_wholesale">
         <methods>
-          <include name="setup"/>
-          <include name="startReport"/>
-          <include name="endReport"/>
-          <include name="Teardown"/>
-          <include name="BeforeMethod"/>
-          <include name="getResult"/>
+          <include name="BeforeSuite"/>
         </methods>
       </class> <!-- com.saksoft.qa.apttestscripts.APT_wholesale -->
+    </classes>
+  </test> <!-- NGIN(failed) -->
+  <test name="Voice line Service(failed)" parallel="classes">
+    <classes>
       <class name="com.saksoft.qa.apttestscripts.APT_VoiceLineTest">
         <methods>
-          <include name="verifyUserDetailsInformation"/>
           <include name="verifyServicepanelinviewservicepage"/>
-          <include name="verifyManagementOptionspanel"/>
-          <include name="startReport"/>
-          <include name="endReport"/>
-          <include name="verifycreateorder"/>
-          <include name="verifyOrderDetailsInformation"/>
-          <include name="CreateCustomer"/>
-          <include name="choosecustomer"/>
-          <include name="verifyCustomerDetailsInformation"/>
-          <include name="verifyservicetypeselection"/>
-          <include name="BeforeSuite"/>
-          <include name="setup"/>
-          <include name="verifyAddTrunk"/>
-          <include name="verifyASRDevice"/>
-          <include name="viewTrunk"/>
-          <include name="Teardown"/>
-          <include name="verifyservicecreation"/>
         </methods>
       </class> <!-- com.saksoft.qa.apttestscripts.APT_VoiceLineTest -->
+      <class name="com.saksoft.qa.apttestscripts.APT_wholesale">
+        <methods>
+          <include name="BeforeSuite"/>
+        </methods>
+      </class> <!-- com.saksoft.qa.apttestscripts.APT_wholesale -->
     </classes>
-  </test> <!-- VoiceLineV(failed) -->
+  </test> <!-- Voice line Service(failed) -->
+  <test name="Wholesale(failed)" parallel="classes">
+    <classes>
+      <class name="com.saksoft.qa.apttestscripts.APT_wholesale">
+        <methods>
+          <include name="searchCreatedService"/>
+          <include name="BeforeSuite"/>
+        </methods>
+      </class> <!-- com.saksoft.qa.apttestscripts.APT_wholesale -->
+    </classes>
+  </test> <!-- Wholesale(failed) -->
 </suite> <!-- Failed suite [APT_MCS Test Suite] -->

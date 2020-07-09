@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>TestNG:  Voice line Service</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Voice line Service</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>0/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Fri Jul 10 04:45:31 IST 2020</td>
+</tr>
+<tr><td>Total time:</td><td>187 seconds (187640 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyServicepanelinviewservicepage()'><b>verifyServicepanelinviewservicepage</b><br>Test class: com.saksoft.qa.apttestscripts.APT_VoiceLineTest<br>Test method: TC-09<br>Parameters: {Existing RFIREQNumber=VLVRFI_8721, editExistingPremise=Null, EgressNumberFormat_DropdownValue=National (0 NSN, TON=UNK), EditPhone=9856377654, edit_PSXmanualConfigTG_value=No, EmailColumn=Email, LocalPreShareKey=gdfhtu6345fhh, PSXmanualConfigDDI_value=Yes, edit_cpemanualconfig_checkbox=No, IncomingRoutingOnDDILevel_Checkbox=no, NewCityCode=KA05, BackupNumber_Checkbox=No, ExistingOrderService=NO, EditUserName=NGINUseredit8721, PSXmanualConfigTG_value=Yes, edit_callAdmissionControl=No, edit_vlanTag=360, edit_signallingZone=null, FaxDiversionNumber_Value=null, DedicatedPortalStatus=NO, editExistingSite=Null, Customer_Country=FR (France), BRIPort6Number_value=43672, BRIPort7Number_value=45435, Configuration_Dropdownvalue=Full Configuration, edit_resellerID_value=87212.0, BRIPort4Number_value=47822, BRIPort5Number_value=89332, BRIPort8Number_value=37857, NewCity=No, Existing SiteValue=(AU_109004_72 HENDERSON ROAD__2_TECH), NumberOfBRIPorts_DropdownValue=2, quality=8-Premium, PostalAddress=Bangalore, Edit_NotificationManagementTeam_Drodpwon=DNA, TrunkGroupOrder=Yes, ChooseCustomerToBeSelected=VLV8721, BRIPort1Number_value=89832, edit_presentationnumber_value=null, BRIPort2Number_value=68932, BRIPort3Number_value=82316, voiceCPE_NewPremise=No, voiceCPE_ExistingSite=Yes, voiceCPE_Existing PremiseValue=PremiseTest1, editExistingCity=Null, edit_TrunkGroupOrderNumber=Null, voiceCPE_ExistingCity=Yes, ExistingOrderNumber=VLVOrder_8721, ExistingPremise=NO, vrf_Ipv4=10.83.99.1, VoiceCPE_VendorModel=OneAccess One270, voiceCPE_NewSiteName=Jayanagar, Edit_ResellerCode=null, editNewPremiseName=Null, UserEmail=NGINUser_8721@gmail.com, EditOrder_VoicelineNumber=VLVRFIedit_8721, EditSurName=NGINUseredit, ChangeOrder_OrderNumber=VLVOrder_8721, edit_customerdefaultnumber_value=null, VirtualTemplate=578, edit_GSXmanualConfigvalue=No, voiceCPE_NewPremiseName=ColtTest, ResellerID_Value=null, edit_ipAddresstype=null, NewOrderNumber=VLVOrder_8721, edit_codec_value=null, voiceCPE_ExistingPremise=NO, EditPostalAddress=Chennai, FirstName=User_8721, edit_SIPURI=null, SurName=NGIN, Resilient_Country=AT (Austria), VoiceCPE_ManagementAddress=191.93.152.108/13, PerformanceReporting_Checkbox=Yes, Edit_InterfaceName=null, NewOrderService=YES, SIPsignallingPort=5090, Email=vlv8721@test.com, ExistingCityValue=AUS (SYDNEY), NumberOfPRIPorts_DropdownValue=1, InServiceStatus=In Service, CRCSettings_DropdownValue=crc4, Name=VLV8721, ServiceStatusChangeRequired=No, CustomerDefaultNumber_Value=454378235, Remarks=TestRemarks, CLIPScreeningandCLIRperCall_radio=yes, ServiceStatus=In Service, CPEAddressRange=10.28.6.14/32, ServiceIdentification=IPVLService_8721, Name1=VLV8721, Name2=*, NewSiteName=Jayanagar, edit_subInterfaceSlot=null, vlanTag_FRASBC_value=311, Edit_InterfaceAddress=null, InterfaceAddress=20.20.20.23, DedicatedPortal=Vodafone Portal, OBackupNumber_Value=4875, editExistingSiteValue=Null, edit_CDRdelivery=null, voiceCPE_NewSite=No, Edit_PhoneContact=9783672648, CPEToProvideDialTone_Checkbox=No, edit_lanrange_value=null, ProactiveNotification_Checkbox=No, NewPremiseCode=Colt01, edit_BillingCountry=null, edit_SIPsignallingPort=null, edit_SBCmanualconfigValue=No, vlanTag=null, callrateLimiteValue=38, edit_partialnumberreplacement_checkbox=No, edit_TrunkGroupOrder=Yes, voiceCPE_NewCity=No, voiceCPE_NewCityCode=KA05, command_ipv4=ping, editExistingCityValue=Null, RemotePreShareKey=fdhdhSDGfd, TechnicalContactName=vlvcontact8721, DRusingTDM_checkbox=No, Edit_RemotePreshareKey=null, Edit_LocalPreshareKey=null, CreateOrderName=Test_Colt_Customer_QA_23, callAdmissionControl=Yes, ClipMainNumber_radio=no, edit_numberporting_checkbox=No, AddInterface_Allocate=No, TypeToBeSelected=Colt Telecom - internal, InMaintenanceStatus=In Maintenance, ThirdPartyInternet=no, edit_egressnumberformat_dropdownvalue=null, UserName=NGINUser_8721, Reseller Administration=NO, CountryToBeSelected=BE (Belgium), Edit_IdentityEmail=null, edit_clirPermanent=No, BRIPortMapping_Checkbox=No, IdentityEmail=test1@test.com, edit_presentationNumbers=No, editASRManagementAddress=null, Resilient_CDRdelivery=null, voiceCPE_NewPremiseCode=Colt01, edit_CLIPScreeningandCLIRperCall=No, OCN=vlvocn8721, edit_faxdiversionnumber_value=null, Fax=389271, gateway=LONNBS1, Resilient_Gateway=null, edit_thirdpartyinternet=No, edit_callLimit=null, Edit_PerformanceReporting_Checkbox=No, edit_incomingroutingonDDIlevel_checkbox=No, ServiceType=Voice Line (V), InterfaceName=Dev99, SelectOrderContractNumber=NGINOrder_8721, edit_quality=null, NewRFIREQNumber=VLVRFI_8721, COSProfile_Value=null, signallngZone=null, TrunkGroupOrderNumber=Si_E17, Edit_ThirdPartyInternet_Checkbox=Yes, editNewSiteName=Null, edit_clipNoScreening=Yes, NewPremise=No, Country=Belgium, Edit_Configuration_Dropdownvalue=Remove Configuration, Site=BE_7110_RUE DE L'YSER_260_G_IT, NameColumn=Name, Customer Administration=NO, PresentationNumbers_radio=no, ChangeOrder_VoicelineNumber=VLVRFI_8721, Edit_ServiceEmail=vlvedit8721@test.com, voiceCPE_ExistingCityValue=AUS (SYDNEY), editASRDeviceName=null, editNewCityCode=Null, editExistingPremiseValue=Null, ipAddresstype=IPv4, EditEmail=NGINUseredit_8721@gmail.com, CDRdelivery=No delivery to COCOM, MainDomain=vlvdomain8721.com, CPELinePowerRequired_Checkbox=No, ExistingCity=Yes, subInterfaceSlot=null, ExistingSite=Yes, NumberOfFXSPorts_DropdownValue=1, Reference=testreference_vlv8721, voiceCPE_NewCityName=Bengaluru, callLimit=Unlimited, edit_callrateLimit=No, edit_callrateLimiteValue=null, Resilient_ResellerID_value=null, ResourceColumn=Resources, VoiceCPEDeviceName=37672.vl.colt.net, BillingCountry=IT (Italy), NumberPorting_Checkbox=No, EditFirstName=Useredit8721, editCountry=null, NotificationManagementTeam_value=null, PhoneContact=9485736782, CLIRPermanent_radio=no, edit_limitNumber=null, CreateOrderCustomer=Test_Colt_Customer_QA_23, edit_cosprofile_value=null, DefaultValue_checkbox=YES, RolesColumn=Roles, editNewPremise=Null, PartialNumberReplacement_Checkbox=No, GSXmanualConfigvalue=Yes, PresentationNumber_Value=null, SBCmanualconfigValue=Yes, Codec_Value=null, edit_DRusingTDM_checkbox=No, voiceCPE_Existing SiteValue=(AU_109004_72 HENDERSON ROAD__2_TECH), SIPURI=37856, IMSPopLocation_DropdownValue=Bangalore-1, Edit_VirtualTemplate=null, AddressColumn=Address, VoiceCPE_Country=AU (Australia), NewCityName=Bengaluru, syncstatus=Ok, Resilient_Quality=null, editNewSite=Null, City=La Louvière, FXSNumber2_value=2675, BillingNumber_Value=2893, SAN Administration=NO, voiceCPE_NewSiteCode=Jay05, edit_vlanTag_FRASBC_value=null, LANRange_Value=10.0.0.0/29, Configure_checkbox=NO, cpemanualconfig_checkbox=Yes, FXSNumber1_value=3464, ClipNoScreening_radio=no, Premise=null, LoginColumn=Login, limitNumber=24, PSXmanualConfigvalue=Yes, edit_clipMainNumber=No, ThirdPartyInternet_Checkbox=Yes, editNewSiteCode=Null, NewSite=No, Phone=9643247566, NewPremiseName=ColtTest, callrateLimitselection=Yes, edit_gateway=null, Edit_CPEAddressRange=null, edit_PSXmanualConfigDDI_value=No, EditRemarks=TestRemarksedit, ResellerCode_Value=637, Existing PremiseValue=PremiseTest1, editNewPremiseCode=Null, editNewCityName=Null, editNewCity=Null, Edit_ProactiveNotification_Checkbox=No, EditInterface_Allocate=No, Snmpro=8ef01, EditOrder_OrderNumber=VLVOrderedit_8721, NewSiteCode=Jay05}</td>
+<td><div><pre>java.lang.AssertionError:  on clicking &apos;Show Infovista link&apos;, it got naviagted to SSO Login Page expected [SSO login Page] but found [SSO Login Page]
+	at com.saksoft.qa.scripthelpers.APT_VoiceLineHelper.shownewInfovista(APT_VoiceLineHelper.java:6346)
+	at com.saksoft.qa.scripthelpers.APT_VoiceLineHelper.verifyservicepanel_links(APT_VoiceLineHelper.java:1076)
+	at com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyServicepanelinviewservicepage(APT_VoiceLineTest.java:92)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 14 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace203819996", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace203819996'><pre>java.lang.AssertionError:  on clicking &apos;Show Infovista link&apos;, it got naviagted to SSO Login Page expected [SSO login Page] but found [SSO Login Page]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:494)
+	at org.testng.Assert.assertEquals(Assert.java:123)
+	at org.testng.Assert.assertEquals(Assert.java:176)
+	at com.saksoft.qa.scripthelpers.APT_VoiceLineHelper.shownewInfovista(APT_VoiceLineHelper.java:6346)
+	at com.saksoft.qa.scripthelpers.APT_VoiceLineHelper.verifyservicepanel_links(APT_VoiceLineHelper.java:1076)
+	at com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyServicepanelinviewservicepage(APT_VoiceLineTest.java:92)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>186</td>
+<td>com.saksoft.qa.apttestscripts.APT_VoiceLineTest@4dfa3a9d</td></tr>
+<tr>
+<td title='com.saksoft.qa.apttestscripts.APT_VoiceLineTest.verifyServicepanelinviewservicepage()'><b>verifyServicepanelinviewservicepage</b><br>Test class: com.saksoft.qa.apttestscripts.APT_VoiceLineTest<br>Test method: TC-09</td>
+<td><div><pre>java.lang.NullPointerException
+	at com.saksoft.qa.listeners.TestListener.onTestFailure(TestListener.java:66)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+... Removed 7 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1977618945", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1977618945'><pre>java.lang.NullPointerException
+	at com.saksoft.qa.listeners.TestListener.onTestFailure(TestListener.java:66)
+	at org.testng.internal.Invoker.runTestListeners(Invoker.java:1895)
+	at org.testng.internal.Invoker.runTestListeners(Invoker.java:1879)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:778)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+</pre></div></td>
+<td>186</td>
+<td>com.saksoft.qa.apttestscripts.APT_VoiceLineTest@4dfa3a9d</td></tr>
+</table><p>
+</body>
+</html>

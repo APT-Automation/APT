@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" name="Failed suite [APT_MCS Test Suite]" parallel="classes" data-provider-thread-count="1">
+  <listeners>
+    <listener class-name="com.saksoft.qa.listeners.TestListener"/>
+  </listeners>
+  <test name="APT_Test(failed)" parallel="classes">
+    <classes>
+      <class name="com.saksoft.qa.apttestscripts.APT_AutomationTest">
+        <methods>
+          <include name="startReport"/>
+          <include name="verifycreateorder"/>
+          <include name="BeforeMethod"/>
+          <include name="BeforeSuite"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- com.saksoft.qa.apttestscripts.APT_AutomationTest -->
+      <class name="com.saksoft.qa.apttestscripts.APT_DomainManagementTest">
+        <methods>
+          <include name="BeforeMethod"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- com.saksoft.qa.apttestscripts.APT_DomainManagementTest -->
+    </classes>
+  </test> <!-- APT_Test(failed) -->
+</suite> <!-- Failed suite [APT_MCS Test Suite] -->

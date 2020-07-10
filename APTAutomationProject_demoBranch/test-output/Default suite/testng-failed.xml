@@ -3,18 +3,25 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.saksoft.qa.apttestscripts.APT_AutomationTest">
+      <class name="com.saksoft.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter">
         <methods>
-          <include name="setup"/>
-          <include name="startReport"/>
+          <include name="verifynavigationtocreatedevicepage"/>
+          <include name="verifyEnteredValueForDevice"/>
+          <include name="verifyaccessrouterdeviceDelete"/>
           <include name="endReport"/>
-          <include name="Teardown"/>
-          <include name="verifycreateorder" invocation-numbers="0"/>
           <include name="BeforeMethod"/>
+          <include name="routerPanel"/>
+          <include name="verifyDeviceUpdationSuccessMessagefor_AccessRouterDevice"/>
           <include name="BeforeSuite"/>
+          <include name="setup"/>
+          <include name="verifyTestCommandAndStatus"/>
+          <include name="verifyUpdatedValueForDevice"/>
+          <include name="Teardown"/>
+          <include name="verifyaccessrouterdeviceEdit"/>
+          <include name="verifycreateaccessrouterdevice"/>
           <include name="getResult"/>
         </methods>
-      </class> <!-- com.saksoft.qa.apttestscripts.APT_AutomationTest -->
+      </class> <!-- com.saksoft.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

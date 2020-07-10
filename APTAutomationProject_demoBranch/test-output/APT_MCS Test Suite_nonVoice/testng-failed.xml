@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" name="Failed suite [APT_MCS Test Suite_nonVoice]" parallel="classes" data-provider-thread-count="1">
+  <test name="CREATE ACCESS CORE DEVICE(failed)" parallel="classes">
+    <classes>
+      <class name="com.saksoft.qa.apttestscripts.Lanlink_DirectFiber">
+        <methods>
+          <include name="setup"/>
+          <include name="endReport"/>
+          <include name="Teardown"/>
+          <include name="BeforeMethod"/>
+          <include name="BeforeSuite"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- com.saksoft.qa.apttestscripts.Lanlink_DirectFiber -->
+      <class name="com.saksoft.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter">
+        <methods>
+          <include name="setup"/>
+          <include name="verifynavigationtocreatedevicepage"/>
+          <include name="verifyEnteredValueForDevice"/>
+          <include name="verifyaccessrouterdeviceDelete"/>
+          <include name="verifyTestCommandAndStatus"/>
+          <include name="endReport"/>
+          <include name="Teardown"/>
+          <include name="verifyaccessrouterdeviceEdit"/>
+          <include name="verifycreateaccessrouterdevice"/>
+          <include name="BeforeMethod"/>
+          <include name="verifyDeviceUpdationSuccessMessagefor_AccessRouterDevice"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- com.saksoft.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter -->
+    </classes>
+  </test> <!-- CREATE ACCESS CORE DEVICE(failed) -->
+  <test name="LANLINK(failed)" parallel="classes">
+    <classes>
+      <class name="com.saksoft.qa.apttestscripts.Lanlink_DirectFiber">
+        <methods>
+          <include name="deleteDevice_Equipment" invocation-numbers="0"/>
+          <include name="AdddeviceforEquipment" invocation-numbers="0"/>
+          <include name="endReport"/>
+          <include name="configureEquipment" invocation-numbers="0"/>
+          <include name="BeforeMethod"/>
+          <include name="SuccessmessageforCreationofSiteOrder" invocation-numbers="0"/>
+          <include name="BeforeSuite"/>
+          <include name="setup"/>
+          <include name="verifytheDataEnteredforAddSiteOrderfortheServiceSubtypeSelectedunderLANLINK" invocation-numbers="0"/>
+          <include name="showInterface_Equipment" invocation-numbers="0"/>
+          <include name="EditSiteOrderfortheServiceSubtypeSelectedunderLANLINK" invocation-numbers="0"/>
+          <include name="Teardown"/>
+          <include name="verifyAddSiteOrderFieldsfortheServiceSubtypeSelectedunderLANLINK" invocation-numbers="0"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- com.saksoft.qa.apttestscripts.Lanlink_DirectFiber -->
+      <class name="com.saksoft.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter">
+        <methods>
+          <include name="setup"/>
+          <include name="endReport"/>
+          <include name="Teardown"/>
+          <include name="BeforeMethod"/>
+          <include name="getResult"/>
+        </methods>
+      </class> <!-- com.saksoft.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter -->
+    </classes>
+  </test> <!-- LANLINK(failed) -->
+</suite> <!-- Failed suite [APT_MCS Test Suite_nonVoice] -->

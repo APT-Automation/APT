@@ -245,7 +245,7 @@
 <OkButton>//button[@type='submit']//span[text()='Ok']</OkButton>
 <edituser_header>//div[@class='heading-green-row row']//p</edituser_header>
 <delete_alertpopup>//div[@class='modal-content']</delete_alertpopup>
-<deletebutton>//button[text()='Delete']</deletebutton>
+<deletebutton>//button[text()=' Delete']</deletebutton>
 <deletesuccessmsg>//div[@role='alert']//span</deletesuccessmsg>
 <userspanel_header>//div[text()='Users']</userspanel_header>
 <usernamevalue>//b[text()='User Name']/parent::label/parent::div/following-sibling::div</usernamevalue>

@@ -66,13 +66,12 @@ public class APT_NGINHelper extends DriverHelper {
 		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
-		Thread.sleep(2000);
 		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
 		Thread.sleep(2000);
 		compareText(application, "create customer page header", "createcustomer_header", "Customer", xml);
 		scrolltoend();
 		click_commonMethod(application, "Ok", "okbutton", xml);
-		
+
 		//Warning msg check
 		warningMessage_commonMethod(application, "customernamewarngmsg", "Legal Customer Name", xml);
 		warningMessage_commonMethod(application, "countrywarngmsg", "Country", xml);
@@ -145,13 +144,13 @@ public class APT_NGINHelper extends DriverHelper {
 		Thread.sleep(1000);
 		click_commonMethod(application, "Next", "nextbutton", xml);
 		Thread.sleep(1000);
-		
+
 		//Warning messages verify
 		warningMessage_commonMethod(application, "order_contractnumber_warngmsg", "Order/Contract Number(Parent SID)", xml);
 		warningMessage_commonMethod(application, "servicetype_warngmsg", "Service Type", xml);
-		
+
 		if (neworder.equalsIgnoreCase("YES")) {
-			
+
 			Thread.sleep(2000);
 			click_commonMethod(application, "select order switch", "selectorderswitch", xml);
 			addtextFields_commonMethod(application, "Order/Contract Number", "newordertextfield", neworderno, xml);
@@ -163,7 +162,7 @@ public class APT_NGINHelper extends DriverHelper {
 			newordernumber = neworderno;
 			newVoiceLineNumber = newrfireqno;
 		} 
-		
+
 		else if (existingorderservice.equalsIgnoreCase("YES")) {
 			addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber, xml);
 			Log.info("=== Order Contract Number selected===");
@@ -184,74 +183,74 @@ public class APT_NGINHelper extends DriverHelper {
 		// select service type
 		scrolltoend();
 		//addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
-		 boolean availability=false;
-			try {  
-			  availability=getwebelement(xml.getlocator("//locators/" + application + "/servicetypetextfield")).isDisplayed();
-			  if(availability) {
-				  DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown is displaying");
-				  System.out.println("Service Type dropdown is displaying");
-				  Log.info("Service Type dropdown is displaying");
-				  
-				  if(servicetype.equalsIgnoreCase("null")) {
-					  
-					  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Service Type dropdown");
-					  System.out.println("No values selected under Service Type dropdown");
-					  Log.info("No values selected under Service Type dropdown");
-				  }else {
-					  
-					  Clickon(getwebelement("//div[label[text()='Service Type']]//div[text()='×']"));
-					  Thread.sleep(3000);
-					  
-					  //verify list of values inside dropdown
-					  List<WebElement> listofvalues = getwebelements("//div[@class='sc-ifAKCX oLlzc']");
-					  
-					  DriverTestcase.logger.log(LogStatus.PASS, "List of values inside Service Type dropdown is:  ");
-					  System.out.println( "List of values inside Service Type dropdown is:  ");
-					  Log.info("List of values inside Service Type dropdown is:  ");
-					  
-						for (WebElement valuetypes : listofvalues) {
-									Log.info("service sub types : " + valuetypes.getText());
-									DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-									System.out.println(" " + valuetypes.getText());
-						}
-						
-						Thread.sleep(2000);
+		boolean availability=false;
+		try {  
+			availability=getwebelement(xml.getlocator("//locators/" + application + "/servicetypetextfield")).isDisplayed();
+			if(availability) {
+				DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown is displaying");
+				System.out.println("Service Type dropdown is displaying");
+				Log.info("Service Type dropdown is displaying");
+
+				if(servicetype.equalsIgnoreCase("null")) {
+
+					DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Service Type dropdown");
+					System.out.println("No values selected under Service Type dropdown");
+					Log.info("No values selected under Service Type dropdown");
+				}else {
+
+					Clickon(getwebelement("//div[label[text()='Service Type']]//div[text()='×']"));
+					Thread.sleep(3000);
+
+					//verify list of values inside dropdown
+					List<WebElement> listofvalues = getwebelements("//div[@class='sc-ifAKCX oLlzc']");
+
+					DriverTestcase.logger.log(LogStatus.PASS, "List of values inside Service Type dropdown is:  ");
+					System.out.println( "List of values inside Service Type dropdown is:  ");
+					Log.info("List of values inside Service Type dropdown is:  ");
+
+					for (WebElement valuetypes : listofvalues) {
+						Log.info("service sub types : " + valuetypes.getText());
+						DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+						System.out.println(" " + valuetypes.getText());
+					}
+
+					Thread.sleep(2000);
 					SendKeys(getwebelement("//div[label[text()='Service Type']]//input"), servicetype);	
 					Thread.sleep(2000);
-						
-					  //scrolltoend();
+
+					//scrolltoend();
 					ScrolltoElement(application, "nextbutton", xml);
 					Thread.sleep(2000);
-					  Clickon(getwebelement("(//div[text()='"+ servicetype +"'])[1]"));
-					  Thread.sleep(3000);
-					  
-					  String actualValue=getwebelement("//label[text()='Service Type']/following-sibling::div//span").getText();
-					  DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
-					  System.out.println("Service Type dropdown value selected as: "+ actualValue);
-					  Log.info("Service Type dropdown value selected as: "+ actualValue);
-					  
-				  }
-			  }else {
-				  DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
-				  System.out.println("Service Type is not displaying");
-				  Log.info("Service Type is not displaying");
-			  }
-			}catch(NoSuchElementException e) {
+					Clickon(getwebelement("(//div[text()='"+ servicetype +"'])[1]"));
+					Thread.sleep(3000);
+
+					String actualValue=getwebelement("//label[text()='Service Type']/following-sibling::div//span").getText();
+					DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
+					System.out.println("Service Type dropdown value selected as: "+ actualValue);
+					Log.info("Service Type dropdown value selected as: "+ actualValue);
+
+				}
+			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
-				  System.out.println("Service Type is not displaying");
-				  Log.info("Service Type is not displaying");
-			}catch(Exception ee) {
-				ee.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, "Not able to perform selection under Service Type dropdown");
-				System.out.println("NO value selected under Service Type dropdown");
-				Log.info("NO value selected under Service Type dropdown");
+				System.out.println("Service Type is not displaying");
+				Log.info("Service Type is not displaying");
 			}
+		}catch(NoSuchElementException e) {
+			DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
+			System.out.println("Service Type is not displaying");
+			Log.info("Service Type is not displaying");
+		}catch(Exception ee) {
+			ee.printStackTrace();
+			DriverTestcase.logger.log(LogStatus.FAIL, "Not able to perform selection under Service Type dropdown");
+			System.out.println("NO value selected under Service Type dropdown");
+			Log.info("NO value selected under Service Type dropdown");
+		}
 		// click on next button
 		click_commonMethod(application, "Next", "nextbutton", xml);
 		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
 
 	}
-	
+
 
 	public void verifyservicecreation(String application, String sid, String Remarks, String customadm,
 			String sanadm, String reselladm, String orderno, String rfireqno, String servicetype) throws InterruptedException, IOException, DocumentException {
@@ -271,125 +270,125 @@ public class APT_NGINHelper extends DriverHelper {
 		//Create service
 		ScrolltoElement(application, "createorderservice_header", xml);
 		addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", orderno, xml);
-//		//Existing order no select
-//				boolean availability=false;
-//				try {  
-//				  availability=getwebelement(xml.getlocator("//locators/" + application + "/existingorderdropdown")).isDisplayed();
-//				  if(availability) {
-//					  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown is displaying");
-//					  System.out.println("Order/Contract Number(Parent SID) dropdown is displaying");
-//					  
-//					  if(orderno.equalsIgnoreCase("null")) {
-//						  
-//						  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Order/Contract Number(Parent SID) dropdown");
-//						  System.out.println(" No values selected under Order/Contract Number(Parent SID) dropdown");
-//					  }else {
-//						  
-//						  Clickon(getwebelement("//div[label[text()='Order/Contract Number(Parent SID)']]//div[text()='×']"));
-//						  Thread.sleep(3000);
-//						  
-//						  //verify list of values inside dropdown
-//						  List<WebElement> listofvalues = driver
-//									.findElements(By.xpath("(//div[@role='list']//div)[3]"));
-//						  
-//						  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
-//						  System.out.println( " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
-//						  
-//							for (WebElement valuetypes : listofvalues) {
-//										Log.info("service sub types : " + valuetypes.getText());
-//										DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-//										System.out.println(" " + valuetypes.getText());
-//							}
-//							
-//							Thread.sleep(2000);
-//						SendKeys(getwebelement("//div[label[text()='Order/Contract Number(Parent SID)']]//input"), orderno);	
-//						Thread.sleep(2000);
-//							
-//						  Clickon(getwebelement("(//div[contains(text(),'"+ orderno +"')])[2]"));
-//						  Thread.sleep(3000);
-//						  
-//						  String actualValue=getwebelement("//label[text()='Order/Contract Number(Parent SID)']/following-sibling::div//div/span").getText();
-//						  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue );
-//						  System.out.println("Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue);
-//						  
-//					  }
-//				  }else {
-//					  DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
-//					  System.out.println("Order/Contract Number(Parent SID) is not displaying");
-//				  }
-//				}catch(NoSuchElementException e) {
-//					DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
-//					  System.out.println("Order/Contract Number(Parent SID) is not displaying");
-//				}catch(Exception ee) {
-//					ee.printStackTrace();
-//					DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Order/Contract Number(Parent SID) dropdown");
-//					System.out.println(" NO value selected under Order/Contract Number(Parent SID) dropdown");
-//				}
-				
+		//		//Existing order no select
+		//				boolean availability=false;
+		//				try {  
+		//				  availability=getwebelement(xml.getlocator("//locators/" + application + "/existingorderdropdown")).isDisplayed();
+		//				  if(availability) {
+		//					  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown is displaying");
+		//					  System.out.println("Order/Contract Number(Parent SID) dropdown is displaying");
+		//					  
+		//					  if(orderno.equalsIgnoreCase("null")) {
+		//						  
+		//						  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Order/Contract Number(Parent SID) dropdown");
+		//						  System.out.println(" No values selected under Order/Contract Number(Parent SID) dropdown");
+		//					  }else {
+		//						  
+		//						  Clickon(getwebelement("//div[label[text()='Order/Contract Number(Parent SID)']]//div[text()='×']"));
+		//						  Thread.sleep(3000);
+		//						  
+		//						  //verify list of values inside dropdown
+		//						  List<WebElement> listofvalues = driver
+		//									.findElements(By.xpath("(//div[@role='list']//div)[3]"));
+		//						  
+		//						  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
+		//						  System.out.println( " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
+		//						  
+		//							for (WebElement valuetypes : listofvalues) {
+		//										Log.info("service sub types : " + valuetypes.getText());
+		//										DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+		//										System.out.println(" " + valuetypes.getText());
+		//							}
+		//							
+		//							Thread.sleep(2000);
+		//						SendKeys(getwebelement("//div[label[text()='Order/Contract Number(Parent SID)']]//input"), orderno);	
+		//						Thread.sleep(2000);
+		//							
+		//						  Clickon(getwebelement("(//div[contains(text(),'"+ orderno +"')])[2]"));
+		//						  Thread.sleep(3000);
+		//						  
+		//						  String actualValue=getwebelement("//label[text()='Order/Contract Number(Parent SID)']/following-sibling::div//div/span").getText();
+		//						  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue );
+		//						  System.out.println("Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue);
+		//						  
+		//					  }
+		//				  }else {
+		//					  DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
+		//					  System.out.println("Order/Contract Number(Parent SID) is not displaying");
+		//				  }
+		//				}catch(NoSuchElementException e) {
+		//					DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
+		//					  System.out.println("Order/Contract Number(Parent SID) is not displaying");
+		//				}catch(Exception ee) {
+		//					ee.printStackTrace();
+		//					DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Order/Contract Number(Parent SID) dropdown");
+		//					System.out.println(" NO value selected under Order/Contract Number(Parent SID) dropdown");
+		//				}
+
 		//addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
-				boolean availability1=false;
-				try {  
-				  availability1=getwebelement(xml.getlocator("//locators/" + application + "/servicetypetextfield")).isDisplayed();
-				  if(availability1) {
-					  DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown is displaying");
-					  System.out.println("Service Type dropdown is displaying");
-					  Log.info("Service Type dropdown is displaying");
-					  
-					  if(servicetype.equalsIgnoreCase("null")) {
-						  
-						  DriverTestcase.logger.log(LogStatus.PASS, "No values selected under Service Type dropdown");
-						  System.out.println("No values selected under Service Type dropdown");
-						  Log.info("No values selected under Service Type dropdown");
-					  }else {
-						  
-						  Clickon(getwebelement("//div[label[text()='Service Type']]//div[text()='×']"));
-						  Thread.sleep(3000);
-						  
-						  //verify list of values inside dropdown
-						  List<WebElement> listofvalues = driver
-									.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
-						  
-						  DriverTestcase.logger.log(LogStatus.PASS, "List of values inside Service Type dropdown is:  ");
-						  System.out.println("List of values inside Service Type dropdown is:  ");
-						  Log.info("List of values inside Service Type dropdown is:  ");
-						  
-							for (WebElement valuetypes : listofvalues) {
-										Log.info("service sub types : " + valuetypes.getText());
-										DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-										System.out.println(" " + valuetypes.getText());
-							}
-							
-							Thread.sleep(2000);
-						SendKeys(getwebelement("//div[label[text()='Service Type']]//input"), servicetype);	
-						Thread.sleep(2000);
-							
-						  //scrolltoend();
-						ScrolltoElement(application, "nextbutton", xml);
-						Thread.sleep(2000);
-						  Clickon(getwebelement("(//div[text()='"+ servicetype +"'])[1]"));
-						  Thread.sleep(3000);
-						  
-						  String actualValue=getwebelement("//label[text()='Service Type']/following-sibling::div//span").getText();
-						  DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
-						  System.out.println("Service Type dropdown value selected as: "+ actualValue);
-						  Log.info("Service Type dropdown value selected as: "+ actualValue);
-					  }
-				  }else {
-					  DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
-					  System.out.println("Service Type is not displaying");
-					  Log.info("Service Type is not displaying");
-				  }
-				}catch(NoSuchElementException e) {
-					DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
-					  System.out.println("Service Type is not displaying");
-					  Log.info("Service Type is not displaying");
-				}catch(Exception ee) {
-					ee.printStackTrace();
-					DriverTestcase.logger.log(LogStatus.FAIL, "NOt able to perform selection under Service Type dropdown");
-					System.out.println("NO value selected under Service Type dropdown");
-					Log.info("NO value selected under Service Type dropdown");
+		boolean availability1=false;
+		try {  
+			availability1=getwebelement(xml.getlocator("//locators/" + application + "/servicetypetextfield")).isDisplayed();
+			if(availability1) {
+				DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown is displaying");
+				System.out.println("Service Type dropdown is displaying");
+				Log.info("Service Type dropdown is displaying");
+
+				if(servicetype.equalsIgnoreCase("null")) {
+
+					DriverTestcase.logger.log(LogStatus.PASS, "No values selected under Service Type dropdown");
+					System.out.println("No values selected under Service Type dropdown");
+					Log.info("No values selected under Service Type dropdown");
+				}else {
+
+					Clickon(getwebelement("//div[label[text()='Service Type']]//div[text()='×']"));
+					Thread.sleep(3000);
+
+					//verify list of values inside dropdown
+					List<WebElement> listofvalues = driver
+							.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+
+					DriverTestcase.logger.log(LogStatus.PASS, "List of values inside Service Type dropdown is:  ");
+					System.out.println("List of values inside Service Type dropdown is:  ");
+					Log.info("List of values inside Service Type dropdown is:  ");
+
+					for (WebElement valuetypes : listofvalues) {
+						Log.info("service sub types : " + valuetypes.getText());
+						DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+						System.out.println(" " + valuetypes.getText());
+					}
+
+					Thread.sleep(2000);
+					SendKeys(getwebelement("//div[label[text()='Service Type']]//input"), servicetype);	
+					Thread.sleep(2000);
+
+					//scrolltoend();
+					ScrolltoElement(application, "nextbutton", xml);
+					Thread.sleep(2000);
+					Clickon(getwebelement("(//div[text()='"+ servicetype +"'])[1]"));
+					Thread.sleep(3000);
+
+					String actualValue=getwebelement("//label[text()='Service Type']/following-sibling::div//span").getText();
+					DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
+					System.out.println("Service Type dropdown value selected as: "+ actualValue);
+					Log.info("Service Type dropdown value selected as: "+ actualValue);
 				}
-				
+			}else {
+				DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
+				System.out.println("Service Type is not displaying");
+				Log.info("Service Type is not displaying");
+			}
+		}catch(NoSuchElementException e) {
+			DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
+			System.out.println("Service Type is not displaying");
+			Log.info("Service Type is not displaying");
+		}catch(Exception ee) {
+			ee.printStackTrace();
+			DriverTestcase.logger.log(LogStatus.FAIL, "NOt able to perform selection under Service Type dropdown");
+			System.out.println("NO value selected under Service Type dropdown");
+			Log.info("NO value selected under Service Type dropdown");
+		}
+
 		// click on next button
 		click_commonMethod(application, "Next", "nextbutton", xml);
 		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
@@ -460,8 +459,8 @@ public class APT_NGINHelper extends DriverHelper {
 		sa.assertAll();
 
 	}
-	
-	
+
+
 	public void verifyCustomerDetailsInformation(String application, String name, String maindomain, String country, String ocn,
 			String reference, String tcn, String type, String email, String phone, String fax)
 					throws InterruptedException, DocumentException, IOException {
@@ -508,23 +507,23 @@ public class APT_NGINHelper extends DriverHelper {
 		String[] routerToolIPv4HuaweiTobeSelectedList =  HideRouterToolsIPv4CommandsHuiwai_ToBeSelected.split(",");
 		String[] ServicesTobeSelectedlist= HideServicesToBeSelected.split(",");
 		String[] siteOrdersToBeselectedList = HideSiteOrderToBeSelected.split(",");
-		
+
 		String[] rolestobeAvailableList=editRolesToBeSelected.split(",");
 		String[] rolestobeHiddenList=edit_RoleToBeHidden.split(",");
-		
+
 		String[] routerToolIPv4CiscoTobeAvailableList = HideRouterToolsIPv4CommandsCisco_ToBeAvailable.split(",");
 		String[] routerToolIPv4CiscoTobeHiddenList = HideRouterToolsIPv4CommandsCisco_ToBeHidden.split(",");
-		
+
 		String[] routerToolIPv4HuaweiTobeAvailableList =  RouterToolsIPv4CommandsHuiwai_ToBeAvailable.split(",");
 		String[] routerToolIPv4HuaweiTobeHiddenList =  HideRouterToolsIPv4CommandsHuiwai_ToBeHidden.split(",");
-		
-		
+
+
 		String[] ServicesTobeAvailablelist= Services_ToBeAvailable.split(",");
 		String[] ServicesTobeHiddenlist= Services_ToBeHidden.split(",");
-		
+
 		String[] siteOrdersToBeAvailableList = SiteOrders_ToBeAvailable.split(",");
 		String[] siteOrdersToBeHiddenList = SiteOrders_ToBeHidden.split(",");
-		
+
 		ScrolltoElement(application, "customerdetailsheader", xml);
 		WebElement UserGridCheck= getwebelement("(//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String UserGrid= UserGridCheck.getAttribute("style");
@@ -544,7 +543,7 @@ public class APT_NGINHelper extends DriverHelper {
 			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
 			click_commonMethod(application, "Add", "AddLink", xml);
 			compareText(application, "Create User Header", "CreateUserHeader", "Create User", xml);
-			
+
 			//Warning messages verify
 			scrolltoend();
 			Thread.sleep(1000);
@@ -557,7 +556,7 @@ public class APT_NGINHelper extends DriverHelper {
 			warningMessage_commonMethod(application, "warningmsg_useremail", "Email", xml);
 			warningMessage_commonMethod(application, "warningmsg_userphone", "Phone", xml);
 			warningMessage_commonMethod(application, "warningmsg_userpassword", "Password", xml);
-			
+
 			addtextFields_commonMethod(application, "User Name", "UserName", Username, xml);
 			addtextFields_commonMethod(application, "First Name", "FirstName", Firstname, xml);
 			addtextFields_commonMethod(application, "SurName", "SurName", Surname, xml);
@@ -569,9 +568,9 @@ public class APT_NGINHelper extends DriverHelper {
 			click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
 			String  password=getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")).getAttribute("value");
 			System.out.println("Generated Password is : "+password);
-			
+
 			if(password.isEmpty()) {
-				
+
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying after clicked on 'Generate password link");
 
 				SendKeys(getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")), GeneratePassword);	
@@ -586,38 +585,38 @@ public class APT_NGINHelper extends DriverHelper {
 
 			ScrolltoElement(application, "Email", xml);
 			Thread.sleep(2000);
-			
-		//Role	
+
+			//Role	
 			selectAndAddValueFromLeftDropdown(application, "Role", "roleDropdown_available" , rolestobeSelectedList, "roleDropdown_addButton");
 			verifySelectedValuesInsideRightDropdown(application, "Role", "roleDropdown_selectedValues");
-			
-			
-		//Hide Service
+
+
+			//Hide Service
 			selectAndAddValueFromLeftDropdown(application, "Hide Service", "HideService_Available", ServicesTobeSelectedlist, "HideService_addButton");
 			verifySelectedValuesInsideRightDropdown(application, "Hide Services", "HideServicesDropdown_selectedValues");
-		
-			
-		//Hide Site Order
+
+
+			//Hide Site Order
 			selectAndAddValueFromLeftDropdown(application, "Hide Site Order", "HideSiteOrder_Available" , siteOrdersToBeselectedList , "hideSiteOrder_addbutton");
 			verifySelectedValuesInsideRightDropdown(application, "Hide Site Order" , "HideSiteOrderDropdown_selectedValues");
-			
+
 			scrolltoend();
 			Thread.sleep(1000);
-			
-		//Hide Router Tool IPv4 Commands(Cisco)
+
+			//Hide Router Tool IPv4 Commands(Cisco)
 			selectAndAddValueFromLeftDropdown(application, "Hide Router Tool IPv4 Commands(Cisco)", "hideRouterToolIPv4_Cisco_Available", routerToolIPv4CiscoTobeSelectedList, "hideRouterToolIPv4_Cisco_addButton");
 			verifySelectedValuesInsideRightDropdown(application, "Hide Router Tool IPv4 Commands(Cisco)", "hideRouterToolIpv4_Cisco_selectedvalues");
-			
-			
-		//Hide Router Tool IPv4 Commands(Huawei)
+
+
+			//Hide Router Tool IPv4 Commands(Huawei)
 			selectAndAddValueFromLeftDropdown(application, "Hide Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIPv4_Huawei_available" , routerToolIPv4HuaweiTobeSelectedList, "hideRouterToolIPv4__Huawei_addButton");
 			verifySelectedValuesInsideRightDropdown(application, "Hide Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
-			
-			
-//		//Hide Router Tool IPv6 Commands(Cisco)	
-//			selectAndAddValueFromLeftDropdown(application, "Hide Router Tool IPv6 Commands(Cisco)" , "HideRouterToolIPv6_Cisco_Available" , selectValue, xpathForAddButton);
-//			verifySelectedValuesInsideRightDropdown(application, "Hide Router Tool IPv6 Commands(Cisco)" , xpath);
-			
+
+
+			//		//Hide Router Tool IPv6 Commands(Cisco)	
+			//			selectAndAddValueFromLeftDropdown(application, "Hide Router Tool IPv6 Commands(Cisco)" , "HideRouterToolIPv6_Cisco_Available" , selectValue, xpathForAddButton);
+			//			verifySelectedValuesInsideRightDropdown(application, "Hide Router Tool IPv6 Commands(Cisco)" , xpath);
+
 			scrolltoend();
 			Thread.sleep(1000);
 			click_commonMethod(application, "OK", "OK_button", xml);
@@ -638,77 +637,78 @@ public class APT_NGINHelper extends DriverHelper {
 				AddedUser.click();
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 				Log.info("clicked on Existing user radio button");
-			
-			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-			click_commonMethod(application, "Edit", "edit", xml);
-			Thread.sleep(2000);
-			compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
-			scrollToTop();
-			edittextFields_commonMethod(application, "User Name", "UserName" , EditUsername, xml);
-			edittextFields_commonMethod(application, "First Name", "FirstName" , EditFirstname, xml);
-			edittextFields_commonMethod(application, "Sur Name", "SurName" , EditSurname, xml);
-			edittextFields_commonMethod(application, "Postal Address", "PostalAddress" , EditPostaladdress, xml);
-			edittextFields_commonMethod(application, "Email", "Email" , EditEmail, xml);
-			edittextFields_commonMethod(application, "Phone", "Phone" , EditPhone, xml);
-			edittextFields_commonMethod(application, "IPGuardian Account Group" , "IPGuardianAccountGroup" , IPGuardianAccountGroup, xml);
-			edittextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
-			
-			String editpassword=getwebelement(xml.getlocator("//locators/"+application+"/Password")).getAttribute("value");
-			System.out.println("Generated Password is : "+editpassword);
-			
-			if(editpassword.isEmpty()) {
-				
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying under'Generate password link");
-				
-				click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
-				
-			}else {
-				Log.info("Automatically generated Password value is : "+ editpassword);
-				DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+editpassword);
-			}
 
-			ScrolltoElement(application, "Email", xml);
-			
-			//Role	
-			selectAndRemoveValueFromRightDropdown(application, "Roles_Hidden", "roleDropdown_selectedValues", rolestobeAvailableList, "roleDropdown_removeButton");
-			selectAndAddValueFromLeftDropdown(application, "Role_Available", "roleDropdown_available" , rolestobeHiddenList, "roleDropdown_addButton");
-			verifySelectedValuesInsideRightDropdown(application, "Role_Hidden", "roleDropdown_selectedValues");
-			
-		//Hide Service
-			selectAndRemoveValueFromRightDropdown(application, "Service_Hidden" , "HideServicesDropdown_selectedValues" , ServicesTobeAvailablelist, "HideService_removeButton");
-			selectAndAddValueFromLeftDropdown(application, "Service_Available", "HideService_Available", ServicesTobeHiddenlist, "HideService_addButton");
-			verifySelectedValuesInsideRightDropdown(application, "Hidden Services", "HideServicesDropdown_selectedValues");
-			
-		//Hide Site Order
-			selectAndRemoveValueFromRightDropdown(application, "SiteOrder_Hidden" , "HideSiteOrderDropdown_selectedValues", siteOrdersToBeAvailableList, "hideSiteOrder_removeButton");
-			selectAndAddValueFromLeftDropdown(application, "SiteOrder_Available", "HideSiteOrder_Available" , siteOrdersToBeHiddenList , "hideSiteOrder_addbutton");
-			verifySelectedValuesInsideRightDropdown(application, "Hiden Site Orders" , "HideSiteOrderDropdown_selectedValues");
-			
-			scrolltoend();
-			Thread.sleep(1000);
-			
-		//Hide Router Tool IPv4 Commands(Cisco)
-			selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Cisco)_Available", "hideRouterToolIpv4_Cisco_selectedvalues", routerToolIPv4CiscoTobeAvailableList, "hideRouterToolIPv4_Cisco_removeButton");
-			selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Cisco)_Hidden", "hideRouterToolIPv4_Cisco_Available", routerToolIPv4CiscoTobeHiddenList, "hideRouterToolIPv4_Cisco_addButton");
-			verifySelectedValuesInsideRightDropdown(application, "Hiden Router Tool IPv4 Commands(Cisco)", "hideRouterToolIpv4_Cisco_selectedvalues");
-			
-		//Hide Router Tool IPv4 Commands(Huawei)
-			selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Huawei)_Hidden", "hideRouterToolIpv4_Huawei_selectedvalues", routerToolIPv4HuaweiTobeAvailableList, "hideRouterToolIPv4_Huawei_removeButton");
-			selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Huawei)_Available" , "hideRouterToolIPv4_Huawei_available" , routerToolIPv4HuaweiTobeHiddenList, "hideRouterToolIPv4__Huawei_addButton");
-			verifySelectedValuesInsideRightDropdown(application, "Hideen Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
-		
-			scrolltoend();
-			Thread.sleep(1000);
-			click_commonMethod(application, "OK", "OK_button", xml);
-			Thread.sleep(2000);
-			compareText(application, "User update success message", "successmsg", "User successfully updated", xml);
+				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+				click_commonMethod(application, "Edit", "edit", xml);
+				Thread.sleep(2000);
+				compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
+				scrollToTop();
+				edittextFields_commonMethod(application, "User Name", "UserName" , EditUsername, xml);
+				edittextFields_commonMethod(application, "First Name", "FirstName" , EditFirstname, xml);
+				edittextFields_commonMethod(application, "Sur Name", "SurName" , EditSurname, xml);
+				edittextFields_commonMethod(application, "Postal Address", "PostalAddress" , EditPostaladdress, xml);
+				edittextFields_commonMethod(application, "Email", "Email" , EditEmail, xml);
+				edittextFields_commonMethod(application, "Phone", "Phone" , EditPhone, xml);
+				edittextFields_commonMethod(application, "IPGuardian Account Group" , "IPGuardianAccountGroup" , IPGuardianAccountGroup, xml);
+				edittextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
+
+				String editpassword=getwebelement(xml.getlocator("//locators/"+application+"/Password")).getAttribute("value");
+				System.out.println("Generated Password is : "+editpassword);
+
+				if(editpassword.isEmpty()) {
+
+					DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying under'Generate password link");
+
+					click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
+
+				}else {
+					Log.info("Automatically generated Password value is : "+ editpassword);
+					DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+editpassword);
+				}
+
+				ScrolltoElement(application, "Email", xml);
+
+				//Role	
+				selectAndRemoveValueFromRightDropdown(application, "Roles_Hidden", "roleDropdown_selectedValues", rolestobeAvailableList, "roleDropdown_removeButton");
+				selectAndAddValueFromLeftDropdown(application, "Role_Available", "roleDropdown_available" , rolestobeHiddenList, "roleDropdown_addButton");
+				verifySelectedValuesInsideRightDropdown(application, "Role_Hidden", "roleDropdown_selectedValues");
+
+				//Hide Service
+				selectAndRemoveValueFromRightDropdown(application, "Service_Hidden" , "HideServicesDropdown_selectedValues" , ServicesTobeAvailablelist, "HideService_removeButton");
+				selectAndAddValueFromLeftDropdown(application, "Service_Available", "HideService_Available", ServicesTobeHiddenlist, "HideService_addButton");
+				verifySelectedValuesInsideRightDropdown(application, "Hidden Services", "HideServicesDropdown_selectedValues");
+
+				//Hide Site Order
+				selectAndRemoveValueFromRightDropdown(application, "SiteOrder_Hidden" , "HideSiteOrderDropdown_selectedValues", siteOrdersToBeAvailableList, "hideSiteOrder_removeButton");
+				selectAndAddValueFromLeftDropdown(application, "SiteOrder_Available", "HideSiteOrder_Available" , siteOrdersToBeHiddenList , "hideSiteOrder_addbutton");
+				verifySelectedValuesInsideRightDropdown(application, "Hiden Site Orders" , "HideSiteOrderDropdown_selectedValues");
+
+				scrolltoend();
+				Thread.sleep(1000);
+
+				//Hide Router Tool IPv4 Commands(Cisco)
+				selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Cisco)_Available", "hideRouterToolIpv4_Cisco_selectedvalues", routerToolIPv4CiscoTobeAvailableList, "hideRouterToolIPv4_Cisco_removeButton");
+				selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Cisco)_Hidden", "hideRouterToolIPv4_Cisco_Available", routerToolIPv4CiscoTobeHiddenList, "hideRouterToolIPv4_Cisco_addButton");
+				verifySelectedValuesInsideRightDropdown(application, "Hiden Router Tool IPv4 Commands(Cisco)", "hideRouterToolIpv4_Cisco_selectedvalues");
+
+				//Hide Router Tool IPv4 Commands(Huawei)
+				selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Huawei)_Hidden", "hideRouterToolIpv4_Huawei_selectedvalues", routerToolIPv4HuaweiTobeAvailableList, "hideRouterToolIPv4_Huawei_removeButton");
+				selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Huawei)_Available" , "hideRouterToolIPv4_Huawei_available" , routerToolIPv4HuaweiTobeHiddenList, "hideRouterToolIPv4__Huawei_addButton");
+				verifySelectedValuesInsideRightDropdown(application, "Hideen Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
+
+				scrolltoend();
+				Thread.sleep(1000);
+				click_commonMethod(application, "OK", "OK_button", xml);
+				Thread.sleep(2000);
+				compareText(application, "User update success message", "successmsg", "User successfully updated", xml);
 			}
 			else
 			{
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-			Log.info("No users displayed");
+				Log.info("No users displayed");
 			}
-			
+
+
 			//View User
 			ScrolltoElement(application, "customerdetailsheader", xml);
 			List<WebElement> ExistingUsers1= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
@@ -718,79 +718,80 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				if(!EditUsername.equalsIgnoreCase("null"))
 				{
-				WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+					WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 					EditedUserName.click();
 				}
 				else
 				{
 					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-				AddedUser.click();
+					AddedUser.click();
 				}
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 				Log.info("clicked on Existing user radio button");
-			
-			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-			click_commonMethod(application, "view", "view", xml);
-			ScrolltoElement(application, "usernamevalue", xml);
-			compareText(application, "User Name", "usernamevalue", EditUsername, xml);
-			compareText(application, "First Name", "firstnamevalue", EditFirstname, xml);
-			compareText(application, "SurName", "surnamevalue", EditSurname, xml);
-			compareText(application, "Postal Address", "postaladdressvalue", EditPostaladdress, xml);
-			compareText(application, "Email", "emailvalue", EditEmail, xml);
-			compareText(application, "Phone", "phonevalue", EditPhone, xml);
-			
-			//IP Guardian Accouunt Group
-			compareText_InViewPage(application, "IPGuardian Account Group" , IPGuardianAccountGroup, xml);
-			
-		//Colt Online User
-			compareText_InViewPage(application, "Colt Online User"  , ColtOnlineUser, xml);
-			
-			ScrolltoElement(application, "usernamevalue", xml);
-			Thread.sleep(1000);
-			
-		//Roles
-			//compareTextForViewUserPage(application, labelname, ExpectedText, xml);
-	
-		
-			//Hidden Router Tools IPv4 (Cisco)
-		List<WebElement> HRcisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolIPv4Cisco"));	
-		
-		for(WebElement listofHiddenCiscoValues : HRcisco) {
-			System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
-		}
 
-		scrolltoend();
-		Thread.sleep(2000);
-		
-	//Hidden Router Tool IPv4 (Huawei)
-		List<WebElement> Ipv4CommandHuawei = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv4Huawei"));	
-		
-		for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
-			System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
-		}	
-		
-	
-	//Hidden Router Tools IPv6 (Cisco)
-		List<WebElement> HiddenIPv6cisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv6Cisco"));	
-		
-		for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
-			System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
-		}			
-		
-		scrolltoend();
-		Thread.sleep(2000);
-			click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-			Log.info("------ View User successful ------");
+				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+				click_commonMethod(application, "view", "view", xml);
+				scrollToTop();
+				compareText(application, "User Name", "usernamevalue", EditUsername, xml);
+				compareText(application, "First Name", "firstnamevalue", EditFirstname, xml);
+				compareText(application, "SurName", "surnamevalue", EditSurname, xml);
+				compareText(application, "Postal Address", "postaladdressvalue", EditPostaladdress, xml);
+				compareText(application, "Email", "emailvalue", EditEmail, xml);
+				compareText(application, "Phone", "phonevalue", EditPhone, xml);
+
+				//IP Guardian Accouunt Group
+				GetText(application, "IPGuardian Account Group", "IPGuardianAccountGroup_viewpage");
+
+				//Colt Online User
+				GetText(application, "Colt Online User", "coltonlineuser_viewpage");
+
+				ScrolltoElement(application, "usernamevalue", xml);
+				Thread.sleep(1000);
+
+				//Roles
+				//compareTextForViewUserPage(application, labelname, ExpectedText, xml);
+
+
+				//Hidden Router Tools IPv4 (Cisco)
+				List<WebElement> HRcisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolIPv4Cisco"));	
+
+				for(WebElement listofHiddenCiscoValues : HRcisco) {
+					System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
+					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
+				}
+
+				scrolltoend();
+				Thread.sleep(2000);
+
+				//Hidden Router Tool IPv4 (Huawei)
+				List<WebElement> Ipv4CommandHuawei = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv4Huawei"));	
+
+				for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
+					System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
+					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
+				}	
+
+
+				//Hidden Router Tools IPv6 (Cisco)
+				List<WebElement> HiddenIPv6cisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv6Cisco"));	
+
+				for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
+					System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
+					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
+				}			
+
+				scrolltoend();
+				Thread.sleep(2000);
+				click_commonMethod(application, "Back", "viewpage_backbutton", xml);
+				Log.info("------ View User successful ------");
 			}
 			else
 			{
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-			Log.info("No users displayed");
+				Log.info("No users displayed");
 			}
-			
+
+
 			//Delete User
 			ScrolltoElement(application, "customerdetailsheader", xml);
 			List<WebElement> ExistingUsers2= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
@@ -800,123 +801,124 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				if(!EditUsername.equalsIgnoreCase("null"))
 				{
-				WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+					WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 					EditedUserName.click();
 				}
 				else
 				{
 					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-				AddedUser.click();
+					AddedUser.click();
 				}
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 				Log.info("clicked on Existing user radio button");
-			
-			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-			click_commonMethod(application, "Delete", "delete", xml);
-			Thread.sleep(2000);
-			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-			if(DeleteAlertPopup.isDisplayed())
-			{
-				click_commonMethod(application, "Delete", "deletebutton", xml);
-				compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
-			}
-			else
-			{
-				Log.info("Delete alert popup is not displayed");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-			}
+
+				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+				click_commonMethod(application, "Delete", "delete", xml);
+				Thread.sleep(2000);
+				WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
+				if(DeleteAlertPopup.isDisplayed())
+				{
+					click_commonMethod(application, "Delete", "deletebutton", xml);
+					compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
+				}
+				else
+				{
+					Log.info("Delete alert popup is not displayed");
+					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+				}
 			}
 			else
 			{
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-			Log.info("No users displayed");
+				Log.info("No users displayed");
 			}
 		}
 		else if(!UserGrid.contains("1px"))
 		{
-//			//Edit User
-//			ScrolltoElement(application, "customerdetailsheader", xml);
-//			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
-//			int NoOfUsers = ExistingUsers.size();
-//			System.out.println("Total users:"+ NoOfUsers);
-//
-//			if(NoOfUsers==1 || NoOfUsers>1)
-//			{
-//				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-//				AddedUser.click();
-//				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
-//				Log.info("clicked on Existing user radio button");
-//			
-//			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-//			click_commonMethod(application, "Edit", "edit", xml);
-//			Thread.sleep(2000);
-//			compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
-//			scrollToTop();
-//			edittextFields_commonMethod(application, "User Name", "UserName" , EditUsername, xml);
-//			edittextFields_commonMethod(application, "First Name", "FirstName" , EditFirstname, xml);
-//			edittextFields_commonMethod(application, "Sur Name", "SurName" , EditSurname, xml);
-//			edittextFields_commonMethod(application, "Postal Address", "PostalAddress" , EditPostaladdress, xml);
-//			edittextFields_commonMethod(application, "Email", "Email" , EditEmail, xml);
-//			edittextFields_commonMethod(application, "Phone", "Phone" , EditPhone, xml);
-//			edittextFields_commonMethod(application, "IPGuardian Account Group" , "IPGuardianAccountGroup" , IPGuardianAccountGroup, xml);
-//			edittextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
-//			
-//			String editpassword=getwebelement(xml.getlocator("//locators/"+application+"/Password")).getAttribute("value");
-//			System.out.println("Generated Password is : "+editpassword);
-//			
-//			if(editpassword.isEmpty()) {
-//				
-//				DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying under'Generate password link");
-//				
-//				click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
-//				
-//			}else {
-//				Log.info("Automatically generated Password value is : "+ editpassword);
-//				DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+editpassword);
-//			}
-//
-//			ScrolltoElement(application, "Email", xml);
-//			
-//			//Role	
-//			selectAndRemoveValueFromRightDropdown(application, "Roles_Hidden", "roleDropdown_selectedValues", rolestobeAvailableList, "roleDropdown_removeButton");
-//			selectAndAddValueFromLeftDropdown(application, "Role_Available", "roleDropdown_available" , rolestobeHiddenList, "roleDropdown_addButton");
-//			verifySelectedValuesInsideRightDropdown(application, "Role_Hidden", "roleDropdown_selectedValues");
-//			
-//		//Hide Service
-//			selectAndRemoveValueFromRightDropdown(application, "Service_Hidden" , "HideServicesDropdown_selectedValues" , ServicesTobeAvailablelist, "HideService_removeButton");
-//			selectAndAddValueFromLeftDropdown(application, "Service_Available", "HideService_Available", ServicesTobeHiddenlist, "HideService_addButton");
-//			verifySelectedValuesInsideRightDropdown(application, "Hidden Services", "HideServicesDropdown_selectedValues");
-//			
-//		//Hide Site Order
-//			selectAndRemoveValueFromRightDropdown(application, "SiteOrder_Hidden" , "HideSiteOrderDropdown_selectedValues", siteOrdersToBeAvailableList, "hideSiteOrder_removeButton");
-//			selectAndAddValueFromLeftDropdown(application, "SiteOrder_Available", "HideSiteOrder_Available" , siteOrdersToBeHiddenList , "hideSiteOrder_addbutton");
-//			verifySelectedValuesInsideRightDropdown(application, "Hiden Site Orders" , "HideSiteOrderDropdown_selectedValues");
-//			
-//			scrolltoend();
-//			Thread.sleep(1000);
-//			
-//		//Hide Router Tool IPv4 Commands(Cisco)
-//			selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Cisco)_Available", "hideRouterToolIpv4_Cisco_selectedvalues", routerToolIPv4CiscoTobeAvailableList, "hideRouterToolIPv4_Cisco_removeButton");
-//			selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Cisco)_Hidden", "hideRouterToolIPv4_Cisco_Available", routerToolIPv4CiscoTobeHiddenList, "hideRouterToolIPv4_Cisco_addButton");
-//			verifySelectedValuesInsideRightDropdown(application, "Hiden Router Tool IPv4 Commands(Cisco)", "hideRouterToolIpv4_Cisco_selectedvalues");
-//			
-//		//Hide Router Tool IPv4 Commands(Huawei)
-//			selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Huawei)_Hidden", "hideRouterToolIpv4_Huawei_selectedvalues", routerToolIPv4HuaweiTobeAvailableList, "hideRouterToolIPv4_Huawei_removeButton");
-//			selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Huawei)_Available" , "hideRouterToolIPv4_Huawei_available" , routerToolIPv4HuaweiTobeHiddenList, "hideRouterToolIPv4__Huawei_addButton");
-//			verifySelectedValuesInsideRightDropdown(application, "Hideen Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
-//		
-//			scrolltoend();
-//			Thread.sleep(1000);
-//			click_commonMethod(application, "OK", "OK_button", xml);
-//			Thread.sleep(2000);
-//			compareText(application, "User update success message", "successmsg", "User successfully updated", xml);
-//			}
-//			else
-//			{
-//				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-//			Log.info("No users displayed");
-//			}
-//			
+			//Edit User
+			ScrolltoElement(application, "customerdetailsheader", xml);
+			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+			int NoOfUsers = ExistingUsers.size();
+			System.out.println("Total users:"+ NoOfUsers);
+
+			if(NoOfUsers==1 || NoOfUsers>1)
+			{
+				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+				AddedUser.click();
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+				Log.info("clicked on Existing user radio button");
+
+				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+				click_commonMethod(application, "Edit", "edit", xml);
+				Thread.sleep(2000);
+				compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
+				scrollToTop();
+				edittextFields_commonMethod(application, "User Name", "UserName" , EditUsername, xml);
+				edittextFields_commonMethod(application, "First Name", "FirstName" , EditFirstname, xml);
+				edittextFields_commonMethod(application, "Sur Name", "SurName" , EditSurname, xml);
+				edittextFields_commonMethod(application, "Postal Address", "PostalAddress" , EditPostaladdress, xml);
+				edittextFields_commonMethod(application, "Email", "Email" , EditEmail, xml);
+				edittextFields_commonMethod(application, "Phone", "Phone" , EditPhone, xml);
+				edittextFields_commonMethod(application, "IPGuardian Account Group" , "IPGuardianAccountGroup" , IPGuardianAccountGroup, xml);
+				edittextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
+
+				String editpassword=getwebelement(xml.getlocator("//locators/"+application+"/Password")).getAttribute("value");
+				System.out.println("Generated Password is : "+editpassword);
+
+				if(editpassword.isEmpty()) {
+
+					DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying under'Generate password link");
+
+					click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
+
+				}else {
+					Log.info("Automatically generated Password value is : "+ editpassword);
+					DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+editpassword);
+				}
+
+				ScrolltoElement(application, "Email", xml);
+
+				//Role	
+				selectAndRemoveValueFromRightDropdown(application, "Roles_Hidden", "roleDropdown_selectedValues", rolestobeAvailableList, "roleDropdown_removeButton");
+				selectAndAddValueFromLeftDropdown(application, "Role_Available", "roleDropdown_available" , rolestobeHiddenList, "roleDropdown_addButton");
+				verifySelectedValuesInsideRightDropdown(application, "Role_Hidden", "roleDropdown_selectedValues");
+
+				//Hide Service
+				selectAndRemoveValueFromRightDropdown(application, "Service_Hidden" , "HideServicesDropdown_selectedValues" , ServicesTobeAvailablelist, "HideService_removeButton");
+				selectAndAddValueFromLeftDropdown(application, "Service_Available", "HideService_Available", ServicesTobeHiddenlist, "HideService_addButton");
+				verifySelectedValuesInsideRightDropdown(application, "Hidden Services", "HideServicesDropdown_selectedValues");
+
+				//Hide Site Order
+				selectAndRemoveValueFromRightDropdown(application, "SiteOrder_Hidden" , "HideSiteOrderDropdown_selectedValues", siteOrdersToBeAvailableList, "hideSiteOrder_removeButton");
+				selectAndAddValueFromLeftDropdown(application, "SiteOrder_Available", "HideSiteOrder_Available" , siteOrdersToBeHiddenList , "hideSiteOrder_addbutton");
+				verifySelectedValuesInsideRightDropdown(application, "Hiden Site Orders" , "HideSiteOrderDropdown_selectedValues");
+
+				scrolltoend();
+				Thread.sleep(1000);
+
+				//Hide Router Tool IPv4 Commands(Cisco)
+				selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Cisco)_Available", "hideRouterToolIpv4_Cisco_selectedvalues", routerToolIPv4CiscoTobeAvailableList, "hideRouterToolIPv4_Cisco_removeButton");
+				selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Cisco)_Hidden", "hideRouterToolIPv4_Cisco_Available", routerToolIPv4CiscoTobeHiddenList, "hideRouterToolIPv4_Cisco_addButton");
+				verifySelectedValuesInsideRightDropdown(application, "Hiden Router Tool IPv4 Commands(Cisco)", "hideRouterToolIpv4_Cisco_selectedvalues");
+
+				//Hide Router Tool IPv4 Commands(Huawei)
+				selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Huawei)_Hidden", "hideRouterToolIpv4_Huawei_selectedvalues", routerToolIPv4HuaweiTobeAvailableList, "hideRouterToolIPv4_Huawei_removeButton");
+				selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Huawei)_Available" , "hideRouterToolIPv4_Huawei_available" , routerToolIPv4HuaweiTobeHiddenList, "hideRouterToolIPv4__Huawei_addButton");
+				verifySelectedValuesInsideRightDropdown(application, "Hideen Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
+
+				scrolltoend();
+				Thread.sleep(1000);
+				click_commonMethod(application, "OK", "OK_button", xml);
+				Thread.sleep(2000);
+				compareText(application, "User update success message", "successmsg", "User successfully updated", xml);
+			}
+			else
+			{
+				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+				Log.info("No users displayed");
+			}
+
+
 			//View User
 			ScrolltoElement(application, "customerdetailsheader", xml);
 			List<WebElement> ExistingUsers1= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
@@ -926,79 +928,80 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				if(!EditUsername.equalsIgnoreCase("null"))
 				{
-				WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+					WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 					EditedUserName.click();
 				}
 				else
 				{
 					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-				AddedUser.click();
+					AddedUser.click();
 				}
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 				Log.info("clicked on Existing user radio button");
-			
-			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-			click_commonMethod(application, "view", "view", xml);
-			scrollToTop();
-			compareText(application, "User Name", "usernamevalue", EditUsername, xml);
-			compareText(application, "First Name", "firstnamevalue", EditFirstname, xml);
-			compareText(application, "SurName", "surnamevalue", EditSurname, xml);
-			compareText(application, "Postal Address", "postaladdressvalue", EditPostaladdress, xml);
-			compareText(application, "Email", "emailvalue", EditEmail, xml);
-			compareText(application, "Phone", "phonevalue", EditPhone, xml);
-			
-			//IP Guardian Accouunt Group
-			GetText(application, "IPGuardian Account Group", "IPGuardianAccountGroup_viewpage");
-			
-		//Colt Online User
-			GetText(application, "Colt Online User", "coltonlineuser_viewpage");
-			
-			ScrolltoElement(application, "phonevalue", xml);
-			Thread.sleep(1000);
-			
-		//Roles
-			//compareTextForViewUserPage(application, labelname, ExpectedText, xml);
-	
-		
-			//Hidden Router Tools IPv4 (Cisco)
-		List<WebElement> HRcisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolIPv4Cisco"));	
-		
-		for(WebElement listofHiddenCiscoValues : HRcisco) {
-			System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
-		}
 
-		scrolltoend();
-		Thread.sleep(2000);
-		
-	//Hidden Router Tool IPv4 (Huawei)
-		List<WebElement> Ipv4CommandHuawei = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv4Huawei"));	
-		
-		for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
-			System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
-		}	
-	
-	//Hidden Router Tools IPv6 (Cisco)
-		List<WebElement> HiddenIPv6cisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv6Cisco"));	
-		
-		for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
-			System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
-		}			
-		
-		scrolltoend();
-		Thread.sleep(2000);
-		
-			click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-			Log.info("------ View User successful ------");
+				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+				click_commonMethod(application, "view", "view", xml);
+				scrollToTop();
+				compareText(application, "User Name", "usernamevalue", EditUsername, xml);
+				compareText(application, "First Name", "firstnamevalue", EditFirstname, xml);
+				compareText(application, "SurName", "surnamevalue", EditSurname, xml);
+				compareText(application, "Postal Address", "postaladdressvalue", EditPostaladdress, xml);
+				compareText(application, "Email", "emailvalue", EditEmail, xml);
+				compareText(application, "Phone", "phonevalue", EditPhone, xml);
+
+				//IP Guardian Accouunt Group
+				GetText(application, "IPGuardian Account Group", "IPGuardianAccountGroup_viewpage");
+
+				//Colt Online User
+				GetText(application, "Colt Online User", "coltonlineuser_viewpage");
+
+				ScrolltoElement(application, "phonevalue", xml);
+				Thread.sleep(1000);
+
+				//Roles
+				//compareTextForViewUserPage(application, labelname, ExpectedText, xml);
+
+
+				//Hidden Router Tools IPv4 (Cisco)
+				List<WebElement> HRcisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolIPv4Cisco"));	
+
+				for(WebElement listofHiddenCiscoValues : HRcisco) {
+					System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
+					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
+				}
+
+				scrolltoend();
+				Thread.sleep(2000);
+
+				//Hidden Router Tool IPv4 (Huawei)
+				List<WebElement> Ipv4CommandHuawei = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv4Huawei"));	
+
+				for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
+					System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
+					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
+				}	
+
+				//Hidden Router Tools IPv6 (Cisco)
+				List<WebElement> HiddenIPv6cisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv6Cisco"));	
+
+				for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
+					System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
+					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
+				}			
+
+				scrolltoend();
+				Thread.sleep(2000);
+
+				click_commonMethod(application, "Back", "viewpage_backbutton", xml);
+				Log.info("------ View User successful ------");
 			}
 			else
 			{
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-			Log.info("No users displayed");
+				Log.info("No users displayed");
 			}
-			
+
+
 			//Delete User
 			ScrolltoElement(application, "customerdetailsheader", xml);
 			List<WebElement> ExistingUsers2= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
@@ -1008,173 +1011,173 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				if(!EditUsername.equalsIgnoreCase("null"))
 				{
-				WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+					WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 					EditedUserName.click();
 				}
 				else
 				{
 					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-				AddedUser.click();
+					AddedUser.click();
 				}
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 				Log.info("clicked on Existing user radio button");
-			
-			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-			click_commonMethod(application, "Delete", "delete", xml);
-			Thread.sleep(2000);
-			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-			if(DeleteAlertPopup.isDisplayed())
-			{
-				click_commonMethod(application, "Delete", "deletebutton", xml);
-				compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
-			}
-			else
-			{
-				Log.info("Delete alert popup is not displayed");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-			}
+
+				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+				click_commonMethod(application, "Delete", "delete", xml);
+				Thread.sleep(2000);
+				WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
+				if(DeleteAlertPopup.isDisplayed())
+				{
+					click_commonMethod(application, "Delete", "deletebutton", xml);
+					compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
+				}
+				else
+				{
+					Log.info("Delete alert popup is not displayed");
+					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+				}
 			}
 			else
 			{
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-			Log.info("No users displayed");
+				Log.info("No users displayed");
 			}
 		}
 	}
 
 	public void selectAndAddValueFromLeftDropdown(String application, String labelname, String xpath, String[] selectValue, String xpathForAddButton) {
-		
+
 		WebElement availability=null;
 		List<String> ls = new ArrayList<String>();
-		 
-        try{
-        	
-              List<WebElement> elements= getwebelements(xml.getlocator("//locators/" + application + "/"+ xpath +""));
-              int element_count= elements.size();
-              
-          if(element_count>=1) {
-        	  
-           //Print list of values inside Dropdown 
-              for(WebElement a : elements) {
-			            ls.add(a.getText());
-			    }
-		
-			    DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
-	            System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
-	            
-	      //select value inside the dropdown     
-              for(int i=0; i<selectValue.length; i++)
-              {
-            	 Thread.sleep(5000);
-                 for(int j=0; j<ls.size() ; j++) {
-            	  System.out.println("ls value "+ ls.get(j));
-                    if(selectValue[i].equals(ls.get(j)))
-                    {
-                    	  elements.get(j).click();
-                    	  DriverTestcase.logger.log(LogStatus.PASS, elements.get(j) + " got selected" );
-                          Thread.sleep(1000);
-                          click_commonMethod(application, "Add", xpathForAddButton , xml);
-                          Thread.sleep(5000);
-                    }
-                 }
-              }
-              
-          }else {
-        	  DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
-        	  
-        	  System.out.println("No values displaying under " + labelname + " available dropdown");
-          }
-        }catch(Exception e) {
-              e.printStackTrace();
-              DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
-              System.out.println( "No values displaying under "+labelname + " available dropdown");
-        }
+
+		try{
+
+			List<WebElement> elements= getwebelements(xml.getlocator("//locators/" + application + "/"+ xpath +""));
+			int element_count= elements.size();
+
+			if(element_count>=1) {
+
+				//Print list of values inside Dropdown 
+				for(WebElement a : elements) {
+					ls.add(a.getText());
+				}
+
+				DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
+				System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+
+				//select value inside the dropdown     
+				for(int i=0; i<selectValue.length; i++)
+				{
+					Thread.sleep(5000);
+					for(int j=0; j<ls.size() ; j++) {
+						System.out.println("ls value "+ ls.get(j));
+						if(selectValue[i].equals(ls.get(j)))
+						{
+							elements.get(j).click();
+							DriverTestcase.logger.log(LogStatus.PASS, elements.get(j) + " got selected" );
+							Thread.sleep(1000);
+							click_commonMethod(application, "Add", xpathForAddButton , xml);
+							Thread.sleep(5000);
+						}
+					}
+				}
+
+			}else {
+				DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
+
+				System.out.println("No values displaying under " + labelname + " available dropdown");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
+			System.out.println( "No values displaying under "+labelname + " available dropdown");
+		}
 	}
 
-	
+
 	public void verifySelectedValuesInsideRightDropdown(String application, String labelname, String xpath) {
 
 		//getAllValuesInsideDropDown
-			 boolean availability=false;
-			 List<String> ls = new ArrayList<String>();
-			 
-			 try{
-	            	
-                 List<WebElement> elements= getwebelements(xml.getlocator("//locators/" + application + "/"+ xpath +""));
-                 int element_count= elements.size();
-                 
-             if(element_count>=1) {
-           	  
-              //Print list of values inside Dropdown 
-                 for(WebElement a : elements) {
-				            ls.add(a.getText());
-				    }
-			
-				    DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
-		            System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
-             }else {
-           	  DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
-           	  
-           	  System.out.println("No values displaying under " + labelname + " available dropdown");
-             }
-           }catch(Exception e) {
-                 e.printStackTrace();
-                 DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
-                 System.out.println( "No values displaying under "+labelname + " available dropdown");
-           }
-	}
-	
-	public void selectAndRemoveValueFromRightDropdown(String application, String labelname, String xpath, String[] selectValue, String xpathForRemoveButton) {
-		
-		WebElement availability=null;
+		boolean availability=false;
 		List<String> ls = new ArrayList<String>();
-		 
-        try{
-              List<WebElement> elements= getwebelements(xml.getlocator("//locators/" + application + "/"+ xpath +""));
-              int element_count= elements.size();
-              
-          if(element_count>=1) {
-        	  
-           //Print list of values inside Dropdown 
-              for(WebElement a : elements) {
-			            ls.add(a.getText());
-			    }
-		
-			    DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
-	            System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
-	            
-	      //select value inside the dropdown     
-              for(int i=0; i<selectValue.length; i++)
-              {
-            	 Thread.sleep(2000);
-                 for(int j=0; j<ls.size() ; j++) {
-            	  System.out.println("ls value "+ ls.get(j));
-                    if(selectValue[i].equals(ls.get(j)))
-                    {
-                    	  elements.get(j).click();
-                    	  DriverTestcase.logger.log(LogStatus.PASS, elements.get(j) + " got selected" );
-                          Thread.sleep(1000);
-                          WebElement removeButton=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathForRemoveButton +"").replace("value", "<<"));
-                          Clickon(removeButton);
-                          DriverTestcase.logger.log(LogStatus.PASS, "clicked on remove '<<' button");
-                          Thread.sleep(3000);
-                    }
-                 }
-              }
-              
-          }else {
-        	  DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
-        	  
-        	  System.out.println("No values displaying under " + labelname + " available dropdown");
-          }
-        }catch(Exception e) {
-              e.printStackTrace();
-              DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
-              System.out.println( "No values displaying under "+labelname + " available dropdown");
-        }
+
+		try{
+
+			List<WebElement> elements= getwebelements(xml.getlocator("//locators/" + application + "/"+ xpath +""));
+			int element_count= elements.size();
+
+			if(element_count>=1) {
+
+				//Print list of values inside Dropdown 
+				for(WebElement a : elements) {
+					ls.add(a.getText());
+				}
+
+				DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
+				System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+			}else {
+				DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
+
+				System.out.println("No values displaying under " + labelname + " available dropdown");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
+			System.out.println( "No values displaying under "+labelname + " available dropdown");
+		}
 	}
 
-	
+	public void selectAndRemoveValueFromRightDropdown(String application, String labelname, String xpath, String[] selectValue, String xpathForRemoveButton) {
+
+		WebElement availability=null;
+		List<String> ls = new ArrayList<String>();
+
+		try{
+			List<WebElement> elements= getwebelements(xml.getlocator("//locators/" + application + "/"+ xpath +""));
+			int element_count= elements.size();
+
+			if(element_count>=1) {
+
+				//Print list of values inside Dropdown 
+				for(WebElement a : elements) {
+					ls.add(a.getText());
+				}
+
+				DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
+				System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+
+				//select value inside the dropdown     
+				for(int i=0; i<selectValue.length; i++)
+				{
+					Thread.sleep(2000);
+					for(int j=0; j<ls.size() ; j++) {
+						System.out.println("ls value "+ ls.get(j));
+						if(selectValue[i].equals(ls.get(j)))
+						{
+							elements.get(j).click();
+							DriverTestcase.logger.log(LogStatus.PASS, elements.get(j) + " got selected" );
+							Thread.sleep(1000);
+							WebElement removeButton=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathForRemoveButton +"").replace("value", "<<"));
+							Clickon(removeButton);
+							DriverTestcase.logger.log(LogStatus.PASS, "clicked on remove '<<' button");
+							Thread.sleep(3000);
+						}
+					}
+				}
+
+			}else {
+				DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
+
+				System.out.println("No values displaying under " + labelname + " available dropdown");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
+			System.out.println( "No values displaying under "+labelname + " available dropdown");
+		}
+	}
+
+
 	public void verifyorderpanelinformation_Existingorder(String application, String existingorder,
 			String expectedorderno, String expectedvoicelineno) throws InterruptedException, DocumentException {
 
@@ -1270,7 +1273,7 @@ public class APT_NGINHelper extends DriverHelper {
 		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
 		Log.info("Navigated to order panel in view service page");
 		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-		
+
 		//Edit Order
 		Thread.sleep(1000);
 		ScrolltoElement(application, "userspanel_header", xml);
@@ -1417,7 +1420,7 @@ public class APT_NGINHelper extends DriverHelper {
 		else
 		{
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
-		Log.info("Didn't navigate to view service page");
+			Log.info("Didn't navigate to view service page");
 		}
 		//Edit service
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
@@ -1492,7 +1495,7 @@ public class APT_NGINHelper extends DriverHelper {
 					else
 					{
 						DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request is not logged");
-					Log.info("Service status change request is not logged");
+						Log.info("Service status change request is not logged");
 					}
 				}
 				catch(StaleElementReferenceException e)
@@ -1504,7 +1507,7 @@ public class APT_NGINHelper extends DriverHelper {
 			else
 			{
 				DriverTestcase.logger.log(LogStatus.FAIL, "Status link is not working");
-			Log.info("No service history to display");
+				Log.info("No service history to display");
 			}
 		}
 		else
@@ -1550,62 +1553,62 @@ public class APT_NGINHelper extends DriverHelper {
 
 		//Bulk interface
 
-//		//cancel bulk interface
-//		ScrolltoElement(application, "orderpanelheader", xml);
-//		Thread.sleep(1000);
-//		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
-//		click_commonMethod(application, "Bulk Interface", "bulkinterfacelink", xml);
-//		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
-//		click_commonMethod(application, "Cancel", "bulkjobcancel", xml);
-//		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-//		{
-//			Log.info("Navigated to view service page");
-//			System.out.println("Navigated to view service page");
-//		}
-//
-//		//submit bulk job
-//		ScrolltoElement(application, "orderpanelheader", xml);
-//		Thread.sleep(1000);
-//		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
-//		click_commonMethod(application, "Bulk Interface", "bulkinterfacelink", xml);
-//		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
-//		WebElement BulkJob_Choosefile_button= getwebelement(xml.getlocator("//locators/" + application + "/bulkjob_choosefilebutton"));
-//		BulkJob_Choosefile_button.sendKeys(bulkjob_filepath);
-//		click_commonMethod(application, "Submit", "bulkjobsubmit", xml);
-//		String bulkjob_successmsg= GetText(application, "BulkJob_msg", "successmsg");
-//		if(bulkjob_successmsg.contains("success"))
-//		{
-//			DriverTestcase.logger.log(LogStatus.PASS, "Step :" + bulkjob_successmsg);
-//			Log.info(bulkjob_successmsg);
-//		}
-//		else
-//		{
-//			DriverTestcase.logger.log(LogStatus.FAIL, "Step :" + bulkjob_successmsg);
-//			Log.info(bulkjob_successmsg);
-//		}
-//		
-//		//Archive link in bulk interface page
-//		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
-//		click_commonMethod(application, "Archive", "bulkinterface_archivelink", xml);
-//		compareText(application, "Status history found message", "successmsg", "Service Status History Found Successfully.", xml);
-//		scrolltoend();
-//		click_commonMethod(application, "Cancel", "bulkinterfacepage_cancel", xml);
-//
-//		//Refresh link in bulk interface page
-//		scrollToTop();
-//		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
-//		click_commonMethod(application, "Archive", "bulkinterface_refreshlink", xml);
-//		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
-//		DriverTestcase.logger.log(LogStatus.PASS, "Step : Bulk Interface page refresh successful");
-//		Log.info("Bulk Interface page refresh successful");
-//		Thread.sleep(1000);
-//		scrolltoend();
-//		click_commonMethod(application, "Cancel", "bulkinterfacepage_cancel", xml);
-//		Thread.sleep(2000);
+		//		//cancel bulk interface
+		//		ScrolltoElement(application, "orderpanelheader", xml);
+		//		Thread.sleep(1000);
+		//		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
+		//		click_commonMethod(application, "Bulk Interface", "bulkinterfacelink", xml);
+		//		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
+		//		click_commonMethod(application, "Cancel", "bulkjobcancel", xml);
+		//		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
+		//		{
+		//			Log.info("Navigated to view service page");
+		//			System.out.println("Navigated to view service page");
+		//		}
+		//
+		//		//submit bulk job
+		//		ScrolltoElement(application, "orderpanelheader", xml);
+		//		Thread.sleep(1000);
+		//		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
+		//		click_commonMethod(application, "Bulk Interface", "bulkinterfacelink", xml);
+		//		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
+		//		WebElement BulkJob_Choosefile_button= getwebelement(xml.getlocator("//locators/" + application + "/bulkjob_choosefilebutton"));
+		//		BulkJob_Choosefile_button.sendKeys(bulkjob_filepath);
+		//		click_commonMethod(application, "Submit", "bulkjobsubmit", xml);
+		//		String bulkjob_successmsg= GetText(application, "BulkJob_msg", "successmsg");
+		//		if(bulkjob_successmsg.contains("success"))
+		//		{
+		//			DriverTestcase.logger.log(LogStatus.PASS, "Step :" + bulkjob_successmsg);
+		//			Log.info(bulkjob_successmsg);
+		//		}
+		//		else
+		//		{
+		//			DriverTestcase.logger.log(LogStatus.FAIL, "Step :" + bulkjob_successmsg);
+		//			Log.info(bulkjob_successmsg);
+		//		}
+		//		
+		//		//Archive link in bulk interface page
+		//		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
+		//		click_commonMethod(application, "Archive", "bulkinterface_archivelink", xml);
+		//		compareText(application, "Status history found message", "successmsg", "Service Status History Found Successfully.", xml);
+		//		scrolltoend();
+		//		click_commonMethod(application, "Cancel", "bulkinterfacepage_cancel", xml);
+		//
+		//		//Refresh link in bulk interface page
+		//		scrollToTop();
+		//		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
+		//		click_commonMethod(application, "Archive", "bulkinterface_refreshlink", xml);
+		//		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
+		//		DriverTestcase.logger.log(LogStatus.PASS, "Step : Bulk Interface page refresh successful");
+		//		Log.info("Bulk Interface page refresh successful");
+		//		Thread.sleep(1000);
+		//		scrolltoend();
+		//		click_commonMethod(application, "Cancel", "bulkinterfacepage_cancel", xml);
+		//		Thread.sleep(2000);
 		//Service delete is performed in the last test case
 	}
 
-	
+
 
 	public void verifyManagementOptionspanel(String application) throws InterruptedException, DocumentException, IOException {
 
@@ -1642,9 +1645,9 @@ public class APT_NGINHelper extends DriverHelper {
 		else
 		{
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Add link is not displaying under Reseller panel");
-		Log.info("Add link is not displaying under Reseller panel");
+			Log.info("Add link is not displaying under Reseller panel");
 		}
-		
+
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
 
 	}
@@ -1653,7 +1656,7 @@ public class APT_NGINHelper extends DriverHelper {
 	public void AddReseller(String application, String ocn, String email, String city, String streetname, String streetno, String pobox, String zipcode, String phone, String fax) throws InterruptedException, DocumentException, IOException {
 		ScrolltoElement(application, "servicepanel_header", xml);
 		isDisplayed(application, "resellerheader", "Reseller Header");
-	
+
 		// verify customer name column
 		compareText(application, "Customer Name", "reseller_customername_column", "Customer Name", xml);
 		// verify status column
@@ -1742,8 +1745,8 @@ public class APT_NGINHelper extends DriverHelper {
 		else
 		{
 			Log.info("Reseller is not added in the grid");
-		System.out.println("Reseller is not added in the grid");
-		DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
+			System.out.println("Reseller is not added in the grid");
+			DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
 		}
 		ResellerName= ocn;		
 	}
@@ -1799,7 +1802,7 @@ public class APT_NGINHelper extends DriverHelper {
 			Log.info("Reseller is not added in the grid");
 			System.out.println("Reseller is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
-			
+
 		}
 
 		//View reseller
@@ -1901,7 +1904,7 @@ public class APT_NGINHelper extends DriverHelper {
 			else
 			{
 				DriverTestcase.logger.log(LogStatus.FAIL, "Step : View link is not displaying under Reseller panel");
-			Log.info("View link is not displaying under Reseller panel");
+				Log.info("View link is not displaying under Reseller panel");
 			}
 		}
 		else
@@ -1927,8 +1930,8 @@ public class APT_NGINHelper extends DriverHelper {
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Add link is not displaying under Customer panel");
 			Log.info("Add link is not displaying under Customer panel");
 		}
-		
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/customerheader")));
+
+		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/customerheader")));
 	}
 
 	String Customername=null;
@@ -1975,7 +1978,7 @@ public class APT_NGINHelper extends DriverHelper {
 		warningMessage_commonMethod(application, "addcustomer_streetno_warningmsg", "Street Number", xml);
 		warningMessage_commonMethod(application, "addcustomer_pobox_warningmsg", "PO Box", xml);
 		warningMessage_commonMethod(application, "addcustomer_zipcode_warningmsg", "ZIP Code", xml);
-				
+
 		//Add Customer
 		//Select Country from dropdown
 		Thread.sleep(1000);
@@ -2012,7 +2015,7 @@ public class APT_NGINHelper extends DriverHelper {
 			else
 			{
 				DriverTestcase.logger.log(LogStatus.FAIL, "Default checkbox is not checked by default");
-			Log.info("Default checkbox is not checked by default");
+				Log.info("Default checkbox is not checked by default");
 			}
 		}
 
@@ -2172,11 +2175,11 @@ public class APT_NGINHelper extends DriverHelper {
 			}
 
 		}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : No existing customer displaying under customer panel");
-				Log.info("No existing customer displaying under customer panel");
-			}
+		else
+		{
+			DriverTestcase.logger.log(LogStatus.FAIL, "Step : No existing customer displaying under customer panel");
+			Log.info("No existing customer displaying under customer panel");
+		}
 
 		//View customer
 		ScrolltoElement(application, "resellerheader", xml);
@@ -2228,7 +2231,7 @@ public class APT_NGINHelper extends DriverHelper {
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : No existing customer displaying under customer panel");
 			Log.info("No existing customer displaying under customer panel");
 		}
-		
+
 		//Delete customer in view customer page
 		ScrolltoElement(application, "resellerheader", xml);
 		WebElement AddedCustomer2= getwebelement("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ Customername +"')]/parent::div//input[@type='radio']");
@@ -2525,6 +2528,7 @@ public class APT_NGINHelper extends DriverHelper {
 			System.out.println("Customer Name for Added SAN: "+ AddedSAN_Customervalue);
 			sa.assertEquals(AddedSAN_Customervalue,SAN_Customername);
 			DriverTestcase.logger.log(LogStatus.PASS, "Customer Name for Added SAN is displayed as : " + AddedSAN_Customervalue);
+
 		}
 
 		else
@@ -2537,7 +2541,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 
 	public void verifySANLinks(String application, String customernamevalue, String sannumbervalue, String portinnumber, String portoutnumber, String edit_serviceprofilevalue, String supervisionfieldvalue, String edit_supervisionfieldvalue, String maxcallduration, String chargebandname, String predestinationnumber, String ringtonumber, String announcementtoplay_value, String routingforpayphone_value, String routingformobile_value, String defaultrouting_value, String RingToNumber_Checkbox, String AnnouncementToPlay_Checkbox, String ComplexRouting_Checkbox, String defaultroutebusy_value, String noanswer_value, String networkcongestion, String priceannouncementvalue, String priceannoriginvalue, String internationaloutgoingcalls_checkbox, String internationalincomingcalls_checkbox, String mobilecallsallowed_checkbox, String payphoneblocking_checkbox, String noreplytimervalue, String webaccessblocked_checkbox, String cpsfreeformatvalue, String sanblock_checkbox, String focenabled_checkbox, String enablepriceannouncement_checkbox, String select_sansearchtype, String interruptiblepriceannouncement_checkbox, String valueinprice, String sendfci_checkbox, String sendsci_checkbox, String enablecallerconfirmation_checkbox, String callerconfirmationannouncementvalue, String callerconfirmationdigitvalue, String numberofrepetitionsallowedvalue, String edit_interruptiblepriceannouncement_checkbox, String edit_enablepriceannouncement_checkbox, String edit_valueinprice, String edit_sendfci_checkbox, String edit_sendsci_checkbox, String edit_enablecallerconfirmation_checkbox, String edit_callerconfirmationannouncementvalue, String edit_callerconfirmationdigitvalue, String edit_numberofrepetitionsallowedvalue, String edit_chargebandname, String edit_priceannouncementvalue, String edit_priceannoriginvalue, String edit_internationaloutgoingcalls_checkbox, String edit_internationalincomingcalls_checkbox, String edit_mobilecallsallowed_checkbox, String edit_noreplytimervalue, String edit_maxcallduration, String edit_payphoneblocking_checkbox, String edit_webaccessblocked_checkbox, String edit_sanblock_checkbox, String edit_focenabled_checkbox, String edit_ringtonumber_checkbox, String edit_announcementtoplay_checkbox, String edit_complexroute_checkbox, String edit_predestinationnumber) throws InterruptedException, DocumentException, IOException {
-		
+
 		//Edit SAN link in View SAN page
 		ScrolltoElement(application, "customerheader", xml);
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
@@ -2549,11 +2553,11 @@ public class APT_NGINHelper extends DriverHelper {
 		cleartext(application, "SAN Number Search", "sannumbersearchfield");
 		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
-		
+
 		WebElement SANGridCheck= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid= SANGridCheck.getAttribute("style");
 		WebElement AddedSAN= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + customernamevalue + "')]/parent::div//input[@type='radio']");
-		
+
 		if(!SANGrid.contains("height: 1px"))
 		{
 			Clickon(AddedSAN);
@@ -2563,7 +2567,7 @@ public class APT_NGINHelper extends DriverHelper {
 			Thread.sleep(2000);
 			scrollToTop();
 			compareText(application, "Edit SAN Header", "editsan_header", "Edit SAN", xml);
-			
+
 			//verify Customer Name field
 			if(getwebelement(xml.getlocator("//locators/" + application + "/editsan_customername")).getAttribute("readonly")!=null)
 			{
@@ -2578,7 +2582,7 @@ public class APT_NGINHelper extends DriverHelper {
 				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Customer Name field is enabled");
 				Log.info("Customer Name field is enabled");
 			}
-			
+
 			//verify SAN Number field
 			if(getwebelement(xml.getlocator("//locators/" + application + "/editsan_sannumber")).getAttribute("readonly")!=null)
 			{
@@ -2593,13 +2597,13 @@ public class APT_NGINHelper extends DriverHelper {
 				DriverTestcase.logger.log(LogStatus.FAIL, "Step : SAN Number field is enabled");
 				Log.info("SAN Number field is enabled");
 			}
-			
+
 			//Select service profile from dropdown
 			addDropdownValues_commonMethod(application, "Service Profile", "serviceprofile", edit_serviceprofilevalue, xml);
 			Thread.sleep(1000);
 			addDropdownValues_commonMethod(application, "Supervision mode", "supervisionfield", edit_supervisionfieldvalue, xml);
 			//GetText(application, "Supervision mode", "supervisionfield");
-			
+
 			if(internationaloutgoingcalls_checkbox.equalsIgnoreCase("Yes"))
 			{
 				editcheckbox_commonMethod(application, edit_internationaloutgoingcalls_checkbox, "internationaloutgoingforbidden_checkbox", "International Outgoing Calls Forbidden", xml);
@@ -2631,8 +2635,8 @@ public class APT_NGINHelper extends DriverHelper {
 			}
 			if(!edit_noreplytimervalue.equalsIgnoreCase("null"))
 			{
-			cleartext(application, "No reply timer value", "noreplytimervalue");
-			addtextFields_commonMethod(application, "No reply timer value", "noreplytimervalue", edit_noreplytimervalue, xml);
+				cleartext(application, "No reply timer value", "noreplytimervalue");
+				addtextFields_commonMethod(application, "No reply timer value", "noreplytimervalue", edit_noreplytimervalue, xml);
 			}
 			else
 			{
@@ -2640,8 +2644,8 @@ public class APT_NGINHelper extends DriverHelper {
 			}
 			if(!edit_maxcallduration.equalsIgnoreCase("null"))
 			{
-			cleartext(application, "Max call duration", "maxcallduration");
-			addtextFields_commonMethod(application, "Max call duration", "maxcallduration", edit_maxcallduration, xml);
+				cleartext(application, "Max call duration", "maxcallduration");
+				addtextFields_commonMethod(application, "Max call duration", "maxcallduration", edit_maxcallduration, xml);
 			}
 			else
 			{
@@ -2649,7 +2653,7 @@ public class APT_NGINHelper extends DriverHelper {
 			}
 			//Select charge band name from dropdown
 			addDropdownValues_commonMethod(application, "Charge Band Name", "chargebandname", edit_chargebandname, xml);
-			
+
 			if(payphoneblocking_checkbox.equalsIgnoreCase("Yes"))
 			{
 				editcheckbox_commonMethod(application, edit_payphoneblocking_checkbox, "payphoneblockingenabled", "Pay phone blocking enabled", xml);
@@ -2671,7 +2675,7 @@ public class APT_NGINHelper extends DriverHelper {
 				editcheckbox_commonMethod(application, edit_webaccessblocked_checkbox, "webaccessblocked", "Web Access Blocked", xml);
 			}
 			ScrolltoElement(application, "sanblock", xml);
-			
+
 			if(sanblock_checkbox.equalsIgnoreCase("Yes"))
 			{
 				editcheckbox_commonMethod(application, edit_sanblock_checkbox, "sanblock", "SAN Block", xml);
@@ -2692,14 +2696,14 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				editcheckbox_commonMethod(application, edit_focenabled_checkbox, "focenabled", "FOC Enabled", xml);
 			}
-			
+
 			cleartext(application, "Pre destination number", "predestinationnumber");
 			addtextFields_commonMethod(application, "Pre destination number", "predestinationnumber", predestinationnumber, xml);
 			String CPSFreeFormatValue= getwebelement(xml.getlocator("//locators/" + application + "/cpsfreeformat")).getAttribute("value");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : CPS Free Format field value is displayed as:"+ CPSFreeFormatValue);
 			String CPSSANEncodedValue= getwebelement(xml.getlocator("//locators/" + application + "/cpssanencoded")).getAttribute("value");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : 'CPS: SAN encoded in modulo80' field value is displayed as:"+ CPSSANEncodedValue);
-			
+
 			if(RingToNumber_Checkbox.equalsIgnoreCase("YES"))
 			{
 				editcheckbox_commonMethod(application, edit_ringtonumber_checkbox, "ringtonumber_radiobutton", "'Ring To Number' radio", xml);
@@ -2737,7 +2741,7 @@ public class APT_NGINHelper extends DriverHelper {
 				cleartext(application, "Network Congestion", "networkcongestion");
 				addtextFields_commonMethod(application, "Network Congestion", "networkcongestion", networkcongestion, xml);
 			}
-			
+
 			if(enablepriceannouncement_checkbox.equalsIgnoreCase("Yes"))
 			{
 				editcheckbox_commonMethod(application, edit_enablepriceannouncement_checkbox, "enablepriceannouncement", "Enable Price Announcement", xml);
@@ -2748,7 +2752,7 @@ public class APT_NGINHelper extends DriverHelper {
 			Thread.sleep(1000);
 			click_commonMethod(application, "Add", "addsan_addbutton", xml);
 			Thread.sleep(2000);
-			
+
 			if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
 			{
 				Log.info("Navigated to view SAN page");
@@ -2769,7 +2773,7 @@ public class APT_NGINHelper extends DriverHelper {
 					DriverTestcase.logger.log(LogStatus.FAIL, "Step: Didn't navigate to view service page");
 					Log.info("Didn't navigate to view service page");
 				}
-				
+
 			}
 			else
 			{
@@ -2777,7 +2781,7 @@ public class APT_NGINHelper extends DriverHelper {
 				System.out.println("SAN not updated");
 				DriverTestcase.logger.log(LogStatus.FAIL, "Step: SAN not updated");
 			}
-		
+
 		}
 		else
 		{
@@ -2787,7 +2791,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 
 		//======================================
-		
+
 		//View SAN
 		ScrolltoElement(application, "customerheader", xml);
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
@@ -2877,21 +2881,21 @@ public class APT_NGINHelper extends DriverHelper {
 			click_commonMethod(application, "Edit SAN", "editsan_link", xml);
 			if(getwebelement(xml.getlocator("//locators/" + application + "/editsan_header")).isDisplayed())
 			{
-			compareText(application, "Edit SAN Header", "editsan_header", "Edit SAN", xml);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to Edit SAN page");
-			Log.info("Navigated to Edit SAN page");
-			scrolltoend();
-			click_commonMethod(application, "Cancel", "cancelbutton", xml);
-			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-			{
-				Log.info("Navigated to view service page");
-				System.out.println("Navigated to view service page");
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step: Didn't navigate to view service page");
-				Log.info("Didn't navigate to view service page");
-			}
+				compareText(application, "Edit SAN Header", "editsan_header", "Edit SAN", xml);
+				DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to Edit SAN page");
+				Log.info("Navigated to Edit SAN page");
+				scrolltoend();
+				click_commonMethod(application, "Cancel", "cancelbutton", xml);
+				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
+				{
+					Log.info("Navigated to view service page");
+					System.out.println("Navigated to view service page");
+				}
+				else
+				{
+					DriverTestcase.logger.log(LogStatus.FAIL, "Step: Didn't navigate to view service page");
+					Log.info("Didn't navigate to view service page");
+				}
 			}
 			else
 			{
@@ -2905,8 +2909,8 @@ public class APT_NGINHelper extends DriverHelper {
 			System.out.println("SAN is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step: SAN is not added in the grid");
 		}
-			
-		
+
+
 		//Add Another SAN link in view SAN page
 		ScrolltoElement(application, "customerheader", xml);
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
@@ -2918,20 +2922,20 @@ public class APT_NGINHelper extends DriverHelper {
 		cleartext(application, "SAN Number Search", "sannumbersearchfield");
 		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
-		
-			WebElement SANGridCheck2= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
-			String SANGrid2= SANGridCheck2.getAttribute("style");
-			System.out.println("Customer Name displaying: " +customernamevalue);
-			WebElement AddedSAN2= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
-			if(!SANGrid2.contains("height: 1px"))
-			{
-				Clickon(AddedSAN2);
-				Thread.sleep(1000);
 
-				click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
-				click_commonMethod(application, "View SAN link", "viewsan_link", xml);
-				compareText(application, "View SAN Header", "viewsan_header", "View SAN", xml);
-				scrollToTop();
+		WebElement SANGridCheck2= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
+		String SANGrid2= SANGridCheck2.getAttribute("style");
+		System.out.println("Customer Name displaying: " +customernamevalue);
+		WebElement AddedSAN2= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
+		if(!SANGrid2.contains("height: 1px"))
+		{
+			Clickon(AddedSAN2);
+			Thread.sleep(1000);
+
+			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
+			click_commonMethod(application, "View SAN link", "viewsan_link", xml);
+			compareText(application, "View SAN Header", "viewsan_header", "View SAN", xml);
+			scrollToTop();
 			click_commonMethod(application, "Action dropdown", "viewsan_actiondropdown", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Add Another SAN", "addanothersanlink", xml);
@@ -2943,45 +2947,45 @@ public class APT_NGINHelper extends DriverHelper {
 				Log.info("Navigated to Add SAN page");
 				scrolltoend();
 				click_commonMethod(application, "Cancel", "cancelbutton", xml);
-			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-			{
-				Log.info("Navigated to view service page");
-				System.out.println("Navigated to view service page");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step: Navigated to view service page");
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step: Didn't navigate to view service page");
-				Log.info("Didn't navigate to view service page");
-			}
+				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
+				{
+					Log.info("Navigated to view service page");
+					System.out.println("Navigated to view service page");
+					DriverTestcase.logger.log(LogStatus.FAIL, "Step: Navigated to view service page");
+				}
+				else
+				{
+					DriverTestcase.logger.log(LogStatus.FAIL, "Step: Didn't navigate to view service page");
+					Log.info("Didn't navigate to view service page");
+				}
 			}
 			else
 			{
 				DriverTestcase.logger.log(LogStatus.FAIL, "Step: Didn't navigate to Add SAN page");
 				Log.info("Didn't navigate to Add SAN page");
 			}
-			
-			}
-			else
-			{
-				Log.info("SAN is not added in the grid");
-				System.out.println("SAN is not added in the grid");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step: SAN is not added in the grid");
-			}
+
+		}
+		else
+		{
+			Log.info("SAN is not added in the grid");
+			System.out.println("SAN is not added in the grid");
+			DriverTestcase.logger.log(LogStatus.FAIL, "Step: SAN is not added in the grid");
+		}
 
 
 		//Delete SAN link in View SAN page
-			ScrolltoElement(application, "customerheader", xml);
-			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-			//SANFilter
-			click_commonMethod(application, "Search San Menu", "sanpanel_searchsanmenu", xml);
-			click_commonMethod(application, "Select SAN Search type", "select_sansearchtype", xml);
-			addtextFields_commonMethod(application, "Enter SAN Search type", "select_sansearchtype", select_sansearchtype, xml);
-			getwebelement(xml.getlocator("//locators/" + application + "/select_sansearchtype")).sendKeys(Keys.ENTER);
-			cleartext(application, "SAN Number Search", "sannumbersearchfield");
-			addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
-			getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
-			
+		ScrolltoElement(application, "customerheader", xml);
+		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
+		//SANFilter
+		click_commonMethod(application, "Search San Menu", "sanpanel_searchsanmenu", xml);
+		click_commonMethod(application, "Select SAN Search type", "select_sansearchtype", xml);
+		addtextFields_commonMethod(application, "Enter SAN Search type", "select_sansearchtype", select_sansearchtype, xml);
+		getwebelement(xml.getlocator("//locators/" + application + "/select_sansearchtype")).sendKeys(Keys.ENTER);
+		cleartext(application, "SAN Number Search", "sannumbersearchfield");
+		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
+		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
+
 		WebElement SANGridCheck3= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid3= SANGridCheck3.getAttribute("style");
 		System.out.println("Customer Name displaying: " +customernamevalue);
@@ -3049,103 +3053,103 @@ public class APT_NGINHelper extends DriverHelper {
 			Clickon(AddedSAN4);
 			Thread.sleep(1000);
 
-		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-		click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
-		click_commonMethod(application, "PortIN SAN link", "portin_link", xml);
+			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
+			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
+			click_commonMethod(application, "PortIN SAN link", "portin_link", xml);
 
-		WebElement Port_Dialog= getwebelement(xml.getlocator("//locators/" + application + "/portin_dialog"));
-		if(Port_Dialog.isDisplayed())
-		{
-			compareText(application, "Customer Name", "Port_Customername", customernamevalue, xml);
-			compareText(application, "SAN/FRC Number", "Port_SanNumber", sannumbervalue, xml);
-			
-			String PortToNumber= getwebelement(xml.getlocator("//locators/" + application + "/porttonumber")).getAttribute("value");
-			if(PortToNumber!=null)
+			WebElement Port_Dialog= getwebelement(xml.getlocator("//locators/" + application + "/portin_dialog"));
+			if(Port_Dialog.isDisplayed())
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step: PortIN Number is displayed as:" +PortToNumber);
-				Log.info("PortIN Number is displayed as:" +PortToNumber);
+				compareText(application, "Customer Name", "Port_Customername", customernamevalue, xml);
+				compareText(application, "SAN/FRC Number", "Port_SanNumber", sannumbervalue, xml);
+
+				String PortToNumber= getwebelement(xml.getlocator("//locators/" + application + "/porttonumber")).getAttribute("value");
+				if(PortToNumber!=null)
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Step: PortIN Number is displayed as:" +PortToNumber);
+					Log.info("PortIN Number is displayed as:" +PortToNumber);
+				}
+				else
+				{
+					addtextFields_commonMethod(application, "Port To Number", "porttonumber", portinnumber, xml);
+				}
+
+				try {
+					WebElement WebAccessBlocked_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/webaccessblocked_checkbox"));
+					if (WebAccessBlocked_Checkbox.isEnabled())
+					{
+						DriverTestcase.logger.log(LogStatus.PASS, "Step: Web access blocked checkbox is checked as expected");
+						Log.info("Web access blocked checkbox is checked as expected");
+					}
+					else
+						DriverTestcase.logger.log(LogStatus.FAIL, "Step: Web access blocked checkbox is not checked");
+					Log.info("Web access blocked checkbox is not checked");
+				}
+				catch (Exception e) {
+					// TODO: handle exception
+					DriverTestcase.logger.log(LogStatus.FAIL, "Step: Web access blocked checkbox is not checked");
+					Log.info("Web access blocked checkbox is not checked");
+				}
+
+				try {
+					String PortDate= getwebelement(xml.getlocator("//locators/" + application + "/portdate")).getAttribute("value");
+					if(PortDate!= null)
+					{
+						DriverTestcase.logger.log(LogStatus.PASS, "Step : Port Date value is: '"+PortDate+"'");
+						Log.info("Port Date value is: '"+PortDate+"'");
+					}
+					else
+					{
+						DriverTestcase.logger.log(LogStatus.FAIL, "Step : Port Date value is not displaying");
+						Log.info("Port Date value is not displaying");
+					}
+				}
+				catch (Exception e) {
+					// TODO: handle exception
+					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Port Date value is not displaying");
+					Log.info("Port Date value is not displaying");
+				}
+
+				//Port Time
+				DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm:ss");
+				LocalDateTime ldt= LocalDateTime.now().plusHours(1).plusMinutes(10).plusSeconds(20);
+				String FutureTime= ldt.format(formatter).substring(10).trim();
+				System.out.println("Port Time:"+FutureTime);
+				addtextFields_commonMethod(application, "Port Time", "porttime", FutureTime, xml);
+				click_commonMethod(application, "OK", "port_okbutton", xml);
+				//porting status
+				try {
+					String PortStatus= Gettext(getwebelement(xml.getlocator("//locators/" + application + "/portingstatus")));
+					if(PortStatus.equalsIgnoreCase("Ported"))
+					{
+						DriverTestcase.logger.log(LogStatus.PASS, "Step : PortIN is successful");
+						Log.info("PortIN is successful");
+					}
+					else
+					{
+						DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortIN is not successful");
+						Log.info("PortIN is not successful");
+						String PortError= getwebelement(xml.getlocator("//locators/" + application + "/port_errordisplay")).getText();
+						DriverTestcase.logger.log(LogStatus.FAIL, "Step : Error is displayed as:" +PortError);
+						Log.info("Error is displayed as:" +PortError);
+					}
+				}
+				catch (Exception e) {
+					// TODO: handle exception
+					DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortIN is unsuccessful");
+					Log.info("PortIN is unsuccessful");
+				}
+				Thread.sleep(1000);
+				click_commonMethod(application, "Close", "port_closesymbol", xml);
+				Thread.sleep(2000);
 			}
 			else
 			{
-				addtextFields_commonMethod(application, "Port To Number", "porttonumber", portinnumber, xml);
+				DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortIN page is not opened");	
+				Log.info("PortIN page is not opened");
 			}
-			
-			try {
-				WebElement WebAccessBlocked_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/webaccessblocked_checkbox"));
-				if (WebAccessBlocked_Checkbox.isEnabled())
-				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step: Web access blocked checkbox is checked as expected");
-					Log.info("Web access blocked checkbox is checked as expected");
-				}
-				else
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step: Web access blocked checkbox is not checked");
-				Log.info("Web access blocked checkbox is not checked");
-			}
-			catch (Exception e) {
-				// TODO: handle exception
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step: Web access blocked checkbox is not checked");
-				Log.info("Web access blocked checkbox is not checked");
-			}
+			//Cancel porting not done
 
-			try {
-				String PortDate= getwebelement(xml.getlocator("//locators/" + application + "/portdate")).getAttribute("value");
-				if(PortDate!= null)
-				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Port Date value is: '"+PortDate+"'");
-					Log.info("Port Date value is: '"+PortDate+"'");
-				}
-				else
-				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Port Date value is not displaying");
-				Log.info("Port Date value is not displaying");
-				}
-			}
-			catch (Exception e) {
-				// TODO: handle exception
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Port Date value is not displaying");
-				Log.info("Port Date value is not displaying");
-			}
-
-			//Port Time
-			DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm:ss");
-			LocalDateTime ldt= LocalDateTime.now().plusHours(1).plusMinutes(10).plusSeconds(20);
-			String FutureTime= ldt.format(formatter).substring(10).trim();
-			System.out.println("Port Time:"+FutureTime);
-			addtextFields_commonMethod(application, "Port Time", "porttime", FutureTime, xml);
-			click_commonMethod(application, "OK", "port_okbutton", xml);
-			//porting status
-			try {
-				String PortStatus= Gettext(getwebelement(xml.getlocator("//locators/" + application + "/portingstatus")));
-				if(PortStatus.equalsIgnoreCase("Ported"))
-				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : PortIN is successful");
-					Log.info("PortIN is successful");
-				}
-				else
-				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortIN is not successful");
-					Log.info("PortIN is not successful");
-					String PortError= getwebelement(xml.getlocator("//locators/" + application + "/port_errordisplay")).getText();
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Error is displayed as:" +PortError);
-					Log.info("Error is displayed as:" +PortError);
-				}
-			}
-			catch (Exception e) {
-				// TODO: handle exception
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortIN is unsuccessful");
-				Log.info("PortIN is unsuccessful");
-			}
-			Thread.sleep(1000);
-			click_commonMethod(application, "Close", "port_closesymbol", xml);
-			Thread.sleep(2000);
-		}
-		else
-		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortIN page is not opened");	
-		Log.info("PortIN page is not opened");
-		}
-		//Cancel porting not done
-		
 		}
 		else
 		{
@@ -3153,7 +3157,7 @@ public class APT_NGINHelper extends DriverHelper {
 			System.out.println("SAN is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : SAN is not added in the grid");	
 		}
-		
+
 
 
 		//===================================================================
@@ -3180,85 +3184,85 @@ public class APT_NGINHelper extends DriverHelper {
 			Clickon(AddedSAN5);
 			Thread.sleep(1000);
 
-		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-		click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
-		click_commonMethod(application, "PortIN SAN link", "portout_link", xml);
-		WebElement Port_Dialog= getwebelement(xml.getlocator("//locators/" + application + "/portin_dialog"));
-		if(Port_Dialog.isDisplayed())
-		{
-			compareText(application, "Customer Name", "Port_Customername", customernamevalue, xml);
-			compareText(application, "SAN/FRC Number", "Port_SanNumber", sannumbervalue, xml);
-			String PortToNumber= getwebelement(xml.getlocator("//locators/" + application + "/porttonumber")).getAttribute("value");
-			if(PortToNumber!=null)
+			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
+			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
+			click_commonMethod(application, "PortIN SAN link", "portout_link", xml);
+			WebElement Port_Dialog= getwebelement(xml.getlocator("//locators/" + application + "/portin_dialog"));
+			if(Port_Dialog.isDisplayed())
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step: PortIN Number is displayed as:" +PortToNumber);
-				Log.info("PortIN Number is displayed as:" +PortToNumber);
+				compareText(application, "Customer Name", "Port_Customername", customernamevalue, xml);
+				compareText(application, "SAN/FRC Number", "Port_SanNumber", sannumbervalue, xml);
+				String PortToNumber= getwebelement(xml.getlocator("//locators/" + application + "/porttonumber")).getAttribute("value");
+				if(PortToNumber!=null)
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Step: PortIN Number is displayed as:" +PortToNumber);
+					Log.info("PortIN Number is displayed as:" +PortToNumber);
+				}
+				else
+				{
+					addtextFields_commonMethod(application, "Port To Number", "porttonumber", portinnumber, xml);
+				}
+
+
+				try {
+					String PortDate= getwebelement(xml.getlocator("//locators/" + application + "/portdate")).getAttribute("value");
+					if(PortDate!= null)
+					{
+						DriverTestcase.logger.log(LogStatus.PASS, "Step : Port Date value is: '"+PortDate+"'");
+						Log.info("Port Date value is: '"+PortDate+"'");
+					}
+					else
+					{
+						DriverTestcase.logger.log(LogStatus.FAIL, "Step : Port Date value is not displaying");
+						Log.info("Port Date value is not displaying");
+					}
+				}
+				catch (Exception e) {
+					// TODO: handle exception
+					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Port Date value is not displaying");
+					Log.info("Port Date value is not displaying");
+				}
+
+				//Port Time
+				DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm:ss");
+				LocalDateTime ldt= LocalDateTime.now().plusHours(1).plusMinutes(10).plusSeconds(20);
+				String FutureTime= ldt.format(formatter).substring(10).trim();
+				System.out.println("Port Time:"+FutureTime);
+				addtextFields_commonMethod(application, "Port Time", "porttime", FutureTime, xml);
+				click_commonMethod(application, "OK", "port_okbutton", xml);
+				//porting status
+				try {
+					String PortStatus= Gettext(getwebelement(xml.getlocator("//locators/" + application + "/portingstatus")));
+					if(PortStatus.equalsIgnoreCase("Ported"))
+					{
+						DriverTestcase.logger.log(LogStatus.PASS, "Step : PortOUT is successful");
+						Log.info("PortOUT is successful");
+					}
+					else
+					{
+						DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortOUT is not successful");
+						Log.info("PortOUT is not successful");
+						String PortError= getwebelement(xml.getlocator("//locators/" + application + "/port_errordisplay")).getText();
+						DriverTestcase.logger.log(LogStatus.FAIL, "Step : Error is displayed as:" +PortError);
+						Log.info("Error is displayed as:" +PortError);
+					}
+				}
+				catch (Exception e) {
+					// TODO: handle exception
+					DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortOUT is unsuccessful");
+					Log.info("PortOUT is unsuccessful");
+				}
+
+				Thread.sleep(1000);
+				click_commonMethod(application, "Close", "port_closesymbol", xml);
+				Thread.sleep(2000);
+				//Cancel porting not done
 			}
 			else
 			{
-				addtextFields_commonMethod(application, "Port To Number", "porttonumber", portinnumber, xml);
+				DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortOut page is not opened");
+				Log.info("PortOut page is not opened");
 			}
-
-			
-			try {
-				String PortDate= getwebelement(xml.getlocator("//locators/" + application + "/portdate")).getAttribute("value");
-				if(PortDate!= null)
-				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Port Date value is: '"+PortDate+"'");
-					Log.info("Port Date value is: '"+PortDate+"'");
-				}
-				else
-				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Port Date value is not displaying");
-				Log.info("Port Date value is not displaying");
-				}
-			}
-			catch (Exception e) {
-				// TODO: handle exception
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Port Date value is not displaying");
-				Log.info("Port Date value is not displaying");
-			}
-
-			//Port Time
-			DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm:ss");
-			LocalDateTime ldt= LocalDateTime.now().plusHours(1).plusMinutes(10).plusSeconds(20);
-			String FutureTime= ldt.format(formatter).substring(10).trim();
-			System.out.println("Port Time:"+FutureTime);
-			addtextFields_commonMethod(application, "Port Time", "porttime", FutureTime, xml);
-			click_commonMethod(application, "OK", "port_okbutton", xml);
-			//porting status
-			try {
-				String PortStatus= Gettext(getwebelement(xml.getlocator("//locators/" + application + "/portingstatus")));
-				if(PortStatus.equalsIgnoreCase("Ported"))
-				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : PortOUT is successful");
-					Log.info("PortOUT is successful");
-				}
-				else
-				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortOUT is not successful");
-					Log.info("PortOUT is not successful");
-					String PortError= getwebelement(xml.getlocator("//locators/" + application + "/port_errordisplay")).getText();
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Error is displayed as:" +PortError);
-					Log.info("Error is displayed as:" +PortError);
-				}
-			}
-			catch (Exception e) {
-				// TODO: handle exception
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortOUT is unsuccessful");
-				Log.info("PortOUT is unsuccessful");
-			}
-			
-			Thread.sleep(1000);
-			click_commonMethod(application, "Close", "port_closesymbol", xml);
-			Thread.sleep(2000);
-			//Cancel porting not done
-		}
-		else
-		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortOut page is not opened");
-			Log.info("PortOut page is not opened");
-		}
 		}
 		else
 		{
@@ -3266,418 +3270,418 @@ public class APT_NGINHelper extends DriverHelper {
 			System.out.println("SAN is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : SAN is not added in the grid");
 		}
-		
-			
-		//Manage additional FRC
-				ScrolltoElement(application, "customerheader", xml);
-				compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-				//SANFilter
-				click_commonMethod(application, "Search San Menu", "sanpanel_searchsanmenu", xml);
-				click_commonMethod(application, "Select SAN Search type", "select_sansearchtype", xml);
-				addtextFields_commonMethod(application, "Enter SAN Search type", "select_sansearchtype", select_sansearchtype, xml);
-				getwebelement(xml.getlocator("//locators/" + application + "/select_sansearchtype")).sendKeys(Keys.ENTER);
-				cleartext(application, "SAN Number Search", "sannumbersearchfield");
-				addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
-				getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
 
-				WebElement SANGridCheck10= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
-				String SANGrid10= SANGridCheck10.getAttribute("style");
-				System.out.println("Customer Name displaying: " +customernamevalue);
-				WebElement AddedSAN10= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
-				if(!SANGrid10.contains("height: 1px"))
+
+		//Manage additional FRC
+		ScrolltoElement(application, "customerheader", xml);
+		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
+		//SANFilter
+		click_commonMethod(application, "Search San Menu", "sanpanel_searchsanmenu", xml);
+		click_commonMethod(application, "Select SAN Search type", "select_sansearchtype", xml);
+		addtextFields_commonMethod(application, "Enter SAN Search type", "select_sansearchtype", select_sansearchtype, xml);
+		getwebelement(xml.getlocator("//locators/" + application + "/select_sansearchtype")).sendKeys(Keys.ENTER);
+		cleartext(application, "SAN Number Search", "sannumbersearchfield");
+		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
+		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
+
+		WebElement SANGridCheck10= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
+		String SANGrid10= SANGridCheck10.getAttribute("style");
+		System.out.println("Customer Name displaying: " +customernamevalue);
+		WebElement AddedSAN10= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
+		if(!SANGrid10.contains("height: 1px"))
+		{
+			Clickon(AddedSAN10);
+			Thread.sleep(1000);
+			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
+			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
+			click_commonMethod(application, "Manage Addnl FRC", "manageaddnlfrc_link", xml);
+			Thread.sleep(2000);
+			compareText(application, "Manage Addnl FRC Header", "manageaddnlfrc_header", "Manage Addnl FRC", xml);
+			click_commonMethod(application, "Action Dropdown", "manageaddnlfrc_actiondropdown", xml);
+			click_commonMethod(application, "Add Addnl FRC", "addaddnlfrc_link", xml);
+			Thread.sleep(2000);
+			compareText(application, "Add Price Announcement Header", "addpriceannouncement_header", "Add Price Announcement", xml);
+			compareText(application, "SAN/FRC", "sanfrcvalue", sannumbervalue, xml);
+			compareText(application, "Customer Name", "customernamevalue", customernamevalue, xml);
+			addCheckbox_commonMethod(application, "enablepriceannouncement_checkbox", "Enable price announcement", enablepriceannouncement_checkbox, "no", xml);
+			addDropdownValues_commonMethod(application, "Price Announcement", "priceannouncement_dropdown", priceannouncementvalue, xml);
+			addDropdownValues_commonMethod(application, "Price Ann Origin", "priceannorigin_dropdown", priceannoriginvalue, xml);
+			addCheckbox_commonMethod(application, "interruptible_checkbox", "Interruptable Price Announcement", interruptiblepriceannouncement_checkbox, "no", xml);
+			addtextFields_commonMethod(application, "Value In Price In(Cents)", "valueinprice_field", valueinprice, xml);
+			addCheckbox_commonMethod(application, "sendfci_checkbox", "Send FCI", sendfci_checkbox, "yes", xml);
+			addCheckbox_commonMethod(application, "sendsci_checkbox", "Send SCI", sendsci_checkbox, "no", xml);
+			addDropdownValues_commonMethod(application, "Charge Band Name", "addfrc_chargebandname", chargebandname, xml);
+			addCheckbox_commonMethod(application, "enablecallerconfirmation_checkbox", "Enable Caller Confirmation", enablecallerconfirmation_checkbox, "no", xml);
+			addDropdownValues_commonMethod(application, "Caller Confirmation Announcement", "callerconfirmationannouncement_dropdown", callerconfirmationannouncementvalue, xml);
+			addtextFields_commonMethod(application, "Caller Confirmation Digit", "callerconfirmationdigit_field", callerconfirmationdigitvalue, xml);
+			addtextFields_commonMethod(application, "Number Of Repetation Allowed", "noofrepetitionallowed_field", numberofrepetitionsallowedvalue, xml);
+			Thread.sleep(2000);
+			scrolltoend();
+			click_commonMethod(application, "OK", "OkButton", xml);
+			Thread.sleep(2000);
+			compareText(application, "Addl FRC created success message", "addsan_successmsg", "Addnl Frc successfully created.", xml);
+			compareText(application, "Manage Addnl FRC Header", "manageaddnlfrc_header", "Manage Addnl FRC", xml);
+
+			//verify table data in manage addnl frc page
+			compareText(application, "FRC Number column", "manageaddnlfrc_frcnumber_column", "FRC Number", xml);
+			compareText(application, "Price Ann Flag column", "manageaddnlfrc_priceannflag_column", "Price Ann Flag", xml);
+			compareText(application, "Price Ann Origin column", "manageaddnlfrc_priceannorigin_column", "Price Ann Origin", xml);
+			compareText(application, "Price Announcement column", "manageaddnlfrc_priceannouncement_column", "Price Annoncment", xml);
+			compareText(application, "FRC Number value", "manageaddnlfrc_frcnumber_value", sannumbervalue, xml);
+			String PriceAnnFlagvalue= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_priceannflag_value")).getText();
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : Price Ann Flag value is displayed as: " +PriceAnnFlagvalue);
+			compareText(application, "Price Ann Origin value", "manageaddnlfrc_priceannorigin_value", priceannoriginvalue, xml);
+			compareText(application, "Price Announcement value", "manageaddnlfrc_priceannouncement_value", priceannouncementvalue, xml);
+			WebElement priceannouncement= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_priceannouncement_value"));
+			Clickon(priceannouncement);
+			priceannouncement.sendKeys(Keys.TAB);
+			WebElement maxcallflag= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_maxcallflag_value"));
+			Clickon(maxcallflag);
+			maxcallflag.sendKeys(Keys.TAB);
+			WebElement maxcallorigin= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_maxcallorigin_value"));
+			Clickon(maxcallorigin);
+			maxcallorigin.sendKeys(Keys.TAB);
+
+			compareText(application, "Max Call Flag column", "manageaddnlfrc_maxcallflag_column", "Max Call Flag", xml);
+			compareText(application, "Max Call Origin column", "manageaddnlfrc_maxcallorigin_column", "Max Call Origin", xml);
+			compareText(application, "Max Call Duration column", "manageaddnlfrc_maxcallduration_column", "Max Call Duration", xml);
+			String MaxCallFlagvalue= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_maxcallflag_value")).getText();
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : Max Call Flag value is displayed as: " +MaxCallFlagvalue);
+			String MaxCallOriginvalue= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_maxcallorigin_value")).getText();
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : Max Call Origin value is displayed as: " +MaxCallOriginvalue);
+			String MaxCallDurationvalue= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_maxcallduration_value")).getText();
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : Max Call Duration value is displayed as: " +MaxCallDurationvalue);
+			Thread.sleep(1000);
+			click_commonMethod(application, "Cancel", "cancelbutton", xml);
+
+		}
+		else
+		{
+			Log.info("SAN is not added in the grid");
+			System.out.println("SAN is not added in the grid");
+		}
+
+		ScrolltoElement(application, "customerheader", xml);
+		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
+		//SANFilter
+		click_commonMethod(application, "Search San Menu", "sanpanel_searchsanmenu", xml);
+		click_commonMethod(application, "Select SAN Search type", "select_sansearchtype", xml);
+		addtextFields_commonMethod(application, "Enter SAN Search type", "select_sansearchtype", select_sansearchtype, xml);
+		getwebelement(xml.getlocator("//locators/" + application + "/select_sansearchtype")).sendKeys(Keys.ENTER);
+		cleartext(application, "SAN Number Search", "sannumbersearchfield");
+		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
+		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
+
+		WebElement SANGridCheck11= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
+		String SANGrid11= SANGridCheck11.getAttribute("style");
+		System.out.println("Customer Name displaying: " +customernamevalue);
+		WebElement AddedSAN11= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
+		if(!SANGrid11.contains("height: 1px"))
+		{
+			Clickon(AddedSAN11);
+			Thread.sleep(1000);
+			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
+			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
+			click_commonMethod(application, "Manage Addnl FRC", "manageaddnlfrc_link", xml);
+			compareText(application, "Manage Addnl FRC Header", "manageaddnlfrc_header", "Manage Addnl FRC", xml);
+
+			//verify edit addnl frc
+			WebElement AddnlFRCGridCheck= getwebelement("//div[@ref='eBodyContainer']");
+			String AddnlFRCGrid= AddnlFRCGridCheck.getAttribute("style");
+			WebElement AddedAddnlFRC= getwebelement("//div[@ref='eBodyContainer']//span[@class='ag-selection-checkbox']//span[2]");
+			String AddedAddnlFRC_checkbox= AddedAddnlFRC.getAttribute("class");
+			if(!AddnlFRCGrid.contains("height: 1px"))
+			{
+				if(AddedAddnlFRC_checkbox.equalsIgnoreCase("ag-icon ag-icon-checkbox-unchecked"))
 				{
-					Clickon(AddedSAN10);
-					Thread.sleep(1000);
-				compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-				click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
-				click_commonMethod(application, "Manage Addnl FRC", "manageaddnlfrc_link", xml);
-				Thread.sleep(2000);
-				compareText(application, "Manage Addnl FRC Header", "manageaddnlfrc_header", "Manage Addnl FRC", xml);
+					Clickon(AddedAddnlFRC);
+				}
+				else
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Added Addnl FRC is already selected");
+					Log.info("Added Addnl FRC is already selected");
+				}
+				Thread.sleep(1000);
 				click_commonMethod(application, "Action Dropdown", "manageaddnlfrc_actiondropdown", xml);
-				click_commonMethod(application, "Add Addnl FRC", "addaddnlfrc_link", xml);
+				click_commonMethod(application, "Edit", "edit", xml);
 				Thread.sleep(2000);
 				compareText(application, "Add Price Announcement Header", "addpriceannouncement_header", "Add Price Announcement", xml);
 				compareText(application, "SAN/FRC", "sanfrcvalue", sannumbervalue, xml);
 				compareText(application, "Customer Name", "customernamevalue", customernamevalue, xml);
-				addCheckbox_commonMethod(application, "enablepriceannouncement_checkbox", "Enable price announcement", enablepriceannouncement_checkbox, "no", xml);
-				addDropdownValues_commonMethod(application, "Price Announcement", "priceannouncement_dropdown", priceannouncementvalue, xml);
-				addDropdownValues_commonMethod(application, "Price Ann Origin", "priceannorigin_dropdown", priceannoriginvalue, xml);
-				addCheckbox_commonMethod(application, "interruptible_checkbox", "Interruptable Price Announcement", interruptiblepriceannouncement_checkbox, "no", xml);
-				addtextFields_commonMethod(application, "Value In Price In(Cents)", "valueinprice_field", valueinprice, xml);
-				addCheckbox_commonMethod(application, "sendfci_checkbox", "Send FCI", sendfci_checkbox, "yes", xml);
-				addCheckbox_commonMethod(application, "sendsci_checkbox", "Send SCI", sendsci_checkbox, "no", xml);
-				addDropdownValues_commonMethod(application, "Charge Band Name", "addfrc_chargebandname", chargebandname, xml);
-				addCheckbox_commonMethod(application, "enablecallerconfirmation_checkbox", "Enable Caller Confirmation", enablecallerconfirmation_checkbox, "no", xml);
-				addDropdownValues_commonMethod(application, "Caller Confirmation Announcement", "callerconfirmationannouncement_dropdown", callerconfirmationannouncementvalue, xml);
-				addtextFields_commonMethod(application, "Caller Confirmation Digit", "callerconfirmationdigit_field", callerconfirmationdigitvalue, xml);
-				addtextFields_commonMethod(application, "Number Of Repetation Allowed", "noofrepetitionallowed_field", numberofrepetitionsallowedvalue, xml);
-				Thread.sleep(2000);
-				scrolltoend();
-				click_commonMethod(application, "OK", "OkButton", xml);
-				Thread.sleep(2000);
-				compareText(application, "Addl FRC created success message", "addsan_successmsg", "Addnl Frc successfully created.", xml);
-				compareText(application, "Manage Addnl FRC Header", "manageaddnlfrc_header", "Manage Addnl FRC", xml);
-				
-				//verify table data in manage addnl frc page
-				compareText(application, "FRC Number column", "manageaddnlfrc_frcnumber_column", "FRC Number", xml);
-				compareText(application, "Price Ann Flag column", "manageaddnlfrc_priceannflag_column", "Price Ann Flag", xml);
-				compareText(application, "Price Ann Origin column", "manageaddnlfrc_priceannorigin_column", "Price Ann Origin", xml);
-				compareText(application, "Price Announcement column", "manageaddnlfrc_priceannouncement_column", "Price Annoncment", xml);
-				compareText(application, "FRC Number value", "manageaddnlfrc_frcnumber_value", sannumbervalue, xml);
-				String PriceAnnFlagvalue= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_priceannflag_value")).getText();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Price Ann Flag value is displayed as: " +PriceAnnFlagvalue);
-				compareText(application, "Price Ann Origin value", "manageaddnlfrc_priceannorigin_value", priceannoriginvalue, xml);
-				compareText(application, "Price Announcement value", "manageaddnlfrc_priceannouncement_value", priceannouncementvalue, xml);
-				WebElement priceannouncement= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_priceannouncement_value"));
-				Clickon(priceannouncement);
-				priceannouncement.sendKeys(Keys.TAB);
-				WebElement maxcallflag= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_maxcallflag_value"));
-				Clickon(maxcallflag);
-				maxcallflag.sendKeys(Keys.TAB);
-				WebElement maxcallorigin= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_maxcallorigin_value"));
-				Clickon(maxcallorigin);
-				maxcallorigin.sendKeys(Keys.TAB);
-				
-				compareText(application, "Max Call Flag column", "manageaddnlfrc_maxcallflag_column", "Max Call Flag", xml);
-				compareText(application, "Max Call Origin column", "manageaddnlfrc_maxcallorigin_column", "Max Call Origin", xml);
-				compareText(application, "Max Call Duration column", "manageaddnlfrc_maxcallduration_column", "Max Call Duration", xml);
-				String MaxCallFlagvalue= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_maxcallflag_value")).getText();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Max Call Flag value is displayed as: " +MaxCallFlagvalue);
-				String MaxCallOriginvalue= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_maxcallorigin_value")).getText();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Max Call Origin value is displayed as: " +MaxCallOriginvalue);
-				String MaxCallDurationvalue= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_maxcallduration_value")).getText();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Max Call Duration value is displayed as: " +MaxCallDurationvalue);
-				Thread.sleep(1000);
-				click_commonMethod(application, "Cancel", "cancelbutton", xml);
-				
-				}
-				else
-				{
-					Log.info("SAN is not added in the grid");
-					System.out.println("SAN is not added in the grid");
-				}
-				
-				ScrolltoElement(application, "customerheader", xml);
-				compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-				//SANFilter
-				click_commonMethod(application, "Search San Menu", "sanpanel_searchsanmenu", xml);
-				click_commonMethod(application, "Select SAN Search type", "select_sansearchtype", xml);
-				addtextFields_commonMethod(application, "Enter SAN Search type", "select_sansearchtype", select_sansearchtype, xml);
-				getwebelement(xml.getlocator("//locators/" + application + "/select_sansearchtype")).sendKeys(Keys.ENTER);
-				cleartext(application, "SAN Number Search", "sannumbersearchfield");
-				addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
-				getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
+				addCheckbox_commonMethod(application, "enablepriceannouncement_checkbox", "Enable price announcement checkbox", edit_enablepriceannouncement_checkbox, "no", xml);
+				addDropdownValues_commonMethod(application, "Price Announcement", "priceannouncement_dropdown", edit_priceannouncementvalue, xml);
+				//addDropdownValues_commonMethod(application, "Price Ann Origin", "priceannorigin_dropdown", edit_priceannoriginvalue, xml);
+				boolean availability=false;
+				try {  
+					availability=getwebelement(xml.getlocator("//locators/" + application + "/priceannorigin_dropdown")).isDisplayed();
+					if(availability) {
+						DriverTestcase.logger.log(LogStatus.PASS, "Price Ann Origin dropdown is displaying");
+						System.out.println("Price Ann Origin dropdown is displaying");
 
-				WebElement SANGridCheck11= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
-				String SANGrid11= SANGridCheck11.getAttribute("style");
-				System.out.println("Customer Name displaying: " +customernamevalue);
-				WebElement AddedSAN11= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
-				if(!SANGrid11.contains("height: 1px"))
-				{
-					Clickon(AddedSAN11);
-					Thread.sleep(1000);
-				compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-				click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
-				click_commonMethod(application, "Manage Addnl FRC", "manageaddnlfrc_link", xml);
-				compareText(application, "Manage Addnl FRC Header", "manageaddnlfrc_header", "Manage Addnl FRC", xml);
-				
-				//verify edit addnl frc
-				WebElement AddnlFRCGridCheck= getwebelement("//div[@ref='eBodyContainer']");
-				String AddnlFRCGrid= AddnlFRCGridCheck.getAttribute("style");
-				WebElement AddedAddnlFRC= getwebelement("//div[@ref='eBodyContainer']//span[@class='ag-selection-checkbox']//span[2]");
-				String AddedAddnlFRC_checkbox= AddedAddnlFRC.getAttribute("class");
-				if(!AddnlFRCGrid.contains("height: 1px"))
-				{
-					if(AddedAddnlFRC_checkbox.equalsIgnoreCase("ag-icon ag-icon-checkbox-unchecked"))
-					{
-					Clickon(AddedAddnlFRC);
-					}
-					else
-					{
-						DriverTestcase.logger.log(LogStatus.PASS, "Added Addnl FRC is already selected");
-						Log.info("Added Addnl FRC is already selected");
-					}
-					Thread.sleep(1000);
-					click_commonMethod(application, "Action Dropdown", "manageaddnlfrc_actiondropdown", xml);
-					click_commonMethod(application, "Edit", "edit", xml);
-					Thread.sleep(2000);
-					compareText(application, "Add Price Announcement Header", "addpriceannouncement_header", "Add Price Announcement", xml);
-					compareText(application, "SAN/FRC", "sanfrcvalue", sannumbervalue, xml);
-					compareText(application, "Customer Name", "customernamevalue", customernamevalue, xml);
-					addCheckbox_commonMethod(application, "enablepriceannouncement_checkbox", "Enable price announcement checkbox", edit_enablepriceannouncement_checkbox, "no", xml);
-					addDropdownValues_commonMethod(application, "Price Announcement", "priceannouncement_dropdown", edit_priceannouncementvalue, xml);
-					//addDropdownValues_commonMethod(application, "Price Ann Origin", "priceannorigin_dropdown", edit_priceannoriginvalue, xml);
-					  boolean availability=false;
-						try {  
-						  availability=getwebelement(xml.getlocator("//locators/" + application + "/priceannorigin_dropdown")).isDisplayed();
-						  if(availability) {
-							  DriverTestcase.logger.log(LogStatus.PASS, "Price Ann Origin dropdown is displaying");
-							  System.out.println("Price Ann Origin dropdown is displaying");
-							  
-							  if(edit_priceannoriginvalue.equalsIgnoreCase("null")) {
-								  
-								  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Price Ann Origin dropdown");
-								  System.out.println(" No values selected under Price Ann Origin dropdown");
-							  }else {
-								  
-								  Clickon(getwebelement("//div[label[text()='Price Ann Origin']]//div[text()='×']"));
-								  Thread.sleep(3000);
-								  
-								  //verify list of values inside dropdown
-								  List<WebElement> listofvalues = driver
-											.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
-								  
-								  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Price Ann Origin dropdown is:  ");
-								  System.out.println( " List of values inside Price Ann Origin dropdown is:  ");
-								  
-									for (WebElement valuetypes : listofvalues) {
-												Log.info("service sub types : " + valuetypes.getText());
-												DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-												System.out.println(" " + valuetypes.getText());
-									}
-									
-									Thread.sleep(2000);
-								SendKeys(getwebelement("//div[label[text()='Price Ann Origin']]//input"), edit_priceannoriginvalue);	
-								Thread.sleep(2000);
-									
-								  Clickon(getwebelement("(//div[contains(text(),'"+ edit_priceannoriginvalue +"')])[2]"));
-								  Thread.sleep(3000);
-								  
-								  String actualValue=getwebelement("//label[text()='Price Ann Origin']/following-sibling::div//span").getText();
-								  DriverTestcase.logger.log(LogStatus.PASS, "Price Ann Origin dropdown value selected as: "+ actualValue );
-								  System.out.println( "Price Ann Origin dropdown value selected as: "+ actualValue);
-								  
-							  }
-						  }else {
-							  DriverTestcase.logger.log(LogStatus.FAIL, "Price Ann Origin is not displaying");
-							  System.out.println("Price Ann Origin is not displaying");
-						  }
-						}catch(NoSuchElementException e) {
-							DriverTestcase.logger.log(LogStatus.FAIL, "Price Ann Origin is not displaying");
-							  System.out.println("Price Ann Origin is not displaying");
-						}catch(Exception ee) {
-							ee.printStackTrace();
-							DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Price Ann Origin dropdown");
-							System.out.println(" NO value selected under Price Ann Origin dropdown");
+						if(edit_priceannoriginvalue.equalsIgnoreCase("null")) {
+
+							DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Price Ann Origin dropdown");
+							System.out.println(" No values selected under Price Ann Origin dropdown");
+						}else {
+
+							Clickon(getwebelement("//div[label[text()='Price Ann Origin']]//div[text()='×']"));
+							Thread.sleep(3000);
+
+							//verify list of values inside dropdown
+							List<WebElement> listofvalues = driver
+									.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+
+							DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Price Ann Origin dropdown is:  ");
+							System.out.println( " List of values inside Price Ann Origin dropdown is:  ");
+
+							for (WebElement valuetypes : listofvalues) {
+								Log.info("service sub types : " + valuetypes.getText());
+								DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+								System.out.println(" " + valuetypes.getText());
+							}
+
+							Thread.sleep(2000);
+							SendKeys(getwebelement("//div[label[text()='Price Ann Origin']]//input"), edit_priceannoriginvalue);	
+							Thread.sleep(2000);
+
+							Clickon(getwebelement("(//div[contains(text(),'"+ edit_priceannoriginvalue +"')])[2]"));
+							Thread.sleep(3000);
+
+							String actualValue=getwebelement("//label[text()='Price Ann Origin']/following-sibling::div//span").getText();
+							DriverTestcase.logger.log(LogStatus.PASS, "Price Ann Origin dropdown value selected as: "+ actualValue );
+							System.out.println( "Price Ann Origin dropdown value selected as: "+ actualValue);
+
 						}
-						
-					addCheckbox_commonMethod(application, "interruptible_checkbox", "Interruptiable Price Announcement", edit_interruptiblepriceannouncement_checkbox, "no", xml);
-					if(!edit_valueinprice.equalsIgnoreCase("null"))
-					{
+					}else {
+						DriverTestcase.logger.log(LogStatus.FAIL, "Price Ann Origin is not displaying");
+						System.out.println("Price Ann Origin is not displaying");
+					}
+				}catch(NoSuchElementException e) {
+					DriverTestcase.logger.log(LogStatus.FAIL, "Price Ann Origin is not displaying");
+					System.out.println("Price Ann Origin is not displaying");
+				}catch(Exception ee) {
+					ee.printStackTrace();
+					DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Price Ann Origin dropdown");
+					System.out.println(" NO value selected under Price Ann Origin dropdown");
+				}
+
+				addCheckbox_commonMethod(application, "interruptible_checkbox", "Interruptiable Price Announcement", edit_interruptiblepriceannouncement_checkbox, "no", xml);
+				if(!edit_valueinprice.equalsIgnoreCase("null"))
+				{
 					cleartext(application, "Value In Price In(Cents)", "valueinprice_field");
 					addtextFields_commonMethod(application, "Value In Price In(Cents)", "valueinprice_field", edit_valueinprice, xml);
-					}
-					else
-					{
-						addtextFields_commonMethod(application, "Value In Price In(Cents)", "valueinprice_field", valueinprice, xml);
-					}
-					addCheckbox_commonMethod(application, "sendfci_checkbox", "Send FCI", edit_sendfci_checkbox, "yes", xml);
-					addCheckbox_commonMethod(application, "sendsci_checkbox", "Send SCI", edit_sendsci_checkbox, "no", xml);
-					addDropdownValues_commonMethod(application, "Charge Band Name", "addfrc_chargebandname", edit_chargebandname, xml);
-					addCheckbox_commonMethod(application, "enablecallerconfirmation_checkbox", "Enable Caller Confirmation", edit_enablecallerconfirmation_checkbox, "no", xml);
-					addDropdownValues_commonMethod(application, "Caller Confirmation Announcement", "callerconfirmationannouncement_dropdown", edit_callerconfirmationannouncementvalue, xml);
-					if(!edit_callerconfirmationdigitvalue.equalsIgnoreCase("null"))
-					{
+				}
+				else
+				{
+					addtextFields_commonMethod(application, "Value In Price In(Cents)", "valueinprice_field", valueinprice, xml);
+				}
+				addCheckbox_commonMethod(application, "sendfci_checkbox", "Send FCI", edit_sendfci_checkbox, "yes", xml);
+				addCheckbox_commonMethod(application, "sendsci_checkbox", "Send SCI", edit_sendsci_checkbox, "no", xml);
+				addDropdownValues_commonMethod(application, "Charge Band Name", "addfrc_chargebandname", edit_chargebandname, xml);
+				addCheckbox_commonMethod(application, "enablecallerconfirmation_checkbox", "Enable Caller Confirmation", edit_enablecallerconfirmation_checkbox, "no", xml);
+				addDropdownValues_commonMethod(application, "Caller Confirmation Announcement", "callerconfirmationannouncement_dropdown", edit_callerconfirmationannouncementvalue, xml);
+				if(!edit_callerconfirmationdigitvalue.equalsIgnoreCase("null"))
+				{
 					cleartext(application, "Caller Confirmation Digit", "callerconfirmationdigit_field");
 					addtextFields_commonMethod(application, "Caller Confirmation Digit", "callerconfirmationdigit_field", edit_callerconfirmationdigitvalue, xml);
-					}
-					else
-					{
-						addtextFields_commonMethod(application, "Caller Confirmation Digit", "callerconfirmationdigit_field", callerconfirmationdigitvalue, xml);
-					}
-					if(!edit_numberofrepetitionsallowedvalue.equalsIgnoreCase("null"))
-					{
+				}
+				else
+				{
+					addtextFields_commonMethod(application, "Caller Confirmation Digit", "callerconfirmationdigit_field", callerconfirmationdigitvalue, xml);
+				}
+				if(!edit_numberofrepetitionsallowedvalue.equalsIgnoreCase("null"))
+				{
 					cleartext(application, "Number Of Repetation Allowed", "noofrepetitionallowed_field");
 					addtextFields_commonMethod(application, "Number Of Repetation Allowed", "noofrepetitionallowed_field", edit_numberofrepetitionsallowedvalue, xml);
-					}
-					else
-					{
-						addtextFields_commonMethod(application, "Number Of Repetation Allowed", "noofrepetitionallowed_field", numberofrepetitionsallowedvalue, xml);
-					}
-					Thread.sleep(2000);
-					ScrolltoElement(application, "noofrepetitionallowed_field", xml);
-					click_commonMethod(application, "OK", "OkButton", xml);
-					compareText(application, "Addl FRC updated success message", "addsan_successmsg", "Addnl Frc successfully updated.", xml);
 				}
 				else
 				{
-					Log.info("Addnl FRC is not added in the grid");
-					System.out.println("Addnl FRC is not added in the grid");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Addnl FRC is not added in the grid");
+					addtextFields_commonMethod(application, "Number Of Repetation Allowed", "noofrepetitionallowed_field", numberofrepetitionsallowedvalue, xml);
 				}
-					//verify view addnl frc
-					WebElement AddnlFRCGridCheck1= getwebelement("//div[@ref='eBodyContainer']");
-					String AddnlFRCGrid1= AddnlFRCGridCheck1.getAttribute("style");
-					WebElement AddedAddnlFRC1= getwebelement("//div[@ref='eBodyContainer']//span[@class='ag-selection-checkbox']//span[2]");
-					String AddedAddnlFRC1_checkbox= AddedAddnlFRC1.getAttribute("class");
-					if(!AddnlFRCGrid1.contains("height: 1px"))
-					{
-						if(AddedAddnlFRC1_checkbox.equalsIgnoreCase("ag-icon ag-icon-checkbox-unchecked"))
-						{
-						Clickon(AddedAddnlFRC1);
-						}
-						else
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Added Addnl FRC is already selected");
-							Log.info("Added Addnl FRC is already selected");
-						}
-						Thread.sleep(1000);
-						click_commonMethod(application, "Action Dropdown", "manageaddnlfrc_actiondropdown", xml);
-						click_commonMethod(application, "View", "view", xml);
-						Thread.sleep(2000);
-						compareText(application, "View Price Announcement Header", "viewpriceannouncement_header", "View Price Announcement ", xml);
-						compareText(application, "SAN/FRC", "sanfrcvalue", sannumbervalue, xml);
-						compareText(application, "Customer Name", "customernamevalue", customernamevalue, xml);
-						
-						String EnablePriceAnnouncementCheckbox_disabled= getwebelement(xml.getlocator("//locators/" + application + "/enablepriceannouncement_checkbox")).getAttribute("disabled");
-						String EnablePriceAnnouncementCheckbox_checked= getwebelement(xml.getlocator("//locators/" + application + "/enablepriceannouncement_checkbox")).getAttribute("checked");
-						if(EnablePriceAnnouncementCheckbox_disabled!=null && EnablePriceAnnouncementCheckbox_checked!=null)
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Enable Price Announcement checkbox is checked & disabled");
-						}
-						else
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Enable Price Announcement checkbox is disabled");
-						}
-						
-						if(getwebelement(xml.getlocator("//locators/" + application + "/priceannouncementvalue_viewpage")).isDisplayed())
-						{
-						GetText(application, "Price Announcement", "priceannouncementvalue_viewpage");
-						}
-						else
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, " No value selected in Price Announcement dropdown");
-						}
-						if(getwebelement(xml.getlocator("//locators/" + application + "/priceannoriginvalue_viewpage")).isDisplayed())
-						{
-							GetText(application, "Price Ann Origin", "priceannoriginvalue_viewpage");
-						}
-						else
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "No value selected in Price Ann Origin dropdown");
-						}
-						if(getwebelement(xml.getlocator("//locators/" + application + "/interruptible_checkbox")).getAttribute("checked")!=null)
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Interruptiable Price Announcement checkbox is checked");
-						}
-						else
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Interruptiable Price Announcement checkbox is not checked");
-						}
-						GetText(application, "Value In Price In(Cents)", "valueinprice_field");
-						if(getwebelement(xml.getlocator("//locators/" + application + "/sendfci_checkbox")).getAttribute("checked")!=null)
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Send FCI checkbox is checked");
-						}
-						else
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Send FCI checkbox is not checked");
-						}
-						if(getwebelement(xml.getlocator("//locators/" + application + "/sendsci_checkbox")).getAttribute("checked")!=null)
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Send SCI checkbox is checked");
-						}
-						else
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Send SCI checkbox is not checked");
-						}
-						
-						if(getwebelement(xml.getlocator("//locators/" + application + "/chargebandnamevalue_viewpage")).isDisplayed())
-						{
-							GetText(application, "Charge Band Name", "chargebandnamevalue_viewpage");
-						}
-						else
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "No value selected in Charge Band Name dropdown");
-						}
-						if(getwebelement(xml.getlocator("//locators/" + application + "/enablecallerconfirmation_checkbox")).getAttribute("checked")!=null)
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Enable Caller Confirmation checkbox is checked");
-						}
-						else
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Enable Caller Confirmation checkbox is not checked");
-						}
-						if(getwebelement(xml.getlocator("//locators/" + application + "/callerconfirmationannouncement_dropdown")).isDisplayed())
-						{
-							GetText(application, "Caller Confirmation Announcement", "callerconfirmationannouncement_dropdown");
-						}
-						else
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, " No value selected in Caller Confirmation Announcement dropdown");
-						}
-						GetText(application, "Caller Confirmation Digit", "callerconfirmationdigit_field");
-						GetText(application, "Number Of Repetation Allowed", "noofrepetitionallowed_field");
-						Thread.sleep(2000);
-						ScrolltoElement(application, "noofrepetitionallowed_field", xml);
-						click_commonMethod(application, "Cancel", "viewaddnlfrc_cancelbutton", xml);
-						Thread.sleep(2000);
-						
-					}
-					else
-					{
-						Log.info("Addnl FRC is not added in the grid");
-						System.out.println("Addnl FRC is not added in the grid");
-						DriverTestcase.logger.log(LogStatus.FAIL, "Addnl FRC is not added in the grid");
-					}
-					
-					//verify Delete addnl frc
-					WebElement AddnlFRCGridCheck2= getwebelement("//div[@ref='eBodyContainer']");
-					String AddnlFRCGrid2= AddnlFRCGridCheck2.getAttribute("style");
-					WebElement AddedAddnlFRC2= getwebelement("//div[@ref='eBodyContainer']//span[@class='ag-selection-checkbox']//span[2]");
-					String AddedAddnlFRC2_checkbox= AddedAddnlFRC2.getAttribute("class");
-					if(!AddnlFRCGrid2.contains("height: 1px"))
-					{
-						if(AddedAddnlFRC2_checkbox.equalsIgnoreCase("ag-icon ag-icon-checkbox-unchecked"))
-						{
-						Clickon(AddedAddnlFRC2);
-						}
-						else
-						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Added Addnl FRC is already selected");
-							Log.info("Added Addnl FRC is already selected");
-						}
-						Thread.sleep(1000);
-						click_commonMethod(application, "Action Dropdown", "manageaddnlfrc_actiondropdown", xml);
-						click_commonMethod(application, "Delete Addnl FRC", "delete", xml);
-						Thread.sleep(2000);
-						WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-						if(DeleteAlertPopup.isDisplayed())
-						{
-							click_commonMethod(application, "Delete", "deletebutton", xml);
-						}
-						else
-						{
-							Log.info("Delete alert popup is not displayed");
-							DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-						}
-						compareText(application, "Delete", "deletesuccessmsg", "", xml);
-						Thread.sleep(2000);
-						click_commonMethod(application, "Cancel", "cancelbutton", xml);
-						Thread.sleep(2000);
-					}
-					else
-					{
-						Log.info("Addnl FRC is not added in the grid");
-						System.out.println("Addnl FRC is not added in the grid");
-						DriverTestcase.logger.log(LogStatus.FAIL, "Addnl FRC is not added in the grid");
-					}
+				Thread.sleep(2000);
+				ScrolltoElement(application, "noofrepetitionallowed_field", xml);
+				click_commonMethod(application, "OK", "OkButton", xml);
+				compareText(application, "Addl FRC updated success message", "addsan_successmsg", "Addnl Frc successfully updated.", xml);
+			}
+			else
+			{
+				Log.info("Addnl FRC is not added in the grid");
+				System.out.println("Addnl FRC is not added in the grid");
+				DriverTestcase.logger.log(LogStatus.FAIL, "Addnl FRC is not added in the grid");
+			}
+			//verify view addnl frc
+			WebElement AddnlFRCGridCheck1= getwebelement("//div[@ref='eBodyContainer']");
+			String AddnlFRCGrid1= AddnlFRCGridCheck1.getAttribute("style");
+			WebElement AddedAddnlFRC1= getwebelement("//div[@ref='eBodyContainer']//span[@class='ag-selection-checkbox']//span[2]");
+			String AddedAddnlFRC1_checkbox= AddedAddnlFRC1.getAttribute("class");
+			if(!AddnlFRCGrid1.contains("height: 1px"))
+			{
+				if(AddedAddnlFRC1_checkbox.equalsIgnoreCase("ag-icon ag-icon-checkbox-unchecked"))
+				{
+					Clickon(AddedAddnlFRC1);
 				}
 				else
 				{
-					Log.info("SAN is not added in the grid");
-					System.out.println("SAN is not added in the grid");
+					DriverTestcase.logger.log(LogStatus.PASS, "Added Addnl FRC is already selected");
+					Log.info("Added Addnl FRC is already selected");
 				}
-	}
-	
-	
-		//====================================================================================
+				Thread.sleep(1000);
+				click_commonMethod(application, "Action Dropdown", "manageaddnlfrc_actiondropdown", xml);
+				click_commonMethod(application, "View", "view", xml);
+				Thread.sleep(2000);
+				compareText(application, "View Price Announcement Header", "viewpriceannouncement_header", "View Price Announcement ", xml);
+				compareText(application, "SAN/FRC", "sanfrcvalue", sannumbervalue, xml);
+				compareText(application, "Customer Name", "customernamevalue", customernamevalue, xml);
 
-		public void verifySANMove(String application, String customernamevalue, String sannumbervalue, String select_sansearchtype, String destinationcustomername, String sanmove_orderno) throws InterruptedException, DocumentException, IOException {
+				String EnablePriceAnnouncementCheckbox_disabled= getwebelement(xml.getlocator("//locators/" + application + "/enablepriceannouncement_checkbox")).getAttribute("disabled");
+				String EnablePriceAnnouncementCheckbox_checked= getwebelement(xml.getlocator("//locators/" + application + "/enablepriceannouncement_checkbox")).getAttribute("checked");
+				if(EnablePriceAnnouncementCheckbox_disabled!=null && EnablePriceAnnouncementCheckbox_checked!=null)
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Enable Price Announcement checkbox is checked & disabled");
+				}
+				else
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Enable Price Announcement checkbox is disabled");
+				}
+
+				if(getwebelement(xml.getlocator("//locators/" + application + "/priceannouncementvalue_viewpage")).isDisplayed())
+				{
+					GetText(application, "Price Announcement", "priceannouncementvalue_viewpage");
+				}
+				else
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, " No value selected in Price Announcement dropdown");
+				}
+				if(getwebelement(xml.getlocator("//locators/" + application + "/priceannoriginvalue_viewpage")).isDisplayed())
+				{
+					GetText(application, "Price Ann Origin", "priceannoriginvalue_viewpage");
+				}
+				else
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "No value selected in Price Ann Origin dropdown");
+				}
+				if(getwebelement(xml.getlocator("//locators/" + application + "/interruptible_checkbox")).getAttribute("checked")!=null)
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Interruptiable Price Announcement checkbox is checked");
+				}
+				else
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Interruptiable Price Announcement checkbox is not checked");
+				}
+				GetText(application, "Value In Price In(Cents)", "valueinprice_field");
+				if(getwebelement(xml.getlocator("//locators/" + application + "/sendfci_checkbox")).getAttribute("checked")!=null)
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Send FCI checkbox is checked");
+				}
+				else
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Send FCI checkbox is not checked");
+				}
+				if(getwebelement(xml.getlocator("//locators/" + application + "/sendsci_checkbox")).getAttribute("checked")!=null)
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Send SCI checkbox is checked");
+				}
+				else
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Send SCI checkbox is not checked");
+				}
+
+				if(getwebelement(xml.getlocator("//locators/" + application + "/chargebandnamevalue_viewpage")).isDisplayed())
+				{
+					GetText(application, "Charge Band Name", "chargebandnamevalue_viewpage");
+				}
+				else
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "No value selected in Charge Band Name dropdown");
+				}
+				if(getwebelement(xml.getlocator("//locators/" + application + "/enablecallerconfirmation_checkbox")).getAttribute("checked")!=null)
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Enable Caller Confirmation checkbox is checked");
+				}
+				else
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Enable Caller Confirmation checkbox is not checked");
+				}
+				if(getwebelement(xml.getlocator("//locators/" + application + "/callerconfirmationannouncement_dropdown")).isDisplayed())
+				{
+					GetText(application, "Caller Confirmation Announcement", "callerconfirmationannouncement_dropdown");
+				}
+				else
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, " No value selected in Caller Confirmation Announcement dropdown");
+				}
+				GetText(application, "Caller Confirmation Digit", "callerconfirmationdigit_field");
+				GetText(application, "Number Of Repetation Allowed", "noofrepetitionallowed_field");
+				Thread.sleep(2000);
+				ScrolltoElement(application, "noofrepetitionallowed_field", xml);
+				click_commonMethod(application, "Cancel", "viewaddnlfrc_cancelbutton", xml);
+				Thread.sleep(2000);
+
+			}
+			else
+			{
+				Log.info("Addnl FRC is not added in the grid");
+				System.out.println("Addnl FRC is not added in the grid");
+				DriverTestcase.logger.log(LogStatus.FAIL, "Addnl FRC is not added in the grid");
+			}
+
+			//verify Delete addnl frc
+			WebElement AddnlFRCGridCheck2= getwebelement("//div[@ref='eBodyContainer']");
+			String AddnlFRCGrid2= AddnlFRCGridCheck2.getAttribute("style");
+			WebElement AddedAddnlFRC2= getwebelement("//div[@ref='eBodyContainer']//span[@class='ag-selection-checkbox']//span[2]");
+			String AddedAddnlFRC2_checkbox= AddedAddnlFRC2.getAttribute("class");
+			if(!AddnlFRCGrid2.contains("height: 1px"))
+			{
+				if(AddedAddnlFRC2_checkbox.equalsIgnoreCase("ag-icon ag-icon-checkbox-unchecked"))
+				{
+					Clickon(AddedAddnlFRC2);
+				}
+				else
+				{
+					DriverTestcase.logger.log(LogStatus.PASS, "Added Addnl FRC is already selected");
+					Log.info("Added Addnl FRC is already selected");
+				}
+				Thread.sleep(1000);
+				click_commonMethod(application, "Action Dropdown", "manageaddnlfrc_actiondropdown", xml);
+				click_commonMethod(application, "Delete Addnl FRC", "delete", xml);
+				Thread.sleep(2000);
+				WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
+				if(DeleteAlertPopup.isDisplayed())
+				{
+					click_commonMethod(application, "Delete", "deletebutton", xml);
+				}
+				else
+				{
+					Log.info("Delete alert popup is not displayed");
+					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+				}
+				compareText(application, "Delete", "deletesuccessmsg", "", xml);
+				Thread.sleep(2000);
+				click_commonMethod(application, "Cancel", "cancelbutton", xml);
+				Thread.sleep(2000);
+			}
+			else
+			{
+				Log.info("Addnl FRC is not added in the grid");
+				System.out.println("Addnl FRC is not added in the grid");
+				DriverTestcase.logger.log(LogStatus.FAIL, "Addnl FRC is not added in the grid");
+			}
+		}
+		else
+		{
+			Log.info("SAN is not added in the grid");
+			System.out.println("SAN is not added in the grid");
+		}
+	}
+
+
+	//====================================================================================
+
+	public void verifySANMove(String application, String customernamevalue, String sannumbervalue, String select_sansearchtype, String destinationcustomername, String sanmove_orderno) throws InterruptedException, DocumentException, IOException {
 		//SAN Move link under SAN panel in view service page
 
 		//Cancel SAN Move
-			ScrolltoElement(application, "customerheader", xml);
+		ScrolltoElement(application, "customerheader", xml);
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
 		//SANFilter
 		click_commonMethod(application, "Search San Menu", "sanpanel_searchsanmenu", xml);
@@ -3696,14 +3700,14 @@ public class APT_NGINHelper extends DriverHelper {
 		{
 			Clickon(AddedSAN6);
 			Thread.sleep(1000);
-		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-		click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
-		click_commonMethod(application, "SAN Move", "sanmove_link", xml);
-		Thread.sleep(2000);
-		compareText(application, "SAN Move Header", "sanmoveheader", "SAN Move", xml);
-		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN Move is cancelled");
-		Log.info("SAN Move is cancelled");
+			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
+			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
+			click_commonMethod(application, "SAN Move", "sanmove_link", xml);
+			Thread.sleep(2000);
+			compareText(application, "SAN Move Header", "sanmoveheader", "SAN Move", xml);
+			click_commonMethod(application, "Cancel", "cancelbutton", xml);
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN Move is cancelled");
+			Log.info("SAN Move is cancelled");
 		}
 		else
 		{
@@ -3730,25 +3734,25 @@ public class APT_NGINHelper extends DriverHelper {
 		{
 			Clickon(AddedSAN7);
 			Thread.sleep(1000);
-		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-		click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
-		click_commonMethod(application, "SAN Move", "sanmove_link", xml);
-		Thread.sleep(2000);
-		compareText(application, "SAN Move Header", "sanmoveheader", "SAN Move", xml);
-		click_commonMethod(application, "Move", "movebutton_sanmove", xml);
-		//warning message check
-		warningMessage_commonMethod(application, "destinationcustomername_warningmsg", "Destination Customer name", xml);
-		warningMessage_commonMethod(application, "orderservice_warningmsg", "Order/Service", xml);
+			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
+			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
+			click_commonMethod(application, "SAN Move", "sanmove_link", xml);
+			Thread.sleep(2000);
+			compareText(application, "SAN Move Header", "sanmoveheader", "SAN Move", xml);
+			click_commonMethod(application, "Move", "movebutton_sanmove", xml);
+			//warning message check
+			warningMessage_commonMethod(application, "destinationcustomername_warningmsg", "Destination Customer name", xml);
+			warningMessage_commonMethod(application, "orderservice_warningmsg", "Order/Service", xml);
 
-		compareText(application, "Customer Name", "sanmove_customername", customernamevalue, xml);
-		compareText(application, "SAN Number", "sanmove_sannumber", sannumbervalue, xml);
-		addDropdownValues_commonMethod(application, "Destination Customer Name", "destinationcustomername", destinationcustomername, xml);
-		addDropdownValues_commonMethod(application, "Order/Service", "orderservice_dropdown", sanmove_orderno, xml);
-		click_commonMethod(application, "Move", "movebutton_sanmove", xml);
-		Thread.sleep(2000);
-		compareText(application, "SAN Move success message", "successmsgalert", "San Moved Successfully", xml);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN Move is successful");
-		Log.info("SAN Move is successful");
+			compareText(application, "Customer Name", "sanmove_customername", customernamevalue, xml);
+			compareText(application, "SAN Number", "sanmove_sannumber", sannumbervalue, xml);
+			addDropdownValues_commonMethod(application, "Destination Customer Name", "destinationcustomername", destinationcustomername, xml);
+			addDropdownValues_commonMethod(application, "Order/Service", "orderservice_dropdown", sanmove_orderno, xml);
+			click_commonMethod(application, "Move", "movebutton_sanmove", xml);
+			Thread.sleep(2000);
+			compareText(application, "SAN Move success message", "successmsgalert", "San Moved Successfully", xml);
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN Move is successful");
+			Log.info("SAN Move is successful");
 		}
 		else
 		{
@@ -3756,7 +3760,7 @@ public class APT_NGINHelper extends DriverHelper {
 			System.out.println("SAN is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN is not added in the grid");
 		}
-		
+
 		//verify SAN in destination customer service
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(2000);
@@ -3778,7 +3782,7 @@ public class APT_NGINHelper extends DriverHelper {
 		Thread.sleep(1000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/view")));
 		Thread.sleep(3000);
-		
+
 		ScrolltoElement(application, "customerheader", xml);
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
 		//SANFilter
@@ -3789,7 +3793,7 @@ public class APT_NGINHelper extends DriverHelper {
 		cleartext(application, "SAN Number Search", "sannumbersearchfield");
 		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
-		
+
 		WebElement AddedSAN11= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
 		if(AddedSAN11.isDisplayed())
 		{
@@ -3801,12 +3805,12 @@ public class APT_NGINHelper extends DriverHelper {
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : SAN is not moved successfully into destination customer");
 			Log.info("SAN is not moved successfully into destination customer");
 		}
-		}
-		//=======================================
-		
-		//Bulk Move
-		
-		public void verifyBulkMove(String application, String sid, String customernamevalue, String sannumbervalue, String select_sansearchtype, String bulkmove_country, String bulkmove_customer, String filterfrcnumber, String bulkmove_service, String country, String sannumber, String ringtonumber, String routingforpayphone_value, String routingformobile_value, String defaultrouting_value, String RingToNumber_Checkbox, String AnnouncementToPlay_Checkbox, String ComplexRouting_Checkbox, String defaultroutebusy_value, String noanswer_value, String networkcongestion, String resellername, String defaultvalue, String configure, String email, String phone, String fax, String city, String streetname, String streetno, String pobox, String zipcode, String serviceprofilevalue, String bulkmove_sannumber1, String bulkmove_sannumber2) throws InterruptedException, DocumentException, IOException {
+	}
+	//=======================================
+
+	//Bulk Move
+
+	public void verifyBulkMove(String application, String sid, String customernamevalue, String sannumbervalue, String select_sansearchtype, String bulkmove_country, String bulkmove_customer, String filterfrcnumber, String bulkmove_service, String country, String sannumber, String ringtonumber, String routingforpayphone_value, String routingformobile_value, String defaultrouting_value, String RingToNumber_Checkbox, String AnnouncementToPlay_Checkbox, String ComplexRouting_Checkbox, String defaultroutebusy_value, String noanswer_value, String networkcongestion, String resellername, String defaultvalue, String configure, String email, String phone, String fax, String city, String streetname, String streetno, String pobox, String zipcode, String serviceprofilevalue, String bulkmove_sannumber1, String bulkmove_sannumber2) throws InterruptedException, DocumentException, IOException {
 		//Cancel Bulk Move
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(2000);
@@ -3828,12 +3832,12 @@ public class APT_NGINHelper extends DriverHelper {
 		Thread.sleep(1000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/view")));
 		Thread.sleep(3000);
-		
+
 		ScrolltoElement(application, "customerheader", xml);
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-		
+
 		//==============Add SAN to perform bulk move======
-		
+
 		click_commonMethod(application, "Action dropdown", "SANActionDropdown", xml);	
 		click_commonMethod(application, "Add SAN", "addsan_link", xml);
 		scrollToTop();
@@ -3893,7 +3897,7 @@ public class APT_NGINHelper extends DriverHelper {
 				else
 				{
 					DriverTestcase.logger.log(LogStatus.FAIL, "Default checkbox is not checked by default");
-				Log.info("Default checkbox is not checked by default");
+					Log.info("Default checkbox is not checked by default");
 				}
 			}
 
@@ -4005,184 +4009,184 @@ public class APT_NGINHelper extends DriverHelper {
 		}
 
 		//===========End of Add SAN=========
-		
+
 		//==============Add SAN to perform bulk move======
 		ScrolltoElement(application, "customerheader", xml);
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
 		click_commonMethod(application, "Action dropdown", "SANActionDropdown", xml);	
 		click_commonMethod(application, "Add SAN", "addsan_link", xml);
 		scrollToTop();
-				compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
+		compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
 
-				addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
-				click_commonMethod(application, "Customer Name dropdown", "customername", xml);
-				Thread.sleep(1000);
+		addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
+		click_commonMethod(application, "Customer Name dropdown", "customername", xml);
+		Thread.sleep(1000);
 
-				if(getwebelement(xml.getlocator("//locators/" + application + "/customernamedropdown_valuesdisplay")).isDisplayed())
+		if(getwebelement(xml.getlocator("//locators/" + application + "/customernamedropdown_valuesdisplay")).isDisplayed())
+		{
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : Existing customer is available");
+			Log.info("Existing customer is available");
+			click_commonMethod(application, "Customer Name dropdown value", "customernamedropdown_valuesdisplay", xml);
+		}
+		else if(getwebelement(xml.getlocator("//locators/" + application + "/customernamedropdown_nomatchesfound")).isDisplayed())
+		{
+			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Existing customer is not available");
+			Log.info("Existing customer is not available");
+			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/addsan_header")));
+
+			//Manage new customer link
+			click_commonMethod(application, "Manage new customer", "managenewcustomer_link", xml);
+			compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP", xml);
+			Thread.sleep(1000);
+
+			//=========================
+
+			//Add Customer
+			//Select Country from dropdown
+			addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
+			String CustomerOCN= getwebelement(xml.getlocator("//locators/" + application + "/customer_ocn")).getAttribute("value");
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : OCN is displaying as: '"+CustomerOCN+"'");
+			String CustomerNamevalue= GetText(application, "Customer Name", "customerpanel_customernamevalue");
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : Customer Name is displaying as: '"+CustomerNamevalue+"'");
+			CustomerNamevalue.replace("(New)", "").trim();
+			addtextFields_commonMethod(application, "Reseller Name", "resellername", resellername, xml);
+			GetText(application, "Email", "reseller_email");
+			addtextFields_commonMethod(application, "City", "reseller_city", city, xml);
+			addtextFields_commonMethod(application, "Street Name", "reseller_streetname", streetname, xml);
+			addtextFields_commonMethod(application, "Street Number", "reseller_streetno", streetno, xml);
+			addtextFields_commonMethod(application, "PO Box", "reseller_pobox", pobox, xml);
+			addtextFields_commonMethod(application, "Zip Code", "reseller_zipcode", zipcode, xml);
+			GetText(application, "Phone", "reseller_phone");
+			GetText(application, "Fax", "reseller_fax");
+
+			if(defaultvalue.equalsIgnoreCase("YES"))
+			{
+				String Default_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/defaultcheckbox")).getAttribute("checked");
+				if(Default_Checkbox.isEmpty())
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Existing customer is available");
-					Log.info("Existing customer is available");
-					click_commonMethod(application, "Customer Name dropdown value", "customernamedropdown_valuesdisplay", xml);
-				}
-				else if(getwebelement(xml.getlocator("//locators/" + application + "/customernamedropdown_nomatchesfound")).isDisplayed())
-				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Existing customer is not available");
-					Log.info("Existing customer is not available");
-					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/addsan_header")));
-
-					//Manage new customer link
-					click_commonMethod(application, "Manage new customer", "managenewcustomer_link", xml);
-					compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP", xml);
+					System.out.println("Default checkbox is checked");
 					Thread.sleep(1000);
-
-					//=========================
-
-					//Add Customer
-					//Select Country from dropdown
-					addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
-					String CustomerOCN= getwebelement(xml.getlocator("//locators/" + application + "/customer_ocn")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : OCN is displaying as: '"+CustomerOCN+"'");
-					String CustomerNamevalue= GetText(application, "Customer Name", "customerpanel_customernamevalue");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Customer Name is displaying as: '"+CustomerNamevalue+"'");
-					CustomerNamevalue.replace("(New)", "").trim();
-					addtextFields_commonMethod(application, "Reseller Name", "resellername", resellername, xml);
-					GetText(application, "Email", "reseller_email");
-					addtextFields_commonMethod(application, "City", "reseller_city", city, xml);
-					addtextFields_commonMethod(application, "Street Name", "reseller_streetname", streetname, xml);
-					addtextFields_commonMethod(application, "Street Number", "reseller_streetno", streetno, xml);
-					addtextFields_commonMethod(application, "PO Box", "reseller_pobox", pobox, xml);
-					addtextFields_commonMethod(application, "Zip Code", "reseller_zipcode", zipcode, xml);
-					GetText(application, "Phone", "reseller_phone");
-					GetText(application, "Fax", "reseller_fax");
-
-					if(defaultvalue.equalsIgnoreCase("YES"))
-					{
-						String Default_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/defaultcheckbox")).getAttribute("checked");
-						if(Default_Checkbox.isEmpty())
-						{
-							System.out.println("Default checkbox is checked");
-							Thread.sleep(1000);
-							DriverTestcase.logger.log(LogStatus.PASS, "Default checkbox is checked");
-							Log.info("Default checkbox is checked");
-						}
-						else
-						{
-							DriverTestcase.logger.log(LogStatus.FAIL, "Default checkbox is not checked by default");
-						Log.info("Default checkbox is not checked by default");
-						}
-					}
-
-					else if(configure.equalsIgnoreCase("YES"))
-					{
-						String Configure_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/configurecheckbox")).getAttribute("checked");
-						if(Configure_Checkbox.isEmpty())
-						{
-							System.out.println("Configure checkbox is checked");
-							Thread.sleep(1000);
-							DriverTestcase.logger.log(LogStatus.PASS, "Configure checkbox is checked");
-							Log.info("Configure checkbox is checked");
-						}
-						else
-						{
-							DriverTestcase.logger.log(LogStatus.FAIL, "Configure checkbox is not checked");
-							Log.info("Configure checkbox is not checked");
-							click_commonMethod(application, "Configure checkbox", "configurecheckbox", xml);
-						}
-					}
-					scrolltoend();
-					Thread.sleep(1000);
-					click_commonMethod(application, "Next", "nextbutton", xml);
-					Thread.sleep(3000);	
-					ScrolltoElement(application, "addsan_header", xml);
-					compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
-					Thread.sleep(1000);
-
-					//Select Country from dropdown
-					addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
-					click_commonMethod(application, "Customer Name dropdown", "customername", xml);
-					Thread.sleep(1000);
-					click_commonMethod(application, "Customer Name dropdown value", "customernamedropdown_valuesdisplay", xml);
-				}
-
-				Thread.sleep(1000);
-				//SAN customer name
-				String SAN_Customernamevalue1= getwebelement(xml.getlocator("//locators/" + application + "/customername_selectedtext")).getText();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step :Customer name selected is : " + SAN_Customernamevalue1);
-				String SAN_Customername1=SAN_Customernamevalue1.substring(0, SAN_Customernamevalue1.indexOf("(")).trim();
-				//writetoexcel("src\\com\\saksoft\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 109, SAN_Customername1);
-
-				String SANNumber_CountryCode1=getwebelement(xml.getlocator("//locators/" + application + "/san_number")).getAttribute("value");
-				addtextFields_commonMethod(application, "SAN Number", "san_number", bulkmove_sannumber2, xml);
-				//SAN number
-				String Bulkmove_SANNumberValue2= SANNumber_CountryCode1+bulkmove_sannumber2;
-				DriverTestcase.logger.log(LogStatus.PASS, "Step :SAN Number is dsplayed as : " + Bulkmove_SANNumberValue2);
-
-				//Select service profile from dropdown
-				addDropdownValues_commonMethod(application, "Service Profile", "serviceprofile", serviceprofilevalue, xml);
-				Thread.sleep(1000);
-				scrolltoend();
-				if(RingToNumber_Checkbox.equalsIgnoreCase("YES"))
-				{
-					click_commonMethod(application, "'Ring To Number' radio", "ringtonumber_radiobutton", xml);
-					Thread.sleep(1000);
-					addtextFields_commonMethod(application, "Ring To Number", "ringtonumber_field", ringtonumber, xml);
-				}
-				else if(AnnouncementToPlay_Checkbox.equalsIgnoreCase("YES"))
-				{
-					click_commonMethod(application, "'Announcement to play' radio", "announcementtoplay_radiobutton", xml);
-					Thread.sleep(1000);
-					//Select announcement to play value from dropdown
-					click_commonMethod(application, "Announcement To Play dropdown", "announcementtoplay_dropdown", xml);
-					click_commonMethod(application, "Announcement To Play value", "announcementtoplay_dropdownvalue", xml);
-				}
-				else if(ComplexRouting_Checkbox.equalsIgnoreCase("YES"))
-				{
-					click_commonMethod(application, "'Complex route' radio", "complexroute_radiobutton", xml);
-					Thread.sleep(1000);
-					addtextFields_commonMethod(application, "Routing for payphone", "routingforpayphone_field", routingforpayphone_value, xml);
-					addtextFields_commonMethod(application, "Routing for mobile", "routingformobile", routingformobile_value, xml);
-					addtextFields_commonMethod(application, "Default Routing", "defaultrouting", defaultrouting_value, xml);
-					click_commonMethod(application, "Enable logical routing checkbox", "enablelogicalrouting", xml);
-					addtextFields_commonMethod(application, "Default Route busy", "defaultroutebusy", defaultroutebusy_value, xml);
-					addtextFields_commonMethod(application, "No Answer", "noanswer", noanswer_value, xml);
-					addtextFields_commonMethod(application, "Network Congestion", "networkcongestion", networkcongestion, xml);
-				}
-				scrolltoend();
-				click_commonMethod(application, "Next", "nextbutton", xml);
-
-				if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
-				{
-					Log.info("Navigated to view SAN page");
-					System.out.println("Navigated to view SAN page");
-					compareText(application, "Add SAN success message", "addsan_successmsg", "SAN successfully created", xml);
-					scrolltoend();
-					click_commonMethod(application, "Back", "viewpage_backbutton", xml);
+					DriverTestcase.logger.log(LogStatus.PASS, "Default checkbox is checked");
+					Log.info("Default checkbox is checked");
 				}
 				else
 				{
-					Log.info("SAN not created");
-					System.out.println("SAN not created");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : SAN not created");
+					DriverTestcase.logger.log(LogStatus.FAIL, "Default checkbox is not checked by default");
+					Log.info("Default checkbox is not checked by default");
 				}
+			}
 
-				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
+			else if(configure.equalsIgnoreCase("YES"))
+			{
+				String Configure_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/configurecheckbox")).getAttribute("checked");
+				if(Configure_Checkbox.isEmpty())
 				{
-					Log.info("Navigated to view service page");
-					System.out.println("Navigated to view service page");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to view service page");
+					System.out.println("Configure checkbox is checked");
+					Thread.sleep(1000);
+					DriverTestcase.logger.log(LogStatus.PASS, "Configure checkbox is checked");
+					Log.info("Configure checkbox is checked");
 				}
 				else
 				{
-					Log.info("Not navigated to view service page");
-					System.out.println("Not navigated to view service page");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Not navigated to view service page");
+					DriverTestcase.logger.log(LogStatus.FAIL, "Configure checkbox is not checked");
+					Log.info("Configure checkbox is not checked");
+					click_commonMethod(application, "Configure checkbox", "configurecheckbox", xml);
 				}
+			}
+			scrolltoend();
+			Thread.sleep(1000);
+			click_commonMethod(application, "Next", "nextbutton", xml);
+			Thread.sleep(3000);	
+			ScrolltoElement(application, "addsan_header", xml);
+			compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
+			Thread.sleep(1000);
 
-				//===========End of Add SAN=========
+			//Select Country from dropdown
+			addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
+			click_commonMethod(application, "Customer Name dropdown", "customername", xml);
+			Thread.sleep(1000);
+			click_commonMethod(application, "Customer Name dropdown value", "customernamedropdown_valuesdisplay", xml);
+		}
+
+		Thread.sleep(1000);
+		//SAN customer name
+		String SAN_Customernamevalue1= getwebelement(xml.getlocator("//locators/" + application + "/customername_selectedtext")).getText();
+		DriverTestcase.logger.log(LogStatus.PASS, "Step :Customer name selected is : " + SAN_Customernamevalue1);
+		String SAN_Customername1=SAN_Customernamevalue1.substring(0, SAN_Customernamevalue1.indexOf("(")).trim();
+		//writetoexcel("src\\com\\saksoft\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 109, SAN_Customername1);
+
+		String SANNumber_CountryCode1=getwebelement(xml.getlocator("//locators/" + application + "/san_number")).getAttribute("value");
+		addtextFields_commonMethod(application, "SAN Number", "san_number", bulkmove_sannumber2, xml);
+		//SAN number
+		String Bulkmove_SANNumberValue2= SANNumber_CountryCode1+bulkmove_sannumber2;
+		DriverTestcase.logger.log(LogStatus.PASS, "Step :SAN Number is dsplayed as : " + Bulkmove_SANNumberValue2);
+
+		//Select service profile from dropdown
+		addDropdownValues_commonMethod(application, "Service Profile", "serviceprofile", serviceprofilevalue, xml);
+		Thread.sleep(1000);
+		scrolltoend();
+		if(RingToNumber_Checkbox.equalsIgnoreCase("YES"))
+		{
+			click_commonMethod(application, "'Ring To Number' radio", "ringtonumber_radiobutton", xml);
+			Thread.sleep(1000);
+			addtextFields_commonMethod(application, "Ring To Number", "ringtonumber_field", ringtonumber, xml);
+		}
+		else if(AnnouncementToPlay_Checkbox.equalsIgnoreCase("YES"))
+		{
+			click_commonMethod(application, "'Announcement to play' radio", "announcementtoplay_radiobutton", xml);
+			Thread.sleep(1000);
+			//Select announcement to play value from dropdown
+			click_commonMethod(application, "Announcement To Play dropdown", "announcementtoplay_dropdown", xml);
+			click_commonMethod(application, "Announcement To Play value", "announcementtoplay_dropdownvalue", xml);
+		}
+		else if(ComplexRouting_Checkbox.equalsIgnoreCase("YES"))
+		{
+			click_commonMethod(application, "'Complex route' radio", "complexroute_radiobutton", xml);
+			Thread.sleep(1000);
+			addtextFields_commonMethod(application, "Routing for payphone", "routingforpayphone_field", routingforpayphone_value, xml);
+			addtextFields_commonMethod(application, "Routing for mobile", "routingformobile", routingformobile_value, xml);
+			addtextFields_commonMethod(application, "Default Routing", "defaultrouting", defaultrouting_value, xml);
+			click_commonMethod(application, "Enable logical routing checkbox", "enablelogicalrouting", xml);
+			addtextFields_commonMethod(application, "Default Route busy", "defaultroutebusy", defaultroutebusy_value, xml);
+			addtextFields_commonMethod(application, "No Answer", "noanswer", noanswer_value, xml);
+			addtextFields_commonMethod(application, "Network Congestion", "networkcongestion", networkcongestion, xml);
+		}
+		scrolltoend();
+		click_commonMethod(application, "Next", "nextbutton", xml);
+
+		if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
+		{
+			Log.info("Navigated to view SAN page");
+			System.out.println("Navigated to view SAN page");
+			compareText(application, "Add SAN success message", "addsan_successmsg", "SAN successfully created", xml);
+			scrolltoend();
+			click_commonMethod(application, "Back", "viewpage_backbutton", xml);
+		}
+		else
+		{
+			Log.info("SAN not created");
+			System.out.println("SAN not created");
+			DriverTestcase.logger.log(LogStatus.FAIL, "Step : SAN not created");
+		}
+
+		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
+		{
+			Log.info("Navigated to view service page");
+			System.out.println("Navigated to view service page");
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to view service page");
+		}
+		else
+		{
+			Log.info("Not navigated to view service page");
+			System.out.println("Not navigated to view service page");
+			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Not navigated to view service page");
+		}
+
+		//===========End of Add SAN=========
 		Thread.sleep(3000);
 		ScrolltoElement(application, "customerheader", xml);
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-		
+
 		WebElement SANGridCheck8= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid8= SANGridCheck8.getAttribute("style");
 		if(!SANGrid8.contains("height: 1px"))
@@ -4190,11 +4194,11 @@ public class APT_NGINHelper extends DriverHelper {
 			Thread.sleep(1000);
 			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
 			click_commonMethod(application, "Bulk Move", "bulkmove_link", xml);
-		Thread.sleep(2000);
-		compareText(application, "Bulk Move Header", "bulkmoveheader", "Bulk Move", xml);
-		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Bulk Move is cancelled");
-		Log.info("Bulk Move is cancelled");
+			Thread.sleep(2000);
+			compareText(application, "Bulk Move Header", "bulkmoveheader", "Bulk Move", xml);
+			click_commonMethod(application, "Cancel", "cancelbutton", xml);
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : Bulk Move is cancelled");
+			Log.info("Bulk Move is cancelled");
 		}
 		else
 		{
@@ -4202,40 +4206,40 @@ public class APT_NGINHelper extends DriverHelper {
 			System.out.println("SAN is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN is not added in the grid");
 		}
-		
+
 		//Bulk Move
 		ScrolltoElement(application, "customerheader", xml);
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-		
+
 		WebElement SANGridCheck9= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid9= SANGridCheck9.getAttribute("style");
 		if(!SANGrid9.contains("height: 1px"))
 		{
 			Thread.sleep(1000);
-		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-		click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
-		click_commonMethod(application, "Bulk Move", "bulkmove_link", xml);
-		Thread.sleep(2000);
-		compareText(application, "Bulk Move Header", "bulkmoveheader", "Bulk Move", xml);
-		click_commonMethod(application, "Move", "movebutton_sanmove", xml);
-		//warning message check
-		warningMessage_commonMethod(application, "bulkmove_countrywarngmsg", "Country", xml);
-		warningMessage_commonMethod(application, "bulkmove_customerwarngmsg", "Customer", xml);
-		warningMessage_commonMethod(application, "filterfrcnumber_warngmsg", "Filter FRC Number", xml);
-		warningMessage_commonMethod(application, "bulkmove_Servicewarngmsg", "Service", xml);
-		addDropdownValues_commonMethod(application, "Country", "bulkmove_countrydropdown", bulkmove_country, xml);
-		addDropdownValues_commonMethod(application, "Customer", "bulkmove_customerdropdown", bulkmove_customer, xml);
-		click_commonMethod(application, "Filter FRC Number Dropdown", "filterfrcnumberdropdown", xml);
-		WebElement FilterFRC_Dropdownvalueselect1= getwebelement("//div[label[text()='Filter FRC Number']]//div[@role='list']//div//div[2]/div//div[contains(text(),'"+Bulkmove_SANNumberValue1+"')]/preceding-sibling::input[@type='checkbox']");
-		Clickon(FilterFRC_Dropdownvalueselect1);
-		WebElement FilterFRC_Dropdownvalueselect2= getwebelement("//div[label[text()='Filter FRC Number']]//div[@role='list']//div//div[2]/div//div[contains(text(),'"+Bulkmove_SANNumberValue2+"')]/preceding-sibling::input[@type='checkbox']");
-		Clickon(FilterFRC_Dropdownvalueselect2);
-		Thread.sleep(2000);
-		addDropdownValues_commonMethod(application, "Service", "bulkmove_servicedropdown", bulkmove_service, xml);
-		GetText(application, "Remarks", "remarktextarea");
-		click_commonMethod(application, "Move", "movebutton_sanmove", xml);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Bulk Move is successful");
-		Log.info("Bulk Move is successful");
+			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
+			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
+			click_commonMethod(application, "Bulk Move", "bulkmove_link", xml);
+			Thread.sleep(2000);
+			compareText(application, "Bulk Move Header", "bulkmoveheader", "Bulk Move", xml);
+			click_commonMethod(application, "Move", "movebutton_sanmove", xml);
+			//warning message check
+			warningMessage_commonMethod(application, "bulkmove_countrywarngmsg", "Country", xml);
+			warningMessage_commonMethod(application, "bulkmove_customerwarngmsg", "Customer", xml);
+			warningMessage_commonMethod(application, "filterfrcnumber_warngmsg", "Filter FRC Number", xml);
+			warningMessage_commonMethod(application, "bulkmove_Servicewarngmsg", "Service", xml);
+			addDropdownValues_commonMethod(application, "Country", "bulkmove_countrydropdown", bulkmove_country, xml);
+			addDropdownValues_commonMethod(application, "Customer", "bulkmove_customerdropdown", bulkmove_customer, xml);
+			click_commonMethod(application, "Filter FRC Number Dropdown", "filterfrcnumberdropdown", xml);
+			WebElement FilterFRC_Dropdownvalueselect1= getwebelement("//div[label[text()='Filter FRC Number']]//div[@role='list']//div//div[2]/div//div[contains(text(),'"+Bulkmove_SANNumberValue1+"')]/preceding-sibling::input[@type='checkbox']");
+			Clickon(FilterFRC_Dropdownvalueselect1);
+			WebElement FilterFRC_Dropdownvalueselect2= getwebelement("//div[label[text()='Filter FRC Number']]//div[@role='list']//div//div[2]/div//div[contains(text(),'"+Bulkmove_SANNumberValue2+"')]/preceding-sibling::input[@type='checkbox']");
+			Clickon(FilterFRC_Dropdownvalueselect2);
+			Thread.sleep(2000);
+			addDropdownValues_commonMethod(application, "Service", "bulkmove_servicedropdown", bulkmove_service, xml);
+			GetText(application, "Remarks", "remarktextarea");
+			click_commonMethod(application, "Move", "movebutton_sanmove", xml);
+			DriverTestcase.logger.log(LogStatus.PASS, "Step : Bulk Move is successful");
+			Log.info("Bulk Move is successful");
 		}
 		else
 		{
@@ -4266,14 +4270,14 @@ public class APT_NGINHelper extends DriverHelper {
 		Thread.sleep(1000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/view")));
 		Thread.sleep(3000);
-		
+
 		ScrolltoElement(application, "customerheader", xml);
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
-		
+
 		WebElement AddedSAN11= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+Bulkmove_SANNumberValue1+"')]/parent::div//input[@type='radio']");
 		WebElement AddedSAN12= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+Bulkmove_SANNumberValue2+"')]/parent::div//input[@type='radio']");
 		//		int AddedSANCount= AddedSAN11.size();
-//		System.out.println("BulkSANAdded");
+		//		System.out.println("BulkSANAdded");
 		if(AddedSAN11.isDisplayed() && AddedSAN12.isDisplayed())
 		{
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Bulk Move verification is successfull in destination customer");
@@ -4285,8 +4289,8 @@ public class APT_NGINHelper extends DriverHelper {
 			Log.info("Bulk SAN is not moved successfully into destination customer");
 		}
 	}
-		
-		
+
+
 
 	public void verifyAllDeleteOperations(String application, String customernamevalue, String select_sansearchtype, String sannumbervalue) throws InterruptedException, DocumentException, IOException	{
 
@@ -4300,42 +4304,42 @@ public class APT_NGINHelper extends DriverHelper {
 		getwebelement(xml.getlocator("//locators/" + application + "/select_sansearchtype")).sendKeys(Keys.ENTER);
 		addtextFields_commonMethod(application, "SAN Number Search", "sannumbersearchfield", sannumbervalue, xml);
 		getwebelement(xml.getlocator("//locators/" + application + "/sanheader")).click();
-		
-			WebElement SANGridCheck2= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
-			String SANGrid2= SANGridCheck2.getAttribute("style");
-			System.out.println("Customer Name displaying: " +customernamevalue);
-			WebElement AddedSAN2= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
-			if(!SANGrid2.contains("height: 1px"))
-			{
-				Clickon(AddedSAN2);
-				Thread.sleep(1000);
 
-		click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
-		click_commonMethod(application, "Delete SAN", "deletesan_link", xml);
-		Thread.sleep(2000);
-		WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-		if(DeleteAlertPopup.isDisplayed())
+		WebElement SANGridCheck2= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
+		String SANGrid2= SANGridCheck2.getAttribute("style");
+		System.out.println("Customer Name displaying: " +customernamevalue);
+		WebElement AddedSAN2= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
+		if(!SANGrid2.contains("height: 1px"))
 		{
-			click_commonMethod(application, "Delete", "deletebutton", xml);
+			Clickon(AddedSAN2);
+			Thread.sleep(1000);
+
+			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
+			click_commonMethod(application, "Delete SAN", "deletesan_link", xml);
 			Thread.sleep(2000);
-			compareText(application, "SAN Delete success msg", "deletesuccessmsg", "San deleted Successfully", xml);
-		}
-		else
-		{
-			Log.info("Delete alert popup is not displayed");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-		}
-		
-		Thread.sleep(2000);
+			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
+			if(DeleteAlertPopup.isDisplayed())
+			{
+				click_commonMethod(application, "Delete", "deletebutton", xml);
+				Thread.sleep(2000);
+				compareText(application, "SAN Delete success msg", "deletesuccessmsg", "San deleted Successfully", xml);
 			}
 			else
 			{
-				Log.info("SAN is not added in the grid");
-				System.out.println("SAN is not added in the grid");
+				Log.info("Delete alert popup is not displayed");
+				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
 			}
 
+			Thread.sleep(2000);
+		}
+		else
+		{
+			Log.info("SAN is not added in the grid");
+			System.out.println("SAN is not added in the grid");
+		}
+
 		//Delete Customer
-			ScrolltoElement(application, "resellerheader", xml);
+		ScrolltoElement(application, "resellerheader", xml);
 		WebElement CustomerGridCheck= getwebelement("(//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String CustomerGrid= CustomerGridCheck.getAttribute("style");
 		WebElement AddedCustomer= getwebelement("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']");
@@ -4349,21 +4353,21 @@ public class APT_NGINHelper extends DriverHelper {
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Action dropdown button");
 			Log.info("clicked on Action dropdown button");
 
-			click_commonMethod(application, "Delete", "delete", xml);
+			click_commonMethod(application, "Customer Delete", "delete", xml);
 			Thread.sleep(2000);
 			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
 			if(DeleteAlertPopup.isDisplayed())
 			{
 				click_commonMethod(application, "Delete", "deletebutton", xml);
 				Thread.sleep(2000);
-				compareText(application, "Customer Delete success msg", "deletesuccessmsg", "Data deleted successfully. ", xml);
+				compareText(application, "Customer Delete success msg", "deletesuccessmsg", "Customer successfully deleted.", xml);
 			}
 			else
 			{
 				Log.info("Delete alert popup is not displayed");
 				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
 			}
-			
+
 			Thread.sleep(2000);
 		}
 
@@ -4400,20 +4404,20 @@ public class APT_NGINHelper extends DriverHelper {
 		//Delete Service
 		ScrolltoElement(application, "orderpanelheader", xml);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
-		click_commonMethod(application, "Delete", "delete", xml);
+		click_commonMethod(application, "Service Delete", "delete", xml);
+		Thread.sleep(2000);
+		WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
+		if(DeleteAlertPopup.isDisplayed())
+		{
+			click_commonMethod(application, "Delete", "deletebutton", xml);
 			Thread.sleep(2000);
-			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-			if(DeleteAlertPopup.isDisplayed())
-			{
-				click_commonMethod(application, "Delete", "deletebutton", xml);
-				Thread.sleep(2000);
-				compareText(application, "Service delete success message", "deletesuccessmsg", "Service successfully deleted", xml);
-			}
-			else
-			{
-				Log.info("Delete alert popup is not displayed");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-			}
+			compareText(application, "Service delete success message", "deletesuccessmsg", "Service successfully deleted", xml);
+		}
+		else
+		{
+			Log.info("Delete alert popup is not displayed");
+			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+		}
 		Thread.sleep(2000);
 	}
 
@@ -4434,13 +4438,13 @@ public class APT_NGINHelper extends DriverHelper {
 		click_commonMethod(application, "Download To Excel", "downloadtoexcellink", xml);
 		Thread.sleep(3000);
 		isFileDownloaded(searchSANfilename, browserfiles_downloadspath);
-		
+
 		//Rework done
 		addtextFields_commonMethod(application, "SAN", "santextfield", search_sannumber, xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Search", "san_searchbutton", xml);
 		Thread.sleep(3000);
-		
+
 		WebElement SelectSAN= getwebelement("//div[contains(text(),'"+search_sannumber+"')]/parent::div//input[@type='radio']");
 
 		if(SelectSAN.isDisplayed())
@@ -4969,7 +4973,7 @@ public class APT_NGINHelper extends DriverHelper {
 		Thread.sleep(3000);
 	}
 
-	
+
 	public void cleartext(String application, String labelname, String xpath) throws InterruptedException, DocumentException {
 		WebElement element= null;
 		try {
@@ -5041,7 +5045,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 	}
 
-	
+
 	public void writetoexcel(String filepath, String sheetname, int columnnumber, String inputvalue) throws IOException{
 
 		File file= new File(filepath);
@@ -5056,6 +5060,6 @@ public class APT_NGINHelper extends DriverHelper {
 		fis.close();
 
 	}
-	
+
 
 }

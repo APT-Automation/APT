@@ -188,9 +188,10 @@ public class APT_NGINTest extends DriverTestcase{
 //	
 //	}
 
-	@Test(description = "TC-12",dataProviderClass = DataReader_PK.class, dataProvider = "Finaldatareader_NGIN", priority=18)
+	@Test(description = "TC-20",dataProviderClass = DataReader_PK.class, dataProvider = "Finaldatareader_NGIN", priority=18)
 	 public void verifyDeleteOperations(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
+		APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
 		APT_NGIN.get().verifyAllDeleteOperations("nginservice", map.get("CustomerNameValue"), map.get("SelectSANSearchType"), map.get("SANNumberValue"));
 		
 		}

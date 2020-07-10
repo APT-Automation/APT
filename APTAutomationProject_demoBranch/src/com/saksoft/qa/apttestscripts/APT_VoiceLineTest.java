@@ -87,7 +87,7 @@ public class APT_VoiceLineTest extends DriverTestcase{
 	 public void verifyServicepanelinviewservicepage(Map<String, String> map) throws Exception {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyServicepanelinviewservicepage");
-		APT_VoiceLineHelper.get().searchservice("voiceline","IPVLService_8720" );
+		APT_VoiceLineHelper.get().searchservice("voiceline", map.get("ServiceIdentification"));
 		//APT_VoiceLineHelper.get().verifyservicepanelInformationinviewservicepage("voiceline", map.get("ServiceIdentification"), map.get("ServiceType"), map.get("Remarks"), map.get("ResellerCode_Value"), map.get("ThirdPartyInternet_Checkbox"), map.get("PhoneContact"));
 		APT_VoiceLineHelper.get().verifyservicepanel_links("voiceline", map.get("EditRemarks"), map.get("Remarks"), map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"), map.get("ResellerCode_Value"), map.get("ThirdPartyInternet_Checkbox"), map.get("PhoneContact"), map.get("Edit_ResellerCode"), map.get("Edit_ThirdPartyInternet_Checkbox"), map.get("Edit_ServiceEmail"), map.get("Edit_PhoneContact"), map.get("Edit_PerformanceReporting_Checkbox"), map.get("Edit_ProactiveNotification_Checkbox"), map.get("Edit_NotificationManagementTeam_Drodpwon"));
 		//APT_VoiceLineHelper.get().verifyManageService("voiceline", map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
@@ -154,4 +154,6 @@ public class APT_VoiceLineTest extends DriverTestcase{
 				map.get("FaxDiversionNumber_Value"), map.get("PartialNumberReplacement_Checkbox"), map.get("cpemanualconfig_checkbox"));
 		
 	}
+	
+	
 }

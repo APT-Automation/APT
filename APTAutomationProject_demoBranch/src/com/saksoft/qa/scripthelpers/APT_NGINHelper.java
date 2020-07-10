@@ -818,7 +818,7 @@ public class APT_NGINHelper extends DriverHelper {
 				WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
 				if(DeleteAlertPopup.isDisplayed())
 				{
-					click_commonMethod(application, "Delete", "deletebutton", xml);
+					click_commonMethod(application, "Delete", "userdelete", xml);
 					compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
 				}
 				else
@@ -1028,7 +1028,7 @@ public class APT_NGINHelper extends DriverHelper {
 				WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
 				if(DeleteAlertPopup.isDisplayed())
 				{
-					click_commonMethod(application, "Delete", "deletebutton", xml);
+					click_commonMethod(application, "Delete", "userdelete", xml);
 					compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
 				}
 				else

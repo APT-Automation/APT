@@ -255,7 +255,7 @@
 <emailvalue>//b[text()='Email']/parent::label/parent::div/following-sibling::div</emailvalue>
 <phonevalue>//b[text()='Phone']/parent::label/parent::div/following-sibling::div</phonevalue>
 <OK_button>//button[@type='submit']//span[text()='OK']</OK_button>
-
+<userdelete>//button[text()='Delete']</userdelete>
 <!-- Select Dropdown -->
 <legalcustomerName_labelName>//label[text()='Legal Customer Name']</legalcustomerName_labelName>
 

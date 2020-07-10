@@ -1655,7 +1655,6 @@ public class APT_NGINHelper extends DriverHelper {
 	public static String ResellerName;
 	public void AddReseller(String application, String ocn, String email, String city, String streetname, String streetno, String pobox, String zipcode, String phone, String fax) throws InterruptedException, DocumentException, IOException {
 		ScrolltoElement(application, "servicepanel_header", xml);
-		isDisplayed(application, "resellerheader", "Reseller Header");
 
 		// verify customer name column
 		compareText(application, "Customer Name", "reseller_customername_column", "Customer Name", xml);

@@ -7,7 +7,7 @@
   	</listeners>
   	
   	
-	<!--  <test name ="NGIN"> 
+	  <test name ="NGIN"> 
 		<classes>
 			<class name="com.saksoft.qa.apttestscripts.APT_NGINTest">
 			 <methods>
@@ -44,7 +44,7 @@
 		</classes>
 		</test>
   		
-   	-->
+   <!--
    	
    	 <test name="Wholesale">  
 		<classes>	
@@ -69,6 +69,7 @@
 		</classes>
 	</test> 	
 	
+	-->
    	 	
 </suite>
 

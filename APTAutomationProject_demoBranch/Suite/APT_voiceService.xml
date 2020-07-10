@@ -16,7 +16,6 @@
        			 	<include name="verifycreateorder" />
        			 	<include name="verifyservicetypeselection" />
        			 	<include name="verifyservicecreation" />
-       			 	<include name="verifyCustomerDetailsInformation" />
        			 	<include name="verifyUserDetailsInformation" />
        			 	<include name="verifyOrderDetailsInformation" />
        			 	<include name="verifyServicepanelinviewservicepage" />
@@ -29,6 +28,7 @@
     	</classes>	
   	</test> 
   	
+  	<!--
   	
   	<test name ="Voice line Service"> 	
     	<classes>	  
@@ -44,7 +44,7 @@
 		</classes>
 		</test>
   		
-   <!--
+   
    	
    	 <test name="Wholesale">  
 		<classes>	

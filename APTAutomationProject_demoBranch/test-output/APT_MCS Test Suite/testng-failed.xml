@@ -4,42 +4,33 @@
   <listeners>
     <listener class-name="com.saksoft.qa.listeners.TestListener"/>
   </listeners>
-  <test name="NGIN(failed)" parallel="classes">
+  <test name="CREATE ACCESS CORE DEVICE(failed)" parallel="classes">
     <classes>
-      <class name="com.saksoft.qa.apttestscripts.APT_NGINTest">
+      <class name="com.saksoft.qa.apttestscripts.Lanlink_DirectFiber">
         <methods>
-          <include name="CreateCustomer"/>
+          <include name="setup"/>
+          <include name="endReport"/>
+          <include name="BeforeMethod"/>
+          <include name="getResult"/>
         </methods>
-      </class> <!-- com.saksoft.qa.apttestscripts.APT_NGINTest -->
-      <class name="com.saksoft.qa.apttestscripts.APT_wholesale">
+      </class> <!-- com.saksoft.qa.apttestscripts.Lanlink_DirectFiber -->
+      <class name="com.saksoft.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter">
         <methods>
+          <include name="verifynavigationtocreatedevicepage"/>
+          <include name="verifyEnteredValueForDevice"/>
+          <include name="verifyaccessrouterdeviceDelete"/>
+          <include name="endReport"/>
+          <include name="BeforeMethod"/>
+          <include name="verifyDeviceUpdationSuccessMessagefor_AccessRouterDevice"/>
           <include name="BeforeSuite"/>
+          <include name="setup"/>
+          <include name="verifyTestCommandAndStatus"/>
+          <include name="Teardown"/>
+          <include name="verifyaccessrouterdeviceEdit"/>
+          <include name="verifycreateaccessrouterdevice"/>
+          <include name="getResult"/>
         </methods>
-      </class> <!-- com.saksoft.qa.apttestscripts.APT_wholesale -->
+      </class> <!-- com.saksoft.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter -->
     </classes>
-  </test> <!-- NGIN(failed) -->
-  <test name="Voice line Service(failed)" parallel="classes">
-    <classes>
-      <class name="com.saksoft.qa.apttestscripts.APT_VoiceLineTest">
-        <methods>
-          <include name="verifyServicepanelinviewservicepage"/>
-        </methods>
-      </class> <!-- com.saksoft.qa.apttestscripts.APT_VoiceLineTest -->
-      <class name="com.saksoft.qa.apttestscripts.APT_wholesale">
-        <methods>
-          <include name="BeforeSuite"/>
-        </methods>
-      </class> <!-- com.saksoft.qa.apttestscripts.APT_wholesale -->
-    </classes>
-  </test> <!-- Voice line Service(failed) -->
-  <test name="Wholesale(failed)" parallel="classes">
-    <classes>
-      <class name="com.saksoft.qa.apttestscripts.APT_wholesale">
-        <methods>
-          <include name="searchCreatedService"/>
-          <include name="BeforeSuite"/>
-        </methods>
-      </class> <!-- com.saksoft.qa.apttestscripts.APT_wholesale -->
-    </classes>
-  </test> <!-- Wholesale(failed) -->
+  </test> <!-- CREATE ACCESS CORE DEVICE(failed) -->
 </suite> <!-- Failed suite [APT_MCS Test Suite] -->

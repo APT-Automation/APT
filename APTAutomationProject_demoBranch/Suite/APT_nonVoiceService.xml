@@ -1,34 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="1" data-provider-thread-count="1"  name="APT_MCS Test Suite" parallel="classes" verbose="1">
+<suite thread-count="1" data-provider-thread-count="1"  name="APT_MCS Test Suite_nonVoice" parallel="classes" verbose="1">
 
-	<listeners>
-      <listener class-name="com.saksoft.qa.listeners.TestListener" />
-  	</listeners>
   	
-  	
-   	 <test name="LANLINK">  
-		<classes>	
-			<class name="com.saksoft.qa.apttestscripts.Lanlink_DirectFiber">
-	 		<methods>
-				<include name="verifyAddSiteOrderFieldsfortheServiceSubtypeSelectedunderLANLINK" />
-				<include name="SuccessmessageforCreationofSiteOrder" />
-				<include name="verifytheDataEnteredforAddSiteOrderfortheServiceSubtypeSelectedunderLANLINK" />
-				<include name="EditSiteOrderfortheServiceSubtypeSelectedunderLANLINK" />
-				<include name="Actelis" />
-				<include name="AdddeviceforEquipment" />
-				<include name="configureEquipment" />
-				<include name="showInterface_Equipment" />
-				<include name="deleteDevice_Equipment" />
-				<include name="PAMTest" />
-				
-			</methods>   
-		  </class>	
-		</classes>
-	</test> 	
-	
-	
-
 	 <test name="CREATE ACCESS CORE DEVICE">  
 		<classes>	
 			<class name="com.saksoft.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter">
@@ -46,6 +20,28 @@
 		  </class>	
 		</classes>
 	</test> 
+	
+	
+	<test name="LANLINK">  
+		<classes>	
+			<class name="com.saksoft.qa.apttestscripts.Lanlink_DirectFiber">
+	 		<methods>
+	 			<include name="searchCreatedService" />
+				<include name="verifyAddSiteOrderFieldsfortheServiceSubtypeSelectedunderLANLINK" />
+				<include name="SuccessmessageforCreationofSiteOrder" />
+				<include name="verifytheDataEnteredforAddSiteOrderfortheServiceSubtypeSelectedunderLANLINK" />
+				<include name="EditSiteOrderfortheServiceSubtypeSelectedunderLANLINK" />
+				<include name="Actelis" />
+				<include name="AdddeviceforEquipment" />
+				<include name="configureEquipment" />
+				<include name="showInterface_Equipment" />
+				<include name="deleteDevice_Equipment" />
+				
+			</methods>   
+		  </class>	
+		</classes>
+	</test> 	
+	
 	
 </suite>
 

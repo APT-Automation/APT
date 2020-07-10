@@ -24385,6 +24385,28 @@ public void pamTest(String application, String serviceID) throws InterruptedExce
 	}
 
 	
+public void searchorder(String application, String sid) throws InterruptedException, DocumentException, IOException {
+
+	Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
+	Thread.sleep(2000);
+
+	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorderlink")));
+
+	SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/servicefield")),sid);
+	Thread.sleep(1000);
+
+	WebElement searchbutton= getwebelement(xml.getlocator("//locators/" + application + "/searchbutton"));
+	ScrolltoElement(application, "searchbutton", xml);
+	Clickon(searchbutton);
+	Thread.sleep(2000);
+	scrolltoend();
+	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/serviceradiobutton")));
+	Thread.sleep(3000);
+	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorder_actiondropdown")));
+	Thread.sleep(1000);
+	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/view")));
+	Thread.sleep(3000);
+}
     
 			
 }

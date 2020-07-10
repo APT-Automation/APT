@@ -21,7 +21,7 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 		
 			DriverTestcase.logger = DriverTestcase.extent.startTest("searchCreatedService"); 
 			
-			APT_wholesaleHelper.get().searchorder("LANLINK", map.get("ServiceIdentification"));
+			APT_wholesaleHelper.get().searchorder("apt", map.get("serviceNumber"));
 		}
 	
 	

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="1" data-provider-thread-count="1"  name="APT_MCS Test Suite" parallel="classes" verbose="1">
+<suite thread-count="1" data-provider-thread-count="1"  name="APT_MCS Test Suite_voice" parallel="classes" verbose="1">
 
 	<listeners>
       <listener class-name="com.saksoft.qa.listeners.TestListener" />

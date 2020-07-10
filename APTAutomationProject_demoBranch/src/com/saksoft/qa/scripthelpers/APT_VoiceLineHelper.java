@@ -1238,6 +1238,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		ScrolltoElement(application, "managementoptions_header", xml);
 		compareText(application, "ASR Device header", "asrdevice_header", "ASR Device", xml);
 		Thread.sleep(1000);
+		scrolltoend();
 		click_commonMethod(application, "Add ASR Device link", "adddevice_link", xml);
 		Thread.sleep(2000);
 		compareText(application, "Add ASR Device header", "adddevice_header", "Add ASR Device", xml);

@@ -6,7 +6,7 @@
       <listener class-name="com.saksoft.qa.listeners.TestListener" />
   	</listeners>
   	
-  	
+  	 
 	  <test name ="NGIN"> 
 		<classes>
 			<class name="com.saksoft.qa.apttestscripts.APT_NGINTest">
@@ -28,7 +28,6 @@
     	</classes>	
   	</test> 
   	
-  	<!--
   	
   	<test name ="Voice line Service"> 	
     	<classes>	  
@@ -40,12 +39,11 @@
 			  	<include name="viewTrunk" />   
 			  
 			  </methods>
-			</class>
 		</classes>
 		</test>
   		
    
-   	
+   	<!--
    	 <test name="Wholesale">  
 		<classes>	
 			<class name="com.saksoft.qa.apttestscripts.APT_wholesale">

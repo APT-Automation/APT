@@ -12465,3 +12465,722 @@
 2020-07-10 14:38:54,119 INFO  [Log] //div[@class='form-group']//input[@id='rfiRfqIpVoiceLineNo'] 
 2020-07-10 14:38:59,657 INFO  [Log] //button//span[text()='Create Order'] 
 2020-07-10 14:39:05,432 INFO  [Log] //div[@role='alert']//span[text()='Order created successfully'] 
+2020-07-10 14:42:58,477 INFO  [Log] URL 
+2020-07-10 14:43:07,304 INFO  [Log] APT_login_1_URL 
+2020-07-10 14:43:12,970 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 14:43:17,519 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 14:43:22,482 INFO  [Log] //button[text()='Login'] 
+2020-07-10 14:43:24,027 INFO  [Log] === APT logged in successfully === 
+2020-07-10 14:43:24,029 INFO  [Log] I am on Start method NGIN 
+2020-07-10 14:43:25,792 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 14:43:25,792 INFO  [Log] I am in onStart method null 
+2020-07-10 14:43:29,053 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 14:43:32,826 INFO  [Log] Mouse hovered on 'Manage Customers Service' menu item 
+2020-07-10 14:43:36,986 INFO  [Log] //li[text()='Create Customer'] 
+2020-07-10 14:43:48,287 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 14:43:52,345 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 14:43:57,457 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 14:44:01,657 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 14:44:06,852 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 14:44:07,894 INFO  [Log] Legal Customer Name field warning  message displayed as : Legal Customer Name is required 
+2020-07-10 14:44:10,903 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 14:44:16,459 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 14:44:17,842 INFO  [Log] Country field warning  message displayed as : Country is required 
+2020-07-10 14:44:20,849 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 14:44:26,171 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 14:44:27,239 INFO  [Log] OCN field warning  message displayed as : OCN is required 
+2020-07-10 14:44:30,254 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 14:44:35,310 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 14:44:36,398 INFO  [Log] Type field warning  message displayed as : Type is required 
+2020-07-10 14:44:39,410 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 14:44:44,486 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 14:44:45,523 INFO  [Log] Email field warning  message displayed as : Email is required 
+2020-07-10 14:44:48,563 INFO  [Log] //input[@id='name'] 
+2020-07-10 14:44:52,996 INFO  [Log] //input[@id='name'] 
+2020-07-10 14:44:58,717 INFO  [Log] //input[@id='name'] 
+2020-07-10 14:45:03,062 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 14:45:07,687 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 14:45:14,730 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 14:45:21,168 INFO  [Log] //span[text()='Clear'] 
+2020-07-10 14:45:22,515 INFO  [Log] All text field values are cleared 
+2020-07-10 14:45:25,539 INFO  [Log] //input[@id='name'] 
+2020-07-10 14:45:29,734 INFO  [Log] //input[@id='name'] 
+2020-07-10 14:45:35,012 INFO  [Log] //input[@id='name'] 
+2020-07-10 14:45:39,049 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 14:45:43,302 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 14:45:49,280 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 14:45:53,445 INFO  [Log] //div[label[contains(text(),'Country')]]//input 
+2020-07-10 14:46:12,184 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 14:46:16,733 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 14:46:22,329 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 14:46:26,371 INFO  [Log] //input[@id='reference'] 
+2020-07-10 14:46:30,683 INFO  [Log] //input[@id='reference'] 
+2020-07-10 14:46:36,494 INFO  [Log] //input[@id='reference'] 
+2020-07-10 14:46:40,973 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 14:46:45,162 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 14:46:50,705 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 14:46:54,771 INFO  [Log] //div[label[contains(text(),'Type')]]//input 
+2020-07-10 14:47:13,160 INFO  [Log] //input[@id='email'] 
+2020-07-10 14:47:17,278 INFO  [Log] //input[@id='email'] 
+2020-07-10 14:47:23,311 INFO  [Log] //input[@id='email'] 
+2020-07-10 14:47:27,615 INFO  [Log] //input[@id='phone'] 
+2020-07-10 14:47:31,851 INFO  [Log] //input[@id='phone'] 
+2020-07-10 14:47:37,568 INFO  [Log] //input[@id='phone'] 
+2020-07-10 14:47:41,832 INFO  [Log] //input[@id='fax'] 
+2020-07-10 14:47:46,158 INFO  [Log] //input[@id='fax'] 
+2020-07-10 14:47:51,402 INFO  [Log] //input[@id='fax'] 
+2020-07-10 14:47:57,531 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 14:48:03,027 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 14:48:07,091 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 14:48:08,177 INFO  [Log] I am on TestSuccess method CreateCustomer succeed 
+2020-07-10 14:48:08,577 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-07-10 14:48:08,577 INFO  [Log] I am in onStart method null 
+2020-07-10 14:48:11,594 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 14:48:15,751 INFO  [Log] Mouse hovered on 'Manage Customers Service' menu item 
+2020-07-10 14:48:19,765 INFO  [Log] //li[text()='Create Order/Service'] 
+2020-07-10 14:48:21,133 INFO  [Log] === Create Order/Service navigated === 
+2020-07-10 14:48:25,137 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 14:48:29,785 INFO  [Log] //div[text()='Customer'] 
+2020-07-10 14:48:34,834 INFO  [Log] //div[text()='Customer'] 
+2020-07-10 14:48:36,074 INFO  [Log] Customer field warning  message displayed as : Customer is required 
+2020-07-10 14:48:39,080 INFO  [Log] //input[@id='customerName'] 
+2020-07-10 14:48:43,440 INFO  [Log] //input[@id='customerName'] 
+2020-07-10 14:48:49,051 INFO  [Log] //input[@id='customerName'] 
+2020-07-10 14:48:53,418 INFO  [Log] //input[@id='customerName'] 
+2020-07-10 14:48:57,456 INFO  [Log] //input[@id='customerName'] 
+2020-07-10 14:49:02,966 INFO  [Log] //input[@id='customerName'] 
+2020-07-10 14:49:07,146 INFO  [Log] //div[label[text()='Customer']]//input 
+2020-07-10 14:49:27,336 INFO  [Log] //button//Span[text()='Next'] 
+2020-07-10 14:49:29,039 INFO  [Log] I am on TestSuccess method choosecustomer succeed 
+2020-07-10 14:49:29,170 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-07-10 14:49:29,170 INFO  [Log] I am in onStart method null 
+2020-07-10 14:49:34,787 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 14:49:40,046 INFO  [Log] //div[label[contains(text(),'Order/Contract Number(Parent SID)')]]/following-sibling::span 
+2020-07-10 14:49:45,434 INFO  [Log] //div[label[contains(text(),'Order/Contract Number(Parent SID)')]]/following-sibling::span 
+2020-07-10 14:49:46,731 INFO  [Log] Order/Contract Number(Parent SID) field warning  message displayed as : Order/Contract Number(Parent SID) is required 
+2020-07-10 14:49:49,739 INFO  [Log] //div[label[contains(text(),'Service Type')]]/following-sibling::span 
+2020-07-10 14:49:55,335 INFO  [Log] //div[label[contains(text(),'Service Type')]]/following-sibling::span 
+2020-07-10 14:49:56,668 INFO  [Log] Service Type field warning  message displayed as : Service type is required 
+2020-07-10 14:50:02,693 INFO  [Log] (//div[@class='react-switch-bg'])[1] 
+2020-07-10 14:50:06,924 INFO  [Log] //input[@id='orderName'] 
+2020-07-10 14:50:10,966 INFO  [Log] //input[@id='orderName'] 
+2020-07-10 14:50:17,058 INFO  [Log] //input[@id='orderName'] 
+2020-07-10 14:50:21,208 INFO  [Log] //div[@class='form-group']//input[@id='rfiRfqIpVoiceLineNo'] 
+2020-07-10 14:50:25,560 INFO  [Log] //div[@class='form-group']//input[@id='rfiRfqIpVoiceLineNo'] 
+2020-07-10 14:50:31,471 INFO  [Log] //div[@class='form-group']//input[@id='rfiRfqIpVoiceLineNo'] 
+2020-07-10 14:50:36,586 INFO  [Log] //button//span[text()='Create Order'] 
+2020-07-10 14:50:41,772 INFO  [Log] //div[@role='alert']//span[text()='Order created successfully'] 
+2020-07-10 14:50:45,980 INFO  [Log] //div[@role='alert']//span[text()='Order created successfully'] 
+2020-07-10 14:50:50,052 INFO  [Log] //div[text()='Create Order / Service'] 
+2020-07-10 14:50:51,500 INFO  [Log] I am on TestSuccess method verifycreateorder succeed 
+2020-07-10 14:50:51,618 INFO  [Log] I am on TestStart method verifyservicetypeselection start 
+2020-07-10 14:50:51,618 INFO  [Log] I am in onStart method null 
+2020-07-10 14:50:54,665 INFO  [Log] //div[div[label[text()='Service Type']]]//input 
+2020-07-10 14:50:55,882 INFO  [Log] Service Type dropdown is displaying 
+2020-07-10 14:51:00,188 INFO  [Log] List of values inside Service Type dropdown is:   
+2020-07-10 14:51:00,213 INFO  [Log] service sub types : BM (Broadcast Media) 
+2020-07-10 14:51:00,237 INFO  [Log] service sub types : Domain Management 
+2020-07-10 14:51:00,263 INFO  [Log] service sub types : DSL 
+2020-07-10 14:51:00,293 INFO  [Log] service sub types : FAX to Mail 
+2020-07-10 14:51:00,329 INFO  [Log] service sub types : HSS 
+2020-07-10 14:51:00,359 INFO  [Log] service sub types : IP Access (On-net/Offnet/EoS) 
+2020-07-10 14:51:00,410 INFO  [Log] service sub types : IP Access Bundle 
+2020-07-10 14:51:00,437 INFO  [Log] service sub types : IP Transit 
+2020-07-10 14:51:00,467 INFO  [Log] service sub types : IP VPN 
+2020-07-10 14:51:00,493 INFO  [Log] service sub types : IP Web/Mail 
+2020-07-10 14:51:00,523 INFO  [Log] service sub types : LANLink 
+2020-07-10 14:51:00,553 INFO  [Log] service sub types : MDF/MVF/DI 
+2020-07-10 14:51:00,601 INFO  [Log] service sub types : NGIN 
+2020-07-10 14:51:00,722 INFO  [Log] service sub types : Number Hosting 
+2020-07-10 14:51:00,746 INFO  [Log] service sub types : Transmission Link 
+2020-07-10 14:51:00,772 INFO  [Log] service sub types : Voice Line (V) 
+2020-07-10 14:51:00,798 INFO  [Log] service sub types : VOIP Access 
+2020-07-10 14:51:00,832 INFO  [Log] service sub types : Wholesale SIP Trunking 
+2020-07-10 14:51:09,109 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 14:51:18,139 INFO  [Log] Service Type dropdown value selected as: NGIN 
+2020-07-10 14:51:22,181 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 14:51:27,772 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 14:51:32,201 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 14:51:33,261 INFO  [Log] I am on TestSuccess method verifyservicetypeselection succeed 
+2020-07-10 14:51:33,631 INFO  [Log] I am on TestStart method verifyservicecreation start 
+2020-07-10 14:51:33,631 INFO  [Log] I am in onStart method null 
+2020-07-10 14:51:37,635 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 14:51:41,720 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 14:51:46,877 INFO  [Log] //span[contains(text(),'Cancel')] 
+2020-07-10 14:51:53,763 INFO  [Log] //div[text()='Customer Details'] 
+2020-07-10 14:51:55,292 INFO  [Log] Navigated to create order page 
+2020-07-10 14:51:55,292 INFO  [Log] Navigated to create order page 
+2020-07-10 14:51:58,310 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 14:52:02,715 INFO  [Log] //label[text()='Order/Contract Number(Parent SID)']/parent::div//div//input 
+2020-07-10 14:52:21,687 INFO  [Log] //div[div[label[text()='Service Type']]]//input 
+2020-07-10 14:52:22,826 INFO  [Log] Service Type dropdown is displaying 
+2020-07-10 14:52:27,228 INFO  [Log] List of values inside Service Type dropdown is:   
+2020-07-10 14:52:27,243 INFO  [Log] service sub types : BM (Broadcast Media) 
+2020-07-10 14:52:27,273 INFO  [Log] service sub types : Domain Management 
+2020-07-10 14:52:27,301 INFO  [Log] service sub types : DSL 
+2020-07-10 14:52:27,332 INFO  [Log] service sub types : FAX to Mail 
+2020-07-10 14:52:27,362 INFO  [Log] service sub types : HSS 
+2020-07-10 14:52:27,396 INFO  [Log] service sub types : IP Access (On-net/Offnet/EoS) 
+2020-07-10 14:52:27,438 INFO  [Log] service sub types : IP Access Bundle 
+2020-07-10 14:52:27,811 INFO  [Log] service sub types : IP Transit 
+2020-07-10 14:52:27,991 INFO  [Log] service sub types : IP VPN 
+2020-07-10 14:52:28,065 INFO  [Log] service sub types : IP Web/Mail 
+2020-07-10 14:52:28,206 INFO  [Log] service sub types : LANLink 
+2020-07-10 14:52:28,265 INFO  [Log] service sub types : MDF/MVF/DI 
+2020-07-10 14:52:28,294 INFO  [Log] service sub types : NGIN 
+2020-07-10 14:52:28,335 INFO  [Log] service sub types : Number Hosting 
+2020-07-10 14:52:28,372 INFO  [Log] service sub types : Transmission Link 
+2020-07-10 14:52:28,413 INFO  [Log] service sub types : Voice Line (V) 
+2020-07-10 14:52:28,454 INFO  [Log] service sub types : VOIP Access 
+2020-07-10 14:52:28,483 INFO  [Log] service sub types : Wholesale SIP Trunking 
+2020-07-10 14:52:36,655 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 14:52:45,338 INFO  [Log] Service Type dropdown value selected as: NGIN 
+2020-07-10 14:52:49,435 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 14:52:54,704 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 14:52:58,737 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 14:53:03,791 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 14:53:09,295 INFO  [Log] //input[@id='serviceIdentification']/parent::div//div 
+2020-07-10 14:53:15,057 INFO  [Log] //input[@id='serviceIdentification']/parent::div//div 
+2020-07-10 14:53:16,430 INFO  [Log] Service Identification field warning  message displayed as : Service Identification is required 
+2020-07-10 14:53:19,434 INFO  [Log] //input[@id='serviceIdentification'] 
+2020-07-10 14:53:23,833 INFO  [Log] //input[@id='serviceIdentification'] 
+2020-07-10 14:53:29,477 INFO  [Log] //input[@id='serviceIdentification'] 
+2020-07-10 14:53:33,822 INFO  [Log] //textarea[contains(@name,'remark')] 
+2020-07-10 14:53:38,159 INFO  [Log] //textarea[contains(@name,'remark')] 
+2020-07-10 14:53:43,863 INFO  [Log] //textarea[contains(@name,'remark')] 
+2020-07-10 14:53:44,967 INFO  [Log] customer administration checkbox is not selected 
+2020-07-10 14:53:44,967 INFO  [Log] customer administration checkbox is already selected 
+2020-07-10 14:53:44,967 INFO  [Log] SAN administration checkbox is not selected 
+2020-07-10 14:53:44,967 INFO  [Log] SAN administration checkbox is already selected 
+2020-07-10 14:53:44,967 INFO  [Log] Reseller Administration checkbox is not selected 
+2020-07-10 14:53:44,967 INFO  [Log] Reseller Administration checkbox is already selected 
+2020-07-10 14:53:47,975 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 14:53:53,609 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 14:53:57,642 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 14:53:58,691 INFO  [Log] I am on TestSuccess method verifyservicecreation succeed 
+2020-07-10 14:53:58,808 INFO  [Log] I am on TestStart method verifyCustomerDetailsInformation start 
+2020-07-10 14:53:58,809 INFO  [Log] I am in onStart method null 
+2020-07-10 14:54:01,828 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 14:54:07,973 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-10 14:54:12,769 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-10 14:54:19,060 INFO  [Log] //span[text()='Search'] 
+2020-07-10 14:54:23,607 INFO  [Log] //span[text()='Search'] 
+2020-07-10 14:54:29,894 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-10 14:54:37,049 INFO  [Log] //div[@class='dropdown']//button 
+2020-07-10 14:54:42,315 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='View'] 
+2020-07-10 14:54:49,932 INFO  [Log] //div[text()='Customer Details'] 
+2020-07-10 14:54:54,967 INFO  [Log] //label[text()='Legal Customer Name']/parent::div/parent::div//div[2] 
+2020-07-10 14:54:59,126 INFO  [Log] //label[text()='Legal Customer Name']/parent::div/parent::div//div[2] 
+2020-07-10 14:55:04,170 INFO  [Log] //label[text()='Main Domain']/parent::div/parent::div//div[2] 
+2020-07-10 14:55:08,203 INFO  [Log] //label[text()='Main Domain']/parent::div/parent::div//div[2] 
+2020-07-10 14:55:13,788 INFO  [Log] //label[text()='Country']/parent::div/parent::div//div[2] 
+2020-07-10 14:55:17,863 INFO  [Log] //label[text()='Country']/parent::div/parent::div//div[2] 
+2020-07-10 14:55:23,004 INFO  [Log] //label[text()='OCN']/parent::div/parent::div//div[2] 
+2020-07-10 14:55:27,152 INFO  [Log] //label[text()='OCN']/parent::div/parent::div//div[2] 
+2020-07-10 14:55:32,449 INFO  [Log] //label[text()='Reference']/parent::div/parent::div//div[2] 
+2020-07-10 14:55:36,548 INFO  [Log] //label[text()='Reference']/parent::div/parent::div//div[2] 
+2020-07-10 14:55:41,931 INFO  [Log] //label[text()='Technical Contact Name']/parent::div/parent::div//div[2] 
+2020-07-10 14:55:45,965 INFO  [Log] //label[text()='Technical Contact Name']/parent::div/parent::div//div[2] 
+2020-07-10 14:55:51,593 INFO  [Log] //label[text()='Type']/parent::div/parent::div//div[2] 
+2020-07-10 14:55:56,168 INFO  [Log] //label[text()='Type']/parent::div/parent::div//div[2] 
+2020-07-10 14:56:01,350 INFO  [Log] //label[text()='Email']/parent::div/parent::div//div[2] 
+2020-07-10 14:56:05,412 INFO  [Log] //label[text()='Email']/parent::div/parent::div//div[2] 
+2020-07-10 14:56:10,456 INFO  [Log] //label[text()='Phone']/parent::div/parent::div//div[2] 
+2020-07-10 14:56:14,666 INFO  [Log] //label[text()='Phone']/parent::div/parent::div//div[2] 
+2020-07-10 14:56:19,720 INFO  [Log] //label[text()='Fax']/parent::div/parent::div//div[2] 
+2020-07-10 14:56:23,746 INFO  [Log] //label[text()='Fax']/parent::div/parent::div//div[2] 
+2020-07-10 14:56:24,795 INFO  [Log] === Customer Details panel fields Verified === 
+2020-07-10 14:56:28,828 INFO  [Log] //div[@col-id='userName'] 
+2020-07-10 14:56:33,345 INFO  [Log] //div[@col-id='userName'] 
+2020-07-10 14:56:38,700 INFO  [Log] //div[@col-id='firstName'] 
+2020-07-10 14:56:42,975 INFO  [Log] //div[@col-id='firstName'] 
+2020-07-10 14:56:48,250 INFO  [Log] //div[@col-id='email'] 
+2020-07-10 14:56:52,279 INFO  [Log] //div[@col-id='email'] 
+2020-07-10 14:56:57,326 INFO  [Log] //div[@col-id='roles'] 
+2020-07-10 14:57:01,515 INFO  [Log] //div[@col-id='roles'] 
+2020-07-10 14:57:06,620 INFO  [Log] //div[@col-id='postalAddress'] 
+2020-07-10 14:57:10,836 INFO  [Log] //div[@col-id='postalAddress'] 
+2020-07-10 14:57:16,293 INFO  [Log] //div[@col-id='0'] 
+2020-07-10 14:57:20,518 INFO  [Log] //div[@col-id='0'] 
+2020-07-10 14:57:21,927 INFO  [Log] I am on TestSuccess method verifyCustomerDetailsInformation succeed 
+2020-07-10 14:57:22,060 INFO  [Log] I am on TestStart method verifyUserDetailsInformation start 
+2020-07-10 14:57:22,060 INFO  [Log] I am in onStart method null 
+2020-07-10 14:57:25,202 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 14:57:31,548 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-10 14:57:42,336 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-10 14:57:48,316 INFO  [Log] //span[text()='Search'] 
+2020-07-10 14:57:52,353 INFO  [Log] //span[text()='Search'] 
+2020-07-10 14:57:58,518 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-10 15:23:48,189 INFO  [Log] URL 
+2020-07-10 15:24:04,231 INFO  [Log] APT_login_1_URL 
+2020-07-10 15:24:10,518 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 15:24:23,961 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 15:24:33,527 INFO  [Log] //button[text()='Login'] 
+2020-07-10 15:24:35,813 INFO  [Log] === APT logged in successfully === 
+2020-07-10 15:24:35,815 INFO  [Log] I am on Start method NGIN 
+2020-07-10 15:24:37,973 INFO  [Log] I am on TestStart method CreateCustomer start 
+2020-07-10 15:24:37,973 INFO  [Log] I am in onStart method null 
+2020-07-10 15:24:41,320 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 15:24:45,315 INFO  [Log] Mouse hovered on 'Manage Customers Service' menu item 
+2020-07-10 15:24:49,821 INFO  [Log] //li[text()='Create Customer'] 
+2020-07-10 15:25:03,400 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 15:25:07,951 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 15:25:14,404 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 15:25:20,528 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 15:25:26,509 INFO  [Log] //input[@id='name']/parent::div//div 
+2020-07-10 15:25:28,393 INFO  [Log] Legal Customer Name field warning  message displayed as : Legal Customer Name is required 
+2020-07-10 15:25:31,414 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 15:25:37,590 INFO  [Log] //div[label[contains(text(),'Country')]]/following-sibling::div 
+2020-07-10 15:25:38,886 INFO  [Log] Country field warning  message displayed as : Country is required 
+2020-07-10 15:25:41,897 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 15:25:47,233 INFO  [Log] //input[@id='ocn']/parent::div//div 
+2020-07-10 15:25:48,957 INFO  [Log] OCN field warning  message displayed as : OCN is required 
+2020-07-10 15:25:52,002 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 15:25:58,041 INFO  [Log] //div[label[contains(text(),'Type')]]/following-sibling::div 
+2020-07-10 15:25:59,384 INFO  [Log] Type field warning  message displayed as : Type is required 
+2020-07-10 15:26:02,401 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 15:26:08,024 INFO  [Log] //input[@id='email']/parent::div//div 
+2020-07-10 15:26:09,878 INFO  [Log] Email field warning  message displayed as : Email is required 
+2020-07-10 15:26:12,886 INFO  [Log] //input[@id='name'] 
+2020-07-10 15:26:17,505 INFO  [Log] //input[@id='name'] 
+2020-07-10 15:26:23,646 INFO  [Log] //input[@id='name'] 
+2020-07-10 15:26:28,011 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 15:26:32,323 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 15:26:39,166 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 15:26:45,844 INFO  [Log] //span[text()='Clear'] 
+2020-07-10 15:26:48,946 INFO  [Log] All text field values are cleared 
+2020-07-10 15:26:51,957 INFO  [Log] //input[@id='name'] 
+2020-07-10 15:26:56,446 INFO  [Log] //input[@id='name'] 
+2020-07-10 15:27:04,729 INFO  [Log] //input[@id='name'] 
+2020-07-10 15:27:09,357 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 15:27:14,003 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 15:27:23,723 INFO  [Log] //input[@id='mainDomain'] 
+2020-07-10 15:27:28,417 INFO  [Log] //div[label[contains(text(),'Country')]]//input 
+2020-07-10 15:27:49,400 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 15:27:53,934 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 15:27:59,689 INFO  [Log] //input[@id='ocn'] 
+2020-07-10 15:28:03,776 INFO  [Log] //input[@id='reference'] 
+2020-07-10 15:28:09,488 INFO  [Log] //input[@id='reference'] 
+2020-07-10 15:28:15,921 INFO  [Log] //input[@id='reference'] 
+2020-07-10 15:28:20,137 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 15:28:24,475 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 15:28:30,143 INFO  [Log] //input[@id='techinicalContactName'] 
+2020-07-10 15:28:34,288 INFO  [Log] //div[label[contains(text(),'Type')]]//input 
+2020-07-10 15:28:53,982 INFO  [Log] //input[@id='email'] 
+2020-07-10 15:28:58,570 INFO  [Log] //input[@id='email'] 
+2020-07-10 15:29:04,687 INFO  [Log] //input[@id='email'] 
+2020-07-10 15:29:08,982 INFO  [Log] //input[@id='phone'] 
+2020-07-10 15:29:13,924 INFO  [Log] //input[@id='phone'] 
+2020-07-10 15:29:19,559 INFO  [Log] //input[@id='phone'] 
+2020-07-10 15:29:23,593 INFO  [Log] //input[@id='fax'] 
+2020-07-10 15:29:27,822 INFO  [Log] //input[@id='fax'] 
+2020-07-10 15:29:35,099 INFO  [Log] //input[@id='fax'] 
+2020-07-10 15:29:41,288 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 15:29:46,862 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 15:29:50,891 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 15:29:52,304 INFO  [Log] I am on TestSuccess method CreateCustomer succeed 
+2020-07-10 15:29:52,460 INFO  [Log] I am on TestStart method choosecustomer start 
+2020-07-10 15:29:52,460 INFO  [Log] I am in onStart method null 
+2020-07-10 15:29:55,471 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 15:29:59,789 INFO  [Log] Mouse hovered on 'Manage Customers Service' menu item 
+2020-07-10 15:30:03,983 INFO  [Log] //li[text()='Create Order/Service'] 
+2020-07-10 15:30:05,321 INFO  [Log] === Create Order/Service navigated === 
+2020-07-10 15:30:09,531 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 15:30:14,166 INFO  [Log] //div[text()='Customer'] 
+2020-07-10 15:30:19,336 INFO  [Log] //div[text()='Customer'] 
+2020-07-10 15:30:20,582 INFO  [Log] Customer field warning  message displayed as : Customer is required 
+2020-07-10 15:30:23,589 INFO  [Log] //input[@id='customerName'] 
+2020-07-10 15:30:27,636 INFO  [Log] //input[@id='customerName'] 
+2020-07-10 15:30:34,525 INFO  [Log] //input[@id='customerName'] 
+2020-07-10 15:30:38,629 INFO  [Log] //input[@id='customerName'] 
+2020-07-10 15:30:43,223 INFO  [Log] //input[@id='customerName'] 
+2020-07-10 15:30:48,573 INFO  [Log] //input[@id='customerName'] 
+2020-07-10 15:30:53,231 INFO  [Log] //div[label[text()='Customer']]//input 
+2020-07-10 15:31:13,165 INFO  [Log] //button//Span[text()='Next'] 
+2020-07-10 15:31:15,055 INFO  [Log] I am on TestSuccess method choosecustomer succeed 
+2020-07-10 15:31:15,237 INFO  [Log] I am on TestStart method verifycreateorder start 
+2020-07-10 15:31:15,238 INFO  [Log] I am in onStart method null 
+2020-07-10 15:31:20,278 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 15:31:25,712 INFO  [Log] //div[label[contains(text(),'Order/Contract Number(Parent SID)')]]/following-sibling::span 
+2020-07-10 15:31:30,782 INFO  [Log] //div[label[contains(text(),'Order/Contract Number(Parent SID)')]]/following-sibling::span 
+2020-07-10 15:31:31,898 INFO  [Log] Order/Contract Number(Parent SID) field warning  message displayed as : Order/Contract Number(Parent SID) is required 
+2020-07-10 15:31:34,915 INFO  [Log] //div[label[contains(text(),'Service Type')]]/following-sibling::span 
+2020-07-10 15:31:40,488 INFO  [Log] //div[label[contains(text(),'Service Type')]]/following-sibling::span 
+2020-07-10 15:31:41,524 INFO  [Log] Service Type field warning  message displayed as : Service type is required 
+2020-07-10 15:31:47,727 INFO  [Log] (//div[@class='react-switch-bg'])[1] 
+2020-07-10 15:31:52,014 INFO  [Log] //input[@id='orderName'] 
+2020-07-10 15:31:56,178 INFO  [Log] //input[@id='orderName'] 
+2020-07-10 15:32:02,841 INFO  [Log] //input[@id='orderName'] 
+2020-07-10 15:32:07,198 INFO  [Log] //div[@class='form-group']//input[@id='rfiRfqIpVoiceLineNo'] 
+2020-07-10 15:32:11,242 INFO  [Log] //div[@class='form-group']//input[@id='rfiRfqIpVoiceLineNo'] 
+2020-07-10 15:32:17,265 INFO  [Log] //div[@class='form-group']//input[@id='rfiRfqIpVoiceLineNo'] 
+2020-07-10 15:32:22,961 INFO  [Log] //button//span[text()='Create Order'] 
+2020-07-10 15:32:28,185 INFO  [Log] //div[@role='alert']//span[text()='Order created successfully'] 
+2020-07-10 15:32:32,265 INFO  [Log] //div[@role='alert']//span[text()='Order created successfully'] 
+2020-07-10 15:32:36,867 INFO  [Log] //div[text()='Create Order / Service'] 
+2020-07-10 15:32:38,107 INFO  [Log] I am on TestSuccess method verifycreateorder succeed 
+2020-07-10 15:32:38,385 INFO  [Log] I am on TestStart method verifyservicetypeselection start 
+2020-07-10 15:32:38,385 INFO  [Log] I am in onStart method null 
+2020-07-10 15:32:41,397 INFO  [Log] //div[div[label[text()='Service Type']]]//input 
+2020-07-10 15:32:42,670 INFO  [Log] Service Type dropdown is displaying 
+2020-07-10 15:32:47,438 INFO  [Log] List of values inside Service Type dropdown is:   
+2020-07-10 15:32:47,892 INFO  [Log] service sub types : BM (Broadcast Media) 
+2020-07-10 15:32:48,032 INFO  [Log] service sub types : Domain Management 
+2020-07-10 15:32:48,107 INFO  [Log] service sub types : DSL 
+2020-07-10 15:32:48,184 INFO  [Log] service sub types : FAX to Mail 
+2020-07-10 15:32:48,244 INFO  [Log] service sub types : HSS 
+2020-07-10 15:32:48,289 INFO  [Log] service sub types : IP Access (On-net/Offnet/EoS) 
+2020-07-10 15:32:48,335 INFO  [Log] service sub types : IP Access Bundle 
+2020-07-10 15:32:48,365 INFO  [Log] service sub types : IP Transit 
+2020-07-10 15:32:48,401 INFO  [Log] service sub types : IP VPN 
+2020-07-10 15:32:48,537 INFO  [Log] service sub types : IP Web/Mail 
+2020-07-10 15:32:48,569 INFO  [Log] service sub types : LANLink 
+2020-07-10 15:32:48,597 INFO  [Log] service sub types : MDF/MVF/DI 
+2020-07-10 15:32:48,645 INFO  [Log] service sub types : NGIN 
+2020-07-10 15:32:48,676 INFO  [Log] service sub types : Number Hosting 
+2020-07-10 15:32:48,707 INFO  [Log] service sub types : Transmission Link 
+2020-07-10 15:32:48,760 INFO  [Log] service sub types : Voice Line (V) 
+2020-07-10 15:32:48,799 INFO  [Log] service sub types : VOIP Access 
+2020-07-10 15:32:48,848 INFO  [Log] service sub types : Wholesale SIP Trunking 
+2020-07-10 15:32:58,138 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 15:33:07,600 INFO  [Log] Service Type dropdown value selected as: NGIN 
+2020-07-10 15:33:11,627 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 15:33:17,375 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 15:33:21,661 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 15:33:22,763 INFO  [Log] I am on TestSuccess method verifyservicetypeselection succeed 
+2020-07-10 15:33:22,995 INFO  [Log] I am on TestStart method verifyservicecreation start 
+2020-07-10 15:33:22,995 INFO  [Log] I am in onStart method null 
+2020-07-10 15:33:27,176 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 15:33:31,600 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 15:33:37,200 INFO  [Log] //span[contains(text(),'Cancel')] 
+2020-07-10 15:33:43,780 INFO  [Log] //div[text()='Customer Details'] 
+2020-07-10 15:33:44,850 INFO  [Log] Navigated to create order page 
+2020-07-10 15:33:44,850 INFO  [Log] Navigated to create order page 
+2020-07-10 15:33:47,854 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 15:33:52,712 INFO  [Log] //label[text()='Order/Contract Number(Parent SID)']/parent::div//div//input 
+2020-07-10 15:34:10,995 INFO  [Log] //div[div[label[text()='Service Type']]]//input 
+2020-07-10 15:34:12,216 INFO  [Log] Service Type dropdown is displaying 
+2020-07-10 15:34:16,672 INFO  [Log] List of values inside Service Type dropdown is:   
+2020-07-10 15:34:16,824 INFO  [Log] service sub types : BM (Broadcast Media) 
+2020-07-10 15:34:16,869 INFO  [Log] service sub types : Domain Management 
+2020-07-10 15:34:16,896 INFO  [Log] service sub types : DSL 
+2020-07-10 15:34:16,935 INFO  [Log] service sub types : FAX to Mail 
+2020-07-10 15:34:16,968 INFO  [Log] service sub types : HSS 
+2020-07-10 15:34:17,013 INFO  [Log] service sub types : IP Access (On-net/Offnet/EoS) 
+2020-07-10 15:34:17,049 INFO  [Log] service sub types : IP Access Bundle 
+2020-07-10 15:34:17,083 INFO  [Log] service sub types : IP Transit 
+2020-07-10 15:34:17,247 INFO  [Log] service sub types : IP VPN 
+2020-07-10 15:34:17,331 INFO  [Log] service sub types : IP Web/Mail 
+2020-07-10 15:34:17,365 INFO  [Log] service sub types : LANLink 
+2020-07-10 15:34:17,428 INFO  [Log] service sub types : MDF/MVF/DI 
+2020-07-10 15:34:17,465 INFO  [Log] service sub types : NGIN 
+2020-07-10 15:34:17,497 INFO  [Log] service sub types : Number Hosting 
+2020-07-10 15:34:17,539 INFO  [Log] service sub types : Transmission Link 
+2020-07-10 15:34:17,580 INFO  [Log] service sub types : Voice Line (V) 
+2020-07-10 15:34:17,661 INFO  [Log] service sub types : VOIP Access 
+2020-07-10 15:34:17,696 INFO  [Log] service sub types : Wholesale SIP Trunking 
+2020-07-10 15:34:25,985 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 15:34:35,245 INFO  [Log] Service Type dropdown value selected as: NGIN 
+2020-07-10 15:34:39,263 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 15:34:44,728 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 15:34:48,777 INFO  [Log] //div//div[text()='Create Order / Service'] 
+2020-07-10 15:34:54,010 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 15:34:59,182 INFO  [Log] //input[@id='serviceIdentification']/parent::div//div 
+2020-07-10 15:35:04,221 INFO  [Log] //input[@id='serviceIdentification']/parent::div//div 
+2020-07-10 15:35:05,784 INFO  [Log] Service Identification field warning  message displayed as : Service Identification is required 
+2020-07-10 15:35:08,787 INFO  [Log] //input[@id='serviceIdentification'] 
+2020-07-10 15:35:12,883 INFO  [Log] //input[@id='serviceIdentification'] 
+2020-07-10 15:35:18,502 INFO  [Log] //input[@id='serviceIdentification'] 
+2020-07-10 15:35:22,526 INFO  [Log] //textarea[contains(@name,'remark')] 
+2020-07-10 15:35:27,016 INFO  [Log] //textarea[contains(@name,'remark')] 
+2020-07-10 15:35:32,877 INFO  [Log] //textarea[contains(@name,'remark')] 
+2020-07-10 15:35:33,982 INFO  [Log] customer administration checkbox is not selected 
+2020-07-10 15:35:33,982 INFO  [Log] customer administration checkbox is already selected 
+2020-07-10 15:35:33,982 INFO  [Log] SAN administration checkbox is not selected 
+2020-07-10 15:35:33,982 INFO  [Log] SAN administration checkbox is already selected 
+2020-07-10 15:35:33,982 INFO  [Log] Reseller Administration checkbox is not selected 
+2020-07-10 15:35:33,982 INFO  [Log] Reseller Administration checkbox is already selected 
+2020-07-10 15:35:36,985 INFO  [Log] //span[contains(text(),'Next')] 
+2020-07-10 15:35:42,427 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 15:35:46,498 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 15:35:47,723 INFO  [Log] I am on TestSuccess method verifyservicecreation succeed 
+2020-07-10 15:35:47,849 INFO  [Log] I am on TestStart method verifyUserDetailsInformation start 
+2020-07-10 15:35:47,849 INFO  [Log] I am in onStart method null 
+2020-07-10 15:35:50,854 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 15:35:56,992 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-10 15:36:01,458 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-10 15:36:07,109 INFO  [Log] //span[text()='Search'] 
+2020-07-10 15:36:11,316 INFO  [Log] //span[text()='Search'] 
+2020-07-10 15:36:17,541 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-10 15:36:25,213 INFO  [Log] //div[@class='dropdown']//button 
+2020-07-10 15:36:30,391 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='View'] 
+2020-07-10 15:36:37,730 INFO  [Log] //div[text()='Customer Details'] 
+2020-07-10 15:36:43,813 INFO  [Log] //div[contains(text(),'Users')]/following-sibling::div/div//button[text()='Action'] 
+2020-07-10 15:36:48,894 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='Add'] 
+2020-07-10 15:36:54,924 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 15:36:59,019 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 15:37:04,082 INFO  [Log] //span[contains(text(),'Cancel')] 
+2020-07-10 15:37:09,471 INFO  [Log] //div[text()='Users'] 
+2020-07-10 15:37:13,976 INFO  [Log] //div[text()='Users'] 
+2020-07-10 15:37:18,258 INFO  [Log] //div[text()='Customer Details'] 
+2020-07-10 15:37:23,601 INFO  [Log] //div[contains(text(),'Users')]/following-sibling::div/div//button[text()='Action'] 
+2020-07-10 15:37:28,763 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='Add'] 
+2020-07-10 15:37:34,811 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 15:37:39,365 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 15:37:45,849 INFO  [Log] //button[@type='submit']//span[text()='OK'] 
+2020-07-10 15:37:50,443 INFO  [Log] //label[text()='User Name']/parent::div//div 
+2020-07-10 15:37:55,481 INFO  [Log] //label[text()='User Name']/parent::div//div 
+2020-07-10 15:37:56,797 INFO  [Log] User Name field warning  message displayed as : User Name is required 
+2020-07-10 15:37:59,801 INFO  [Log] //label[text()='First Name']/parent::div//div 
+2020-07-10 15:38:05,045 INFO  [Log] //label[text()='First Name']/parent::div//div 
+2020-07-10 15:38:06,074 INFO  [Log] First Name field warning  message displayed as : First Name is required 
+2020-07-10 15:38:09,079 INFO  [Log] //label[text()='Surname']/parent::div//div 
+2020-07-10 15:38:15,556 INFO  [Log] //label[text()='Surname']/parent::div//div 
+2020-07-10 15:38:17,200 INFO  [Log] Surname field warning  message displayed as : Surname is required 
+2020-07-10 15:38:20,203 INFO  [Log] //label[text()='Postal Address']/parent::div/following-sibling::div 
+2020-07-10 15:38:25,440 INFO  [Log] //label[text()='Postal Address']/parent::div/following-sibling::div 
+2020-07-10 15:38:26,690 INFO  [Log] Postal Address field warning  message displayed as : Postal Address is required 
+2020-07-10 15:38:29,713 INFO  [Log] //label[text()='Email']/parent::div//div 
+2020-07-10 15:38:35,302 INFO  [Log] //label[text()='Email']/parent::div//div 
+2020-07-10 15:38:36,357 INFO  [Log] Email field warning  message displayed as : Email is required 
+2020-07-10 15:38:39,386 INFO  [Log] //label[text()='Phone']/parent::div//div 
+2020-07-10 15:38:44,935 INFO  [Log] //label[text()='Phone']/parent::div//div 
+2020-07-10 15:38:46,009 INFO  [Log] Phone field warning  message displayed as : Phone is required 
+2020-07-10 15:38:49,187 INFO  [Log] //label[text()='Password']/parent::div//div 
+2020-07-10 15:38:54,878 INFO  [Log] //label[text()='Password']/parent::div//div 
+2020-07-10 15:38:55,925 INFO  [Log] Password field warning  message displayed as : Password is required 
+2020-07-10 15:38:58,949 INFO  [Log] (//div[@class='position-relative form-group'])[1]//input[@id='userName'] 
+2020-07-10 15:39:03,435 INFO  [Log] (//div[@class='position-relative form-group'])[1]//input[@id='userName'] 
+2020-07-10 15:39:09,444 INFO  [Log] (//div[@class='position-relative form-group'])[1]//input[@id='userName'] 
+2020-07-10 15:39:13,966 INFO  [Log] (//div[@class='position-relative form-group'])[2]//input[@id='firstName'] 
+2020-07-10 15:39:18,127 INFO  [Log] (//div[@class='position-relative form-group'])[2]//input[@id='firstName'] 
+2020-07-10 15:39:23,782 INFO  [Log] (//div[@class='position-relative form-group'])[2]//input[@id='firstName'] 
+2020-07-10 15:39:28,176 INFO  [Log] (//div[@class='position-relative form-group'])[3]//input[@id='surname'] 
+2020-07-10 15:39:32,711 INFO  [Log] (//div[@class='position-relative form-group'])[3]//input[@id='surname'] 
+2020-07-10 15:39:38,430 INFO  [Log] (//div[@class='position-relative form-group'])[3]//input[@id='surname'] 
+2020-07-10 15:39:42,928 INFO  [Log] (//div[@class='position-relative form-group'])[4]//textarea[@name='postalAddress'] 
+2020-07-10 15:39:47,505 INFO  [Log] (//div[@class='position-relative form-group'])[4]//textarea[@name='postalAddress'] 
+2020-07-10 15:39:54,236 INFO  [Log] (//div[@class='position-relative form-group'])[4]//textarea[@name='postalAddress'] 
+2020-07-10 15:39:58,269 INFO  [Log] (//div[@class='position-relative form-group'])[5]//input[@id='email'] 
+2020-07-10 15:40:02,432 INFO  [Log] (//div[@class='position-relative form-group'])[5]//input[@id='email'] 
+2020-07-10 15:40:09,605 INFO  [Log] (//div[@class='position-relative form-group'])[5]//input[@id='email'] 
+2020-07-10 15:40:13,967 INFO  [Log] (//div[@class='position-relative form-group'])[6]//input[@id='phone'] 
+2020-07-10 15:40:18,010 INFO  [Log] (//div[@class='position-relative form-group'])[6]//input[@id='phone'] 
+2020-07-10 15:40:24,183 INFO  [Log] (//div[@class='position-relative form-group'])[6]//input[@id='phone'] 
+2020-07-10 15:40:28,221 INFO  [Log] //input[@id='ipGuardianAccountGrp'] 
+2020-07-10 15:40:32,845 INFO  [Log] //input[@id='ipGuardianAccountGrp'] 
+2020-07-10 15:40:38,961 INFO  [Log] //input[@id='ipGuardianAccountGrp'] 
+2020-07-10 15:40:43,522 INFO  [Log] //input[@id='onlineUser'] 
+2020-07-10 15:40:48,027 INFO  [Log] //input[@id='onlineUser'] 
+2020-07-10 15:40:54,416 INFO  [Log] //input[@id='onlineUser'] 
+2020-07-10 15:40:59,464 INFO  [Log] //div//span[text()='Generate Password'] 
+2020-07-10 15:41:03,614 INFO  [Log] //input[@id='password'] 
+2020-07-10 15:41:04,797 INFO  [Log] Automatically generated Password value is : 8B%3#9A9Uw 
+2020-07-10 15:41:07,801 INFO  [Log] (//div[@class='position-relative form-group'])[5]//input[@id='email'] 
+2020-07-10 15:41:13,965 INFO  [Log] //select[@id='availableRoles']//option 
+2020-07-10 15:41:24,786 INFO  [Log] //div[label[text()='Roles']]//following-sibling::div//span[text()='>>'] 
+2020-07-10 15:41:42,250 INFO  [Log] //div[label[text()='Roles']]//following-sibling::div//span[text()='>>'] 
+2020-07-10 15:41:51,439 INFO  [Log] //select[@id='selectedRoles']//option 
+2020-07-10 15:41:54,484 INFO  [Log] //select[@id='availableHideService']//option 
+2020-07-10 15:41:57,503 INFO  [Log] //select[@id='selectedHideService']//option 
+2020-07-10 15:42:00,707 INFO  [Log] //select[@id='availableHideSiteOrder']//option 
+2020-07-10 15:42:03,728 INFO  [Log] //select[@id='selectedHideSiteOrder']//option 
+2020-07-10 15:42:07,830 INFO  [Log] //select[@id='availableIPV4CommandCisco']//option 
+2020-07-10 15:42:21,553 INFO  [Log] //div[label[text()='Hide Router Tools IPv4 Commands(Cisco)']]//following-sibling::div//span[text()='>>'] 
+2020-07-10 15:42:38,178 INFO  [Log] //div[label[text()='Hide Router Tools IPv4 Commands(Cisco)']]//following-sibling::div//span[text()='>>'] 
+2020-07-10 15:42:48,071 INFO  [Log] //select[@id='selectedIPV4CommandCisco']//option 
+2020-07-10 15:42:51,136 INFO  [Log] //select[@id='availableIPV4CommandHuawei']//option 
+2020-07-10 15:43:03,897 INFO  [Log] //div[label[text()='Hide Router Tools IPv4 Commands(Huawei)']]//following-sibling::div//span[text()='>>'] 
+2020-07-10 15:43:13,496 INFO  [Log] //select[@id='selectedIPV4CommandHuawei']//option 
+2020-07-10 15:43:18,554 INFO  [Log] //button[@type='submit']//span[text()='OK'] 
+2020-07-10 15:43:25,980 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 15:43:30,150 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 15:43:32,462 INFO  [Log] User added successfully 
+2020-07-10 15:43:35,481 INFO  [Log] //div[text()='Customer Details'] 
+2020-07-10 15:43:38,060 INFO  [Log] clicked on Existing user radio button 
+2020-07-10 15:43:42,193 INFO  [Log] //div[contains(text(),'Users')]/following-sibling::div/div//button[text()='Action'] 
+2020-07-10 15:43:47,877 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='Edit'] 
+2020-07-10 15:43:56,671 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 15:44:00,972 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 15:44:05,334 INFO  [Log] (//div[@class='position-relative form-group'])[1]//input[@id='userName'] 
+2020-07-10 15:44:09,379 INFO  [Log] (//div[@class='position-relative form-group'])[1]//input[@id='userName'] 
+2020-07-10 15:44:16,740 INFO  [Log] (//div[@class='position-relative form-group'])[1]//input[@id='userName'] 
+2020-07-10 15:44:25,669 INFO  [Log] (//div[@class='position-relative form-group'])[1]//input[@id='userName'] 
+2020-07-10 15:44:29,699 INFO  [Log] (//div[@class='position-relative form-group'])[2]//input[@id='firstName'] 
+2020-07-10 15:44:34,034 INFO  [Log] (//div[@class='position-relative form-group'])[2]//input[@id='firstName'] 
+2020-07-10 15:44:41,432 INFO  [Log] (//div[@class='position-relative form-group'])[2]//input[@id='firstName'] 
+2020-07-10 15:44:49,461 INFO  [Log] (//div[@class='position-relative form-group'])[2]//input[@id='firstName'] 
+2020-07-10 15:44:55,095 INFO  [Log] (//div[@class='position-relative form-group'])[3]//input[@id='surname'] 
+2020-07-10 15:44:59,172 INFO  [Log] (//div[@class='position-relative form-group'])[3]//input[@id='surname'] 
+2020-07-10 15:45:06,766 INFO  [Log] (//div[@class='position-relative form-group'])[3]//input[@id='surname'] 
+2020-07-10 15:45:14,767 INFO  [Log] (//div[@class='position-relative form-group'])[3]//input[@id='surname'] 
+2020-07-10 15:45:19,002 INFO  [Log] (//div[@class='position-relative form-group'])[4]//textarea[@name='postalAddress'] 
+2020-07-10 15:45:23,112 INFO  [Log] (//div[@class='position-relative form-group'])[4]//textarea[@name='postalAddress'] 
+2020-07-10 15:45:30,447 INFO  [Log] (//div[@class='position-relative form-group'])[4]//textarea[@name='postalAddress'] 
+2020-07-10 15:45:38,050 INFO  [Log] (//div[@class='position-relative form-group'])[4]//textarea[@name='postalAddress'] 
+2020-07-10 15:45:42,224 INFO  [Log] (//div[@class='position-relative form-group'])[5]//input[@id='email'] 
+2020-07-10 15:45:46,850 INFO  [Log] (//div[@class='position-relative form-group'])[5]//input[@id='email'] 
+2020-07-10 15:45:53,896 INFO  [Log] (//div[@class='position-relative form-group'])[5]//input[@id='email'] 
+2020-07-10 15:46:05,038 INFO  [Log] (//div[@class='position-relative form-group'])[5]//input[@id='email'] 
+2020-07-10 15:46:09,188 INFO  [Log] (//div[@class='position-relative form-group'])[6]//input[@id='phone'] 
+2020-07-10 15:46:14,158 INFO  [Log] (//div[@class='position-relative form-group'])[6]//input[@id='phone'] 
+2020-07-10 15:46:21,687 INFO  [Log] (//div[@class='position-relative form-group'])[6]//input[@id='phone'] 
+2020-07-10 15:46:30,223 INFO  [Log] (//div[@class='position-relative form-group'])[6]//input[@id='phone'] 
+2020-07-10 15:46:34,772 INFO  [Log] //input[@id='ipGuardianAccountGrp'] 
+2020-07-10 15:46:39,339 INFO  [Log] //input[@id='ipGuardianAccountGrp'] 
+2020-07-10 15:46:46,399 INFO  [Log] //input[@id='ipGuardianAccountGrp'] 
+2020-07-10 15:46:53,873 INFO  [Log] //input[@id='ipGuardianAccountGrp'] 
+2020-07-10 15:46:58,506 INFO  [Log] //input[@id='onlineUser'] 
+2020-07-10 15:47:02,591 INFO  [Log] //input[@id='onlineUser'] 
+2020-07-10 15:47:10,304 INFO  [Log] //input[@id='onlineUser'] 
+2020-07-10 15:47:21,173 INFO  [Log] //input[@id='onlineUser'] 
+2020-07-10 15:47:25,309 INFO  [Log] (//div[@class='position-relative form-group'])[9]//input[@id='password'] 
+2020-07-10 15:47:26,341 INFO  [Log] Automatically generated Password value is : 8B%3#9A9Uw 
+2020-07-10 15:47:29,373 INFO  [Log] (//div[@class='position-relative form-group'])[5]//input[@id='email'] 
+2020-07-10 15:47:34,310 INFO  [Log] //select[@id='selectedRoles']//option 
+2020-07-10 15:47:39,372 INFO  [Log] //select[@id='availableRoles']//option 
+2020-07-10 15:47:49,394 INFO  [Log] //select[@id='selectedRoles']//option 
+2020-07-10 15:47:53,121 INFO  [Log] //select[@id='selectedHideService']//option 
+2020-07-10 15:47:58,333 INFO  [Log] //select[@id='availableHideService']//option 
+2020-07-10 15:48:01,638 INFO  [Log] //select[@id='selectedHideService']//option 
+2020-07-10 15:48:06,450 INFO  [Log] //select[@id='selectedHideSiteOrder']//option 
+2020-07-10 15:48:09,476 INFO  [Log] //select[@id='availableHideSiteOrder']//option 
+2020-07-10 15:48:12,865 INFO  [Log] //select[@id='selectedHideSiteOrder']//option 
+2020-07-10 15:48:16,901 INFO  [Log] //select[@id='selectedIPV4CommandCisco']//option 
+2020-07-10 15:48:23,318 INFO  [Log] //div[label[text()='Hide Router Tools IPv4 Commands(Cisco)']]//following-sibling::div//span[text()='value'] 
+2020-07-10 15:48:34,307 INFO  [Log] //div[label[text()='Hide Router Tools IPv4 Commands(Cisco)']]//following-sibling::div//span[text()='value'] 
+2020-07-10 15:48:41,970 INFO  [Log] //select[@id='availableIPV4CommandCisco']//option 
+2020-07-10 15:48:55,862 INFO  [Log] //div[label[text()='Hide Router Tools IPv4 Commands(Cisco)']]//following-sibling::div//span[text()='>>'] 
+2020-07-10 15:49:05,933 INFO  [Log] //select[@id='selectedIPV4CommandCisco']//option 
+2020-07-10 15:49:09,004 INFO  [Log] //select[@id='selectedIPV4CommandHuawei']//option 
+2020-07-10 15:49:15,932 INFO  [Log] //div[label[text()='Hide Router Tools IPv4 Commands(Huawei)']]//following-sibling::div//span[text()='value'] 
+2020-07-10 15:49:23,933 INFO  [Log] //select[@id='availableIPV4CommandHuawei']//option 
+2020-07-10 15:49:35,846 INFO  [Log] //div[label[text()='Hide Router Tools IPv4 Commands(Huawei)']]//following-sibling::div//span[text()='>>'] 
+2020-07-10 15:49:45,586 INFO  [Log] //select[@id='selectedIPV4CommandHuawei']//option 
+2020-07-10 15:49:50,923 INFO  [Log] //button[@type='submit']//span[text()='OK'] 
+2020-07-10 15:49:58,768 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 15:51:02,778 INFO  [Log] //div[text()='Customer Details'] 
+2020-07-10 15:52:04,870 INFO  [Log] I am on TestStart method verifyOrderDetailsInformation start 
+2020-07-10 15:52:04,870 INFO  [Log] I am in onStart method null 
+2020-07-10 15:52:08,002 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 15:53:10,382 INFO  [Log] I am on TestStart method verifyServicepanelinviewservicepage start 
+2020-07-10 15:53:10,382 INFO  [Log] I am in onStart method null 
+2020-07-10 15:53:13,408 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 15:54:15,065 INFO  [Log] I am on TestStart method verifyManagementOptionspanel start 
+2020-07-10 15:54:15,065 INFO  [Log] I am in onStart method null 
+2020-07-10 15:54:18,070 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 15:55:18,765 INFO  [Log] I am on TestStart method verifyResellerpanelinviewservicepage start 
+2020-07-10 15:55:18,765 INFO  [Log] I am in onStart method null 
+2020-07-10 15:55:22,002 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 15:56:24,201 INFO  [Log] I am on TestStart method AddReseller start 
+2020-07-10 15:56:24,201 INFO  [Log] I am in onStart method null 
+2020-07-10 15:56:27,267 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 15:57:28,469 INFO  [Log] I am on TestStart method verifyResellerLinks start 
+2020-07-10 15:57:28,470 INFO  [Log] I am in onStart method null 
+2020-07-10 15:57:31,479 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 16:04:19,425 INFO  [Log] URL 
+2020-07-10 16:04:29,784 INFO  [Log] APT_login_1_URL 
+2020-07-10 16:04:35,235 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-10 16:04:45,195 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-10 16:04:50,067 INFO  [Log] //button[text()='Login'] 
+2020-07-10 16:04:51,362 INFO  [Log] === APT logged in successfully === 
+2020-07-10 16:04:51,365 INFO  [Log] I am on Start method Voice line Service 
+2020-07-10 16:04:53,210 INFO  [Log] I am on TestStart method verifyServicepanelinviewservicepage start 
+2020-07-10 16:04:53,210 INFO  [Log] I am in onStart method null 
+2020-07-10 16:04:56,258 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 16:05:02,402 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-10 16:05:10,283 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-10 16:05:17,184 INFO  [Log] //span[text()='Search'] 
+2020-07-10 16:05:21,244 INFO  [Log] //span[text()='Search'] 
+2020-07-10 16:05:27,518 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-10 16:05:34,754 INFO  [Log] //div[@class='dropdown']//button 
+2020-07-10 16:05:39,919 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='View'] 
+2020-07-10 16:05:47,999 INFO  [Log] //div[text()='Order'] 
+2020-07-10 16:05:55,708 INFO  [Log] //div[div[text()='Service']]//button 
+2020-07-10 16:06:00,993 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='Manage Subnets Ipv6'] 
+2020-07-10 16:06:09,435 INFO  [Log] //div[@class='modal-header']//div[contains(text(),'Manage')] 
+2020-07-10 16:06:13,803 INFO  [Log] //div[@class='modal-header']//div[contains(text(),'Manage')] 
+2020-07-10 16:06:18,897 INFO  [Log] //div[@class='modal-content']//div[@role='alert']//span 
+2020-07-10 16:06:23,220 INFO  [Log] //div[@class='modal-content']//div[@role='alert']//span 
+2020-07-10 16:06:28,430 INFO  [Log] //span[text()='Space Name'] 
+2020-07-10 16:06:32,546 INFO  [Log] //span[text()='Space Name'] 
+2020-07-10 16:06:38,929 INFO  [Log] //span[text()='Block Name'] 
+2020-07-10 16:06:43,676 INFO  [Log] //span[text()='Block Name'] 
+2020-07-10 16:06:49,417 INFO  [Log] //span[text()='Subnet Name'] 
+2020-07-10 16:06:53,957 INFO  [Log] //span[text()='Subnet Name'] 
+2020-07-10 16:06:59,353 INFO  [Log] //span[text()='Start Address'] 
+2020-07-10 16:07:03,868 INFO  [Log] //span[text()='Start Address'] 
+2020-07-10 16:07:09,529 INFO  [Log] //span[text()='Size'] 
+2020-07-10 16:07:14,429 INFO  [Log] //span[text()='Size'] 
+2020-07-10 16:07:22,164 INFO  [Log] //button[@type='button']//span[text()='×'] 
+2020-07-10 16:07:35,266 INFO  [Log] //div[text()='Order'] 
+2020-07-10 16:07:43,573 INFO  [Log] //div[div[text()='Service']]//button 
+2020-07-10 16:07:56,672 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='Show New Infovista Report'] 
+2020-07-10 16:08:33,070 INFO  [Log] //div[text()='Order'] 
+2020-07-10 16:08:39,240 INFO  [Log] //div[div[text()='Service']]//button 
+2020-07-10 16:08:44,490 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='Dump'] 
+2020-07-10 16:08:53,431 INFO  [Log] //div[@class='modal-header']//div[contains(text(),'Service')] 
+2020-07-10 16:08:57,975 INFO  [Log] //div[@class='modal-header']//div[contains(text(),'Service')] 
+2020-07-10 16:09:03,419 INFO  [Log] //div[@class='div-margin row']//textarea[contains(text(),'Service retrieved')] 
+2020-07-10 16:09:08,060 INFO  [Log] //div[@class='div-margin row']//textarea[contains(text(),'Service retrieved')] 
+2020-07-10 16:09:14,148 INFO  [Log] //label[text()='Service'] 
+2020-07-10 16:09:18,212 INFO  [Log] //label[text()='Service'] 
+2020-07-10 16:09:23,282 INFO  [Log] //label[text()='Service']/following-sibling::textarea 
+2020-07-10 16:09:27,493 INFO  [Log] //label[text()='Service']/following-sibling::textarea 
+2020-07-10 16:09:33,781 INFO  [Log] //button[@type='button']//span[text()='×'] 
+2020-07-10 16:09:40,670 INFO  [Log] //div[text()='Order'] 
+2020-07-10 16:09:46,839 INFO  [Log] //div[div[text()='Service']]//button 
+2020-07-10 16:09:51,930 INFO  [Log] //a[text()='Synchronize'] 
+2020-07-10 16:09:56,185 INFO  [Log] //div[text()='Customer Details'] 
+2020-07-10 16:10:02,085 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 16:10:06,152 INFO  [Log] //div[@role='alert']//span 
+2020-07-10 16:10:09,234 INFO  [Log] I am on TestSuccess method verifyServicepanelinviewservicepage succeed 
+2020-07-10 16:10:09,778 INFO  [Log] I am on TestStart method verifyASRDevice start 
+2020-07-10 16:10:09,778 INFO  [Log] I am in onStart method null 
+2020-07-10 16:10:12,789 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-10 16:10:19,153 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-10 16:10:23,677 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-10 16:10:30,328 INFO  [Log] //span[text()='Search'] 
+2020-07-10 16:10:34,564 INFO  [Log] //span[text()='Search'] 
+2020-07-10 16:10:41,535 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-10 16:10:49,276 INFO  [Log] //div[@class='dropdown']//button 
+2020-07-10 16:10:54,933 INFO  [Log] //div[@class='dropdown-menu show']//a[text()='View'] 
+2020-07-10 16:11:02,581 INFO  [Log] //div[text()='Management Options'] 
+2020-07-10 16:11:08,380 INFO  [Log] //div[text()='ASR Device'] 
+2020-07-10 16:11:13,104 INFO  [Log] //div[text()='ASR Device'] 
+2020-07-10 16:11:20,085 INFO  [Log] //a[text()='Add ASR Device'] 
+2020-07-10 16:11:27,426 INFO  [Log] //p[text()='Add ASR Device'] 
+2020-07-10 16:12:31,555 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 16:13:36,851 INFO  [Log] //label[text()='IMS POP Location']/parent::div//input 
+2020-07-10 16:14:41,123 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 16:15:47,325 INFO  [Log] (//div[@role='alert']//span)[1] 
+2020-07-10 16:16:52,771 INFO  [Log] //div[text()='Management Options'] 
+2020-07-10 16:16:56,869 INFO  [Log] (//div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row'])[2] 
+2020-07-10 16:17:01,494 INFO  [Log] (//div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row'])//b 
+2020-07-10 16:17:04,529 INFO  [Log] //div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='View'] 
+2020-07-10 16:17:08,957 INFO  [Log] //div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Edit'] 
+2020-07-10 16:17:14,359 INFO  [Log] //div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Delete from Service'] 
+2020-07-10 16:17:18,842 INFO  [Log] //div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Select Interfaces'] 
+2020-07-10 16:17:23,489 INFO  [Log] //div[text()='ASR Device'] 
+2020-07-10 16:17:27,956 INFO  [Log] (//div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row'])[2] 
+2020-07-10 16:17:32,610 INFO  [Log] (//div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row'])//b 
+2020-07-10 16:17:35,640 INFO  [Log] //div[text()='ASR Device']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Edit'] 
+2020-07-10 16:17:43,877 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 16:17:47,941 INFO  [Log] //div[@class='heading-green-row row']//p 
+2020-07-10 16:17:52,506 INFO  [Log] //input[@id='deviceName'] 
+2020-07-10 16:17:57,551 INFO  [Log] //input[@id='deviceName'] 
+2020-07-10 16:18:01,768 INFO  [Log] //input[@id='deviceName'] 
+2020-07-10 16:18:06,882 INFO  [Log] //label[text()='Vendor/Model']/parent::div//span 
+2020-07-10 16:18:10,921 INFO  [Log] //label[text()='Vendor/Model']/parent::div//span 
+2020-07-10 16:18:15,039 INFO  [Log] //input[@id='managementAddress'] 
+2020-07-10 16:18:20,123 INFO  [Log] //input[@id='managementAddress'] 
+2020-07-10 16:18:24,188 INFO  [Log] //input[@id='managementAddress'] 
+2020-07-10 16:18:29,448 INFO  [Log] //input[@id='snmpro'] 
+2020-07-10 16:18:34,390 INFO  [Log] //input[@id='snmpro'] 
+2020-07-10 16:18:40,526 INFO  [Log] //div[label[contains(text(),'Country')]]//input 
+2020-07-10 16:18:45,730 INFO  [Log] //div[label[contains(text(),'Country')]]//input 
+2020-07-10 16:18:49,945 INFO  [Log] //div[label[contains(text(),'Country')]]//input 
+2020-07-10 16:18:55,234 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-10 16:19:02,469 INFO  [Log] (//div[@role='alert']//span)[1] 
+2020-07-10 16:19:06,835 INFO  [Log] (//div[@role='alert']//span)[1] 
+2020-07-10 16:19:11,202 INFO  [Log] //div[text()='ASR Device'] 

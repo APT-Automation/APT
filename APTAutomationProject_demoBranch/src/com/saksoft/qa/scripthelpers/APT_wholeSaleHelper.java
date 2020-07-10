@@ -5805,17 +5805,17 @@ try {
 		
 		
 //		VerifyText(text);
-		if(getwebelement(xml.getlocator("//locators/" + application + "/MASswitch_showInterfaceLink")).isDisplayed())
-		{
-		click_commonMethod(application, "Show Interfaces", "MASswitch_showInterfaceLink", xml);
-		
-		Thread.sleep(1000);
+//		if(getwebelement(xml.getlocator("//locators/" + application + "/MASswitch_showInterfaceLink")).isDisplayed())
+//		{
+//		click_commonMethod(application, "Show Interfaces", "MASswitch_showInterfaceLink", xml);
+//		
+//		Thread.sleep(1000);
 		WebElement SelectInterface= getwebelement("//div[div[b[text()='"+ deviceName+"']]]//following-sibling::div//div[@role='gridcell'][text()='"+ interfaceName +"']");
 		if(SelectInterface.isDisplayed())
 		{
 			Clickon(SelectInterface);
 			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on "+ interfaceName + "Interface");
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", deviceName)));
 			click_commonMethod(application, "Configure", "configureLink", xml);
@@ -5823,24 +5823,24 @@ try {
 		  }else {
 			  DriverTestcase.logger.log(LogStatus.FAIL, interfaceName + " is not displaying under 'MAS Switch' for the device "+ deviceName);
 		  }
-		}else {
-//			DriverTestcase.logger.log(LogStatus.FAIL, "'Show Interface' link is not available under 'MAS switch'");
-			
-			Thread.sleep(1000);
-			WebElement SelectInterface= getwebelement("//div[div[b[text()='"+ deviceName+"']]]//following-sibling::div//div[@role='gridcell'][text()='"+ interfaceName +"']");
-			if(SelectInterface.isDisplayed())
-			{
-				Clickon(SelectInterface);
-				DriverTestcase.logger.log(LogStatus.PASS, "Clicked on "+ interfaceName + "Interface");
-				Thread.sleep(1000);
-				
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", deviceName)));
-				click_commonMethod(application, "Configure", "configureLink", xml);
-
-			  }else {
-				  DriverTestcase.logger.log(LogStatus.FAIL, interfaceName + " is not displaying under 'MAS Switch' for the device "+ deviceName);
-			  }
-		}
+//		}else {
+////			DriverTestcase.logger.log(LogStatus.FAIL, "'Show Interface' link is not available under 'MAS switch'");
+//			
+//			Thread.sleep(1000);
+//			WebElement SelectInterface= getwebelement("//div[div[b[text()='"+ deviceName+"']]]//following-sibling::div//div[@role='gridcell'][text()='"+ interfaceName +"']");
+//			if(SelectInterface.isDisplayed())
+//			{
+//				Clickon(SelectInterface);
+//				DriverTestcase.logger.log(LogStatus.PASS, "Clicked on "+ interfaceName + "Interface");
+//				Thread.sleep(1000);
+//				
+//				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", deviceName)));
+//				click_commonMethod(application, "Configure", "configureLink", xml);
+//
+//			  }else {
+//				  DriverTestcase.logger.log(LogStatus.FAIL, interfaceName + " is not displaying under 'MAS Switch' for the device "+ deviceName);
+//			  }
+		//}
 		
 		}
 	

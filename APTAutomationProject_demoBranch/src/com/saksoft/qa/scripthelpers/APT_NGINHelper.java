@@ -68,7 +68,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
 		Thread.sleep(2000);
-		compareText(application, "create customer page header", "createcustomer_header", "Customer", xml);
+		compareText(application, "create customer page header", "createcustomer_header", "Create Customer", xml);
 		scrolltoend();
 		click_commonMethod(application, "Ok", "okbutton", xml);
 
@@ -1270,9 +1270,9 @@ public class APT_NGINHelper extends DriverHelper {
 		Thread.sleep(2000);
 		addtextFields_commonMethod(application, "RFI Voiceline Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-		Log.info("Navigated to order panel in view service page");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+//		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
+//		Log.info("Navigated to order panel in view service page");
+//		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 		//Edit Order
 		Thread.sleep(1000);
@@ -1296,9 +1296,9 @@ public class APT_NGINHelper extends DriverHelper {
 		Thread.sleep(1000);
 		ScrolltoElement(application, "userspanel_header", xml);
 		Thread.sleep(1000);
-		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-		Log.info("Navigated to order panel in view service page");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+//		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
+//		Log.info("Navigated to order panel in view service page");
+//		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 		compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
 		compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
@@ -1327,9 +1327,9 @@ public class APT_NGINHelper extends DriverHelper {
 			Thread.sleep(1000);
 			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+//			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
+//			Log.info("Navigated to order panel in view service page");
+//			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 			//Change order
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
@@ -1345,9 +1345,9 @@ public class APT_NGINHelper extends DriverHelper {
 			Thread.sleep(1000);
 			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+//			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
+//			Log.info("Navigated to order panel in view service page");
+//			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
@@ -1365,8 +1365,8 @@ public class APT_NGINHelper extends DriverHelper {
 			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
 			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
+//			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
+//			Log.info("Navigated to order panel in view service page");
 
 			//Change Order
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
@@ -1384,9 +1384,9 @@ public class APT_NGINHelper extends DriverHelper {
 			Thread.sleep(1000);
 			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
+//			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
+//			Log.info("Navigated to order panel in view service page");
+//			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
 			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
@@ -1396,7 +1396,7 @@ public class APT_NGINHelper extends DriverHelper {
 	public void verifyservicepanelInformationinviewservicepage(String application, String sid, String servicetype, String Remarks) throws InterruptedException, DocumentException, IOException {
 
 		ScrolltoElement(application, "orderpanelheader", xml);
-		compareText(application, "Service panel Header", "servicepanel_header", "Service", xml);
+		//compareText(application, "Service panel Header", "servicepanel_header", "Service", xml);
 		compareText(application, "Service Identification", "servicepanel_serviceidentificationvalue", sid, xml);
 		compareText(application, "Service Type", "servicepanel_servicetypevalue", servicetype, xml);
 		compareText(application, "Remarks", "servicepanel_remarksvalue", Remarks, xml);

@@ -126,7 +126,7 @@ public class APT_NGINTest extends DriverTestcase{
 	 public void verifyResellerLinks(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyResellerLinks");
-		APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
+		//APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
 		APT_NGIN.get().verifyResellerLinks("nginservice", map.get("OCN"), map.get("Reseller_EditEmail"), map.get("Reseller_EditCity"), map.get("Reseller_EditStreetName"), map.get("Reseller_EditStreetNumber"), map.get("Reseller_EditPOBox"), map.get("Reseller_EditZipcode"), map.get("Reseller_EditPhone"), map.get("Reseller_EditFax"));
 	
 	}

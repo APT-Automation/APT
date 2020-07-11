@@ -151,7 +151,7 @@
 <changeorder_chooseorderdropdown>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::div//div[2]</changeorder_chooseorderdropdown>
 <changeorder_backbutton>//span[contains(text(),'Back')]</changeorder_backbutton>
 <changeorder_okbutton>//span[contains(text(),'OK')]</changeorder_okbutton>
-<orderpanelheader>//div[text()='Order']</orderpanelheader>
+<orderpanelheader>(//div[contains(text(),'Order')])[1]</orderpanelheader>
 <editorderheader>//div[text()='Edit Order']</editorderheader>
 <editorderno>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::input</editorderno>
 <editvoicelineno>//label[text()='RFI/RFQ/IP Voice Line Number']/following-sibling::input</editvoicelineno>
@@ -165,7 +165,7 @@
 <servicepanel_serviceidentificationvalue>//div[label[contains(text(),'Service Identification')]]/div</servicepanel_serviceidentificationvalue>
 <servicepanel_servicetypevalue>//div[label[contains(text(),'Service Type')]]/div</servicepanel_servicetypevalue>
 <servicepanel_remarksvalue>//div[label[contains(text(),'Remark')]]/div</servicepanel_remarksvalue>
-<servicepanel_header>//div[text()='Service']</servicepanel_header>
+<servicepanel_header>(//div[contains(text(),'Service')])[1]</servicepanel_header>
 <serviceactiondropdown>//div[div[text()='Service']]//button</serviceactiondropdown>
 <serviceupdate_successmsg>//div[@role='alert']//span[text()='Service  successfully updated']</serviceupdate_successmsg>
 <manageLink>//div[@class='dropdown-menu show']//a[text()='Manage']</manageLink>

@@ -15588,3 +15588,508 @@
 2020-07-11 10:22:47,446 INFO  [Log] //label[text()='Trunk Group Name']/parent::div/following-sibling::div 
 2020-07-11 10:24:04,578 INFO  [Log] I am on TestSuccess method viewTrunk succeed 
 2020-07-11 10:24:06,361 INFO  [Log] I am on Finish method Voice line Service 
+2020-07-12 18:01:38,844 INFO  [Log] URL 
+2020-07-12 18:01:49,682 INFO  [Log] APT_login_1_URL 
+2020-07-12 18:01:55,096 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-12 18:03:26,090 INFO  [Log] URL 
+2020-07-12 18:03:35,644 INFO  [Log] APT_login_1_URL 
+2020-07-12 18:03:40,842 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-12 18:03:47,700 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-12 18:03:52,131 INFO  [Log] //button[text()='Login'] 
+2020-07-12 18:03:53,548 INFO  [Log] === APT logged in successfully === 
+2020-07-12 18:03:53,550 INFO  [Log] I am on Start method Wholesale 
+2020-07-12 18:03:55,729 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-12 18:03:55,729 INFO  [Log] I am in onStart method null 
+2020-07-12 18:03:58,771 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-12 18:04:05,630 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-12 18:04:14,569 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-12 18:04:20,825 INFO  [Log] //span[text()='Search'] 
+2020-07-12 18:04:24,928 INFO  [Log] //span[text()='Search'] 
+2020-07-12 18:04:32,186 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-12 18:04:39,467 INFO  [Log] //div[@class='dropdown']//button 
+2020-07-12 18:04:44,665 INFO  [Log] //a[text()='View'] 
+2020-07-12 18:04:49,566 INFO  [Log] I am on TestSuccess method searchCreatedService succeed 
+2020-07-12 18:04:49,771 INFO  [Log] I am on TestStart method addTrunk start 
+2020-07-12 18:04:49,771 INFO  [Log] I am in onStart method null 
+2020-07-12 18:04:56,923 INFO  [Log] //div[div[text()='Trunk Group/Site Orders']] 
+2020-07-12 18:05:02,261 INFO  [Log] //a[text()='Add Trunk Group/Site Order'] 
+2020-07-12 18:05:06,514 INFO  [Log] //div[div[p[text()='Trunk Group/Site Order']]] 
+2020-07-12 18:05:11,808 INFO  [Log] //span[text()='OK'] 
+2020-07-12 18:05:16,023 INFO  [Log] //div[text()='Trunk Group Order'] 
+2020-07-12 18:05:20,338 INFO  [Log] //div[text()='Trunk Group Order'] 
+2020-07-12 18:05:21,562 INFO  [Log] Trunk Group Order field warning  message displayed as : Trunk Group Order is required 
+2020-07-12 18:05:24,571 INFO  [Log] //div[text()='Trunk Group Order Number'] 
+2020-07-12 18:05:28,617 INFO  [Log] //div[text()='Trunk Group Order Number'] 
+2020-07-12 18:05:30,243 INFO  [Log] Trunk group Order Number field warning  message displayed as : Trunk Group Order Number is required 
+2020-07-12 18:05:33,249 INFO  [Log] //div[label[text()='Trunk Group Order']]//input 
+2020-07-12 18:05:37,679 INFO  [Log] //div[label[text()='Trunk Group Order']]//input 
+2020-07-12 18:05:42,304 INFO  [Log] //div[label[text()='Trunk Group Order']]//input 
+2020-07-12 18:05:43,968 INFO  [Log] Trunk Group Order check box is selected 
+2020-07-12 18:05:46,975 INFO  [Log] //div[label[text()='Trunk Group Order Number']]//input 
+2020-07-12 18:05:51,245 INFO  [Log] //div[label[text()='Trunk Group Order Number']]//input 
+2020-07-12 18:05:55,493 INFO  [Log] //div[label[text()='Trunk Group Order Number']]//input 
+2020-07-12 18:06:00,743 INFO  [Log] //span[text()='OK'] 
+2020-07-12 18:06:08,522 INFO  [Log] (//div[@role='alert']/span)[1] 
+2020-07-12 18:06:12,888 INFO  [Log] (//div[@role='alert']/span)[1] 
+2020-07-12 18:06:26,270 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-12 18:06:33,059 INFO  [Log] //select[@id='trunkType'] 
+2020-07-12 18:06:37,288 INFO  [Log] //select[@id='trunkType'] 
+2020-07-12 18:06:44,248 INFO  [Log] //input[@id='tgDescription'] 
+2020-07-12 18:06:48,747 INFO  [Log] //input[@id='tgDescription'] 
+2020-07-12 18:06:53,255 INFO  [Log] //select[@id='voipProtocol'] 
+2020-07-12 18:06:57,293 INFO  [Log] //select[@id='voipProtocol'] 
+2020-07-12 18:07:02,602 INFO  [Log] //div[text()='Billing Country'] 
+2020-07-12 18:07:06,658 INFO  [Log] //div[text()='Billing Country'] 
+2020-07-12 18:07:07,786 INFO  [Log] Billing Country field warning  message displayed as : Billing Country is required 
+2020-07-12 18:07:10,797 INFO  [Log] //select[@id='billingCountry'] 
+2020-07-12 18:07:15,429 INFO  [Log] //select[@id='billingCountry'] 
+2020-07-12 18:07:22,260 INFO  [Log] //select[@id='billingCountry'] 
+2020-07-12 18:07:26,294 INFO  [Log] //select[@id='cdrDelivery'] 
+2020-07-12 18:07:30,590 INFO  [Log] //select[@id='cdrDelivery'] 
+2020-07-12 18:07:36,191 INFO  [Log] //span[contains(text(),'Allocate Prefix')] 
+2020-07-12 18:07:40,402 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:07:47,711 INFO  [Log] (//div[@role='alert'])[1] 
+2020-07-12 18:07:51,970 INFO  [Log] (//div[@role='alert']/span)[1] 
+2020-07-12 18:07:56,455 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:08:01,301 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:08:06,214 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:08:10,325 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:08:14,399 INFO  [Log] //select[@id='gateway'] 
+2020-07-12 18:08:18,652 INFO  [Log] //select[@id='gateway'] 
+2020-07-12 18:08:24,370 INFO  [Log] //select[@id='trunkType'] 
+2020-07-12 18:08:30,784 INFO  [Log] //select[@id='quality'] 
+2020-07-12 18:08:34,882 INFO  [Log] //select[@id='quality'] 
+2020-07-12 18:08:39,864 INFO  [Log] //select[@id='quality'] 
+2020-07-12 18:08:44,904 INFO  [Log] //input[@id='tgName'] 
+2020-07-12 18:08:49,045 INFO  [Log] //input[@id='tgName'] 
+2020-07-12 18:08:53,287 INFO  [Log] //select[@id='trafficDirection'] 
+2020-07-12 18:08:57,834 INFO  [Log] //select[@id='trafficDirection'] 
+2020-07-12 18:09:03,091 INFO  [Log] //select[@id='ipAddressType'] 
+2020-07-12 18:09:07,648 INFO  [Log] //select[@id='trafficDirection'] 
+2020-07-12 18:09:14,294 INFO  [Log] //div[text()='Carrier IP Originating (Address/Mask)'] 
+2020-07-12 18:09:18,579 INFO  [Log] //div[text()='Carrier IP Originating (Address/Mask)'] 
+2020-07-12 18:09:19,667 INFO  [Log] Carrier IP Originating (Address/Mask) field warning  message displayed as : Carrier IP Originating (Address/Mask) is required 
+2020-07-12 18:09:22,671 INFO  [Log] //input[@id='ipRangeField'] 
+2020-07-12 18:09:26,704 INFO  [Log] //input[@id='ipRangeField'] 
+2020-07-12 18:09:32,395 INFO  [Log] //input[@id='ipRangeField'] 
+2020-07-12 18:09:37,071 INFO  [Log] //select[@id='selectedIpPbxRangev6'] 
+2020-07-12 18:09:41,915 INFO  [Log] //input[@id='ipField'] 
+2020-07-12 18:09:46,085 INFO  [Log] //input[@id='ipField'] 
+2020-07-12 18:09:52,471 INFO  [Log] //input[@id='ipField'] 
+2020-07-12 18:09:57,754 INFO  [Log] //div[div[div[contains(text(),'Carrier IP Terminating')]]]/following-sibling::div//span[text()='>>'] 
+2020-07-12 18:10:02,434 INFO  [Log] //select[@id='selecteddrPbxRange'] 
+2020-07-12 18:10:07,064 INFO  [Log] //div[label[text()='Internet Based Customer']]//input 
+2020-07-12 18:10:11,443 INFO  [Log] //div[label[text()='Internet Based Customer']]//input 
+2020-07-12 18:10:15,512 INFO  [Log] //div[label[text()='Internet Based Customer']]//input 
+2020-07-12 18:10:17,114 INFO  [Log] Internet Based Customer check box is selected 
+2020-07-12 18:10:20,118 INFO  [Log] //input[@id='vlanTg'] 
+2020-07-12 18:10:24,171 INFO  [Log] //input[@id='vlanTg'] 
+2020-07-12 18:10:28,320 INFO  [Log] //select[@id='sifSlot'] 
+2020-07-12 18:10:32,365 INFO  [Log] //select[@id='sifSlot'] 
+2020-07-12 18:10:38,090 INFO  [Log] //input[@id='sifName'] 
+2020-07-12 18:10:42,565 INFO  [Log] //input[@id='sifName'] 
+2020-07-12 18:10:47,619 INFO  [Log] //input[@id='nifGroup'] 
+2020-07-12 18:10:51,803 INFO  [Log] //input[@id='nifGroup'] 
+2020-07-12 18:10:56,889 INFO  [Log] //input[@id='sigZone'] 
+2020-07-12 18:11:01,115 INFO  [Log] //input[@id='sigZone'] 
+2020-07-12 18:11:05,382 INFO  [Log] //input[@id='sigZone'] 
+2020-07-12 18:11:09,893 INFO  [Log] //input[@id='sigZone'] 
+2020-07-12 18:11:13,950 INFO  [Log] //input[@id='sigZone'] 
+2020-07-12 18:11:19,658 INFO  [Log] //input[@id='sigZone'] 
+2020-07-12 18:11:23,865 INFO  [Log] //select[@id='transProt'] 
+2020-07-12 18:11:27,912 INFO  [Log] //select[@id='transProt'] 
+2020-07-12 18:11:32,658 INFO  [Log] //div[label[text()='Internet Based Customer']]//input 
+2020-07-12 18:11:39,031 INFO  [Log] //input[@id='mediaIp'] 
+2020-07-12 18:11:43,078 INFO  [Log] //input[@id='mediaIp'] 
+2020-07-12 18:11:49,393 INFO  [Log] //input[@id='mediaIp'] 
+2020-07-12 18:11:53,790 INFO  [Log] //input[@id='reuseSigZonePart'] 
+2020-07-12 18:11:58,158 INFO  [Log] //input[@id='reuseSigZonePart'] 
+2020-07-12 18:12:02,691 INFO  [Log] //input[@id='reuseSigZonePart'] 
+2020-07-12 18:12:04,271 INFO  [Log] Reuse Sig Zone/Part check box is selected 
+2020-07-12 18:12:07,279 INFO  [Log] //input[@id='cac'] 
+2020-07-12 18:12:11,506 INFO  [Log] //input[@id='cac'] 
+2020-07-12 18:12:15,609 INFO  [Log] //input[@id='cac'] 
+2020-07-12 18:12:16,862 INFO  [Log] Call Admission Control check box is selected 
+2020-07-12 18:12:19,865 INFO  [Log] //select[@id='callLimit'] 
+2020-07-12 18:12:23,925 INFO  [Log] //select[@id='callLimit'] 
+2020-07-12 18:12:29,059 INFO  [Log] //input[@id='cacrt'] 
+2020-07-12 18:12:33,271 INFO  [Log] //input[@id='cacrt'] 
+2020-07-12 18:12:37,308 INFO  [Log] //input[@id='cacrt'] 
+2020-07-12 18:12:38,942 INFO  [Log] Call Rate Limit check box is selected 
+2020-07-12 18:12:41,946 INFO  [Log] //input[@id='callrateLimit'] 
+2020-07-12 18:12:46,191 INFO  [Log] //input[@id='callrateLimit'] 
+2020-07-12 18:12:50,263 INFO  [Log] //input[@id='callrateLimit'] 
+2020-07-12 18:12:54,695 INFO  [Log] //input[@id='callrateLimit'] 
+2020-07-12 18:12:59,480 INFO  [Log] //input[@id='callrateLimit'] 
+2020-07-12 18:13:03,598 INFO  [Log] //select[@id='rel100Support'] 
+2020-07-12 18:13:07,808 INFO  [Log] //select[@id='rel100Support'] 
+2020-07-12 18:13:12,834 INFO  [Log] //input[@id='sipSessionKeepAliveRetimer'] 
+2020-07-12 18:13:17,335 INFO  [Log] //input[@id='sipSessionKeepAliveRetimer'] 
+2020-07-12 18:13:21,557 INFO  [Log] //input[@id='sipSessionKeepAliveRetimer'] 
+2020-07-12 18:13:26,377 INFO  [Log] //input[@id='sipSessionKeepAliveRetimer'] 
+2020-07-12 18:13:30,616 INFO  [Log] //div[label[text()='SIP Session Keepalive Timer(Sec)']]/div 
+2020-07-12 18:13:34,693 INFO  [Log] //div[label[text()='SIP Session Keepalive Timer(Sec)']]/div 
+2020-07-12 18:13:38,987 INFO  [Log] //input[@id='reuseNIFGroup'] 
+2020-07-12 18:13:45,350 INFO  [Log] //div[label[text()='Retry Invite']]/div 
+2020-07-12 18:13:49,395 INFO  [Log] //div[label[text()='Retry Invite']]/div 
+2020-07-12 18:13:53,461 INFO  [Log] //select[@id='routepriority'] 
+2020-07-12 18:13:57,802 INFO  [Log] //select[@id='routepriority'] 
+2020-07-12 18:14:02,809 INFO  [Log] //select[@id='addressReachability'] 
+2020-07-12 18:14:07,254 INFO  [Log] //select[@id='addressReachability'] 
+2020-07-12 18:14:11,920 INFO  [Log] //input[@id='retryinvite'] 
+2020-07-12 18:14:18,348 INFO  [Log] //select[@id='e164GlobalProfile'] 
+2020-07-12 18:14:22,742 INFO  [Log] //select[@id='e164GlobalProfile'] 
+2020-07-12 18:14:27,776 INFO  [Log] //select[@id='cosProfile'] 
+2020-07-12 18:14:32,116 INFO  [Log] //select[@id='cosProfile'] 
+2020-07-12 18:14:39,067 INFO  [Log] //input[@id='preferredpspcheck'] 
+2020-07-12 18:14:44,544 INFO  [Log] //input[@id='preferredpspValue'] 
+2020-07-12 18:14:48,584 INFO  [Log] //input[@id='preferredpspValue'] 
+2020-07-12 18:14:54,862 INFO  [Log] //input[@id='preferredpspValue'] 
+2020-07-12 18:14:59,313 INFO  [Log] //input[@id='e164GlobalProfileValue'] 
+2020-07-12 18:15:06,462 INFO  [Log] //select[@id='carrierIdNH'] 
+2020-07-12 18:15:10,564 INFO  [Log] //select[@id='carrierIdNH'] 
+2020-07-12 18:15:15,210 INFO  [Log] //select[@id='iptgipsigProfId'] 
+2020-07-12 18:15:19,581 INFO  [Log] //select[@id='iptgipsigProfId'] 
+2020-07-12 18:15:25,825 INFO  [Log] //select[@id='indmpmrule'] 
+2020-07-12 18:15:29,907 INFO  [Log] //select[@id='indmpmrule'] 
+2020-07-12 18:15:38,147 INFO  [Log] //select[@id='featurecontrolprofile'] 
+2020-07-12 18:15:42,612 INFO  [Log] //select[@id='featurecontrolprofile'] 
+2020-07-12 18:15:46,760 INFO  [Log] //input[@id='createLowerCaseRoutes'] 
+2020-07-12 18:15:51,052 INFO  [Log] //input[@id='createLowerCaseRoutes'] 
+2020-07-12 18:15:55,142 INFO  [Log] //input[@id='createLowerCaseRoutes'] 
+2020-07-12 18:15:57,991 INFO  [Log] Create Lower Case Routes check box is selected 
+2020-07-12 18:16:01,002 INFO  [Log] //input[@id='psxManualConfigCheckTG'] 
+2020-07-12 18:16:05,052 INFO  [Log] //input[@id='psxManualConfigCheckTG'] 
+2020-07-12 18:16:09,740 INFO  [Log] //input[@id='psxManualConfigCheckTG'] 
+2020-07-12 18:16:11,490 INFO  [Log] PSX Manual Configuration check box is selected 
+2020-07-12 18:16:14,494 INFO  [Log] //input[@id='gsxManualConfigCheck'] 
+2020-07-12 18:16:18,553 INFO  [Log] //input[@id='gsxManualConfigCheck'] 
+2020-07-12 18:16:23,214 INFO  [Log] //input[@id='gsxManualConfigCheck'] 
+2020-07-12 18:16:24,685 INFO  [Log] Manual Configuration On GSX check box is selected 
+2020-07-12 18:16:29,846 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-12 18:16:37,461 INFO  [Log] (//div[@role='alert'])[1] 
+2020-07-12 18:16:41,846 INFO  [Log] (//div[@role='alert']/span)[1] 
+2020-07-12 18:16:42,883 INFO  [Log] I am on TestSuccess method addTrunk succeed 
+2020-07-12 18:16:43,674 INFO  [Log] I am on Finish method Wholesale 
+2020-07-12 18:29:06,913 INFO  [Log] URL 
+2020-07-12 18:29:18,674 INFO  [Log] APT_login_1_URL 
+2020-07-12 18:29:25,082 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-12 18:29:30,381 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-12 18:29:36,026 INFO  [Log] //button[text()='Login'] 
+2020-07-12 18:29:37,232 INFO  [Log] === APT logged in successfully === 
+2020-07-12 18:29:37,234 INFO  [Log] I am on Start method Wholesale 
+2020-07-12 18:29:41,333 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-12 18:29:41,333 INFO  [Log] I am in onStart method null 
+2020-07-12 18:29:44,406 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-12 18:29:54,196 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-12 18:30:03,613 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-12 18:30:09,724 INFO  [Log] //span[text()='Search'] 
+2020-07-12 18:30:14,342 INFO  [Log] //span[text()='Search'] 
+2020-07-12 18:30:20,917 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-12 18:30:30,501 INFO  [Log] //div[@class='dropdown']//button 
+2020-07-12 18:30:36,067 INFO  [Log] //a[text()='View'] 
+2020-07-12 18:30:41,862 INFO  [Log] I am on TestSuccess method searchCreatedService succeed 
+2020-07-12 18:30:42,573 INFO  [Log] I am on TestStart method addTrunk start 
+2020-07-12 18:30:42,573 INFO  [Log] I am in onStart method null 
+2020-07-12 18:30:50,293 INFO  [Log] //div[div[text()='Trunk Group/Site Orders']] 
+2020-07-12 18:30:55,376 INFO  [Log] //a[text()='Add Trunk Group/Site Order'] 
+2020-07-12 18:30:59,615 INFO  [Log] //div[div[p[text()='Trunk Group/Site Order']]] 
+2020-07-12 18:31:05,195 INFO  [Log] //span[text()='OK'] 
+2020-07-12 18:31:09,557 INFO  [Log] //div[text()='Trunk Group Order'] 
+2020-07-12 18:31:14,206 INFO  [Log] //div[text()='Trunk Group Order'] 
+2020-07-12 18:31:15,826 INFO  [Log] Trunk Group Order field warning  message displayed as : Trunk Group Order is required 
+2020-07-12 18:31:18,834 INFO  [Log] //div[text()='Trunk Group Order Number'] 
+2020-07-12 18:31:22,905 INFO  [Log] //div[text()='Trunk Group Order Number'] 
+2020-07-12 18:31:23,948 INFO  [Log] Trunk group Order Number field warning  message displayed as : Trunk Group Order Number is required 
+2020-07-12 18:31:26,954 INFO  [Log] //div[label[text()='Trunk Group Order']]//input 
+2020-07-12 18:31:31,009 INFO  [Log] //div[label[text()='Trunk Group Order']]//input 
+2020-07-12 18:31:35,230 INFO  [Log] //div[label[text()='Trunk Group Order']]//input 
+2020-07-12 18:31:36,533 INFO  [Log] Trunk Group Order check box is selected 
+2020-07-12 18:31:39,541 INFO  [Log] //div[label[text()='Trunk Group Order Number']]//input 
+2020-07-12 18:31:43,600 INFO  [Log] //div[label[text()='Trunk Group Order Number']]//input 
+2020-07-12 18:31:48,292 INFO  [Log] //div[label[text()='Trunk Group Order Number']]//input 
+2020-07-12 18:31:53,359 INFO  [Log] //span[text()='OK'] 
+2020-07-12 18:32:00,629 INFO  [Log] (//div[@role='alert']/span)[1] 
+2020-07-12 18:32:05,129 INFO  [Log] (//div[@role='alert']/span)[1] 
+2020-07-12 18:32:17,836 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-12 18:32:25,106 INFO  [Log] //select[@id='trunkType'] 
+2020-07-12 18:32:29,220 INFO  [Log] //select[@id='trunkType'] 
+2020-07-12 18:32:36,257 INFO  [Log] //input[@id='tgDescription'] 
+2020-07-12 18:32:40,766 INFO  [Log] //input[@id='tgDescription'] 
+2020-07-12 18:32:44,936 INFO  [Log] //select[@id='voipProtocol'] 
+2020-07-12 18:32:48,998 INFO  [Log] //select[@id='voipProtocol'] 
+2020-07-12 18:32:53,768 INFO  [Log] //div[text()='Billing Country'] 
+2020-07-12 18:32:58,289 INFO  [Log] //div[text()='Billing Country'] 
+2020-07-12 18:33:00,303 INFO  [Log] Billing Country field warning  message displayed as : Billing Country is required 
+2020-07-12 18:33:03,314 INFO  [Log] //select[@id='billingCountry'] 
+2020-07-12 18:33:07,354 INFO  [Log] //select[@id='billingCountry'] 
+2020-07-12 18:33:13,089 INFO  [Log] //select[@id='billingCountry'] 
+2020-07-12 18:33:17,644 INFO  [Log] //select[@id='cdrDelivery'] 
+2020-07-12 18:33:21,990 INFO  [Log] //select[@id='cdrDelivery'] 
+2020-07-12 18:33:28,155 INFO  [Log] //span[contains(text(),'Allocate Prefix')] 
+2020-07-12 18:33:32,807 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:33:40,513 INFO  [Log] (//div[@role='alert'])[1] 
+2020-07-12 18:33:44,592 INFO  [Log] (//div[@role='alert']/span)[1] 
+2020-07-12 18:33:48,657 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:33:53,602 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:33:58,817 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:34:03,236 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:34:07,711 INFO  [Log] //select[@id='gateway'] 
+2020-07-12 18:34:12,026 INFO  [Log] //select[@id='gateway'] 
+2020-07-12 18:34:18,126 INFO  [Log] //select[@id='trunkType'] 
+2020-07-12 18:34:24,879 INFO  [Log] //select[@id='quality'] 
+2020-07-12 18:34:28,975 INFO  [Log] //select[@id='quality'] 
+2020-07-12 18:34:33,964 INFO  [Log] //select[@id='quality'] 
+2020-07-12 18:34:39,728 INFO  [Log] //input[@id='tgName'] 
+2020-07-12 18:34:43,762 INFO  [Log] //input[@id='tgName'] 
+2020-07-12 18:34:48,320 INFO  [Log] //select[@id='trafficDirection'] 
+2020-07-12 18:34:52,392 INFO  [Log] //select[@id='trafficDirection'] 
+2020-07-12 18:34:57,684 INFO  [Log] //select[@id='ipAddressType'] 
+2020-07-12 18:35:02,273 INFO  [Log] //select[@id='trafficDirection'] 
+2020-07-12 18:35:08,322 INFO  [Log] //div[text()='Carrier IP Originating (Address/Mask)'] 
+2020-07-12 18:35:12,473 INFO  [Log] //div[text()='Carrier IP Originating (Address/Mask)'] 
+2020-07-12 18:35:14,035 INFO  [Log] Carrier IP Originating (Address/Mask) field warning  message displayed as : Carrier IP Originating (Address/Mask) is required 
+2020-07-12 18:35:17,045 INFO  [Log] //input[@id='ipRangeField'] 
+2020-07-12 18:35:21,657 INFO  [Log] //input[@id='ipRangeField'] 
+2020-07-12 18:35:28,125 INFO  [Log] //input[@id='ipRangeField'] 
+2020-07-12 18:35:33,398 INFO  [Log] //div[div[div[contains(text(),'Carrier IP Originating (Address')]]]/following-sibling::div//span[text()='>>'] 
+2020-07-12 18:35:38,126 INFO  [Log] //select[@id='selectedIpPbxRangev6'] 
+2020-07-12 18:35:43,187 INFO  [Log] //input[@id='ipField'] 
+2020-07-12 18:35:47,509 INFO  [Log] //input[@id='ipField'] 
+2020-07-12 18:35:52,928 INFO  [Log] //input[@id='ipField'] 
+2020-07-12 18:35:58,257 INFO  [Log] //div[div[div[contains(text(),'Carrier IP Terminating')]]]/following-sibling::div//span[text()='>>'] 
+2020-07-12 18:36:03,707 INFO  [Log] //select[@id='selecteddrPbxRange'] 
+2020-07-12 18:36:08,139 INFO  [Log] //div[label[text()='Internet Based Customer']]//input 
+2020-07-12 18:36:12,207 INFO  [Log] //div[label[text()='Internet Based Customer']]//input 
+2020-07-12 18:36:16,940 INFO  [Log] //div[label[text()='Internet Based Customer']]//input 
+2020-07-12 18:36:18,928 INFO  [Log] Internet Based Customer check box is selected 
+2020-07-12 18:36:21,939 INFO  [Log] //input[@id='vlanTg'] 
+2020-07-12 18:36:26,025 INFO  [Log] //input[@id='vlanTg'] 
+2020-07-12 18:36:30,139 INFO  [Log] //select[@id='sifSlot'] 
+2020-07-12 18:36:34,890 INFO  [Log] //select[@id='sifSlot'] 
+2020-07-12 18:36:39,072 INFO  [Log] //select[@id='transProt'] 
+2020-07-12 18:36:43,409 INFO  [Log] //select[@id='transProt'] 
+2020-07-12 18:36:48,633 INFO  [Log] //div[label[text()='Internet Based Customer']]//input 
+2020-07-12 18:36:54,669 INFO  [Log] //input[@id='mediaIp'] 
+2020-07-12 18:36:58,751 INFO  [Log] //input[@id='mediaIp'] 
+2020-07-12 18:37:05,256 INFO  [Log] //input[@id='mediaIp'] 
+2020-07-12 18:37:09,289 INFO  [Log] //input[@id='reuseSigZonePart'] 
+2020-07-12 18:37:13,461 INFO  [Log] //input[@id='reuseSigZonePart'] 
+2020-07-12 18:37:17,527 INFO  [Log] //input[@id='reuseSigZonePart'] 
+2020-07-12 18:37:19,602 INFO  [Log] Reuse Sig Zone/Part check box is selected 
+2020-07-12 18:37:22,611 INFO  [Log] //input[@id='cac'] 
+2020-07-12 18:37:26,667 INFO  [Log] //input[@id='cac'] 
+2020-07-12 18:37:31,380 INFO  [Log] //input[@id='cac'] 
+2020-07-12 18:37:33,297 INFO  [Log] Call Admission Control check box is selected 
+2020-07-12 18:37:36,304 INFO  [Log] //select[@id='callLimit'] 
+2020-07-12 18:37:41,536 INFO  [Log] //select[@id='callLimit'] 
+2020-07-12 18:37:46,307 INFO  [Log] //input[@id='cacrt'] 
+2020-07-12 18:37:50,530 INFO  [Log] //input[@id='cacrt'] 
+2020-07-12 18:37:55,634 INFO  [Log] //input[@id='cacrt'] 
+2020-07-12 18:37:56,839 INFO  [Log] Call Rate Limit check box is selected 
+2020-07-12 18:37:59,845 INFO  [Log] //input[@id='callrateLimit'] 
+2020-07-12 18:38:04,575 INFO  [Log] //input[@id='callrateLimit'] 
+2020-07-12 18:38:09,327 INFO  [Log] //input[@id='callrateLimit'] 
+2020-07-12 18:38:13,400 INFO  [Log] //input[@id='callrateLimit'] 
+2020-07-12 18:38:17,986 INFO  [Log] //input[@id='callrateLimit'] 
+2020-07-12 18:38:23,042 INFO  [Log] //select[@id='rel100Support'] 
+2020-07-12 18:38:27,545 INFO  [Log] //select[@id='rel100Support'] 
+2020-07-12 18:38:32,988 INFO  [Log] //input[@id='sipSessionKeepAliveRetimer'] 
+2020-07-12 18:38:37,619 INFO  [Log] //input[@id='sipSessionKeepAliveRetimer'] 
+2020-07-12 18:38:41,684 INFO  [Log] //input[@id='sipSessionKeepAliveRetimer'] 
+2020-07-12 18:38:46,292 INFO  [Log] //input[@id='sipSessionKeepAliveRetimer'] 
+2020-07-12 18:38:50,574 INFO  [Log] //div[label[text()='SIP Session Keepalive Timer(Sec)']]/div 
+2020-07-12 18:38:54,619 INFO  [Log] //div[label[text()='SIP Session Keepalive Timer(Sec)']]/div 
+2020-07-12 18:38:59,306 INFO  [Log] //input[@id='reuseNIFGroup'] 
+2020-07-12 18:39:05,357 INFO  [Log] //div[label[text()='Retry Invite']]/div 
+2020-07-12 18:39:09,395 INFO  [Log] //div[label[text()='Retry Invite']]/div 
+2020-07-12 18:39:14,045 INFO  [Log] //select[@id='routepriority'] 
+2020-07-12 18:39:18,107 INFO  [Log] //select[@id='routepriority'] 
+2020-07-12 18:39:23,496 INFO  [Log] //select[@id='addressReachability'] 
+2020-07-12 18:39:27,944 INFO  [Log] //select[@id='addressReachability'] 
+2020-07-12 18:39:32,451 INFO  [Log] //input[@id='retryinvite'] 
+2020-07-12 18:39:39,428 INFO  [Log] //select[@id='e164GlobalProfile'] 
+2020-07-12 18:39:44,093 INFO  [Log] //select[@id='e164GlobalProfile'] 
+2020-07-12 18:39:49,296 INFO  [Log] //select[@id='cosProfile'] 
+2020-07-12 18:39:53,884 INFO  [Log] //select[@id='cosProfile'] 
+2020-07-12 18:40:01,696 INFO  [Log] //input[@id='preferredpspcheck'] 
+2020-07-12 18:40:07,121 INFO  [Log] //input[@id='preferredpspValue'] 
+2020-07-12 18:40:11,162 INFO  [Log] //input[@id='preferredpspValue'] 
+2020-07-12 18:40:16,751 INFO  [Log] //input[@id='preferredpspValue'] 
+2020-07-12 18:40:22,126 INFO  [Log] //input[@id='e164GlobalProfileValue'] 
+2020-07-12 18:40:28,170 INFO  [Log] //select[@id='carrierIdNH'] 
+2020-07-12 18:40:32,594 INFO  [Log] //select[@id='carrierIdNH'] 
+2020-07-12 18:40:37,627 INFO  [Log] //select[@id='iptgipsigProfId'] 
+2020-07-12 18:40:42,329 INFO  [Log] //select[@id='iptgipsigProfId'] 
+2020-07-12 18:40:49,396 INFO  [Log] //select[@id='indmpmrule'] 
+2020-07-12 18:40:53,463 INFO  [Log] //select[@id='indmpmrule'] 
+2020-07-12 18:41:03,402 INFO  [Log] //select[@id='featurecontrolprofile'] 
+2020-07-12 18:41:08,141 INFO  [Log] //select[@id='featurecontrolprofile'] 
+2020-07-12 18:41:13,150 INFO  [Log] //input[@id='createLowerCaseRoutes'] 
+2020-07-12 18:41:18,000 INFO  [Log] //input[@id='createLowerCaseRoutes'] 
+2020-07-12 18:41:22,555 INFO  [Log] //input[@id='createLowerCaseRoutes'] 
+2020-07-12 18:41:23,975 INFO  [Log] Create Lower Case Routes check box is selected 
+2020-07-12 18:41:26,983 INFO  [Log] //input[@id='psxManualConfigCheckTG'] 
+2020-07-12 18:41:31,614 INFO  [Log] //input[@id='psxManualConfigCheckTG'] 
+2020-07-12 18:41:35,881 INFO  [Log] //input[@id='psxManualConfigCheckTG'] 
+2020-07-12 18:41:37,892 INFO  [Log] PSX Manual Configuration check box is selected 
+2020-07-12 18:41:40,900 INFO  [Log] //input[@id='gsxManualConfigCheck'] 
+2020-07-12 18:41:45,152 INFO  [Log] //input[@id='gsxManualConfigCheck'] 
+2020-07-12 18:41:49,404 INFO  [Log] //input[@id='gsxManualConfigCheck'] 
+2020-07-12 18:41:51,204 INFO  [Log] Manual Configuration On GSX check box is selected 
+2020-07-12 18:41:56,256 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-12 18:42:04,290 INFO  [Log] (//div[@role='alert'])[1] 
+2020-07-12 18:42:08,672 INFO  [Log] (//div[@role='alert']/span)[1] 
+2020-07-12 18:42:10,070 INFO  [Log] I am on TestSuccess method addTrunk succeed 
+2020-07-12 18:42:11,980 INFO  [Log] I am on Finish method Wholesale 
+2020-07-12 18:49:54,616 INFO  [Log] URL 
+2020-07-12 18:50:06,731 INFO  [Log] APT_login_1_URL 
+2020-07-12 18:50:12,648 INFO  [Log] //input[@placeholder='Username'] 
+2020-07-12 18:50:17,895 INFO  [Log] //input[@placeholder='Password'] 
+2020-07-12 18:50:22,866 INFO  [Log] //button[text()='Login'] 
+2020-07-12 18:50:24,758 INFO  [Log] === APT logged in successfully === 
+2020-07-12 18:50:24,762 INFO  [Log] I am on Start method Wholesale 
+2020-07-12 18:50:26,980 INFO  [Log] I am on TestStart method searchCreatedService start 
+2020-07-12 18:50:26,980 INFO  [Log] I am in onStart method null 
+2020-07-12 18:50:30,106 INFO  [Log] (//div[@class='ant-menu-submenu-title'])[2] 
+2020-07-12 18:50:36,609 INFO  [Log] //li[text()='Search Order/Service'] 
+2020-07-12 18:50:47,212 INFO  [Log] //label[text()='Service']/following-sibling::input 
+2020-07-12 18:50:53,896 INFO  [Log] //span[text()='Search'] 
+2020-07-12 18:50:58,596 INFO  [Log] //span[text()='Search'] 
+2020-07-12 18:51:04,956 INFO  [Log] //div[@role='gridcell']//span[contains(@class,'unchecked')] 
+2020-07-12 18:51:10,186 INFO  [Log] //div[@class='dropdown']//button 
+2020-07-12 18:51:15,387 INFO  [Log] //a[text()='View'] 
+2020-07-12 18:51:18,432 INFO  [Log] I am on TestSuccess method searchCreatedService succeed 
+2020-07-12 18:51:19,059 INFO  [Log] I am on TestStart method addTrunk start 
+2020-07-12 18:51:19,059 INFO  [Log] I am in onStart method null 
+2020-07-12 18:51:26,107 INFO  [Log] //div[div[text()='Trunk Group/Site Orders']] 
+2020-07-12 18:51:31,571 INFO  [Log] //a[text()='Add Trunk Group/Site Order'] 
+2020-07-12 18:51:35,808 INFO  [Log] //div[div[p[text()='Trunk Group/Site Order']]] 
+2020-07-12 18:51:41,015 INFO  [Log] //span[text()='OK'] 
+2020-07-12 18:51:45,214 INFO  [Log] //div[label[text()='Trunk Group Order']]//input 
+2020-07-12 18:51:49,642 INFO  [Log] //div[label[text()='Trunk Group Order']]//input 
+2020-07-12 18:51:53,693 INFO  [Log] //div[label[text()='Trunk Group Order']]//input 
+2020-07-12 18:51:55,359 INFO  [Log] Trunk Group Order check box is selected 
+2020-07-12 18:51:58,364 INFO  [Log] //div[label[text()='Trunk Group Order Number']]//input 
+2020-07-12 18:52:02,753 INFO  [Log] //div[label[text()='Trunk Group Order Number']]//input 
+2020-07-12 18:52:07,700 INFO  [Log] //div[label[text()='Trunk Group Order Number']]//input 
+2020-07-12 18:52:12,762 INFO  [Log] //span[text()='OK'] 
+2020-07-12 18:52:19,958 INFO  [Log] (//div[@role='alert']/span)[1] 
+2020-07-12 18:52:24,117 INFO  [Log] (//div[@role='alert']/span)[1] 
+2020-07-12 18:52:36,150 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-12 18:52:42,725 INFO  [Log] //select[@id='trunkType'] 
+2020-07-12 18:52:46,775 INFO  [Log] //select[@id='trunkType'] 
+2020-07-12 18:52:53,485 INFO  [Log] //input[@id='tgDescription'] 
+2020-07-12 18:52:57,518 INFO  [Log] //input[@id='tgDescription'] 
+2020-07-12 18:53:02,076 INFO  [Log] //select[@id='voipProtocol'] 
+2020-07-12 18:53:06,183 INFO  [Log] //select[@id='voipProtocol'] 
+2020-07-12 18:53:11,417 INFO  [Log] //div[text()='Billing Country'] 
+2020-07-12 18:53:15,832 INFO  [Log] //div[text()='Billing Country'] 
+2020-07-12 18:53:16,880 INFO  [Log] Billing Country field warning  message displayed as : Billing Country is required 
+2020-07-12 18:53:19,885 INFO  [Log] //select[@id='billingCountry'] 
+2020-07-12 18:53:24,187 INFO  [Log] //select[@id='billingCountry'] 
+2020-07-12 18:53:30,773 INFO  [Log] //select[@id='billingCountry'] 
+2020-07-12 18:53:35,198 INFO  [Log] //select[@id='cdrDelivery'] 
+2020-07-12 18:53:39,354 INFO  [Log] //select[@id='cdrDelivery'] 
+2020-07-12 18:53:45,486 INFO  [Log] //span[contains(text(),'Allocate Prefix')] 
+2020-07-12 18:53:50,201 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:53:57,905 INFO  [Log] (//div[@role='alert'])[1] 
+2020-07-12 18:54:02,439 INFO  [Log] (//div[@role='alert']/span)[1] 
+2020-07-12 18:54:06,687 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:54:10,911 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:54:16,202 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:54:20,259 INFO  [Log] //input[@id='prefix'] 
+2020-07-12 18:54:24,795 INFO  [Log] //select[@id='gateway'] 
+2020-07-12 18:54:28,893 INFO  [Log] //select[@id='gateway'] 
+2020-07-12 18:54:34,762 INFO  [Log] //select[@id='trunkType'] 
+2020-07-12 18:54:40,829 INFO  [Log] //select[@id='quality'] 
+2020-07-12 18:54:45,420 INFO  [Log] //select[@id='quality'] 
+2020-07-12 18:54:50,462 INFO  [Log] //select[@id='quality'] 
+2020-07-12 18:54:55,733 INFO  [Log] //input[@id='tgName'] 
+2020-07-12 18:54:59,773 INFO  [Log] //input[@id='tgName'] 
+2020-07-12 18:55:03,816 INFO  [Log] //select[@id='trafficDirection'] 
+2020-07-12 18:55:08,195 INFO  [Log] //select[@id='trafficDirection'] 
+2020-07-12 18:55:13,321 INFO  [Log] //select[@id='ipAddressType'] 
+2020-07-12 18:55:17,828 INFO  [Log] //select[@id='trafficDirection'] 
+2020-07-12 18:55:24,426 INFO  [Log] //input[@id='ipRangeField'] 
+2020-07-12 18:55:28,478 INFO  [Log] //input[@id='ipRangeField'] 
+2020-07-12 18:55:34,608 INFO  [Log] //input[@id='ipRangeField'] 
+2020-07-12 18:55:39,638 INFO  [Log] //div[div[div[contains(text(),'Carrier IP Originating (Address')]]]/following-sibling::div//span[text()='>>'] 
+2020-07-12 18:55:43,994 INFO  [Log] //select[@id='selectedIpPbxRangev6'] 
+2020-07-12 18:55:48,088 INFO  [Log] //input[@id='ipField'] 
+2020-07-12 18:55:52,169 INFO  [Log] //input[@id='ipField'] 
+2020-07-12 18:55:57,999 INFO  [Log] //input[@id='ipField'] 
+2020-07-12 18:56:03,275 INFO  [Log] //div[div[div[contains(text(),'Carrier IP Terminating')]]]/following-sibling::div//span[text()='>>'] 
+2020-07-12 18:56:07,489 INFO  [Log] //select[@id='selecteddrPbxRange'] 
+2020-07-12 18:56:12,188 INFO  [Log] //div[label[text()='Internet Based Customer']]//input 
+2020-07-12 18:56:16,593 INFO  [Log] //div[label[text()='Internet Based Customer']]//input 
+2020-07-12 18:56:20,875 INFO  [Log] //div[label[text()='Internet Based Customer']]//input 
+2020-07-12 18:56:22,131 INFO  [Log] Internet Based Customer check box is selected 
+2020-07-12 18:56:25,135 INFO  [Log] //input[@id='vlanTg'] 
+2020-07-12 18:56:29,184 INFO  [Log] //input[@id='vlanTg'] 
+2020-07-12 18:56:33,432 INFO  [Log] //select[@id='sifSlot'] 
+2020-07-12 18:56:37,481 INFO  [Log] //select[@id='sifSlot'] 
+2020-07-12 18:56:42,530 INFO  [Log] //select[@id='transProt'] 
+2020-07-12 18:56:46,588 INFO  [Log] //select[@id='transProt'] 
+2020-07-12 18:56:51,184 INFO  [Log] //div[label[text()='Internet Based Customer']]//input 
+2020-07-12 18:56:57,580 INFO  [Log] //input[@id='mediaIp'] 
+2020-07-12 18:57:01,927 INFO  [Log] //input[@id='mediaIp'] 
+2020-07-12 18:57:07,928 INFO  [Log] //input[@id='mediaIp'] 
+2020-07-12 18:57:12,478 INFO  [Log] //input[@id='reuseSigZonePart'] 
+2020-07-12 18:57:16,542 INFO  [Log] //input[@id='reuseSigZonePart'] 
+2020-07-12 18:57:21,317 INFO  [Log] //input[@id='reuseSigZonePart'] 
+2020-07-12 18:57:23,028 INFO  [Log] Reuse Sig Zone/Part check box is selected 
+2020-07-12 18:57:26,032 INFO  [Log] //input[@id='cac'] 
+2020-07-12 18:57:30,873 INFO  [Log] //input[@id='cac'] 
+2020-07-12 18:57:35,527 INFO  [Log] //input[@id='cac'] 
+2020-07-12 18:57:36,738 INFO  [Log] Call Admission Control check box is selected 
+2020-07-12 18:57:39,741 INFO  [Log] //select[@id='callLimit'] 
+2020-07-12 18:57:43,877 INFO  [Log] //select[@id='callLimit'] 
+2020-07-12 18:57:48,638 INFO  [Log] //input[@id='sipSessionKeepAliveRetimer'] 
+2020-07-12 18:57:52,840 INFO  [Log] //input[@id='sipSessionKeepAliveRetimer'] 
+2020-07-12 18:57:56,982 INFO  [Log] //input[@id='sipSessionKeepAliveRetimer'] 
+2020-07-12 18:58:02,643 INFO  [Log] //input[@id='sipSessionKeepAliveRetimer'] 
+2020-07-12 18:58:06,678 INFO  [Log] //div[label[text()='SIP Session Keepalive Timer(Sec)']]/div 
+2020-07-12 18:58:10,899 INFO  [Log] //div[label[text()='SIP Session Keepalive Timer(Sec)']]/div 
+2020-07-12 18:58:15,600 INFO  [Log] //input[@id='reuseNIFGroup'] 
+2020-07-12 18:58:21,797 INFO  [Log] //div[label[text()='Retry Invite']]/div 
+2020-07-12 18:58:26,393 INFO  [Log] //div[label[text()='Retry Invite']]/div 
+2020-07-12 18:58:31,016 INFO  [Log] //select[@id='routepriority'] 
+2020-07-12 18:58:35,112 INFO  [Log] //select[@id='routepriority'] 
+2020-07-12 18:58:40,216 INFO  [Log] //select[@id='addressReachability'] 
+2020-07-12 18:58:44,255 INFO  [Log] //select[@id='addressReachability'] 
+2020-07-12 18:58:48,505 INFO  [Log] //input[@id='retryinvite'] 
+2020-07-12 18:58:54,864 INFO  [Log] //select[@id='e164GlobalProfile'] 
+2020-07-12 18:58:59,450 INFO  [Log] //select[@id='e164GlobalProfile'] 
+2020-07-12 18:59:04,407 INFO  [Log] //select[@id='cosProfile'] 
+2020-07-12 18:59:08,717 INFO  [Log] //select[@id='cosProfile'] 
+2020-07-12 18:59:15,476 INFO  [Log] //input[@id='preferredpspcheck'] 
+2020-07-12 18:59:21,251 INFO  [Log] //input[@id='preferredpspValue'] 
+2020-07-12 18:59:25,665 INFO  [Log] //input[@id='preferredpspValue'] 
+2020-07-12 18:59:30,676 INFO  [Log] //input[@id='preferredpspValue'] 
+2020-07-12 18:59:35,047 INFO  [Log] //input[@id='e164GlobalProfileValue'] 
+2020-07-12 18:59:41,085 INFO  [Log] //select[@id='carrierIdNH'] 
+2020-07-12 18:59:45,128 INFO  [Log] //select[@id='carrierIdNH'] 
+2020-07-12 18:59:49,806 INFO  [Log] //select[@id='iptgipsigProfId'] 
+2020-07-12 18:59:54,184 INFO  [Log] //select[@id='iptgipsigProfId'] 
+2020-07-12 19:00:00,393 INFO  [Log] //select[@id='indmpmrule'] 
+2020-07-12 19:00:04,765 INFO  [Log] //select[@id='indmpmrule'] 
+2020-07-12 19:00:11,957 INFO  [Log] //select[@id='featurecontrolprofile'] 
+2020-07-12 19:00:16,311 INFO  [Log] //select[@id='featurecontrolprofile'] 
+2020-07-12 19:00:20,577 INFO  [Log] //input[@id='createLowerCaseRoutes'] 
+2020-07-12 19:00:24,887 INFO  [Log] //input[@id='createLowerCaseRoutes'] 
+2020-07-12 19:00:28,921 INFO  [Log] //input[@id='createLowerCaseRoutes'] 
+2020-07-12 19:00:30,422 INFO  [Log] Create Lower Case Routes check box is selected 
+2020-07-12 19:00:33,521 INFO  [Log] //input[@id='psxManualConfigCheckTG'] 
+2020-07-12 19:00:38,163 INFO  [Log] //input[@id='psxManualConfigCheckTG'] 
+2020-07-12 19:00:43,222 INFO  [Log] //input[@id='psxManualConfigCheckTG'] 
+2020-07-12 19:00:44,431 INFO  [Log] PSX Manual Configuration check box is selected 
+2020-07-12 19:00:47,435 INFO  [Log] //input[@id='gsxManualConfigCheck'] 
+2020-07-12 19:00:52,055 INFO  [Log] //input[@id='gsxManualConfigCheck'] 
+2020-07-12 19:00:56,132 INFO  [Log] //input[@id='gsxManualConfigCheck'] 
+2020-07-12 19:00:57,341 INFO  [Log] Manual Configuration On GSX check box is selected 
+2020-07-12 19:01:02,634 INFO  [Log] //span[contains(text(),'OK')] 
+2020-07-12 19:01:09,919 INFO  [Log] (//div[@role='alert'])[1] 
+2020-07-12 19:01:13,969 INFO  [Log] (//div[@role='alert']/span)[1] 
+2020-07-12 19:01:15,637 INFO  [Log] I am on TestSuccess method addTrunk succeed 
+2020-07-12 19:01:16,380 INFO  [Log] I am on Finish method Wholesale 

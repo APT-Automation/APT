@@ -25,7 +25,7 @@
     	</classes>	
   	</test> 
   	
-  	-->
+  	
   	  
   	<test name ="Voice line Service"> 	
     	<classes>	  
@@ -39,14 +39,18 @@
 			  </class>
 		</classes>
 		</test>
+		
+		-->
   		
-  		 <!-- 
+  		 
       	 <test name="Wholesale">  
 		<classes>	
 			<class name="com.saksoft.qa.apttestscripts.APT_wholesale">
 			<methods>
 				<include name="searchCreatedService" />
-				<include name="addMASswitch" />
+				<include name="addTrunk" />
+				
+	<!--  		<include name="addMASswitch" />
 				<include name="viewMASswitch" />
 				<include name="editMASswitch" />
 				<include name="verifyAddInterfaceFunction_MAS" />
@@ -56,15 +60,15 @@
 				<include name="editInterface" />
 				<include name="selectInterface_MAS" />
 				<include name="deletInterfce" />
-				<include name="delete_MASdevice" />
+				<include name="delete_MASdevice" />    
 				<include name="viewTrunk_GSX_PSX_SBC_configuration" />
-				<include name="PSXmanualConfig" />   
+				<include name="PSXmanualConfig" />     -->
 			</methods>
 		  </class>	
 		</classes>
 	</test> 	
 	
-	-->
+	
    	 	
 </suite>
 

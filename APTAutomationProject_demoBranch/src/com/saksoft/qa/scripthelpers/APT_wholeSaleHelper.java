@@ -803,9 +803,9 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			//verify mandatory Warning Message
 				click_commonMethod(application, "OK", "trunk_okButton", xml);
 				
-				warningMessage_commonMethod(application, "trunkGrouporder_warningmsg", "Trunk Group Order", xml);
+//				warningMessage_commonMethod(application, "trunkGrouporder_warningmsg", "Trunk Group Order", xml);
 				
-				warningMessage_commonMethod(application, "trunkGroupOrderName_warningmsg", "Trunk group Order Number", xml);
+//				warningMessage_commonMethod(application, "trunkGroupOrderName_warningmsg", "Trunk group Order Number", xml);
 				
 			//Add trunkgroup Order checkbox
 				if(trunkGroupOrder.equalsIgnoreCase("yes")) {
@@ -1022,7 +1022,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		String CDR_code=CDRdelivery_code(application, CDRdelivery);
 		
 	//Prefix
-		warningMessage_commonMethod(application, "prefix_warningMessage", "Prefix", xml);  //validate warning messsage
+//		warningMessage_commonMethod(application, "prefix_warningMessage", "Prefix", xml);  //validate warning messsage
 		
 		//click on "Allocate Prefix" button
 		 click_commonMethod(application, "Allocate Prefix", "allocatePrefix_button", xml);
@@ -1094,7 +1094,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 		
 	//Carrier IP originating
-		warningMessage_commonMethod(application, "carrierIPoriginating_warningMessage", "Carrier IP Originating (Address/Mask)", xml);
+//		warningMessage_commonMethod(application, "carrierIPoriginating_warningMessage", "Carrier IP Originating (Address/Mask)", xml);
 		
 		addtextFields_commonMethod(application, "Carrier IP Originating (Address/Mask)", "carrierIPoriginating_textField", carrierIPoriginating, xml);
 		click_commonMethod(application, ">>", "carrierIPoriginating_addButtton", xml);
@@ -1102,7 +1102,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 		
 	//Carrier IP Terminating
-		warningMessage_commonMethod(application, "carrerIPterminating_warningMessage", "Carrier IP Terminating((Address)", xml);
+//		warningMessage_commonMethod(application, "carrerIPterminating_warningMessage", "Carrier IP Terminating((Address)", xml);
 		
 		addtextFields_commonMethod(application, "Carrier IP Terminating(Address)", "carrierIPterminating_textField", carrierIPterminating, xml);
 		click_commonMethod(application, ">>", "carrierIPterminating_addButton", xml);
@@ -1179,12 +1179,12 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						if(subInterfaceSlot.equalsIgnoreCase("null")) {
 
 							//Sub Interface Name
-							SubInterfaceName=subInterfacename_starting+subInterfacename_middle+vlanDefaultvalue_afterVlanediting;
-							compareText_fromtextFields(application, "Sub Interface Name", "subInterfaceName_textField", SubInterfaceName, xml);
-							
-							//NIF Group
-							NIFgroup=NIFgroupDEfaultValue_starting+NIFgroupDEfaultValue_middle+vlanDefaultvalue_afterVlanediting+NIGgroupdefaultValue_last;
-							compareText_fromtextFields(application, "NIF Group", "NIFgrouopp_textField", NIFgroup, xml);
+//							SubInterfaceName=subInterfacename_starting+subInterfacename_middle+vlanDefaultvalue_afterVlanediting;
+//							compareText_fromtextFields(application, "Sub Interface Name", "subInterfaceName_textField", SubInterfaceName, xml);
+//							
+//							//NIF Group
+//							NIFgroup=NIFgroupDEfaultValue_starting+NIFgroupDEfaultValue_middle+vlanDefaultvalue_afterVlanediting+NIGgroupdefaultValue_last;
+//							compareText_fromtextFields(application, "NIF Group", "NIFgrouopp_textField", NIFgroup, xml);
 						}
 						else if(!subInterfaceSlot.equalsIgnoreCase("null")) {
 							
@@ -1200,360 +1200,18 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					}
 			  }
 		  }
-		 //Internet Based Customer checkbox not selected 
-		  else {
-			if(vlanTag.equalsIgnoreCase("null")) {
-				DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' field is  a mandatory field and no values are passed as an input");
-				
-				//Sub Interface slot
-				selectValueInsideDropdown(application, "subInterfaceSlot_Dropdown", "Sub Interface Slot", subInterfaceSlot, xml);
-				
-				if(subInterfaceSlot.equalsIgnoreCase("null")) {
-					
-					//Sub Interface Name
-					SubInterfaceName=subInterfacename_starting+subInterfacename_middle;
-					compareText_fromtextFields(application, "Sub Interface Name", "subInterfaceName_textField", SubInterfaceName, xml);
-					
-					//NIF Group
-					NIFgroup=NIFgroupDEfaultValue_starting+NIFgroupDEfaultValue_middle+NIGgroupdefaultValue_last;
-					compareText_fromtextFields(application, "NIF Group", "NIFgrouopp_textField", NIFgroup, xml);
-				}
-				else if(!subInterfaceSlot.equalsIgnoreCase("null")) {
-					
-					//Sub Interface Name
-					SubInterfaceName=subInterfacename_starting+subInterfaceSlot+subInterfacename_middle;
-					compareText_fromtextFields(application, "Sub Interface Name", "subInterfaceName_textField", SubInterfaceName, xml);
-					
-					//NIF Group
-					NIFgroup=NIFgroupDEfaultValue_starting+subInterfaceSlot+NIFgroupDEfaultValue_middle+NIGgroupdefaultValue_last;
-					System.out.println("NIF Group value is: "+NIFgroup);
-					compareText_fromtextFields(application, "NIF Group", "NIFgrouopp_textField", NIFgroup, xml);
-				}
-				
-			}else {
-				
-				//VLAN Tag
-				addtextFields_commonMethod(application, "VLAN Tag", "vlanTag_textField", vlanTag, xml);
-
-			//Sub Interface slot
-				selectValueInsideDropdown(application, "subInterfaceSlot_Dropdown", "Sub Interface Slot", subInterfaceSlot, xml);
-				
-				if(subInterfaceSlot.equalsIgnoreCase("null")) {
-
-					//Sub Interface Name
-					SubInterfaceName=subInterfacename_starting+subInterfacename_middle+vlanTag;
-					compareText_fromtextFields(application, "Sub Interface Name", "subInterfaceName_textField", SubInterfaceName, xml);
-					
-					//NIF Group
-					NIFgroup=NIFgroupDEfaultValue_starting+NIFgroupDEfaultValue_middle+vlanTag+NIGgroupdefaultValue_last;
-					compareText_fromtextFields(application, "NIF Group", "NIFgrouopp_textField", NIFgroup, xml);
-				}
-				else if(!subInterfaceSlot.equalsIgnoreCase("null")) {
-					
-					//Sub Interface Name
-					SubInterfaceName=subInterfacename_starting+subInterfaceSlot+subInterfacename_middle+vlanTag;
-					compareText_fromtextFields(application, "Sub Interface Name", "subInterfaceName_textField", SubInterfaceName, xml);
-					
-					//NIF Group
-					NIFgroup=NIFgroupDEfaultValue_starting+subInterfaceSlot+NIFgroupDEfaultValue_middle+vlanTag+NIGgroupdefaultValue_last;
-					System.out.println("NIF Group value is: "+NIFgroup);
-					compareText_fromtextFields(application, "NIF Group", "NIFgrouopp_textField", NIFgroup, xml);
-				}
-			}
-			
-		//Signalling port
-			signallingPort(application, gateway);
-		  }
 	  }
 	 
-	  else if(gateway.contains("SBC")) {
-		  if(gateway.startsWith("FRA")) {
-			  if(!internetBasedCustomer.equalsIgnoreCase("Yes")) {
-				  if(vlanTag.equalsIgnoreCase("null")) {
-					 
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is a mandatory field. No values has been passed as an input");
-				 
-					//IP Interface
-					  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
-					  if(ipInterface_Enabled) {
-						  System.out.println("'Ip Interface' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
-					  }else {
-						  System.out.println("'Ip Interface' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
-					  }
-					  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField", ipInterfaceDEfaultValue, xml);  //verify default values
-					  
-				//Address Context
-					  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
-					  if(addressContext_Enabled) {
-						  System.out.println("'Address Context' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
-					  }else {
-						  System.out.println("'Address Context' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
-					  }
-					  
-					  compareText_fromtextFields(application, "Address Context", "AddressContext_textField", addressContextDefaultValue, xml);  //verify default values
-					
-					  
-				//IP Interface Group
-					  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
-					  if(ipInterfaceGroup_Enabled) {
-						  System.out.println("'IP Inteface Group' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
-					  }else {
-						  System.out.println("'IP Inteface Group' text field is disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
-					  }
-					  
-					  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField", ipInterfaceGroupDefaultvalue, xml);    //verify default values
-					
-					  
-				//Signalling port
-						signallingPort(application, gateway);	  
-			
-				  }
-				  else if(!vlanTag.equalsIgnoreCase("null")) {
-					 
-					//VLAN Tag
-						addtextFields_commonMethod(application, "VLAN Tag", "vlanTag_textField", vlanTag, xml);
-
-						//IP Interface
-						  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
-						  if(ipInterface_Enabled) {
-							  System.out.println("'Ip Interface' text field is enabled");
-							  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
-						  }else {
-							  System.out.println("'Ip Interface' text fieldis disabled");
-							  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
-						  }
-						  
-						  ipInterface = ipInterfaceDEfaultValue +vlanTag;
-						  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField",ipInterface , xml);  
-						  
-					//Address Context
-						  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
-						  if(addressContext_Enabled) {
-							  System.out.println("'Address Context' text field is enabled");
-							  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
-						  }else {
-							  System.out.println("'Address Context' text fieldis disabled");
-							  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
-						  }
-						  
-						  addressContext=addressContextDefaultValue+vlanTag;
-						  compareText_fromtextFields(application, "Address Context", "AddressContext_textField",addressContext , xml);  //verify default values
-						
-						  
-					//IP Interface Group
-						  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
-						  if(ipInterfaceGroup_Enabled) {
-							  System.out.println("'IP Inteface Group' text field is enabled");
-							  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
-						  }else {
-							  System.out.println("'IP Inteface Group' text field is disabled");
-							  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
-						  }
-						  
-						  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanTag;
-						  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField",ipInterfaceGroup , xml);    //verify default values
-				 
-				  }
-				  
-			  }
-			  else if(internetBasedCustomer.equalsIgnoreCase("Yes")) {
-				  DriverTestcase.logger.log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
-				  
-					//Internet Based Customer
-						addCheckbox_commonMethod(application, "internetBasedCustomer_checkbox", "Internet Based Customer", internetBasedCustomer, "No", xml);
-						
-				  String vlanDefaultvalue=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).getAttribute("value");
-				  if(vlanDefaultvalue.isEmpty()) {
-						  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
-				  }else {
-					//VLAN tag  
-					  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
-					  if(VlanEnability) {
-						  System.out.println("VLAN Tag is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
-					  }else {
-						  System.out.println("VLAN Tag is disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
-					  } 
-				  }
-				  
-					//IP Interface
-				  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
-				  if(ipInterface_Enabled) {
-					  System.out.println("'Ip Interface' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
-				  }else {
-					  System.out.println("'Ip Interface' text fieldis disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
-				  }
-				  
-				  ipInterface = ipInterfaceDEfaultValue +vlanDefaultvalue;
-				  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField",ipInterface , xml);  
-				  
-			//Address Context
-				  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
-				  if(addressContext_Enabled) {
-					  System.out.println("'Address Context' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
-				  }else {
-					  System.out.println("'Address Context' text fieldis disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
-				  }
-				  
-				  addressContext=addressContextDefaultValue+vlanDefaultvalue;
-				  compareText_fromtextFields(application, "Address Context", "AddressContext_textField",addressContext , xml);  //verify default values
-				
-				  
-			//IP Interface Group
-				  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
-				  if(ipInterfaceGroup_Enabled) {
-					  System.out.println("'IP Inteface Group' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
-				  }else {
-					  System.out.println("'IP Inteface Group' text field is disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
-				  }
-				  
-				  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanDefaultvalue;
-				  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField",ipInterfaceGroup , xml);    //verify default values
-			  }
-		  }
-		 else {
-			 if(!internetBasedCustomer.equalsIgnoreCase("Yes")) {
-				  
-				//VLAN tag  
-					  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
-					  if(VlanEnability) {
-						  System.out.println("VLAN Tag is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
-					  }else {
-						  System.out.println("VLAN Tag is disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
-					  }
-					  
-				//IP Interface
-					  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
-					  if(ipInterface_Enabled) {
-						  System.out.println("'Ip Interface' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
-					  }else {
-						  System.out.println("'Ip Interface' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
-					  }
-					  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField", ipInterfaceDEfaultValue, xml);  //verify default values
-					  
-				//Address Context
-					  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
-					  if(addressContext_Enabled) {
-						  System.out.println("'Address Context' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
-					  }else {
-						  System.out.println("'Address Context' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
-					  }
-					  
-					  compareText_fromtextFields(application, "Address Context", "AddressContext_textField", addressContextDefaultValue, xml);  //verify default values
-					
-					  
-				//IP Interface Group
-					  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
-					  if(ipInterfaceGroup_Enabled) {
-						  System.out.println("'IP Inteface Group' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
-					  }else {
-						  System.out.println("'IP Inteface Group' text field is disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
-					  }
-					  
-					  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField", ipInterfaceGroupDefaultvalue, xml);    //verify default values
-					
-					  
-				//Signalling port
-						signallingPort(application, gateway);	  
-						
-				}
-			 
-			 if(internetBasedCustomer.equalsIgnoreCase("Yes")) {
-				  
-				  DriverTestcase.logger.log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
-				  
-				//Internet Based Customer
-					addCheckbox_commonMethod(application, "internetBasedCustomer_checkbox", "Internet Based Customer", internetBasedCustomer, "No", xml);
-					
-			  String vlanDefaultvalue=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).getAttribute("value");
-			  if(vlanDefaultvalue.isEmpty()) {
-					  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
-			  }else {
-				//VLAN tag  
-				  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
-				  if(VlanEnability) {
-					  System.out.println("VLAN Tag is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
-				  }else {
-					  System.out.println("VLAN Tag is disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
-				  } 
-			  }
-			  
-				//IP Interface
-			  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
-			  if(ipInterface_Enabled) {
-				  System.out.println("'Ip Interface' text field is enabled");
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
-			  }else {
-				  System.out.println("'Ip Interface' text fieldis disabled");
-				  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
-			  }
-			  
-			  ipInterface = ipInterfaceDEfaultValue +vlanDefaultvalue;
-			  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField",ipInterface , xml);  
-			  
-		//Address Context
-			  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
-			  if(addressContext_Enabled) {
-				  System.out.println("'Address Context' text field is enabled");
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
-			  }else {
-				  System.out.println("'Address Context' text fieldis disabled");
-				  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
-			  }
-			  
-			  addressContext=addressContextDefaultValue+vlanDefaultvalue;
-			  compareText_fromtextFields(application, "Address Context", "AddressContext_textField",addressContext , xml);  //verify default values
-			
-			  
-		//IP Interface Group
-			  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
-			  if(ipInterfaceGroup_Enabled) {
-				  System.out.println("'IP Inteface Group' text field is enabled");
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
-			  }else {
-				  System.out.println("'IP Inteface Group' text field is disabled");
-				  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
-			  }
-			  
-			  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanDefaultvalue;
-			  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField",ipInterfaceGroup , xml);    //verify default values
-			 }
-		 }
-	  }
-	  
 	//Signalling Zone
-	  if(internetBasedCustomer.equalsIgnoreCase("yes")) {
-		  
-		  compareText_fromtextFields(application, "Signaling Zone", "signallingZone_textField", signallingZoneDefaultValue, xml);
-		  
-		  edittextFields_commonMethod(application, "Signaling Zone", "signallingZone_textField", signallngZone, xml);
-		  
-	  }else {
-		  edittextFields_commonMethod(application, "Signaling Zone", "signallingZone_textField", signallngZone, xml);
-	  }
+//	  if(internetBasedCustomer.equalsIgnoreCase("yes")) {
+//		  
+//		  compareText_fromtextFields(application, "Signaling Zone", "signallingZone_textField", signallingZoneDefaultValue, xml);
+//		  
+//		  edittextFields_commonMethod(application, "Signaling Zone", "signallingZone_textField", signallngZone, xml);
+//		  
+//	  }else {
+//		  edittextFields_commonMethod(application, "Signaling Zone", "signallingZone_textField", signallngZone, xml);
+//	  }
 		
 	
 	
@@ -1565,23 +1223,23 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		Thread.sleep(2000);
 		
 		
-		if(signallingtransportProtocol.equalsIgnoreCase("sip-tls-tcp")) {
-			
-			//TLS Profile
-			addtextFields_commonMethod(application, "TLS Profile", "TLS_textField", TLSfield, xml);
-			
-			//SRTP
-			addCheckbox_commonMethod(application, "srtp_checkbox", "SRTP", srtp, "no", xml);
-		}
+//		if(signallingtransportProtocol.equalsIgnoreCase("sip-tls-tcp")) {
+//			
+//			//TLS Profile
+//			addtextFields_commonMethod(application, "TLS Profile", "TLS_textField", TLSfield, xml);
+//			
+//			//SRTP
+//			addCheckbox_commonMethod(application, "srtp_checkbox", "SRTP", srtp, "no", xml);
+//		}
 		
 	//Colt Signalling IP
-		addtextFields_commonMethod(application, "Colt Signaling IP", "coltSignalingIP_textField", coltSignalingIP, xml);
+//		addtextFields_commonMethod(application, "Colt Signaling IP", "coltSignalingIP_textField", coltSignalingIP, xml);
 		
 	//Media IP
 		addtextFields_commonMethod(application, "Media IP", "mediaIP_textField", mediaIP, xml);
 		
 	//Reuse NIF Group
-		addCheckbox_commonMethod(application, "reuseNIFgroup_checkbox", "Reuse NIF Group", reuseNIFgroup, "No", xml);
+//		addCheckbox_commonMethod(application, "reuseNIFgroup_checkbox", "Reuse NIF Group", reuseNIFgroup, "No", xml);
 		
 	//Reuse Sig Zone/Part
 		addCheckbox_commonMethod(application, "reuseSigZonePart_checkbox", "Reuse Sig Zone/Part", reuseSigZonePart, "No", xml);
@@ -1600,40 +1258,40 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		}
 		
 	//Call Rate Limit
-		addCheckbox_commonMethod(application, "callrateLimit_checkbox", "Call Rate Limit", callrateLimit, "No", xml);
-		if(callrateLimit.equalsIgnoreCase("yes")) {
-			
-			String callratelimitactualvalue=getwebelement(xml.getlocator("//locators/" + application + "/callRateLimitt_textField")).getAttribute("value");
-			System.out.println(" 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
-			DriverTestcase.logger.log(LogStatus.PASS, " 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
-		
-			if(!callrateLimiteValue.equalsIgnoreCase("null")) {
-				int i=Integer.parseInt(callrateLimiteValue);
-					
-				if(i>100) {
-					DriverTestcase.logger.log(LogStatus.FAIL, "The CallRateLimit should be less 100 for all Trunks");
-				}
-				else if(i<=100){
-					edittextFields_commonMethod(application, "Call rate Limit", "callRateLimitt_textField", callrateLimiteValue, xml);
-				}
-			}else {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Call rate Limit' value is not edited");
-				System.out.println("'Call rate Limit' value is not edited");
-			}
-		}
+//		addCheckbox_commonMethod(application, "callrateLimit_checkbox", "Call Rate Limit", callrateLimit, "No", xml);
+//		if(callrateLimit.equalsIgnoreCase("yes")) {
+//			
+//			String callratelimitactualvalue=getwebelement(xml.getlocator("//locators/" + application + "/callRateLimitt_textField")).getAttribute("value");
+//			System.out.println(" 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
+//			DriverTestcase.logger.log(LogStatus.PASS, " 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
+//		
+//			if(!callrateLimiteValue.equalsIgnoreCase("null")) {
+//				int i=Integer.parseInt(callrateLimiteValue);
+//					
+//				if(i>100) {
+//					DriverTestcase.logger.log(LogStatus.FAIL, "The CallRateLimit should be less 100 for all Trunks");
+//				}
+//				else if(i<=100){
+//					edittextFields_commonMethod(application, "Call rate Limit", "callRateLimitt_textField", callrateLimiteValue, xml);
+//				}
+//			}else {
+//				DriverTestcase.logger.log(LogStatus.PASS, "'Call rate Limit' value is not edited");
+//				System.out.println("'Call rate Limit' value is not edited");
+//			}
+//		}
 		
 		
 	//Source Address Filtering
-		selectValueInsideDropdown(application, "sourceAddressFiltering_Dropdown", "Source Address Filtering", sourceAddressFiltering, xml);
+//		selectValueInsideDropdown(application, "sourceAddressFiltering_Dropdown", "Source Address Filtering", sourceAddressFiltering, xml);
 		
 	//100rel Support
-		selectValueInsideDropdown(application, "relsupport_Dropdown", "100rel Support", relSupport, xml);
+//		selectValueInsideDropdown(application, "relsupport_Dropdown", "100rel Support", relSupport, xml);
 		
 	//SIP Session Keepalive Timer(Sec)
 		edittextFields_commonMethod(application, "SIP Session Keepalive Timer(Sec)", "sipSessionKeepAliverTimer_textField", sipSessionkeepAliveTimer, xml);
 	
 		//Text message under "SIP Session Keepalive timer"
-			methodToFindMessagesUnderTextField(application, "defaultTextMessageUnderSIPsessionTimer", "SIP Session Keepalive Timer(Sec)", "Default SIP Session Keepalive Timer (sec): 1800");
+//			methodToFindMessagesUnderTextField(application, "defaultTextMessageUnderSIPsessionTimer", "SIP Session Keepalive Timer(Sec)", "Default SIP Session Keepalive Timer (sec): 1800");
 		
 			
 			WebElement reusenifgroup=getwebelement(xml.getlocator("//locators/" + application + "/reuseNIFgroup_checkbox"));
@@ -1641,10 +1299,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			Thread.sleep(2000);
 			
 	//Retry Invite
-		edittextFields_commonMethod(application, "Retry Invite", "retryinvite_textField", retryInvite, xml);
+//		edittextFields_commonMethod(application, "Retry Invite", "retryinvite_textField", retryInvite, xml);
 		
 		//Text message under "Retry Invite" field
-		methodToFindMessagesUnderTextField(application, "defaultTextMessageUnderretryInvite", "Retry Invite", "Default Retry Invite :2");
+//		methodToFindMessagesUnderTextField(application, "defaultTextMessageUnderretryInvite", "Retry Invite", "Default Retry Invite :2");
 		
 	//Route Priority
 		selectValueInsideDropdown(application, "routepriority_Dropdown", "Route Priority", routePriority, xml);
@@ -1662,8 +1320,8 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 		
 	//E164LocalProfile	
-		addTrunk_existingNewDropdownField(application, localProfile_existingFieldSelection, localProfile_newFieldSelection, localProfile_existingvalue,
-				localProfile_newvalue, "localProfile_Dropdown", "localProfile_checkbox", "localProfile_TextField", "E164LocalProfile");
+//		addTrunk_existingNewDropdownField(application, localProfile_existingFieldSelection, localProfile_newFieldSelection, localProfile_existingvalue,
+//				localProfile_newvalue, "localProfile_Dropdown", "localProfile_checkbox", "localProfile_TextField", "E164LocalProfile");
 		
 		
 	//COS profile
@@ -1672,8 +1330,8 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 		
 	//PSPG Name
-		addTrunk_existingNewDropdownField(application, PSPGname_existingFieldSelection, PSPGname_newFieldSelection, pspgName_existingValue,
-				pspgName_newValue, "PSPSGname_Dropdown", "PSPGname_Checkbox", "PSPGname_TextField", "PSPG Name");
+//		addTrunk_existingNewDropdownField(application, PSPGname_existingFieldSelection, PSPGname_newFieldSelection, pspgName_existingValue,
+//				pspgName_newValue, "PSPSGname_Dropdown", "PSPGname_Checkbox", "PSPGname_TextField", "PSPG Name");
 		
 		
 	//Preferred  PSP
@@ -1692,13 +1350,13 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 		
 	//IP Signalling Profile
-		addTrunk_existingNewDropdownField(application, IPsignallingProfile_existingFieldSelection, IPsignallingProfile_newFieldSelection, IPsignallingProfile_existingValue,
-				IPsignallingProfile_newValue, "IPsignallingProfile_Dropdown", "IPsignallingProfile_Checkbox", "IPsignallingProfile_textField", "IP Signaling Profile");
-		
+//		addTrunk_existingNewDropdownField(application, IPsignallingProfile_existingFieldSelection, IPsignallingProfile_newFieldSelection, IPsignallingProfile_existingValue,
+//				IPsignallingProfile_newValue, "IPsignallingProfile_Dropdown", "IPsignallingProfile_Checkbox", "IPsignallingProfile_textField", "IP Signaling Profile");
+//		
 		
 	//Egress IP Signaling Profile
-		addTrunk_existingNewDropdownField(application, EgressIpsignal_existingFieldSelection, EgressIpsignal_newFieldSelection, EgressIPsignal_existingValue,
-				EgressIPsignal_newValue, "EgressIpsignal_Dropdown", "EgressIPsignal_checkbox", "EgressipSignal_TextField", "Egress IP Signaling Profile");
+//		addTrunk_existingNewDropdownField(application, EgressIpsignal_existingFieldSelection, EgressIpsignal_newFieldSelection, EgressIPsignal_existingValue,
+//				EgressIPsignal_newValue, "EgressIpsignal_Dropdown", "EgressIPsignal_checkbox", "EgressipSignal_TextField", "Egress IP Signaling Profile");
 		
 		
 		scrolltoend();
@@ -1706,27 +1364,27 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 	
 	//In DM/PM rule
-		addTrunk_existingNewDropdownField(application, InDMPMrule_existingFieldSelection, InDMPMrule_newFieldSelection, InDMPMrule_existingValue,
-				InDMPMrule_newValue,  "InDMPMrule_Dropdown", "InDMPMrule_checkbox", "InDMPMrule_TextField", "In DM/PM rule");
+//		addTrunk_existingNewDropdownField(application, InDMPMrule_existingFieldSelection, InDMPMrule_newFieldSelection, InDMPMrule_existingValue,
+//				InDMPMrule_newValue,  "InDMPMrule_Dropdown", "InDMPMrule_checkbox", "InDMPMrule_TextField", "In DM/PM rule");
 		
 		
 	//Out DM/PM rule
-		addTrunk_existingNewDropdownField(application, OutDMPMrule_existingFieldSelection, OutDMPMrule_newFieldSelection, OutDMPMrule_existingValue,
-				OutDMPMrule_newValue, "OutDMPMrule_Dropdown", "OutDMPMrule_checkbox", "OutDMPMrule_TextField", "Out DM/PM rule");
+//		addTrunk_existingNewDropdownField(application, OutDMPMrule_existingFieldSelection, OutDMPMrule_newFieldSelection, OutDMPMrule_existingValue,
+//				OutDMPMrule_newValue, "OutDMPMrule_Dropdown", "OutDMPMrule_checkbox", "OutDMPMrule_TextField", "Out DM/PM rule");
 		
 		
 	//Feature Control Profile	
-		addTrunk_existingNewDropdownField(application, featureControlprofile_existingFieldSelection, featureControlprofile_newFieldSelection, featureControlprofile_existingValue,
-				featureControlprofile_newValue, "featureControlprofile_Dropdown", "featureControlprofile_Checkbox", "featureControlprofile_TextField", "Feature Control Profile");
+//		addTrunk_existingNewDropdownField(application, featureControlprofile_existingFieldSelection, featureControlprofile_newFieldSelection, featureControlprofile_existingValue,
+//				featureControlprofile_newValue, "featureControlprofile_Dropdown", "featureControlprofile_Checkbox", "featureControlprofile_TextField", "Feature Control Profile");
 		
 		
 	//Local Ring Back Tone
-		addTrunk_existingNewDropdownField(application, localRingBackTone_existingFieldSelection, localRingBackTone_newFieldSelection, localRingBackTone_existingValue,
-				localRingBackTone_newValue, "localRingBackTone_Dropdown", "localRingBackTone_checkbox", "localRingBackTone_TextField", "Local Ring Back Tone");
+//		addTrunk_existingNewDropdownField(application, localRingBackTone_existingFieldSelection, localRingBackTone_newFieldSelection, localRingBackTone_existingValue,
+//				localRingBackTone_newValue, "localRingBackTone_Dropdown", "localRingBackTone_checkbox", "localRingBackTone_TextField", "Local Ring Back Tone");
 	
 		
 	//Create Lower Case Routes
-		addCheckbox_commonMethod(application, "createLowerCaseRoute_checkbox", "Create Lower Case Routes", createLowerCaseRoutervalue, "no", xml);
+//		addCheckbox_commonMethod(application, "createLowerCaseRoute_checkbox", "Create Lower Case Routes", createLowerCaseRoutervalue, "no", xml);
 		
 		
 	//PSX Manual Configuration	
@@ -5047,8 +4705,8 @@ try {
 			waitForpageload();
 			Thread.sleep(7000);
 			
-			WebElement lowerCaseRouteelement=getwebelement(xml.getlocator("//locators/" + application + "/createLowerCaseRoute_viewTrunkPage"));
-			scrolltoview(lowerCaseRouteelement);
+			WebElement localRingBack=getwebelement(xml.getlocator("//locators/" + application + "/labelName_localRingBackTone"));
+			scrolltoview(localRingBack);
 			Thread.sleep(2000);
 			
 			addDropdownValues_commonMethod(application, "PSX Configuration", "PSXconfigurationDropdown_viewtrunk", expectedConfiguration , xml);
@@ -5099,8 +4757,8 @@ try {
 			
 			
 			System.out.println("expected value "+ expectedConfiguration);
-			WebElement lowerCaseRouteelement=getwebelement(xml.getlocator("//locators/" + application + "/createLowerCaseRoute_viewTrunkPage"));
-			scrolltoview(lowerCaseRouteelement);
+			WebElement localRingBack=getwebelement(xml.getlocator("//locators/" + application + "/labelName_localRingBackTone"));
+			scrolltoview(localRingBack);
 			Thread.sleep(2000);
 			
 			addDropdownValues_commonMethod(application, "SBC Configuration", "SBCconfigurationDropdown_viewtrunk", expectedConfiguration, xml);
@@ -5149,8 +4807,8 @@ try {
 			
 			
 			System.out.println("expected value "+ expectedConfiguration);
-			WebElement lowerCaseRouteelement=getwebelement(xml.getlocator("//locators/" + application + "/createLowerCaseRoute_viewTrunkPage"));
-			scrolltoview(lowerCaseRouteelement);
+			WebElement localRingBack=getwebelement(xml.getlocator("//locators/" + application + "/labelName_localRingBackTone"));
+			scrolltoview(localRingBack);
 			Thread.sleep(2000);
 			
 			addDropdownValues_commonMethod(application, "GSX Configuration", "GSXconfigurationDropdown_viewtrunk", expectedConfiguration, xml);
@@ -6743,13 +6401,12 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		ScrolltoElement(application, "searchbutton", xml);
 		Clickon(searchbutton);
 		Thread.sleep(2000);
-		scrolltoend();
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/serviceradiobutton")));
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorder_actiondropdown")));
 		Thread.sleep(1000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/view")));
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 	}
 	
 	

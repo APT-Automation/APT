@@ -439,11 +439,11 @@ public class APT_wholesale extends DriverTestcase{
 			
 			String siteOrderNumber=null;
 			
-			APT_wholesaleHelper.get().clickOnBreadCrump("wholesaleService", map.get("ServiceIdentification"));
+//			APT_wholesaleHelper.get().clickOnBreadCrump("wholesaleService", map.get("ServiceIdentification"));
 			
 			APT_wholesaleHelper.get().addTrunkSiteOrder("wholesaleService", map.get("TrunkGroupOrder"), map.get("TrunkGroupOrderNumber"));
 			
-			APT_wholesaleHelper.get().editSiteOrder("wholesaleService", map.get("TrunkGroupOrderNumber"), map.get("edit_TrunkGroupOrder"), map.get("edit_TrunkGroupOrderNumber"));
+//			APT_wholesaleHelper.get().editSiteOrder("wholesaleService", map.get("TrunkGroupOrderNumber"), map.get("edit_TrunkGroupOrder"), map.get("edit_TrunkGroupOrderNumber"));
 			
 			if(map.get("edit_TrunkGroupOrderNumber").equalsIgnoreCase("null")) {
 				
@@ -475,7 +475,7 @@ public class APT_wholesale extends DriverTestcase{
 					map.get("localRingBackTone_existingFieldSelection"), map.get("localRingBackTone_newFieldSelection"), map.get("localRingBackTone_existingValue"), map.get("localRingBackTone_newValue"),
 					map.get("createLowerCaseRoutervalue"), map.get("PSXmanualConfigvalue"), map.get("GSXmanualConfigvalue"), map.get("callLimit"), map.get("limitNumber"), map.get("callrateLimiteValue"), map.get("SBCmanualconfigValue"));
 			
-			APT_wholesaleHelper.get().verifysuccessmessage("wholesaleService", "Trunk created successfully");
+//			APT_wholesaleHelper.get().verifysuccessmessage("wholesaleService", "Trunk created successfully");
 		}
 		
 		@Test(description = "TC-08", dataProviderClass = DataReader_PK.class, dataProvider = "Finaldatareader_wholeSale", priority=29)

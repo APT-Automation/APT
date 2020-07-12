@@ -491,6 +491,8 @@
 
 
 <createLowerCaseRoute_viewTrunkPage>//label[text()='Create Lower Case Routes']</createLowerCaseRoute_viewTrunkPage>
+<labelName_localRingBackTone>//label[text()='Local Ring Back Tone']</labelName_localRingBackTone>
+
  
 <allocatePrefix_button>//span[contains(text(),'Allocate Prefix')]</allocatePrefix_button>
 <carrierIPoriginating_addButtton>//div[div[div[contains(text(),'Carrier IP Originating (Address')]]]/following-sibling::div//span[text()='>>']</carrierIPoriginating_addButtton>

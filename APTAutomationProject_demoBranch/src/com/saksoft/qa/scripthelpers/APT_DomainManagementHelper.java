@@ -57,33 +57,24 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			throws Exception {
 
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		System.out.println("Mouse hovered on Manage Customer's Service");
 		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
-		Thread.sleep(2000);
-		compareText(application, "create customer page header", "createcustomer_header", "Customer", xml);
+		//Thread.sleep(2000);
+		compareText(application, "create customer page header", "createcustomer_header", "Create Customer", xml);
+		scrolltoend();
 		click_commonMethod(application, "Ok", "okbutton", xml);
-		
+
+		scrollToTop();
 		//Warning msg check
 		warningMessage_commonMethod(application, "customernamewarngmsg", "Legal Customer Name", xml);
 		warningMessage_commonMethod(application, "countrywarngmsg", "Country", xml);
 		warningMessage_commonMethod(application, "ocnwarngmsg", "OCN", xml);
-		warningMessage_commonMethod(application, "typewarngmsg", "Type", xml);
-		warningMessage_commonMethod(application, "emailwarngmsg", "Email", xml);
-
-		//Clear customer info
-		addtextFields_commonMethod(application, "Customer Name", "nametextfield", name, xml);
-		addtextFields_commonMethod(application, "Main Domain", "maindomaintextfield", maindomain, xml);
-		addtextFields_commonMethod(application, "OCN", "ocntextfield", ocn, xml);
-		addtextFields_commonMethod(application, "Reference", "referencetextfield", reference, xml);
-		addtextFields_commonMethod(application, "Technical Contact Name", "technicalcontactnametextfield", tcn, xml);
-		addtextFields_commonMethod(application, "Email", "emailtextfield", email, xml);
-		addtextFields_commonMethod(application, "Phone", "phonetextfield", phone, xml);
-		addtextFields_commonMethod(application, "Fax", "faxtextfield", fax, xml);
-		click_commonMethod(application, "Clear", "clearbutton", xml);
-		DriverTestcase.logger.log(LogStatus.PASS, "All text field values are cleared");
+//		warningMessage_commonMethod(application, "typewarngmsg", "Type", xml);
+//		warningMessage_commonMethod(application, "emailwarngmsg", "Email", xml);
 
 		//Create customer by providing all info
 		addtextFields_commonMethod(application, "Customer Name", "nametextfield", name, xml);
@@ -96,9 +87,11 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "Email", "emailtextfield", email, xml);
 		addtextFields_commonMethod(application, "Phone", "phonetextfield", phone, xml);
 		addtextFields_commonMethod(application, "Fax", "faxtextfield", fax, xml);
+		scrolltoend();
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Ok", "okbutton", xml);
 		compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.", xml);
-		sa.assertAll();	
+		sa.assertAll();
 
 	}
 
@@ -106,11 +99,10 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	public void selectCustomertocreateOrder(String application, String ChooseCustomerToBeSelected, String customerName1, String customerName2)
 			throws InterruptedException, DocumentException, IOException {
 		
-	
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-		Thread.sleep(3000);
-		System.out.println("Mouse hovered on Manage Customer's Service");
+		//Thread.sleep(3000);
 		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "Create Order/Service", "CreateOrderServiceLink", xml);
 		Log.info("=== Create Order/Service navigated ===");
@@ -130,6 +122,223 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		click_commonMethod(application, "Next", "Next_Button", xml);
 	}
 	
+	public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
+
+	public void createorderservice(String application, String neworder, String neworderno, String newrfireqno, String existingorderservice, String existingordernumber)
+			throws InterruptedException, IOException, DocumentException {
+
+		scrolltoend();
+		//Thread.sleep(1000);
+		click_commonMethod(application, "Next", "nextbutton", xml);
+		//Thread.sleep(1000);
+
+		//Warning messages verify
+		warningMessage_commonMethod(application, "order_contractnumber_warngmsg", "Order/Contract Number(Parent SID)", xml);
+		warningMessage_commonMethod(application, "servicetype_warngmsg", "Service Type", xml);
+
+		if (neworder.equalsIgnoreCase("YES")) {
+
+			//Thread.sleep(2000);
+			click_commonMethod(application, "select order switch", "selectorderswitch", xml);
+			addtextFields_commonMethod(application, "Order/Contract Number", "newordertextfield", neworderno, xml);
+			addtextFields_commonMethod(application, "RFI Voice line Number", "newrfireqtextfield", newrfireqno, xml);
+			click_commonMethod(application, "create order", "createorderbutton", xml);
+			compareText(application, "create order success message", "OrderCreatedSuccessMsg", "Order created successfully", xml);			
+			ScrolltoElement(application, "CreateOrderHeader", xml);
+
+			newordernumber = neworderno;
+			newVoiceLineNumber = newrfireqno;
+		} 
+
+		else if (existingorderservice.equalsIgnoreCase("YES")) {
+			addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber, xml);
+			Log.info("=== Order Contract Number selected===");
+
+			//Thread.sleep(3000);
+
+			SelectOrderNumber = existingordernumber;
+		} else {
+			DriverTestcase.logger.log(LogStatus.INFO, "Step :Order not selected");
+			Log.info("Order not selected");
+		}
+	}
+
+	public void verifyselectservicetype(String application, String servicetype)
+			throws InterruptedException, IOException, DocumentException {
+
+		// select service type
+				scrolltoend();
+				//addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
+				boolean availability=false;
+				try {  
+					availability=getwebelement(xml.getlocator("//locators/" + application + "/servicetypetextfield")).isDisplayed();
+					if(availability) {
+						DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown is displaying");
+						Log.info("Service Type dropdown is displaying");
+
+						if(servicetype.equalsIgnoreCase("null")) {
+
+							DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Service Type dropdown");
+							Log.info("No values selected under Service Type dropdown");
+						}else {
+
+							Clickon(getwebelement("//div[label[text()='Service Type']]//div[text()='×']"));
+							//Thread.sleep(3000);
+
+							//verify list of values inside dropdown
+							List<WebElement> listofvalues = getwebelements("//div[@class='sc-ifAKCX oLlzc']");
+
+							DriverTestcase.logger.log(LogStatus.PASS, "List of values inside Service Type dropdown is:  ");
+							Log.info("List of values inside Service Type dropdown is:  ");
+
+							for (WebElement valuetypes : listofvalues) {
+								Log.info("service sub types : " + valuetypes.getText());
+								DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+							}
+
+							//Thread.sleep(2000);
+							SendKeys(getwebelement("//div[label[text()='Service Type']]//input"), servicetype);	
+							//Thread.sleep(2000);
+
+							//scrolltoend();
+							ScrolltoElement(application, "nextbutton", xml);
+							//Thread.sleep(2000);
+							Clickon(getwebelement("(//div[text()='"+ servicetype +"'])[1]"));
+							//Thread.sleep(3000);
+
+							String actualValue=getwebelement("//label[text()='Service Type']/following-sibling::div//span").getText();
+							DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
+							Log.info("Service Type dropdown value selected as: "+ actualValue);
+
+						}
+					}else {
+						DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
+						Log.info("Service Type is not displaying");
+					}
+				}catch(NoSuchElementException e) {
+					DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
+					Log.info("Service Type is not displaying");
+				}catch(Exception ee) {
+					ee.printStackTrace();
+					DriverTestcase.logger.log(LogStatus.FAIL, "Not able to perform selection under Service Type dropdown");
+					Log.info("NO value selected under Service Type dropdown");
+				}
+				// click on next button
+				click_commonMethod(application, "Next", "nextbutton", xml);
+				compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
+
+	}
+
+
+	public void verifyservicecreation(String application, String sid, String Remarks, String email, String phonecontact, String servicecountry, String passwordvalue, String defaultemail, String user, String servicefirstname, String servicelastname, String organizationname, String serviceaddress, String servicecomplement, String servicepostalcode, String servicecity, String servicestate, String servicephone, String servicefax, String orderno, String rfireqno, String servicetype) throws InterruptedException, IOException, DocumentException {
+		
+		//Create Service
+		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
+					
+		// verify warning messages
+		click_commonMethod(application, "Next", "nextbutton", xml);
+//		Thread.sleep(1000);
+		warningMessage_commonMethod(application, "sidwarngmsg", "Service Identification", xml);
+		warningMessage_commonMethod(application, "userfieldwarngmsg", "User", xml);
+		warningMessage_commonMethod(application, "passwordfieldwarngmsg", "Password", xml);
+		warningMessage_commonMethod(application, "defaultemailwarngmsg", "Default Email", xml);
+		warningMessage_commonMethod(application, "firstnamefieldwarngmsg", "First Name", xml);
+//		warningMessage_commonMethod(application, "lastnamefieldwarngmsg", "Last Name", xml);
+//		warningMessage_commonMethod(application, "organizationnamewarngmsg", "Organization Name", xml);
+//		warningMessage_commonMethod(application, "addressfieldwarngmsg", "Address", xml);
+//		warningMessage_commonMethod(application, "postalcodewarngmsg", "Postal Code", xml);
+//		warningMessage_commonMethod(application, "cityfieldwarngmsg", "City", xml);
+//		warningMessage_commonMethod(application, "phonefieldwarngmsg", "Phone", xml);
+//		warningMessage_commonMethod(application, "faxfieldwarngmsg", "Fax", xml);
+//		warningMessage_commonMethod(application, "emailfieldwarngmsg", "Email", xml);
+		
+		//service creation
+		scrollToTop();
+		//Thread.sleep(1000);
+		addtextFields_commonMethod(application, "Service Identification", "serviceidentificationtextfield", sid, xml);
+		compareText(application, "Service Type", "servicetype_value", servicetype, xml);
+		addtextFields_commonMethod(application, "Remarks", "remarktextarea", Remarks, xml);
+		addtextFields_commonMethod(application, "Email", "emailtextfieldvalue", email, xml);
+		click_commonMethod(application, "Email adding Arrow", "emailaddarrow", xml);
+		addtextFields_commonMethod(application, "Phone Contact", "phonecontacttextfieldvalue", phonecontact, xml);
+		click_commonMethod(application, "phone contact adding Arrow", "phoneaddarrow", xml);
+		ScrolltoElement(application, "phonecontacttextfieldvalue", xml);
+		addtextFields_commonMethod(application, "User", "userfield", user, xml);
+		//EnterTextValue(application, passwordvalue, "Password", "Password");
+		click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
+		addtextFields_commonMethod(application, "Default Email", "defaultemail", defaultemail, xml);
+		addtextFields_commonMethod(application, "First Name", "servicefirstname", servicefirstname, xml);
+		addtextFields_commonMethod(application, "Last Name", "servicelastname", servicelastname, xml);
+		addtextFields_commonMethod(application, "Organization Name", "organizationname", organizationname, xml);
+		addtextFields_commonMethod(application, "Address", "serviceaddress", serviceaddress, xml);
+		addtextFields_commonMethod(application, "Complement", "servicecomplement", servicecomplement, xml);
+		addtextFields_commonMethod(application, "Postal Code", "servicepostalcode", servicepostalcode, xml);
+		addtextFields_commonMethod(application, "City", "servicecity", servicecity, xml);
+		addtextFields_commonMethod(application, "State", "servicestate", servicestate, xml);
+		scrolltoend();
+		
+		addDropdownValues_commonMethod(application, "Country", "service_country", servicecountry, xml);
+		
+//		//select country from dropdown
+//				boolean availability1=false;
+//				try {  
+//				  availability1=getwebelement(xml.getlocator("//locators/" + application + "/service_country")).isDisplayed();
+//				  if(availability1) {
+//					  DriverTestcase.logger.log(LogStatus.PASS, "Country dropdown is displaying");
+//					  System.out.println("Country dropdown is displaying");
+//					  
+//					  if(servicecountry.equalsIgnoreCase("null")) {
+//						  
+//						  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Country dropdown");
+//					  }else {
+//						  
+//						  Clickon(getwebelement("//div[label[text()='Country']]//div[text()='×']"));
+//						  Thread.sleep(3000);
+//						  
+//						  //verify list of values inside dropdown
+//						  List<WebElement> listofvalues = driver
+//									.findElements(By.xpath("(//div[@role='list']//div)[3]"));
+//						  
+//						  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Country dropdown is:  ");
+//						  
+//							for (WebElement valuetypes : listofvalues) {
+//										Log.info("service sub types : " + valuetypes.getText());
+//										DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+//							}
+//							
+//							Thread.sleep(2000);
+//						SendKeys(getwebelement("(//div[label[text()='Country']]//input)[1]"), servicecountry);	
+//						Thread.sleep(2000);
+//							
+//						  Clickon(getwebelement("(//div[contains(text(),'"+ servicecountry +"')])[1]"));
+//						  Thread.sleep(3000);
+//						  
+//						  String actualValue=getwebelement("//label[text()='Country']/following-sibling::div//div/span").getText();
+//						  DriverTestcase.logger.log(LogStatus.PASS, "Country dropdown value selected as: "+ actualValue );
+//						  
+//					  }
+//				  }else {
+//					  DriverTestcase.logger.log(LogStatus.FAIL, "Country is not displaying");
+//				  }
+//				}catch(NoSuchElementException e) {
+//					DriverTestcase.logger.log(LogStatus.FAIL, "Country is not displaying");
+//				}catch(Exception ee) {
+//					ee.printStackTrace();
+//					DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Country dropdown");
+//				}
+//				
+		addtextFields_commonMethod(application, "Phone", "servicephone", servicephone, xml);
+		addtextFields_commonMethod(application, "Fax", "servicefax", servicefax, xml);
+		addtextFields_commonMethod(application, "Email", "serviceemail", email, xml);
+		//Thread.sleep(1000);
+		scrolltoend();
+		click_commonMethod(application, "Next", "nextbutton", xml);
+		//Thread.sleep(3000);
+		compareText(application, "Service creation success msg", "servicecreationmessage", "Service successfully created.", xml);
+			sa.assertAll();
+	
+	}
+
 	
 	public void verifyCustomerDetailsInformation(String application, String name, String maindomain, String country, String ocn,
 			String reference, String tcn, String type, String email, String phone, String fax)
@@ -723,246 +932,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	//============================================================================================
 	
 
-	public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 	
-	public void createorderservice(String application, String neworder, String neworderno, String newrfireqno, String existingorderservice, String existingordernumber)
-			throws InterruptedException, IOException, DocumentException {
-
-		scrolltoend();
-		if (neworder.equalsIgnoreCase("YES")) {
-
-			ScrolltoElement(application, "CreateOrderHeader", xml);
-			Thread.sleep(2000);
-			
-			click_commonMethod(application, "select order switch", "selectorderswitch", xml);
-			addtextFields_commonMethod(application, "Order/Contract Number", "newordertextfield", neworderno, xml);
-			addtextFields_commonMethod(application, "RFI Voice line Number", "newrfireqtextfield", newrfireqno, xml);
-			click_commonMethod(application, "create order", "createorderbutton", xml);
-			compareText(application, "create order success message", "OrderCreatedSuccessMsg", "Order created successfully", xml);			
-			ScrolltoElement(application, "CreateOrderHeader", xml);
-
-			newordernumber = neworderno;
-			newVoiceLineNumber = newrfireqno;
-		} 
-		
-		else if (existingorderservice.equalsIgnoreCase("YES")) {
-			addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber, xml);
-			Log.info("=== Order Contract Number selected===");
-
-			Thread.sleep(3000);
-
-			SelectOrderNumber = existingordernumber;
-		} else {
-
-			System.out.println("Order not selected");
-			DriverTestcase.logger.log(LogStatus.INFO, "Step :Order not selected");
-		}
-	}
-
-	public void verifyselectservicetype(String application, String servicetype)
-			throws InterruptedException, IOException, DocumentException {
-
-		// select service type
-				scrolltoend();
-				addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
-				// click on next button
-				click_commonMethod(application, "Next", "nextbutton", xml);
-				Thread.sleep(2000);
-				scrollToTop();
-				compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
-
-	}
-
-
-	public void verifyservicecreation(String application, String sid, String Remarks, String email, String phonecontact, String servicecountry, String passwordvalue, String defaultemail, String user, String servicefirstname, String servicelastname, String organizationname, String serviceaddress, String servicecomplement, String servicepostalcode, String servicecity, String servicestate, String servicephone, String servicefax, String orderno, String rfireqno, String servicetype) throws InterruptedException, IOException, DocumentException {
-		
-		//Cancel service creation
-		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
-		scrolltoend();
-		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-			
-		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-		{
-		Log.info("Navigated to create order page");
-		System.out.println("Navigated to create order page");
-		}
-		
-		//Create service
-	
-		ScrolltoElement(application, "createorderservice_header", xml);
-		
-		//addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", orderno, xml);
-		
-		//Existing order no select
-		boolean availability=false;
-		try {  
-		  availability=getwebelement(xml.getlocator("//locators/" + application + "/existingorderdropdown")).isDisplayed();
-		  if(availability) {
-			  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown is displaying");
-			  System.out.println("Order/Contract Number(Parent SID) dropdown is displaying");
-			  
-			  if(orderno.equalsIgnoreCase("null")) {
-				  
-				  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Order/Contract Number(Parent SID) dropdown");
-				  System.out.println(" No values selected under Order/Contract Number(Parent SID) dropdown");
-			  }else {
-				  
-				  Clickon(getwebelement("//div[label[text()='Order/Contract Number(Parent SID)']]//div[text()='×']"));
-				  Thread.sleep(3000);
-				  
-				  //verify list of values inside dropdown
-				  List<WebElement> listofvalues = driver
-							.findElements(By.xpath("(//div[@role='list']//div)[3]"));
-				  
-				  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
-				  System.out.println( " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
-				  
-					for (WebElement valuetypes : listofvalues) {
-								Log.info("service sub types : " + valuetypes.getText());
-								DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-								System.out.println(" " + valuetypes.getText());
-					}
-					
-					Thread.sleep(2000);
-				SendKeys(getwebelement("//div[label[text()='Order/Contract Number(Parent SID)']]//input"), orderno);	
-				Thread.sleep(2000);
-					
-				  Clickon(getwebelement("(//div[contains(text(),'"+ orderno +"')])[2]"));
-				  Thread.sleep(3000);
-				  
-				  String actualValue=getwebelement("//label[text()='Order/Contract Number(Parent SID)']/following-sibling::div//div/span").getText();
-				  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue );
-				  System.out.println("Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue);
-				  
-			  }
-		  }else {
-			  DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
-			  System.out.println("Order/Contract Number(Parent SID) is not displaying");
-		  }
-		}catch(NoSuchElementException e) {
-			DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
-			  System.out.println("Order/Contract Number(Parent SID) is not displaying");
-		}catch(Exception ee) {
-			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Order/Contract Number(Parent SID) dropdown");
-			System.out.println(" NO value selected under Order/Contract Number(Parent SID) dropdown");
-		}
-		
-		addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
-		// click on next button
-		click_commonMethod(application, "Next", "nextbutton", xml);
-		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
-					
-		// verify warning messages
-		click_commonMethod(application, "Next", "nextbutton", xml);
-		Thread.sleep(1000);
-		warningMessage_commonMethod(application, "sidwarngmsg", "Service Identification", xml);
-		warningMessage_commonMethod(application, "userfieldwarngmsg", "User", xml);
-		warningMessage_commonMethod(application, "passwordfieldwarngmsg", "Password", xml);
-		warningMessage_commonMethod(application, "defaultemailwarngmsg", "Default Email", xml);
-		warningMessage_commonMethod(application, "firstnamefieldwarngmsg", "First Name", xml);
-		warningMessage_commonMethod(application, "lastnamefieldwarngmsg", "Last Name", xml);
-		warningMessage_commonMethod(application, "organizationnamewarngmsg", "Organization Name", xml);
-		warningMessage_commonMethod(application, "addressfieldwarngmsg", "Address", xml);
-		warningMessage_commonMethod(application, "postalcodewarngmsg", "Postal Code", xml);
-		warningMessage_commonMethod(application, "cityfieldwarngmsg", "City", xml);
-		warningMessage_commonMethod(application, "phonefieldwarngmsg", "Phone", xml);
-		warningMessage_commonMethod(application, "faxfieldwarngmsg", "Fax", xml);
-		warningMessage_commonMethod(application, "emailfieldwarngmsg", "Email", xml);
-		
-		//service creation
-		scrollToTop();
-		Thread.sleep(1000);
-		addtextFields_commonMethod(application, "Service Identification", "serviceidentificationtextfield", sid, xml);
-		compareText(application, "Service Type", "servicetype_value", servicetype, xml);
-		addtextFields_commonMethod(application, "Remarks", "remarktextarea", Remarks, xml);
-		addtextFields_commonMethod(application, "Email", "emailtextfieldvalue", email, xml);
-		click_commonMethod(application, "Email adding Arrow", "emailaddarrow", xml);
-		addtextFields_commonMethod(application, "Phone Contact", "phonecontacttextfieldvalue", phonecontact, xml);
-		click_commonMethod(application, "phone contact adding Arrow", "phoneaddarrow", xml);
-		ScrolltoElement(application, "phonecontacttextfieldvalue", xml);
-		addtextFields_commonMethod(application, "User", "userfield", user, xml);
-		//EnterTextValue(application, passwordvalue, "Password", "Password");
-		click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
-		addtextFields_commonMethod(application, "Default Email", "defaultemail", defaultemail, xml);
-		addtextFields_commonMethod(application, "First Name", "servicefirstname", servicefirstname, xml);
-		addtextFields_commonMethod(application, "Last Name", "servicelastname", servicelastname, xml);
-		addtextFields_commonMethod(application, "Organization Name", "organizationname", organizationname, xml);
-		addtextFields_commonMethod(application, "Address", "serviceaddress", serviceaddress, xml);
-		addtextFields_commonMethod(application, "Complement", "servicecomplement", servicecomplement, xml);
-		addtextFields_commonMethod(application, "Postal Code", "servicepostalcode", servicepostalcode, xml);
-		addtextFields_commonMethod(application, "City", "servicecity", servicecity, xml);
-		addtextFields_commonMethod(application, "State", "servicestate", servicestate, xml);
-		scrolltoend();
-		
-		//addDropdown(application, "Country", "service_country", country);
-		
-		//select country from dropdown
-				boolean availability1=false;
-				try {  
-				  availability1=getwebelement(xml.getlocator("//locators/" + application + "/service_country")).isDisplayed();
-				  if(availability1) {
-					  DriverTestcase.logger.log(LogStatus.PASS, "Country dropdown is displaying");
-					  System.out.println("Country dropdown is displaying");
-					  
-					  if(servicecountry.equalsIgnoreCase("null")) {
-						  
-						  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Country dropdown");
-						  System.out.println(" No values selected under Country dropdown");
-					  }else {
-						  
-						  Clickon(getwebelement("//div[label[text()='Country']]//div[text()='×']"));
-						  Thread.sleep(3000);
-						  
-						  //verify list of values inside dropdown
-						  List<WebElement> listofvalues = driver
-									.findElements(By.xpath("(//div[@role='list']//div)[3]"));
-						  
-						  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Country dropdown is:  ");
-						  System.out.println( " List of values inside Country dropdown is:  ");
-						  
-							for (WebElement valuetypes : listofvalues) {
-										Log.info("service sub types : " + valuetypes.getText());
-										DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-										System.out.println(" " + valuetypes.getText());
-							}
-							
-							Thread.sleep(2000);
-						SendKeys(getwebelement("(//div[label[text()='Country']]//input)[1]"), servicecountry);	
-						Thread.sleep(2000);
-							
-						  Clickon(getwebelement("(//div[contains(text(),'"+ servicecountry +"')])[1]"));
-						  Thread.sleep(3000);
-						  
-						  String actualValue=getwebelement("//label[text()='Country']/following-sibling::div//div/span").getText();
-						  DriverTestcase.logger.log(LogStatus.PASS, "Country dropdown value selected as: "+ actualValue );
-						  System.out.println("Country) dropdown value selected as: "+ actualValue);
-						  
-					  }
-				  }else {
-					  DriverTestcase.logger.log(LogStatus.FAIL, "Country is not displaying");
-					  System.out.println("Country is not displaying");
-				  }
-				}catch(NoSuchElementException e) {
-					DriverTestcase.logger.log(LogStatus.FAIL, "Country is not displaying");
-					  System.out.println("Country is not displaying");
-				}catch(Exception ee) {
-					ee.printStackTrace();
-					DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Country dropdown");
-					System.out.println(" NO value selected under Country dropdown");
-				}
-				
-		addtextFields_commonMethod(application, "Phone", "servicephone", servicephone, xml);
-		addtextFields_commonMethod(application, "Fax", "servicefax", servicefax, xml);
-		addtextFields_commonMethod(application, "Email", "serviceemail", email, xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Next", "nextbutton", xml);
-		Thread.sleep(3000);
-		compareText(application, "Service creation success msg", "servicecreationmessage", "Service successfully created.", xml);
-			sa.assertAll();
-	
-	}
-
 	public void verifyorderpanelinformation_Existingorder(String application, String existingorder,
 			String expectedorderno, String expectedvoicelineno) throws InterruptedException, DocumentException {
 

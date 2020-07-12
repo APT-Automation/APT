@@ -6,7 +6,7 @@
       <listener class-name="com.saksoft.qa.listeners.TestListener" />
   	</listeners>
   	
-  	 <!-- 
+  	  <!-- 
 	  <test name ="NGIN"> 
 		<classes>
 			<class name="com.saksoft.qa.apttestscripts.APT_NGINTest">
@@ -17,25 +17,21 @@
        			 	<include name="verifyservicetypeselection" />
        			 	<include name="verifyservicecreation" />
        			 	<include name="verifyUserDetailsInformation" />
-       			 	<include name="verifyOrderDetailsInformation" />
        			 	<include name="verifyServicepanelinviewservicepage" />
        			 	<include name="verifyManagementOptionspanel" />
-       			 	<include name="verifyResellerpanelinviewservicepage" />
        			 	<include name="AddReseller" />
-       			 	<include name="verifyResellerLinks" />    
     		  </methods>
     		</class> 
     	</classes>	
   	</test> 
   	
-  	 -->
+  	-->
   	  
   	<test name ="Voice line Service"> 	
     	<classes>	  
 			<class name="com.saksoft.qa.apttestscripts.APT_VoiceLineTest">
 			  <methods>
 			  	<include name="verifyServicepanelinviewservicepage" />
-			   	<include name="verifyASRDevice" />
 			  	<include name="verifyAddTrunk" />
 			  	<include name="viewTrunk" />   
 			  
@@ -44,7 +40,7 @@
 		</classes>
 		</test>
   		
-   <!-- 
+  		 <!-- 
       	 <test name="Wholesale">  
 		<classes>	
 			<class name="com.saksoft.qa.apttestscripts.APT_wholesale">

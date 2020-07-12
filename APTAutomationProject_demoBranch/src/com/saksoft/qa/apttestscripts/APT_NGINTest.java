@@ -67,7 +67,7 @@ public class APT_NGINTest extends DriverTestcase{
 	public void verifyUserDetailsInformation(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 			
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyUserDetailsInformation");
-		APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
+		//APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
 		APT_NGIN.get().VerifyUsersPanel("nginservice", map.get("UserName"), map.get("FirstName"), map.get("SurName"), map.get("PostalAddress"), map.get("UserEmail"), map.get("Phone"), map.get("EditUserName"), map.get("EditFirstName"), map.get("EditSurName"), map.get("EditPostalAddress"), 
 				map.get("EditEmail"), map.get("EditPhone"),map.get("IPGuardianAccountGroup"),map.get("ColtOnlineUser"),map.get("GeneratePassword"),map.get("RolesToBeSelected"),map.get("HideRouterToolsIPv6CommandsCisco_ToBeSelected"),map.get("HideRouterToolsIPv4CommandsHuiwai_ToBeSelected"), 
 				map.get("HideRouterToolsIPv4CommandsCisco_ToBeSelected"), map.get("HideServicesToBeSelected"),map.get("HideSiteOrderToBeSelected"), map.get("editRolesToBeSelected"), map.get("edit_RoleToBeHidden"), map.get("RouterToolsIPv6CommandsCisco_ToBeAvailable"), map.get("RouterToolsIPv6CommandsCisco_ToBeHidden"), map.get("RouterToolsIPv4CommandsHuiwai_ToBeAvailable"), map.get("HideRouterToolsIPv4CommandsHuiwai_ToBeHidden"), map.get("HideRouterToolsIPv4CommandsCisco_ToBeAvailable"), 
@@ -79,8 +79,8 @@ public class APT_NGINTest extends DriverTestcase{
 	public void verifyOrderDetailsInformation(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyOrderDetailsInformation");
-		APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
-		APT_NGIN.get().verifyorderpanelinformation_Neworder("nginservice", map.get("NewOrderService"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"));
+		//APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
+		//APT_NGIN.get().verifyorderpanelinformation_Neworder("nginservice", map.get("NewOrderService"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"));
 		APT_NGIN.get().verifyorderpanel_editorder("nginservice", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
 		APT_NGIN.get().verifyorderpanel_changeorder("nginservice", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"));
 		
@@ -91,7 +91,7 @@ public class APT_NGINTest extends DriverTestcase{
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyServicepanelinviewservicepage");
 		APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
-		APT_NGIN.get().verifyservicepanelInformationinviewservicepage("nginservice", map.get("ServiceIdentification"), map.get("ServiceType"), map.get("Remarks"));
+		//APT_NGIN.get().verifyservicepanelInformationinviewservicepage("nginservice", map.get("ServiceIdentification"), map.get("ServiceType"), map.get("Remarks"));
 		APT_NGIN.get().verifyservicepanel_links("nginservice", map.get("EditRemarks"), map.get("Remarks"), map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"), map.get("BulkJob_FilePath"));
 	}
 	
@@ -99,7 +99,7 @@ public class APT_NGINTest extends DriverTestcase{
 	 public void verifyManagementOptionspanel(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyManagementOptionspanel");
-		APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
+		//APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
 		APT_NGIN.get().verifyManagementOptionspanel("nginservice");
 	
 	}
@@ -117,7 +117,7 @@ public class APT_NGINTest extends DriverTestcase{
 	 public void AddReseller(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyAddReseller");
-		APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
+		//APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
 		APT_NGIN.get().AddReseller("nginservice", map.get("OCN"), map.get("Reseller_Email"), map.get("Reseller_City"), map.get("Reseller_StreetName"), map.get("Reseller_StreetNumber"), map.get("Reseller_POBox"), map.get("Reseller_Zipcode"), map.get("Reseller_Phone"), map.get("Reseller_Fax"));
 	
 	}

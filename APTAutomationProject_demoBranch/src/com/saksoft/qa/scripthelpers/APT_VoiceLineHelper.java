@@ -1057,10 +1057,10 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		//manage subnets IPv6
 		ScrolltoElement(application, "orderpanelheader", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Manage Subnets Ipv6", "managesubnetsipv6_link", xml);
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		GetText(application, "Manage Subnet header", "managesubnet_header");
 		compareText(application, "Manage subnet message", "managesubnet_successmsg", "There are no subnets to be managed for this service.", xml);
 		compareText(application, "Space Name", "spacename_column", "Space Name", xml);
@@ -1068,37 +1068,37 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		compareText(application, "Subnet Name", "subnetname_column", "Subnet Name", xml);
 		compareText(application, "Start Address", "startaddress_column", "Start Address", xml);
 		compareText(application, "Size", "size_column", "Size", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		click_commonMethod(application, "Close", "closesymbol", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 
 		//Show new infovista report
 		shownewInfovista(application);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 
 
 		//dump
 		ScrolltoElement(application, "orderpanelheader", xml);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Dump", "dump_link", xml);
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		GetText(application, "Dump header", "dumppage_header");
 		GetText(application, "Service retrieved time", "serviceretrieved_text");
 		compareText(application, "Service header", "service_header", "Service", xml);
 		GetText(application, "Dump page service details", "dumppage_text");
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Close", "closesymbol", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 
 		//synchronize link in view service page
 		ScrolltoElement(application, "orderpanelheader", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Synchronize", "synchronizelink_servicepanel", xml);
 		ScrolltoElement(application, "customerdetailsheader", xml);
 		compareText(application, "Synchronize Success Msg", "Sync_successmsg", "Sync started successfully. Please check the sync status of this service.", xml);
 
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 
 		//Service delete is performed in the last test case
 	}
@@ -3240,15 +3240,15 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		String vlanUpdatedvalue3=null;
 		String vlanUpdatedvalue5=null;
 
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		scrolltoend();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 
 
 		click_commonMethod(application, "OK", "trunk_okButton", xml);
 
 		scrollToTop();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 
 
 		//Trunk Group Description
@@ -3293,7 +3293,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		//Gateway
 		selectValueInsideDropdown(application, "gateway_Dropdown", "Gateway", gateway, xml);
 		gatewayCode=gateway_code(application, gateway);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 
 		//Quality
 		selectValueInsideDropdown(application, "quality_Dropdown", "Quality", quality, xml);
@@ -3323,7 +3323,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		//IP Address Type
 		selectValueInsideDropdown(application, "IPaddresstype_Dropdown", "IP Address Type", ipAddresstype, xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 
 		//Internet Based Customer
 		String InternetBasedCustomer_Checked= getwebelement(xml.getlocator("//locators/" + application + "/internetBasedCustomer_checkbox")).getAttribute("checked");
@@ -3831,7 +3831,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		}
 
 		ScrolltoElement(application, "incomingroutingonDDIlevel_checkbox", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		//CPE Manual Configuration
 		addCheckbox_commonMethod(application, "cpemanualconfig_checkbox", "CPE Manual Configuration", cpemanualconfig_checkbox, "No", xml);
 
@@ -3849,7 +3849,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		//Partial Number Replacement
 		addCheckbox_commonMethod(application, "partialnumberreplacement_checkbox", "Partial Number Replacement", partialnumberreplacement_checkbox, "No", xml);
 
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 
 		click_commonMethod(application, "OK", "trunk_okButton", xml);
 		Thread.sleep(6000);
@@ -4088,7 +4088,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			String codec_value, String faxdiversionnumber_value, String partialnumberreplacement_checkbox, String cpemanualconfig_checkbox) throws IOException, InterruptedException, DocumentException {   
 
 		scrollToTop();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 
 		String AddressContext="EXTERNAL_AC_";
 		String IPINTERFACEGROUP ="EXTERNAL_IPIG_";
@@ -4160,86 +4160,86 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			compareText_InViewPage(application, "Sub Interface Slot", "null", xml);
 		}
 
-		//VLAN Tag 
-		if(!gateway.contains("SBC")) {
-
-			if(thirdpartyinternet.equalsIgnoreCase("no")) {
-
-				//VLAN Tag
-				//					  compareText_InViewPage(application, "VLAN Tag", vlanTag, xml);
-				String vlan_actualValue=getwebelement("//div[div[label[contains(text(),'VLAN Tag')]]]/div[2]").getText();
-				compareText_InViewPage(application, "VLAN Tag", vlan_actualValue, xml);
-
-				//Sub Interface Name
-				String SubInterfaceName=subInterfacename_starting+subinterfaceSlot_viewPage+subInterfacename_middle+vlan_actualValue;
-				compareText_InViewPage(application, "Sub Interface Name", SubInterfaceName, xml);
-
-				//NIF Group
-				String NIFgroup=NIFgroupDEfaultValue_starting+subinterfaceSlot_viewPage+NIFgroupDEfaultValue_middle+vlan_actualValue+NIGgroupdefaultValue_last;
-				System.out.println("NIF Group value is: "+NIFgroup);
-				compareText_InViewPage(application, "NIF Group", NIFgroup, xml);
-
-				//Signalling Zone
-				String SignallingZone=getwebelement("//div[div[label[contains(text(),'Signalling Zone')]]]/div[2]").getText();
-				compareText_InViewPage(application, "Signalling Zone", SignallingZone, xml);
-
-			}
-			else if(thirdpartyinternet.equalsIgnoreCase("Yes")) {
-
-				//VLAN Tag
-				//					  compareText_InViewPage(application, "VLAN Tag", vlanTag, xml);
-				String vlan_actualValue=getwebelement("//div[div[label[contains(text(),'VLAN Tag')]]]/div[2]").getText();
-
-				//Sub Interface Name
-				String SubInterfaceName=subInterfacename_starting+subinterfaceSlot_viewPage+subInterfacename_middle+vlan_actualValue;
-				compareText_InViewPage(application, "Sub Interface Name", SubInterfaceName, xml);
-
-				//NIF Group
-				String NIFgroup=NIFgroupDEfaultValue_starting+subinterfaceSlot_viewPage+NIFgroupDEfaultValue_middle+vlan_actualValue+NIGgroupdefaultValue_last;
-				System.out.println("NIF Group value is: "+NIFgroup);
-				compareText_InViewPage(application, "NIF Group", NIFgroup, xml);
-
-				//Signalling Zone
-				String SignallingZone=getwebelement("//div[div[label[contains(text(),'Signalling Zone')]]]/div[2]").getText();
-				compareText_InViewPage(application, "Signalling Zone", SignallingZone, xml);
-
-			}
-		}
-		else if(gateway.contains("SBC")) {
-			if(thirdpartyinternet.equalsIgnoreCase("Yes")) {
-				String vlan_actualValue=getwebelement("//div[div[label[contains(text(),'VLAN Tag')]]]/div[2]").getText();
-
-				//Address Content
-				compareText_InViewPage(application, "Address Context", AddressContext+vlan_actualValue, xml);
-
-				//IP Interface Group
-				compareText_InViewPage(application, "IP Interface Group", IPINTERFACEGROUP+vlan_actualValue, xml);
-
-				//IP Interface
-				compareText_InViewPage(application, "IP Interface", IPINTERFACE+vlan_actualValue, xml);
-
-				//Signalling Zone
-				String SignallingZone=getwebelement("//div[div[label[contains(text(),'Signalling Zone')]]]/div[2]").getText();
-				compareText_InViewPage(application, "Signalling Zone", SignallingZone, xml);
-
-			}
-			else if(thirdpartyinternet.equalsIgnoreCase("No")) {
-
-				//VLAN Tag
-				compareText_InViewPage(application, "VLAN Tag", vlanTag, xml);
-
-				String vlan_actualValue=getwebelement("//div[div[label[contains(text(),'VLAN Tag')]]]/div[2]").getText();
-
-				//Address Content
-				compareText_InViewPage(application, "Address Context", AddressContext+vlan_actualValue, xml);
-
-				//IP Interface Group
-				compareText_InViewPage(application, "IP Interface Group", IPINTERFACEGROUP+vlan_actualValue, xml);
-
-				//IP Interface
-				compareText_InViewPage(application, "IP Interface", IPINTERFACE+vlan_actualValue, xml);
-			}
-		}
+//		//VLAN Tag 
+//		if(!gateway.contains("SBC")) {
+//
+//			if(thirdpartyinternet.equalsIgnoreCase("no")) {
+//
+//				//VLAN Tag
+//				//					  compareText_InViewPage(application, "VLAN Tag", vlanTag, xml);
+//				String vlan_actualValue=getwebelement("//div[div[label[contains(text(),'VLAN Tag')]]]/div[2]").getText();
+//				compareText_InViewPage(application, "VLAN Tag", vlan_actualValue, xml);
+//
+//				//Sub Interface Name
+//				String SubInterfaceName=subInterfacename_starting+subinterfaceSlot_viewPage+subInterfacename_middle+vlan_actualValue;
+//				compareText_InViewPage(application, "Sub Interface Name", SubInterfaceName, xml);
+//
+//				//NIF Group
+//				String NIFgroup=NIFgroupDEfaultValue_starting+subinterfaceSlot_viewPage+NIFgroupDEfaultValue_middle+vlan_actualValue+NIGgroupdefaultValue_last;
+//				System.out.println("NIF Group value is: "+NIFgroup);
+//				compareText_InViewPage(application, "NIF Group", NIFgroup, xml);
+//
+//				//Signalling Zone
+//				String SignallingZone=getwebelement("//div[div[label[contains(text(),'Signalling Zone')]]]/div[2]").getText();
+//				compareText_InViewPage(application, "Signalling Zone", SignallingZone, xml);
+//
+//			}
+//			else if(thirdpartyinternet.equalsIgnoreCase("Yes")) {
+//
+//				//VLAN Tag
+//				//					  compareText_InViewPage(application, "VLAN Tag", vlanTag, xml);
+//				String vlan_actualValue=getwebelement("//div[div[label[contains(text(),'VLAN Tag')]]]/div[2]").getText();
+//
+//				//Sub Interface Name
+//				String SubInterfaceName=subInterfacename_starting+subinterfaceSlot_viewPage+subInterfacename_middle+vlan_actualValue;
+//				compareText_InViewPage(application, "Sub Interface Name", SubInterfaceName, xml);
+//
+//				//NIF Group
+//				String NIFgroup=NIFgroupDEfaultValue_starting+subinterfaceSlot_viewPage+NIFgroupDEfaultValue_middle+vlan_actualValue+NIGgroupdefaultValue_last;
+//				System.out.println("NIF Group value is: "+NIFgroup);
+//				compareText_InViewPage(application, "NIF Group", NIFgroup, xml);
+//
+//				//Signalling Zone
+//				String SignallingZone=getwebelement("//div[div[label[contains(text(),'Signalling Zone')]]]/div[2]").getText();
+//				compareText_InViewPage(application, "Signalling Zone", SignallingZone, xml);
+//
+//			}
+//		}
+//		else if(gateway.contains("SBC")) {
+//			if(thirdpartyinternet.equalsIgnoreCase("Yes")) {
+//				String vlan_actualValue=getwebelement("//div[div[label[contains(text(),'VLAN Tag')]]]/div[2]").getText();
+//
+//				//Address Content
+//				compareText_InViewPage(application, "Address Context", AddressContext+vlan_actualValue, xml);
+//
+//				//IP Interface Group
+//				compareText_InViewPage(application, "IP Interface Group", IPINTERFACEGROUP+vlan_actualValue, xml);
+//
+//				//IP Interface
+//				compareText_InViewPage(application, "IP Interface", IPINTERFACE+vlan_actualValue, xml);
+//
+//				//Signalling Zone
+//				String SignallingZone=getwebelement("//div[div[label[contains(text(),'Signalling Zone')]]]/div[2]").getText();
+//				compareText_InViewPage(application, "Signalling Zone", SignallingZone, xml);
+//
+//			}
+//			else if(thirdpartyinternet.equalsIgnoreCase("No")) {
+//
+//				//VLAN Tag
+//				compareText_InViewPage(application, "VLAN Tag", vlanTag, xml);
+//
+//				String vlan_actualValue=getwebelement("//div[div[label[contains(text(),'VLAN Tag')]]]/div[2]").getText();
+//
+//				//Address Content
+//				compareText_InViewPage(application, "Address Context", AddressContext+vlan_actualValue, xml);
+//
+//				//IP Interface Group
+//				compareText_InViewPage(application, "IP Interface Group", IPINTERFACEGROUP+vlan_actualValue, xml);
+//
+//				//IP Interface
+//				compareText_InViewPage(application, "IP Interface", IPINTERFACE+vlan_actualValue, xml);
+//			}
+//		}
 
 		//Signalling Port
 
@@ -4298,7 +4298,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		//Call Admission Control
 		compareText_InViewPage(application, "Call Admission Control", callAdmissionControl, xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		if(callAdmissionControl.equalsIgnoreCase("yes")) {
 			//call limit
 			compareText_InViewPage(application, "Call Limit", callLimit , xml);

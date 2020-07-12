@@ -2,7 +2,20 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite thread-count="1" data-provider-thread-count="1"  name="APT_MCS Test Suite_nonVoice" parallel="classes" verbose="1">
 
-  	
+  	<test name="Domain Management">
+		<classes>	
+			<class name="com.saksoft.qa.apttestscripts.APT_DomainManagementTest">
+			<methods>
+				<include name="choosecustomer" />
+				<include name="verifycreateorder" />
+				<include name="verifyservicetypeselection" />
+				<include name="verifyservicecreation" />
+				</methods>
+		  </class>	
+		</classes>
+	</test> 
+	
+	<!-- 
 	 <test name="CREATE ACCESS CORE DEVICE">  
 		<classes>	
 			<class name="com.saksoft.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter">
@@ -41,7 +54,7 @@
 		  </class>	
 		</classes>
 	</test> 	
-	
+	-->
 	
 </suite>
 

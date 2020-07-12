@@ -61,32 +61,24 @@ public class APT_NGINHelper extends DriverHelper {
 
 
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		System.out.println("Mouse hovered on Manage Customer's Service");
 		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		compareText(application, "create customer page header", "createcustomer_header", "Create Customer", xml);
 		scrolltoend();
 		click_commonMethod(application, "Ok", "okbutton", xml);
 
+		scrollToTop();
 		//Warning msg check
 		warningMessage_commonMethod(application, "customernamewarngmsg", "Legal Customer Name", xml);
 		warningMessage_commonMethod(application, "countrywarngmsg", "Country", xml);
 		warningMessage_commonMethod(application, "ocnwarngmsg", "OCN", xml);
-		warningMessage_commonMethod(application, "typewarngmsg", "Type", xml);
-		warningMessage_commonMethod(application, "emailwarngmsg", "Email", xml);
-
-		//Clear customer info
-		addtextFields_commonMethod(application, "Customer Name", "nametextfield", name, xml);
-		addtextFields_commonMethod(application, "Main Domain", "maindomaintextfield", maindomain, xml);
-		Thread.sleep(1000);
-		scrolltoend();
-		click_commonMethod(application, "Clear", "clearbutton", xml);
-		DriverTestcase.logger.log(LogStatus.PASS, "All text field values are cleared");
-		Log.info("All text field values are cleared");
+//		warningMessage_commonMethod(application, "typewarngmsg", "Type", xml);
+//		warningMessage_commonMethod(application, "emailwarngmsg", "Email", xml);
 
 		//Create customer by providing all info
 		addtextFields_commonMethod(application, "Customer Name", "nametextfield", name, xml);
@@ -100,7 +92,7 @@ public class APT_NGINHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "Phone", "phonetextfield", phone, xml);
 		addtextFields_commonMethod(application, "Fax", "faxtextfield", fax, xml);
 		scrolltoend();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Ok", "okbutton", xml);
 		compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.", xml);
 		sa.assertAll();
@@ -111,8 +103,7 @@ public class APT_NGINHelper extends DriverHelper {
 			throws InterruptedException, DocumentException, IOException {
 
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-		Thread.sleep(3000);
-		System.out.println("Mouse hovered on Manage Customer's Service");
+		//Thread.sleep(3000);
 		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
@@ -141,9 +132,9 @@ public class APT_NGINHelper extends DriverHelper {
 			throws InterruptedException, IOException, DocumentException {
 
 		scrolltoend();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Next", "nextbutton", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 
 		//Warning messages verify
 		warningMessage_commonMethod(application, "order_contractnumber_warngmsg", "Order/Contract Number(Parent SID)", xml);
@@ -151,7 +142,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 		if (neworder.equalsIgnoreCase("YES")) {
 
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			click_commonMethod(application, "select order switch", "selectorderswitch", xml);
 			addtextFields_commonMethod(application, "Order/Contract Number", "newordertextfield", neworderno, xml);
 			addtextFields_commonMethod(application, "RFI Voice line Number", "newrfireqtextfield", newrfireqno, xml);
@@ -167,11 +158,10 @@ public class APT_NGINHelper extends DriverHelper {
 			addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber, xml);
 			Log.info("=== Order Contract Number selected===");
 
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
 
 			SelectOrderNumber = existingordernumber;
 		} else {
-			System.out.println("Order not selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step :Order not selected");
 			Log.info("Order not selected");
 		}
@@ -188,61 +178,53 @@ public class APT_NGINHelper extends DriverHelper {
 			availability=getwebelement(xml.getlocator("//locators/" + application + "/servicetypetextfield")).isDisplayed();
 			if(availability) {
 				DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown is displaying");
-				System.out.println("Service Type dropdown is displaying");
 				Log.info("Service Type dropdown is displaying");
 
 				if(servicetype.equalsIgnoreCase("null")) {
 
 					DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Service Type dropdown");
-					System.out.println("No values selected under Service Type dropdown");
 					Log.info("No values selected under Service Type dropdown");
 				}else {
 
 					Clickon(getwebelement("//div[label[text()='Service Type']]//div[text()='×']"));
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
 
 					//verify list of values inside dropdown
 					List<WebElement> listofvalues = getwebelements("//div[@class='sc-ifAKCX oLlzc']");
 
 					DriverTestcase.logger.log(LogStatus.PASS, "List of values inside Service Type dropdown is:  ");
-					System.out.println( "List of values inside Service Type dropdown is:  ");
 					Log.info("List of values inside Service Type dropdown is:  ");
 
 					for (WebElement valuetypes : listofvalues) {
 						Log.info("service sub types : " + valuetypes.getText());
 						DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-						System.out.println(" " + valuetypes.getText());
 					}
 
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 					SendKeys(getwebelement("//div[label[text()='Service Type']]//input"), servicetype);	
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 
 					//scrolltoend();
 					ScrolltoElement(application, "nextbutton", xml);
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 					Clickon(getwebelement("(//div[text()='"+ servicetype +"'])[1]"));
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
 
 					String actualValue=getwebelement("//label[text()='Service Type']/following-sibling::div//span").getText();
 					DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
-					System.out.println("Service Type dropdown value selected as: "+ actualValue);
 					Log.info("Service Type dropdown value selected as: "+ actualValue);
 
 				}
 			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
-				System.out.println("Service Type is not displaying");
 				Log.info("Service Type is not displaying");
 			}
 		}catch(NoSuchElementException e) {
 			DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
-			System.out.println("Service Type is not displaying");
 			Log.info("Service Type is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "Not able to perform selection under Service Type dropdown");
-			System.out.println("NO value selected under Service Type dropdown");
 			Log.info("NO value selected under Service Type dropdown");
 		}
 		// click on next button
@@ -255,147 +237,12 @@ public class APT_NGINHelper extends DriverHelper {
 	public void verifyservicecreation(String application, String sid, String Remarks, String customadm,
 			String sanadm, String reselladm, String orderno, String rfireqno, String servicetype) throws InterruptedException, IOException, DocumentException {
 
-		//Cancel service creation
-		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
-		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		Thread.sleep(2000);
-		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-		{
-			Log.info("Navigated to create order page");
-			System.out.println("Navigated to create order page");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to create order page");
-			Log.info("Navigated to create order page");
-		}
-
-		//Create service
-		ScrolltoElement(application, "createorderservice_header", xml);
-		addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", orderno, xml);
-		//		//Existing order no select
-		//				boolean availability=false;
-		//				try {  
-		//				  availability=getwebelement(xml.getlocator("//locators/" + application + "/existingorderdropdown")).isDisplayed();
-		//				  if(availability) {
-		//					  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown is displaying");
-		//					  System.out.println("Order/Contract Number(Parent SID) dropdown is displaying");
-		//					  
-		//					  if(orderno.equalsIgnoreCase("null")) {
-		//						  
-		//						  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Order/Contract Number(Parent SID) dropdown");
-		//						  System.out.println(" No values selected under Order/Contract Number(Parent SID) dropdown");
-		//					  }else {
-		//						  
-		//						  Clickon(getwebelement("//div[label[text()='Order/Contract Number(Parent SID)']]//div[text()='×']"));
-		//						  Thread.sleep(3000);
-		//						  
-		//						  //verify list of values inside dropdown
-		//						  List<WebElement> listofvalues = driver
-		//									.findElements(By.xpath("(//div[@role='list']//div)[3]"));
-		//						  
-		//						  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
-		//						  System.out.println( " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
-		//						  
-		//							for (WebElement valuetypes : listofvalues) {
-		//										Log.info("service sub types : " + valuetypes.getText());
-		//										DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-		//										System.out.println(" " + valuetypes.getText());
-		//							}
-		//							
-		//							Thread.sleep(2000);
-		//						SendKeys(getwebelement("//div[label[text()='Order/Contract Number(Parent SID)']]//input"), orderno);	
-		//						Thread.sleep(2000);
-		//							
-		//						  Clickon(getwebelement("(//div[contains(text(),'"+ orderno +"')])[2]"));
-		//						  Thread.sleep(3000);
-		//						  
-		//						  String actualValue=getwebelement("//label[text()='Order/Contract Number(Parent SID)']/following-sibling::div//div/span").getText();
-		//						  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue );
-		//						  System.out.println("Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue);
-		//						  
-		//					  }
-		//				  }else {
-		//					  DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
-		//					  System.out.println("Order/Contract Number(Parent SID) is not displaying");
-		//				  }
-		//				}catch(NoSuchElementException e) {
-		//					DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
-		//					  System.out.println("Order/Contract Number(Parent SID) is not displaying");
-		//				}catch(Exception ee) {
-		//					ee.printStackTrace();
-		//					DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Order/Contract Number(Parent SID) dropdown");
-		//					System.out.println(" NO value selected under Order/Contract Number(Parent SID) dropdown");
-		//				}
-
-		//addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
-		boolean availability1=false;
-		try {  
-			availability1=getwebelement(xml.getlocator("//locators/" + application + "/servicetypetextfield")).isDisplayed();
-			if(availability1) {
-				DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown is displaying");
-				System.out.println("Service Type dropdown is displaying");
-				Log.info("Service Type dropdown is displaying");
-
-				if(servicetype.equalsIgnoreCase("null")) {
-
-					DriverTestcase.logger.log(LogStatus.PASS, "No values selected under Service Type dropdown");
-					System.out.println("No values selected under Service Type dropdown");
-					Log.info("No values selected under Service Type dropdown");
-				}else {
-
-					Clickon(getwebelement("//div[label[text()='Service Type']]//div[text()='×']"));
-					Thread.sleep(3000);
-
-					//verify list of values inside dropdown
-					List<WebElement> listofvalues = driver
-							.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
-
-					DriverTestcase.logger.log(LogStatus.PASS, "List of values inside Service Type dropdown is:  ");
-					System.out.println("List of values inside Service Type dropdown is:  ");
-					Log.info("List of values inside Service Type dropdown is:  ");
-
-					for (WebElement valuetypes : listofvalues) {
-						Log.info("service sub types : " + valuetypes.getText());
-						DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-						System.out.println(" " + valuetypes.getText());
-					}
-
-					Thread.sleep(2000);
-					SendKeys(getwebelement("//div[label[text()='Service Type']]//input"), servicetype);	
-					Thread.sleep(2000);
-
-					//scrolltoend();
-					ScrolltoElement(application, "nextbutton", xml);
-					Thread.sleep(2000);
-					Clickon(getwebelement("(//div[text()='"+ servicetype +"'])[1]"));
-					Thread.sleep(3000);
-
-					String actualValue=getwebelement("//label[text()='Service Type']/following-sibling::div//span").getText();
-					DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
-					System.out.println("Service Type dropdown value selected as: "+ actualValue);
-					Log.info("Service Type dropdown value selected as: "+ actualValue);
-				}
-			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
-				System.out.println("Service Type is not displaying");
-				Log.info("Service Type is not displaying");
-			}
-		}catch(NoSuchElementException e) {
-			DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
-			System.out.println("Service Type is not displaying");
-			Log.info("Service Type is not displaying");
-		}catch(Exception ee) {
-			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "NOt able to perform selection under Service Type dropdown");
-			System.out.println("NO value selected under Service Type dropdown");
-			Log.info("NO value selected under Service Type dropdown");
-		}
-
-		// click on next button
-		click_commonMethod(application, "Next", "nextbutton", xml);
+		
 		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
 
 		// verify warning messages
 		click_commonMethod(application, "Next", "nextbutton", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		warningMessage_commonMethod(application, "sidwarngmsg", "Service Identification", xml);
 		// service identification
 		addtextFields_commonMethod(application, "Service Identification", "serviceidentificationtextfield", sid, xml);
@@ -405,13 +252,11 @@ public class APT_NGINHelper extends DriverHelper {
 		if (customadm.equalsIgnoreCase("YES")) {
 			click_commonMethod(application, "customer administration checkbox", "customeradministrationcheckbox", xml);
 		} else {
-			System.out.println("customer administration checkbox is not selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : customer administration checkbox is not selected");
 			Log.info("customer administration checkbox is not selected");
 		}
 
 		if (customadm.equalsIgnoreCase("NO")) {
-			System.out.println("customer administration checkbox is already selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : customer administration checkbox is already selected");
 			Log.info("customer administration checkbox is already selected");
 		} else {
@@ -422,13 +267,11 @@ public class APT_NGINHelper extends DriverHelper {
 		if (sanadm.equalsIgnoreCase("YES")) {
 			click_commonMethod(application, "SAN administration checkbox", "sanadministrationcheckbox", xml);
 		} else {
-			System.out.println("SAN administration checkbox is not selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : SAN administration checkbox is not selected");
 			Log.info("SAN administration checkbox is not selected");
 		}
 
 		if (sanadm.equalsIgnoreCase("NO")) {
-			System.out.println("SAN administration checkbox is already selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : SAN administration checkbox is already selected");
 			Log.info("SAN administration checkbox is already selected");
 		} else {
@@ -439,13 +282,11 @@ public class APT_NGINHelper extends DriverHelper {
 		if (reselladm.equalsIgnoreCase("YES")) {
 			click_commonMethod(application, "Reseller Administration checkbox", "reselleradministrationcheckbox", xml);
 		} else {
-			System.out.println("Reseller Administration checkbox is not selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : Reseller Administration checkbox is not selected");
 			Log.info("Reseller Administration checkbox is not selected");
 		}
 
 		if (reselladm.equalsIgnoreCase("NO")) {
-			System.out.println("Reseller Administration checkbox is already selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : Reseller Administration checkbox is already selected");
 			Log.info("Reseller Administration checkbox is already selected");
 		} else {
@@ -530,32 +371,23 @@ public class APT_NGINHelper extends DriverHelper {
 
 		if(UserGrid.contains("height: 1px"))
 		{
-			//Cancel User
-			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-			click_commonMethod(application, "Add", "AddLink", xml);
-			compareText(application, "Create User Header", "CreateUserHeader", "Create User", xml);
-			scrolltoend();
-			click_commonMethod(application, "Cancel", "cancelbutton", xml);
-			compareText(application, "User panel Header", "userspanel_header", "Users", xml);
-
 			//Create User
-			ScrolltoElement(application, "customerdetailsheader", xml);
 			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
 			click_commonMethod(application, "Add", "AddLink", xml);
 			compareText(application, "Create User Header", "CreateUserHeader", "Create User", xml);
 
 			//Warning messages verify
 			scrolltoend();
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "OK", "OK_button", xml);
 			scrollToTop();
 			warningMessage_commonMethod(application, "warningmsg_username", "User Name", xml);
 			warningMessage_commonMethod(application, "warningmsg_firstname", "First Name", xml);
 			warningMessage_commonMethod(application, "warningmsg_surname", "Surname", xml);
-			warningMessage_commonMethod(application, "warningmsg_postaladdress", "Postal Address", xml);
-			warningMessage_commonMethod(application, "warningmsg_useremail", "Email", xml);
-			warningMessage_commonMethod(application, "warningmsg_userphone", "Phone", xml);
-			warningMessage_commonMethod(application, "warningmsg_userpassword", "Password", xml);
+//			warningMessage_commonMethod(application, "warningmsg_postaladdress", "Postal Address", xml);
+//			warningMessage_commonMethod(application, "warningmsg_useremail", "Email", xml);
+//			warningMessage_commonMethod(application, "warningmsg_userphone", "Phone", xml);
+//			warningMessage_commonMethod(application, "warningmsg_userpassword", "Password", xml);
 
 			addtextFields_commonMethod(application, "User Name", "UserName", Username, xml);
 			addtextFields_commonMethod(application, "First Name", "FirstName", Firstname, xml);
@@ -574,7 +406,7 @@ public class APT_NGINHelper extends DriverHelper {
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying after clicked on 'Generate password link");
 
 				SendKeys(getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")), GeneratePassword);	
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : Password entered manually not automatically generated :  "+GeneratePassword);
 				Log.info("===Password entered manually not automatically generated ===");
 
@@ -584,7 +416,7 @@ public class APT_NGINHelper extends DriverHelper {
 			}
 
 			ScrolltoElement(application, "Email", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 
 			//Role	
 			selectAndAddValueFromLeftDropdown(application, "Role", "roleDropdown_available" , rolestobeSelectedList, "roleDropdown_addButton");
@@ -601,7 +433,7 @@ public class APT_NGINHelper extends DriverHelper {
 			verifySelectedValuesInsideRightDropdown(application, "Hide Site Order" , "HideSiteOrderDropdown_selectedValues");
 
 			scrolltoend();
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 
 			//Hide Router Tool IPv4 Commands(Cisco)
 			selectAndAddValueFromLeftDropdown(application, "Hide Router Tool IPv4 Commands(Cisco)", "hideRouterToolIPv4_Cisco_Available", routerToolIPv4CiscoTobeSelectedList, "hideRouterToolIPv4_Cisco_addButton");
@@ -618,430 +450,430 @@ public class APT_NGINHelper extends DriverHelper {
 			//			verifySelectedValuesInsideRightDropdown(application, "Hide Router Tool IPv6 Commands(Cisco)" , xpath);
 
 			scrolltoend();
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "OK", "OK_button", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			compareText(application, "Create User success message", "successmsg", "User successfully created", xml);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : User added successfully");
 			Log.info("User added successfully");
 
-			//Edit User
-			ScrolltoElement(application, "customerdetailsheader", xml);
-			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
-			int NoOfUsers = ExistingUsers.size();
-			System.out.println("Total users:"+ NoOfUsers);
-
-			if(NoOfUsers==1 || NoOfUsers>1)
-			{
-				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-				AddedUser.click();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
-				Log.info("clicked on Existing user radio button");
-
-				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-				click_commonMethod(application, "Edit", "edit", xml);
-				Thread.sleep(2000);
-				compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
-				scrollToTop();
-				edittextFields_commonMethod(application, "User Name", "UserName" , EditUsername, xml);
-				edittextFields_commonMethod(application, "First Name", "FirstName" , EditFirstname, xml);
-				edittextFields_commonMethod(application, "Sur Name", "SurName" , EditSurname, xml);
-				edittextFields_commonMethod(application, "Postal Address", "PostalAddress" , EditPostaladdress, xml);
-				edittextFields_commonMethod(application, "Email", "Email" , EditEmail, xml);
-				edittextFields_commonMethod(application, "Phone", "Phone" , EditPhone, xml);
-				edittextFields_commonMethod(application, "IPGuardian Account Group" , "IPGuardianAccountGroup" , IPGuardianAccountGroup, xml);
-				edittextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
-
-				String editpassword=getwebelement(xml.getlocator("//locators/"+application+"/Password")).getAttribute("value");
-				System.out.println("Generated Password is : "+editpassword);
-
-				if(editpassword.isEmpty()) {
-
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying under'Generate password link");
-
-					click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
-
-				}else {
-					Log.info("Automatically generated Password value is : "+ editpassword);
-					DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+editpassword);
-				}
-
-				ScrolltoElement(application, "Email", xml);
-
-				//Role	
-				selectAndRemoveValueFromRightDropdown(application, "Roles_Hidden", "roleDropdown_selectedValues", rolestobeAvailableList, "roleDropdown_removeButton");
-				selectAndAddValueFromLeftDropdown(application, "Role_Available", "roleDropdown_available" , rolestobeHiddenList, "roleDropdown_addButton");
-				verifySelectedValuesInsideRightDropdown(application, "Role_Hidden", "roleDropdown_selectedValues");
-
-				//Hide Service
-				selectAndRemoveValueFromRightDropdown(application, "Service_Hidden" , "HideServicesDropdown_selectedValues" , ServicesTobeAvailablelist, "HideService_removeButton");
-				selectAndAddValueFromLeftDropdown(application, "Service_Available", "HideService_Available", ServicesTobeHiddenlist, "HideService_addButton");
-				verifySelectedValuesInsideRightDropdown(application, "Hidden Services", "HideServicesDropdown_selectedValues");
-
-				//Hide Site Order
-				selectAndRemoveValueFromRightDropdown(application, "SiteOrder_Hidden" , "HideSiteOrderDropdown_selectedValues", siteOrdersToBeAvailableList, "hideSiteOrder_removeButton");
-				selectAndAddValueFromLeftDropdown(application, "SiteOrder_Available", "HideSiteOrder_Available" , siteOrdersToBeHiddenList , "hideSiteOrder_addbutton");
-				verifySelectedValuesInsideRightDropdown(application, "Hiden Site Orders" , "HideSiteOrderDropdown_selectedValues");
-
-				scrolltoend();
-				Thread.sleep(1000);
-
-				//Hide Router Tool IPv4 Commands(Cisco)
-				selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Cisco)_Available", "hideRouterToolIpv4_Cisco_selectedvalues", routerToolIPv4CiscoTobeAvailableList, "hideRouterToolIPv4_Cisco_removeButton");
-				selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Cisco)_Hidden", "hideRouterToolIPv4_Cisco_Available", routerToolIPv4CiscoTobeHiddenList, "hideRouterToolIPv4_Cisco_addButton");
-				verifySelectedValuesInsideRightDropdown(application, "Hiden Router Tool IPv4 Commands(Cisco)", "hideRouterToolIpv4_Cisco_selectedvalues");
-
-				//Hide Router Tool IPv4 Commands(Huawei)
-				selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Huawei)_Hidden", "hideRouterToolIpv4_Huawei_selectedvalues", routerToolIPv4HuaweiTobeAvailableList, "hideRouterToolIPv4_Huawei_removeButton");
-				selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Huawei)_Available" , "hideRouterToolIPv4_Huawei_available" , routerToolIPv4HuaweiTobeHiddenList, "hideRouterToolIPv4__Huawei_addButton");
-				verifySelectedValuesInsideRightDropdown(application, "Hideen Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
-
-				scrolltoend();
-				Thread.sleep(1000);
-				click_commonMethod(application, "OK", "OK_button", xml);
-				Thread.sleep(2000);
-				compareText(application, "User update success message", "successmsg", "User successfully updated", xml);
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-				Log.info("No users displayed");
-			}
-
-
-			//View User
-			ScrolltoElement(application, "customerdetailsheader", xml);
-			List<WebElement> ExistingUsers1= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
-			int NoOfUsers1 = ExistingUsers1.size();
-			System.out.println("Total users:"+ NoOfUsers1);
-			if(NoOfUsers1==1 || NoOfUsers1>1)
-			{
-				if(!EditUsername.equalsIgnoreCase("null"))
-				{
-					WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-					EditedUserName.click();
-				}
-				else
-				{
-					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-					AddedUser.click();
-				}
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
-				Log.info("clicked on Existing user radio button");
-
-				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-				click_commonMethod(application, "view", "view", xml);
-				scrollToTop();
-				compareText(application, "User Name", "usernamevalue", EditUsername, xml);
-				compareText(application, "First Name", "firstnamevalue", EditFirstname, xml);
-				compareText(application, "SurName", "surnamevalue", EditSurname, xml);
-				compareText(application, "Postal Address", "postaladdressvalue", EditPostaladdress, xml);
-				compareText(application, "Email", "emailvalue", EditEmail, xml);
-				compareText(application, "Phone", "phonevalue", EditPhone, xml);
-
-				//IP Guardian Accouunt Group
-				GetText(application, "IPGuardian Account Group", "IPGuardianAccountGroup_viewpage");
-
-				//Colt Online User
-				GetText(application, "Colt Online User", "coltonlineuser_viewpage");
-
-				ScrolltoElement(application, "usernamevalue", xml);
-				Thread.sleep(1000);
-
-				//Roles
-				//compareTextForViewUserPage(application, labelname, ExpectedText, xml);
-
-
-				//Hidden Router Tools IPv4 (Cisco)
-				List<WebElement> HRcisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolIPv4Cisco"));	
-
-				for(WebElement listofHiddenCiscoValues : HRcisco) {
-					System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
-					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
-				}
-
-				scrolltoend();
-				Thread.sleep(2000);
-
-				//Hidden Router Tool IPv4 (Huawei)
-				List<WebElement> Ipv4CommandHuawei = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv4Huawei"));	
-
-				for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
-					System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
-					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
-				}	
-
-
-				//Hidden Router Tools IPv6 (Cisco)
-				List<WebElement> HiddenIPv6cisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv6Cisco"));	
-
-				for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
-					System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
-					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
-				}			
-
-				scrolltoend();
-				Thread.sleep(2000);
-				click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-				Log.info("------ View User successful ------");
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-				Log.info("No users displayed");
-			}
-
-
-			//Delete User
-			ScrolltoElement(application, "customerdetailsheader", xml);
-			List<WebElement> ExistingUsers2= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
-			int NoOfUsers2 = ExistingUsers2.size();
-			System.out.println("Total users:"+ NoOfUsers2);
-			if(NoOfUsers2==1 || NoOfUsers2>1)
-			{
-				if(!EditUsername.equalsIgnoreCase("null"))
-				{
-					WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-					EditedUserName.click();
-				}
-				else
-				{
-					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-					AddedUser.click();
-				}
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
-				Log.info("clicked on Existing user radio button");
-
-				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-				click_commonMethod(application, "Delete", "delete", xml);
-				Thread.sleep(2000);
-				WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-				if(DeleteAlertPopup.isDisplayed())
-				{
-					click_commonMethod(application, "Delete", "userdelete", xml);
-					compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
-				}
-				else
-				{
-					Log.info("Delete alert popup is not displayed");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-				}
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-				Log.info("No users displayed");
-			}
-		}
-		else if(!UserGrid.contains("1px"))
-		{
-			//Edit User
-			ScrolltoElement(application, "customerdetailsheader", xml);
-			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
-			int NoOfUsers = ExistingUsers.size();
-			System.out.println("Total users:"+ NoOfUsers);
-
-			if(NoOfUsers==1 || NoOfUsers>1)
-			{
-				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-				AddedUser.click();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
-				Log.info("clicked on Existing user radio button");
-
-				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-				click_commonMethod(application, "Edit", "edit", xml);
-				Thread.sleep(2000);
-				compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
-				scrollToTop();
-				edittextFields_commonMethod(application, "User Name", "UserName" , EditUsername, xml);
-				edittextFields_commonMethod(application, "First Name", "FirstName" , EditFirstname, xml);
-				edittextFields_commonMethod(application, "Sur Name", "SurName" , EditSurname, xml);
-				edittextFields_commonMethod(application, "Postal Address", "PostalAddress" , EditPostaladdress, xml);
-				edittextFields_commonMethod(application, "Email", "Email" , EditEmail, xml);
-				edittextFields_commonMethod(application, "Phone", "Phone" , EditPhone, xml);
-				edittextFields_commonMethod(application, "IPGuardian Account Group" , "IPGuardianAccountGroup" , IPGuardianAccountGroup, xml);
-				edittextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
-
-				String editpassword=getwebelement(xml.getlocator("//locators/"+application+"/Password")).getAttribute("value");
-				System.out.println("Generated Password is : "+editpassword);
-
-				if(editpassword.isEmpty()) {
-
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying under'Generate password link");
-
-					click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
-
-				}else {
-					Log.info("Automatically generated Password value is : "+ editpassword);
-					DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+editpassword);
-				}
-
-				ScrolltoElement(application, "Email", xml);
-
-				//Role	
-				selectAndRemoveValueFromRightDropdown(application, "Roles_Hidden", "roleDropdown_selectedValues", rolestobeAvailableList, "roleDropdown_removeButton");
-				selectAndAddValueFromLeftDropdown(application, "Role_Available", "roleDropdown_available" , rolestobeHiddenList, "roleDropdown_addButton");
-				verifySelectedValuesInsideRightDropdown(application, "Role_Hidden", "roleDropdown_selectedValues");
-
-				//Hide Service
-				selectAndRemoveValueFromRightDropdown(application, "Service_Hidden" , "HideServicesDropdown_selectedValues" , ServicesTobeAvailablelist, "HideService_removeButton");
-				selectAndAddValueFromLeftDropdown(application, "Service_Available", "HideService_Available", ServicesTobeHiddenlist, "HideService_addButton");
-				verifySelectedValuesInsideRightDropdown(application, "Hidden Services", "HideServicesDropdown_selectedValues");
-
-				//Hide Site Order
-				selectAndRemoveValueFromRightDropdown(application, "SiteOrder_Hidden" , "HideSiteOrderDropdown_selectedValues", siteOrdersToBeAvailableList, "hideSiteOrder_removeButton");
-				selectAndAddValueFromLeftDropdown(application, "SiteOrder_Available", "HideSiteOrder_Available" , siteOrdersToBeHiddenList , "hideSiteOrder_addbutton");
-				verifySelectedValuesInsideRightDropdown(application, "Hiden Site Orders" , "HideSiteOrderDropdown_selectedValues");
-
-				scrolltoend();
-				Thread.sleep(1000);
-
-				//Hide Router Tool IPv4 Commands(Cisco)
-				selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Cisco)_Available", "hideRouterToolIpv4_Cisco_selectedvalues", routerToolIPv4CiscoTobeAvailableList, "hideRouterToolIPv4_Cisco_removeButton");
-				selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Cisco)_Hidden", "hideRouterToolIPv4_Cisco_Available", routerToolIPv4CiscoTobeHiddenList, "hideRouterToolIPv4_Cisco_addButton");
-				verifySelectedValuesInsideRightDropdown(application, "Hiden Router Tool IPv4 Commands(Cisco)", "hideRouterToolIpv4_Cisco_selectedvalues");
-
-				//Hide Router Tool IPv4 Commands(Huawei)
-				selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Huawei)_Hidden", "hideRouterToolIpv4_Huawei_selectedvalues", routerToolIPv4HuaweiTobeAvailableList, "hideRouterToolIPv4_Huawei_removeButton");
-				selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Huawei)_Available" , "hideRouterToolIPv4_Huawei_available" , routerToolIPv4HuaweiTobeHiddenList, "hideRouterToolIPv4__Huawei_addButton");
-				verifySelectedValuesInsideRightDropdown(application, "Hideen Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
-
-				scrolltoend();
-				Thread.sleep(1000);
-				click_commonMethod(application, "OK", "OK_button", xml);
-				Thread.sleep(2000);
-				compareText(application, "User update success message", "successmsg", "User successfully updated", xml);
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-				Log.info("No users displayed");
-			}
-
-
-			//View User
-			ScrolltoElement(application, "customerdetailsheader", xml);
-			List<WebElement> ExistingUsers1= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
-			int NoOfUsers1 = ExistingUsers1.size();
-			System.out.println("Total users:"+ NoOfUsers1);
-			if(NoOfUsers1==1 || NoOfUsers1>1)
-			{
-				if(!EditUsername.equalsIgnoreCase("null"))
-				{
-					WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-					EditedUserName.click();
-				}
-				else
-				{
-					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-					AddedUser.click();
-				}
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
-				Log.info("clicked on Existing user radio button");
-
-				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-				click_commonMethod(application, "view", "view", xml);
-				scrollToTop();
-				compareText(application, "User Name", "usernamevalue", EditUsername, xml);
-				compareText(application, "First Name", "firstnamevalue", EditFirstname, xml);
-				compareText(application, "SurName", "surnamevalue", EditSurname, xml);
-				compareText(application, "Postal Address", "postaladdressvalue", EditPostaladdress, xml);
-				compareText(application, "Email", "emailvalue", EditEmail, xml);
-				compareText(application, "Phone", "phonevalue", EditPhone, xml);
-
-				//IP Guardian Accouunt Group
-				GetText(application, "IPGuardian Account Group", "IPGuardianAccountGroup_viewpage");
-
-				//Colt Online User
-				GetText(application, "Colt Online User", "coltonlineuser_viewpage");
-
-				ScrolltoElement(application, "phonevalue", xml);
-				Thread.sleep(1000);
-
-				//Roles
-				//compareTextForViewUserPage(application, labelname, ExpectedText, xml);
-
-
-				//Hidden Router Tools IPv4 (Cisco)
-				List<WebElement> HRcisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolIPv4Cisco"));	
-
-				for(WebElement listofHiddenCiscoValues : HRcisco) {
-					System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
-					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
-				}
-
-				scrolltoend();
-				Thread.sleep(2000);
-
-				//Hidden Router Tool IPv4 (Huawei)
-				List<WebElement> Ipv4CommandHuawei = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv4Huawei"));	
-
-				for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
-					System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
-					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
-				}	
-
-				//Hidden Router Tools IPv6 (Cisco)
-				List<WebElement> HiddenIPv6cisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv6Cisco"));	
-
-				for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
-					System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
-					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
-				}			
-
-				scrolltoend();
-				Thread.sleep(2000);
-
-				click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-				Log.info("------ View User successful ------");
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-				Log.info("No users displayed");
-			}
-
-
-			//Delete User
-			ScrolltoElement(application, "customerdetailsheader", xml);
-			List<WebElement> ExistingUsers2= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
-			int NoOfUsers2 = ExistingUsers2.size();
-			System.out.println("Total users:"+ NoOfUsers2);
-			if(NoOfUsers2==1 || NoOfUsers2>1)
-			{
-				if(!EditUsername.equalsIgnoreCase("null"))
-				{
-					WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-					EditedUserName.click();
-				}
-				else
-				{
-					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-					AddedUser.click();
-				}
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
-				Log.info("clicked on Existing user radio button");
-
-				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
-				click_commonMethod(application, "Delete", "delete", xml);
-				Thread.sleep(2000);
-				WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-				if(DeleteAlertPopup.isDisplayed())
-				{
-					click_commonMethod(application, "Delete", "userdelete", xml);
-					compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
-				}
-				else
-				{
-					Log.info("Delete alert popup is not displayed");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-				}
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
-				Log.info("No users displayed");
-			}
+//			//Edit User
+//			ScrolltoElement(application, "customerdetailsheader", xml);
+//			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+//			int NoOfUsers = ExistingUsers.size();
+//			System.out.println("Total users:"+ NoOfUsers);
+//
+//			if(NoOfUsers==1 || NoOfUsers>1)
+//			{
+//				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+//				AddedUser.click();
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+//				Log.info("clicked on Existing user radio button");
+//
+//				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+//				click_commonMethod(application, "Edit", "edit", xml);
+//				//Thread.sleep(2000);
+//				compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
+//				scrollToTop();
+//				edittextFields_commonMethod(application, "User Name", "UserName" , EditUsername, xml);
+//				edittextFields_commonMethod(application, "First Name", "FirstName" , EditFirstname, xml);
+//				edittextFields_commonMethod(application, "Sur Name", "SurName" , EditSurname, xml);
+//				edittextFields_commonMethod(application, "Postal Address", "PostalAddress" , EditPostaladdress, xml);
+//				edittextFields_commonMethod(application, "Email", "Email" , EditEmail, xml);
+//				edittextFields_commonMethod(application, "Phone", "Phone" , EditPhone, xml);
+//				edittextFields_commonMethod(application, "IPGuardian Account Group" , "IPGuardianAccountGroup" , IPGuardianAccountGroup, xml);
+//				edittextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
+//
+//				String editpassword=getwebelement(xml.getlocator("//locators/"+application+"/Password")).getAttribute("value");
+//				System.out.println("Generated Password is : "+editpassword);
+//
+//				if(editpassword.isEmpty()) {
+//
+//					DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying under'Generate password link");
+//
+//					click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
+//
+//				}else {
+//					Log.info("Automatically generated Password value is : "+ editpassword);
+//					DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+editpassword);
+//				}
+//
+//				ScrolltoElement(application, "Email", xml);
+//
+//				//Role	
+//				selectAndRemoveValueFromRightDropdown(application, "Roles_Hidden", "roleDropdown_selectedValues", rolestobeAvailableList, "roleDropdown_removeButton");
+//				selectAndAddValueFromLeftDropdown(application, "Role_Available", "roleDropdown_available" , rolestobeHiddenList, "roleDropdown_addButton");
+//				verifySelectedValuesInsideRightDropdown(application, "Role_Hidden", "roleDropdown_selectedValues");
+//
+//				//Hide Service
+//				selectAndRemoveValueFromRightDropdown(application, "Service_Hidden" , "HideServicesDropdown_selectedValues" , ServicesTobeAvailablelist, "HideService_removeButton");
+//				selectAndAddValueFromLeftDropdown(application, "Service_Available", "HideService_Available", ServicesTobeHiddenlist, "HideService_addButton");
+//				verifySelectedValuesInsideRightDropdown(application, "Hidden Services", "HideServicesDropdown_selectedValues");
+//
+//				//Hide Site Order
+//				selectAndRemoveValueFromRightDropdown(application, "SiteOrder_Hidden" , "HideSiteOrderDropdown_selectedValues", siteOrdersToBeAvailableList, "hideSiteOrder_removeButton");
+//				selectAndAddValueFromLeftDropdown(application, "SiteOrder_Available", "HideSiteOrder_Available" , siteOrdersToBeHiddenList , "hideSiteOrder_addbutton");
+//				verifySelectedValuesInsideRightDropdown(application, "Hiden Site Orders" , "HideSiteOrderDropdown_selectedValues");
+//
+//				scrolltoend();
+//				//Thread.sleep(1000);
+//
+//				//Hide Router Tool IPv4 Commands(Cisco)
+//				selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Cisco)_Available", "hideRouterToolIpv4_Cisco_selectedvalues", routerToolIPv4CiscoTobeAvailableList, "hideRouterToolIPv4_Cisco_removeButton");
+//				selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Cisco)_Hidden", "hideRouterToolIPv4_Cisco_Available", routerToolIPv4CiscoTobeHiddenList, "hideRouterToolIPv4_Cisco_addButton");
+//				verifySelectedValuesInsideRightDropdown(application, "Hiden Router Tool IPv4 Commands(Cisco)", "hideRouterToolIpv4_Cisco_selectedvalues");
+//
+//				//Hide Router Tool IPv4 Commands(Huawei)
+//				selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Huawei)_Hidden", "hideRouterToolIpv4_Huawei_selectedvalues", routerToolIPv4HuaweiTobeAvailableList, "hideRouterToolIPv4_Huawei_removeButton");
+//				selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Huawei)_Available" , "hideRouterToolIPv4_Huawei_available" , routerToolIPv4HuaweiTobeHiddenList, "hideRouterToolIPv4__Huawei_addButton");
+//				verifySelectedValuesInsideRightDropdown(application, "Hideen Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
+//
+//				scrolltoend();
+//				//Thread.sleep(1000);
+//				click_commonMethod(application, "OK", "OK_button", xml);
+//				//Thread.sleep(2000);
+//				compareText(application, "User update success message", "successmsg", "User successfully updated", xml);
+//			}
+//			else
+//			{
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+//				Log.info("No users displayed");
+//			}
+//
+//
+//			//View User
+//			ScrolltoElement(application, "customerdetailsheader", xml);
+//			List<WebElement> ExistingUsers1= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+//			int NoOfUsers1 = ExistingUsers1.size();
+//			System.out.println("Total users:"+ NoOfUsers1);
+//			if(NoOfUsers1==1 || NoOfUsers1>1)
+//			{
+//				if(!EditUsername.equalsIgnoreCase("null"))
+//				{
+//					WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+//					EditedUserName.click();
+//				}
+//				else
+//				{
+//					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+//					AddedUser.click();
+//				}
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+//				Log.info("clicked on Existing user radio button");
+//
+//				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+//				click_commonMethod(application, "view", "view", xml);
+//				scrollToTop();
+//				compareText(application, "User Name", "usernamevalue", EditUsername, xml);
+//				compareText(application, "First Name", "firstnamevalue", EditFirstname, xml);
+//				compareText(application, "SurName", "surnamevalue", EditSurname, xml);
+//				compareText(application, "Postal Address", "postaladdressvalue", EditPostaladdress, xml);
+//				compareText(application, "Email", "emailvalue", EditEmail, xml);
+//				compareText(application, "Phone", "phonevalue", EditPhone, xml);
+//
+//				//IP Guardian Accouunt Group
+//				GetText(application, "IPGuardian Account Group", "IPGuardianAccountGroup_viewpage");
+//
+//				//Colt Online User
+//				GetText(application, "Colt Online User", "coltonlineuser_viewpage");
+//
+//				ScrolltoElement(application, "usernamevalue", xml);
+//				//Thread.sleep(1000);
+//
+//				//Roles
+//				//compareTextForViewUserPage(application, labelname, ExpectedText, xml);
+//
+//
+//				//Hidden Router Tools IPv4 (Cisco)
+//				List<WebElement> HRcisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolIPv4Cisco"));	
+//
+//				for(WebElement listofHiddenCiscoValues : HRcisco) {
+//					System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
+//					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
+//				}
+//
+//				scrolltoend();
+//				//Thread.sleep(2000);
+//
+//				//Hidden Router Tool IPv4 (Huawei)
+//				List<WebElement> Ipv4CommandHuawei = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv4Huawei"));	
+//
+//				for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
+//					System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
+//					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
+//				}	
+//
+//
+//				//Hidden Router Tools IPv6 (Cisco)
+//				List<WebElement> HiddenIPv6cisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv6Cisco"));	
+//
+//				for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
+//					System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
+//					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
+//				}			
+//
+//				scrolltoend();
+//				//Thread.sleep(2000);
+//				click_commonMethod(application, "Back", "viewpage_backbutton", xml);
+//				Log.info("------ View User successful ------");
+//			}
+//			else
+//			{
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+//				Log.info("No users displayed");
+//			}
+//
+//
+//			//Delete User
+//			ScrolltoElement(application, "customerdetailsheader", xml);
+//			List<WebElement> ExistingUsers2= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+//			int NoOfUsers2 = ExistingUsers2.size();
+//			System.out.println("Total users:"+ NoOfUsers2);
+//			if(NoOfUsers2==1 || NoOfUsers2>1)
+//			{
+//				if(!EditUsername.equalsIgnoreCase("null"))
+//				{
+//					WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+//					EditedUserName.click();
+//				}
+//				else
+//				{
+//					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+//					AddedUser.click();
+//				}
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+//				Log.info("clicked on Existing user radio button");
+//
+//				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+//				click_commonMethod(application, "Delete", "delete", xml);
+//				//Thread.sleep(2000);
+//				WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
+//				if(DeleteAlertPopup.isDisplayed())
+//				{
+//					click_commonMethod(application, "Delete", "userdelete", xml);
+//					compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
+//				}
+//				else
+//				{
+//					Log.info("Delete alert popup is not displayed");
+//					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+//				}
+//			}
+//			else
+//			{
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+//				Log.info("No users displayed");
+//			}
+//		}
+//		else if(!UserGrid.contains("1px"))
+//		{
+//			//Edit User
+//			ScrolltoElement(application, "customerdetailsheader", xml);
+//			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+//			int NoOfUsers = ExistingUsers.size();
+//			System.out.println("Total users:"+ NoOfUsers);
+//
+//			if(NoOfUsers==1 || NoOfUsers>1)
+//			{
+//				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+//				AddedUser.click();
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+//				Log.info("clicked on Existing user radio button");
+//
+//				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+//				click_commonMethod(application, "Edit", "edit", xml);
+//				//Thread.sleep(2000);
+//				compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
+//				scrollToTop();
+//				edittextFields_commonMethod(application, "User Name", "UserName" , EditUsername, xml);
+//				edittextFields_commonMethod(application, "First Name", "FirstName" , EditFirstname, xml);
+//				edittextFields_commonMethod(application, "Sur Name", "SurName" , EditSurname, xml);
+//				edittextFields_commonMethod(application, "Postal Address", "PostalAddress" , EditPostaladdress, xml);
+//				edittextFields_commonMethod(application, "Email", "Email" , EditEmail, xml);
+//				edittextFields_commonMethod(application, "Phone", "Phone" , EditPhone, xml);
+//				edittextFields_commonMethod(application, "IPGuardian Account Group" , "IPGuardianAccountGroup" , IPGuardianAccountGroup, xml);
+//				edittextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
+//
+//				String editpassword=getwebelement(xml.getlocator("//locators/"+application+"/Password")).getAttribute("value");
+//				System.out.println("Generated Password is : "+editpassword);
+//
+//				if(editpassword.isEmpty()) {
+//
+//					DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying under'Generate password link");
+//
+//					click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
+//
+//				}else {
+//					Log.info("Automatically generated Password value is : "+ editpassword);
+//					DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+editpassword);
+//				}
+//
+//				ScrolltoElement(application, "Email", xml);
+//
+//				//Role	
+//				selectAndRemoveValueFromRightDropdown(application, "Roles_Hidden", "roleDropdown_selectedValues", rolestobeAvailableList, "roleDropdown_removeButton");
+//				selectAndAddValueFromLeftDropdown(application, "Role_Available", "roleDropdown_available" , rolestobeHiddenList, "roleDropdown_addButton");
+//				verifySelectedValuesInsideRightDropdown(application, "Role_Hidden", "roleDropdown_selectedValues");
+//
+//				//Hide Service
+//				selectAndRemoveValueFromRightDropdown(application, "Service_Hidden" , "HideServicesDropdown_selectedValues" , ServicesTobeAvailablelist, "HideService_removeButton");
+//				selectAndAddValueFromLeftDropdown(application, "Service_Available", "HideService_Available", ServicesTobeHiddenlist, "HideService_addButton");
+//				verifySelectedValuesInsideRightDropdown(application, "Hidden Services", "HideServicesDropdown_selectedValues");
+//
+//				//Hide Site Order
+//				selectAndRemoveValueFromRightDropdown(application, "SiteOrder_Hidden" , "HideSiteOrderDropdown_selectedValues", siteOrdersToBeAvailableList, "hideSiteOrder_removeButton");
+//				selectAndAddValueFromLeftDropdown(application, "SiteOrder_Available", "HideSiteOrder_Available" , siteOrdersToBeHiddenList , "hideSiteOrder_addbutton");
+//				verifySelectedValuesInsideRightDropdown(application, "Hiden Site Orders" , "HideSiteOrderDropdown_selectedValues");
+//
+//				scrolltoend();
+//				//Thread.sleep(1000);
+//
+//				//Hide Router Tool IPv4 Commands(Cisco)
+//				selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Cisco)_Available", "hideRouterToolIpv4_Cisco_selectedvalues", routerToolIPv4CiscoTobeAvailableList, "hideRouterToolIPv4_Cisco_removeButton");
+//				selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Cisco)_Hidden", "hideRouterToolIPv4_Cisco_Available", routerToolIPv4CiscoTobeHiddenList, "hideRouterToolIPv4_Cisco_addButton");
+//				verifySelectedValuesInsideRightDropdown(application, "Hiden Router Tool IPv4 Commands(Cisco)", "hideRouterToolIpv4_Cisco_selectedvalues");
+//
+//				//Hide Router Tool IPv4 Commands(Huawei)
+//				selectAndRemoveValueFromRightDropdown(application, "Router Tool IPv4 Commands(Huawei)_Hidden", "hideRouterToolIpv4_Huawei_selectedvalues", routerToolIPv4HuaweiTobeAvailableList, "hideRouterToolIPv4_Huawei_removeButton");
+//				selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Huawei)_Available" , "hideRouterToolIPv4_Huawei_available" , routerToolIPv4HuaweiTobeHiddenList, "hideRouterToolIPv4__Huawei_addButton");
+//				verifySelectedValuesInsideRightDropdown(application, "Hideen Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
+//
+//				scrolltoend();
+//				//Thread.sleep(1000);
+//				click_commonMethod(application, "OK", "OK_button", xml);
+//				//Thread.sleep(2000);
+//				compareText(application, "User update success message", "successmsg", "User successfully updated", xml);
+//			}
+//			else
+//			{
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+//				Log.info("No users displayed");
+//			}
+//
+//
+//			//View User
+//			ScrolltoElement(application, "customerdetailsheader", xml);
+//			List<WebElement> ExistingUsers1= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+//			int NoOfUsers1 = ExistingUsers1.size();
+//			System.out.println("Total users:"+ NoOfUsers1);
+//			if(NoOfUsers1==1 || NoOfUsers1>1)
+//			{
+//				if(!EditUsername.equalsIgnoreCase("null"))
+//				{
+//					WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+//					EditedUserName.click();
+//				}
+//				else
+//				{
+//					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+//					AddedUser.click();
+//				}
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+//				Log.info("clicked on Existing user radio button");
+//
+//				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+//				click_commonMethod(application, "view", "view", xml);
+//				scrollToTop();
+//				compareText(application, "User Name", "usernamevalue", EditUsername, xml);
+//				compareText(application, "First Name", "firstnamevalue", EditFirstname, xml);
+//				compareText(application, "SurName", "surnamevalue", EditSurname, xml);
+//				compareText(application, "Postal Address", "postaladdressvalue", EditPostaladdress, xml);
+//				compareText(application, "Email", "emailvalue", EditEmail, xml);
+//				compareText(application, "Phone", "phonevalue", EditPhone, xml);
+//
+//				//IP Guardian Accouunt Group
+//				GetText(application, "IPGuardian Account Group", "IPGuardianAccountGroup_viewpage");
+//
+//				//Colt Online User
+//				GetText(application, "Colt Online User", "coltonlineuser_viewpage");
+//
+//				ScrolltoElement(application, "phonevalue", xml);
+//				//Thread.sleep(1000);
+//
+//				//Roles
+//				//compareTextForViewUserPage(application, labelname, ExpectedText, xml);
+//
+//
+//				//Hidden Router Tools IPv4 (Cisco)
+//				List<WebElement> HRcisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolIPv4Cisco"));	
+//
+//				for(WebElement listofHiddenCiscoValues : HRcisco) {
+//					System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
+//					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
+//				}
+//
+//				scrolltoend();
+//				//Thread.sleep(2000);
+//
+//				//Hidden Router Tool IPv4 (Huawei)
+//				List<WebElement> Ipv4CommandHuawei = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv4Huawei"));	
+//
+//				for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
+//					System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
+//					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
+//				}	
+//
+//				//Hidden Router Tools IPv6 (Cisco)
+//				List<WebElement> HiddenIPv6cisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv6Cisco"));	
+//
+//				for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
+//					System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
+//					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
+//				}			
+//
+//				scrolltoend();
+//				//Thread.sleep(2000);
+//
+//				click_commonMethod(application, "Back", "viewpage_backbutton", xml);
+//				Log.info("------ View User successful ------");
+//			}
+//			else
+//			{
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+//				Log.info("No users displayed");
+//			}
+//
+//
+//			//Delete User
+//			ScrolltoElement(application, "customerdetailsheader", xml);
+//			List<WebElement> ExistingUsers2= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
+//			int NoOfUsers2 = ExistingUsers2.size();
+//			System.out.println("Total users:"+ NoOfUsers2);
+//			if(NoOfUsers2==1 || NoOfUsers2>1)
+//			{
+//				if(!EditUsername.equalsIgnoreCase("null"))
+//				{
+//					WebElement EditedUserName = getwebelement("//div[contains(text(),'" + EditUsername + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+//					EditedUserName.click();
+//				}
+//				else
+//				{
+//					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
+//					AddedUser.click();
+//				}
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+//				Log.info("clicked on Existing user radio button");
+//
+//				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
+//				click_commonMethod(application, "Delete", "delete", xml);
+//				//Thread.sleep(2000);
+//				WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
+//				if(DeleteAlertPopup.isDisplayed())
+//				{
+//					click_commonMethod(application, "Delete", "userdelete", xml);
+//					compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
+//				}
+//				else
+//				{
+//					Log.info("Delete alert popup is not displayed");
+//					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+//				}
+//			}
+//			else
+//			{
+//				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+//				Log.info("No users displayed");
+//			}
 		}
 	}
 
@@ -1068,16 +900,16 @@ public class APT_NGINHelper extends DriverHelper {
 				//select value inside the dropdown     
 				for(int i=0; i<selectValue.length; i++)
 				{
-					Thread.sleep(5000);
+					//Thread.sleep(5000);
 					for(int j=0; j<ls.size() ; j++) {
 						System.out.println("ls value "+ ls.get(j));
 						if(selectValue[i].equals(ls.get(j)))
 						{
 							elements.get(j).click();
-							DriverTestcase.logger.log(LogStatus.PASS, elements.get(j) + " got selected" );
-							Thread.sleep(1000);
+							DriverTestcase.logger.log(LogStatus.PASS, elements.get(j).getText() + " got selected" );
+							//Thread.sleep(1000);
 							click_commonMethod(application, "Add", xpathForAddButton , xml);
-							Thread.sleep(5000);
+							//Thread.sleep(5000);
 						}
 					}
 				}
@@ -1149,18 +981,18 @@ public class APT_NGINHelper extends DriverHelper {
 				//select value inside the dropdown     
 				for(int i=0; i<selectValue.length; i++)
 				{
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 					for(int j=0; j<ls.size() ; j++) {
 						System.out.println("ls value "+ ls.get(j));
 						if(selectValue[i].equals(ls.get(j)))
 						{
 							elements.get(j).click();
 							DriverTestcase.logger.log(LogStatus.PASS, elements.get(j) + " got selected" );
-							Thread.sleep(1000);
+							//Thread.sleep(1000);
 							WebElement removeButton=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathForRemoveButton +"").replace("value", "<<"));
 							Clickon(removeButton);
 							DriverTestcase.logger.log(LogStatus.PASS, "clicked on remove '<<' button");
-							Thread.sleep(3000);
+							//Thread.sleep(3000);
 						}
 					}
 				}
@@ -1248,54 +1080,22 @@ public class APT_NGINHelper extends DriverHelper {
 
 	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
 
-		ScrolltoElement(application, "userspanel_header", xml);
-
-		//Cancel Edit order in Order panel
-		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-		click_commonMethod(application, "Edit Order", "editorderlink", xml);
-		compareText(application, "Edit Order", "editorderheader", "Edit Order", xml);
-		Thread.sleep(1000);
-
-		WebElement EditOrderNo= getwebelement(xml.getlocator("//locators/" + application + "/editorderno"));
-		click_commonMethod(application, "Order Number", "editorderno", xml);
-		Thread.sleep(2000);
-		Clear(EditOrderNo);
-		Thread.sleep(2000);
-		addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
-
-		WebElement EditVoiceLineNo= getwebelement(xml.getlocator("//locators/" + application + "/editvoicelineno"));
-		click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
-		Thread.sleep(2000);
-		Clear(EditVoiceLineNo);
-		Thread.sleep(2000);
-		addtextFields_commonMethod(application, "RFI Voiceline Number", "editvoicelineno", editvoicelineno, xml);
-		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-//		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-//		Log.info("Navigated to order panel in view service page");
-//		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-
 		//Edit Order
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
 		compareText(application, "Edit Order Header", "editorderheader", "Edit Order", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Order Number", "editorderno", xml);
-		Thread.sleep(2000);
-		cleartext(application, "Order Number", "editorderno");
-		Thread.sleep(2000);
-		addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
-		click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
-		Thread.sleep(2000);
-		cleartext(application, "RFI Voice Line Number", "editvoicelineno");
-		Thread.sleep(2000);
-		addtextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
+		//Thread.sleep(1000);
+		edittextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
+		//Thread.sleep(1000);
+		edittextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "OK", "editorder_okbutton", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(2000);
 		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 //		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
 //		Log.info("Navigated to order panel in view service page");
 //		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
@@ -1309,42 +1109,25 @@ public class APT_NGINHelper extends DriverHelper {
 	public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
 
 		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Change Order", "changeorderlink", xml);
 		compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
 		List<WebElement> ChangeOrder_DropdownList= getwebelements(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist"));
 		int ChangeOrder_Dropdown_count= ChangeOrder_DropdownList.size();
 		if(ChangeOrder_Dropdown_count> 1)
 		{
 			Clickon(getwebelement("//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false'][1]"));
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
 
-			//Cancel change order
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-//			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-//			Log.info("Navigated to order panel in view service page");
-//			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-
-			//Change order
-			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-			click_commonMethod(application, "Change Order", "changeorderlink", xml);
-			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-			Clickon(getwebelement("//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false'][1]"));
-			Thread.sleep(3000);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected order from dropdown");
 			Log.info("Selected order from dropdown");
 			click_commonMethod(application, "OK", "changeorder_okbutton", xml);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 //			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
 //			Log.info("Navigated to order panel in view service page");
 //			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
@@ -1356,34 +1139,17 @@ public class APT_NGINHelper extends DriverHelper {
 		else
 		{
 			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
-			click_commonMethod(application, "Order Number", "changeordernumber", xml);
-			Thread.sleep(2000);
+//			click_commonMethod(application, "Order Number", "changeordernumber", xml);
+//			Thread.sleep(2000);
 			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
-			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
-			Thread.sleep(3000);
+//			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
+//			Thread.sleep(3000);
 			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-//			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-//			Log.info("Navigated to order panel in view service page");
-
-			//Change Order
-			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-			click_commonMethod(application, "Change Order", "changeorderlink", xml);
-			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
-			click_commonMethod(application, "Order Number", "changeordernumber", xml);
-			Thread.sleep(2000);
-			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
-			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
-			Thread.sleep(3000);
-			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "Create Order", "createorder_button", xml);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 //			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
 //			Log.info("Navigated to order panel in view service page");
 //			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
@@ -1411,7 +1177,7 @@ public class APT_NGINHelper extends DriverHelper {
 		cleartext(application, "Remarks", "remarktextarea");
 		addtextFields_commonMethod(application, "Remarks", "remarktextarea",  EditRemarks, xml);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		ScrolltoElement(application, "orderpanelheader", xml);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")).isDisplayed())
 		{
@@ -1428,7 +1194,7 @@ public class APT_NGINHelper extends DriverHelper {
 		cleartext(application, "Remarks", "remarktextarea");
 		addtextFields_commonMethod(application, "Remarks", "remarktextarea", EditRemarks, xml);
 		click_commonMethod(application, "OK", "okbutton", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		ScrolltoElement(application, "orderpanelheader", xml);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
@@ -1545,7 +1311,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 		//synchronize link in view service page
 		ScrolltoElement(application, "orderpanelheader", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Synchronize", "synchronizelink_servicepanel", xml);
 		ScrolltoElement(application, "customerdetailsheader", xml);
@@ -1620,12 +1386,15 @@ public class APT_NGINHelper extends DriverHelper {
 		// verify customer administration information
 		String CustomerAdmin_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/customeradmin_text")));
 		GetText(application, CustomerAdmin_Text, "customeradmin_value");
+		Highlight(application, "customeradmin_text", xml);
 		// verify SAN Administration information
 		String SANAdmin_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/sanadmin_text")));		
-		GetText(application, SANAdmin_Text, "sanadmin_value");	
+		GetText(application, SANAdmin_Text, "sanadmin_value");
+		Highlight(application, "sanadmin_text", xml);
 		// verify Reseller Administration information
 		String ResellerAdmin_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/reselleradmin_text")));
-		GetText(application, SANAdmin_Text, "reselleradmin_value");
+		GetText(application, ResellerAdmin_Text, "reselleradmin_value");
+		Highlight(application, "reselleradmin_text", xml);
 
 	}
 
@@ -1661,19 +1430,8 @@ public class APT_NGINHelper extends DriverHelper {
 		// verify status column
 		GetText(application, "Status", "statuscolumn");
 		// verify Add link in Reseller action dropdown
-		//Cancel add reseller
-		click_commonMethod(application, "Action dropdown", "ResellerActionDropdown", xml);
-		click_commonMethod(application, "Add", "AddLink", xml);
-		isDisplayed(application, "manageresellerheader", "Manage Reseller in OSP");
-		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-		{
-			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
-		}
-
+		
 		//warning msg verfiy in reseller panel
-		ScrolltoElement(application, "servicepanel_header", xml);
 		click_commonMethod(application, "Action dropdown", "ResellerActionDropdown", xml);
 		click_commonMethod(application, "Add", "AddLink", xml);
 		isDisplayed(application, "manageresellerheader", "Manage Reseller in OSP");
@@ -1681,14 +1439,14 @@ public class APT_NGINHelper extends DriverHelper {
 		warningMessage_commonMethod(application, "reselleremail_warngmsg", "Email", xml);
 		warningMessage_commonMethod(application, "resellercity_warngmsg", "City", xml);
 		warningMessage_commonMethod(application, "resellerstreetname_warngmsg", "Street Name", xml);
-		warningMessage_commonMethod(application, "resellerstreetno_warngmsg", "Street Number", xml);
-		warningMessage_commonMethod(application, "resellerpobox_warngmsg", "PO Box", xml);
-		warningMessage_commonMethod(application, "resellerzipcode_warngmsg", "Zip Code", xml);
-		warningMessage_commonMethod(application, "resellerphone_warngmsg", "Phone", xml);
+//		warningMessage_commonMethod(application, "resellerstreetno_warngmsg", "Street Number", xml);
+//		warningMessage_commonMethod(application, "resellerpobox_warngmsg", "PO Box", xml);
+//		warningMessage_commonMethod(application, "resellerzipcode_warngmsg", "Zip Code", xml);
+//		warningMessage_commonMethod(application, "resellerphone_warngmsg", "Phone", xml);
 
 		//Add reseller
 		ScrolltoElement(application, "manageresellerheader", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		String resellername= getwebelement(xml.getlocator("//locators/" + application + "/resellername")).getAttribute("value");
 		DriverTestcase.logger.log(LogStatus.PASS, "Step : Reseller Name is displaying as: '"+resellername+"'");
 		Log.info("Reseller Name is displaying as: '"+resellername+"'");
@@ -1701,52 +1459,50 @@ public class APT_NGINHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "Phone", "reseller_phone", phone, xml);
 		addtextFields_commonMethod(application, "Fax", "reseller_fax", fax, xml);
 		click_commonMethod(application, "Next", "nextbutton", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
 			scrollToTop();
 			compareText(application, "Reseller created success message", "resellercreated_successmsg", "Manage Reseller successfully created", xml);
 		}
 		else
 		{
 			Log.info("Reseller not created");
-			System.out.println("Reseller not created");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Reseller not created");
 		}
 
-		//Added Reseller
-		ScrolltoElement(application, "servicepanel_header", xml);
-		WebElement ResellerGridCheck= getwebelement("(//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
-		String ResellerGrid= ResellerGridCheck.getAttribute("style");
-		WebElement AddedReseller= getwebelement("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + ocn + "')]/parent::div//input[@type='radio']");
-		if(!ResellerGrid.contains("height: 1px"))
-		{
-			Clickon(AddedReseller);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Action dropdown", "ResellerActionDropdown", xml);
-			List<WebElement> ResellerLinks= getwebelements("//div[contains(text(),'Reseller')]/following-sibling::div//div//a");
-			int ResellerLinksCount= ResellerLinks.size();
-			for(int i=0;i<ResellerLinksCount;i++)
-			{
-				String Link= ResellerLinks.get(i).getText();
-				DriverTestcase.logger.log(LogStatus.PASS, ""+Link+" link is displaying under reseller panel");
-				System.out.println("Reseller link:"+ Link + " is displaying");
-				Log.info("Reseller link:"+ Link + " is displaying");
-				Thread.sleep(2000);
-			}
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
-			//Added Reseller grid verification
-			compareText(application, "Added Reseller Name", "Addedreseller_columnvalue", ocn, xml);
-
-		}
-		else
-		{
-			Log.info("Reseller is not added in the grid");
-			System.out.println("Reseller is not added in the grid");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
-		}
+//		//Added Reseller
+//		ScrolltoElement(application, "servicepanel_header", xml);
+//		WebElement ResellerGridCheck= getwebelement("(//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
+//		String ResellerGrid= ResellerGridCheck.getAttribute("style");
+//		WebElement AddedReseller= getwebelement("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + ocn + "')]/parent::div//span[contains(@class,'unchecked')]");
+//		if(!ResellerGrid.contains("height: 1px"))
+//		{
+//			Clickon(AddedReseller);
+//			//Thread.sleep(1000);
+//			click_commonMethod(application, "Action dropdown", "ResellerActionDropdown", xml);
+//			List<WebElement> ResellerLinks= getwebelements("//div[contains(text(),'Reseller')]/following-sibling::div//div//a");
+//			int ResellerLinksCount= ResellerLinks.size();
+//			for(int i=0;i<ResellerLinksCount;i++)
+//			{
+//				String Link= ResellerLinks.get(i).getText();
+//				DriverTestcase.logger.log(LogStatus.PASS, ""+Link+" link is displaying under reseller panel");
+//				System.out.println("Reseller link:"+ Link + " is displaying");
+//				Log.info("Reseller link:"+ Link + " is displaying");
+//				//Thread.sleep(2000);
+//			}
+//			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
+//			//Added Reseller grid verification
+//			compareText(application, "Added Reseller Name", "Addedreseller_columnvalue", ocn, xml);
+//
+//		}
+//		else
+//		{
+//			Log.info("Reseller is not added in the grid");
+//			System.out.println("Reseller is not added in the grid");
+//			DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
+//		}
 		ResellerName= ocn;		
 	}
 
@@ -1761,27 +1517,20 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!ResellerGrid.contains("height: 1px"))
 		{
 			Clickon(AddedReseller);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "ResellerActionDropdown", xml);
 			click_commonMethod(application, "Edit", "edit", xml);
 			GetText(application, "Manage Reseller Header", "manageresellerheader");
-			cleartext(application, "Email", "reseller_email");
-			addtextFields_commonMethod(application, "Email", "reseller_email", editemail, xml);
-			cleartext(application, "City", "reseller_city");
-			addtextFields_commonMethod(application, "City", "reseller_city", editcity, xml);
-			cleartext(application, "Street Name", "reseller_streetname");
-			addtextFields_commonMethod(application, "Street Name", "reseller_streetname", editstreetname, xml);
-			cleartext(application, "Street Number", "reseller_streetno");
-			addtextFields_commonMethod(application, "Street Number", "reseller_streetno", editstreetno, xml);
-			cleartext(application, "PO Box", "reseller_pobox");
-			addtextFields_commonMethod(application, "PO Box", "reseller_pobox", editpobox, xml);
-			cleartext(application, "Zip Code", "reseller_zipcode");
-			addtextFields_commonMethod(application, "Zip Code", "reseller_zipcode", editzipcode, xml);
-			cleartext(application, "Phone", "reseller_phone");
-			addtextFields_commonMethod(application, "Phone", "reseller_phone", editphone, xml);
-			cleartext(application, "Fax", "reseller_fax");
-			addtextFields_commonMethod(application, "Fax", "reseller_fax", editfax, xml);
+			edittextFields_commonMethod(application, "Email", "reseller_email", editemail, xml);
+			edittextFields_commonMethod(application, "City", "reseller_city", editcity, xml);
+			edittextFields_commonMethod(application, "Street Name", "reseller_streetname", editstreetname, xml);
+			edittextFields_commonMethod(application, "Street Number", "reseller_streetno", editstreetno, xml);
+			edittextFields_commonMethod(application, "PO Box", "reseller_pobox", editpobox, xml);
+			edittextFields_commonMethod(application, "Zip Code", "reseller_zipcode", editzipcode, xml);
+			edittextFields_commonMethod(application, "Phone", "reseller_phone", editphone, xml);
+			edittextFields_commonMethod(application, "Fax", "reseller_fax", editfax, xml);
 			scrolltoend();
+			//Thread.sleep(1000);
 			click_commonMethod(application, "OK", "okbutton", xml);
 			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 			{
@@ -1810,7 +1559,7 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!ResellerGrid.contains("height: 1px"))
 		{
 			Clickon(AddedReseller1);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "ResellerActionDropdown", xml);
 
 			if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
@@ -1829,9 +1578,9 @@ public class APT_NGINHelper extends DriverHelper {
 				compareText(application, "Phone", "resellerphonevalue", editphone, xml);
 				compareText(application, "Fax", "resellerfaxvalue", editfax, xml);
 				GetText(application, "Web Access Authorized", "resellerwebaccessvalue");
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				scrollToTop();
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 				click_commonMethod(application, "View page Action dropdown", "viewpage_actiondropdown", xml);
 
 				//Edit link in view reseller page
@@ -1860,7 +1609,7 @@ public class APT_NGINHelper extends DriverHelper {
 			if(!ResellerGrid.contains("height: 1px"))
 			{
 				Clickon(AddedReseller2);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				click_commonMethod(application, "Action dropdown", "ResellerActionDropdown", xml);
 				if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
 				{
@@ -1877,7 +1626,7 @@ public class APT_NGINHelper extends DriverHelper {
 						DriverTestcase.logger.log(LogStatus.PASS, "Step : Delete Reseller alert is displaying as expected");
 						Log.info("Delete Reseller alert is displaying as expected");
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/deletealertclose")));
-						Thread.sleep(2000);
+						//Thread.sleep(2000);
 						DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on delete alert popup close button");
 						Log.info("clicked on delete alert popup close button");
 					}
@@ -1891,7 +1640,7 @@ public class APT_NGINHelper extends DriverHelper {
 				//Associate Reseller with NGIN Objects link in view reseller page
 				click_commonMethod(application, "View page Action dropdown", "viewpage_actiondropdown", xml);
 				click_commonMethod(application, "Associate Reseller with NGIN Objects", "associateresellerlink", xml);
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 				{
 					Log.info("Navigated to view service page");
@@ -1946,13 +1695,13 @@ public class APT_NGINHelper extends DriverHelper {
 		//Cancel add customer
 		click_commonMethod(application, "Action dropdown", "CustomerpanelActionDropdown", xml);
 		click_commonMethod(application, "Add", "AddLink", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		scrollToTop();
 		compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP", xml);
 		scrolltoend();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
@@ -1963,12 +1712,12 @@ public class APT_NGINHelper extends DriverHelper {
 		ScrolltoElement(application, "resellerheader", xml);
 		click_commonMethod(application, "Action dropdown", "CustomerpanelActionDropdown", xml);
 		click_commonMethod(application, "Add", "AddLink", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		scrollToTop();
 		compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		scrolltoend();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Next", "nextbutton", xml);
 		warningMessage_commonMethod(application, "addcustomer_country_warningmsg", "Country", xml);
 		warningMessage_commonMethod(application, "addcustomer_customername_warningmsg", "Customer Name", xml);
@@ -1980,7 +1729,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 		//Add Customer
 		//Select Country from dropdown
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		scrollToTop();
 		addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
 		String CustomerOCN= getwebelement(xml.getlocator("//locators/" + application + "/customer_ocn")).getAttribute("value");
@@ -2007,7 +1756,7 @@ public class APT_NGINHelper extends DriverHelper {
 			if(Default_Checkbox!=null)
 			{
 				System.out.println("Default checkbox is checked");
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				DriverTestcase.logger.log(LogStatus.PASS, "Default checkbox is checked");
 				Log.info("Default checkbox is checked");
 			}
@@ -2024,7 +1773,7 @@ public class APT_NGINHelper extends DriverHelper {
 			if(Configure_Checkbox!=null)
 			{
 				System.out.println("Configure checkbox is checked");
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				DriverTestcase.logger.log(LogStatus.PASS, "Configure checkbox is checked");
 				Log.info("Configure checkbox is checked");
 			}
@@ -2036,9 +1785,9 @@ public class APT_NGINHelper extends DriverHelper {
 			}
 		}
 		scrolltoend();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Next", "nextbutton", xml);
-		Thread.sleep(3000);	
+		//Thread.sleep(3000);	
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
@@ -2061,7 +1810,7 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!CustomerGrid.contains("height: 1px"))
 		{
 			Clickon(AddedCustomer);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "CustomerpanelActionDropdown", xml);
 
 			List<WebElement> CustomerLinks= getwebelements("//div[contains(text(),'Customer')]/following-sibling::div//div//a");
@@ -2072,7 +1821,7 @@ public class APT_NGINHelper extends DriverHelper {
 				DriverTestcase.logger.log(LogStatus.PASS, ""+Link+" link is displaying under customer panel");
 				Log.info(""+Link+" link is displaying under customer panel");
 				System.out.println(""+Link+" link is displaying under customer panel");
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 			}
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/customerheader")));
 
@@ -2105,15 +1854,15 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!CustomerGrid.contains("height: 1px"))
 		{
 			Clickon(AddedCustomer);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "CustomerpanelActionDropdown", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			click_commonMethod(application, "Edit", "edit", xml);
 			click_commonMethod(application, "Edit", "edit", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			scrollToTop();
 			compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP", xml);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 
 			String CountryDisabled= getwebelement(xml.getlocator("//locators/" + application + "/customercountry_disabled")).getAttribute("disabled");
 			if(CountryDisabled!=null)
@@ -2187,17 +1936,17 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!CustomerGrid.contains("height: 1px"))
 		{
 			Clickon(AddedCustomer1);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "CustomerpanelActionDropdown", xml);
 
 			if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
 			{
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				click_commonMethod(application, "View", "view", xml);
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 				scrollToTop();
 				compareText(application, "Manage Customer in OSP header", "manageresellerheader_viewpage", "Manage Customer In OSP", xml);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 
 				GetText(application, "Country", "customer_countryvalue");
 				GetText(application, "Customer Name", "customer_customernamevalue");
@@ -2210,7 +1959,7 @@ public class APT_NGINHelper extends DriverHelper {
 				GetText(application, "Zip Code", "resellerzipcodevalue");
 				GetText(application, "Phone", "resellerphonevalue");
 				GetText(application, "Fax", "resellerfaxvalue");
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 
 				//Edit customer in view customer page
 				scrollToTop();
@@ -2219,10 +1968,10 @@ public class APT_NGINHelper extends DriverHelper {
 				compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP", xml);
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : Edit Customer in view customer page is verified");
 				Log.info("Edit Customer in view customer page is verified");
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				scrolltoend();
 				click_commonMethod(application, "Cancel", "cancelbutton", xml);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 			}
 		}
 		else
@@ -2238,7 +1987,7 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!CustomerGrid.contains("height: 1px"))
 		{
 			Clickon(AddedCustomer2);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "CustomerpanelActionDropdown", xml);
 
 			if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
@@ -2248,7 +1997,7 @@ public class APT_NGINHelper extends DriverHelper {
 				compareText(application, "Manage Customer in OSP header", "manageresellerheader_viewpage", "Manage Customer In OSP", xml);
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : Delete Customer in view customer page is verified");
 				Log.info("Delete Customer in view customer page is verified");
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				scrollToTop();
 				click_commonMethod(application, "Action dropdown", "viewpage_actiondropdown", xml);
 
@@ -2319,7 +2068,7 @@ public class APT_NGINHelper extends DriverHelper {
 		compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);	
 		scrolltoend();
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
@@ -2331,11 +2080,11 @@ public class APT_NGINHelper extends DriverHelper {
 		click_commonMethod(application, "Action dropdown", "SANActionDropdown", xml);	
 		click_commonMethod(application, "Add SAN", "addsan_link", xml);
 		scrollToTop();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
 		addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
 		click_commonMethod(application, "Customer Name dropdown", "customername", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customernamedropdown_valuesdisplay")).isDisplayed())
 		{
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Existing customer is available");
@@ -2352,7 +2101,7 @@ public class APT_NGINHelper extends DriverHelper {
 			//Manage new customer link
 			click_commonMethod(application, "Manage new customer", "managenewcustomer_link", xml);
 			compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP", xml);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 
 			//=========================
 
@@ -2379,22 +2128,22 @@ public class APT_NGINHelper extends DriverHelper {
 			addCheckbox_commonMethod(application, "defaultcheckbox", "Default", defaultvalue, "yes", xml);
 			addCheckbox_commonMethod(application, "configurecheckbox", "Configure", configure, "no", xml);
 			scrolltoend();
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "Next", "nextbutton", xml);
-			Thread.sleep(3000);	
+			//Thread.sleep(3000);	
 
 			ScrolltoElement(application, "addsan_header", xml);
 			compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 
 			//Select Country from dropdown
 			addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
 			click_commonMethod(application, "Customer Name dropdown", "customername", xml);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "Customer Name dropdown value", "customernamedropdown_valuesdisplay", xml);
 		}
 
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		//SAN customer name
 		String SAN_Customernamevalue= getwebelement(xml.getlocator("//locators/" + application + "/customername_selectedtext")).getText();
 		DriverTestcase.logger.log(LogStatus.PASS, "Step :Customer name selected is : " + SAN_Customernamevalue);
@@ -2412,7 +2161,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 		//Select service profile from dropdown
 		addDropdownValues_commonMethod(application, "Service Profile", "serviceprofile", serviceprofilevalue, xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		GetText(application, "Supervision Mode", "supervisionfield");
 		addCheckbox_commonMethod(application, "internationaloutgoingforbidden_checkbox", "International Outgoing Calls Forbidden", internationaloutgoingcalls_checkbox, "no", xml);
 		addCheckbox_commonMethod(application, "internationalincomingbarring", "International Incoming Calls Barring", internationalincomingcalls_checkbox, "no", xml);
@@ -2435,14 +2184,14 @@ public class APT_NGINHelper extends DriverHelper {
 		{
 			addCheckbox_commonMethod(application, "ringtonumber_radiobutton", "'Ring To Number' radio", RingToNumber_Checkbox, "no", xml);
 			//click_commonMethod(application, "'Ring To Number' radio", "ringtonumber_radiobutton", xml);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			addtextFields_commonMethod(application, "Ring To Number", "ringtonumber_field", ringtonumber, xml);
 		}
 		else if(AnnouncementToPlay_Checkbox.equalsIgnoreCase("YES"))
 		{
 			addCheckbox_commonMethod(application, "announcementtoplay_radiobutton", "'Announcement to play' radio", AnnouncementToPlay_Checkbox, "no", xml);
 			//click_commonMethod(application, "'Announcement to play' radio", "announcementtoplay_radiobutton", xml);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			//Select announcement to play value from dropdown
 			click_commonMethod(application, "Announcement To Play dropdown", "announcementtoplay_dropdown", xml);
 			click_commonMethod(application, "Announcement To Play value", "announcementtoplay_dropdownvalue", xml);
@@ -2451,7 +2200,7 @@ public class APT_NGINHelper extends DriverHelper {
 		{
 			addCheckbox_commonMethod(application, "complexroute_radiobutton", "'Complex route' radio", ComplexRouting_Checkbox, "no", xml);
 			//click_commonMethod(application, "'Complex route' radio", "complexroute_radiobutton", xml);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			addtextFields_commonMethod(application, "Routing for payphone", "routingforpayphone_field", routingforpayphone_value, xml);
 			addtextFields_commonMethod(application, "Routing for mobile", "routingformobile", routingformobile_value, xml);
 			addtextFields_commonMethod(application, "Default Routing", "defaultrouting", defaultrouting_value, xml);
@@ -2463,9 +2212,9 @@ public class APT_NGINHelper extends DriverHelper {
 		}
 		addCheckbox_commonMethod(application, "enablepriceannouncement", "Enable Price Announcement", enablepriceannouncement_checkbox, "no", xml);
 		scrolltoend();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		click_commonMethod(application, "Add", "addsan_addbutton", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		scrollToTop();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
 		{
@@ -2499,7 +2248,7 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!SANGrid.contains("height: 1px"))
 		{
 			Clickon(AddedSAN);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "SANActionDropdown", xml);
 			List<WebElement> SANLinks= getwebelements("//div[contains(text(),'SAN/FRC')]/following-sibling::div//div//a");
 			int SANLinksCount= SANLinks.size();
@@ -2509,7 +2258,7 @@ public class APT_NGINHelper extends DriverHelper {
 				DriverTestcase.logger.log(LogStatus.PASS, ""+Link+" link is displaying under SAN/FRC panel");
 				Log.info(""+Link+" link is displaying under SAN/FRC panel");
 				System.out.println("Customer link:"+ Link + " is displaying");
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 			}
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/sanheader")));
 
@@ -2560,10 +2309,10 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!SANGrid.contains("height: 1px"))
 		{
 			Clickon(AddedSAN);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
 			click_commonMethod(application, "Edit SAN", "editsan_link", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			scrollToTop();
 			compareText(application, "Edit SAN Header", "editsan_header", "Edit SAN", xml);
 
@@ -2599,14 +2348,14 @@ public class APT_NGINHelper extends DriverHelper {
 
 			//Select service profile from dropdown
 			addDropdownValues_commonMethod(application, "Service Profile", "serviceprofile", edit_serviceprofilevalue, xml);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			addDropdownValues_commonMethod(application, "Supervision mode", "supervisionfield", edit_supervisionfieldvalue, xml);
 			//GetText(application, "Supervision mode", "supervisionfield");
 
 			if(internationaloutgoingcalls_checkbox.equalsIgnoreCase("Yes"))
 			{
 				editcheckbox_commonMethod(application, edit_internationaloutgoingcalls_checkbox, "internationaloutgoingforbidden_checkbox", "International Outgoing Calls Forbidden", xml);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 			}
 			else
 			{
@@ -2616,7 +2365,7 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				editcheckbox_commonMethod(application, edit_internationalincomingcalls_checkbox, "internationalincomingbarring", "International Incoming Calls Barring", xml);
 				//click_commonMethod(application, "International Incoming Calls Barring checkbox", "internationalincomingbarring", xml);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 			}
 			else
 			{
@@ -2626,7 +2375,7 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				editcheckbox_commonMethod(application, edit_mobilecallsallowed_checkbox, "mobilecallsallowed_checkbox", "Mobile Calls Allowed", xml);
 				//click_commonMethod(application, "Mobile Calls Allowed checkbox", "mobilecallsallowed_checkbox", xml);	
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 			}
 			else
 			{
@@ -2657,7 +2406,7 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				editcheckbox_commonMethod(application, edit_payphoneblocking_checkbox, "payphoneblockingenabled", "Pay phone blocking enabled", xml);
 				//click_commonMethod(application, "Pay phone blocking enabled checkbox", "payphoneblockingenabled", xml);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 			}
 			else
 			{
@@ -2667,7 +2416,7 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				editcheckbox_commonMethod(application, edit_webaccessblocked_checkbox, "webaccessblocked", "Web Access Blocked", xml);
 				//click_commonMethod(application, "Web Access Blocked checkbox", "webaccessblocked", xml);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 			}
 			else
 			{
@@ -2679,7 +2428,7 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				editcheckbox_commonMethod(application, edit_sanblock_checkbox, "sanblock", "SAN Block", xml);
 				//click_commonMethod(application, "Sanblock checkbox", "sanblock", xml);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 			}
 			else
 			{
@@ -2689,7 +2438,7 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				editcheckbox_commonMethod(application, edit_focenabled_checkbox, "focenabled", "FOC Enabled", xml);
 				//click_commonMethod(application, "Foc enabled checkbox", "focenabled", xml);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 			}
 			else
 			{
@@ -2708,7 +2457,7 @@ public class APT_NGINHelper extends DriverHelper {
 				editcheckbox_commonMethod(application, edit_ringtonumber_checkbox, "ringtonumber_radiobutton", "'Ring To Number' radio", xml);
 				//Checkbox_commonMethod(application, "ringtonumber_radiobutton", "'Ring To Number' radio", edit_ringtonNumber_checkbox, "no", xml);
 				click_commonMethod(application, "'Ring To Number' radio", "ringtonumber_radiobutton", xml);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				cleartext(application, "Ring To Number", "ringtonumber_field");
 				addtextFields_commonMethod(application, "Ring To Number", "ringtonumber_field", ringtonumber, xml);
 			}
@@ -2716,7 +2465,7 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				editcheckbox_commonMethod(application, edit_announcementtoplay_checkbox, "announcementtoplay_radiobutton", "'Announcement to play' radio", xml);
 				//click_commonMethod(application, "'Announcement to play' radio", "announcementtoplay_radiobutton", xml);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				//Select announcement to play value from dropdown
 				click_commonMethod(application, "Announcement To Play dropdown", "announcementtoplay_dropdown", xml);
 				click_commonMethod(application, "Announcement To Play value", "announcementtoplay_dropdownvalue", xml);
@@ -2725,32 +2474,26 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				editcheckbox_commonMethod(application, edit_complexroute_checkbox, "complexroute_radiobutton", "'Complex route' radio", xml);
 				//click_commonMethod(application, "'Complex route' radio", "complexroute_radiobutton", xml);
-				Thread.sleep(1000);
-				cleartext(application, "Routing for payphone", "routingforpayphone_field");
-				addtextFields_commonMethod(application, "Routing for payphone", "routingforpayphone_field", routingforpayphone_value, xml);
-				cleartext(application, "Routing for mobile", "routingformobile");
-				addtextFields_commonMethod(application, "Routing for mobile", "routingformobile", routingformobile_value, xml);
-				cleartext(application, "Default Routing", "defaultrouting");
-				addtextFields_commonMethod(application, "Default Routing", "defaultrouting", defaultrouting_value, xml);
+				//Thread.sleep(1000);
+				edittextFields_commonMethod(application, "Routing for payphone", "routingforpayphone_field", routingforpayphone_value, xml);
+				edittextFields_commonMethod(application,  "Routing for mobile", "routingformobile", routingformobile_value, xml);
+				edittextFields_commonMethod(application,  "Default Routing", "defaultrouting", defaultrouting_value, xml);
 				click_commonMethod(application, "Enable logical routing checkbox", "enablelogicalrouting", xml);
-				cleartext(application, "Default Route busy", "defaultroutebusy");
-				addtextFields_commonMethod(application, "Default Route busy", "defaultroutebusy", defaultroutebusy_value, xml);
-				cleartext(application, "No Answer", "noanswer");
-				addtextFields_commonMethod(application, "No Answer", "noanswer", noanswer_value, xml);
-				cleartext(application, "Network Congestion", "networkcongestion");
-				addtextFields_commonMethod(application, "Network Congestion", "networkcongestion", networkcongestion, xml);
+				edittextFields_commonMethod(application,  "Default Route busy", "defaultroutebusy", defaultroutebusy_value, xml);
+				edittextFields_commonMethod(application,  "No Answer", "noanswer", noanswer_value, xml);
+				edittextFields_commonMethod(application,  "Network Congestion", "networkcongestion", networkcongestion, xml);
 			}
 
 			if(enablepriceannouncement_checkbox.equalsIgnoreCase("Yes"))
 			{
 				editcheckbox_commonMethod(application, edit_enablepriceannouncement_checkbox, "enablepriceannouncement", "Enable Price Announcement", xml);
 				//click_commonMethod(application, "Enable Price Announcement checkbox", "enablepriceannouncement", xml);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 			}
 			scrolltoend();
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "Add", "addsan_addbutton", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 
 			if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
 			{
@@ -2758,10 +2501,10 @@ public class APT_NGINHelper extends DriverHelper {
 				System.out.println("Navigated to view SAN page");
 				ScrolltoElement(application, "editsan_successmsg", xml);
 				compareText(application, "San Updated Success message", "editsan_successmsg", "San successfully updated", xml);
-				Thread.sleep(3000);
+				//Thread.sleep(3000);
 				scrolltoend();
 				click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 				{
 					Log.info("Navigated to view service page");
@@ -2809,11 +2552,11 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!SANGrid1.contains("height: 1px"))
 		{
 			Clickon(AddedSAN1);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 
 			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
 			click_commonMethod(application, "View SAN link", "viewsan_link", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			scrollToTop();
 			compareText(application, "View SAN Header", "viewsan_header", "View SAN", xml);
 			compareText(application, "Customer Name", "viewsan_customername", customernamevalue, xml);
@@ -2874,7 +2617,7 @@ public class APT_NGINHelper extends DriverHelper {
 			GetText(application, "Tree name", "treenamevalue");
 
 			//Edit SAN link in view SAN page
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			scrollToTop();
 			click_commonMethod(application, "Action dropdown", "viewsan_actiondropdown", xml);
 			click_commonMethod(application, "Edit SAN", "editsan_link", xml);
@@ -2929,16 +2672,16 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!SANGrid2.contains("height: 1px"))
 		{
 			Clickon(AddedSAN2);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 
 			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
 			click_commonMethod(application, "View SAN link", "viewsan_link", xml);
 			compareText(application, "View SAN Header", "viewsan_header", "View SAN", xml);
 			scrollToTop();
 			click_commonMethod(application, "Action dropdown", "viewsan_actiondropdown", xml);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "Add Another SAN", "addanothersanlink", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			if(getwebelement(xml.getlocator("//locators/" + application + "/addsan_header")).isDisplayed())
 			{
 				compareText(application, "Add SAN Header", "addsan_header", "Add SAN", xml);
@@ -2992,7 +2735,7 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!SANGrid3.contains("height: 1px"))
 		{
 			Clickon(AddedSAN3);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 
 			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
 			click_commonMethod(application, "View SAN", "viewsan_link", xml);
@@ -3020,7 +2763,7 @@ public class APT_NGINHelper extends DriverHelper {
 		}
 		scrolltoend();
 		click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
@@ -3050,7 +2793,7 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!SANGrid4.contains("height: 1px"))
 		{
 			Clickon(AddedSAN4);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 
 			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
 			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
@@ -3138,9 +2881,9 @@ public class APT_NGINHelper extends DriverHelper {
 					DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortIN is unsuccessful");
 					Log.info("PortIN is unsuccessful");
 				}
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				click_commonMethod(application, "Close", "port_closesymbol", xml);
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 			}
 			else
 			{
@@ -3181,7 +2924,7 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!SANGrid5.contains("height: 1px"))
 		{
 			Clickon(AddedSAN5);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 
 			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
 			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
@@ -3252,9 +2995,9 @@ public class APT_NGINHelper extends DriverHelper {
 					Log.info("PortOUT is unsuccessful");
 				}
 
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				click_commonMethod(application, "Close", "port_closesymbol", xml);
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 				//Cancel porting not done
 			}
 			else
@@ -3290,15 +3033,15 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!SANGrid10.contains("height: 1px"))
 		{
 			Clickon(AddedSAN10);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
 			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
 			click_commonMethod(application, "Manage Addnl FRC", "manageaddnlfrc_link", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			compareText(application, "Manage Addnl FRC Header", "manageaddnlfrc_header", "Manage Addnl FRC", xml);
 			click_commonMethod(application, "Action Dropdown", "manageaddnlfrc_actiondropdown", xml);
 			click_commonMethod(application, "Add Addnl FRC", "addaddnlfrc_link", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			compareText(application, "Add Price Announcement Header", "addpriceannouncement_header", "Add Price Announcement", xml);
 			compareText(application, "SAN/FRC", "sanfrcvalue", sannumbervalue, xml);
 			compareText(application, "Customer Name", "customernamevalue", customernamevalue, xml);
@@ -3314,10 +3057,10 @@ public class APT_NGINHelper extends DriverHelper {
 			addDropdownValues_commonMethod(application, "Caller Confirmation Announcement", "callerconfirmationannouncement_dropdown", callerconfirmationannouncementvalue, xml);
 			addtextFields_commonMethod(application, "Caller Confirmation Digit", "callerconfirmationdigit_field", callerconfirmationdigitvalue, xml);
 			addtextFields_commonMethod(application, "Number Of Repetation Allowed", "noofrepetitionallowed_field", numberofrepetitionsallowedvalue, xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			scrolltoend();
 			click_commonMethod(application, "OK", "OkButton", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			compareText(application, "Addl FRC created success message", "addsan_successmsg", "Addnl Frc successfully created.", xml);
 			compareText(application, "Manage Addnl FRC Header", "manageaddnlfrc_header", "Manage Addnl FRC", xml);
 
@@ -3350,7 +3093,7 @@ public class APT_NGINHelper extends DriverHelper {
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Max Call Origin value is displayed as: " +MaxCallOriginvalue);
 			String MaxCallDurationvalue= getwebelement(xml.getlocator("//locators/" + application + "/manageaddnlfrc_maxcallduration_value")).getText();
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Max Call Duration value is displayed as: " +MaxCallDurationvalue);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			click_commonMethod(application, "Cancel", "cancelbutton", xml);
 
 		}
@@ -3378,7 +3121,7 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!SANGrid11.contains("height: 1px"))
 		{
 			Clickon(AddedSAN11);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
 			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
 			click_commonMethod(application, "Manage Addnl FRC", "manageaddnlfrc_link", xml);
@@ -3400,10 +3143,10 @@ public class APT_NGINHelper extends DriverHelper {
 					DriverTestcase.logger.log(LogStatus.PASS, "Added Addnl FRC is already selected");
 					Log.info("Added Addnl FRC is already selected");
 				}
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				click_commonMethod(application, "Action Dropdown", "manageaddnlfrc_actiondropdown", xml);
 				click_commonMethod(application, "Edit", "edit", xml);
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 				compareText(application, "Add Price Announcement Header", "addpriceannouncement_header", "Add Price Announcement", xml);
 				compareText(application, "SAN/FRC", "sanfrcvalue", sannumbervalue, xml);
 				compareText(application, "Customer Name", "customernamevalue", customernamevalue, xml);
@@ -3424,7 +3167,7 @@ public class APT_NGINHelper extends DriverHelper {
 						}else {
 
 							Clickon(getwebelement("//div[label[text()='Price Ann Origin']]//div[text()='×']"));
-							Thread.sleep(3000);
+							//Thread.sleep(3000);
 
 							//verify list of values inside dropdown
 							List<WebElement> listofvalues = driver
@@ -3439,12 +3182,12 @@ public class APT_NGINHelper extends DriverHelper {
 								System.out.println(" " + valuetypes.getText());
 							}
 
-							Thread.sleep(2000);
+							//Thread.sleep(2000);
 							SendKeys(getwebelement("//div[label[text()='Price Ann Origin']]//input"), edit_priceannoriginvalue);	
-							Thread.sleep(2000);
+							//Thread.sleep(2000);
 
 							Clickon(getwebelement("(//div[contains(text(),'"+ edit_priceannoriginvalue +"')])[2]"));
-							Thread.sleep(3000);
+							//Thread.sleep(3000);
 
 							String actualValue=getwebelement("//label[text()='Price Ann Origin']/following-sibling::div//span").getText();
 							DriverTestcase.logger.log(LogStatus.PASS, "Price Ann Origin dropdown value selected as: "+ actualValue );
@@ -3497,7 +3240,7 @@ public class APT_NGINHelper extends DriverHelper {
 				{
 					addtextFields_commonMethod(application, "Number Of Repetation Allowed", "noofrepetitionallowed_field", numberofrepetitionsallowedvalue, xml);
 				}
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 				ScrolltoElement(application, "noofrepetitionallowed_field", xml);
 				click_commonMethod(application, "OK", "OkButton", xml);
 				compareText(application, "Addl FRC updated success message", "addsan_successmsg", "Addnl Frc successfully updated.", xml);
@@ -3524,10 +3267,10 @@ public class APT_NGINHelper extends DriverHelper {
 					DriverTestcase.logger.log(LogStatus.PASS, "Added Addnl FRC is already selected");
 					Log.info("Added Addnl FRC is already selected");
 				}
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				click_commonMethod(application, "Action Dropdown", "manageaddnlfrc_actiondropdown", xml);
 				click_commonMethod(application, "View", "view", xml);
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 				compareText(application, "View Price Announcement Header", "viewpriceannouncement_header", "View Price Announcement ", xml);
 				compareText(application, "SAN/FRC", "sanfrcvalue", sannumbervalue, xml);
 				compareText(application, "Customer Name", "customernamevalue", customernamevalue, xml);
@@ -3611,10 +3354,10 @@ public class APT_NGINHelper extends DriverHelper {
 				}
 				GetText(application, "Caller Confirmation Digit", "callerconfirmationdigit_field");
 				GetText(application, "Number Of Repetation Allowed", "noofrepetitionallowed_field");
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 				ScrolltoElement(application, "noofrepetitionallowed_field", xml);
 				click_commonMethod(application, "Cancel", "viewaddnlfrc_cancelbutton", xml);
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 
 			}
 			else
@@ -3640,10 +3383,10 @@ public class APT_NGINHelper extends DriverHelper {
 					DriverTestcase.logger.log(LogStatus.PASS, "Added Addnl FRC is already selected");
 					Log.info("Added Addnl FRC is already selected");
 				}
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				click_commonMethod(application, "Action Dropdown", "manageaddnlfrc_actiondropdown", xml);
 				click_commonMethod(application, "Delete Addnl FRC", "delete", xml);
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 				WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
 				if(DeleteAlertPopup.isDisplayed())
 				{
@@ -3655,9 +3398,9 @@ public class APT_NGINHelper extends DriverHelper {
 					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
 				}
 				compareText(application, "Delete", "deletesuccessmsg", "", xml);
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 				click_commonMethod(application, "Cancel", "cancelbutton", xml);
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 			}
 			else
 			{
@@ -3698,11 +3441,11 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!SANGrid6.contains("height: 1px"))
 		{
 			Clickon(AddedSAN6);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
 			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
 			click_commonMethod(application, "SAN Move", "sanmove_link", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			compareText(application, "SAN Move Header", "sanmoveheader", "SAN Move", xml);
 			click_commonMethod(application, "Cancel", "cancelbutton", xml);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN Move is cancelled");
@@ -3732,11 +3475,11 @@ public class APT_NGINHelper extends DriverHelper {
 		if(!SANGrid7.contains("height: 1px"))
 		{
 			Clickon(AddedSAN7);
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);
 			click_commonMethod(application, "SAN Action dropdown", "SANActionDropdown", xml);
 			click_commonMethod(application, "SAN Move", "sanmove_link", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			compareText(application, "SAN Move Header", "sanmoveheader", "SAN Move", xml);
 			click_commonMethod(application, "Move", "movebutton_sanmove", xml);
 			//warning message check
@@ -3748,7 +3491,7 @@ public class APT_NGINHelper extends DriverHelper {
 			addDropdownValues_commonMethod(application, "Destination Customer Name", "destinationcustomername", destinationcustomername, xml);
 			addDropdownValues_commonMethod(application, "Order/Service", "orderservice_dropdown", sanmove_orderno, xml);
 			click_commonMethod(application, "Move", "movebutton_sanmove", xml);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			compareText(application, "SAN Move success message", "successmsgalert", "San Moved Successfully", xml);
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN Move is successful");
 			Log.info("SAN Move is successful");
@@ -3762,25 +3505,25 @@ public class APT_NGINHelper extends DriverHelper {
 
 		//verify SAN in destination customer service
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorderlink")));
 
 		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/servicefield")),sanmove_orderno);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 
 		WebElement searchbutton= getwebelement(xml.getlocator("//locators/" + application + "/searchbutton"));
 		ScrolltoElement(application, "searchbutton", xml);
 		Clickon(searchbutton);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		scrolltoend();
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/serviceradiobutton")));
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorder_actiondropdown")));
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/view")));
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 
 		ScrolltoElement(application, "customerheader", xml);
 		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC", xml);

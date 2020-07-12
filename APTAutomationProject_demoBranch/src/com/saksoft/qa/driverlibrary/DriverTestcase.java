@@ -77,9 +77,7 @@ import com.saksoft.qa.apttestscripts.APT_Login;
 public class DriverTestcase {
 	
 	public static final ThreadLocal<WebDriver> WEB_DRIVER_THREAD_LOCAL = new InheritableThreadLocal<>();
-		
 
-		
 		
 	public static final ThreadLocal<APT_LoginHelper> APTLogin = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_MCS_CreateAccessCoreDeviceHelper> APT_CreateAccessCoreDeviceHelper = new InheritableThreadLocal<>();

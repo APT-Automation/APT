@@ -167,18 +167,18 @@ public class DriverHelper {
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
 			// getwebelement(xml.getlocator("//locators/StandrdQuote"));
 			System.out.println("Code for Loading");
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		} else if (locator.startsWith("name")) {
 			wait.until(ExpectedConditions.elementToBeClickable(By.name(locator.split("=")[1])));
 			// getwebelement(xml.getlocator("//locators/StandrdQuote"));
 			System.out.println("Code for Loading");
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 
 		} else if (locator.startsWith("id")) {
 			wait.until(ExpectedConditions.elementToBeClickable(By.id(locator.split("=")[1])));
 			// getwebelement(xml.getlocator("//locators/StandrdQuote"));
 			System.out.println("Code for Loading");
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 
 		}
 	}
@@ -1155,7 +1155,7 @@ public class DriverHelper {
 
 					SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/" + xpathname + "")),
 							expectedValueToAdd);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
 
 					String actualvalue = getwebelement(
 							xml.getlocator("//locators/" + application + "/" + xpathname + "")).getAttribute("value");
@@ -1204,7 +1204,7 @@ public class DriverHelper {
 				} else {
 
 					Clickon(getwebelement("//div[label[text()='" + labelname + "']]//div[text()='×']"));
-					Thread.sleep(2000);
+					Thread.sleep(1000);
 
 					// verify list of values inside dropdown
 					List<WebElement> listofvalues = driver
@@ -1220,12 +1220,12 @@ public class DriverHelper {
 						System.out.println(" " + valuetypes.getText());
 					}
 
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 					SendKeys(getwebelement("//div[label[text()='" + labelname + "']]//input"), expectedValueToAdd);
-					Thread.sleep(2000);
+					Thread.sleep(1000);
 
 					Clickon(getwebelement("(//div[contains(text(),'" + expectedValueToAdd + "')])[1]"));
-					Thread.sleep(3000);
+					Thread.sleep(1000);
 
 					String actualValue = getwebelement(
 							"//label[text()='" + labelname + "']/following-sibling::div//span").getText();
@@ -1275,7 +1275,7 @@ public class DriverHelper {
 
 				boolean isElementSelected = getwebelement(
 						xml.getlocator("//locators/" + application + "/" + xpath + "")).isSelected();
-				Thread.sleep(2000);
+				//Thread.sleep(2000);
 
 				// verify whether checkbox is selected/unselected by default
 				if (DefaultSelection.equalsIgnoreCase("yes")) {
@@ -1376,11 +1376,11 @@ public class DriverHelper {
 				} else {
 
 					getwebelement(xml.getlocator("//locators/" + application + "/" + xpathname + "")).clear();
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
 
 					SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/" + xpathname + "")),
 							expectedValueToEdit);
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
 
 					String actualvalue = getwebelement(
 							xml.getlocator("//locators/" + application + "/" + xpathname + "")).getAttribute("value");
@@ -1418,7 +1418,7 @@ public class DriverHelper {
 		// Field Error Message
 		try {
 			message = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")).isDisplayed();
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			sa.assertTrue(message, fieldlabelName + " field warning message is not displayed ");
 			if (message) {
 				String ErrMsg = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + "")).getText();
@@ -1488,7 +1488,7 @@ public class DriverHelper {
 				if (!expectedResult.equalsIgnoreCase("null")) {
 					boolean isElementSelected = getwebelement(
 							xml.getlocator("//locators/" + application + "/" + xpath + "")).isSelected();
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 
 					if (expectedResult.equalsIgnoreCase("yes")) {
 
@@ -1614,7 +1614,7 @@ public class DriverHelper {
 		WebElement element = null;
 
 		try {
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			element = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + ""));
 			String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + ""))
 					.getAttribute("value");
@@ -1662,7 +1662,7 @@ public class DriverHelper {
 		WebElement element = null;
 
 		try {
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			element = getwebelement("//div[div[label[contains(text(),'" + labelname + "')]]]/div[2]");
 			String emptyele = element.getText().toString();
 
@@ -1733,7 +1733,7 @@ public class DriverHelper {
 		WebElement element = null;
 
 		try {
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			element = getwebelement(webelement);
 			if (element == null) {
 				DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '" + labelname + "' not found");
@@ -1811,4 +1811,21 @@ public class DriverHelper {
 
 	}
 
+	public void Highlight(String application, String xpath, XMLReader xml) {
+		
+		WebElement element = null;
+
+		try {
+			//Thread.sleep(1000);
+			element = getwebelement(xml.getlocator("//locators/" + application + "/" + xpath + ""));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+        //use executeScript() method and pass the arguments 
+        //Here i pass values based on css style. solid red color border. 
+		js.executeScript("arguments[0].setAttribute('style', 'border: 2px solid red;');", element);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
 }

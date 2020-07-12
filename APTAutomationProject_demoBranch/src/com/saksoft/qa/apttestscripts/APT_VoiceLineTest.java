@@ -122,7 +122,7 @@ public class APT_VoiceLineTest extends DriverTestcase{
 	 public void verifyAddTrunk(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyAddTrunk");
-		APT_VoiceLineHelper.get().searchservice("voiceline", map.get("ServiceIdentification"));
+		//APT_VoiceLineHelper.get().searchservice("voiceline", map.get("ServiceIdentification"));
 		APT_VoiceLineHelper.get().addTrunkSiteOrder("voiceline", map.get("TrunkGroupOrder"), map.get("TrunkGroupOrderNumber"));
 		APT_VoiceLineHelper.get().editSiteOrder("voiceline", map.get("TrunkGroupOrderNumber"), map.get("edit_TrunkGroupOrder"), map.get("edit_TrunkGroupOrderNumber"));
 		APT_VoiceLineHelper.get().verifyAddedSiteOrderAndTrunkLinkUnderTrunkPanel("voiceline", map.get("TrunkGroupOrderNumber"));
@@ -142,7 +142,6 @@ public class APT_VoiceLineTest extends DriverTestcase{
 	public void viewTrunk(Map<String, String> map) throws Exception {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("viewTrunk");
-		Thread.sleep(2000);
 		
 		APT_VoiceLineHelper.get().viewTrunk_Primary("voiceline", map.get("Name"), map.get("ServiceIdentification"), map.get("BillingCountry"), map.get("CDRdelivery"),
 				map.get("gateway"), map.get("quality"), map.get("SIPURI"), map.get("ResellerID_value"), map.get("ipAddresstype"), map.get("SIPsignallingPort"), map.get("ThirdPartyInternet"), 

@@ -118,6 +118,9 @@
 <OrderContractNumber_Select>(//div[@class='react-dropdown-select-content react-dropdown-select-type-single css-jznujr-ContentComponent e1gn6jc30'])[1]</OrderContractNumber_Select>
 <successmsg>//div[@role='alert']//span</successmsg>
 
+<order_contractnumber_warngmsg>//div[label[contains(text(),'Order/Contract Number(Parent SID)')]]/following-sibling::span</order_contractnumber_warngmsg>
+<servicetype_warngmsg>//div[label[contains(text(),'Service Type')]]/following-sibling::span</servicetype_warngmsg>
+
 <!-- Service Creation Form -->
 <createorderservice_header>//div//div[text()='Create Order / Service']</createorderservice_header>
 <serviceidentificationtextfield>//input[@id='serviceIdentification']</serviceidentificationtextfield>

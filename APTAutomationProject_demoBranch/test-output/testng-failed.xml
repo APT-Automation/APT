@@ -1,27 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+<suite thread-count="1" name="Failed suite [APT_MCS Test Suite_voice]" parallel="classes" data-provider-thread-count="1">
+  <listeners>
+    <listener class-name="com.saksoft.qa.listeners.TestListener"/>
+  </listeners>
+  <test name="NGIN(failed)" parallel="classes">
     <classes>
-      <class name="com.saksoft.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter">
+      <class name="com.saksoft.qa.apttestscripts.APT_NGINTest">
         <methods>
-          <include name="verifynavigationtocreatedevicepage"/>
-          <include name="verifyEnteredValueForDevice"/>
-          <include name="verifyaccessrouterdeviceDelete"/>
-          <include name="endReport"/>
-          <include name="BeforeMethod"/>
-          <include name="routerPanel"/>
-          <include name="verifyDeviceUpdationSuccessMessagefor_AccessRouterDevice"/>
-          <include name="BeforeSuite"/>
           <include name="setup"/>
-          <include name="verifyTestCommandAndStatus"/>
-          <include name="verifyUpdatedValueForDevice"/>
+          <include name="AddReseller" invocation-numbers="0"/>
+          <include name="endReport"/>
           <include name="Teardown"/>
-          <include name="verifyaccessrouterdeviceEdit"/>
-          <include name="verifycreateaccessrouterdevice"/>
+          <include name="BeforeMethod"/>
+          <include name="BeforeSuite"/>
           <include name="getResult"/>
         </methods>
-      </class> <!-- com.saksoft.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter -->
+      </class> <!-- com.saksoft.qa.apttestscripts.APT_NGINTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- NGIN(failed) -->
+</suite> <!-- Failed suite [APT_MCS Test Suite_voice] -->

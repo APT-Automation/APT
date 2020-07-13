@@ -58,7 +58,7 @@ public class APT_NGINTest extends DriverTestcase{
 	 public void verifyCustomerDetailsInformation(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyCustomerDetailsInformation");
-		APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
+		//APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
 		APT_NGIN.get().verifyCustomerDetailsInformation("nginservice", map.get("Name"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
 		APT_NGIN.get().verifyUserDetailsInformation("nginservice", map.get("LoginColumn"), map.get("NameColumn"), map.get("EmailColumn"), map.get("RolesColumn"), map.get("AddressColumn"), map.get("ResourceColumn"));
 	}
@@ -90,9 +90,9 @@ public class APT_NGINTest extends DriverTestcase{
 	 public void verifyServicepanelinviewservicepage(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyServicepanelinviewservicepage");
-		APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
-		//APT_NGIN.get().verifyservicepanelInformationinviewservicepage("nginservice", map.get("ServiceIdentification"), map.get("ServiceType"), map.get("Remarks"));
-		APT_NGIN.get().verifyservicepanel_links("nginservice", map.get("EditRemarks"), map.get("Remarks"), map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"), map.get("BulkJob_FilePath"));
+		//APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
+		APT_NGIN.get().verifyservicepanelInformationinviewservicepage("nginservice", map.get("ServiceIdentification"), map.get("ServiceType"), map.get("Remarks"));
+		//APT_NGIN.get().verifyservicepanel_links("nginservice", map.get("EditRemarks"), map.get("Remarks"), map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"), map.get("BulkJob_FilePath"));
 	}
 	
 	@Test(description = "TC-10",dataProviderClass = DataReader_PK.class, dataProvider = "Finaldatareader_NGIN", priority=9)

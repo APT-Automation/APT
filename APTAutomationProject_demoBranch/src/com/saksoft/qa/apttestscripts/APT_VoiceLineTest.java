@@ -106,14 +106,14 @@ public class APT_VoiceLineTest extends DriverTestcase{
 	 public void verifyASRDevice(Map<String, String> map) throws InterruptedException, DocumentException, IOException {
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyASRDevice");
-		APT_VoiceLineHelper.get().searchservice("voiceline", map.get("ServiceIdentification"));
+		//APT_VoiceLineHelper.get().searchservice("voiceline", map.get("ServiceIdentification"));
 		APT_VoiceLineHelper.get().verifyAddASRDevice("voiceline", map.get("IMSPopLocation_DropdownValue"));
 		APT_VoiceLineHelper.get().verifyEditASRDevice("voiceline", map.get("IMSPopLocation_DropdownValue"), map.get("editASRDeviceName"), map.get("editASRManagementAddress"), map.get("editCountry"), map.get("editExistingCity"),
 				map.get("editExistingCityValue"), map.get("editExistingSite"), map.get("editExistingSiteValue"), map.get("editExistingPremise"), map.get("editExistingPremiseValue"),
 				map.get("editNewCity"), map.get("editNewSite"), map.get("editNewPremise"), map.get("editNewCityName"), map.get("editNewCityCode"), map.get("editNewSiteName"),
 				map.get("editNewSiteCode"), map.get("editNewPremiseName"), map.get("editNewPremiseCode"));
 		APT_VoiceLineHelper.get().verifyViewASRDevice("voiceline", map.get("IMSPopLocation_DropdownValue"));
-		APT_VoiceLineHelper.get().verifyViewDevicepage_Links("voiceline", map.get("ServiceIdentification"), map.get("IMSPopLocation_DropdownValue"));
+		//APT_VoiceLineHelper.get().verifyViewDevicepage_Links("voiceline", map.get("ServiceIdentification"), map.get("IMSPopLocation_DropdownValue"));
 		APT_VoiceLineHelper.get().verifyFetchInterface("voiceline", map.get("IMSPopLocation_DropdownValue"), map.get("ServiceIdentification"), map.get("editASRDeviceName"), map.get("InServiceStatus"), map.get("InMaintenanceStatus"), map.get("InterfaceName"));
 		
 	}

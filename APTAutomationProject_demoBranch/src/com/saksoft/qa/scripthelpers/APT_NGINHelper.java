@@ -85,12 +85,12 @@ public class APT_NGINHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "Main Domain", "maindomaintextfield", maindomain, xml);
 		addDropdownValues_commonMethod(application, "Country", "country", country, xml);
 		addtextFields_commonMethod(application, "OCN", "ocntextfield", ocn, xml);
-		addtextFields_commonMethod(application, "Reference", "referencetextfield", reference, xml);
+		//addtextFields_commonMethod(application, "Reference", "referencetextfield", reference, xml);
 		addtextFields_commonMethod(application, "Technical Contact Name", "technicalcontactnametextfield", tcn, xml);
 		addDropdownValues_commonMethod(application, "Type", "typedropdown", type, xml);
 		addtextFields_commonMethod(application, "Email", "emailtextfield", email, xml);
 		addtextFields_commonMethod(application, "Phone", "phonetextfield", phone, xml);
-		addtextFields_commonMethod(application, "Fax", "faxtextfield", fax, xml);
+		//addtextFields_commonMethod(application, "Fax", "faxtextfield", fax, xml);
 		scrolltoend();
 		//Thread.sleep(1000);
 		click_commonMethod(application, "Ok", "okbutton", xml);
@@ -424,8 +424,8 @@ public class APT_NGINHelper extends DriverHelper {
 
 
 			//Hide Service
-			selectAndAddValueFromLeftDropdown(application, "Hide Service", "HideService_Available", ServicesTobeSelectedlist, "HideService_addButton");
-			verifySelectedValuesInsideRightDropdown(application, "Hide Services", "HideServicesDropdown_selectedValues");
+//			selectAndAddValueFromLeftDropdown(application, "Hide Service", "HideService_Available", ServicesTobeSelectedlist, "HideService_addButton");
+//			verifySelectedValuesInsideRightDropdown(application, "Hide Services", "HideServicesDropdown_selectedValues");
 
 
 			//Hide Site Order
@@ -1164,8 +1164,11 @@ public class APT_NGINHelper extends DriverHelper {
 		ScrolltoElement(application, "orderpanelheader", xml);
 		//compareText(application, "Service panel Header", "servicepanel_header", "Service", xml);
 		compareText(application, "Service Identification", "servicepanel_serviceidentificationvalue", sid, xml);
+		Highlight(application, "servicepanel_serviceidentificationvalue", xml);
 		compareText(application, "Service Type", "servicepanel_servicetypevalue", servicetype, xml);
+		Highlight(application, "servicepanel_servicetypevalue", xml);
 		compareText(application, "Remarks", "servicepanel_remarksvalue", Remarks, xml);
+		Highlight(application, "servicepanel_remarksvalue", xml);
 	}
 
 	public void verifyservicepanel_links(String application, String EditRemarks, String Remarks, String changeorderno, String sid, String servicetype, String servicestatus, String syncstatus, String servicestatuschangerequired, String bulkjob_filepath) throws InterruptedException, DocumentException, IOException {
@@ -1386,15 +1389,15 @@ public class APT_NGINHelper extends DriverHelper {
 		// verify customer administration information
 		String CustomerAdmin_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/customeradmin_text")));
 		GetText(application, CustomerAdmin_Text, "customeradmin_value");
-		Highlight(application, "customeradmin_text", xml);
+		Highlight(application, "customeradmin_value", xml);
 		// verify SAN Administration information
 		String SANAdmin_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/sanadmin_text")));		
 		GetText(application, SANAdmin_Text, "sanadmin_value");
-		Highlight(application, "sanadmin_text", xml);
+		Highlight(application, "sanadmin_value", xml);
 		// verify Reseller Administration information
 		String ResellerAdmin_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/reselleradmin_text")));
 		GetText(application, ResellerAdmin_Text, "reselleradmin_value");
-		Highlight(application, "reselleradmin_text", xml);
+		Highlight(application, "reselleradmin_value", xml);
 
 	}
 
@@ -1457,7 +1460,7 @@ public class APT_NGINHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "PO Box", "reseller_pobox", pobox, xml);
 		addtextFields_commonMethod(application, "Zip Code", "reseller_zipcode", zipcode, xml);
 		addtextFields_commonMethod(application, "Phone", "reseller_phone", phone, xml);
-		addtextFields_commonMethod(application, "Fax", "reseller_fax", fax, xml);
+		//addtextFields_commonMethod(application, "Fax", "reseller_fax", fax, xml);
 		click_commonMethod(application, "Next", "nextbutton", xml);
 		//Thread.sleep(2000);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())

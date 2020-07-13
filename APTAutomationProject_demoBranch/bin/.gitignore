@@ -6,7 +6,6 @@
 /CreateAccessCoreDevice_Screenshots/
 /Excelfiles/
 /ExtentReports/
-/com/
 /Logs/
 /Suite/
 /TestLog.log
@@ -14,6 +13,7 @@
 /_classpath.xml
 /_project(1).xml
 /_project.xml
+/com/
 /debug.log
 /lib/
 /log4j.xml

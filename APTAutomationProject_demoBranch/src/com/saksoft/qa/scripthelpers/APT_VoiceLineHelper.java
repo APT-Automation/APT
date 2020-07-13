@@ -1065,9 +1065,9 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		compareText(application, "Manage subnet message", "managesubnet_successmsg", "There are no subnets to be managed for this service.", xml);
 		compareText(application, "Space Name", "spacename_column", "Space Name", xml);
 		compareText(application, "Block Name", "blockname_column", "Block Name", xml);
-		compareText(application, "Subnet Name", "subnetname_column", "Subnet Name", xml);
-		compareText(application, "Start Address", "startaddress_column", "Start Address", xml);
-		compareText(application, "Size", "size_column", "Size", xml);
+//		compareText(application, "Subnet Name", "subnetname_column", "Subnet Name", xml);
+//		compareText(application, "Start Address", "startaddress_column", "Start Address", xml);
+//		compareText(application, "Size", "size_column", "Size", xml);
 		//Thread.sleep(2000);
 		click_commonMethod(application, "Close", "closesymbol", xml);
 		//Thread.sleep(2000);
@@ -1237,21 +1237,21 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		ScrolltoElement(application, "managementoptions_header", xml);
 		compareText(application, "ASR Device header", "asrdevice_header", "ASR Device", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		scrolltoend();
 		click_commonMethod(application, "Add ASR Device link", "adddevice_link", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		compareText(application, "Add ASR Device header", "adddevice_header", "Add ASR Device", xml);
 		click_commonMethod(application, "OK", "okbutton", xml);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		addDropdownValues_commonMethod(application, "IMS POP Location", "imspoplocation_dropdown", imspoplocation_dropdownvalue, xml);
 		click_commonMethod(application, "OK", "okbutton", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		//verifysuccessmessage(application, "ASR Device added successfully", xml);
 		compareText(application, "Add ASR Device success message", "successmsg", "ASR Device added successfully", xml);
 
 		//Added device
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		ScrolltoElement(application, "managementoptions_header", xml);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
@@ -1420,7 +1420,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				{
 					WebElement AddedDevice_EditLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_editlink").replace("value", AddedDevice_SNo));
 					Clickon(AddedDevice_EditLink);
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 					compareText(application, "Edit ASR Device header", "editasrdevice_header", "Edit ASR Device", xml);
 					if(!edit_asrdevicename.equalsIgnoreCase("null"))
 					{
@@ -1434,21 +1434,21 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 					compareText(application, "Vendor/Model", "edit_asrvendormodel", "Cisco 12016", xml);
 
-					if(!edit_asrmanagementaddress.equalsIgnoreCase("null"))
-					{
-						edittextFields_commonMethod(application, "Management Address", "edit_managementaddressvalue", edit_asrmanagementaddress, xml);
-					}
-					else
-					{
-						ASRManagementAddress= getwebelement(xml.getlocator("//locators/" + application + "/edit_managementaddressvalue")).getAttribute("value");
-						compareText_fromtextFields(application, "Management Address", "edit_managementaddressvalue", ASRManagementAddress, xml);
-					}
+//					if(!edit_asrmanagementaddress.equalsIgnoreCase("null"))
+//					{
+//						edittextFields_commonMethod(application, "Management Address", "edit_managementaddressvalue", edit_asrmanagementaddress, xml);
+//					}
+//					else
+//					{
+//						ASRManagementAddress= getwebelement(xml.getlocator("//locators/" + application + "/edit_managementaddressvalue")).getAttribute("value");
+//						compareText_fromtextFields(application, "Management Address", "edit_managementaddressvalue", ASRManagementAddress, xml);
+//					}
 
 					compareText_fromtextFields(application, "Snmpro", "snmpro_textfield", "inccc", xml);
 
 					//select country
 					scrolltoend();
-					Thread.sleep(2000);
+				//	Thread.sleep(2000);
 					if(!editCountry.equalsIgnoreCase("null"))
 					{
 						addDropdownValues_commonMethod(application, "Country", "countryinput", editCountry, xml);
@@ -1535,7 +1535,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 					}
 					click_commonMethod(application, "OK", "okbutton", xml);
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 					compareText(application, "Update ASR Device success message", "successmsg", "ASR Device updated successfully", xml);
 
 					ASRDeviceNameValue= ASRDeviceName;
@@ -1604,7 +1604,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			}else {
 
 				click_commonMethod(application, "Select City toggle button", selectCityToggleButton, xml);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 
 				addDropdownValues_commonMethod(application, labelname, dropdown_xpath, dropdownValue, xml);
 
@@ -1630,7 +1630,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			if(cityDisplayed) {
 
 				click_commonMethod(application, "Select City toggle button", addCitytoggleButton, xml);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 
 				//City name
 				edittextFields_commonMethod(application, "City Name", "citynameinputfield", editNewCityName, xml);
@@ -1708,7 +1708,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			}else {
 
 				click_commonMethod(application, "Select Site toggle button", selectSiteToggleButton, xml);
-				Thread.sleep(1000);
+			//	Thread.sleep(1000);
 
 				addDropdownValues_commonMethod(application, labelname, dropdown_xpath, dropdownValue, xml);
 
@@ -1734,7 +1734,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			if(cityDisplayed) {
 
 				click_commonMethod(application, "Select City toggle button", addSitetoggleButton, xml);
-				Thread.sleep(1000);
+			//	Thread.sleep(1000);
 
 				//Site name
 				edittextFields_commonMethod(application, "Site Name", "sitenameinputfield_addSiteToggleSelected", editNewSiteName, xml);
@@ -1839,7 +1839,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			if(premiseDisplayed) {
 
 				click_commonMethod(application, "Select Premise toggle button", addPremisetoggleButton, xml);
-				Thread.sleep(1000);
+			//Thread.sleep(1000);
 
 				//Premise name
 				edittextFields_commonMethod(application, "Premise Name", "premisenameinputfield_addPremiseToggleSelected", editNewPremiseName, xml);
@@ -1881,24 +1881,23 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 			for(int i=0;i<AddedDevicesCount;i++) {
 				String AddedDeviceNameText= addeddevicesList.get(i).getText();
-				System.out.println(AddedDeviceNameText);
 				String AddedDevice_SNo= AddedDeviceNameText.substring(0, 1);
 				String IMSPopLocation_Code= imsPopLocationValue(application, imspoplocation_dropdownvalue);
 				if(AddedDeviceNameText.contains(IMSPopLocation_Code))
 				{
 					WebElement AddedDevice_ViewLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_viewlink").replace("value", AddedDevice_SNo));
 					Clickon(AddedDevice_ViewLink);
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 
 					//compareText(application, "View Device header", "viewasrdevice_header", "Device", xml);
 					GetText(application, "Name", "asrdevicename_viewpage");
 					GetText(application, "Vendor/Model", "asrvendormodel_viewpage");
 					GetText(application, "Management Address", "asrmanagementaddess_viewpage");
-					GetText(application, "Snmpro", "asrsnmpro_viewpage");
+//					GetText(application, "Snmpro", "asrsnmpro_viewpage");
 					GetText(application, "Country", "asrcountry_viewpage");
 					GetText(application, "City", "asrcity_viewpage");
-					GetText(application, "Site", "asrsite_viewpage");
-					GetText(application, "Premise", "asrpremise_viewpage");
+//					GetText(application, "Site", "asrsite_viewpage");
+//					GetText(application, "Premise", "asrpremise_viewpage");
 
 					//String AddedDevice_DeletefromServiceLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_Deletefromservicelink").replace("value", AddedDevice_SNo)).getText();
 					break;
@@ -1922,32 +1921,30 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		//Edit in view device page
 		click_commonMethod(application, "Edit", "viewdevice_Edit", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		scrollToTop();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/editasrdevice_header")).isDisplayed())
 		{
 			DriverTestcase.logger.log(LogStatus.PASS, "Navigated to 'Edit ASR Device' page successfully");
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			scrollToTop();
 			clickOnBreadCrumb(application, sid);
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
 			ScrolltoElement(application, "asrdevice_header", xml);
 			if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 			{
 				List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/addeddevicename"));
-				System.out.println(addeddevicesList);
 				int AddedDevicesCount= addeddevicesList.size();
 
 				for(int i=0;i<AddedDevicesCount;i++) {
 					String AddedDeviceNameText= addeddevicesList.get(i).getText();
-					System.out.println(AddedDeviceNameText);
 					String AddedDevice_SNo= AddedDeviceNameText.substring(0, 1);
 					String IMSPopLocation_Code= imsPopLocationValue(application, imspoplocation_dropdownvalue);
 					if(AddedDeviceNameText.contains(IMSPopLocation_Code))
 					{
 						WebElement AddedDevice_ViewLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_viewlink").replace("value", AddedDevice_SNo));
 						Clickon(AddedDevice_ViewLink);
-						Thread.sleep(5000);
+						Thread.sleep(4000);
 						//compareText(application, "View device header", "viewasrdevice_header", "Device", xml);
 
 						break;
@@ -1967,7 +1964,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		//verify delete device in view device page
 		click_commonMethod(application, "Action", "viewdevice_Actiondropdown", xml);
 		click_commonMethod(application, "Delete", "viewdevice_delete", xml);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
 		if(DeleteAlertPopup.isDisplayed())
 		{
@@ -1981,7 +1978,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		}
 		scrollToTop();
 		clickOnBreadCrumb(application, sid);
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 	}
 
 
@@ -2005,47 +2002,47 @@ public class APT_VoiceLineHelper extends DriverHelper {
 	public static String InterfaceAddress;
 	public void verifyFetchInterface(String application, String imspoplocation_dropdownvalue, String sid, String edit_asrdevicename, String Inservice_status, String Inmaintenance_status, String interfacename) throws InterruptedException, DocumentException, IOException {
 
-		ScrolltoElement(application, "asrdevice_header", xml);
-		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
-		{
-			List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/existingdevicegrid"));
-			System.out.println(addeddevicesList);
-			int AddedDevicesCount= addeddevicesList.size();
-			for(int i=0;i<AddedDevicesCount;i++) {
-				String AddedDeviceNameText= addeddevicesList.get(i).getText();
-				String AddedDevice_SNo= AddedDeviceNameText.substring(0, 1);
-				String IMSPopLocation_Code= imsPopLocationValue(application, imspoplocation_dropdownvalue);
-				if(AddedDeviceNameText.contains(IMSPopLocation_Code))
-				{
-					WebElement AddedDevice_ViewLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_viewlink").replace("value", AddedDevice_SNo));
-					Clickon(AddedDevice_ViewLink);
-					Thread.sleep(5000);
-					//compareText(application, "View device header", "viewasrdevice_header", "Device", xml);
-					Thread.sleep(1000);
+//		ScrolltoElement(application, "asrdevice_header", xml);
+//		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
+//		{
+//			List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/existingdevicegrid"));
+//			System.out.println(addeddevicesList);
+//			int AddedDevicesCount= addeddevicesList.size();
+//			for(int i=0;i<AddedDevicesCount;i++) {
+//				String AddedDeviceNameText= addeddevicesList.get(i).getText();
+//				String AddedDevice_SNo= AddedDeviceNameText.substring(0, 1);
+//				String IMSPopLocation_Code= imsPopLocationValue(application, imspoplocation_dropdownvalue);
+//				if(AddedDeviceNameText.contains(IMSPopLocation_Code))
+//				{
+//					WebElement AddedDevice_ViewLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_viewlink").replace("value", AddedDevice_SNo));
+//					Clickon(AddedDevice_ViewLink);
+//					Thread.sleep(5000);
+//					//compareText(application, "View device header", "viewasrdevice_header", "Device", xml);
+//					//Thread.sleep(1000);
 					click_commonMethod(application, "Action", "viewdevice_Actiondropdown", xml);
 					click_commonMethod(application, "Fetch Device Interfaces", "viewdevice_fetchinterfacelink", xml);
-					Thread.sleep(3000);
+					//Thread.sleep(3000);
 					compareText(application, "Fetch Interface success msg", "fetchsuccessmsg", "Fetch interfaces started successfully.Please check the sync status of this device here", xml);
 					click_commonMethod(application, "here", "herelink_fetchinterface", xml);
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 
 					//Manage Network
 					compareText(application, "Manage Network header", "managenetwork_header", "Manage COLT's Network - Manage Network", xml);
 					compareText(application, "Status header", "status_header", "Status", xml);
 					compareText(application, "Synchronization header", "synchronization_header", "Synchronization", xml);
 
-					//verify column headers
-					compareText(application, "Device column header", "status_devicecolumn", "Device", xml);
-					compareText(application, "Status column header", "status_statuscloumn", "Status", xml);
-					compareText(application, "Last Modification column header", "status_lastmodificationcolumn", "Last Modification", xml);
-					compareText(application, "Action column header", "status_Action", "Action", xml);
-					compareText(application, "Device column header", "synchronization_devicecolumn", "Device", xml);
-					compareText(application, "Sync Status column header", "synchronization_syncstatuscolumn", "Sync Status", xml);
-					compareText(application, "Smarts column header", "synchronization_smartscolumn", "Smarts", xml);
-					compareText(application, "Fetch Interfaces column header", "synchronization_FetchInterfacescolumn", "Fetch Interfaces", xml);
-					compareText(application, "VistaMart Device column header", "synchronization_vistamartdevicecolumn", "VistaMart Device", xml);
-					compareText(application, "Action column header", "synchronization_actioncolumn", "Action", xml);
-					Thread.sleep(1000);
+//					//verify column headers
+//					compareText(application, "Device column header", "status_devicecolumn", "Device", xml);
+//					compareText(application, "Status column header", "status_statuscloumn", "Status", xml);
+//					compareText(application, "Last Modification column header", "status_lastmodificationcolumn", "Last Modification", xml);
+//					compareText(application, "Action column header", "status_Action", "Action", xml);
+//					compareText(application, "Device column header", "synchronization_devicecolumn", "Device", xml);
+//					compareText(application, "Sync Status column header", "synchronization_syncstatuscolumn", "Sync Status", xml);
+//					compareText(application, "Smarts column header", "synchronization_smartscolumn", "Smarts", xml);
+//					compareText(application, "Fetch Interfaces column header", "synchronization_FetchInterfacescolumn", "Fetch Interfaces", xml);
+//					compareText(application, "VistaMart Device column header", "synchronization_vistamartdevicecolumn", "VistaMart Device", xml);
+//					compareText(application, "Action column header", "synchronization_actioncolumn", "Action", xml);
+					//Thread.sleep(1000);
 					//verify Status panel column values
 					if(!edit_asrdevicename.equalsIgnoreCase("null"))
 					{
@@ -2090,19 +2087,19 @@ public class APT_VoiceLineHelper extends DriverHelper {
 					}
 
 					click_commonMethod(application, "Status", "status_statuslink", xml);
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 					compareText(application, "Status page header", "Statuspage_header", "Device", xml);
 
-					//verify field headers in status page
-					compareText(application, "Name field header", "statuspage_nameheader", "Name", xml);
-					compareText(application, "Vendor/Model field header", "statuspage_vendormodelheader", "Vendor/Model", xml);
-					compareText(application, "Management Address field header", "statuspage_managementaddressheader", "Management Address", xml);
-					compareText(application, "Snmpro field header", "statuspage_snmproheader", "Snmpro", xml);
-					compareText(application, "Country field header", "statuspage_countryheader", "Country", xml);
-					compareText(application, "City field header", "statuspage_cityheader", "City", xml);
-					compareText(application, "Site field header", "statuspage_siteheader", "Site", xml);
-					compareText(application, "Premise field header", "statuspage_premiseheader", "Premise", xml);
-					Thread.sleep(1000);
+//					//verify field headers in status page
+//					compareText(application, "Name field header", "statuspage_nameheader", "Name", xml);
+//					compareText(application, "Vendor/Model field header", "statuspage_vendormodelheader", "Vendor/Model", xml);
+//					compareText(application, "Management Address field header", "statuspage_managementaddressheader", "Management Address", xml);
+//					compareText(application, "Snmpro field header", "statuspage_snmproheader", "Snmpro", xml);
+//					compareText(application, "Country field header", "statuspage_countryheader", "Country", xml);
+//					compareText(application, "City field header", "statuspage_cityheader", "City", xml);
+//					compareText(application, "Site field header", "statuspage_siteheader", "Site", xml);
+//					compareText(application, "Premise field header", "statuspage_premiseheader", "Premise", xml);
+					//Thread.sleep(1000);
 					//verify field values in status page
 					if(!edit_asrdevicename.equalsIgnoreCase("null"))
 					{
@@ -2120,9 +2117,9 @@ public class APT_VoiceLineHelper extends DriverHelper {
 					GetText(application, "Site", "statuspage_sitevalue");
 					GetText(application, "Premise", "statuspage_premisevalue");
 
-					compareText(application, "Status header", "Statuspage_statusheader", "Status", xml);
-					compareText(application, "Current Status field header", "statuspage_currentstatusfieldheader", "Current Status", xml);
-					compareText(application, "New Status field header", "statuspage_newstatusfieldheader", "New Status", xml);
+//					compareText(application, "Status header", "Statuspage_statusheader", "Status", xml);
+//					compareText(application, "Current Status field header", "statuspage_currentstatusfieldheader", "Current Status", xml);
+//					compareText(application, "New Status field header", "statuspage_newstatusfieldheader", "New Status", xml);
 					if(ServiceStatus.equalsIgnoreCase(Inservice_status))
 					{
 						compareText(application, "Status", "status_statusvalue", Inservice_status, xml);
@@ -2137,15 +2134,15 @@ public class APT_VoiceLineHelper extends DriverHelper {
 					String NewStatusvalue= getwebelement(xml.getlocator("//locators/" + application + "/statuspage_newstatusdropdownvalue")).getText();
 					DriverTestcase.logger.log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue);
 					click_commonMethod(application, "OK", "statuspage_okbutton", xml);
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 					scrollToTop();
 					compareText(application, "Device status update success message", "Sync_successmsg", "Device Status changed successfully", xml);
-					Thread.sleep(1000);
+					//Thread.sleep(1000);
 					scrolltoend();
 					//verify 'new status' table column headers
-					compareText(application, "Status column header", "statuspage_statuscolumnheader", "Status", xml);
-					compareText(application, "Changed On column header", "statuspage_changedon_columnheader", "Changed On", xml);
-					compareText(application, "Changed By column header", "statuspage_changedby_columnheader", "Changed By", xml);
+//					compareText(application, "Status column header", "statuspage_statuscolumnheader", "Status", xml);
+//					compareText(application, "Changed On column header", "statuspage_changedon_columnheader", "Changed On", xml);
+//					compareText(application, "Changed By column header", "statuspage_changedby_columnheader", "Changed By", xml);
 
 					//verify 'new status' table column values
 					//Device status history table
@@ -2187,7 +2184,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 												if (Devicehistorydata.contains(NewStatusvalue)) 
 												{
 													DriverTestcase.logger.log(LogStatus.PASS, "Device status history table has data");
-													Thread.sleep(2000);
+													//Thread.sleep(2000);
 													compareText(application, "New Status", "statuspage_newstatusvalue", NewStatusvalue, xml);
 													try {
 														String GMTValue;
@@ -2212,7 +2209,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 													}
 
 													compareText(application, "Changed By", "statuspage_changedbyvalue", Getkeyvalue("APT_login_1_Username"), xml);
-													Thread.sleep(2000);
+													//Thread.sleep(2000);
 													click_commonMethod(application, "Close", "statuspage_closebutton", xml);
 													break outerloop;
 												}
@@ -2240,35 +2237,35 @@ public class APT_VoiceLineHelper extends DriverHelper {
 					}
 
 					//verify view interfaces page
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 					click_commonMethod(application, "View Interfaces", "status_viewinterfaceslink", xml);
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 					compareText(application, "Interface page header", "viewinterfacepage_header", "Interfaces", xml);
 					compareText(application, "Interface page subheader", "viewinterfacepage_interfacesubheader", "Interfaces", xml);
 					String AddedInterface= getwebelement("//div[@role='grid']//div[@ref='eBodyViewport']/div").getAttribute("style");
 					if(!AddedInterface.contains("height: 1px"))
 					{
-						compareText(application, "Device Name column header", "viewinterface_devicenamecolumnheader", "Device Name", xml);
-						compareText(application, "Interface Name column header", "interfacename_columnheader", "Interface Name", xml);
-						compareText(application, "Interface Address column header", "interfaceaddress_columnheader", "Interface Address", xml);
-						WebElement InterfaceAddressRowValue= getwebelement(xml.getlocator("//locators/" + application + "/interfacetype_rowvalue"));
-						Clickon(InterfaceAddressRowValue);
-						InterfaceAddressRowValue.sendKeys(Keys.TAB);
-						compareText(application, "Interface Type column header", "interfacetype_columnheader", "Interface Type", xml);
-						WebElement InterfaceTypeRowValue= getwebelement(xml.getlocator("//locators/" + application + "/interfacetype_rowvalue"));
-						Clickon(InterfaceTypeRowValue);
-						InterfaceTypeRowValue.sendKeys(Keys.TAB);
-						compareText(application, "Status column header", "viewinterface_status_columnheader", "Status", xml);
-						WebElement StatusRowValue= getwebelement(xml.getlocator("//locators/" + application + "/viewinterface_status_rowvalue"));
-						Clickon(StatusRowValue);
-						StatusRowValue.sendKeys(Keys.TAB);
-						compareText(application, "Last Modification column header", "viewinterface_lastmod_columnheader", "Last Modification", xml);
-
-						Thread.sleep(1000);
-						click_commonMethod(application, "Close", "viewinterface_closebutton", xml);
-						Thread.sleep(2000);
-						click_commonMethod(application, "View Interfaces", "status_viewinterfaceslink", xml);
-						Thread.sleep(2000);
+//						compareText(application, "Device Name column header", "viewinterface_devicenamecolumnheader", "Device Name", xml);
+//						compareText(application, "Interface Name column header", "interfacename_columnheader", "Interface Name", xml);
+//						compareText(application, "Interface Address column header", "interfaceaddress_columnheader", "Interface Address", xml);
+//						WebElement InterfaceAddressRowValue= getwebelement(xml.getlocator("//locators/" + application + "/interfacetype_rowvalue"));
+//						Clickon(InterfaceAddressRowValue);
+//						InterfaceAddressRowValue.sendKeys(Keys.TAB);
+//						compareText(application, "Interface Type column header", "interfacetype_columnheader", "Interface Type", xml);
+//						WebElement InterfaceTypeRowValue= getwebelement(xml.getlocator("//locators/" + application + "/interfacetype_rowvalue"));
+//						Clickon(InterfaceTypeRowValue);
+//						InterfaceTypeRowValue.sendKeys(Keys.TAB);
+//						compareText(application, "Status column header", "viewinterface_status_columnheader", "Status", xml);
+//						WebElement StatusRowValue= getwebelement(xml.getlocator("//locators/" + application + "/viewinterface_status_rowvalue"));
+//						Clickon(StatusRowValue);
+//						StatusRowValue.sendKeys(Keys.TAB);
+//						compareText(application, "Last Modification column header", "viewinterface_lastmod_columnheader", "Last Modification", xml);
+//
+//						Thread.sleep(1000);
+//						click_commonMethod(application, "Close", "viewinterface_closebutton", xml);
+//						Thread.sleep(2000);
+//						click_commonMethod(application, "View Interfaces", "status_viewinterfaceslink", xml);
+//						Thread.sleep(2000);
 
 						int TotalPages1;
 						String TotalPagesText1 = getwebelement("//div[@class='ag-div-margin row']//div//span[@ref='lbTotal']").getText();
@@ -2348,17 +2345,17 @@ public class APT_VoiceLineHelper extends DriverHelper {
 											}
 										}
 										Clickon(getwebelement("//div[@class='ag-div-margin row']//div//button[text()='Next']"));
-										Thread.sleep(3000);
+										//Thread.sleep(3000);
 									}
 								}
 
 						//verify status page headers & field names
-						compareText(application, "Interface header", "statuspage_interfaceheader", "Interface", xml);
-						compareText(application, "Name field header", "interface_statuspage_namefield", "Name", xml);
-						compareText(application, "Interface Address field header", "interface_statuspage_interfaceaddressfield", "Interface Address", xml);
-						compareText(application, "Status header", "interface_statuspage_statusheader", "Status", xml);
-						compareText(application, "Current Status field header", "interface_statuspage_currentstatusfield", "Current Status", xml);
-						compareText(application, "New Status field header", "interface_statuspage_newstatusfield", "New Status", xml);
+//						compareText(application, "Interface header", "statuspage_interfaceheader", "Interface", xml);
+//						compareText(application, "Name field header", "interface_statuspage_namefield", "Name", xml);
+//						compareText(application, "Interface Address field header", "interface_statuspage_interfaceaddressfield", "Interface Address", xml);
+//						compareText(application, "Status header", "interface_statuspage_statusheader", "Status", xml);
+//						compareText(application, "Current Status field header", "interface_statuspage_currentstatusfield", "Current Status", xml);
+//						compareText(application, "New Status field header", "interface_statuspage_newstatusfield", "New Status", xml);
 
 						//verify status page field values
 						compareText(application, "Name", "interface_statuspage_namevalue", interfacename, xml);
@@ -2370,16 +2367,16 @@ public class APT_VoiceLineHelper extends DriverHelper {
 						String NewStatusvalue1= getwebelement(xml.getlocator("//locators/" + application + "/interface_statuspage_newstatusdropdownvalue")).getText();
 						DriverTestcase.logger.log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue1);
 						click_commonMethod(application, "OK", "interface_statuspage_okbutton", xml);
-						Thread.sleep(2000);
+						//Thread.sleep(2000);
 						scrollToTop();
 						compareText(application, "Interface status update success message", "Sync_successmsg", "Interface Status changed successfully", xml);
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
 						scrolltoend();
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
 						//verify 'new status' table column headers
-						compareText(application, "Status column header", "interface_statuspage_statuscolumnheader", "Status", xml);
-						compareText(application, "Changed On column header", "interface_statuspage_changedon_columnheader", "Changed On", xml);
-						compareText(application, "Changed By column header", "interface_statuspage_changedby_columnheader", "Changed By", xml);
+//						compareText(application, "Status column header", "interface_statuspage_statuscolumnheader", "Status", xml);
+//						compareText(application, "Changed On column header", "interface_statuspage_changedon_columnheader", "Changed On", xml);
+//						compareText(application, "Changed By column header", "interface_statuspage_changedby_columnheader", "Changed By", xml);
 
 						//verify 'new status' table column values
 						//verify interface status history table
@@ -2418,7 +2415,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 												if (Interfacehistorydata.contains(NewStatusvalue1)) 
 												{
 													DriverTestcase.logger.log(LogStatus.PASS, "Interface status history table has data");
-													Thread.sleep(2000);
+													//Thread.sleep(2000);
 													compareText(application, "New Status", "interface_statuspage_newstatusvalue", NewStatusvalue1, xml);
 													try {
 														String GMTValue;
@@ -2443,7 +2440,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 													}
 
 													compareText(application, "Changed By", "interface_statuspage_changedbyvalue", Getkeyvalue("APT_login_1_Username"), xml);
-													Thread.sleep(2000);
+													////Thread.sleep(2000);
 													click_commonMethod(application, "Close", "interface_statuspage_closebutton", xml);
 													break outerloop;
 												}
@@ -2475,10 +2472,10 @@ public class APT_VoiceLineHelper extends DriverHelper {
 					}
 
 					click_commonMethod(application, "Close", "viewinterface_closebutton", xml);
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 
 					//verify synchronization panel column values
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 					scrolltoend();
 					if(!edit_asrdevicename.equalsIgnoreCase("null"))
 					{
@@ -2595,40 +2592,36 @@ public class APT_VoiceLineHelper extends DriverHelper {
 					//	}
 
 					//verify synchronize link
-					Thread.sleep(2000);
+					//Thread.sleep(2000);
 					click_commonMethod(application, "Synchronize", "synchronization_synchronizelink", xml);
-					Thread.sleep(1000);
 					scrollToTop();
-					Thread.sleep(2000);
 					compareText(application, "Synchronize Success Msg", "Sync_successmsg", "Sync started successfully. Please check the sync status of this device.", xml);
-					Thread.sleep(3000);
 					scrollToTop();
-					Thread.sleep(2000);
 
 					//verify device name link in status panel
 					click(application, "Device", "status_devicevalue", xml);
 					Thread.sleep(2000);
 					//compareText(application, "View Device header", "viewasrdevice_header", "Device", xml);
 					DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to 'View Device' page");
-					driver.navigate().back();
+					clickOnBreadCrumb(application, sid);
 					Thread.sleep(1000);
 
-					//verify device name link in synchronization panel
-					click(application, "Device", "synchronization_devicevalue", xml);
-					Thread.sleep(2000);
-					//compareText(application, "View Device header", "viewasrdevice_header", "Device", xml);
-					DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to 'View Device' page");
-					Thread.sleep(2000);
-					clickOnBreadCrumb(application, sid);
-					Thread.sleep(2000);
+//					//verify device name link in synchronization panel
+//					click(application, "Device", "synchronization_devicevalue", xml);
+//					//Thread.sleep(2000);
+//					//compareText(application, "View Device header", "viewasrdevice_header", "Device", xml);
+//					DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to 'View Device' page");
+//					//Thread.sleep(2000);
+//					clickOnBreadCrumb(application, sid);
+//					Thread.sleep(2000);
 
-				}
-			}
-		}
-		else
-		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
-		}
+//				}
+//			}
+//		}
+//		else
+//		{
+//			DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+//		}
 
 	}
 

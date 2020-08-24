@@ -272,23 +272,23 @@ public class APT_NGINMessageHelper extends DriverHelper{
 				if(expected.contains(alrtmsg)) {
 					
 					DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
-					System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+					Log.info("Message is verified. It is displaying as: "+alrtmsg);
 					
 				}else {
 					
 					DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
-					System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+					Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
 				}
 				
 			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
-				System.out.println(" Success Message is not displaying");
+				Log.info(" Success Message is not displaying");
 			}
 			
 		}catch(Exception e) {
 			Log.info("failure in fetching success message");
 			DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
-			System.out.println(expected+ " message is not getting dislpayed");
+			Log.info(expected+ " message is not getting dislpayed");
 		}
 
 	}
@@ -299,7 +299,7 @@ public class APT_NGINMessageHelper extends DriverHelper{
 		try {
 			Thread.sleep(1000);
 			availability= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
-			System.out.println(availability);
+//			Log.info(availability);
 			if (availability) {
 				Thread.sleep(2000);
 				DriverTestcase.logger.log(LogStatus.PASS, "Step: '"+labelname+"' is displayed as expected");

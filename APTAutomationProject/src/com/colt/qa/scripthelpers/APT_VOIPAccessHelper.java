@@ -74,7 +74,7 @@ public class APT_VOIPAccessHelper extends DriverHelper {
 			System.out.println("element presence state : " + flag);
 			if (flag) {
 
-				System.out.println("webElement is present " + ele.getText());
+				Log.info("webElement is present " + ele.getText());
 				DriverTestcase.logger.log(LogStatus.PASS, msg);
 			} else {
 
@@ -15389,6 +15389,14 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 				}
 				return flag;
 			}
+				
+				
+				public void scrolltoview (String application, String labelname, String xpath, XMLReader xml) throws InterruptedException, DocumentException {
+					WebElement element = null;
+					element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
+
+					((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+				}
 				
 	
 	

@@ -1825,14 +1825,6 @@ public void SelectDropdownValueUnderSpanTag(String application ,String lebelname
 }
 
 
-public void scrolltoview (String application, String labelname, String xpath, XMLReader xml) throws InterruptedException, DocumentException {
-	WebElement element = null;
-	element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
-
-	((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-}
-
-
 public void ClearAndEnterTextValue(String application, String labelname,  String xpath, String newValue, XMLReader xml) {
 	WebElement element = null;
 	try {

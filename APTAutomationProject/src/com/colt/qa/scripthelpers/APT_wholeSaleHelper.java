@@ -58,7 +58,7 @@ public class APT_wholeSaleHelper extends DriverHelper {
 //	@Override
 //	public void xmlRr(XMLReader xml) {
 //		// TODO Auto-generated method stub
-//		System.out.println("xml value displaying as: "+xml);
+//		Log.info("xml value displaying as: "+xml);
 //		super.xmlRr(xml);
 //	}
 	
@@ -67,14 +67,14 @@ public class APT_wholeSaleHelper extends DriverHelper {
 	public void webelementpresencelogger(WebElement ele, String msg) {
 
 		boolean flag = ele.isDisplayed();
-		System.out.println("element presence state : " + flag);
+		Log.info("element presence state : " + flag);
 		if (flag) {
 
-			System.out.println("webElement is present " + ele.getText());
+			Log.info("webElement is present " + ele.getText());
 			DriverTestcase.logger.log(LogStatus.PASS, msg);
 		} else {
 
-			System.out.println("webElement is not  present" + ele.getText());
+			Log.info("webElement is not  present" + ele.getText());
 			DriverTestcase.logger.log(LogStatus.FAIL, msg);
 		}
 
@@ -89,7 +89,7 @@ public class APT_wholeSaleHelper extends DriverHelper {
 		
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(2000);
-		System.out.println("Mouser hovered on Manage Customer's Service");
+		Log.info("Mouser hovered on Manage Customer's Service");
 		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouser hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
@@ -150,7 +150,7 @@ public class APT_wholeSaleHelper extends DriverHelper {
 
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(3000);
-		System.out.println("Mouser hovered on Manage Customer's Service");
+		Log.info("Mouser hovered on Manage Customer's Service");
 		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouser hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "Create Order/Service Link", "CreateOrderServiceLink", xml);	
@@ -210,7 +210,7 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 			SelectOrderNumber = existingordernumber;
 		} else {
 
-			System.out.println("Order not selected");
+			Log.info("Order not selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step :Order not selected");
 		}
 	}
@@ -306,20 +306,20 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 	 			if(message) {
 	 			String ErrMsg = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath  +"")).getText();
 	 			
-	 			System.out.println( fieldlabelName + " field warning  message displayed as : " + ErrMsg + " when we enter value in wrong format");
+	 			Log.info( fieldlabelName + " field warning  message displayed as : " + ErrMsg + " when we enter value in wrong format");
 	 			DriverTestcase.logger.log(LogStatus.PASS, "Step :  validation message for"+ fieldlabelName +"  field displayed as : " + ErrMsg + " when we enter value in wrong format");
 	 			Log.info(fieldlabelName + " field warning  message displayed as : " + ErrMsg+ " when we enter value in wrong format");
 	 			}else{
 	 				DriverTestcase.logger.log(LogStatus.FAIL, "validation message for"+ fieldlabelName +"  field is not displaying");
-	 				System.out.println("validation message for"+ fieldlabelName +"  field is not displaying");
+	 				Log.info("validation message for"+ fieldlabelName +"  field is not displaying");
 	 			}
 	 			}catch(NoSuchElementException e) {
 	 				e.printStackTrace();
-	 				System.out.println( "No warning message displayed for "+ fieldlabelName +" when we enter value in wrong format");
+	 				Log.info( "No warning message displayed for "+ fieldlabelName +" when we enter value in wrong format");
 	 				DriverTestcase.logger.log(LogStatus.FAIL, "No warning message displayed for "+ fieldlabelName + " when we enter value in wrong format");
 	 			}catch(Exception ed) {
 	 				ed.printStackTrace();
-	 				System.out.println( "No warning message displayed for "+ fieldlabelName);
+	 				Log.info( "No warning message displayed for "+ fieldlabelName);
 	 				DriverTestcase.logger.log(LogStatus.FAIL, "No warning message displayed for "+ fieldlabelName);
 	 			}
 	 }
@@ -343,25 +343,25 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 					if(expected.contains(alrtmsg)) {
 						
 						DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
-						System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+						Log.info("Message is verified. It is displaying as: "+alrtmsg);
 						
 						successScreenshot(application);
 						
 					}else {
 						
 						DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
-						System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+						Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
 					}
 					
 				}else {
 					DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
-					System.out.println(" Success Message is not displaying");
+					Log.info(" Success Message is not displaying");
 				}
 				
 			}catch(Exception e) {
 				Log.info("failure in fetching success message ");
 				DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
-				System.out.println(expected+ " message is not getting dislpayed");
+				Log.info(expected+ " message is not getting dislpayed");
 			}
 
 		}
@@ -384,14 +384,14 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					if(alrtmsg.equals(expected)) {
 						
 						DriverTestcase.logger.log(LogStatus.PASS," 'service successfully created' message is verified. It is displaying as: "+alrtmsg);
-						System.out.println(" 'service successfully created' message is verified. It is displaying as: "+alrtmsg);
+						Log.info(" 'service successfully created' message is verified. It is displaying as: "+alrtmsg);
 						
 						successScreenshot(application);
 						
 					}else {
 						
 						DriverTestcase.logger.log(LogStatus.FAIL, "Service creation message is displaying but the success message display as: "+ alrtmsg);
-						System.out.println("Service creation message is displaying and the message gets mismatches. It is displaying as: "+ alrtmsg);
+						Log.info("Service creation message is displaying and the message gets mismatches. It is displaying as: "+ alrtmsg);
 					}
 					
 				}else {
@@ -401,7 +401,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			}catch(Exception e) {
 				Log.info("failure in fetching success message - 'Service updated successfully'  ");
 				DriverTestcase.logger.log(LogStatus.FAIL, " 'Service updated successfully' message is not displaying after editing the service");
-				System.out.println("Success message for edit Service is not getting dislpayed");
+				Log.info("Success message for edit Service is not getting dislpayed");
 			}
 
 		}
@@ -499,7 +499,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				if(element==null)
 				{
 					DriverTestcase.logger.log(LogStatus.FAIL, labelname+" not found");
-					System.out.println(labelname+" not found");
+					Log.info(labelname+" not found");
 				}
 				else if (emptyele!=null && emptyele.isEmpty()) {
 //					DriverTestcase.logger.log(LogStatus.PASS,  labelname + "' value is empty");
@@ -510,10 +510,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					
 					if(emptyele.equalsIgnoreCase(ExpectedText)) {
 						DriverTestcase.logger.log(LogStatus.PASS, " The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
-						System.out.println(" The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
+						Log.info(" The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
 					}else {
 						DriverTestcase.logger.log(LogStatus.FAIL,"The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+text+"'");
-						System.out.println(" The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+text+"'");
+						Log.info(" The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+text+"'");
 					}
 				}else 
 				{   
@@ -542,12 +542,12 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 			if(availability) {
 				DriverTestcase.logger.log(LogStatus.PASS, fieldname + " dropdown is displaying as expected");
-				System.out.println(fieldname + " dropdown is displaying as expected");
+				Log.info(fieldname + " dropdown is displaying as expected");
 
 				if(expectedValueToAdd.equalsIgnoreCase("null")) {
 
 					DriverTestcase.logger.log(LogStatus.PASS, " No values selected under "+ fieldname + " dropdown");
-					System.out.println(" No values selected under "+ fieldname + " dropdown");
+					Log.info(" No values selected under "+ fieldname + " dropdown");
 				}else {
 
 					Clickon(getwebelement("//div[label[text()='"+ fieldname +"']]//div[text()='×']"));
@@ -558,13 +558,13 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 							.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
 
 					DriverTestcase.logger.log(LogStatus.PASS, " List of values inside "+ fieldname + " dropdown is:  ");
-					System.out.println( " List of values inside "+ fieldname + "dropdown is:  ");
+					Log.info( " List of values inside "+ fieldname + "dropdown is:  ");
 
 					for (WebElement valuetypes : listofvalues) {
 
 						Log.info("service sub types : " + valuetypes.getText());
 						DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-						System.out.println(" " + valuetypes.getText());
+						Log.info(" " + valuetypes.getText());
 
 					}
 
@@ -574,20 +574,20 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 
 					String actualValue=getwebelement("//div[label[text()='"+ fieldname +"']]//span").getText();
 					DriverTestcase.logger.log(LogStatus.PASS, fieldname + " dropdown value selected as: "+ actualValue );
-					System.out.println( fieldname + " dropdown value selected as: "+ actualValue);
+					Log.info( fieldname + " dropdown value selected as: "+ actualValue);
 
 				}
 			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, fieldname + " is not displaying");
-				System.out.println(fieldname + " is not displaying");
+				Log.info(fieldname + " is not displaying");
 			}
 		}catch(NoSuchElementException e) {
 			DriverTestcase.logger.log(LogStatus.FAIL, fieldname + " is not displaying");
-			System.out.println(fieldname + " is not displaying");
+			Log.info(fieldname + " is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, " NO value selected under "+ fieldname + " dropdown");
-			System.out.println(" NO value selected under "+ fieldname + " dropdown");
+			Log.info(" NO value selected under "+ fieldname + " dropdown");
 		}
 
 	}
@@ -601,7 +601,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			if(element==null)
 			{
 				DriverTestcase.logger.log(LogStatus.FAIL, "Step: '"+labelname+"' text field not found");
-				System.out.println(element);
+				Log.info("Step: '"+labelname+"' text field not found");
 			}
 			else 
 			{
@@ -617,7 +617,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		}catch(NoSuchElementException ep) {
 			ep.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
-			System.out.println(labelname + " field is not displaying");
+			Log.info(labelname + " field is not displaying");
 		}
 		catch (Exception e) {
 			DriverTestcase.logger.log(LogStatus.FAIL,"Not able to enter '"+value+"' into '"+labelname+"' text field");
@@ -642,14 +642,14 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			{
 				String WarningMsg = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getText();
 
-				System.out.println("'"+labelname+"' field warning  message displayed as : " + WarningMsg);
+				Log.info("'"+labelname+"' field warning  message displayed as : " + WarningMsg);
 				DriverTestcase.logger.log(LogStatus.PASS,
 						"Step : validation message for '"+labelname+"' text field displayed as : " + WarningMsg);
 				Log.info("'"+labelname+"' field warning message displayed as : " + WarningMsg);
 			}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			System.out.println("'"+labelname+"' field warning message is not dipslaying");
+			Log.info("'"+labelname+"' field warning message is not dipslaying");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step: '"+labelname+"' field warning message is not displaying");
 		}catch(Exception ed) {
 			ed.printStackTrace();
@@ -681,7 +681,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		try {
 			Thread.sleep(1000);
 			availability= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
-			System.out.println(availability);
+//			Log.info(availability);
 			if (availability) {
 				Thread.sleep(2000);
 				DriverTestcase.logger.log(LogStatus.PASS, "Step: '"+labelname+"' is displayed as expected");
@@ -769,7 +769,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		if(editServicePage) {
 			
 			DriverTestcase.logger.log(LogStatus.PASS, " 'Edit Service' page is displaying");
-			System.out.println(" 'Edit Service' page is displaying");
+			Log.info(" 'Edit Service' page is displaying");
 			
 		//service identification
 			edittextFields_commonMethod(application,"Service Identification" , "secivceIdentification_textField", ServiceId, xml);
@@ -794,7 +794,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			
 		}else {
 			DriverTestcase.logger.log(LogStatus.FAIL, " 'Edit Service' page is not displaying");
-			System.out.println(" 'Edit Service' page is not displaying");
+			Log.info(" 'Edit Service' page is not displaying");
 		}
 		
 	}
@@ -814,7 +814,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		trunkPanel= getwebelement(xml.getlocator("//locators/" + application + "/trunkPanel")).isDisplayed();
 		if(trunkPanel) {
 			DriverTestcase.logger.log(LogStatus.PASS, "'Trunk Group/Site Orders' panel is displaying as expected in 'view Service' page");
-			System.out.println("'Trunk Group/Site Orders' panel is displaying as expected in 'view Service' page");
+			Log.info("'Trunk Group/Site Orders' panel is displaying as expected in 'view Service' page");
 			
 			
 		//Perform Add Site order
@@ -824,7 +824,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			if(siteOrderpage) {
 				
 				DriverTestcase.logger.log(LogStatus.PASS, "'Add Trunk Group/Site Order' page is displaying as expected");
-				System.out.println("'Add Trunk Group/Site Order' page is displaying as expected");
+				Log.info("'Add Trunk Group/Site Order' page is displaying as expected");
 				
 			//verify mandatory Warning Message
 				click_commonMethod(application, "OK", "trunk_okButton", xml);
@@ -838,7 +838,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					addCheckbox_commonMethod(application, "trunkGroupOrder_checkbox", "Trunk Group Order", trunkGroupOrder, "No", xml);
 				}else {
 					DriverTestcase.logger.log(LogStatus.FAIL, " ' Trunk Group order' checkbox is a mandatory field. No values passed");
-					System.out.println(" ' Trunk Group order' checkbox is a mandatory field. No values passed");
+					Log.info(" ' Trunk Group order' checkbox is a mandatory field. No values passed");
 
 				}
 				
@@ -858,12 +858,12 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					if(actualMsg.contains("1.trunkgroup number already exists")) {
 						
 						DriverTestcase.logger.log(LogStatus.FAIL, " Error message we are getting as: "+ actualMsg);
-						System.out.println(" Error message we are getting as: "+ actualMsg);
+						Log.info(" Error message we are getting as: "+ actualMsg);
 					}
 					else if(actualMsg.equalsIgnoreCase("Trunk Group created successfully")) {
 						
 						DriverTestcase.logger.log(LogStatus.PASS, " Success Message displays as 'Trunk Group created successfully'");
-						System.out.println(" Success Message displays as 'Trunk Group created successfully'");
+						Log.info(" Success Message displays as 'Trunk Group created successfully'");
 					}
 					
 				}
@@ -875,12 +875,12 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				
 			}else {
 				DriverTestcase.logger.log(LogStatus.PASS, "'Add Trunk Group/Site Order' page is not displaying");
-				System.out.println("'Add Trunk Group/Site Order' page is not displaying");
+				Log.info("'Add Trunk Group/Site Order' page is not displaying");
 			}
 			
 		}else {
 			DriverTestcase.logger.log(LogStatus.PASS, "'Trunk Group/Site Orders' panel is not displaying in 'view Service' page");
-			System.out.println("'Trunk Group/Site Orders' panel is not displaying in 'view Service' page");
+			Log.info("'Trunk Group/Site Orders' panel is not displaying in 'view Service' page");
 		}
 	}
 	
@@ -902,12 +902,12 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		siteOrderpage= getwebelement(xml.getlocator("//locators/" + application + "/addtrunkSiteorderPage_panelheader")).isDisplayed();
 		if(siteOrderpage) {
 			DriverTestcase.logger.log(LogStatus.PASS, "'Edit Trunk Group/Site Order' page is displaying as expected");
-			System.out.println("'Edit Trunk Group/Site Order' page is displaying as expected");
+			Log.info("'Edit Trunk Group/Site Order' page is displaying as expected");
 			
 		//Trunk group Order
 			if(trunkGroupOrder.equalsIgnoreCase("no")) {
 				DriverTestcase.logger.log(LogStatus.FAIL, "'Trunk Group Order' is a mandatory field. It cannot be unselected");
-				System.out.println("'Trunk Group Order' is a mandatory field. It cannot be unselected");
+				Log.info("'Trunk Group Order' is a mandatory field. It cannot be unselected");
 			}else {
 				editcheckbox_commonMethod(application, trunkGroupOrder, "trunkGroupOrder_checkbox", "Trunk Group Order", xml);
 			}
@@ -928,12 +928,12 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				if(actualMsg.contains("1.trunkgroup number already exists")) {
 					
 					DriverTestcase.logger.log(LogStatus.FAIL, " Error message we are getting as: "+ actualMsg);
-					System.out.println(" Error message we are getting as: "+ actualMsg);
+					Log.info(" Error message we are getting as: "+ actualMsg);
 				}
 				else if(actualMsg.contains("Trunk Group successfully updated")) {
 					
 					DriverTestcase.logger.log(LogStatus.PASS, " Success Message displays as 'Trunk Group successfully updated.'");
-					System.out.println(" Success Message displays as 'Trunk Group successfully updated.'");
+					Log.info(" Success Message displays as 'Trunk Group successfully updated.'");
 				}
 				
 			}
@@ -946,7 +946,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			
 		}else {
 			DriverTestcase.logger.log(LogStatus.PASS, "'Edit Trunk Group/Site Order' page is not displaying");
-			System.out.println("'Edit Trunk Group/Site Order' page is displaying");
+			Log.info("'Edit Trunk Group/Site Order' page is displaying");
 		}
 	}
 	
@@ -964,7 +964,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		if(siteOrderUnderTrunkPanel) {
 			
 			DriverTestcase.logger.log(LogStatus.PASS, siteOrderName + " 'Site Order' is displaying under 'Trunk' panel");
-			System.out.println(siteOrderName + " 'Site Order' is displaying under 'Trunk' panel");
+			Log.info(siteOrderName + " 'Site Order' is displaying under 'Trunk' panel");
 			
 			
 			DriverTestcase.logger.log(LogStatus.INFO, "Verifying 'Add Trunk' Functionality");
@@ -977,7 +977,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		}
 		else {
 			DriverTestcase.logger.log(LogStatus.FAIL, siteOrderName + " 'Site Order' is not displaying under 'Trunk' panel");
-			System.out.println(siteOrderName + " 'Site Order' is not displaying under 'Trunk' panel");
+			Log.info(siteOrderName + " 'Site Order' is not displaying under 'Trunk' panel");
 		}
 	}
 
@@ -1048,7 +1048,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		selectValueInsideDropdown(application, "billingCoutry_Dropdown", "Billing Country", country, xml);
 		
 		String country_code=getwebelement(xml.getlocator("//locators/" + application + "/billingCoutry_Dropdown")).getAttribute("value");
-		System.out.println("country dropdon value is: "+country_code);
+		Log.info("country dropdon value is: "+country_code);
 		
 	//CDR Delivery
 		selectValueInsideDropdown(application, "CDRdelivery_Dropdown", "CDR Delivery", CDRdelivery, xml);
@@ -1069,7 +1069,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			 
 		 }else {
 			 DriverTestcase.logger.log(LogStatus.PASS, "When we click on 'Allocate Prefix' button, Under 'Prefix' value is displaying as: "+prefix_actualvalue);
-			 System.out.println("When we click on 'Allocate Prefix' button, Under 'Prefix' value is displaying as: "+prefix_actualvalue);
+			 Log.info("When we click on 'Allocate Prefix' button, Under 'Prefix' value is displaying as: "+prefix_actualvalue);
 		 }
 
 	//valdate the preifx value for adding into Trunk group Name field	 
@@ -1081,10 +1081,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		}else if(prefixSize==4) {
 			prefix_code=preifxValueInsidetextField.substring(1);
 		}else if(prefixSize<3) {
-			System.out.println("Prefix value cannot be less than 3");
+			Log.info("Prefix value cannot be less than 3");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be less than 4. Value is displaying as "+preifxValueInsidetextField);
 		}else if(prefixSize>4) {
-			System.out.println("Prefix value cannot be greater than 4");
+			Log.info("Prefix value cannot be greater than 4");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be greater than 4. Value is displaying as "+preifxValueInsidetextField);
 		}
 		 
@@ -1105,8 +1105,8 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		String trunGroup=country_code+gatewayCode+voip_code+trunktype_code+CDR_code+prefix_code+"0"+quality_code;
 		
 		int totalLen=trunGroup.length();
-		System.out.println("Total lenth of 'Trunk Group' field is "+ totalLen);
-		System.out.println("----------------Trunk group name is "+ trunGroup);
+		Log.info("Total lenth of 'Trunk Group' field is "+ totalLen);
+		Log.info("----------------Trunk group name is "+ trunGroup);
 		if(totalLen==13) {
 			compareText_fromtextFields(application, "Trunk Group Name", "trunkGroupName_TextField", trunGroup, xml);
 			primarytrunkGroupname=trunGroup;
@@ -1151,7 +1151,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			
 	  }else {
 		  DriverTestcase.logger.log(LogStatus.PASS, "'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-1'");
-		  System.out.println("'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-I'");
+		  Log.info("'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-I'");
 	  }
 		
 	
@@ -1195,7 +1195,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 							
 							//NIF Group
 							NIFgroup=NIFgroupDEfaultValue_starting+subInterfaceSlot+NIFgroupDEfaultValue_middle+vlanDefaultvalue+NIGgroupdefaultValue_last;
-							System.out.println("NIF Group value is: "+NIFgroup);
+							Log.info("NIF Group value is: "+NIFgroup);
 							compareText_fromtextFields(application, "NIF Group", "NIFgrouopp_textField", NIFgroup, xml);
 						}
 						
@@ -1227,7 +1227,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 							
 							//NIF Group
 							NIFgroup=NIFgroupDEfaultValue_starting+subInterfaceSlot+NIFgroupDEfaultValue_middle+vlanDefaultvalue_afterVlanediting+NIGgroupdefaultValue_last;
-							System.out.println("NIF Group value is: "+NIFgroup);
+							Log.info("NIF Group value is: "+NIFgroup);
 							compareText_fromtextFields(application, "NIF Group", "NIFgrouopp_textField", NIFgroup, xml);
 						}
 					}
@@ -1259,7 +1259,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					
 					//NIF Group
 					NIFgroup=NIFgroupDEfaultValue_starting+subInterfaceSlot+NIFgroupDEfaultValue_middle+NIGgroupdefaultValue_last;
-					System.out.println("NIF Group value is: "+NIFgroup);
+					Log.info("NIF Group value is: "+NIFgroup);
 					compareText_fromtextFields(application, "NIF Group", "NIFgrouopp_textField", NIFgroup, xml);
 				}
 				
@@ -1289,7 +1289,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					
 					//NIF Group
 					NIFgroup=NIFgroupDEfaultValue_starting+subInterfaceSlot+NIFgroupDEfaultValue_middle+vlanTag+NIGgroupdefaultValue_last;
-					System.out.println("NIF Group value is: "+NIFgroup);
+					Log.info("NIF Group value is: "+NIFgroup);
 					compareText_fromtextFields(application, "NIF Group", "NIFgrouopp_textField", NIFgroup, xml);
 				}
 			}
@@ -1309,10 +1309,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					//IP Interface
 //					  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 //					  if(ipInterface_Enabled) {
-//						  System.out.println("'Ip Interface' text field is enabled");
+//						  Log.info("'Ip Interface' text field is enabled");
 //						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 //					  }else {
-//						  System.out.println("'Ip Interface' text fieldis disabled");
+//						  Log.info("'Ip Interface' text fieldis disabled");
 //						  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 //					  }
 					  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField", ipInterfaceDEfaultValue, xml);  //verify default values
@@ -1320,10 +1320,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				//Address Context
 //					  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 //					  if(addressContext_Enabled) {
-//						  System.out.println("'Address Context' text field is enabled");
+//						  Log.info("'Address Context' text field is enabled");
 //						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 //					  }else {
-//						  System.out.println("'Address Context' text fieldis disabled");
+//						  Log.info("'Address Context' text fieldis disabled");
 //						  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
 //					  }
 					  
@@ -1333,10 +1333,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				//IP Interface Group
 //					  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 //					  if(ipInterfaceGroup_Enabled) {
-//						  System.out.println("'IP Inteface Group' text field is enabled");
+//						  Log.info("'IP Inteface Group' text field is enabled");
 //						  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 //					  }else {
-//						  System.out.println("'IP Inteface Group' text field is disabled");
+//						  Log.info("'IP Inteface Group' text field is disabled");
 //						  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 //					  }
 					  
@@ -1355,10 +1355,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						//IP Interface
 //						  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 //						  if(ipInterface_Enabled) {
-//							  System.out.println("'Ip Interface' text field is enabled");
+//							  Log.info("'Ip Interface' text field is enabled");
 //							  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 //						  }else {
-//							  System.out.println("'Ip Interface' text fieldis disabled");
+//							  Log.info("'Ip Interface' text fieldis disabled");
 //							  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 //						  }
 						  
@@ -1368,10 +1368,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					//Address Context
 //						  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 //						  if(addressContext_Enabled) {
-//							  System.out.println("'Address Context' text field is enabled");
+//							  Log.info("'Address Context' text field is enabled");
 //							  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 //						  }else {
-//							  System.out.println("'Address Context' text fieldis disabled");
+//							  Log.info("'Address Context' text fieldis disabled");
 //							  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
 //						  }
 						  
@@ -1382,10 +1382,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					//IP Interface Group
 //						  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 //						  if(ipInterfaceGroup_Enabled) {
-//							  System.out.println("'IP Inteface Group' text field is enabled");
+//							  Log.info("'IP Inteface Group' text field is enabled");
 //							  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 //						  }else {
-//							  System.out.println("'IP Inteface Group' text field is disabled");
+//							  Log.info("'IP Inteface Group' text field is disabled");
 //							  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 //						  }
 						  
@@ -1408,10 +1408,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					//VLAN tag  
 //					  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
 //					  if(VlanEnability) {
-//						  System.out.println("VLAN Tag is enabled");
+//						  Log.info("VLAN Tag is enabled");
 //						  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
 //					  }else {
-//						  System.out.println("VLAN Tag is disabled");
+//						  Log.info("VLAN Tag is disabled");
 //						  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
 //					  } 
 				  }
@@ -1419,10 +1419,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					//IP Interface
 //				  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 //				  if(ipInterface_Enabled) {
-//					  System.out.println("'Ip Interface' text field is enabled");
+//					  Log.info("'Ip Interface' text field is enabled");
 //					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 //				  }else {
-//					  System.out.println("'Ip Interface' text fieldis disabled");
+//					  Log.info("'Ip Interface' text fieldis disabled");
 //					  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 //				  }
 				  
@@ -1432,10 +1432,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			//Address Context
 //				  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 //				  if(addressContext_Enabled) {
-//					  System.out.println("'Address Context' text field is enabled");
+//					  Log.info("'Address Context' text field is enabled");
 //					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 //				  }else {
-//					  System.out.println("'Address Context' text fieldis disabled");
+//					  Log.info("'Address Context' text fieldis disabled");
 //					  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
 //				  }
 				  
@@ -1446,10 +1446,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			//IP Interface Group
 //				  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 //				  if(ipInterfaceGroup_Enabled) {
-//					  System.out.println("'IP Inteface Group' text field is enabled");
+//					  Log.info("'IP Inteface Group' text field is enabled");
 //					  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 //				  }else {
-//					  System.out.println("'IP Inteface Group' text field is disabled");
+//					  Log.info("'IP Inteface Group' text field is disabled");
 //					  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 //				  }
 				  
@@ -1463,20 +1463,20 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				//VLAN tag  
 					  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
 					  if(VlanEnability) {
-						  System.out.println("VLAN Tag is enabled");
+						  Log.info("VLAN Tag is enabled");
 						  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
 					  }else {
-						  System.out.println("VLAN Tag is disabled");
+						  Log.info("VLAN Tag is disabled");
 						  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
 					  }
 					  
 				//IP Interface
 //					  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 //					  if(ipInterface_Enabled) {
-//						  System.out.println("'Ip Interface' text field is enabled");
+//						  Log.info("'Ip Interface' text field is enabled");
 //						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 //					  }else {
-//						  System.out.println("'Ip Interface' text fieldis disabled");
+//						  Log.info("'Ip Interface' text fieldis disabled");
 //						  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 //					  }
 					  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField", ipInterfaceDEfaultValue, xml);  //verify default values
@@ -1484,10 +1484,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				//Address Context
 //					  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 //					  if(addressContext_Enabled) {
-//						  System.out.println("'Address Context' text field is enabled");
+//						  Log.info("'Address Context' text field is enabled");
 //						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 //					  }else {
-//						  System.out.println("'Address Context' text fieldis disabled");
+//						  Log.info("'Address Context' text fieldis disabled");
 //						  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
 //					  }
 					  
@@ -1497,10 +1497,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				//IP Interface Group
 //					  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 //					  if(ipInterfaceGroup_Enabled) {
-//						  System.out.println("'IP Inteface Group' text field is enabled");
+//						  Log.info("'IP Inteface Group' text field is enabled");
 //						  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 //					  }else {
-//						  System.out.println("'IP Inteface Group' text field is disabled");
+//						  Log.info("'IP Inteface Group' text field is disabled");
 //						  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 //					  }
 					  
@@ -1526,10 +1526,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				//VLAN tag  
 				  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
 				  if(VlanEnability) {
-					  System.out.println("VLAN Tag is enabled");
+					  Log.info("VLAN Tag is enabled");
 					  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
 				  }else {
-					  System.out.println("VLAN Tag is disabled");
+					  Log.info("VLAN Tag is disabled");
 					  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
 				  } 
 			  }
@@ -1537,10 +1537,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				//IP Interface
 //			  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 //			  if(ipInterface_Enabled) {
-//				  System.out.println("'Ip Interface' text field is enabled");
+//				  Log.info("'Ip Interface' text field is enabled");
 //				  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 //			  }else {
-//				  System.out.println("'Ip Interface' text fieldis disabled");
+//				  Log.info("'Ip Interface' text fieldis disabled");
 //				  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 //			  }
 			  
@@ -1550,10 +1550,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		//Address Context
 //			  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 //			  if(addressContext_Enabled) {
-//				  System.out.println("'Address Context' text field is enabled");
+//				  Log.info("'Address Context' text field is enabled");
 //				  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 //			  }else {
-//				  System.out.println("'Address Context' text fieldis disabled");
+//				  Log.info("'Address Context' text fieldis disabled");
 //				  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
 //			  }
 			  
@@ -1564,10 +1564,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		//IP Interface Group
 //			  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 //			  if(ipInterfaceGroup_Enabled) {
-//				  System.out.println("'IP Inteface Group' text field is enabled");
+//				  Log.info("'IP Inteface Group' text field is enabled");
 //				  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 //			  }else {
-//				  System.out.println("'IP Inteface Group' text field is disabled");
+//				  Log.info("'IP Inteface Group' text field is disabled");
 //				  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 //			  }
 			  
@@ -1637,7 +1637,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		if(callrateLimit.equalsIgnoreCase("yes")) {
 			
 			String callratelimitactualvalue=getwebelement(xml.getlocator("//locators/" + application + "/callRateLimitt_textField")).getAttribute("value");
-			System.out.println(" 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
+			Log.info(" 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
 			DriverTestcase.logger.log(LogStatus.PASS, " 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
 		
 			if(!callrateLimiteValue.equalsIgnoreCase("null")) {
@@ -1651,7 +1651,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				}
 			}else {
 				DriverTestcase.logger.log(LogStatus.PASS, "'Call rate Limit' value is not edited");
-				System.out.println("'Call rate Limit' value is not edited");
+				Log.info("'Call rate Limit' value is not edited");
 			}
 		}
 		
@@ -1793,19 +1793,19 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				WebElement defaultValue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 				if(defaultValue.getText().contains(expectedmsg)) {
 					DriverTestcase.logger.log(LogStatus.PASS, "Under '"+ labelname +"' text field', text message displays as "+ defaultValue);
-					System.out.println("Under '"+ labelname +"' text field', text message displays as "+ defaultValue);
+					Log.info("Under '"+ labelname +"' text field', text message displays as "+ defaultValue);
 				}else {
 					DriverTestcase.logger.log(LogStatus.FAIL, "Under '"+ labelname +"' text field', text message displays as "+ defaultValue);
-					System.out.println("Under '"+ labelname +"' text field', text message displays as "+ defaultValue);
+					Log.info("Under '"+ labelname +"' text field', text message displays as "+ defaultValue);
 				}
 			}else {
 				DriverTestcase.logger.log(LogStatus.PASS, "No text message displays under '"+ labelname +"' text field. It should display as '"+ expectedmsg +"'");
-				System.out.println("No text message displays under '"+ labelname +"' text field. It should display as '"+ expectedmsg +"'");
+				Log.info("No text message displays under '"+ labelname +"' text field. It should display as '"+ expectedmsg +"'");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.PASS, "No text message displays under '"+ labelname +"' text field. It should display as '"+ expectedmsg +"'");
-			System.out.println("No text message displays under '"+ labelname +"' text field. It should display as '"+ expectedmsg +"'");
+			Log.info("No text message displays under '"+ labelname +"' text field. It should display as '"+ expectedmsg +"'");
 		}
 	}
 	
@@ -2133,7 +2133,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
-			System.out.println(labelname + " field is not displaying");
+			Log.info(labelname + " field is not displaying");
 			
 		}
 		
@@ -2163,7 +2163,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		e.printStackTrace();
 		
 		DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
-		System.out.println(labelname + " field is not displaying");
+		Log.info(labelname + " field is not displaying");
 	}
 	}
 	
@@ -2193,15 +2193,15 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 		if(expectedValue.equalsIgnoreCase(actualValue)) {
 			DriverTestcase.logger.log(LogStatus.PASS,"The Expected value for '"+ labelName +"' field '"+expectedValue+"' is same as the Acutal value '"+actualValue+"'");
-			System.out.println("The Expected value for '"+ labelName +"' field '"+expectedValue+"' is same as the Acutal value '"+expectedValue+"'");
+			Log.info("The Expected value for '"+ labelName +"' field '"+expectedValue+"' is same as the Acutal value '"+expectedValue+"'");
 		}else {
 			DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelName +"' field '"+expectedValue+"' is not same as the Acutal value '"+actualValue+"'");
-			System.out.println("The Expected value for '"+ labelName +"' field '"+expectedValue+"' is not same as the Acutal value '"+expectedValue+"'");
+			Log.info("The Expected value for '"+ labelName +"' field '"+expectedValue+"' is not same as the Acutal value '"+expectedValue+"'");
 		}
 	}catch(Exception e) {
 		e.printStackTrace();
 		DriverTestcase.logger.log(LogStatus.FAIL, labelName + " field is not displaying");
-		System.out.println(labelName + " field is not displaying");
+		Log.info(labelName + " field is not displaying");
 	}
 		
 	}
@@ -2216,26 +2216,26 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		expectedValue="None";
 		if(expectedValue.equalsIgnoreCase(actualValue)) {
 			DriverTestcase.logger.log(LogStatus.PASS,"The Expected value for '"+ labelName +"' field '"+expectedValue+"' is same as the Acutal value '"+actualValue+"'");
-			System.out.println("The Expected value for '"+ labelName +"' field '"+expectedValue+"' is same as the Acutal value '"+expectedValue+"'");
+			Log.info("The Expected value for '"+ labelName +"' field '"+expectedValue+"' is same as the Acutal value '"+expectedValue+"'");
 		}else {
 			DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelName +"' field '"+expectedValue+"' is not same as the Acutal value '"+actualValue+"'");
-			System.out.println("The Expected value for '"+ labelName +"' field '"+expectedValue+"' is not same as the Acutal value '"+expectedValue+"'");
+			Log.info("The Expected value for '"+ labelName +"' field '"+expectedValue+"' is not same as the Acutal value '"+expectedValue+"'");
 		}
 	}
 	else {
 		if(expectedValue.equalsIgnoreCase(actualValue)) {
 			DriverTestcase.logger.log(LogStatus.PASS,"The Expected value for '"+ labelName +"' field '"+expectedValue+"' is same as the Acutal value '"+actualValue+"'");
-			System.out.println("The Expected value for '"+ labelName +"' field '"+expectedValue+"' is same as the Acutal value '"+expectedValue+"'");
+			Log.info("The Expected value for '"+ labelName +"' field '"+expectedValue+"' is same as the Acutal value '"+expectedValue+"'");
 		}else {
 			DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelName +"' field '"+expectedValue+"' is not same as the Acutal value '"+actualValue+"'");
-			System.out.println("The Expected value for '"+ labelName +"' field '"+expectedValue+"' is not same as the Acutal value '"+expectedValue+"'");
+			Log.info("The Expected value for '"+ labelName +"' field '"+expectedValue+"' is not same as the Acutal value '"+expectedValue+"'");
 		}
 	}
 		
 	}catch(Exception e) {
 		e.printStackTrace();
 		DriverTestcase.logger.log(LogStatus.FAIL, labelName + " field is not displaying");
-		System.out.println(labelName + " field is not displaying");
+		Log.info(labelName + " field is not displaying");
 	}
 		
 	}
@@ -2322,7 +2322,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			  if(voipProtocol.equalsIgnoreCase("SIP")) {
 				  compareText_InViewPage(application, "SIP Signalling Port", SIPsignallingPort, xml);
 			  }else {
-				  System.out.println(" 'SIP Signalling port' will not display, if voip protocol selected as 'SIP-1'");
+				  Log.info(" 'SIP Signalling port' will not display, if voip protocol selected as 'SIP-1'");
 			  }
 			
 		
@@ -2345,7 +2345,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						
 						//NIF Group
 						String NIFgroup=NIFgroupDEfaultValue_starting+subinterfaceSlot_viewPage+NIFgroupDEfaultValue_middle+vlan_actualValue+NIGgroupdefaultValue_last;
-						System.out.println("NIF Group value is: "+NIFgroup);
+						Log.info("NIF Group value is: "+NIFgroup);
 						compareText_InViewPage(application, "NIF Group", NIFgroup, xml);
 					  
 					  //Signalling Zone
@@ -2370,7 +2370,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						
 						//NIF Group
 						String NIFgroup=NIFgroupDEfaultValue_starting+subinterfaceSlot_viewPage+NIFgroupDEfaultValue_middle+vlan_actualValue+NIGgroupdefaultValue_last;
-						System.out.println("NIF Group value is: "+NIFgroup);
+						Log.info("NIF Group value is: "+NIFgroup);
 						compareText_InViewPage(application, "NIF Group", NIFgroup, xml);
 					  
 						//Signalling Zone
@@ -2504,7 +2504,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			scrolltoview(PSXconfigurationLabelName);
 			Thread.sleep(1000);
 		}catch(Exception e) {
-			System.out.println("PSX configuration label is not displaying");
+			Log.info("PSX configuration label is not displaying");
 			DriverTestcase.logger.log(LogStatus.FAIL, "PSX configuration label is not displaying");
 		}
 			
@@ -2648,14 +2648,14 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				selectValueInsideDropdown(application, "billingCoutry_Dropdown", "Billing Country", edit_BillingCountry, xml);
 				
 				String country_code=getwebelement(xml.getlocator("//locators/" + application + "/billingCoutry_Dropdown")).getAttribute("value");
-				System.out.println("country dropdon value is: "+country_code);
+				Log.info("country dropdon value is: "+country_code);
 				
 			//VOIP Protocol
 				selectValueInsideDropdown(application, "voipProtocol_Dropdown", "VOIP Protocol", edit_VOIPprotocol, xml);
 				Thread.sleep(1000);
 				String voipProtocol_actualvalue=GetTheSelectedValueInsideDropdown_trunk(application, "voipProtocol_Dropdown", "VOIP Protocol");
 				Thread.sleep(1000);
-				System.out.println("The voip protocol displaying is "+ voipProtocol_actualvalue);
+				Log.info("The voip protocol displaying is "+ voipProtocol_actualvalue);
 				String voip_code=voipProtocol_code(application, voipProtocol_actualvalue);
 				
 			//CDR Delivery
@@ -2678,10 +2678,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				}else if(prefixSize==4) {
 					prefix_code=preifxValueInsidetextField.substring(1);
 				}else if(prefixSize<3) {
-					System.out.println("Prefix value cannot be less than 3");
+					Log.info("Prefix value cannot be less than 3");
 					DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be less than 4. Value is displaying as "+preifxValueInsidetextField);
 				}else if(prefixSize>4) {
-					System.out.println("Prefix value cannot be greater than 4");
+					Log.info("Prefix value cannot be greater than 4");
 					DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be greater than 4. Value is displaying as "+preifxValueInsidetextField);
 				}
 				 
@@ -2702,8 +2702,8 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				String trunGroup=country_code+gatewayCode+voip_code+trunktype_code+CDR_code+prefix_code+primarytrunk+quality_code;
 				
 				int totalLen=trunGroup.length();
-				System.out.println("Total lenth of 'Trunk Group' field is "+ totalLen);
-				System.out.println("----------------Trunk group name is "+ trunGroup);
+				Log.info("Total lenth of 'Trunk Group' field is "+ totalLen);
+				Log.info("----------------Trunk group name is "+ trunGroup);
 				if(totalLen==13) {
 					compareText_fromtextFields(application, "Trunk Group Name", "trunkGroupName_TextField", trunGroup, xml);
 					primarytrunkGroupname=trunGroup;
@@ -2739,7 +2739,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						
 			  }else {
 				  DriverTestcase.logger.log(LogStatus.PASS, "'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-1'");
-				  System.out.println("'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-I'");
+				  Log.info("'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-I'");
 			  }
 			  
 			
@@ -2778,7 +2778,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					
 					//NIF Group
 					String NIFgroup=NIFgroupDEfaultValue_starting+subIntercaeSlot_actualValue+NIFgroupDEfaultValue_middle+vlan_actualvalue+NIGgroupdefaultValue_last;
-					System.out.println("NIF Group value is: "+NIFgroup);
+					Log.info("NIF Group value is: "+NIFgroup);
 					compareText_fromtextFields(application, "NIF Group", "NIFgrouopp_textField", NIFgroup, xml);
 				}
 			}
@@ -2858,7 +2858,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				if(callratelimit_actualvalue) {
 					
 					String callratelimitactualvalue=getwebelement(xml.getlocator("//locators/" + application + "/callRateLimitt_textField")).getAttribute("value");
-					System.out.println(" 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
+					Log.info(" 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
 					DriverTestcase.logger.log(LogStatus.PASS, " 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
 				
 					if(!edit_callrateLimitvalue.equalsIgnoreCase("null")) {
@@ -2872,7 +2872,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						}
 					}else {
 						DriverTestcase.logger.log(LogStatus.PASS, "'Call rate Limit' value is not edited");
-						System.out.println("'Call rate Limit' value is not edited");
+						Log.info("'Call rate Limit' value is not edited");
 					}
 				}
 				
@@ -3008,14 +3008,14 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 		if(elementEnabled) {
 			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " is disabled");
-			System.out.println(labelname + " is disabled");
+			Log.info(labelname + " is disabled");
 		}else {
 			DriverTestcase.logger.log(LogStatus.PASS, labelname + "is disabled as expected");
-			System.out.println(labelname + "is disabled as expected");
+			Log.info(labelname + "is disabled as expected");
 			
 //			actualvalue=ele.getAttribute("value");
 //			DriverTestcase.logger.log(LogStatus.PASS, "Value for "+ labelname+ " field is displaying as:"+actualvalue);
-//			System.out.println("Value for "+ labelname+ " field is displaying as:"+actualvalue);
+//			Log.info("Value for "+ labelname+ " field is displaying as:"+actualvalue);
 		}
 	}
 	
@@ -3051,7 +3051,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		Thread.sleep(2000);
 		
 		//Primary Trunk Group
-		System.out.println("Primary trunk group value: "+primarytrunkGroupname);
+		Log.info("Primary trunk group value: "+primarytrunkGroupname);
 		selectValueInsideDropdown(application, "primaryTrunkGroup_Dropdown", "Primary Trunk Group" , primarytrunkGroupname, xml);
 		Thread.sleep(2000);
 		
@@ -3059,13 +3059,13 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		fetchDisabledFieldValue(application, "Trunk Type", "trunkType_Dropdown");
 		String trunktypeSelected=GetTheSelectedValueInsideDropdown_trunk(application, "trunkType_Dropdown", "Trunk Type");
 		DriverTestcase.logger.log(LogStatus.PASS, "Value for 'Trunk Type' field is displaying as:"+trunktypeSelected);
-		System.out.println("Value for 'Trunk Type' field is displaying as:"+trunktypeSelected);
+		Log.info("Value for 'Trunk Type' field is displaying as:"+trunktypeSelected);
 		
 		//VOIP Protocol
 		fetchDisabledFieldValue(application, "VOIP Protocol", "voipProtocol_Dropdown");
 		String voipProtocolSelected=GetTheSelectedValueInsideDropdown_trunk(application, "voipProtocol_Dropdown", "VOIP Protocol");
 		DriverTestcase.logger.log(LogStatus.PASS, "Value for 'VOIP Protocol' field is displaying as:"+voipProtocolSelected);
-		System.out.println("Value for 'VOIP Protocol' field is displaying as:"+voipProtocolSelected);
+		Log.info("Value for 'VOIP Protocol' field is displaying as:"+voipProtocolSelected);
 		
 		selectValueInsideDropdown(application, "voipProtocol_Dropdown", "VOIP Protocol", voip_resilientTrunk, xml);
 		String voipProtocoledited=GetTheSelectedValueInsideDropdown_trunk(application, "voipProtocol_Dropdown", "VOIP Protocol");  //select value under dropdown
@@ -3075,19 +3075,19 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		fetchDisabledFieldValue(application, "Billing Country", "billingCoutry_Dropdown");
 		String coutrySelected=GetTheSelectedValueInsideDropdown_trunk(application, "billingCoutry_Dropdown", "Billing Country");
 		DriverTestcase.logger.log(LogStatus.PASS, "Value for 'Billing Country' field is displaying as:"+coutrySelected);
-		System.out.println("Value for 'Billing Country' field is displaying as:"+coutrySelected);
+		Log.info("Value for 'Billing Country' field is displaying as:"+coutrySelected);
 		
 		//CDR Delivery
 		fetchDisabledFieldValue(application, "CDR Delivery", "CDRdelivery_Dropdown");
 		String cdrSelected=GetTheSelectedValueInsideDropdown_trunk(application, "CDRdelivery_Dropdown", "CDR Delivery");
 		DriverTestcase.logger.log(LogStatus.PASS, "Value for 'CDR Delivery' field is displaying as:"+cdrSelected);
-		System.out.println("Value for 'CDR Delivery' field is displaying as:"+cdrSelected);
+		Log.info("Value for 'CDR Delivery' field is displaying as:"+cdrSelected);
 		
 		//Prefix
 		fetchDisabledFieldValue(application, "Prefix", "prefix_textField");
 		String prefixSelected=GetTheSelectedValueInsideDropdown_trunk(application, "prefix_textField", "Prefix");
 		DriverTestcase.logger.log(LogStatus.PASS, "Value for 'Prefix' field is displaying as:"+prefixSelected);
-		System.out.println("Value for 'Prefix' field is displaying as:"+prefixSelected);
+		Log.info("Value for 'Prefix' field is displaying as:"+prefixSelected);
 		
 		
 		//Gateway
@@ -3099,7 +3099,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		fetchDisabledFieldValue(application, "Quality", "quality_Dropdown");
 		String qualitySelected=GetTheSelectedValueInsideDropdown_trunk(application, "quality_Dropdown", "Quality");
 		DriverTestcase.logger.log(LogStatus.PASS, "Value for 'Prefix' field is displaying as:"+qualitySelected);
-		System.out.println("Value for 'Prefix' field is displaying as:"+qualitySelected);
+		Log.info("Value for 'Prefix' field is displaying as:"+qualitySelected);
 		
 		
 		//Trunk Group Name
@@ -3123,15 +3123,15 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			boolean ipaddres=getwebelement(xml.getlocator("//locators/" + application + "/IPaddresstype_Dropdown")).isDisplayed();
 			if(ipaddres) {
 				DriverTestcase.logger.log(LogStatus.FAIL, "'IP Address type' is displaying");
-				System.out.println("'IP Address type' is displaying");
+				Log.info("'IP Address type' is displaying");
 			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, "'IP Address type' is not displaying");
-				System.out.println("'IP Address type' is not displaying");
+				Log.info("'IP Address type' is not displaying");
 			}
 			}catch(Exception e) {
 				e.printStackTrace();
 				DriverTestcase.logger.log(LogStatus.FAIL, "'IP Address type' is not displaying");
-				System.out.println("'IP Address type' is not displaying");
+				Log.info("'IP Address type' is not displaying");
 			}
 		}
 		
@@ -3156,21 +3156,21 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				  }
 				else if(voipProtocoledited.equalsIgnoreCase("SIP-I")) {
 					  DriverTestcase.logger.log(LogStatus.INFO, "'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-1'");
-					  System.out.println("'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-I'");
+					  Log.info("'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-I'");
 					  
 					  try {
 							boolean signalPort=getwebelement(xml.getlocator("//locators/" + application + "/SIPsignallingport_textField")).isDisplayed();
 							if(signalPort) {
 								DriverTestcase.logger.log(LogStatus.FAIL, "'SIP Signalling Port' is displaying");
-								System.out.println("'SIP Signalling Port' is displaying");
+								Log.info("'SIP Signalling Port' is displaying");
 							}else {
 								DriverTestcase.logger.log(LogStatus.FAIL, "'SIP Signalling Port' is not displaying");
-								System.out.println("'SIP Signalling Port' is not displaying");
+								Log.info("'SIP Signalling Port' is not displaying");
 							}
 							}catch(Exception e) {
 								e.printStackTrace();
 								DriverTestcase.logger.log(LogStatus.FAIL, "'SIP Signalling Port' is not displaying");
-								System.out.println("'SIP Signalling Port' is not displaying");
+								Log.info("'SIP Signalling Port' is not displaying");
 							}
 				  }
 			
@@ -3190,14 +3190,14 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 		Select s1=new Select(el);
 		WebElement option = s1.getFirstSelectedOption();
-		System.out.println(option);
+//		Log.info(option);
 		selectedValue = option.getText();	
 		
 		
 	}catch(Exception e) {
 		e.printStackTrace();
 		DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
-		System.out.println(labelname + " field is not displaying");
+		Log.info(labelname + " field is not displaying");
 	}
 		
 		return selectedValue;
@@ -3219,7 +3219,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		        }
 		    }
 		
-		System.out.println("Value displaying under "+labelname+" is: "+ ls);
+		Log.info("Value displaying under "+labelname+" is: "+ ls);
 		DriverTestcase.logger.log(LogStatus.PASS, "Value displaying under "+labelname+" is: "+ ls);
 	
 	}	
@@ -3264,7 +3264,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			}
 		}catch (Exception e) {
 			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
-			System.out.println(labelname + " field is not displaying");
+			Log.info(labelname + " field is not displaying");
 			e.printStackTrace();
 		}
 
@@ -3533,19 +3533,19 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				
 			}else {
 				DriverTestcase.logger.log(LogStatus.PASS, "Test Name is displaying as: "+element);
-				System.out.println("Test Name is displaying as: "+element);
+				Log.info("Test Name is displaying as: "+element);
 				
 				
 				status=getwebelement("(//tbody/tr["+ i +"]/td)[2]/div").getAttribute("class");
-				System.out.println("status displays as: "+status);
+				Log.info("status displays as: "+status);
 				
 				if(status.contains("red")) {
 					DriverTestcase.logger.log(LogStatus.PASS, element + " status colour dipslays as: red");
-					System.out.println(element + " status colour dipslays as: red");
+					Log.info(element + " status colour dipslays as: red");
 				}
 				else if(status.contains("green")) {
 					DriverTestcase.logger.log(LogStatus.PASS, element + " status colour dipslays as: green");
-					System.out.println(element + " status colour dipslays as: green");
+					Log.info(element + " status colour dipslays as: green");
 				}
 			}
 		  }catch(Exception e) {
@@ -3594,7 +3594,7 @@ public void editPremise(String application, String editExistingPremise, String e
 	else if(editExistingPremise.equalsIgnoreCase("null") & editNewPremise.equalsIgnoreCase("null")) {
 		
 		DriverTestcase.logger.log(LogStatus.PASS, "No changes made under 'Premise' field");
-		System.out.println("No changes made under 'Premise' field");
+		Log.info("No changes made under 'Premise' field");
 		
 	}
 	
@@ -3703,7 +3703,7 @@ public void editSite(String application, String editExistingCity, String editNew
 	else if(editExistingCity.equalsIgnoreCase("null") & editNewCity.equalsIgnoreCase("null")) {
 		
 		DriverTestcase.logger.log(LogStatus.PASS, "No changes made under 'Site' field");
-		System.out.println("No changes made under 'Site' field");
+		Log.info("No changes made under 'Site' field");
 		
 	}
 	
@@ -3812,7 +3812,7 @@ public void editCity(String application, String editExistingCity, String editNew
 	else if(editExistingCity.equalsIgnoreCase("null") & editNewCity.equalsIgnoreCase("null")) {
 		
 		DriverTestcase.logger.log(LogStatus.PASS, "No chnges made under 'City' field");
-		System.out.println("No chnges made under 'City' field");
+		Log.info("No chnges made under 'City' field");
 	}
 	
 }
@@ -3963,7 +3963,7 @@ public void routerPanel(String application, String commandIPv4, String commandIP
 	}
 	else {
 		DriverTestcase.logger.log(LogStatus.INFO, "Router Panel will not display for the selected vendorModel: "+vendorModel);
-		System.out.println("Router Panel will not display for the selected vendorModel: "+vendorModel);
+		Log.info("Router Panel will not display for the selected vendorModel: "+vendorModel);
 	}
 	
 
@@ -3984,20 +3984,20 @@ try {
 resultField=getwebelement(xml.getlocator("//locators/" + application + "/result_textArea")).isDisplayed();
 if(resultField) {
 	DriverTestcase.logger.log(LogStatus.PASS, "'Result' text field is displaying");
-	System.out.println( "'Result' text field is displaying");
+	Log.info( "'Result' text field is displaying");
 	
 	String remarkvalue=getwebelement(xml.getlocator("//locators/" + application + "/result_textArea")).getText();
 	DriverTestcase.logger.log(LogStatus.PASS, "value under 'Result' field displaying as "+ remarkvalue);
-	System.out.println("value under 'Result' field displaying as "+ remarkvalue);
+	Log.info("value under 'Result' field displaying as "+ remarkvalue);
 
 }else {
 	DriverTestcase.logger.log(LogStatus.FAIL, "'Result' text field is not displaying");
-	System.out.println( "'Result' text field is not displaying");
+	Log.info( "'Result' text field is not displaying");
 }
 }catch(Exception e) {
 e.printStackTrace();
 DriverTestcase.logger.log(LogStatus.FAIL, "'Result' text field is not displaying");
-System.out.println("'Result' text field is not displaying");
+Log.info("'Result' text field is not displaying");
 }
 	
 }
@@ -4014,13 +4014,13 @@ public void hostnametextField_IPV6(String application, String commandIPv6, Strin
 		  
 	  }else {
 		  	DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
-			System.out.println("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
+			Log.info("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 	  }
 	}catch(Exception e) {
 		e.printStackTrace();
 		
 		DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
-		System.out.println("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
+		Log.info("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 	}
 }
 
@@ -4036,17 +4036,17 @@ public void vrfNametextField_IPV6(String application, String commandIPV6, String
 				addtextFields_commonMethod(application, "Router Vrf Name", "commandIPv6_vrfnameTextField", vrfname_IPV6, xml);
 			}else {
 				DriverTestcase.logger.log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
-				System.out.println("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
+				Log.info("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
-			System.out.println("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
+			Log.info("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 		}
 	}
 	else {
 		DriverTestcase.logger.log(LogStatus.PASS, "'VRF Name IPv6' text field is not displaying for "+ commandIPV6);
-		System.out.println("'VRF Name IPv6' text field is not displaying for "+ commandIPV6 +" command");
+		Log.info("'VRF Name IPv6' text field is not displaying for "+ commandIPV6 +" command");
 	}
 	
 }	
@@ -4063,13 +4063,13 @@ public void hostnametextField_IPV4(String application, String command_ipv4, Stri
 		  
 	  }else {
 		  	DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
-			System.out.println("'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
+			Log.info("'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 	  }
 	}catch(Exception e) {
 		e.printStackTrace();
 		
 		DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
-		System.out.println("'Hostname or IpAddress' for 'Ipv4' text field is not displaying for "+ command_ipv4);
+		Log.info("'Hostname or IpAddress' for 'Ipv4' text field is not displaying for "+ command_ipv4);
 	}
 }
 
@@ -4086,17 +4086,17 @@ public void vrfNametextField_IPV4(String application, String command_ipv4, Strin
 				addtextFields_commonMethod(application, "Router Vrf Name", "commandIPv4_vrfnameTextField", vrfname_ipv4, xml);
 			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
-				System.out.println("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
+				Log.info("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
-			System.out.println("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
+			Log.info("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 		}
 		
 	}else {
 		DriverTestcase.logger.log(LogStatus.PASS, "'VRF Name IPv4' text field is not displaying for "+ command_ipv4);
-		System.out.println("'VRF Name IPv4' text field is not displaying for "+ command_ipv4 +" command");
+		Log.info("'VRF Name IPv4' text field is not displaying for "+ command_ipv4 +" command");
 	}
 }	
 
@@ -4183,7 +4183,7 @@ try {
 	configurationpanel=getwebelement(xml.getlocator("//locators/" + application + "/MAS-PE_confiugrationPanelheader")).isDisplayed();
 	if(configurationpanel) {
 		DriverTestcase.logger.log(LogStatus.PASS, "'Configuration' panel is displaying");
-		System.out.println("'Configuration' panel is displaying");
+		Log.info("'Configuration' panel is displaying");
 		
 		addDropdownValues_commonMethod(application, "Generate Configuration ", "MAS_PE_generateConfigurationDropdown", MAS_generateConfiguration, xml);
 		Thread.sleep(2000);
@@ -4197,22 +4197,22 @@ try {
 		String configurationvalues=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/configuration_textArea")));
 		if(configurationvalues.isEmpty()) {
 			DriverTestcase.logger.log(LogStatus.FAIL, "After clicking on 'Generate Configuration' link, no values displaying under 'Configuration' text box");
-			System.out.println("After clicking on 'Generate Configuration' link, no values displaying under 'Configuration' text box");
+			Log.info("After clicking on 'Generate Configuration' link, no values displaying under 'Configuration' text box");
 		}else {
 			DriverTestcase.logger.log(LogStatus.PASS, "After clicking on 'Generate Configuration' link, "
 					+ "under 'Configuration' textbox values displaying as: "+configurationvalues);
-			System.out.println("After clicking on 'Generate Configuration' link, "
+			Log.info("After clicking on 'Generate Configuration' link, "
 					+ "under 'Configuration' textbox values displaying as: "+configurationvalues);
 		}
 	
 	}else {
 		DriverTestcase.logger.log(LogStatus.FAIL, "'Configuration' panel is not displaying");
-		System.out.println("'Configuration' panel is not displaying");
+		Log.info("'Configuration' panel is not displaying");
 	}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "'Configuration' panel is not displaying");
-			System.out.println("'Configuration' panel is not displaying");
+			Log.info("'Configuration' panel is not displaying");
 		}
 		scrolltoend();
 		Thread.sleep(1000);
@@ -4255,25 +4255,25 @@ public void verifyAddInterfaceFunction_PE(String application, String PE_AccessMe
 			interfaceField=getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_InterfaceTextfield"));
 			if(interfaceField.isEnabled()) {
 				DriverTestcase.logger.log(LogStatus.FAIL, "'Interface' text field is enabled");
-				System.out.println("'Interface' text field is enabled");
+				Log.info("'Interface' text field is enabled");
 			}else {
 				DriverTestcase.logger.log(LogStatus.PASS, "'Interface' text field is disabled");
-				System.out.println("'Interface' text field is disabled");
+				Log.info("'Interface' text field is disabled");
 				
 				String interfacevalue=interfaceField.getAttribute("value");
 				if(PE_InterfaceDefaultValue.equals(interfacevalue)) {
 					DriverTestcase.logger.log(LogStatus.PASS, "By default 'Interface' text field value is displaying as '"+interfacevalue+"' as expected");
-					System.out.println("By default 'Interface' text field value is displaying as '"+interfacevalue+"' as expected");
+					Log.info("By default 'Interface' text field value is displaying as '"+interfacevalue+"' as expected");
 				}else {
 					DriverTestcase.logger.log(LogStatus.PASS, "By default 'Interface' text field value is displaying as "+interfacevalue);
-					System.out.println("By default 'Interface' text field value is displaying as "+interfacevalue);
+					Log.info("By default 'Interface' text field value is displaying as "+interfacevalue);
 				}
 				
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "'Interface' text field is not displaying");
-			System.out.println("'Interface' text field is not displaying");
+			Log.info("'Interface' text field is not displaying");
 		}
 	
 	if(PE_AccessMedia.equalsIgnoreCase("VPN")) {
@@ -4336,20 +4336,20 @@ public void verifyAddInterfaceFunction_PE(String application, String PE_AccessMe
 				String actualvalue=interfaceField.getAttribute("value");
 				if(interfaceFieldFinalvalue.equals(actualvalue)) {
 					DriverTestcase.logger.log(LogStatus.PASS, "'Interfcae' field value is displaying as: "+actualvalue);
-					System.out.println("'Interfcae' field value is displaying as: "+actualvalue);
+					Log.info("'Interfcae' field value is displaying as: "+actualvalue);
 				}else {
 					DriverTestcase.logger.log(LogStatus.FAIL, "'Interface' value is mismatching. It is displaying as '"+actualvalue+"'. Expected value is '"+ interfaceFieldFinalvalue +"'");
-					System.out.println("'Interface' value is mismatching. It is displaying as '"+actualvalue+"'. Expected value is '"+ interfaceFieldFinalvalue +"'");
+					Log.info("'Interface' value is mismatching. It is displaying as '"+actualvalue+"'. Expected value is '"+ interfaceFieldFinalvalue +"'");
 				
 				}
 				
 			}else if(PE_VLANID.equalsIgnoreCase("null")) {
-				System.out.println("interface field value remais same");
+				Log.info("interface field value remais same");
 			}
 		}
 	}catch(Exception e) {
 		e.printStackTrace();
-		System.out.println("Interface field is not displaying");
+		Log.info("Interface field is not displaying");
 	}
 	
 	scrolltoend();
@@ -4361,7 +4361,7 @@ try {
 	configurationpanel=getwebelement(xml.getlocator("//locators/" + application + "/MAS-PE_confiugrationPanelheader")).isDisplayed();
 	if(configurationpanel) {
 		DriverTestcase.logger.log(LogStatus.PASS, "'Configuration' panel is displaying");
-		System.out.println("'Configuration' panel is displaying");
+		Log.info("'Configuration' panel is displaying");
 		
 		addDropdownValues_commonMethod(application, "Generate Configuration ", "MAS_PE_generateConfigurationDropdown", PE_generateConfiguration, xml);
 		Thread.sleep(2000);
@@ -4372,22 +4372,22 @@ try {
 		String configurationvalues=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/configuration_textArea")));
 		if(configurationvalues.isEmpty()) {
 			DriverTestcase.logger.log(LogStatus.FAIL, "After clicking on 'Generate Configuration' link, no values displaying under 'Configuration' text box");
-			System.out.println("After clicking on 'Generate Configuration' link, no values displaying under 'Configuration' text box");
+			Log.info("After clicking on 'Generate Configuration' link, no values displaying under 'Configuration' text box");
 		}else {
 			DriverTestcase.logger.log(LogStatus.PASS, "After clicking on 'Generate Configuration' link, "
 					+ "under 'Configuration' textbox values displaying as: "+configurationvalues);
-			System.out.println("After clicking on 'Generate Configuration' link, "
+			Log.info("After clicking on 'Generate Configuration' link, "
 					+ "under 'Configuration' textbox values displaying as: "+configurationvalues);
 		}
 	
 	}else {
 		DriverTestcase.logger.log(LogStatus.FAIL, "'Configuration' panel is not displaying");
-		System.out.println("'Configuration' panel is not displaying");
+		Log.info("'Configuration' panel is not displaying");
 	}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "'Configuration' panel is not displaying");
-			System.out.println("'Configuration' panel is not displaying");
+			Log.info("'Configuration' panel is not displaying");
 		}
 		scrolltoend();
 		Thread.sleep(1000);
@@ -4416,25 +4416,25 @@ try {
 				interfaceField=getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_InterfaceTextfield"));
 				if(interfaceField.isEnabled()) {
 					DriverTestcase.logger.log(LogStatus.FAIL, "'Interface' text field is enabled");
-					System.out.println("'Interface' text field is enabled");
+					Log.info("'Interface' text field is enabled");
 				}else {
 					DriverTestcase.logger.log(LogStatus.PASS, "'Interface' text field is disabled");
-					System.out.println("'Interface' text field is disabled");
+					Log.info("'Interface' text field is disabled");
 					
 					String interfacevalue=interfaceField.getAttribute("value");
 					if(PE_interfaceName.equals(interfacevalue)) {
 						DriverTestcase.logger.log(LogStatus.PASS, "'Interface' text field value is displaying as '"+interfacevalue+"' as expected");
-						System.out.println("'Interface' text field value is displaying as '"+interfacevalue+"' as expected");
+						Log.info("'Interface' text field value is displaying as '"+interfacevalue+"' as expected");
 					}else {
 						DriverTestcase.logger.log(LogStatus.PASS, "'Interface' text field value is displaying as "+interfacevalue);
-						System.out.println("'Interface' text field value is displaying as "+interfacevalue);
+						Log.info("'Interface' text field value is displaying as "+interfacevalue);
 					}
 					
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
 				DriverTestcase.logger.log(LogStatus.FAIL, "'Interface' text field is not displaying");
-				System.out.println("'Interface' text field is not displaying");
+				Log.info("'Interface' text field is not displaying");
 			}
 		
 		if(PE_AccessMedia.equalsIgnoreCase("VPN")) {
@@ -4494,7 +4494,7 @@ try {
 		configurationpanel=getwebelement(xml.getlocator("//locators/" + application + "/MAS-PE_confiugrationPanelheader")).isDisplayed();
 		if(configurationpanel) {
 			DriverTestcase.logger.log(LogStatus.PASS, "'Configuration' panel is displaying");
-			System.out.println("'Configuration' panel is displaying");
+			Log.info("'Configuration' panel is displaying");
 			
 			addDropdownValues_commonMethod(application, "Generate Configuration ", "MAS_PE_generateConfigurationDropdown", PE_generateConfiguration, xml);
 			Thread.sleep(2000);
@@ -4505,22 +4505,22 @@ try {
 			String configurationvalues=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/configuration_textArea")));
 			if(configurationvalues.isEmpty()) {
 				DriverTestcase.logger.log(LogStatus.FAIL, "After clicking on 'Generate Configuration' link, no values displaying under 'Configuration' text box");
-				System.out.println("After clicking on 'Generate Configuration' link, no values displaying under 'Configuration' text box");
+				Log.info("After clicking on 'Generate Configuration' link, no values displaying under 'Configuration' text box");
 			}else {
 				DriverTestcase.logger.log(LogStatus.PASS, "After clicking on 'Generate Configuration' link, "
 						+ "under 'Configuration' textbox values displaying as: "+configurationvalues);
-				System.out.println("After clicking on 'Generate Configuration' link, "
+				Log.info("After clicking on 'Generate Configuration' link, "
 						+ "under 'Configuration' textbox values displaying as: "+configurationvalues);
 			}
 		
 		}else {
 			DriverTestcase.logger.log(LogStatus.FAIL, "'Configuration' panel is not displaying");
-			System.out.println("'Configuration' panel is not displaying");
+			Log.info("'Configuration' panel is not displaying");
 		}
 			}catch(Exception e) {
 				e.printStackTrace();
 				DriverTestcase.logger.log(LogStatus.FAIL, "'Configuration' panel is not displaying");
-				System.out.println("'Configuration' panel is not displaying");
+				Log.info("'Configuration' panel is not displaying");
 			}
 			scrolltoend();
 			Thread.sleep(1000);
@@ -4567,7 +4567,7 @@ try {
 			}
 			
 			DriverTestcase.logger.log(LogStatus.PASS, "Actual column names displaying are: "+ ls);  //printing list of column names displaying
-			System.out.println("Actual column names displaying are: "+ ls);
+			Log.info("Actual column names displaying are: "+ ls);
 			
 		}
 		
@@ -4655,11 +4655,11 @@ try {
 				waitForpageload();
 				waitforPagetobeenable();
 			}else {
-				System.out.println("Breadcrumb is not displaying for the element "+ breadcrumb);
+				Log.info("Breadcrumb is not displaying for the element "+ breadcrumb);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("Breadcrumb is not displaying for the element "+ breadcrumb);
+			Log.info("Breadcrumb is not displaying for the element "+ breadcrumb);
 		}
 			
 			
@@ -4814,7 +4814,7 @@ try {
 			if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
             {
                   List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/PE_fetchAlldevice_InviewPage"));
-                  System.out.println(addeddevicesList);
+//                  Log.info(addeddevicesList);
                   int AddedDevicesCount= addeddevicesList.size();
                   for(int i=0;i<AddedDevicesCount;i++) {
                         String AddedDeviceNameText= addeddevicesList.get(i).getText();
@@ -4868,7 +4868,7 @@ try {
 			if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid_MAS")).isDisplayed())
             {
                   List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/MAS_fetchAlldevice_InviewPage"));
-                  System.out.println(addeddevicesList);
+//                  Log.info(addeddevicesList);
                   int AddedDevicesCount= addeddevicesList.size();
                   for(int i=0;i<AddedDevicesCount;i++) {
                         String AddedDeviceNameText= addeddevicesList.get(i).getText();
@@ -4924,12 +4924,12 @@ try {
 			if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
             {
                   List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/PE_fetchAlldevice_InviewPage"));
-                  System.out.println(addeddevicesList);
+//                  Log.info(addeddevicesList);
                   int AddedDevicesCount= addeddevicesList.size();
                   for(int i=0;i<AddedDevicesCount;i++) {
                         String AddedDeviceNameText= addeddevicesList.get(i).getText();
                         String AddedDevice_SNo= AddedDeviceNameText.substring(0, 1);
-                        System.out.println("number "+ AddedDevice_SNo);
+                        Log.info("number "+ AddedDevice_SNo);
                         if(AddedDeviceNameText.contains(existingdevicename))
                         {
                               WebElement viewLink=getwebelement(xml.getlocator("//locators/" + application + "/PE_viewLink_InViewPage").replace("value", AddedDevice_SNo)); 
@@ -4968,12 +4968,12 @@ try {
 				if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid_MAS")).isDisplayed())
 	            {
 	                  List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/MAS_fetchAlldevice_InviewPage"));
-	                  System.out.println(addeddevicesList);
+//	                  Log.info(addeddevicesList);
 	                  int AddedDevicesCount= addeddevicesList.size();
 	                  for(int i=0;i<AddedDevicesCount;i++) {
 	                        String AddedDeviceNameText= addeddevicesList.get(i).getText();
 	                        String AddedDevice_SNo= AddedDeviceNameText.substring(0, 1);
-	                        System.out.println("number "+ AddedDevice_SNo);
+	                        Log.info("number "+ AddedDevice_SNo);
 	                        if(AddedDeviceNameText.contains(existingdevicename))
 	                        {
 	                              WebElement viewLink=getwebelement(xml.getlocator("//locators/" + application + "/MAS_viewLink_InViewPage").replace("value", AddedDevice_SNo)); 
@@ -5009,12 +5009,12 @@ try {
 //				if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 //	            {
 //	                  List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/PE_fetchAlldevice_InviewPage"));
-//	                  System.out.println(addeddevicesList);
+//	                  Log.info(addeddevicesList);
 //	                  int AddedDevicesCount= addeddevicesList.size();
 //	                  for(int i=0;i<AddedDevicesCount;i++) {
 //	                        String AddedDeviceNameText= addeddevicesList.get(i).getText();
 //	                        String AddedDevice_SNo= AddedDeviceNameText.substring(0, 1);
-//	                        System.out.println("number "+ AddedDevice_SNo);
+//	                        Log.info("number "+ AddedDevice_SNo);
 //	                        if(AddedDeviceNameText.contains(existingdevicename))
 //	                        {
 //	                              WebElement viewLink=getwebelement(xml.getlocator("//locators/" + application + "/PE_viewLink_InViewPage").replace("value", AddedDevice_SNo)); 
@@ -5051,7 +5051,7 @@ try {
 			if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
             {
                   List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/PE_fetchAlldevice_InviewPage"));
-                  System.out.println(addeddevicesList);
+//                  Log.info(addeddevicesList);
                   int AddedDevicesCount= addeddevicesList.size();
                   for(int i=0;i<AddedDevicesCount;i++) {
                         String AddedDeviceNameText= addeddevicesList.get(i).getText();
@@ -5093,7 +5093,7 @@ try {
 			if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid_MAS")).isDisplayed())
             {
                   List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/MAS_fetchAlldevice_InviewPage"));
-                  System.out.println(addeddevicesList);
+//                  Log.info(addeddevicesList);
                   int AddedDevicesCount= addeddevicesList.size();
                   for(int i=0;i<AddedDevicesCount;i++) {
                         String AddedDeviceNameText= addeddevicesList.get(i).getText();
@@ -5147,7 +5147,7 @@ try {
 
 			TotalPages = Integer.parseInt(TextKeyword);
 
-			System.out.println("Total number of pages in table is: " + TotalPages);
+			Log.info("Total number of pages in table is: " + TotalPages);
 
 			ab:
 
@@ -5161,12 +5161,12 @@ try {
 
 					assertEquals(k, Current_page);
 
-					System.out.println("Currently we are in page number: " + Current_page);
+					Log.info("Currently we are in page number: " + Current_page);
 
 					List<WebElement> results = getwebelements("//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//div[div[text()='" + interfacenumber +"']]//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 					
 					int numofrows = results.size();
-					System.out.println("no of results: " + numofrows);
+					Log.info("no of results: " + numofrows);
 					boolean resultflag;
 
 					if (numofrows == 0) {
@@ -5182,9 +5182,9 @@ try {
 								waitforPagetobeenable();
 								
 								resultflag = results.get(i).isDisplayed();
-								System.out.println("status of result: " + resultflag);
+								Log.info("status of result: " + resultflag);
 								if (resultflag) {
-									System.out.println(results.get(i).getText());
+									Log.info(results.get(i).getText());
 									results.get(i).click();
 									DriverTestcase.logger.log(LogStatus.PASS, interfacenumber + " is selected under 'Interface in Service' table");
 									click_commonMethod(Application, "Action", "InterfaceInselect_Actiondropdown", xml);
@@ -5209,7 +5209,7 @@ try {
 					}
 				}
 			} else {
-				System.out.println("No values available in table");
+				Log.info("No values available in table");
 				Log.info("No values available inside the InterfaceInService table");
 			}
 		}
@@ -5270,7 +5270,7 @@ try {
 
 			TotalPages = Integer.parseInt(TextKeyword);
 
-			System.out.println("Total number of pages in Interface to select table is: " + TotalPages);
+			Log.info("Total number of pages in Interface to select table is: " + TotalPages);
 
 			ab:
 
@@ -5284,12 +5284,12 @@ try {
 
 					assertEquals(k, Current_page);
 
-					System.out.println("Currently we are in page number: " + Current_page);
+					Log.info("Currently we are in page number: " + Current_page);
 
 					List<WebElement> results = getwebelements("//div[div[contains(text(),'Interfaces to Select')]]/following-sibling::div[1]//div[div[text()='"+interfacenumber+"']]//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-					System.out.println(results);	
+//					Log.info(results);	
 					int numofrows = results.size();
-					System.out.println("no of results: " + numofrows);
+					Log.info("no of results: " + numofrows);
 					boolean resultflag;
 
 					if (numofrows == 0) {
@@ -5300,9 +5300,9 @@ try {
 						for (int i = 0; i < numofrows; i++) {
 							try {
 								resultflag = results.get(i).isDisplayed();
-								System.out.println("status of result: " + resultflag);
+								Log.info("status of result: " + resultflag);
 								if (resultflag) {
-									System.out.println(results.get(i).getText());
+									Log.info(results.get(i).getText());
 									results.get(i).click();
 									DriverTestcase.logger.log(LogStatus.PASS, interfacenumber + " is selected under 'Interface to select' table");
 									Thread.sleep(8000);
@@ -5330,7 +5330,7 @@ try {
 					}
 				}
 			} else {
-				System.out.println("No values found inside the table");
+				Log.info("No values found inside the table");
 				Log.info("No values available inside the Interfacetoselect table");
 			}
 
@@ -5370,17 +5370,17 @@ try {
 		       String alertMessage= driver.switchTo().alert().getText();
 		       if(alertMessage.isEmpty()) {
 		    	   DriverTestcase.logger.log(LogStatus.FAIL, "No mEssage displays");
-			       System.out.println("No Message displays"); 
+			       Log.info("No Message displays"); 
 		       }else {
 		    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
-			       System.out.println("text message for alert displays as: "+alertMessage);
+			       Log.info("text message for alert displays as: "+alertMessage);
 		       }
 		     
 		     try {  
 		       alert.accept();
 		       Thread.sleep(2000);
 		       
-		       System.out.println("accept 2");
+		       Log.info("accept 2");
 		       alert.accept();
 		     }catch(Exception e) {
 		    	 e.printStackTrace();
@@ -5395,10 +5395,10 @@ try {
 		    	 String alertMessage1=alert.getText();
 		    	 if(alertMessage1.isEmpty()) {
 			    	   DriverTestcase.logger.log(LogStatus.FAIL, "After clicking on OK, No mEssage displays");
-				       System.out.println("No Message displays"); 
+				       Log.info("No Message displays"); 
 			       }else {
 			    	   DriverTestcase.logger.log(LogStatus.PASS, "After clicking on OK button, Alert message displays as: "+alertMessage);
-				       System.out.println("text message for alert displays as: "+alertMessage);
+				       Log.info("text message for alert displays as: "+alertMessage);
 				       
 				       alert.dismiss();
 			       }
@@ -5425,10 +5425,10 @@ try {
 		       String alertMessage= driver.switchTo().alert().getText();
 		       if(alertMessage.isEmpty()) {
 		    	   DriverTestcase.logger.log(LogStatus.FAIL, "No mEssage displays");
-			       System.out.println("No Message displays"); 
+			       Log.info("No Message displays"); 
 		       }else {
 		    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
-			       System.out.println("text message for alert displays as: "+alertMessage);
+			       Log.info("text message for alert displays as: "+alertMessage);
 		       }
 		       
 		       Thread.sleep(3000);
@@ -5438,7 +5438,7 @@ try {
 		       alert.accept();
 		       Thread.sleep(2000);
 		       
-		       System.out.println("accept 2");
+		       Log.info("accept 2");
 		       alert.accept();
 		     }catch(Exception e) {
 		    	 e.printStackTrace();
@@ -5478,7 +5478,7 @@ try {
                   String childWindow = itr.next();
                   if(!mainWindow.equals(childWindow)){
                         driver.switchTo().window(childWindow);
-                        System.out.println(driver.switchTo().window(childWindow).getTitle());
+                        Log.info(driver.switchTo().window(childWindow).getTitle());
                           
                         Thread.sleep(1000);
                         
@@ -5489,7 +5489,7 @@ try {
                     	  DriverTestcase.logger.log(LogStatus.PASS, "'Under GSX Configuration' value is displaying as: "+ gsxConfiguredValue);
                       }
 //                       Write here  whatever you want to do and perform
-                        System.out.println("came inside child window");
+                        Log.info("came inside child window");
                         
                        //
                         scrolltoend();
@@ -5536,7 +5536,7 @@ try {
 			boolean SBCHeder=getwebelement(xml.getlocator("//locators/" + application + "/SBCmanualConfig_PanelHeader")).isDisplayed();
 			if(SBCHeder) {
 				DriverTestcase.logger.log(LogStatus.PASS, "'SBC Manully Executed Configuration' panel is displaying");
-				System.out.println("'SBC Manully Executed Configuration' panel is displaying");
+				Log.info("'SBC Manully Executed Configuration' panel is displaying");
 				
 				
 				click_commonMethod(application, "Action", "SBCManualConfig_actionDropdown", xml);
@@ -5553,12 +5553,12 @@ try {
 				
 			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, "'SBC Manully Executed Configuration' panel is not displaying");
-				System.out.println("'SBC Manully Executed Configuration' panel is not displaying");
+				Log.info("'SBC Manully Executed Configuration' panel is not displaying");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "'SBC Manully Executed Configuration' panel is not displaying");
-			System.out.println("'SBC Manully Executed Configuration' panel is not displaying");
+			Log.info("'SBC Manully Executed Configuration' panel is not displaying");
 		}
 		}
 		
@@ -5576,7 +5576,7 @@ try {
 			
 			if(SBCfilenameCreated.isEmpty()) {
 				DriverTestcase.logger.log(LogStatus.FAIL, "SBC Manually Executed configuration file name is not displaying");
-				System.out.println("SBC Manually Executed configuration file name is not displaying");
+				Log.info("SBC Manually Executed configuration file name is not displaying");
 			}else {
 				
 				int i=0; int k=0; int j=0;
@@ -5640,8 +5640,8 @@ try {
 			click_commonMethod(application, "Action", "GSXManualConfig_actionDropdown", xml);  //click acton dropdown
 			click_commonMethod(application, "Edit link", "GSX_editLink", xml);   //click on edit link
 			
-//			System.out.println("date displaying as : "+getCurrentDate());
-//			System.out.println("username displays as: "+Getkeyvalue("APT_login_1_Username"));
+//			Log.info("date displaying as : "+getCurrentDate());
+//			Log.info("username displays as: "+Getkeyvalue("APT_login_1_Username"));
 			
 			Thread.sleep(6000);
 			
@@ -5653,13 +5653,13 @@ try {
                   String childWindow = itr.next();
                   if(!mainWindow.equals(childWindow)){
                         driver.switchTo().window(childWindow);
-                        System.out.println(driver.switchTo().window(childWindow).getTitle());
+                        Log.info(driver.switchTo().window(childWindow).getTitle());
                           
 //                        driver.manage().window().maximize();
                         Thread.sleep(1000);
                         
 //                       Write here  whatever you want to do and perform
-                        System.out.println("came inside child window");
+                        Log.info("came inside child window");
                         
                         edittextFields_commonMethod(application, "GSX manual Configuration", "GSX_editPage_teaxtArea", editGSXmanualConfigvalur, xml);
                        
@@ -5688,8 +5688,8 @@ try {
 			click_commonMethod(application, "Action", "PSXManualConfig_actionDropdown", xml);  //click acton dropdown
 			click_commonMethod(application, "Edit link", "PSX_editLink", xml);   //click on edit link
 			
-//			System.out.println("date displaying as : "+getCurrentDate());
-//			System.out.println("username displays as: "+Getkeyvalue("APT_login_1_Username"));
+//			Log.info("date displaying as : "+getCurrentDate());
+//			Log.info("username displays as: "+Getkeyvalue("APT_login_1_Username"));
 			
 			String mainWindow=null;
 			
@@ -5703,13 +5703,13 @@ try {
                   String childWindow = itr.next();
                   if(!mainWindow.equals(childWindow)){
                         driver.switchTo().window(childWindow);
-                        System.out.println(driver.switchTo().window(childWindow).getTitle());
+                        Log.info(driver.switchTo().window(childWindow).getTitle());
                           
 //                        driver.manage().window().maximize();
                         Thread.sleep(1000);
                         
 //                       Write here  whatever you want to do and perform
-                        System.out.println("came inside child window");
+                        Log.info("came inside child window");
                         
                         edittextFields_commonMethod(application, "PSX manual Configuration", "GSX_editPage_teaxtArea", editPSXmanualConfigvalur, xml);
                         
@@ -5738,8 +5738,8 @@ try {
 			click_commonMethod(application, "Action", "SBCManualConfig_actionDropdown", xml);  //click acton dropdown
 			click_commonMethod(application, "Edit link", "SBC_editLink", xml);   //click on edit link
 			
-			System.out.println("date displaying as : "+getCurrentDate());
-			System.out.println("username displays as: "+Getkeyvalue("APT_login_1_Username"));
+			Log.info("date displaying as : "+getCurrentDate());
+			Log.info("username displays as: "+Getkeyvalue("APT_login_1_Username"));
 			
 			Thread.sleep(6000);
 			
@@ -5751,7 +5751,7 @@ try {
                   String childWindow = itr.next();
                   if(!mainWindow.equals(childWindow)){
                         driver.switchTo().window(childWindow);
-                        System.out.println(driver.switchTo().window(childWindow).getTitle());
+                        Log.info(driver.switchTo().window(childWindow).getTitle());
                           
 //                        driver.manage().window().maximize();
                         Thread.sleep(1000);
@@ -5904,7 +5904,7 @@ try {
 			boolean PSXHeader=getwebelement(xml.getlocator("//locators/" + application + "/PSXmanualConfig_PanelHeader")).isDisplayed();
 			if(PSXHeader) {
 				DriverTestcase.logger.log(LogStatus.PASS, "'PSX Manully Executed Configuration' panel is displaying");
-				System.out.println("'PSX Manully Executed Configuration' panel is displaying");
+				Log.info("'PSX Manully Executed Configuration' panel is displaying");
 				
 				
 				click_commonMethod(application, "Action", "PSXManualConfig_actionDropdown", xml);
@@ -5926,7 +5926,7 @@ try {
 				
 			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, "'PSX Manully Executed Configuration' panel is not displaying");
-				System.out.println("'PSX Manully Executed Configuration' panel is not displaying");
+				Log.info("'PSX Manully Executed Configuration' panel is not displaying");
 			}
 		}
 		
@@ -5948,7 +5948,7 @@ try {
 			boolean PSXHeader=getwebelement(xml.getlocator("//locators/" + application + "/GSXmanualConfig_PanelHeader")).isDisplayed();
 			if(PSXHeader) {
 				DriverTestcase.logger.log(LogStatus.PASS, "'GSX Manully Executed Configuration' panel is displaying");
-				System.out.println("'GSX Manully Executed Configuration' panel is displaying");
+				Log.info("'GSX Manully Executed Configuration' panel is displaying");
 				
 				
 				click_commonMethod(application, "Action", "GSXManualConfig_actionDropdown", xml);
@@ -5969,7 +5969,7 @@ try {
 				
 			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, "'GSX Manully Executed Configuration' panel is not displaying");
-				System.out.println("'GSX Manully Executed Configuration' panel is not displaying");
+				Log.info("'GSX Manully Executed Configuration' panel is not displaying");
 			}
 		}
 		
@@ -5993,7 +5993,7 @@ try {
 			
 			if(PSXfilenameCreated.isEmpty()) {
 				DriverTestcase.logger.log(LogStatus.FAIL, "PSX Manually Executed configuration file name is not displaying");
-				System.out.println("PSX Manually Executed configuration file name is not displaying");
+				Log.info("PSX Manually Executed configuration file name is not displaying");
 			}else {
 				
 				int i=0; int k=0; int j=0;
@@ -6067,7 +6067,7 @@ try {
 			
 			if(GSXfilenameCreated.isEmpty()) {
 				DriverTestcase.logger.log(LogStatus.FAIL, "GSX Manually Executed configuration file name is not displaying");
-				System.out.println("GSX Manually Executed configuration file name is not displaying");
+				Log.info("GSX Manually Executed configuration file name is not displaying");
 			}else {
 				
 				int i=0; int k=0; int j=0;
@@ -6433,27 +6433,27 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		   DumpPage=getwebelement(xml.getlocator("//locators/" + application + "/dumpPage_header")).isDisplayed();
 		   if(DumpPage) {
 			   DriverTestcase.logger.log(LogStatus.PASS, "Service Dump Detail page is displaying");
-			   System.out.println("Service Dump Detail page is displaying");
+			   Log.info("Service Dump Detail page is displaying");
 			  
 			  //Header 
 			   String headerName=getwebelement(xml.getlocator("//locators/" + application + "/dumpheaderName")).getText();
 			   if(headerName.isEmpty()) {
 				   DriverTestcase.logger.log(LogStatus.FAIL, "Header name is not displaying");
-				   System.out.println("Header name is not displaying");
+				   Log.info("Header name is not displaying");
 				 
 			   }else {
 				   DriverTestcase.logger.log(LogStatus.PASS, "Dump header name is displaying as "+ headerName);  
-				   System.out.println("Dump header name is displaying as "+ headerName);
+				   Log.info("Dump header name is displaying as "+ headerName);
 			   }
 			   
 			   //body
 			   String bodyContent=getwebelement(xml.getlocator("//locators/" + application + "/dumpMessage_body")).getText();
 			   if(bodyContent.isEmpty()) {
 				   DriverTestcase.logger.log(LogStatus.FAIL, "Dump value is not displaying");
-				   System.out.println("Dump value is not displaying");
+				   Log.info("Dump value is not displaying");
 			   }else {
 				   DriverTestcase.logger.log(LogStatus.PASS, "Dump value is displaying as "+bodyContent);
-				   System.out.println("Dump value is displaying as "+bodyContent);
+				   Log.info("Dump value is displaying as "+bodyContent);
 			   }
 			   
 			   Clickon(getwebelement(xml.getlocator("//locators/" + application + "/dump_xButton")));
@@ -6462,7 +6462,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			   
 		   }else {
 			   DriverTestcase.logger.log(LogStatus.FAIL, "Service Dump Detail page is not displaying");
-			   System.out.println("Service Dump Detail page is not displaying");
+			   Log.info("Service Dump Detail page is not displaying");
 
 		   }
 	}
@@ -6485,27 +6485,27 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		   DumpPage=getwebelement(xml.getlocator("//locators/" + application + "/dumpPage_header")).isDisplayed();
 		   if(DumpPage) {
 			   DriverTestcase.logger.log(LogStatus.PASS, "Manage Subnet IPv6 page is displaying");
-			   System.out.println("manage subnet ipv6 page is displaying");
+			   Log.info("manage subnet ipv6 page is displaying");
 			  
 			  //Header 
 			   String headerName=getwebelement(xml.getlocator("//locators/" + application + "/dumpheaderName")).getText();
 			   if(headerName.isEmpty()) {
 				   DriverTestcase.logger.log(LogStatus.FAIL, "Header name is not displaying");
-				   System.out.println("Header name is not displaying");
+				   Log.info("Header name is not displaying");
 				 
 			   }else {
 				   DriverTestcase.logger.log(LogStatus.PASS, "manage Subnet IPv6 header name is displaying as "+ headerName);  
-				   System.out.println("manage subnet ipv6 header name is displaying as "+ headerName);
+				   Log.info("manage subnet ipv6 header name is displaying as "+ headerName);
 			   }
 			   
 			   //body
 			   String bodyContent=getwebelement(xml.getlocator("//locators/" + application + "/manageSubnet_successMSG")).getText();
 			   if(bodyContent.isEmpty()) {
 				   DriverTestcase.logger.log(LogStatus.FAIL, "manage subnet value is not displaying");
-				   System.out.println("manage subnet value is not displaying");
+				   Log.info("manage subnet value is not displaying");
 			   }else {
 				   DriverTestcase.logger.log(LogStatus.PASS, "manage subnet message is displaying as "+bodyContent);
-				   System.out.println("manage subnet message is displaying as "+bodyContent);
+				   Log.info("manage subnet message is displaying as "+bodyContent);
 			   }
 			   
 			   Clickon(getwebelement(xml.getlocator("//locators/" + application + "/dump_xButton")));
@@ -6514,7 +6514,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			   
 		   }else {
 			   DriverTestcase.logger.log(LogStatus.FAIL, "manage subnet ipv6 page is not displaying");
-			   System.out.println("manage subnet ipv6 page is not displaying");
+			   Log.info("manage subnet ipv6 page is not displaying");
 
 		   }
 	}
@@ -6529,7 +6529,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		String trunkGroupName=Gettext(trunkGroupNameelement);
 			
 		String[] trunkNames=trunkGroupName.split("-");
-		System.out.println("trunk name: "+ trunkNames[1]);
+		Log.info("trunk name: "+ trunkNames[1]);
 		
 		return trunkNames[1];
 		
@@ -6748,7 +6748,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		configurationpanel=getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_IVManagementCheckbox")).isDisplayed();
 		if(configurationpanel) {
 			DriverTestcase.logger.log(LogStatus.PASS, "'Configuration' panel is displaying");
-			System.out.println("'Configuration' panel is displaying");
+			Log.info("'Configuration' panel is displaying");
 			
 			addDropdownValues_commonMethod(application, "Generate Configuration ", "MAS_PE_generateConfigurationDropdown", MAS_generateConfiguration, xml);
 			Thread.sleep(2000);
@@ -6762,22 +6762,22 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			String configurationvalues=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/configuration_textArea")));
 			if(configurationvalues.isEmpty()) {
 				DriverTestcase.logger.log(LogStatus.FAIL, "After clicking on 'Generate Configuration' link, no values displaying under 'Configuration' text box");
-				System.out.println("After clicking on 'Generate Configuration' link, no values displaying under 'Configuration' text box");
+				Log.info("After clicking on 'Generate Configuration' link, no values displaying under 'Configuration' text box");
 			}else {
 				DriverTestcase.logger.log(LogStatus.PASS, "After clicking on 'Generate Configuration' link, "
 						+ "under 'Configuration' textbox values displaying as: "+configurationvalues);
-				System.out.println("After clicking on 'Generate Configuration' link, "
+				Log.info("After clicking on 'Generate Configuration' link, "
 						+ "under 'Configuration' textbox values displaying as: "+configurationvalues);
 			}
 		
 		}else {
 			DriverTestcase.logger.log(LogStatus.FAIL, "'Configuration' panel is not displaying");
-			System.out.println("'Configuration' panel is not displaying");
+			Log.info("'Configuration' panel is not displaying");
 		}
 			}catch(Exception e) {
 				e.printStackTrace();
 				DriverTestcase.logger.log(LogStatus.FAIL, "'Configuration' panel is not displaying");
-				System.out.println("'Configuration' panel is not displaying");
+				Log.info("'Configuration' panel is not displaying");
 			}
 			scrolltoend();
 			Thread.sleep(1000);
@@ -7033,7 +7033,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid_CPEdevice")).isDisplayed())
         {
               List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/CPEdevice_fetchAlldevice_inViewPage"));
-              System.out.println(addeddevicesList);
+//              Log.info(addeddevicesList);
               int AddedDevicesCount= addeddevicesList.size();
               for(int i=0;i<AddedDevicesCount;i++) {
                     String AddedDeviceNameText= addeddevicesList.get(i).getText();
@@ -7081,7 +7081,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid_CPEdevice")).isDisplayed())
         {
               List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/CPEdevice_fetchAlldevice_inViewPage"));
-              System.out.println(addeddevicesList);
+//              Log.info(addeddevicesList);
               int AddedDevicesCount= addeddevicesList.size();
               for(int i=0;i<AddedDevicesCount;i++) {
                     String AddedDeviceNameText= addeddevicesList.get(i).getText();
@@ -7309,7 +7309,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			addtextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
 			click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
 			String  password=getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")).getAttribute("value");
-			System.out.println("Generated Password is : "+password);
+			Log.info("Generated Password is : "+password);
 
 			if(password.isEmpty()) {
 
@@ -7371,7 +7371,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			ScrolltoElement(application, "customerdetailsheader", xml);
 			List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
 			int NoOfUsers = ExistingUsers.size();
-			System.out.println("Total users:"+ NoOfUsers);
+			Log.info("Total users:"+ NoOfUsers);
 
 			if(NoOfUsers==1 || NoOfUsers>1)
 			{
@@ -7395,7 +7395,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 				edittextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", editColtOnlineUser, xml);
 
 				String editpassword=getwebelement(xml.getlocator("//locators/"+application+"/Password")).getAttribute("value");
-				System.out.println("Generated Password is : "+editpassword);
+				Log.info("Generated Password is : "+editpassword);
 
 				if(editpassword.isEmpty()) {
 
@@ -7455,7 +7455,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			ScrolltoElement(application, "customerdetailsheader", xml);
 			List<WebElement> ExistingUsers1= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
 			int NoOfUsers1 = ExistingUsers1.size();
-			System.out.println("Total users:"+ NoOfUsers1);
+			Log.info("Total users:"+ NoOfUsers1);
 			if(NoOfUsers1==1 || NoOfUsers1>1)
 			{
 				if(!EditUsername.equalsIgnoreCase("null"))
@@ -7535,7 +7535,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 				List<WebElement> HRcisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolIPv4Cisco"));	
 
 				for(WebElement listofHiddenCiscoValues : HRcisco) {
-					System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
+					Log.info("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
 					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
 				}
 
@@ -7546,7 +7546,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 				List<WebElement> Ipv4CommandHuawei = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv4Huawei"));	
 
 				for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
-					System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
+					Log.info("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
 					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
 				}	
 
@@ -7555,7 +7555,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 				List<WebElement> HiddenIPv6cisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv6Cisco"));	
 
 				for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
-					System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
+					Log.info("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
 					DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
 				}			
 
@@ -7575,7 +7575,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			ScrolltoElement(application, "customerdetailsheader", xml);
 			List<WebElement> ExistingUsers2= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
 			int NoOfUsers2 = ExistingUsers2.size();
-			System.out.println("Total users:"+ NoOfUsers2);
+			Log.info("Total users:"+ NoOfUsers2);
 			if(NoOfUsers2==1 || NoOfUsers2>1)
 			{
 				if(!EditUsername.equalsIgnoreCase("null"))
@@ -7638,14 +7638,14 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 				}
 
 				DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
-				System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+				Log.info("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
 
 				//select value inside the dropdown     
 				for(int i=0; i<selectValue.length; i++)
 				{
 					Thread.sleep(5000);
 					for(int j=0; j<ls.size() ; j++) {
-						System.out.println("ls value "+ ls.get(j));
+						Log.info("ls value "+ ls.get(j));
 						if(selectValue[i].equals(ls.get(j)))
 						{
 							elements.get(j).click();
@@ -7660,12 +7660,12 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			}else {
 				DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
 
-				System.out.println("No values displaying under " + labelname + " available dropdown");
+				Log.info("No values displaying under " + labelname + " available dropdown");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
-			System.out.println( "No values displaying under "+labelname + " available dropdown");
+			Log.info( "No values displaying under "+labelname + " available dropdown");
 		}
 	}
 
@@ -7689,16 +7689,16 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 				}
 
 				DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
-				System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+				Log.info("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
 			}else {
 				DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
 
-				System.out.println("No values displaying under " + labelname + " available dropdown");
+				Log.info("No values displaying under " + labelname + " available dropdown");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
-			System.out.println( "No values displaying under "+labelname + " available dropdown");
+			Log.info( "No values displaying under "+labelname + " available dropdown");
 		}
 	}
 
@@ -7719,14 +7719,14 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 				}
 
 				DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
-				System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+				Log.info("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
 
 				//select value inside the dropdown     
 				for(int i=0; i<selectValue.length; i++)
 				{
 					Thread.sleep(2000);
 					for(int j=0; j<ls.size() ; j++) {
-						System.out.println("ls value "+ ls.get(j));
+						Log.info("ls value "+ ls.get(j));
 						if(selectValue[i].equals(ls.get(j)))
 						{
 							elements.get(j).click();
@@ -7743,12 +7743,12 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			}else {
 				DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
 
-				System.out.println("No values displaying under " + labelname + " available dropdown");
+				Log.info("No values displaying under " + labelname + " available dropdown");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
-			System.out.println( "No values displaying under "+labelname + " available dropdown");
+			Log.info( "No values displaying under "+labelname + " available dropdown");
 		}
 	}
 	
@@ -7761,6 +7761,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 
 		if(editOrderSelection.equalsIgnoreCase("no")) {
 			DriverTestcase.logger.log(LogStatus.PASS, "Edit Order is not performed");
+			Log.info("Edit Order is not performed");
 		}
 		else if(editOrderSelection.equalsIgnoreCase("Yes")) {
 			DriverTestcase.logger.log(LogStatus.PASS, "Performing Edit Order Functionality");
@@ -7825,11 +7826,13 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 	public void verifyorderpanel_changeorder(String application, String ChangeOrder_newOrderNumber, String changevoicelineno, String changeOrderSelection_newOrder,
 			String changeOrderSelection_existingOrder, String ChangeOrder_existingOrderNumber) throws InterruptedException, DocumentException, IOException {
 
+		ScrolltoElement(application, "userspanel_header", xml);
 				
 		DriverTestcase.logger.log(LogStatus.INFO, "Verifying 'Change Order' Functionality");
 		
 		if((changeOrderSelection_newOrder.equalsIgnoreCase("No")) && (changeOrderSelection_existingOrder.equalsIgnoreCase("No"))) {
 			DriverTestcase.logger.log(LogStatus.PASS, "Change Order is not performed");
+			Log.info("Change Order is not performed");
 		}
 		else if(changeOrderSelection_newOrder.equalsIgnoreCase("Yes")) {
 			
@@ -7903,12 +7906,12 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 		  if(availability) {
 			  DriverTestcase.logger.log(LogStatus.PASS, labelname + " dropdown is displaying");
-			  System.out.println(labelname + " dropdown is displaying");
+			  Log.info(labelname + " dropdown is displaying");
 			  
 			  if(expectedValueToAdd.equalsIgnoreCase("null")) {
 				  
 				  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under "+ labelname + " dropdown");
-				  System.out.println(" No values selected under "+ labelname + " dropdown");
+				  Log.info(" No values selected under "+ labelname + " dropdown");
 			  }else {
 				  
 				  Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
@@ -7919,19 +7922,19 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 							.findElements(By.xpath("//span[@class='react-dropdown-select-item    css-f2o6e8-ItemComponent evc32pp0']"));
 				  
 				  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside "+ labelname + " dropdown is:  ");
-				  System.out.println( " List of values inside "+ labelname + "dropdown is:  ");
+				  Log.info( " List of values inside "+ labelname + "dropdown is:  ");
 				  
 					for (WebElement valuetypes : listofvalues) {
 								Log.info("service sub types : " + valuetypes.getText());
 //								DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-//								System.out.println(" " + valuetypes.getText());
+//								Log.info(" " + valuetypes.getText());
 								
 								 ls.add(valuetypes.getText());
 					}
 					
 					
 					    DriverTestcase.logger.log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
-			            System.out.println("list of values inside "+labelname+" dropdown is: "+ls);
+			            Log.info("list of values inside "+labelname+" dropdown is: "+ls);
 					
 					Thread.sleep(2000);
 				SendKeys(getwebelement("//div[label[text()='"+ labelname +"']]//input"), expectedValueToAdd);	
@@ -7942,20 +7945,20 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 				  
 				  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
 				  DriverTestcase.logger.log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
-				  System.out.println( labelname + " dropdown value selected as: "+ actualValue);
+				  Log.info( labelname + " dropdown value selected as: "+ actualValue);
 				  
 			  }
 		  }else {
 			  DriverTestcase.logger.log(LogStatus.FAIL, labelname + " is not displaying");
-			  System.out.println(labelname + " is not displaying");
+			  Log.info(labelname + " is not displaying");
 		  }
 		}catch(NoSuchElementException e) {
 			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " is not displaying");
-			  System.out.println(labelname + " is not displaying");
+			  Log.info(labelname + " is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
-			System.out.println(" NO value selected under "+ labelname + " dropdown");
+			Log.info(" NO value selected under "+ labelname + " dropdown");
 		}
 		
 	}
@@ -7979,12 +7982,12 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid_MAS")).isDisplayed())
             {
                   List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/MAS_fetchAlldevice_InviewPage"));
-                  System.out.println(addeddevicesList);
+//                  Log.info(addeddevicesList);
                   int AddedDevicesCount= addeddevicesList.size();
                   for(int i=0;i<AddedDevicesCount;i++) {
                         String AddedDeviceNameText= addeddevicesList.get(i).getText();
                         String AddedDevice_SNo= AddedDeviceNameText.substring(0, 1);
-                        System.out.println("number "+ AddedDevice_SNo);
+                        Log.info("number "+ AddedDevice_SNo);
                         if(AddedDeviceNameText.contains(existingdevicename))
                         {
                         	expectedDeviceSerialNumber=AddedDevice_SNo;
@@ -8025,12 +8028,12 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 				if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 	            {
 	                  List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/PE_fetchAlldevice_InviewPage"));
-	                  System.out.println(addeddevicesList);
+//	                  Log.info(addeddevicesList);
 	                  int AddedDevicesCount= addeddevicesList.size();
 	                  for(int i=0;i<AddedDevicesCount;i++) {
 	                        String AddedDeviceNameText= addeddevicesList.get(i).getText();
 	                        String AddedDevice_SNo= AddedDeviceNameText.substring(0, 1);
-	                        System.out.println("number "+ AddedDevice_SNo);
+//	                        Log.info("number "+ AddedDevice_SNo);
 	                        if(AddedDeviceNameText.contains(existingdevicename))
 	                        {
 	                        	expectedDeviceSerialNumber=AddedDevice_SNo;

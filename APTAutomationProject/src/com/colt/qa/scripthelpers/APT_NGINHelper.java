@@ -51,13 +51,13 @@ public class APT_NGINHelper extends DriverHelper {
 	public void webelementpresencelogger(WebElement ele, String msg) {
 
 		boolean flag = ele.isDisplayed();
-		System.out.println("element presence state : " + flag);
+		Log.info("element presence state : " + flag);
 		if (flag) {
 
-			System.out.println("webElement is present " + ele.getText());
+			Log.info("webElement is present " + ele.getText());
 			DriverTestcase.logger.log(LogStatus.PASS, msg);
 		} else {
-			System.out.println("webElement is not  present" + ele.getText());
+			Log.info("webElement is not  present" + ele.getText());
 			DriverTestcase.logger.log(LogStatus.FAIL, msg);
 		}
 
@@ -70,7 +70,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(2000);
-		System.out.println("Mouse hovered on Manage Customer's Service");
+		Log.info("Mouse hovered on Manage Customer's Service");
 		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
@@ -121,7 +121,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(3000);
-		System.out.println("Mouse hovered on Manage Customer's Service");
+		Log.info("Mouse hovered on Manage Customer's Service");
 		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
@@ -185,7 +185,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 			SelectOrderNumber = existingordernumber;
 		} else {
-			System.out.println("Order not selected");
+			Log.info("Order not selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step :Order not selected");
 			Log.info("Order not selected");
 		}
@@ -202,13 +202,13 @@ public class APT_NGINHelper extends DriverHelper {
 			availability=getwebelement(xml.getlocator("//locators/" + application + "/servicetypetextfield")).isDisplayed();
 			if(availability) {
 				DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown is displaying");
-				System.out.println("Service Type dropdown is displaying");
+				Log.info("Service Type dropdown is displaying");
 				Log.info("Service Type dropdown is displaying");
 
 				if(servicetype.equalsIgnoreCase("null")) {
 
 					DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Service Type dropdown");
-					System.out.println("No values selected under Service Type dropdown");
+					Log.info("No values selected under Service Type dropdown");
 					Log.info("No values selected under Service Type dropdown");
 				}else {
 
@@ -219,13 +219,13 @@ public class APT_NGINHelper extends DriverHelper {
 					List<WebElement> listofvalues = getwebelements("//div[@class='sc-ifAKCX oLlzc']");
 
 					DriverTestcase.logger.log(LogStatus.PASS, "List of values inside Service Type dropdown is:  ");
-					System.out.println( "List of values inside Service Type dropdown is:  ");
+					Log.info( "List of values inside Service Type dropdown is:  ");
 					Log.info("List of values inside Service Type dropdown is:  ");
 
 					for (WebElement valuetypes : listofvalues) {
 						Log.info("service sub types : " + valuetypes.getText());
 						DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-						System.out.println(" " + valuetypes.getText());
+						Log.info(" " + valuetypes.getText());
 					}
 
 					Thread.sleep(2000);
@@ -240,23 +240,23 @@ public class APT_NGINHelper extends DriverHelper {
 
 					String actualValue=getwebelement("//label[text()='Service Type']/following-sibling::div//span").getText();
 					DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
-					System.out.println("Service Type dropdown value selected as: "+ actualValue);
+					Log.info("Service Type dropdown value selected as: "+ actualValue);
 					Log.info("Service Type dropdown value selected as: "+ actualValue);
 
 				}
 			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
-				System.out.println("Service Type is not displaying");
+				Log.info("Service Type is not displaying");
 				Log.info("Service Type is not displaying");
 			}
 		}catch(NoSuchElementException e) {
 			DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
-			System.out.println("Service Type is not displaying");
+			Log.info("Service Type is not displaying");
 			Log.info("Service Type is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "Not able to perform selection under Service Type dropdown");
-			System.out.println("NO value selected under Service Type dropdown");
+			Log.info("NO value selected under Service Type dropdown");
 			Log.info("NO value selected under Service Type dropdown");
 		}
 		// click on next button
@@ -276,7 +276,7 @@ public class APT_NGINHelper extends DriverHelper {
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to create order page");
-			System.out.println("Navigated to create order page");
+			Log.info("Navigated to create order page");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to create order page");
 			Log.info("Navigated to create order page");
 		}
@@ -290,12 +290,12 @@ public class APT_NGINHelper extends DriverHelper {
 		//				  availability=getwebelement(xml.getlocator("//locators/" + application + "/existingorderdropdown")).isDisplayed();
 		//				  if(availability) {
 		//					  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown is displaying");
-		//					  System.out.println("Order/Contract Number(Parent SID) dropdown is displaying");
+		//					  Log.info("Order/Contract Number(Parent SID) dropdown is displaying");
 		//					  
 		//					  if(orderno.equalsIgnoreCase("null")) {
 		//						  
 		//						  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Order/Contract Number(Parent SID) dropdown");
-		//						  System.out.println(" No values selected under Order/Contract Number(Parent SID) dropdown");
+		//						  Log.info(" No values selected under Order/Contract Number(Parent SID) dropdown");
 		//					  }else {
 		//						  
 		//						  Clickon(getwebelement("//div[label[text()='Order/Contract Number(Parent SID)']]//div[text()='×']"));
@@ -306,12 +306,12 @@ public class APT_NGINHelper extends DriverHelper {
 		//									.findElements(By.xpath("(//div[@role='list']//div)[3]"));
 		//						  
 		//						  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
-		//						  System.out.println( " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
+		//						  Log.info( " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
 		//						  
 		//							for (WebElement valuetypes : listofvalues) {
 		//										Log.info("service sub types : " + valuetypes.getText());
 		//										DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-		//										System.out.println(" " + valuetypes.getText());
+		//										Log.info(" " + valuetypes.getText());
 		//							}
 		//							
 		//							Thread.sleep(2000);
@@ -323,20 +323,20 @@ public class APT_NGINHelper extends DriverHelper {
 		//						  
 		//						  String actualValue=getwebelement("//label[text()='Order/Contract Number(Parent SID)']/following-sibling::div//div/span").getText();
 		//						  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue );
-		//						  System.out.println("Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue);
+		//						  Log.info("Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue);
 		//						  
 		//					  }
 		//				  }else {
 		//					  DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
-		//					  System.out.println("Order/Contract Number(Parent SID) is not displaying");
+		//					  Log.info("Order/Contract Number(Parent SID) is not displaying");
 		//				  }
 		//				}catch(NoSuchElementException e) {
 		//					DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
-		//					  System.out.println("Order/Contract Number(Parent SID) is not displaying");
+		//					  Log.info("Order/Contract Number(Parent SID) is not displaying");
 		//				}catch(Exception ee) {
 		//					ee.printStackTrace();
 		//					DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Order/Contract Number(Parent SID) dropdown");
-		//					System.out.println(" NO value selected under Order/Contract Number(Parent SID) dropdown");
+		//					Log.info(" NO value selected under Order/Contract Number(Parent SID) dropdown");
 		//				}
 
 		//addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
@@ -345,13 +345,13 @@ public class APT_NGINHelper extends DriverHelper {
 			availability1=getwebelement(xml.getlocator("//locators/" + application + "/servicetypetextfield")).isDisplayed();
 			if(availability1) {
 				DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown is displaying");
-				System.out.println("Service Type dropdown is displaying");
+				Log.info("Service Type dropdown is displaying");
 				Log.info("Service Type dropdown is displaying");
 
 				if(servicetype.equalsIgnoreCase("null")) {
 
 					DriverTestcase.logger.log(LogStatus.PASS, "No values selected under Service Type dropdown");
-					System.out.println("No values selected under Service Type dropdown");
+					Log.info("No values selected under Service Type dropdown");
 					Log.info("No values selected under Service Type dropdown");
 				}else {
 
@@ -363,13 +363,13 @@ public class APT_NGINHelper extends DriverHelper {
 							.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
 
 					DriverTestcase.logger.log(LogStatus.PASS, "List of values inside Service Type dropdown is:  ");
-					System.out.println("List of values inside Service Type dropdown is:  ");
+					Log.info("List of values inside Service Type dropdown is:  ");
 					Log.info("List of values inside Service Type dropdown is:  ");
 
 					for (WebElement valuetypes : listofvalues) {
 						Log.info("service sub types : " + valuetypes.getText());
 						DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-						System.out.println(" " + valuetypes.getText());
+						Log.info(" " + valuetypes.getText());
 					}
 
 					Thread.sleep(2000);
@@ -384,22 +384,22 @@ public class APT_NGINHelper extends DriverHelper {
 
 					String actualValue=getwebelement("//label[text()='Service Type']/following-sibling::div//span").getText();
 					DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
-					System.out.println("Service Type dropdown value selected as: "+ actualValue);
+					Log.info("Service Type dropdown value selected as: "+ actualValue);
 					Log.info("Service Type dropdown value selected as: "+ actualValue);
 				}
 			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
-				System.out.println("Service Type is not displaying");
+				Log.info("Service Type is not displaying");
 				Log.info("Service Type is not displaying");
 			}
 		}catch(NoSuchElementException e) {
 			DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
-			System.out.println("Service Type is not displaying");
+			Log.info("Service Type is not displaying");
 			Log.info("Service Type is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "NOt able to perform selection under Service Type dropdown");
-			System.out.println("NO value selected under Service Type dropdown");
+			Log.info("NO value selected under Service Type dropdown");
 			Log.info("NO value selected under Service Type dropdown");
 		}
 
@@ -419,13 +419,13 @@ public class APT_NGINHelper extends DriverHelper {
 		if (customadm.equalsIgnoreCase("YES")) {
 			click_commonMethod(application, "customer administration checkbox", "customeradministrationcheckbox", xml);
 		} else {
-			System.out.println("customer administration checkbox is not selected");
+			Log.info("customer administration checkbox is not selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : customer administration checkbox is not selected");
 			Log.info("customer administration checkbox is not selected");
 		}
 
 		if (customadm.equalsIgnoreCase("NO")) {
-			System.out.println("customer administration checkbox is already selected");
+			Log.info("customer administration checkbox is already selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : customer administration checkbox is already selected");
 			Log.info("customer administration checkbox is already selected");
 		} else {
@@ -436,13 +436,13 @@ public class APT_NGINHelper extends DriverHelper {
 		if (sanadm.equalsIgnoreCase("YES")) {
 			click_commonMethod(application, "SAN administration checkbox", "sanadministrationcheckbox", xml);
 		} else {
-			System.out.println("SAN administration checkbox is not selected");
+			Log.info("SAN administration checkbox is not selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : SAN administration checkbox is not selected");
 			Log.info("SAN administration checkbox is not selected");
 		}
 
 		if (sanadm.equalsIgnoreCase("NO")) {
-			System.out.println("SAN administration checkbox is already selected");
+			Log.info("SAN administration checkbox is already selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : SAN administration checkbox is already selected");
 			Log.info("SAN administration checkbox is already selected");
 		} else {
@@ -453,13 +453,13 @@ public class APT_NGINHelper extends DriverHelper {
 		if (reselladm.equalsIgnoreCase("YES")) {
 			click_commonMethod(application, "Reseller Administration checkbox", "reselleradministrationcheckbox", xml);
 		} else {
-			System.out.println("Reseller Administration checkbox is not selected");
+			Log.info("Reseller Administration checkbox is not selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : Reseller Administration checkbox is not selected");
 			Log.info("Reseller Administration checkbox is not selected");
 		}
 
 		if (reselladm.equalsIgnoreCase("NO")) {
-			System.out.println("Reseller Administration checkbox is already selected");
+			Log.info("Reseller Administration checkbox is already selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : Reseller Administration checkbox is already selected");
 			Log.info("Reseller Administration checkbox is already selected");
 		} else {
@@ -578,7 +578,7 @@ public class APT_NGINHelper extends DriverHelper {
         addtextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
         click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
         String  password=getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")).getAttribute("value");
-        System.out.println("Generated Password is : "+password);
+        Log.info("Generated Password is : "+password);
 
         if(password.isEmpty()) {
 
@@ -640,7 +640,7 @@ public class APT_NGINHelper extends DriverHelper {
         ScrolltoElement(application, "customerdetailsheader", xml);
         List<WebElement> ExistingUsers= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
         int NoOfUsers = ExistingUsers.size();
-        System.out.println("Total users:"+ NoOfUsers);
+        Log.info("Total users:"+ NoOfUsers);
 
         if(NoOfUsers==1 || NoOfUsers>1)
         {
@@ -664,7 +664,7 @@ public class APT_NGINHelper extends DriverHelper {
               edittextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", editColtOnlineUser, xml);
 
               String editpassword=getwebelement(xml.getlocator("//locators/"+application+"/Password")).getAttribute("value");
-              System.out.println("Generated Password is : "+editpassword);
+              Log.info("Generated Password is : "+editpassword);
 
               if(editpassword.isEmpty()) {
 
@@ -724,7 +724,7 @@ public class APT_NGINHelper extends DriverHelper {
         ScrolltoElement(application, "customerdetailsheader", xml);
         List<WebElement> ExistingUsers1= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
         int NoOfUsers1 = ExistingUsers1.size();
-        System.out.println("Total users:"+ NoOfUsers1);
+        Log.info("Total users:"+ NoOfUsers1);
         if(NoOfUsers1==1 || NoOfUsers1>1)
         {
               if(!EditUsername.equalsIgnoreCase("null"))
@@ -804,7 +804,7 @@ public class APT_NGINHelper extends DriverHelper {
               List<WebElement> HRcisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolIPv4Cisco"));      
 
               for(WebElement listofHiddenCiscoValues : HRcisco) {
-                    System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
+                    Log.info("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
                     DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
               }
 
@@ -815,7 +815,7 @@ public class APT_NGINHelper extends DriverHelper {
               List<WebElement> Ipv4CommandHuawei = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv4Huawei"));      
 
               for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
-                    System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
+                    Log.info("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
                     DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
               }     
 
@@ -824,7 +824,7 @@ public class APT_NGINHelper extends DriverHelper {
               List<WebElement> HiddenIPv6cisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv6Cisco"));      
 
               for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
-                    System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
+                    Log.info("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
                     DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
               }                 
 
@@ -844,7 +844,7 @@ public class APT_NGINHelper extends DriverHelper {
         ScrolltoElement(application, "customerdetailsheader", xml);
         List<WebElement> ExistingUsers2= getwebelements("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']");
         int NoOfUsers2 = ExistingUsers2.size();
-        System.out.println("Total users:"+ NoOfUsers2);
+        Log.info("Total users:"+ NoOfUsers2);
         if(NoOfUsers2==1 || NoOfUsers2>1)
         {
               if(!EditUsername.equalsIgnoreCase("null"))
@@ -872,10 +872,10 @@ public class APT_NGINHelper extends DriverHelper {
      	       String alertMessage= driver.switchTo().alert().getText();
      	       if(alertMessage.isEmpty()) {
      	    	   DriverTestcase.logger.log(LogStatus.FAIL, "No message displays");
-     		       System.out.println("No Message displays"); 
+     		       Log.info("No Message displays"); 
      	       }else {
      	    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
-     		       System.out.println("Text message for alert displays as: "+alertMessage);
+     		       Log.info("Text message for alert displays as: "+alertMessage);
      	       }
      	     
      	     try {  
@@ -927,14 +927,14 @@ public class APT_NGINHelper extends DriverHelper {
 				}
 
 				DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
-				System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+				Log.info("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
 
 				//select value inside the dropdown     
 				for(int i=0; i<selectValue.length; i++)
 				{
 					Thread.sleep(5000);
 					for(int j=0; j<ls.size() ; j++) {
-						System.out.println("ls value "+ ls.get(j));
+						Log.info("ls value "+ ls.get(j));
 						if(selectValue[i].equals(ls.get(j)))
 						{
 							elements.get(j).click();
@@ -949,12 +949,12 @@ public class APT_NGINHelper extends DriverHelper {
 			}else {
 				DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
 
-				System.out.println("No values displaying under " + labelname + " available dropdown");
+				Log.info("No values displaying under " + labelname + " available dropdown");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
-			System.out.println( "No values displaying under "+labelname + " available dropdown");
+			Log.info( "No values displaying under "+labelname + " available dropdown");
 		}
 	}
 
@@ -978,16 +978,16 @@ public class APT_NGINHelper extends DriverHelper {
 				}
 
 				DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
-				System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+				Log.info("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
 			}else {
 				DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
 
-				System.out.println("No values displaying under " + labelname + " available dropdown");
+				Log.info("No values displaying under " + labelname + " available dropdown");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
-			System.out.println( "No values displaying under "+labelname + " available dropdown");
+			Log.info( "No values displaying under "+labelname + " available dropdown");
 		}
 	}
 
@@ -1008,14 +1008,14 @@ public class APT_NGINHelper extends DriverHelper {
 				}
 
 				DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
-				System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+				Log.info("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
 
 				//select value inside the dropdown     
 				for(int i=0; i<selectValue.length; i++)
 				{
 					Thread.sleep(2000);
 					for(int j=0; j<ls.size() ; j++) {
-						System.out.println("ls value "+ ls.get(j));
+						Log.info("ls value "+ ls.get(j));
 						if(selectValue[i].equals(ls.get(j)))
 						{
 							elements.get(j).click();
@@ -1032,12 +1032,12 @@ public class APT_NGINHelper extends DriverHelper {
 			}else {
 				DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
 
-				System.out.println("No values displaying under " + labelname + " available dropdown");
+				Log.info("No values displaying under " + labelname + " available dropdown");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
-			System.out.println( "No values displaying under "+labelname + " available dropdown");
+			Log.info( "No values displaying under "+labelname + " available dropdown");
 		}
 	}
 
@@ -1048,26 +1048,26 @@ public class APT_NGINHelper extends DriverHelper {
 		if (existingorder.equalsIgnoreCase("Yes")) {
 
 			String actualorderno = getwebelement(xml.getlocator("//locators/" + application + "/ordernumbervalue")).getText();
-			System.out.println("actual order number displayed in order panel is : " + actualorderno);
+			Log.info("actual order number displayed in order panel is : " + actualorderno);
 
 			String actualvoicelineno = getwebelement(xml.getlocator("//locators/" + application + "/ordervoicelinenumbervalue")).getText();
-			System.out.println("actual voice line number displayed in order panel is : " + actualvoicelineno);
+			Log.info("actual voice line number displayed in order panel is : " + actualvoicelineno);
 
 			if (expectedorderno.equalsIgnoreCase(actualorderno)&& expectedvoicelineno.equalsIgnoreCase(actualvoicelineno)) {
 
-				System.out.println("order information is matched");
+				Log.info("order information is matched");
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : order information is matched");
 				Log.info("order information is matched");
 			} else {
 				sa.fail("order information is not matched");
 				DriverTestcase.logger.log(LogStatus.FAIL, "Step : order information is not matched");
-				System.out.println("order information is not matched");
+				Log.info("order information is not matched");
 				Log.info("order information is not matched");
 			}
 
 		} else {
 
-			System.out.println("existing order is not selected");
+			Log.info("existing order is not selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : existing order is not selected");
 			Log.info("existing order is not selected");
 		}
@@ -1083,26 +1083,26 @@ public class APT_NGINHelper extends DriverHelper {
 		if (neworder.equalsIgnoreCase("YES")) {
 
 			String actualorderno = getwebelement(xml.getlocator("//locators/" + application + "/ordernumbervalue")).getText();
-			System.out.println("actual order number displayed in order panel is : " + actualorderno);
+			Log.info("actual order number displayed in order panel is : " + actualorderno);
 
 			String actualvoicelineno = getwebelement(xml.getlocator("//locators/" + application + "/ordervoicelinenumbervalue")).getText();
-			System.out.println("actual voice line number displayed in order panel is : " + actualvoicelineno);
+			Log.info("actual voice line number displayed in order panel is : " + actualvoicelineno);
 
 			if (expectedneworderno.equalsIgnoreCase(actualorderno)&& expectednewvoicelineno.equalsIgnoreCase(actualvoicelineno)) {
 
-				System.out.println("order information is matched");
+				Log.info("order information is matched");
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : order information is matched");
 				Log.info("order information is matched");
 			} else {
 				sa.fail("order information is not matched");
 				DriverTestcase.logger.log(LogStatus.FAIL, "Step : order information is not matched");
-				System.out.println("order information is not matched");
+				Log.info("order information is not matched");
 				Log.info("order information is not matched");
 			}
 
 		} else {
 
-			System.out.println("new order is not selected");
+			Log.info("new order is not selected");
 			DriverTestcase.logger.log(LogStatus.INFO, "Step : new order is not selected");
 			Log.info("new order is not selected");
 		}
@@ -1297,14 +1297,14 @@ public class APT_NGINHelper extends DriverHelper {
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
+			Log.info("Navigated to view service page");
 			//compareText(application, "Service updated success message", "serviceupdate_successmsg", "Service successfully updated", xml);	
 			verifysuccessmessage(application, "Service successfully updated");
 		}
 		else
 		{
 			Log.info("Service not updated");
-			System.out.println("Service not updated");
+			Log.info("Service not updated");
 		}
 	}
 	
@@ -1322,12 +1322,12 @@ public class APT_NGINHelper extends DriverHelper {
 		if(ServiceDetails_value.isEmpty())
 		{
 			Log.info("Service Details column value is empty as expected");
-			System.out.println("Service Details column value is empty as expected");
+			Log.info("Service Details column value is empty as expected");
 		}
 		else
 		{
 			Log.info("Service Details column value should be empty");
-			System.out.println("Service Details column value should be empty");
+			Log.info("Service Details column value should be empty");
 		}
 		compareText(application, "Service Status", "status_currentstatus", servicestatus, xml);
 
@@ -1335,12 +1335,12 @@ public class APT_NGINHelper extends DriverHelper {
 		if(LastModificationTime_value.contains("BST"))
 		{
 			Log.info("Service status is displayed as : " + LastModificationTime_value);
-			System.out.println("Service status is :"+ LastModificationTime_value);
+			Log.info("Service status is :"+ LastModificationTime_value);
 		}
 		else
 		{
 			Log.info("Incorrect modification time format");
-			System.out.println("Incorrect modification time format");
+			Log.info("Incorrect modification time format");
 		}
 		click_commonMethod(application, "Status", "statuslink", xml);
 
@@ -1396,12 +1396,12 @@ public class APT_NGINHelper extends DriverHelper {
 		if(ServiceDetails_value1.isEmpty())
 		{
 			Log.info("Service Details column value is empty as expected");
-			System.out.println("Service Details column value is empty as expected");
+			Log.info("Service Details column value is empty as expected");
 		}
 		else
 		{
 			Log.info("Service Details column value should be empty");
-			System.out.println("Service Details column value should be empty");
+			Log.info("Service Details column value should be empty");
 		}
 
 		scrolltoend();
@@ -1436,7 +1436,7 @@ public class APT_NGINHelper extends DriverHelper {
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
+			Log.info("Navigated to view service page");
 		}
 
 		//submit bulk job
@@ -1477,7 +1477,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 		Boolean ManagementOptions_Header = getwebelement(xml.getlocator("//locators/" + application + "/managementoptions_header")).isDisplayed();
 		Log.info("Management options header text is displayed as : " + ManagementOptions_Header);
-		System.out.println("Management options header text:"+ ManagementOptions_Header);
+		Log.info("Management options header text:"+ ManagementOptions_Header);
 		sa.assertTrue(ManagementOptions_Header,"Management Options");
 
 		// verify customer administration information
@@ -1533,7 +1533,7 @@ public class APT_NGINHelper extends DriverHelper {
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
+			Log.info("Navigated to view service page");
 		}
 
 		//warning msg verfiy in reseller panel
@@ -1569,7 +1569,7 @@ public class APT_NGINHelper extends DriverHelper {
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
+			Log.info("Navigated to view service page");
 			scrollToTop();
 			//compareText(application, "Reseller created success message", "resellercreated_successmsg", "Manage Reseller successfully created", xml);
 			verifysuccessmessage(application, "Reseller successfully created. Please check the Reseller Status for association details.");
@@ -1577,7 +1577,7 @@ public class APT_NGINHelper extends DriverHelper {
 		else
 		{
 			Log.info("Reseller not created");
-			System.out.println("Reseller not created");
+			Log.info("Reseller not created");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Reseller not created");
 		}
 
@@ -1597,7 +1597,7 @@ public class APT_NGINHelper extends DriverHelper {
 			{
 				String Link= ResellerLinks.get(i).getText();
 				DriverTestcase.logger.log(LogStatus.PASS, ""+Link+" link is displaying under reseller panel");
-				System.out.println("Reseller link:"+ Link + " is displaying");
+				Log.info("Reseller link:"+ Link + " is displaying");
 				Log.info("Reseller link:"+ Link + " is displaying");
 				Thread.sleep(2000);
 			}
@@ -1608,7 +1608,7 @@ public class APT_NGINHelper extends DriverHelper {
 		else
 		{
 			Log.info("Reseller is not added in the grid");
-			System.out.println("Reseller is not added in the grid");
+			Log.info("Reseller is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
 		}
 		ResellerName= ocn;
@@ -1667,7 +1667,7 @@ public void verify_ViewReseller(String application, String ocn, String email, St
 			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 			{
 				Log.info("Navigated to view service page");
-				System.out.println("Navigated to view service page");
+				Log.info("Navigated to view service page");
 			}
 		}
 		else
@@ -1679,7 +1679,7 @@ public void verify_ViewReseller(String application, String ocn, String email, St
 		else
 		{
 			Log.info("Reseller is not added in the grid");
-			System.out.println("Reseller is not added in the grid");
+			Log.info("Reseller is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
 		}
 		ScrolltoElement(application, "servicepanel_header", xml);
@@ -1721,7 +1721,7 @@ public void verify_ViewReseller(String application, String ocn, String email, St
 			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 			{
 				Log.info("Navigated to view service page");
-				System.out.println("Navigated to view service page");
+				Log.info("Navigated to view service page");
 				DriverTestcase.logger.log(LogStatus.PASS, "Step : Associate Reseller with NGIN Objects link verified");
 			}
 
@@ -1735,7 +1735,7 @@ public void verify_ViewReseller(String application, String ocn, String email, St
 	else
 	{
 		Log.info("Reseller is not added in the grid");
-		System.out.println("Reseller is not added in the grid");
+		Log.info("Reseller is not added in the grid");
 		DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
 	}
 
@@ -1772,7 +1772,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
+			Log.info("Navigated to view service page");
 			ScrolltoElement(application, "editreseller_successmsg", xml);
 			//compareText(application, "Edit Reseller success message", "editreseller_successmsg", "Reseller already in OSP. Successfully updated.", xml);
 			verifysuccessmessage(application, "Reseller already in OSP. Successfully updated.");
@@ -1780,13 +1780,13 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("Reseller not updated");
-			System.out.println("Reseller not updated");
+			Log.info("Reseller not updated");
 		}
 	}
 	else
 	{
 		Log.info("Reseller is not added in the grid");
-		System.out.println("Reseller is not added in the grid");
+		Log.info("Reseller is not added in the grid");
 		DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
 
 	}
@@ -1835,7 +1835,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
+			Log.info("Navigated to view service page");
 		}
 
 		//Warning msgs verify in Add customer page
@@ -1869,7 +1869,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		DriverTestcase.logger.log(LogStatus.PASS, "Step : Customer Name is displaying as: '"+CustomerNamevalue+"'");
 		Log.info("Customer Name is displaying as: '"+CustomerNamevalue+"'");
 		String CustomerName_viewpage= CustomerNamevalue.replace("(New)", "").trim();
-		System.out.println("Customer name is :"+CustomerName_viewpage);
+		Log.info("Customer name is :"+CustomerName_viewpage);
 		addtextFields_commonMethod(application, "Reseller Name", "resellername", resellername, xml);
 		GetText(application, "Email", "reseller_email");
 		addtextFields_commonMethod(application, "City", "reseller_city", city, xml);
@@ -1885,7 +1885,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			String Default_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/defaultcheckbox")).getAttribute("checked");
 			if(Default_Checkbox!=null)
 			{
-				System.out.println("Default checkbox is checked");
+				Log.info("Default checkbox is checked");
 				Thread.sleep(1000);
 				DriverTestcase.logger.log(LogStatus.PASS, "Default checkbox is checked");
 				Log.info("Default checkbox is checked");
@@ -1902,7 +1902,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			String Configure_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/configurecheckbox")).getAttribute("checked");
 			if(Configure_Checkbox!=null)
 			{
-				System.out.println("Configure checkbox is checked");
+				Log.info("Configure checkbox is checked");
 				Thread.sleep(1000);
 				DriverTestcase.logger.log(LogStatus.PASS, "Configure checkbox is checked");
 				Log.info("Configure checkbox is checked");
@@ -1922,14 +1922,14 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
+			Log.info("Navigated to view service page");
 			//compareText(application, "Customer created success message", "addcustomer_successmsg", "Manage Customer successfully created", xml);
 			verifysuccessmessage(application, "Manage Customer successfully created");
 		}
 		else
 		{
 			Log.info("Customer not created");
-			System.out.println("Customer not created");
+			Log.info("Customer not created");
 		}
 
 		//Added Customer
@@ -1951,7 +1951,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				String Link= CustomerLinks.get(i).getText();
 				DriverTestcase.logger.log(LogStatus.PASS, ""+Link+" link is displaying under customer panel");
 				Log.info(""+Link+" link is displaying under customer panel");
-				System.out.println(""+Link+" link is displaying under customer panel");
+				Log.info(""+Link+" link is displaying under customer panel");
 				Thread.sleep(2000);
 			}
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/customerheader")));
@@ -1960,13 +1960,13 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			WebElement AddedCustomer1= getwebelement("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName_viewpage + "')]");
 			String AddedCustomerName_value = AddedCustomer1.getText();
 			Log.info("Added Customer Name is displayed as : " + AddedCustomerName_value);
-			System.out.println("Added Customer Name:"+ AddedCustomerName_value);
+			Log.info("Added Customer Name:"+ AddedCustomerName_value);
 			sa.assertEquals(AddedCustomerName_value,CustomerName_viewpage);
 		}
 		else
 		{
 			Log.info("Customer is not added in the grid");
-			System.out.println("Customer is not added in the grid");
+			Log.info("Customer is not added in the grid");
 		}
 
 		Customername= CustomerName_viewpage;
@@ -2136,14 +2136,14 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 			{
 				Log.info("Navigated to view service page");
-				System.out.println("Navigated to view service page");
+				Log.info("Navigated to view service page");
 				//compareText(application, "Customer updated success message", "editcustomer_successmsg", "Manage Customer successfully updated", xml);
 				verifysuccessmessage(application, "Manage Customer successfully updated");
 			}
 			else
 			{
 				Log.info("Customer not updated");
-				System.out.println("Customer not updated");
+				Log.info("Customer not updated");
 			}
 
 		}
@@ -2197,7 +2197,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
+			Log.info("Navigated to view service page");
 		}
 
 		//Add SAN
@@ -2344,7 +2344,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
 		{
 			Log.info("Navigated to view SAN page");
-			System.out.println("Navigated to view SAN page");
+			Log.info("Navigated to view SAN page");
 			//compareText(application, "Add SAN success message", "addsan_successmsg", "SAN successfully created", xml);
 			verifysuccessmessage(application, "SAN successfully created");
 			scrolltoend();
@@ -2353,18 +2353,18 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN not created");
-			System.out.println("SAN not created");
+			Log.info("SAN not created");
 		}
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
+			Log.info("Navigated to view service page");
 		}
 		else
 		{
 			Log.info("Not navigated to view service page");
-			System.out.println("Not navigated to view service page");
+			Log.info("Not navigated to view service page");
 		}
 		//Added Customer
 		scrolltoend();
@@ -2383,7 +2383,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				String Link= SANLinks.get(i).getText();
 				DriverTestcase.logger.log(LogStatus.PASS, ""+Link+" link is displaying under SAN/FRC panel");
 				Log.info(""+Link+" link is displaying under SAN/FRC panel");
-				System.out.println("Customer link:"+ Link + " is displaying");
+				Log.info("Customer link:"+ Link + " is displaying");
 				Thread.sleep(2000);
 			}
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/sanheader")));
@@ -2392,14 +2392,14 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			WebElement AddedSan= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + SANNumberValue + "')]");
 			String AddedSAN_FRCNumber = AddedSan.getText();
 			Log.info("FRC Number for Added SAN is displayed as : " + AddedSAN_FRCNumber);
-			System.out.println("FRC Number for Added SAN: "+ AddedSAN_FRCNumber);
+			Log.info("FRC Number for Added SAN: "+ AddedSAN_FRCNumber);
 			sa.assertEquals(AddedSAN_FRCNumber,SANNumberValue);
 			DriverTestcase.logger.log(LogStatus.PASS, "FRC Number for Added SAN is displayed as : " + AddedSAN_FRCNumber);
 
 			WebElement AddedSan1= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + SAN_Customername + "')]");
 			String AddedSAN_Customervalue = AddedSan1.getText();
 			Log.info("Customer Name for Added SAN is displayed as : " + AddedSAN_Customervalue);
-			System.out.println("Customer Name for Added SAN: "+ AddedSAN_Customervalue);
+			Log.info("Customer Name for Added SAN: "+ AddedSAN_Customervalue);
 			sa.assertEquals(AddedSAN_Customervalue,SAN_Customername);
 			DriverTestcase.logger.log(LogStatus.PASS, "Customer Name for Added SAN is displayed as : " + AddedSAN_Customervalue);
 
@@ -2408,7 +2408,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 		}
 
 	}
@@ -2581,7 +2581,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
 			{
 				Log.info("Navigated to view SAN page");
-				System.out.println("Navigated to view SAN page");
+				Log.info("Navigated to view SAN page");
 				ScrolltoElement(application, "editsan_successmsg", xml);
 				//compareText(application, "San Updated Success message", "editsan_successmsg", "San successfully updated", xml);
 				verifysuccessmessage(application, "San successfully updated");
@@ -2592,7 +2592,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 				{
 					Log.info("Navigated to view service page");
-					System.out.println("Navigated to view service page");
+					Log.info("Navigated to view service page");
 				}
 				else
 				{
@@ -2604,7 +2604,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			else
 			{
 				Log.info("SAN not updated");
-				System.out.println("SAN not updated");
+				Log.info("SAN not updated");
 				DriverTestcase.logger.log(LogStatus.FAIL, "Step: SAN not updated");
 			}
 
@@ -2612,7 +2612,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 		}
 	}
 	
@@ -2680,7 +2680,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 				{
 					Log.info("Navigated to view service page");
-					System.out.println("Navigated to view service page");
+					Log.info("Navigated to view service page");
 					DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to view service page");
 				}
 				else
@@ -2698,7 +2698,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step: SAN is not added in the grid");
 		}
 
@@ -2716,7 +2716,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 
 		WebElement SANGridCheck2= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid2= SANGridCheck2.getAttribute("style");
-		System.out.println("Customer Name displaying: " +customernamevalue);
+		Log.info("Customer Name displaying: " +customernamevalue);
 		WebElement AddedSAN2= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//span[contains(@class,'unchecked')]");
 		if(!SANGrid2.contains("height: 1px"))
 		{
@@ -2741,7 +2741,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 				{
 					Log.info("Navigated to view service page");
-					System.out.println("Navigated to view service page");
+					Log.info("Navigated to view service page");
 					DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to view service page");
 				}
 				else
@@ -2760,7 +2760,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step: SAN is not added in the grid");
 		}
 
@@ -2778,7 +2778,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 
 		WebElement SANGridCheck3= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid3= SANGridCheck3.getAttribute("style");
-		System.out.println("Customer Name displaying: " +customernamevalue);
+		Log.info("Customer Name displaying: " +customernamevalue);
 		WebElement AddedSAN3= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//span[contains(@class,'unchecked')]");
 		if(!SANGrid3.contains("height: 1px"))
 		{
@@ -2809,13 +2809,13 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 			{
 				Log.info("Navigated to view service page");
-				System.out.println("Navigated to view service page");
+				Log.info("Navigated to view service page");
 			}
 		}
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 		}
 		
 	}
@@ -2835,7 +2835,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 
 		WebElement SANGridCheck4= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid4= SANGridCheck4.getAttribute("style");
-		System.out.println("Customer Name displaying: " +customernamevalue);
+		Log.info("Customer Name displaying: " +customernamevalue);
 		WebElement AddedSAN4= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//span[contains(@class,'unchecked')]");
 		if(!SANGrid4.contains("height: 1px"))
 		{
@@ -2903,7 +2903,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm:ss");
 				LocalDateTime ldt= LocalDateTime.now().plusHours(1).plusMinutes(10).plusSeconds(20);
 				String FutureTime= ldt.format(formatter).substring(10).trim();
-				System.out.println("Port Time:"+FutureTime);
+				Log.info("Port Time:"+FutureTime);
 				addtextFields_commonMethod(application, "Port Time", "porttime", FutureTime, xml);
 				click_commonMethod(application, "OK", "port_okbutton", xml);
 				GetText(application, "PortIN success message", "successmsg");
@@ -2933,7 +2933,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : SAN is not added in the grid");	
 		}
 
@@ -2954,7 +2954,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 
 		WebElement SANGridCheck5= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid5= SANGridCheck5.getAttribute("style");
-		System.out.println("Customer Name displaying: " +customernamevalue);
+		Log.info("Customer Name displaying: " +customernamevalue);
 		WebElement AddedSAN5= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//span[contains(@class,'unchecked')]");
 		if(!SANGrid5.contains("height: 1px"))
 		{
@@ -3004,7 +3004,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 //				DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-mm-dd HH:mm:ss");
 //				LocalDateTime ldt= LocalDateTime.now().plusHours(1).plusMinutes(10).plusSeconds(20);
 //				String FutureTime= ldt.format(formatter).substring(10).trim();
-//				System.out.println("Port Time:"+FutureTime);
+//				Log.info("Port Time:"+FutureTime);
 //				addtextFields_commonMethod(application, "Port Time", "porttime", FutureTime, xml);
 				
 				click_commonMethod(application, "Close", "port_closesymbol", xml);
@@ -3045,7 +3045,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : SAN is not added in the grid");
 		}
 
@@ -3109,7 +3109,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 						String Default_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/defaultcheckbox")).getAttribute("checked");
 						if(Default_Checkbox.isEmpty())
 						{
-							System.out.println("Default checkbox is checked");
+							Log.info("Default checkbox is checked");
 							Thread.sleep(1000);
 							DriverTestcase.logger.log(LogStatus.PASS, "Default checkbox is checked");
 							Log.info("Default checkbox is checked");
@@ -3126,7 +3126,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 						String Configure_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/configurecheckbox")).getAttribute("checked");
 						if(Configure_Checkbox.isEmpty())
 						{
-							System.out.println("Configure checkbox is checked");
+							Log.info("Configure checkbox is checked");
 							Thread.sleep(1000);
 							DriverTestcase.logger.log(LogStatus.PASS, "Configure checkbox is checked");
 							Log.info("Configure checkbox is checked");
@@ -3203,7 +3203,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
 				{
 					Log.info("Navigated to view SAN page");
-					System.out.println("Navigated to view SAN page");
+					Log.info("Navigated to view SAN page");
 					//compareText(application, "Add SAN success message", "addsan_successmsg", "SAN successfully created", xml);
 					scrolltoend();
 					click_commonMethod(application, "Back", "viewpage_backbutton", xml);
@@ -3211,20 +3211,20 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				else
 				{
 					Log.info("SAN not created");
-					System.out.println("SAN not created");
+					Log.info("SAN not created");
 					DriverTestcase.logger.log(LogStatus.FAIL, "Step : SAN not created");
 				}
 
 				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 				{
 					Log.info("Navigated to view service page");
-					System.out.println("Navigated to view service page");
+					Log.info("Navigated to view service page");
 					DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to view service page");
 				}
 				else
 				{
 					Log.info("Not navigated to view service page");
-					System.out.println("Not navigated to view service page");
+					Log.info("Not navigated to view service page");
 					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Not navigated to view service page");
 				}
 
@@ -3243,7 +3243,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 
 		WebElement SANGridCheck10= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid10= SANGridCheck10.getAttribute("style");
-		System.out.println("SAN Number displaying: " +SANNumberValue1);
+		Log.info("SAN Number displaying: " +SANNumberValue1);
 		WebElement AddedSAN10= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+SANNumberValue1+"')]/parent::div//span[contains(@class,'unchecked')]");
 		if(!SANGrid10.contains("height: 1px"))
 		{
@@ -3269,12 +3269,12 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			  availability=getwebelement(xml.getlocator("//locators/" + application + "/priceannorigin_dropdown")).isDisplayed();
 			  if(availability) {
 				  DriverTestcase.logger.log(LogStatus.PASS, "Price Ann Origin dropdown is displaying");
-				  System.out.println("Price Ann Origin dropdown is displaying");
+				  Log.info("Price Ann Origin dropdown is displaying");
 				  
 				  if(priceannoriginvalue.equalsIgnoreCase("null")) {
 					  
 					  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Price Ann Origin dropdown");
-					  System.out.println(" No values selected under Price Ann Origin dropdown");
+					  Log.info(" No values selected under Price Ann Origin dropdown");
 				  }else {
 					  
 					  Clickon(getwebelement("//div[label[text()='Price Ann Origin']]//div[text()='×']"));
@@ -3285,12 +3285,12 @@ public void verify_EditReseller(String application, String ocn, String editemail
 								.findElements(By.xpath("//div[@class='sc-bxivhb kqVrwh']"));
 					  
 					  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Price Ann Origin dropdown is:  ");
-					  System.out.println( " List of values inside Price Ann Origin dropdown is:  ");
+					  Log.info( " List of values inside Price Ann Origin dropdown is:  ");
 					  
 						for (WebElement valuetypes : listofvalues) {
 									Log.info("service sub types : " + valuetypes.getText());
 									DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-									System.out.println(" " + valuetypes.getText());
+									Log.info(" " + valuetypes.getText());
 						}
 						
 						Thread.sleep(2000);
@@ -3302,20 +3302,20 @@ public void verify_EditReseller(String application, String ocn, String editemail
 					  
 					  String actualValue=getwebelement("//label[text()='Price Ann Origin']/following-sibling::div//span").getText();
 					  DriverTestcase.logger.log(LogStatus.PASS, "Price Ann Origin dropdown value selected as: "+ actualValue );
-					  System.out.println("Price Ann Origin dropdown value selected as: "+ actualValue);
+					  Log.info("Price Ann Origin dropdown value selected as: "+ actualValue);
 					  
 				  }
 			  }else {
 				  DriverTestcase.logger.log(LogStatus.FAIL, "Price Ann Origin is not displaying");
-				  System.out.println("Price Ann Origin is not displaying");
+				  Log.info("Price Ann Origin is not displaying");
 			  }
 			}catch(NoSuchElementException e) {
 				DriverTestcase.logger.log(LogStatus.FAIL, "Price Ann Origin is not displaying");
-				  System.out.println("Price Ann Origin is not displaying");
+				  Log.info("Price Ann Origin is not displaying");
 			}catch(Exception ee) {
 				ee.printStackTrace();
 				DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Price Ann Origin dropdown");
-				System.out.println(" NO value selected under Price Ann Origin dropdown");
+				Log.info(" NO value selected under Price Ann Origin dropdown");
 			}
 		
 			addCheckbox_commonMethod(application, "interruptible_checkbox", "Interruptable Price Announcement", interruptiblepriceannouncement_checkbox, "no", xml);
@@ -3372,7 +3372,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 		}
 
 		ScrolltoElement(application, "customerheader", xml);
@@ -3429,12 +3429,12 @@ public void verify_EditReseller(String application, String ocn, String editemail
 					availability=getwebelement(xml.getlocator("//locators/" + application + "/priceannorigin_dropdown")).isDisplayed();
 					if(availability) {
 						DriverTestcase.logger.log(LogStatus.PASS, "Price Ann Origin dropdown is displaying");
-						System.out.println("Price Ann Origin dropdown is displaying");
+						Log.info("Price Ann Origin dropdown is displaying");
 
 						if(edit_priceannoriginvalue.equalsIgnoreCase("null")) {
 
 							DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Price Ann Origin dropdown");
-							System.out.println(" No values selected under Price Ann Origin dropdown");
+							Log.info(" No values selected under Price Ann Origin dropdown");
 						}else {
 
 							Clickon(getwebelement("//div[label[text()='Price Ann Origin']]//div[text()='×']"));
@@ -3445,12 +3445,12 @@ public void verify_EditReseller(String application, String ocn, String editemail
 									.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
 
 							DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Price Ann Origin dropdown is:  ");
-							System.out.println( " List of values inside Price Ann Origin dropdown is:  ");
+							Log.info( " List of values inside Price Ann Origin dropdown is:  ");
 
 							for (WebElement valuetypes : listofvalues) {
 								Log.info("service sub types : " + valuetypes.getText());
 								DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-								System.out.println(" " + valuetypes.getText());
+								Log.info(" " + valuetypes.getText());
 							}
 
 							Thread.sleep(2000);
@@ -3462,20 +3462,20 @@ public void verify_EditReseller(String application, String ocn, String editemail
 
 							String actualValue=getwebelement("//label[text()='Price Ann Origin']/following-sibling::div//span").getText();
 							DriverTestcase.logger.log(LogStatus.PASS, "Price Ann Origin dropdown value selected as: "+ actualValue );
-							System.out.println( "Price Ann Origin dropdown value selected as: "+ actualValue);
+							Log.info( "Price Ann Origin dropdown value selected as: "+ actualValue);
 
 						}
 					}else {
 						DriverTestcase.logger.log(LogStatus.FAIL, "Price Ann Origin is not displaying");
-						System.out.println("Price Ann Origin is not displaying");
+						Log.info("Price Ann Origin is not displaying");
 					}
 				}catch(NoSuchElementException e) {
 					DriverTestcase.logger.log(LogStatus.FAIL, "Price Ann Origin is not displaying");
-					System.out.println("Price Ann Origin is not displaying");
+					Log.info("Price Ann Origin is not displaying");
 				}catch(Exception ee) {
 					ee.printStackTrace();
 					DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Price Ann Origin dropdown");
-					System.out.println(" NO value selected under Price Ann Origin dropdown");
+					Log.info(" NO value selected under Price Ann Origin dropdown");
 				}
 				editcheckbox_commonMethod(application, edit_interruptiblepriceannouncement_checkbox, "interruptible_checkbox", "Interruptible Price Announcement", xml);
 				edittextFields_commonMethod(application, "Value In Price In(Cents)", "valueinprice_field", valueinprice, xml);
@@ -3495,7 +3495,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			else
 			{
 				Log.info("Addnl FRC is not added in the grid");
-				System.out.println("Addnl FRC is not added in the grid");
+				Log.info("Addnl FRC is not added in the grid");
 				DriverTestcase.logger.log(LogStatus.FAIL, "Addnl FRC is not added in the grid");
 			}
 			//verify view addnl frc
@@ -3611,7 +3611,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			else
 			{
 				Log.info("Addnl FRC is not added in the grid");
-				System.out.println("Addnl FRC is not added in the grid");
+				Log.info("Addnl FRC is not added in the grid");
 				DriverTestcase.logger.log(LogStatus.FAIL, "Addnl FRC is not added in the grid");
 			}
 
@@ -3654,14 +3654,14 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			else
 			{
 				Log.info("Addnl FRC is not added in the grid");
-				System.out.println("Addnl FRC is not added in the grid");
+				Log.info("Addnl FRC is not added in the grid");
 				DriverTestcase.logger.log(LogStatus.FAIL, "Addnl FRC is not added in the grid");
 			}
 		}
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 		}
 	}
 
@@ -3684,7 +3684,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 
 		WebElement SANGridCheck6= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid6= SANGridCheck6.getAttribute("style");
-		System.out.println("Customer Name displaying: " +customernamevalue);
+		Log.info("Customer Name displaying: " +customernamevalue);
 		WebElement AddedSAN6= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//span[contains(@class,'unchecked')]");
 		if(!SANGrid6.contains("height: 1px"))
 		{
@@ -3702,7 +3702,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 		}
 		//SAN Move
 		ScrolltoElement(application, "customerheader", xml);
@@ -3718,7 +3718,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 
 		WebElement SANGridCheck7= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid7= SANGridCheck7.getAttribute("style");
-		System.out.println("Customer Name displaying: " +customernamevalue);
+		Log.info("Customer Name displaying: " +customernamevalue);
 		WebElement AddedSAN7= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//span[contains(@class,'unchecked')]");
 		if(!SANGrid7.contains("height: 1px"))
 		{
@@ -3748,7 +3748,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN is not added in the grid");
 		}
 
@@ -3880,7 +3880,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				String Default_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/defaultcheckbox")).getAttribute("checked");
 				if(Default_Checkbox.isEmpty())
 				{
-					System.out.println("Default checkbox is checked");
+					Log.info("Default checkbox is checked");
 					Thread.sleep(1000);
 					DriverTestcase.logger.log(LogStatus.PASS, "Default checkbox is checked");
 					Log.info("Default checkbox is checked");
@@ -3897,7 +3897,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				String Configure_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/configurecheckbox")).getAttribute("checked");
 				if(Configure_Checkbox.isEmpty())
 				{
-					System.out.println("Configure checkbox is checked");
+					Log.info("Configure checkbox is checked");
 					Thread.sleep(1000);
 					DriverTestcase.logger.log(LogStatus.PASS, "Configure checkbox is checked");
 					Log.info("Configure checkbox is checked");
@@ -3974,7 +3974,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
 		{
 			Log.info("Navigated to view SAN page");
-			System.out.println("Navigated to view SAN page");
+			Log.info("Navigated to view SAN page");
 			//compareText(application, "Add SAN success message", "addsan_successmsg", "SAN successfully created", xml);
 			scrolltoend();
 			click_commonMethod(application, "Back", "viewpage_backbutton", xml);
@@ -3982,20 +3982,20 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN not created");
-			System.out.println("SAN not created");
+			Log.info("SAN not created");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : SAN not created");
 		}
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
+			Log.info("Navigated to view service page");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to view service page");
 		}
 		else
 		{
 			Log.info("Not navigated to view service page");
-			System.out.println("Not navigated to view service page");
+			Log.info("Not navigated to view service page");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Not navigated to view service page");
 		}
 
@@ -4055,7 +4055,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				String Default_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/defaultcheckbox")).getAttribute("checked");
 				if(Default_Checkbox.isEmpty())
 				{
-					System.out.println("Default checkbox is checked");
+					Log.info("Default checkbox is checked");
 					Thread.sleep(1000);
 					DriverTestcase.logger.log(LogStatus.PASS, "Default checkbox is checked");
 					Log.info("Default checkbox is checked");
@@ -4072,7 +4072,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				String Configure_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/configurecheckbox")).getAttribute("checked");
 				if(Configure_Checkbox.isEmpty())
 				{
-					System.out.println("Configure checkbox is checked");
+					Log.info("Configure checkbox is checked");
 					Thread.sleep(1000);
 					DriverTestcase.logger.log(LogStatus.PASS, "Configure checkbox is checked");
 					Log.info("Configure checkbox is checked");
@@ -4148,7 +4148,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
 		{
 			Log.info("Navigated to view SAN page");
-			System.out.println("Navigated to view SAN page");
+			Log.info("Navigated to view SAN page");
 			//compareText(application, "Add SAN success message", "addsan_successmsg", "SAN successfully created", xml);
 			scrolltoend();
 			click_commonMethod(application, "Back", "viewpage_backbutton", xml);
@@ -4156,20 +4156,20 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN not created");
-			System.out.println("SAN not created");
+			Log.info("SAN not created");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : SAN not created");
 		}
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
+			Log.info("Navigated to view service page");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to view service page");
 		}
 		else
 		{
 			Log.info("Not navigated to view service page");
-			System.out.println("Not navigated to view service page");
+			Log.info("Not navigated to view service page");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Not navigated to view service page");
 		}
 
@@ -4194,7 +4194,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN is not added in the grid");
 		}
 
@@ -4235,7 +4235,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN is not added in the grid");
 		}
 
@@ -4268,7 +4268,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		WebElement AddedSAN11= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+Bulkmove_SANNumberValue1+"')]/parent::div//span[contains(@class,'unchecked')]");
 		WebElement AddedSAN12= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+Bulkmove_SANNumberValue2+"')]/parent::div//span[contains(@class,'unchecked')]");
 		//		int AddedSANCount= AddedSAN11.size();
-		//		System.out.println("BulkSANAdded");
+		//		Log.info("BulkSANAdded");
 		if(AddedSAN11.isDisplayed() && AddedSAN12.isDisplayed())
 		{
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Bulk Move verification is successfull in destination customer");
@@ -4298,7 +4298,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 
 		WebElement SANGridCheck2= getwebelement("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String SANGrid2= SANGridCheck2.getAttribute("style");
-		System.out.println("Customer Name displaying: " +customernamevalue);
+		Log.info("Customer Name displaying: " +customernamevalue);
 		WebElement AddedSAN2= getwebelement("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//span[contains(@class,'unchecked')]");
 		if(!SANGrid2.contains("height: 1px"))
 		{
@@ -4327,7 +4327,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		else
 		{
 			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
+			Log.info("SAN is not added in the grid");
 		}
 
 		//Delete Customer
@@ -4428,13 +4428,13 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		File dir = new File(dirPath);
 		File[] files = dir.listFiles();
 		if (files.length == 0 || files == null) {
-			System.out.println("The directory is empty");
+			Log.info("The directory is empty");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Downloads folder is empty");
 			flag = false;
 		} else {
 			for (File listFile : files) {
 				if (listFile.getName().contains(fileName)) {
-					System.out.println(fileName + " is present");
+					Log.info(fileName + " is present");
 					DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+fileName+"' excel file is downloaded successfully");
 					break;
 				}
@@ -4493,7 +4493,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		try {
 			Thread.sleep(1000);
 			availability= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
-			System.out.println(availability);
+//			Log.info(availability);
 			if (availability) {
 				Thread.sleep(2000);
 				DriverTestcase.logger.log(LogStatus.PASS, "Step: '"+labelname+"' is displayed as expected");
@@ -4568,8 +4568,8 @@ public void verify_EditReseller(String application, String ocn, String editemail
         // get CSV row column and replace with by using row and column
         for(int i=1; i<csvBody.size(); i++){
             String[] strArray = csvBody.get(i);
-            System.out.println("i value " +i);
-            System.out.println(strArray);
+            Log.info("i value " +i);
+//            Log.info(strArray);
             for(int j=0; j<strArray.length; j++){
                 csvBody.get(i)[1] = FRCNumber; //Target replacement
                 csvBody.get(i)[3] = CustomerName;
@@ -4618,23 +4618,23 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			if(expected.contains(alrtmsg)) {
 				
 				DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
-				System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+				Log.info("Message is verified. It is displaying as: "+alrtmsg);
 				
 			}else {
 				
 				DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
-				System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+				Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
 			}
 			
 		}else {
 			DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
-			System.out.println(" Success Message is not displaying");
+			Log.info(" Success Message is not displaying");
 		}
 		
 	}catch(Exception e) {
 		Log.info("failure in fetching success message");
 		DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
-		System.out.println(expected+ " message is not getting dislpayed");
+		Log.info(expected+ " message is not getting dislpayed");
 	}
 
 }

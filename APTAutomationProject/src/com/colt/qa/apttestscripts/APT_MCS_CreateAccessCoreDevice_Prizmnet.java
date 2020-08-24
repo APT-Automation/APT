@@ -116,63 +116,6 @@ public class APT_MCS_CreateAccessCoreDevice_Prizmnet extends DriverTestcase {
 			}
 		
 			
-		DriverTestcase.logger = DriverTestcase.extent.startTest("fetchDeviceInterface_"+devicename);
-			String DeviceName= null;
-			String VendorModel=null;
-			String managementAddress=null;
-			String country=null;
-		
-			//Device name	
-			if(map.get("editdeviceName").equalsIgnoreCase("null")) {
-				DeviceName=map.get("Name");
-			}else {
-				DeviceName = map.get("editdeviceName");
-			}
-			
-		
-			//Vendor/Model
-			if(map.get("editVendorModel").equalsIgnoreCase("null")) {
-				VendorModel=map.get("VendorModel");
-			}else {
-				VendorModel=map.get("editVendorModel");
-			}
-			
-			//Management Address
-			if(map.get("editManagementAddress").equalsIgnoreCase("null")) {
-				managementAddress=map.get("Management Address");
-			}else {
-				managementAddress=map.get("editManagementAddress");
-			}
-			
-			//Country
-			if(map.get("editCountry").equalsIgnoreCase("null")) {
-				country=map.get("Country");
-			}else {
-				country=map.get("editCountry");
-			}
-		
-			//Snmpro
-			String Snmpro=null;
-			String snmproCreated=map.get("SnmProNewValue");
-			String snmproEdited=map.get("editSnmProNewValue");
-			String snmproDefaultValue="incc";
-			
-			if(snmproEdited.equalsIgnoreCase("null")) {
-				if(snmproCreated.equalsIgnoreCase("null")) {
-					Snmpro=snmproDefaultValue;
-				}else {
-					Snmpro=snmproCreated;
-				}
-			}
-			else {
-				Snmpro=snmproEdited;
-			}
-		
-		APT_CreatePrizmnetDeviceHelper.get().fetchDeviceInterface_viewdevicepage("CreateAccessCoreDevice");
-		APT_ManageNetworkHelpr.get().verifyFetchInterface("ManageNetwork", DeviceName, map.get("InServiceStatus"), map.get("InMaintenanceStatus"), 
-				VendorModel, managementAddress, map.get("Snmpro"), country, map.get("InterfaceName"));
-		
-		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("deletePrizmnetDevice_"+devicename);
 			APT_CreatePrizmnetDeviceHelper.get().verifydeviceDelete_AccessRouter("CreateAccessCoreDevice");
 	

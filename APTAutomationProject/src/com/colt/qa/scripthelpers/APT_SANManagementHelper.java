@@ -157,7 +157,7 @@ public class APT_SANManagementHelper extends DriverHelper{
 				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 				{
 					Log.info("Navigated to view service page");
-					System.out.println("Navigated to view service page");
+					Log.info("Navigated to view service page");
 					DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to view service page");
 				}
 				else
@@ -187,7 +187,7 @@ public class APT_SANManagementHelper extends DriverHelper{
 		if(getwebelement(xml.getlocator("//locators/" + application + "/sansearchheader")).isDisplayed())
 		{
 			Log.info("Navigated to 'SAN Search' page");
-			System.out.println("Navigated to 'SAN Search' page");
+			Log.info("Navigated to 'SAN Search' page");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to 'SAN Search' page");
 		}
 		else
@@ -213,7 +213,7 @@ public class APT_SANManagementHelper extends DriverHelper{
 //				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 //				{
 //					Log.info("Navigated to view service page");
-//					System.out.println("Navigated to view service page");
+//					Log.info("Navigated to view service page");
 //					DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to view service page");
 //				}
 //				else
@@ -225,7 +225,7 @@ public class APT_SANManagementHelper extends DriverHelper{
 				if(getwebelement(xml.getlocator("//locators/" + application + "/manageservice_header")).isDisplayed())
 				{
 					Log.info("Navigated to Manage service page");
-					System.out.println("Navigated to Manage service page");
+					Log.info("Navigated to Manage service page");
 					DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to Manage service page");
 				}
 				else
@@ -295,13 +295,13 @@ public class APT_SANManagementHelper extends DriverHelper{
 		File dir = new File(dirPath);
 		File[] files = dir.listFiles();
 		if (files.length == 0 || files == null) {
-			System.out.println("The directory is empty");
+			Log.info("The directory is empty");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Downloads folder is empty");
 			flag = false;
 		} else {
 			for (File listFile : files) {
 				if (listFile.getName().contains(fileName)) {
-					System.out.println(fileName + " is present");
+					Log.info(fileName + " is present");
 					DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+fileName+"' excel file is downloaded successfully");
 					break;
 				}
@@ -356,23 +356,23 @@ public class APT_SANManagementHelper extends DriverHelper{
 				if(expected.contains(alrtmsg)) {
 					
 					DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
-					System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+					Log.info("Message is verified. It is displaying as: "+alrtmsg);
 					
 				}else {
 					
 					DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
-					System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+					Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
 				}
 				
 			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
-				System.out.println(" Success Message is not displaying");
+				Log.info(" Success Message is not displaying");
 			}
 			
 		}catch(Exception e) {
 			Log.info("failure in fetching success message");
 			DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
-			System.out.println(expected+ " message is not getting dislpayed");
+			Log.info(expected+ " message is not getting dislpayed");
 		}
 
 	}

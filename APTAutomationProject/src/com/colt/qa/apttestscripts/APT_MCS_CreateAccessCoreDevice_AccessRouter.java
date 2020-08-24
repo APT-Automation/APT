@@ -109,7 +109,6 @@ public class APT_MCS_CreateAccessCoreDevice_AccessRouter extends DriverTestcase 
 			  }
 			else {
 				DriverTestcase.logger.log(LogStatus.INFO, "Router Panel will not display for the selected vendorModel: "+vendorModel);
-				System.out.println("Router Panel will not display for the selected vendorModel: "+vendorModel);
 			}
 		
 		

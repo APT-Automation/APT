@@ -41,19 +41,19 @@ public class APT_MCS_CreateMiniDSLAMDeviceHelper extends DriverHelper{
 		
 	try {	
 		boolean flag = ele.isDisplayed();
-		System.out.println("element presence state : " + flag);
+		Log.info("element presence state : " + flag);
 		if (flag) {
 
-			System.out.println("webElement is present " + ele.getText());
+			Log.info("webElement is present " + ele.getText());
 			DriverTestcase.logger.log(LogStatus.PASS, "Step: expected field is displayed " , fieldname);
 		} else {
 
-			System.out.println("webElement is not  present" + ele.getText());
+			Log.info("webElement is not  present" + ele.getText());
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step: expected field is not displayed ", fieldname);
 		}
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
-		System.out.println("webElement is not  present" + ele.getText());
+		Log.info("webElement is not  present" + ele.getText());
 		DriverTestcase.logger.log(LogStatus.FAIL, "Step: expected field is not displayed ", fieldname);
 	}
 
@@ -99,11 +99,11 @@ public class APT_MCS_CreateMiniDSLAMDeviceHelper extends DriverHelper{
 		
 		
 		} catch (NoSuchElementException e) {
-			System.out.println("webElement is not  present");
+			Log.info("webElement is not  present");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step: expected field is not displayed in page ");
 			e.printStackTrace();
 		}catch (TimeoutException e) {
-			System.out.println("webElement is not  present" );
+			Log.info("webElement is not  present" );
 			DriverTestcase.logger.log(LogStatus.FAIL, "Step: expected field is not displayed in page ");
 			e.printStackTrace();
 			
@@ -354,7 +354,7 @@ public class APT_MCS_CreateMiniDSLAMDeviceHelper extends DriverHelper{
 		alertmsg1=getwebelement(xml.getlocator("//locators/" + application + "/succesMsg_alertDisplay")).isDisplayed();
 		if(alertmsg1) {
 			DriverTestcase.logger.log(LogStatus.PASS, " 'Success Message is displaying for device creation");
-			System.out.println(" 'Success Message is displaying for device creation");
+			Log.info(" 'Success Message is displaying for device creation");
 			
 			String actualmsg=getwebelement(xml.getlocator("//locators/" + application + "/successMessage_Alert")).getText();
 //			assertEquals(actualmsg, "Device created successfully");
@@ -364,12 +364,12 @@ public class APT_MCS_CreateMiniDSLAMDeviceHelper extends DriverHelper{
 			
 		}else {
 			DriverTestcase.logger.log(LogStatus.FAIL, " 'Success Message is not displaying for device creation");
-			System.out.println(" 'Success Message is not displaying for device creation");
+			Log.info(" 'Success Message is not displaying for device creation");
 		}
 	}catch(Exception e) {
 		e.printStackTrace();
 		DriverTestcase.logger.log(LogStatus.FAIL, " 'Success Message is not displaying for device creation");
-		System.out.println(" 'Success Message is not displaying for device creation");
+		Log.info(" 'Success Message is not displaying for device creation");
 	}
 	
 	}
@@ -389,7 +389,7 @@ public class APT_MCS_CreateMiniDSLAMDeviceHelper extends DriverHelper{
 		alertmsg1=getwebelement(xml.getlocator("//locators/" + application + "/succesMsg_alertDisplay")).isDisplayed();
 		if(alertmsg1) {
 			DriverTestcase.logger.log(LogStatus.PASS, " 'Success Message is displaying for device Updation");
-			System.out.println(" 'Success Message is displaying for device Updation");
+			Log.info(" 'Success Message is displaying for device Updation");
 			String actualmsg=getwebelement(xml.getlocator("//locators/" + application + "/successMessage_Alert")).getText();
 //			assertEquals(actualmsg, "Device updated successfully");
 			DriverTestcase.logger.log(LogStatus.PASS, "Success Message is displaying as: "+ actualmsg);
@@ -397,12 +397,12 @@ public class APT_MCS_CreateMiniDSLAMDeviceHelper extends DriverHelper{
 			successScreenshot(application);
 		}else {
 			DriverTestcase.logger.log(LogStatus.FAIL, " 'Success Message is not displaying for device Updation");
-			System.out.println(" 'Success Message is not displaying for device Updation");
+			Log.info(" 'Success Message is not displaying for device Updation");
 		}
 	}catch(Exception e) {
 		e.printStackTrace();
 		DriverTestcase.logger.log(LogStatus.FAIL, " 'Success Message is not displaying for device Updation");
-		System.out.println(" 'Success Message is not displaying for device Updation");
+		Log.info(" 'Success Message is not displaying for device Updation");
 	}
 	   
 	
@@ -440,12 +440,12 @@ public class APT_MCS_CreateMiniDSLAMDeviceHelper extends DriverHelper{
     			DriverTestcase.logger.log(LogStatus.PASS, fieldname+ " is selected as expected");
     		}else {
     			DriverTestcase.logger.log(LogStatus.FAIL, fieldname + " is not displaying");
-    			System.out.println(fieldname + " is not displaying");
+    			Log.info(fieldname + " is not displaying");
     		}
     	}catch(Exception e) {
     		e.printStackTrace();
     		DriverTestcase.logger.log(LogStatus.FAIL, fieldname + " is not displaying");
-			System.out.println(fieldname + " is not displaying");
+			Log.info(fieldname + " is not displaying");
     	}
 		}else {
 			
@@ -462,31 +462,31 @@ public class APT_MCS_CreateMiniDSLAMDeviceHelper extends DriverHelper{
     	if(conectivityProtocolssh_availability) {
 
     		DriverTestcase.logger.log(LogStatus.PASS, " 'SSH' is displaying under 'Connectivity protocol' as expected");
-    		System.out.println(" 'SSH' is displaying under 'Connectivity protocol' as expected");
+    		Log.info(" 'SSH' is displaying under 'Connectivity protocol' as expected");
     		
     		conectivityProtocolssh_Selection=getwebelement(xml.getlocator("//locators/" + application + "/sshradiobutton")).isSelected();
     		if(conectivityProtocolssh_Selection) {
     			DriverTestcase.logger.log(LogStatus.PASS, " 'SSH' is selected under 'Connectivity protocol' by default as expected");
-    			System.out.println(" 'SSH' is selected under 'Connectivity protocol' as expected");
+    			Log.info(" 'SSH' is selected under 'Connectivity protocol' as expected");
     			
     		}else {
     			DriverTestcase.logger.log(LogStatus.FAIL, " 'SSH' is not selected by default under 'Connectivity protocol'");
-    			System.out.println(" 'SSH' is not selected under 'Connectivity protocol'");
+    			Log.info(" 'SSH' is not selected under 'Connectivity protocol'");
     		}
     	}else {
     		DriverTestcase.logger.log(LogStatus.FAIL, " 'SSH' is not displaying under 'Connectivity protocol'");
-    		System.out.println(" 'SSH' is not displaying under 'Connectivity protocol'");
+    		Log.info(" 'SSH' is not displaying under 'Connectivity protocol'");
     	}
     	
     }catch(NoSuchElementException e) {
     	e.printStackTrace();
     	DriverTestcase.logger.log(LogStatus.FAIL, " 'SSH' is not displaying under 'Connectivity protocol'");
-		System.out.println(" 'SSH' is not displaying under 'Connectivity protocol'");
+		Log.info(" 'SSH' is not displaying under 'Connectivity protocol'");
 		
     }catch(Exception ee) {
     	ee.printStackTrace();
     	DriverTestcase.logger.log(LogStatus.FAIL, " 'SSH' is not selected under 'Connectivity protocol'");
-		System.out.println(" 'SSH' is not selected under 'Connectivity protocol'");
+		Log.info(" 'SSH' is not selected under 'Connectivity protocol'");
     	
     }
     }
@@ -500,27 +500,27 @@ public class APT_MCS_CreateMiniDSLAMDeviceHelper extends DriverHelper{
     	if(conectivityProtocoltelnet_availability) {
 
     		DriverTestcase.logger.log(LogStatus.PASS, " 'Telnet' is displaying under 'Connectivity protocol' as expected");
-    		System.out.println(" 'Telnet' is displaying under 'Connectivity protocol' as expected");
+    		Log.info(" 'Telnet' is displaying under 'Connectivity protocol' as expected");
     		
     		conectivityProtocoltelnet_Selection=getwebelement(xml.getlocator("//locators/" + application + "/telnetradiobutton")).isSelected();
     		if(conectivityProtocoltelnet_Selection) {
     			DriverTestcase.logger.log(LogStatus.FAIL, " 'Telnet' is selected under 'Connectivity protocol' by default");
-    			System.out.println(" 'Telnet' is selected under 'Connectivity protocol'");
+    			Log.info(" 'Telnet' is selected under 'Connectivity protocol'");
     			
     		}else {
     			DriverTestcase.logger.log(LogStatus.PASS, " 'Telnet' is not selected under 'Connectivity protocol' by default as expected");
-    			System.out.println(" 'Telnet' is not selected under 'Connectivity protocol'");
+    			Log.info(" 'Telnet' is not selected under 'Connectivity protocol'");
     		}
     	}else {
     		DriverTestcase.logger.log(LogStatus.FAIL, " 'Telnet' is not displaying under 'Connectivity protocol'");
-    		System.out.println(" 'Telnet' is not displaying under 'Connectivity protocol'");
+    		Log.info(" 'Telnet' is not displaying under 'Connectivity protocol'");
     	}
     	
    	
     }catch(Exception ee) {
     	ee.printStackTrace();
     	DriverTestcase.logger.log(LogStatus.FAIL, " 'Telnet' is not displaying under 'Connectivity protocol'");
-		System.out.println(" 'Telnet' is not displaying under 'Connectivity protocol'");
+		Log.info(" 'Telnet' is not displaying under 'Connectivity protocol'");
     	
     }
     }
@@ -771,15 +771,15 @@ public class APT_MCS_CreateMiniDSLAMDeviceHelper extends DriverHelper{
 		
 	//Device Type
 		 String devicetype=getwebelement("//label[text()='Device Type']/following-sibling::div//span").getText();
- 		System.out.println("device type is displaying as: "+devicetype);
+ 		Log.info("device type is displaying as: "+devicetype);
  		assertEquals(devicetype, editDeviceType);
  		if(devicetype.equalsIgnoreCase("Mini DSLAM")) {
  			DriverTestcase.logger.log(LogStatus.PASS, "Device type is displaying as expected. It is displaying as: "+ devicetype);
- 			System.out.println("Device type is displaying as expected. It is displaying as: "+ devicetype);
+ 			Log.info("Device type is displaying as expected. It is displaying as: "+ devicetype);
  		}
  		else {
  			DriverTestcase.logger.log(LogStatus.FAIL, "Device type is not displaying as expected. It is displaying as: "+ devicetype);
- 			System.out.println("Device type is not displaying as expected. It is displaying as: "+ devicetype);
+ 			Log.info("Device type is not displaying as expected. It is displaying as: "+ devicetype);
  		}
 		 
  		
@@ -947,18 +947,18 @@ public class APT_MCS_CreateMiniDSLAMDeviceHelper extends DriverHelper{
 		availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
 		if(availability) {
 			DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is displaying as expected");
-			System.out.println(labelname + " text field is displaying as expected");
+			Log.info(labelname + " text field is displaying as expected");
 			
 			String actualvalueInsidetextfield=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
 			
 			if(actualvalueInsidetextfield.isEmpty()) {
 				
 				DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname+" text field");
-				System.out.println("No values displaying under "+labelname+" text field");
+				Log.info("No values displaying under "+labelname+" text field");
 				
 				if(expectedValueToEdit.equalsIgnoreCase("null")) {
 					//DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is not edited as expected");
-					System.out.println(labelname + " text field is not edited as expected");
+					Log.info(labelname + " text field is not edited as expected");
 				}else {
 					
 					getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).clear();
@@ -974,11 +974,11 @@ public class APT_MCS_CreateMiniDSLAMDeviceHelper extends DriverHelper{
 			}else {
 				
 				DriverTestcase.logger.log(LogStatus.PASS, "Value displaying under "+labelname + " field is: "+actualvalueInsidetextfield);
-				System.out.println("Value displaying under "+labelname + " field is: "+actualvalueInsidetextfield);
+				Log.info("Value displaying under "+labelname + " field is: "+actualvalueInsidetextfield);
 				
 				if(expectedValueToEdit.equalsIgnoreCase("null")) {
 					DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is not edited as expected");
-					System.out.println(labelname + " text field is not edited as expected");
+					Log.info(labelname + " text field is not edited as expected");
 				}else {
 					
 					getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).clear();
@@ -993,16 +993,16 @@ public class APT_MCS_CreateMiniDSLAMDeviceHelper extends DriverHelper{
 			}
 		}else {
 			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
-			System.out.println(labelname + " text field is not displaying");
+			Log.info(labelname + " text field is not displaying");
 		}
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
-		System.out.println(labelname + " text field is not displaying");
+		Log.info(labelname + " text field is not displaying");
 	}catch(Exception ee) {
 		ee.printStackTrace();
 		DriverTestcase.logger.log(LogStatus.FAIL, " Not able to enter value under "+ labelname + " text field");
-		System.out.println(" Not able to enter value under "+ labelname + " text field");
+		Log.info(" Not able to enter value under "+ labelname + " text field");
 	}
 }
 
@@ -1037,16 +1037,16 @@ public void fetchDeviceInterface_viewdevicepage(String application) throws Inter
 		if(successMessage) {
 			
 			if(actualMessage.isEmpty()) {
-				System.out.println("No messages displays");
+				Log.info("No messages displays");
 				DriverTestcase.logger.log(LogStatus.FAIL, "Success message is not displaying");
 			}
 			if(actualMessage.contains(expectedValue)) {
 				
 			DriverTestcase.logger.log(LogStatus.PASS, " After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
-			System.out.println(" After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
+			Log.info(" After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
 			
 			DriverTestcase.logger.log(LogStatus.PASS, " Success Message displays as: "+actualMessage);
-			System.out.println(" Success Message displays as: "+actualMessage);
+			Log.info(" Success Message displays as: "+actualMessage);
 			
 			//click on the 'click here' link
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ClickhereLink_fetchInterface")));
@@ -1056,10 +1056,10 @@ public void fetchDeviceInterface_viewdevicepage(String application) throws Inter
 			else if (actualMessage.equalsIgnoreCase(expectedValue)) {
 				
 				DriverTestcase.logger.log(LogStatus.PASS, " After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
-				System.out.println(" After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
+				Log.info(" After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
 				
 				DriverTestcase.logger.log(LogStatus.PASS, " Success Message displays as: "+actualMessage);
-				System.out.println(" Success Message displays as: "+actualMessage);
+				Log.info(" Success Message displays as: "+actualMessage);
 				
 				//click on the 'click here' link
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ClickhereLink_fetchInterface")));
@@ -1067,7 +1067,7 @@ public void fetchDeviceInterface_viewdevicepage(String application) throws Inter
 			}
 			else {
 				DriverTestcase.logger.log(LogStatus.PASS, "After clicking on 'Fetch Device Interface' link, message displays as "+actualMessage);
-				System.out.println("After clicking on 'Fetch Device Interface' link, message displays as "+actualMessage);
+				Log.info("After clicking on 'Fetch Device Interface' link, message displays as "+actualMessage);
 				
 			//Action Button Click  			
 				ActionButton.click();
@@ -1083,7 +1083,7 @@ public void fetchDeviceInterface_viewdevicepage(String application) throws Inter
 			
 		}else {
 			DriverTestcase.logger.log(LogStatus.PASS, " After clicking on 'Fetch Device Interface' link, success Message is not displaying");
-			System.out.println(" After clicking on 'Fetch Device Interface' link, success Message is not displaying");
+			Log.info(" After clicking on 'Fetch Device Interface' link, success Message is not displaying");
 		}
 }
 
@@ -1263,11 +1263,11 @@ public void compareText_InViewPage_ForNonEditedFields(String application, String
 		String emptyele = element.getText().toString();
 
 				DriverTestcase.logger.log(LogStatus.PASS,labelname +" field is not edited. It is displaying as '"+emptyele+"'");
-				System.out.println(labelname +" field is not edited. It is displaying as '"+emptyele+"'");
+				Log.info(labelname +" field is not edited. It is displaying as '"+emptyele+"'");
 	}catch (Exception e) {
 		e.printStackTrace();
 		DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
-		System.out.println(labelname + " field is not displaying");
+		Log.info(labelname + " field is not displaying");
 	}
 }
 
@@ -1289,19 +1289,19 @@ public void testStatus(String application) throws InterruptedException, Document
 			
 		}else {
 			DriverTestcase.logger.log(LogStatus.PASS, "Test Name is displaying as: "+element);
-			System.out.println("Test Name is displaying as: "+element);
+			Log.info("Test Name is displaying as: "+element);
 			
 			
 			status=getwebelement("(//tbody/tr["+ i +"]/td)[2]/div").getAttribute("class");
-			System.out.println("status displays as: "+status);
+			Log.info("status displays as: "+status);
 			
 			if(status.contains("red")) {
 				DriverTestcase.logger.log(LogStatus.PASS, element + " status colour dipslays as: red");
-				System.out.println(element + " status colour dipslays as: red");
+				Log.info(element + " status colour dipslays as: red");
 			}
 			else if(status.contains("green")) {
 				DriverTestcase.logger.log(LogStatus.PASS, element + " status colour dipslays as: green");
-				System.out.println(element + " status colour dipslays as: green");
+				Log.info(element + " status colour dipslays as: green");
 			}
 			
 			
@@ -1338,7 +1338,7 @@ try {
 			DriverTestcase.logger.log(LogStatus.FAIL, "No alert message displays inside the popup, after clicking on 'IQNet' checkbox. It should display as"
 					+ " 'Please make sure this is IQNET device'");
 			
-			System.out.println("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
+			Log.info("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
 					+ " 'Please make sure this is IQNET device'");
 			
 			clickOnBankPage();
@@ -1346,7 +1346,7 @@ try {
 		}
 		else {
 			DriverTestcase.logger.log(LogStatus.PASS, "When we click on 'IQNet' checkbox, an alert message displays as "+alertMsg);
-			System.out.println("When we click on 'IQNet' checkbox, an alert message displays as "+alertMsg);
+			Log.info("When we click on 'IQNet' checkbox, an alert message displays as "+alertMsg);
 			
 			click_commonMethod(application, "x button", "IONet_xButton", xml);
 		}
@@ -1354,7 +1354,7 @@ try {
 		DriverTestcase.logger.log(LogStatus.FAIL, "No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
 				+ " 'Please make sure this is IQNET device'");
 		
-		System.out.println("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
+		Log.info("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
 				+ " 'Please make sure this is IQNET device'");
 	}
 }catch(Exception e) {
@@ -1362,7 +1362,7 @@ try {
 	DriverTestcase.logger.log(LogStatus.FAIL, "No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
 			+ " 'Please make sure this is IQNET device'");
 	
-	System.out.println("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
+	Log.info("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
 			+ " 'Please make sure this is IQNET device'");
 }
 }
@@ -1398,7 +1398,7 @@ public void editPremise(String application, String editExistingPremise, String e
 	else if(editExistingPremise.equalsIgnoreCase("null") & editNewPremise.equalsIgnoreCase("null")) {
 		
 		DriverTestcase.logger.log(LogStatus.PASS, "No changes made under 'Premise' field");
-		System.out.println("No changes made under 'Premise' field");
+		Log.info("No changes made under 'Premise' field");
 		
 	}
 	
@@ -1504,7 +1504,7 @@ public void editSite(String application, String editExistingCity, String editNew
 	else if(editExistingCity.equalsIgnoreCase("null") & editNewCity.equalsIgnoreCase("null")) {
 		
 		DriverTestcase.logger.log(LogStatus.PASS, "No changes made under 'Site' field");
-		System.out.println("No changes made under 'Site' field");
+		Log.info("No changes made under 'Site' field");
 		
 	}
 	
@@ -1610,7 +1610,7 @@ public void editCity(String application, String editExistingCity, String editNew
 	else if(editExistingCity.equalsIgnoreCase("null") & editNewCity.equalsIgnoreCase("null")) {
 		
 		DriverTestcase.logger.log(LogStatus.PASS, "No chnges made under 'City' field");
-		System.out.println("No chnges made under 'City' field");
+		Log.info("No chnges made under 'City' field");
 	}
 	
 }
@@ -1726,20 +1726,20 @@ try {
 resultField=getwebelement(xml.getlocator("//locators/" + application + "/result_textArea")).isDisplayed();
 if(resultField) {
 	DriverTestcase.logger.log(LogStatus.PASS, "'Result' text field is displaying");
-	System.out.println( "'Result' text field is displaying");
+	Log.info( "'Result' text field is displaying");
 	
 	String remarkvalue=getwebelement(xml.getlocator("//locators/" + application + "/result_textArea")).getText();
 	DriverTestcase.logger.log(LogStatus.PASS, "value under 'Result' field displaying as "+ remarkvalue);
-	System.out.println("value under 'Result' field displaying as "+ remarkvalue);
+	Log.info("value under 'Result' field displaying as "+ remarkvalue);
 
 }else {
 	DriverTestcase.logger.log(LogStatus.FAIL, "'Result' text field is not displaying");
-	System.out.println( "'Result' text field is not displaying");
+	Log.info( "'Result' text field is not displaying");
 }
 }catch(Exception e) {
 e.printStackTrace();
 DriverTestcase.logger.log(LogStatus.FAIL, "'Result' text field is not displaying");
-System.out.println("'Result' text field is not displaying");
+Log.info("'Result' text field is not displaying");
 }
 	
 }
@@ -1756,13 +1756,13 @@ public void hostnametextField_IPV6(String application, String commandIPv6, Strin
 		  
 	  }else {
 		  	DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
-			System.out.println("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
+			Log.info("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 	  }
 	}catch(Exception e) {
 		e.printStackTrace();
 		
 		DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
-		System.out.println("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
+		Log.info("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 	}
 }
 
@@ -1778,17 +1778,17 @@ public void vrfNametextField_IPV6(String application, String commandIPV6, String
 				addtextFields_commonMethod(application, "Router Vrf Name", "commandIPv6_vrfnameTextField", vrfname_IPV6, xml);
 			}else {
 				DriverTestcase.logger.log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
-				System.out.println("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
+				Log.info("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
-			System.out.println("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
+			Log.info("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 		}
 	}
 	else {
 		DriverTestcase.logger.log(LogStatus.PASS, "'VRF Name IPv6' text field is not displaying for "+ commandIPV6);
-		System.out.println("'VRF Name IPv6' text field is not displaying for "+ commandIPV6 +" command");
+		Log.info("'VRF Name IPv6' text field is not displaying for "+ commandIPV6 +" command");
 	}
 	
 }	
@@ -1805,13 +1805,13 @@ public void hostnametextField_IPV4(String application, String command_ipv4, Stri
 		  
 	  }else {
 		  	DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
-			System.out.println("'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
+			Log.info("'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 	  }
 	}catch(Exception e) {
 		e.printStackTrace();
 		
 		DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
-		System.out.println("'Hostname or IpAddress' for 'Ipv4' text field is not displaying for "+ command_ipv4);
+		Log.info("'Hostname or IpAddress' for 'Ipv4' text field is not displaying for "+ command_ipv4);
 	}
 }
 
@@ -1828,17 +1828,17 @@ public void vrfNametextField_IPV4(String application, String command_ipv4, Strin
 				addtextFields_commonMethod(application, "Router Vrf Name", "commandIPv4_vrfnameTextField", vrfname_ipv4, xml);
 			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
-				System.out.println("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
+				Log.info("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
-			System.out.println("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
+			Log.info("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 		}
 		
 	}else {
 		DriverTestcase.logger.log(LogStatus.PASS, "'VRF Name IPv4' text field is not displaying for "+ command_ipv4);
-		System.out.println("'VRF Name IPv4' text field is not displaying for "+ command_ipv4 +" command");
+		Log.info("'VRF Name IPv4' text field is not displaying for "+ command_ipv4 +" command");
 	}
 }
 
@@ -1860,24 +1860,24 @@ public void verifysuccessmessage(String application, String expected) throws Int
 			if(expected.contains(alrtmsg)) {
 				
 				DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
-				System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+				Log.info("Message is verified. It is displaying as: "+alrtmsg);
 				
 				successScreenshot(application);
 			}else {
 				
 				DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
-				System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+				Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
 			}
 			
 		}else {
 			DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
-			System.out.println(" Success Message is not displaying");
+			Log.info(" Success Message is not displaying");
 		}
 		
 	}catch(Exception e) {
 		Log.info("failure in fetching success message - 'Service created Successfully'  ");
 		DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
-		System.out.println(expected+ " message is not getting dislpayed");
+		Log.info(expected+ " message is not getting dislpayed");
 	}
 }
 
@@ -1902,7 +1902,7 @@ try {
 			DriverTestcase.logger.log(LogStatus.FAIL, "No alert message displays inside the popup, after clicking on 'IQNet' checkbox. It should display as"
 					+ " 'Please make sure this is IQNET device'");
 			
-			System.out.println("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
+			Log.info("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
 					+ " 'Please make sure this is IQNET device'");
 			
 			clickOnBankPage();
@@ -1910,7 +1910,7 @@ try {
 		}
 		else {
 			DriverTestcase.logger.log(LogStatus.PASS, "When we click on 'IQNet' checkbox, an alert message displays as "+alertMsg);
-			System.out.println("When we click on 'IQNet' checkbox, an alert message displays as "+alertMsg);
+			Log.info("When we click on 'IQNet' checkbox, an alert message displays as "+alertMsg);
 			
 			click_commonMethod(application, "x button", "IONet_xButton", xml);
 		}
@@ -1918,7 +1918,7 @@ try {
 		DriverTestcase.logger.log(LogStatus.FAIL, "No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
 				+ " 'Please make sure this is IQNET device'");
 		
-		System.out.println("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
+		Log.info("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
 				+ " 'Please make sure this is IQNET device'");
 	}
 }catch(Exception e) {

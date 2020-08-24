@@ -79,7 +79,13 @@ public class APT_MCS_CustomerFunctionality extends DriverTestcase{
 
 			
 		DriverTestcase.logger = DriverTestcase.extent.startTest("deleteUser");	
-			createCustomerSeparateHelper.get().deleteUser("CreateCustomer", map.get("UserName"));
+		String user=null;
+		if(map.get("editUserName").equalsIgnoreCase("null")) {
+			user=map.get("UserName");
+		}else {
+			user=map.get("editUserName");
+		}
+			createCustomerSeparateHelper.get().deleteUser("CreateCustomer", user);
 			createCustomerSeparateHelper.get().verifysuccessmessage("CreateCustomer", "User successfully deleted");
 
 		DriverTestcase.logger = DriverTestcase.extent.startTest("deleteCustomer");

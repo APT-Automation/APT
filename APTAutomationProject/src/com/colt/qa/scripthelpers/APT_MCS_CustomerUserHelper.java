@@ -235,7 +235,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			click_commonMethod(application, "Generate Password", "GeneratePasswordLink", xml);   //Generate Password Link
 			
 			String  password=getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")).getAttribute("value");
-			System.out.println("Generated Password is : "+password);
+			Log.info("Generated Password is : "+password);
 			
 			if(password.isEmpty()) {
 				
@@ -346,7 +346,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 //			click_commonMethod(application, "Generate Password", "GeneratePasswordLink", xml);   //Generate Password Link
 			
 			String  password=getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")).getAttribute("value");
-			System.out.println("Generated Password is : "+password);
+			Log.info("Generated Password is : "+password);
 			
 			if(password.isEmpty()) {
 				
@@ -410,7 +410,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		scrolltoview(customerName);
 		Thread.sleep(1000);
 		
-		System.out.println("user name is: "+username);
+		Log.info("user name is: "+username);
 		WebElement Username=getwebelement(xml.getlocator("//locators/"+application+"/selectUser").replace("value", username));
 		Clickon(Username);
 		DriverTestcase.logger.log(LogStatus.PASS, Username +" is selected");
@@ -482,7 +482,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			List<WebElement> HRcisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolIPv4Cisco"));	
 			
 			for(WebElement listofHiddenCiscoValues : HRcisco) {
-				System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
+				Log.info("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
 				DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
 			}
 	
@@ -493,7 +493,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			List<WebElement> Ipv4CommandHuawei = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv4Huawei"));	
 			
 			for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
-				System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
+				Log.info("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
 				DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
 			}	
 			
@@ -502,7 +502,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			List<WebElement> HiddenIPv6cisco = getwebelements(xml.getlocator("//locators/"+application+"/viewUser_HiddenRouterToolCommandIPv6Cisco"));	
 			
 			for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
-				System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
+				Log.info("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
 				DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
 			}			
 			
@@ -522,7 +522,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			scrolltoview(customerName);
 			Thread.sleep(1000);
 			
-			System.out.println("user name is: "+username);
+			Log.info("user name is: "+username);
 			WebElement Username=getwebelement(xml.getlocator("//locators/"+application+"/selectUser").replace("value", username));
 			Clickon(Username);
 			DriverTestcase.logger.log(LogStatus.PASS, Username +" is selected");
@@ -559,14 +559,14 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 //				DriverTestcase.logger.log(LogStatus.PASS, "Alert popup displays as expected, when we click on 'delete' link ");
 //				String alertmsg=getwebelement(xml.getlocator("//locators/" + application + "/alertmsgForviewlink_underOrderPanel")).getText();
 //				
-//				System.out.println("Alert popup message displays as: "+alertmsg);
+//				Log.info("Alert popup message displays as: "+alertmsg);
 //				DriverTestcase.logger.log(LogStatus.PASS, "Alert popup message displays as: "+alertmsg);
 //				
 //				click_commonMethod(application, "Delete", "viweServicepage_deleteButton", xml);
 //				Thread.sleep(2000);
 //				
 //			}else {
-//				System.out.println("Alert popup did not display");
+//				Log.info("Alert popup did not display");
 //				DriverTestcase.logger.log(LogStatus.FAIL, "Alert popup is not displaying, when we click on 'delete' link ");
 //			}
 		   
@@ -577,10 +577,10 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		       String alertMessage= driver.switchTo().alert().getText();
 		       if(alertMessage.isEmpty()) {
 		    	   DriverTestcase.logger.log(LogStatus.FAIL, "No mEssage displays");
-			       System.out.println("No Message displays"); 
+			       Log.info("No Message displays"); 
 		       }else {
 		    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
-			       System.out.println("text message for alert displays as: "+alertMessage);
+			       Log.info("text message for alert displays as: "+alertMessage);
 		       }
 		     
 		       alert.accept();
@@ -604,13 +604,13 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		if(successMsg) {
 			
 			DriverTestcase.logger.log(LogStatus.PASS, "After deleting,  Success Message displays as expected ");
-			System.out.println("After deleting,  Success Message displays as expected ");
+			Log.info("After deleting,  Success Message displays as expected ");
 			
 			successScreenshot(application);
 		}else {
 			
 			DriverTestcase.logger.log(LogStatus.PASS, "After deleting,  Success Message is not displaying ");
-			System.out.println("After deleting,  Success Message is not displaying");
+			Log.info("After deleting,  Success Message is not displaying");
 		}
 		
 	}
@@ -631,10 +631,10 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 	       String alertMessage= driver.switchTo().alert().getText();
 	       if(alertMessage.isEmpty()) {
 	    	   DriverTestcase.logger.log(LogStatus.FAIL, "No mEssage displays");
-		       System.out.println("No Message displays"); 
+		       Log.info("No Message displays"); 
 	       }else {
 	    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
-		       System.out.println("text message for alert displays as: "+alertMessage);
+		       Log.info("text message for alert displays as: "+alertMessage);
 	       }
 	     
 	       alert.accept();
@@ -667,19 +667,19 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 					if(expected.contains(alrtmsg)) {
 						
 						DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
-						System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+						Log.info("Message is verified. It is displaying as: "+alrtmsg);
 						
 						successScreenshot(application);
 						
 					}else {
 						
 						DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
-						System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+						Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
 					}
 					
 				}else {
 					DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
-					System.out.println(" Success Message is not displaying");
+					Log.info(" Success Message is not displaying");
 				}
 				
 				Thread.sleep(2000);
@@ -687,7 +687,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			}catch(Exception e) {
 				Log.info("failure in fetching success message - 'Service created Successfully'  ");
 				DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
-				System.out.println(expected+ " message is not getting dislpayed");
+				Log.info(expected+ " message is not getting dislpayed");
 				Thread.sleep(2000);
 			}
 
@@ -859,14 +859,14 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				    }
 			
 				    DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
-		            System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+		            Log.info("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
 		            
 		      //select value inside the dropdown     
                   for(int i=0; i<selectValue.length; i++)
                   {
                 	 Thread.sleep(5000);
                      for(int j=0; j<ls.size() ; j++) {
-                	  System.out.println("ls value "+ ls.get(j));
+                	  Log.info("ls value "+ ls.get(j));
                         if(selectValue[i].equals(ls.get(j)))
                         {
                         	  elements.get(j).click();
@@ -881,12 +881,12 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
               }else {
             	  DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
             	  
-            	  System.out.println("No values displaying under " + labelname + " available dropdown");
+            	  Log.info("No values displaying under " + labelname + " available dropdown");
               }
             }catch(Exception e) {
                   e.printStackTrace();
                   DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
-                  System.out.println( "No values displaying under "+labelname + " available dropdown");
+                  Log.info( "No values displaying under "+labelname + " available dropdown");
             }
 		}
 
@@ -910,14 +910,14 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				    }
 			
 				    DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
-		            System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+		            Log.info("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
 		            
 		      //select value inside the dropdown     
                   for(int i=0; i<selectValue.length; i++)
                   {
                 	 Thread.sleep(2000);
                      for(int j=0; j<ls.size() ; j++) {
-                	  System.out.println("ls value "+ ls.get(j));
+                	  Log.info("ls value "+ ls.get(j));
                         if(selectValue[i].equals(ls.get(j)))
                         {
                         	  elements.get(j).click();
@@ -934,12 +934,12 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
               }else {
             	  DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
             	  
-            	  System.out.println("No values displaying under " + labelname + " available dropdown");
+            	  Log.info("No values displaying under " + labelname + " available dropdown");
               }
             }catch(Exception e) {
                   e.printStackTrace();
                   DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
-                  System.out.println( "No values displaying under "+labelname + " available dropdown");
+                  Log.info( "No values displaying under "+labelname + " available dropdown");
             }
 		}
 
@@ -965,16 +965,16 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				    }
 			
 				    DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
-		            System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
+		            Log.info("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
              }else {
            	  DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
            	  
-           	  System.out.println("No values displaying under " + labelname + " available dropdown");
+           	  Log.info("No values displaying under " + labelname + " available dropdown");
              }
            }catch(Exception e) {
                  e.printStackTrace();
                  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
-                 System.out.println( "No values displaying under "+labelname + " available dropdown");
+                 Log.info( "No values displaying under "+labelname + " available dropdown");
            }
 	}
 	
@@ -1003,7 +1003,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			if(element==null)
 			{
 				DriverTestcase.logger.log(LogStatus.FAIL, labelname+" not found");
-				System.out.println(labelname+" not found");
+				Log.info(labelname+" not found");
 			}
 			
 			else if(emptyele!=null && emptyele.isEmpty()) {
@@ -1016,11 +1016,11 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				if(emptyele.equalsIgnoreCase(ExpectedText)) {
 					
 					DriverTestcase.logger.log(LogStatus.PASS, " The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
-					System.out.println(" The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
+					Log.info(" The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
 					
 				}else {
 					DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
-					System.out.println(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+					Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 				}
 				
 
@@ -1029,23 +1029,23 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				text = element.getText();
 				if(text.equals(ExpectedText)) {
 					DriverTestcase.logger.log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
-					System.out.println(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 				}
 				else if(text.contains(ExpectedText)) {
 					DriverTestcase.logger.log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
-					System.out.println("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 				
 				}
 				else
 				{
 					DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
-					System.out.println("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+					Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 				}
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
 			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
-			System.out.println(labelname + " field is not displaying");
+			Log.info(labelname + " field is not displaying");
 		}
 
 	}
@@ -1079,7 +1079,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 
 		} else {
 
-			System.out.println("Existing order is not selected");
+			Log.info("Existing order is not selected");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step: Existing order is not selected");
 			Log.info("=== Existing order is not selected ===");
 		}
@@ -1105,7 +1105,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			click_commonMethod(application, "Create Order", "createorderbutton", xml);
 
 		} else {
-			System.out.println("New order not selected");
+			Log.info("New order not selected");
 			DriverTestcase.logger.log(LogStatus.PASS, "Step: New order is not selected");
 			Log.info("New order is not selected");
 		}
@@ -1170,7 +1170,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		//displayed service type	
 			String displayedServiceTypevalue = getwebelement(
 					xml.getlocator("//locators/" + application + "/servicetypevalue")).getText();
-			System.out.println("Displayed service type is : " + displayedServiceTypevalue);
+			Log.info("Displayed service type is : " + displayedServiceTypevalue);
 			DriverTestcase.logger.log(LogStatus.PASS,
 					"Step : Displayed service type is : " + displayedServiceTypevalue);
 			Log.info("Displayed service type is : " + displayedServiceTypevalue);
@@ -1179,7 +1179,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		//displayed network configuration
 			String displayednetworkconfiguration = getwebelement(
 					xml.getlocator("//locators/" + application + "/networkconfigurationvalue")).getText();
-			System.out.println("Displayed network configuration is : " + displayednetworkconfiguration);
+			Log.info("Displayed network configuration is : " + displayednetworkconfiguration);
 			DriverTestcase.logger.log(LogStatus.PASS,
 					"Step : Displayed network configuration is : " + displayednetworkconfiguration);
 			Log.info("Displayed network configuration is : " + displayednetworkconfiguration);
@@ -1255,12 +1255,12 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 
 			Thread.sleep(3000);
 
-			System.out.println(elementname + "is displayed" + "and" + "selected in Management Options");
+			Log.info(elementname + "is displayed" + "and" + "selected in Management Options");
 			DriverTestcase.logger.log(LogStatus.PASS,
 					"Step :" + elementname + "is displayed" + "and" + "selected in Management Options");
 		} else {
 			elementname = ele.getAttribute("name");
-			System.out.println(elementname + " not selected in Management Options");
+			Log.info(elementname + " not selected in Management Options");
 			DriverTestcase.logger.log(LogStatus.INFO,
 					"Step :" + elementname + " not selected in Management Options");
 		}
@@ -1425,12 +1425,12 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		}
 		catch (NullPointerException e) {
 		e.printStackTrace();
-		System.out.println("Expected Value is not displayed in Search Customer Result Grid ");
+		Log.info("Expected Value is not displayed in Search Customer Result Grid ");
 		DriverTestcase.logger.log(LogStatus.FAIL, " Expected Value is not displayed in Search Customer Result Grid :  " + e);
 	}
 		catch (NoSuchElementException e) {
 		e.printStackTrace();
-		System.out.println("Expected Value is not displayed in Search Customer Result Grid");
+		Log.info("Expected Value is not displayed in Search Customer Result Grid");
 		DriverTestcase.logger.log(LogStatus.FAIL, "Expected Value is not displayed in Search Customer Result Grid :  " + e);
 	
 		}
@@ -1531,7 +1531,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			subscriberTable=getwebelement(xml.getlocator("//locators/"+application+"/SubscriberPanel")).isDisplayed();
 			
 			if(subscriberTable) {
-				System.out.println("'Subscriber' Table is displaying as expected");
+				Log.info("'Subscriber' Table is displaying as expected");
 				DriverTestcase.logger.log(LogStatus.INFO, "'Subscribes' Panel is displaying. verifying  value under 'Subscribes' table");
 				
 				
@@ -1570,19 +1570,19 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 					Log.info("got navigated to view Service page as expected");
 					DriverTestcase.logger.log(LogStatus.PASS, "Under 'Subscribe' panel after selecting the customer,if we click on 'view' link it gets navigated to 'view Service' page");
 				}else {
-					System.out.println("not getting navigated to 'view Service' page");
+					Log.info("not getting navigated to 'view Service' page");
 					DriverTestcase.logger.log(LogStatus.FAIL, "Under 'Subscribe' panel after selecting the customer,if we click on 'view' link it is not getting navigated to 'view Serice' page");
 				}
 			}catch(Exception er) {
 				er.printStackTrace();
-				System.out.println("not getting navigated to 'view Service' page");
+				Log.info("not getting navigated to 'view Service' page");
 				DriverTestcase.logger.log(LogStatus.FAIL, "Under 'Subscribe' panel after selecting the customer,if we click on 'view' link it is not getting navigated to 'view Serice' page");
 
 			}
 		
 			}else {
 				DriverTestcase.logger.log(LogStatus.FAIL, " 'Subscribes' Table is not displaying");
-				System.out.println(" 'Subscribes' Table is not displaying");
+				Log.info(" 'Subscribes' Table is not displaying");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -1602,7 +1602,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 
 				TotalPages = Integer.parseInt(TextKeyword);
 
-				System.out.println("Total number of pages in table is: " + TotalPages);
+				Log.info("Total number of pages in table is: " + TotalPages);
 
 				ab:
 				if (TotalPages != 0) {
@@ -1612,17 +1612,17 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 					// Current page
 					String CurrentPage = getwebelement(xml.getlocator("//locators/"+application+"/subscribePanel_currentPage")).getText();
 					int Current_page = Integer.parseInt(CurrentPage);
-					System.out.println("The current page is: " + Current_page);
+					Log.info("The current page is: " + Current_page);
 
 					assertEquals(k, Current_page);
 
-					System.out.println("Currently we are in page number: " + Current_page);
+					Log.info("Currently we are in page number: " + Current_page);
 
 					List<WebElement> results = getwebelements("(//div[div[text()='Subscribes']]/following-sibling::div//div[text()='"+ customerName +"'])[1]");
 					
 						
 					int numofrows = results.size();
-					System.out.println("no of results: " + numofrows);
+					Log.info("no of results: " + numofrows);
 					boolean resultflag;
 
 				
@@ -1637,9 +1637,9 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 						for (int i = 0; i < numofrows; i++) {
 							try {
 								resultflag = results.get(i).isDisplayed();
-								System.out.println("status of result: " + resultflag);
+								Log.info("status of result: " + resultflag);
 								if (resultflag) {
-									System.out.println(results.get(i).getText());
+									Log.info(results.get(i).getText());
 									results.get(i).click();
 									DriverTestcase.logger.log(LogStatus.PASS, customerName + " is selected under 'Subscribes' panel ");
 									Thread.sleep(8000);
@@ -1660,7 +1660,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 					}
 				}
 				}else {
-					System.out.println("No values available in table");
+					Log.info("No values available in table");
 					Log.info("No values available inside the 'Subscribes' table");
 					DriverTestcase.logger.log(LogStatus.FAIL, "No value available inside 'Subscribes' panel");
 				}
@@ -1732,12 +1732,12 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 					Thread.sleep(2000);
 					
 				}else {
-					System.out.println("Alert popup did not display");
+					Log.info("Alert popup did not display");
 					DriverTestcase.logger.log(LogStatus.FAIL, "Alert popup is not displaying, when we click on 'view' without selecting any Order ");
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
-				System.out.println("Alert popup did not display");
+				Log.info("Alert popup did not display");
 				DriverTestcase.logger.log(LogStatus.FAIL, "Alert popup is not displaying, when we click on 'view' without selecting any Order ");
 			}
 				

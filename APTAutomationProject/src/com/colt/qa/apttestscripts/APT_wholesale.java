@@ -35,13 +35,13 @@ public class APT_wholesale extends DriverTestcase{
 		
 			if(newCustomerName.equalsIgnoreCase("yes") && existingCustomer.equalsIgnoreCase("no")) {
 				
-				DriverTestcase.logger = DriverTestcase.extent.startTest("CreateNewCustomer");
+				DriverTestcase.logger = DriverTestcase.extent.startTest("CreateNewCustomer_wholesaleSIPTrunking");
 				APT_Helper.get().CreateCustomer("apt", map.get("newCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), 
 						map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), 
 						map.get("Fax"));
 				CustomerName=map.get("newCustomer");
 				
-				DriverTestcase.logger = DriverTestcase.extent.startTest("selectExistingCustomer"); 
+				DriverTestcase.logger = DriverTestcase.extent.startTest("selectExistingCustomer_wholesaleSIPTrunking"); 
 				APT_Helper.get().selectCustomertocreateOrder("apt",map.get("newCustomer"));
 				
 			}

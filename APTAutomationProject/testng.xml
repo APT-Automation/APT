@@ -3,7 +3,35 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
-      <class name="com.colt.qa.apttestscripts.APT_DomainManagementTest"/>
+      <class name="com.colt.qa.apttestscripts.APT_DomainManagementTest" />
+			<class name="com.colt.qa.apttestscripts.APT_HSSTest" />
+			<class name="com.colt.qa.apttestscripts.APT_IPTransitTest" />
+			<class name="com.colt.qa.apttestscripts.APT_ManageNetworkTest" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessSwitch" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_CoreRouter" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DCNDevice" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DSLAM" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Firewall" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Keyserver" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_LoadBalancer" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MDFFirewall" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MiniDSLAM" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Prizmnet" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_TrafficAggregator" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VoiceGateway" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VOIPAccessDASSwitch" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CustomerFunctionality" />
+			<class name="com.colt.qa.apttestscripts.APT_NGINMessageTest" />
+			<class name="com.colt.qa.apttestscripts.APT_NGINTest" />
+			<class name="com.colt.qa.apttestscripts.APT_SANManagementTest" />
+			<class name="com.colt.qa.apttestscripts.APT_VOIPAccessTest" />
+			<class name="com.colt.qa.apttestscripts.APT_wholesale" />
+			<class name="com.colt.qa.apttestscripts.DDI_Test" />
+			<class name="com.colt.qa.apttestscripts.IMSN_Translator" />
+			<class name="com.colt.qa.apttestscripts.Manage_Postcode" />
+			<class name="com.colt.qa.apttestscripts.PerformOrder_Supply" />	
+      
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -16,6 +16,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.dom4j.DocumentException;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -864,18 +865,41 @@ public class APT_NGINHelper extends DriverHelper {
               click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
               click_commonMethod(application, "Delete", "delete", xml);
               Thread.sleep(2000);
-              WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-              if(DeleteAlertPopup.isDisplayed())
-              {
-                    
-                    click_commonMethod(application, "Delete", "userdelete", xml);
-                    compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
-              }
-              else
-              {
-                    Log.info("Delete alert popup is not displayed");
-                    DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-              }
+              
+              Alert alert = driver.switchTo().alert();		
+        		
+     	     // Capturing alert message   
+     	       String alertMessage= driver.switchTo().alert().getText();
+     	       if(alertMessage.isEmpty()) {
+     	    	   DriverTestcase.logger.log(LogStatus.FAIL, "No message displays");
+     		       System.out.println("No Message displays"); 
+     	       }else {
+     	    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+     		       System.out.println("Text message for alert displays as: "+alertMessage);
+     	       }
+     	     
+     	     try {  
+     	       alert.accept();
+     	       Thread.sleep(2000);
+     	      
+     	     }catch(Exception e) {
+     	    	 e.printStackTrace();
+     	     } 
+
+//              WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
+//              if(DeleteAlertPopup.isDisplayed())
+//              {
+//                    
+//                    click_commonMethod(application, "Delete", "userdelete", xml);
+//                    compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
+//              }
+//              else
+//              {
+//                    Log.info("Delete alert popup is not displayed");
+//                    DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+//              }
+              
+     	     verifysuccessmessage(application, "User successfully deleted");
         }
         else
         {
@@ -1517,7 +1541,7 @@ public class APT_NGINHelper extends DriverHelper {
 		click_commonMethod(application, "Action dropdown", "ResellerActionDropdown", xml);
 		click_commonMethod(application, "Add", "AddLink", xml);
 		isDisplayed(application, "manageresellerheader", "Manage Reseller in OSP");
-		click_commonMethod(application, "OK", "OK_button", xml);
+		click_commonMethod(application, "Next", "Next_Button", xml);
 		warningMessage_commonMethod(application, "reselleremail_warngmsg", "Email", xml);
 		warningMessage_commonMethod(application, "resellercity_warngmsg", "City", xml);
 		warningMessage_commonMethod(application, "resellerstreetname_warngmsg", "Street Name", xml);
@@ -1548,7 +1572,7 @@ public class APT_NGINHelper extends DriverHelper {
 			System.out.println("Navigated to view service page");
 			scrollToTop();
 			//compareText(application, "Reseller created success message", "resellercreated_successmsg", "Manage Reseller successfully created", xml);
-			verifysuccessmessage(application, "Manage Reseller successfully created");
+			verifysuccessmessage(application, "Reseller successfully created. Please check the Reseller Status for association details.");
 		}
 		else
 		{
@@ -1589,6 +1613,8 @@ public class APT_NGINHelper extends DriverHelper {
 		}
 		ResellerName= ocn;
 		Clickon(AddedReseller);
+		
+		click_commonMethod(application, "Action dropdown", "ResellerActionDropdown", xml);
 	}
 
 
@@ -1599,13 +1625,14 @@ public void verify_ViewReseller(String application, String ocn, String email, St
 		String ResellerGrid= ResellerGridCheck.getAttribute("style");
 		WebElement AddedReseller= getwebelement("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ ocn +"')]/parent::div//span[contains(@class,'unchecked')]");
 		//WebElement AddedReseller= getwebelement("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'nginocn2506')]/parent::div//span[contains(@class,'unchecked')]");
+		
 		//View Reseller
 		if(!ResellerGrid.contains("height: 1px"))
 		{
 			Clickon(AddedReseller);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "ResellerActionDropdown", xml);
-		
+		Thread.sleep(2000);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
 		{
 			click_commonMethod(application, "View", "view", xml);
@@ -3777,10 +3804,10 @@ public void verify_EditReseller(String application, String ocn, String editemail
 	public void verifyBulkMove(String application, String sid, String customernamevalue, String sannumbervalue, String select_sansearchtype, String bulkmove_country, String bulkmove_customer, String filterfrcnumber, String bulkmove_service, String country, String sannumber, String ringtonumber, String routingforpayphone_value, String routingformobile_value, String defaultrouting_value, String RingToNumber_Checkbox, String AnnouncementToPlay_Checkbox, String ComplexRouting_Checkbox, String defaultroutebusy_value, String noanswer_value, String networkcongestion, String resellername, String defaultvalue, String configure, String email, String phone, String fax, String city, String streetname, String streetno, String pobox, String zipcode, String serviceprofilevalue, String bulkmove_sannumber1, String bulkmove_sannumber2) throws InterruptedException, DocumentException, IOException {
 		//Cancel Bulk Move
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorderlink")));
-
+		Thread.sleep(2000);
 		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/servicefield")),sid);
 		Thread.sleep(1000);
 
@@ -4218,7 +4245,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		Thread.sleep(1000);
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorderlink")));
-
+		Thread.sleep(2000);
 		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/servicefield")),bulkmove_service);
 		Thread.sleep(1000);
 

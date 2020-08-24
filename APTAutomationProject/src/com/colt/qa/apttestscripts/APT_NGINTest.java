@@ -94,6 +94,7 @@ public String CustomerName=null;
 		APT_NGIN.get().verify_EditReseller("nginservice", map.get("OCN"), map.get("Reseller_EditEmail"), map.get("Reseller_EditCity"), map.get("Reseller_EditStreetName"), map.get("Reseller_EditStreetNumber"), map.get("Reseller_EditPOBox"), map.get("Reseller_EditZipcode"), map.get("Reseller_EditPhone"), map.get("Reseller_EditFax"));
 
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyCustomerpanelinviewservicepage");
+		APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
 		APT_NGIN.get().verifyCustomerpanel("nginservice");
 	
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyAddCustomer");

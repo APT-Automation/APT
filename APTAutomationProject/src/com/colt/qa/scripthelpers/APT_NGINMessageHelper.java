@@ -35,7 +35,6 @@ public class APT_NGINMessageHelper extends DriverHelper{
 		click_commonMethod(application, "NGIN Messages", "nginmessageslink", xml);
 		Thread.sleep(2000);
 		compareText(application, "Manage Messages Header", "nginmessageheader", "Manage Messages - Messages Search", xml);
-		successScreenshot(application, "Create Customer");
 		isDisplayed(application, "nginmsg_sannumber", "SAN Number text field");
 		isDisplayed(application, "nginmsg_customername_textfield", "Customer Name text field");
 		Thread.sleep(1000);
@@ -315,7 +314,7 @@ public class APT_NGINMessageHelper extends DriverHelper{
 		}
 	}
 	
-	public void successScreenshot(String application, String Message) {
+	public void successScreenshot(String application) {
 	String screenshotBase64 = "data:image/jpg;base64," +((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
 	String ScreenshottoReport= DriverTestcase.logger.addScreenCapture(screenshotBase64);
 	DriverTestcase.logger.log(LogStatus.PASS, ScreenshottoReport);

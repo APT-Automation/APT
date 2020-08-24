@@ -724,18 +724,40 @@ public class APT_IPTransitHelper extends DriverHelper {
               click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
               click_commonMethod(application, "Delete", "delete", xml);
               Thread.sleep(2000);
-              WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-              if(DeleteAlertPopup.isDisplayed())
-              {
-                    
-                    click_commonMethod(application, "Delete", "userdelete", xml);
-                    compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
-              }
-              else
-              {
-                    Log.info("Delete alert popup is not displayed");
-                    DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-              }
+              
+              Alert alert = driver.switchTo().alert();		
+      		
+      	     // Capturing alert message   
+      	       String alertMessage= driver.switchTo().alert().getText();
+      	       if(alertMessage.isEmpty()) {
+      	    	   DriverTestcase.logger.log(LogStatus.FAIL, "No message displays");
+      		       System.out.println("No Message displays"); 
+      	       }else {
+      	    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+      		       System.out.println("Text message for alert displays as: "+alertMessage);
+      	       }
+      	     
+      	     try {  
+      	       alert.accept();
+      	       Thread.sleep(2000);
+      	      
+      	     }catch(Exception e) {
+      	    	 e.printStackTrace();
+      	     } 
+      	     
+//              WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
+//              if(DeleteAlertPopup.isDisplayed())
+//              {
+//                    
+//                    click_commonMethod(application, "Delete", "userdelete", xml);
+//                    compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
+//              }
+//              else
+//              {
+//                    Log.info("Delete alert popup is not displayed");
+//                    DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+//              }
+              
         }
         else
         {
@@ -3282,13 +3304,9 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				     }catch(Exception e) {
 				    	 e.printStackTrace();
 				     } 
-					
+				     break;
 				}
-				else
-				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Invalid device name");
-				}
-				break;
+				
 			}
 		}
 		else
@@ -3327,13 +3345,9 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 						Log.info("Delete alert popup is not displayed");
 						DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
 					}
-					
-				}
-				else
-				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Invalid device name");
-				}
+				
 				break;
+				}
 			}
 		}
 		else
@@ -3387,7 +3401,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 	}
 
-	public void verify_CiscoVendor_AddInterface(String application, String configureinterface_checkbox, String interfacename, String getaddress, String ipv6_getaddress_button, String interfaceaddressrange_value, String eipallocation_city, String eipallocation_subnetsize, String eipallocation_ipv6_subnetsize, String eipallocation_availableblocksvalue, String link_value, String bearertype_value, String bandwidth_value, String encapsulation_value, String bgp_checkbox, String framingtype_value, String vlanID_value, String bgptemplate_dropdownvalue, String cpewan_value, String cpewanipv6_value, String descriptionfield_value, String ascustomerfield_value, String bgppassword_value) throws InterruptedException, DocumentException, IOException {
+	public void verify_CiscoVendor_AddInterface(String application, String configureinterface_checkbox, String interfacename, String getaddress, String ipv6_getaddress_button, String interfaceaddressrange_value, String eipallocation_city, String eipallocation_subnetsize, String eipallocation_ipv6_subnetsize, String eipallocation_availableblocksvalue, String link_value, String bearertype_value, String ciscovendor_bandwidth_value, String encapsulation_value, String bgp_checkbox, String framingtype_value, String vlanID_value, String bgptemplate_dropdownvalue, String cpewan_value, String cpewanipv6_value, String descriptionfield_value, String ascustomerfield_value, String bgppassword_value) throws InterruptedException, DocumentException, IOException {
 
 		ScrolltoElement(application, "routertools_header", xml);
 		Thread.sleep(1000);
@@ -3398,13 +3412,13 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		scrollToTop();
 		GetText(application, "Add Interface header", "addinterface_header");
 		scrolltoend();
+		Thread.sleep(1000);
 		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(1000);
 		scrollToTop();
 		//verify warning messages in add interface page
 		warningMessage_commonMethod(application, "interface_warngmsg", "Interface", xml);
 		warningMessage_commonMethod(application, "bearertype_warngmsg", "Bearer Type", xml);
-		warningMessage_commonMethod(application, "bandwidth_warngmsg", "Bandwidth", xml);
 		warningMessage_commonMethod(application, "encapsulation_warngmsg", "Encapsulation", xml);
 
 		//Add Interface
@@ -3414,6 +3428,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 		//verify EIP Allocation
 		Thread.sleep(1000);
+		scrollToTop();
 		click_commonMethod(application, "EIP Allocation button", "eipallocation1_button", xml);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/eipsubnetallocation_header")).isDisplayed())
 		{
@@ -3453,10 +3468,12 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 		//verify EIP Allocation
 		Thread.sleep(1000);
+		ScrolltoElement(application, "network_fieldvalue", xml);
 		click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/eipallocationIPv6_header")).isDisplayed())
 		{
-			compareText(application, "EIP Address Allocation header", "eipallocationIPv6_header", "EIP Address Allocation For Interface  ", xml);
+			//compareText(application, "EIP Address Allocation header", "eipallocationIPv6_header", "EIP Address Allocation For Interface  ", xml);
+			GetText(application, "EIP Address Allocation header", "eipallocationIPv6_header");
 			GetText(application, "Subnet Type", "subnettype_value");
 			GetText(application, "Space Name", "eipallocation_spacename");
 			addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_ipv6_subnetsize", eipallocation_ipv6_subnetsize, xml);
@@ -3465,15 +3482,15 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
 			Thread.sleep(2000);
 			scrollToTop();
-			//compareText(application, "Subnet aalocation success message", "successmsg", "Subnet Allocation IPTransitService_05-IPTransitService_05-XFER-0017527 (null)Successfully", xml);
-			verifysuccessmessage(application, "Subnet Allocation IPTransitService_05-IPTransitService_05-XFER-0017527 (null)Successfully");
+			GetText(application, "Subnet allocation success message", "successmsg");
+			//verifysuccessmessage(application, "Subnet Allocation IPTransitService_05-IPTransitService_05-XFER-0017527 (null)Successfully");
 		}
 		else
 		{
 			DriverTestcase.logger.log(LogStatus.FAIL, "EIP Allocation button is not working");
 		}
 		Thread.sleep(2000);
-
+		ScrolltoElement(application, "network_fieldvalue", xml);
 		//verify getaddress ipv6
 		if(ipv6_getaddress_button.equalsIgnoreCase("yes"))
 		{
@@ -3493,13 +3510,10 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 		ScrolltoElement(application, "link_textfield", xml);
 		addtextFields_commonMethod(application, "Link", "link_textfield", link_value, xml);
-		//addDropdownValues_commonMethod(application, "Bearer Type", "bearertype_dropdown", bearertype_value, xml);
-		//addDropdownValues_commonMethod(application, "Bandwidth", "bandwidth_dropdown", bandwidth_value, xml);
 		selectValueInsideDropdown(application, "bearertype_dropdown", "Bearer Type", bearertype_value, xml);
-		selectValueInsideDropdown(application, "bandwidth_dropdown", "Bandwidth", bandwidth_value, xml);
+		Thread.sleep(2000);
+		selectValueInsideDropdown(application, "bandwidth_dropdown", "Bandwidth", ciscovendor_bandwidth_value, xml);
 		if(bearertype_value.equalsIgnoreCase("E1")) {
-			//addDropdownValues_commonMethod(application, "Framing Type", "framingtype_dropdown", framingtype_value, xml);
-			//addDropdownValues_commonMethod(application, "Encapsulation", "encapsulation_dropdown", encapsulation_value, xml);
 			selectValueInsideDropdown(application, "framingtype_dropdown", "Framing Type", framingtype_value, xml);
 			selectValueInsideDropdown(application, "encapsulation_dropdown", "Encapsulation", encapsulation_value, xml);
 		}
@@ -3509,11 +3523,11 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		}
 		else
 		{
-			//addDropdownValues_commonMethod(application, "Encapsulation", "encapsulation_dropdown", encapsulation_value, xml);
 			selectValueInsideDropdown(application, "encapsulation_dropdown", "Encapsulation", encapsulation_value, xml);
 		}
+		
 		Thread.sleep(1000);
-		scrolltoend();
+		ScrolltoElement(application, "link_textfield", xml);
 		addCheckbox_commonMethod(application, "bgp_checkbox", "BGP", bgp_checkbox, "no", xml);
 		if(bgp_checkbox.equalsIgnoreCase("yes"))
 		{
@@ -3525,6 +3539,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			addtextFields_commonMethod(application, "BGP PASSWORD", "bgppassword_field", bgppassword_value, xml);
 		}
 
+		scrolltoend();
 		//configuration panel in add interface page
 		if(configureinterface_checkbox.equalsIgnoreCase("yes"))
 		{
@@ -3542,7 +3557,6 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			click_commonMethod(application, "OK", "okbutton", xml);
 		}
 		Thread.sleep(5000);
-		//compareText(application, "Interface Added success message", "successmsg", "Interface added successfully", xml);
 		verifysuccessmessage(application, "Interface added successfully");
 		Thread.sleep(2000);
 
@@ -3589,7 +3603,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 	}
 
-	public void verify_CiscoVendor_EditInterface(String application, String interfacename, String getaddress, String ipv6_getaddress_button, String name, String editDevicename, String edit_configureinterface_checkbox, String edit_interfacename, String edit_network, String edit_eipallocation_city, String edit_interfaceaddressrange_value, String edit_interfaceaddressrangeIPv6_value, String edit_ipallocation_availableblocksvalue, String edit_linkvalue, String edit_bearertype_value, String edit_bandwidth_value, String edit_framingtype_value, String edit_encapsulation_value, String edit_vlanID_value, String edit_bgp_checkbox, String edit_bgptemplate_dropdownvalue, String edit_cpewan_value, String edit_cpewanipv6_value, String edit_descriptionfield_value, String edit_ascustomerfield_value, String edit_bgppassword_value, String ipsubnetipv6_value, String ipsubnetipv4_value) throws InterruptedException, DocumentException, IOException {
+	public void verify_CiscoVendor_EditInterface(String application, String interfacename, String getaddress, String ipv6_getaddress_button, String name, String editDevicename, String edit_configureinterface_checkbox, String edit_interfacename, String edit_network, String edit_eipallocation_city, String edit_interfaceaddressrange_value, String edit_interfaceaddressrangeIPv6_value, String edit_ipallocation_availableblocksvalue, String edit_linkvalue, String edit_bearertype_value, String edit_ciscovendor_bandwidth_value, String edit_framingtype_value, String edit_encapsulation_value, String edit_vlanID_value, String edit_bgp_checkbox, String edit_bgptemplate_dropdownvalue, String edit_cpewan_value, String edit_cpewanipv6_value, String edit_descriptionfield_value, String edit_ascustomerfield_value, String edit_bgppassword_value, String ipsubnetipv6_value, String ipsubnetipv4_value, String edit_eipallocation_subnetsize, String edit_eipallocation_ipv6_subnetsize) throws InterruptedException, DocumentException, IOException {
 		
 		//edit Interface
 		ScrolltoElement(application, "portalaccess_header", xml);
@@ -3618,7 +3632,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			click_commonMethod(application, "Edit", "edit", xml);
 			Thread.sleep(2000);
 			compareText(application, "Edit Interface/Link", "editinterface_header", "Edit", xml);
-
+			scrollToTop();
 			editcheckbox_commonMethod(application, edit_configureinterface_checkbox, "configureinterface_checkbox", "Configure Interface on Device", xml);
 			if(!edit_interfacename.equalsIgnoreCase("null"))
 			{
@@ -3639,7 +3653,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				compareText(application, "EIP Subnet Allocation", "eipsubnetallocation_header", "EIP Subnet Allocation", xml);
 				GetText(application, "Subnet Type", "subnettype_value");
 				addDropdownValues_commonMethod(application, "City", "eipallocation_citydropdown", edit_eipallocation_city, xml);
-				addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_subnetsize", edit_interfaceaddressrange_value, xml);
+				addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_subnetsize", edit_eipallocation_subnetsize, xml);
 				GetText(application, "Available Pools", "eipallocation_availablepools_value");
 				//click_commonMethod(application, "Allocate subnet button", "allocatesubnet_button", xml);
 				Thread.sleep(1000);
@@ -3660,22 +3674,24 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			}
 			else
 			{
-				addtextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrange_textfield", edit_interfaceaddressrange_value, xml);
+				addtextFields_commonMethod(application, "Interface Address Range", "ciscovendor_interfaceaddressrange_textfield", edit_interfaceaddressrange_value, xml);
 				Thread.sleep(1000);
 				click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
 
 			}
-			compareText_fromtextFields(application, "Network", "networkipv6_fieldvalue", "WAN (XFER)", xml);
+			compareText_fromtextFields(application, "Network", "networkipv6_fieldvalue", "WAN(XFER)", xml);
 
 			//verify EIP Allocation
 			Thread.sleep(1000);
+			ScrolltoElement(application, "network_fieldvalue", xml);
 			click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
 			if(getwebelement(xml.getlocator("//locators/" + application + "/eipallocationIPv6_header")).isDisplayed())
 			{
-				compareText(application, "EIP Address Allocation header", "eipallocationIPv6_header", "EIP Address Allocation For Interface  ", xml);
+				//compareText(application, "EIP Address Allocation header", "eipallocationIPv6_header", "EIP Address Allocation For Interface  ", xml);
+				GetText(application, "EIP Address Allocation header", "eipallocationIPv6_header");
 				GetText(application, "Subnet Type", "subnettype_value");
 				GetText(application, "Space Name", "eipallocation_spacename");
-				addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_ipv6_subnetsize", edit_interfaceaddressrange_value, xml);
+				addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_ipv6_subnetsize", edit_eipallocation_ipv6_subnetsize, xml);
 				addDropdownValues_commonMethod(application, "Available Blocks", "availableblocks_dropdown", edit_ipallocation_availableblocksvalue, xml);
 				Thread.sleep(1000);
 				click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
@@ -3690,6 +3706,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			Thread.sleep(2000);
 
 			//verify getaddress ipv6
+			ScrolltoElement(application, "network_fieldvalue", xml);
 			if(ipv6_getaddress_button.equalsIgnoreCase("yes"))
 			{
 				click_commonMethod(application, "Get Address", "getaddress2_button", xml);
@@ -3707,7 +3724,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			ScrolltoElement(application, "link_textfield", xml);
 			addtextFields_commonMethod(application, "Link", "link_textfield", edit_linkvalue, xml);
 			addDropdownValues_commonMethod(application, "Bearer Type", "bearertype_dropdown", edit_bearertype_value, xml);
-			addDropdownValues_commonMethod(application, "Bandwidth", "bandwidth_dropdown", edit_bandwidth_value, xml);
+			addDropdownValues_commonMethod(application, "Bandwidth", "bandwidth_dropdown", edit_ciscovendor_bandwidth_value, xml);
 			if(edit_bearertype_value.equalsIgnoreCase("E1")) {
 				addDropdownValues_commonMethod(application, "Framing Type", "framingtype_dropdown", edit_framingtype_value, xml);
 				addDropdownValues_commonMethod(application, "Encapsulation", "encapsulation_dropdown", edit_encapsulation_value, xml);
@@ -3721,15 +3738,14 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				addDropdownValues_commonMethod(application, "Encapsulation", "encapsulation_dropdown", edit_encapsulation_value, xml);
 			}
 			Thread.sleep(1000);
-			scrolltoend();
-
-			if(getwebelement(xml.getlocator("//locators/" + application + "/bgp_checkbox")).isSelected())
-			{
+			
+			ScrolltoElement(application, "link_textfield", xml);
+			
 				editcheckbox_commonMethod(application, edit_bgp_checkbox, "bgp_checkbox", "BGP", xml);
 				if(edit_bgp_checkbox.equalsIgnoreCase("yes"))
 				{
 					addDropdownValues_commonMethod(application, "BGP Templates Generate For", "bgptemplate_dropdown", edit_bgptemplate_dropdownvalue, xml);
-				}
+				
 				if(!edit_cpewan_value.equalsIgnoreCase("null"))
 				{
 					cleartext(application, "CPE WAN", "cpewan_textfield");
@@ -3794,11 +3810,38 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			}
 			Thread.sleep(1000);
 			scrolltoend();
-			click_commonMethod(application, "OK", "okbutton", xml);
+			//configuration panel in edit interface page
+			if(edit_configureinterface_checkbox.equalsIgnoreCase("Yes"))
+			{
+				ScrolltoElement(application, "configuration_header", xml);
+				compareText(application, "Configuration", "configuration_header", "Configuration", xml);
+				click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
+				
+				Thread.sleep(2000);
+				//click_commonMethod(application, "OK", "configAlert_okbutton", xml);
+				GetText(application, "Configuration", "configuration_textarea");
+				Thread.sleep(1000);
+				click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
+				Thread.sleep(2000);
+				scrolltoend();
+				Thread.sleep(1000);
+				compareText(application, "Interface Configuration History header", "interfaceconfighistory_header", "Interface Configuration History", xml);
+				compareText(application, "Date column", "date_column", "Date", xml);
+				compareText(application, "File Name column", "filename_column", "File Name", xml);
+				Thread.sleep(1000);
+				click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
+				
+				Thread.sleep(5000);
+				//compareText(application, "Interface update success message", "successmsg", "Interface successfully updated", xml);
+				verifysuccessmessage(application, "Interface successfully updated");
+			}
+			else
+			{
+				scrolltoend();
+				click_commonMethod(application, "OK", "okbutton", xml);
 			Thread.sleep(2000);
-			//compareText(application, "Interface update success message", "successmsg", "Interface successfully updated", xml);
 			verifysuccessmessage(application, "Interface successfully updated");
-
+			}
 		}
 		else
 		{
@@ -3890,7 +3933,6 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
 			Thread.sleep(2000);
 			scrollToTop();
-			//compareText(application, "Subnet allocation success message", "successmsg", "Subnet Allocation IPTransitService_05-IPTransitService_05-XFER-0017527 (null)Successfully", xml);
 			GetText(application, "Subnet allocation success message", "successmsg");
 			//verifysuccessmessage(application, "Subnet Allocation IPTransitService_05-IPTransitService_05-XFER-0017527 (null)Successfully");
 		}
@@ -3918,27 +3960,18 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 		ScrolltoElement(application, "getaddress2_button", xml);
 		addtextFields_commonMethod(application, "Link", "link_textfield", link_value, xml);
-		//addDropdownValues_commonMethod(application, "Bearer Type", "bearertype_dropdown", bearertype_value, xml);
 		selectValueInsideDropdown(application, "bearertype_dropdown", "Bearer Type", bearertype_value, xml);
 		Thread.sleep(2000);
 		if(bearertype_value.equalsIgnoreCase("10Gigabit Ethernet") || bearertype_value.equalsIgnoreCase("Gigabit Ethernet")) {
-			//addDropdownValues_commonMethod(application, "Bandwidth", "bandwidth_dropdown", bandwidth_value, xml);
-			//addDropdownValues_commonMethod(application, "Card Type", "cardtype_dropdown", cardtype_dropdownvalue_gigabit, xml);
-			//addDropdownValues_commonMethod(application, "Encapsulation", "encapsulation_dropdown", encapsulation_value, xml);
 			selectValueInsideDropdown(application, "bandwidth_dropdown", "Bandwidth", bandwidth_value, xml);
 			selectValueInsideDropdown(application, "cardtype_dropdown", "Card Type", cardtype_dropdownvalue_gigabit, xml);
 			selectValueInsideDropdown(application, "encapsulation_dropdown", "Encapsulation", encapsulation_value, xml);
 		}
 		else if(bearertype_value.equalsIgnoreCase("E1"))
 		{
-			//addDropdownValues_commonMethod(application, "Bandwidth", "bandwidth_dropdown", bandwidth_value, xml);
-			//addDropdownValues_commonMethod(application, "Card Type", "cardtype_dropdown", cardtype_dropdownvalue, xml);
-			//addDropdownValues_commonMethod(application, "Encapsulation", "encapsulation_dropdown", encapsulation_value, xml);
 			selectValueInsideDropdown(application, "bandwidth_dropdown", "Bandwidth", bandwidth_value, xml);
 			selectValueInsideDropdown(application, "cardtype_dropdown", "Card Type", cardtype_dropdownvalue, xml);
 			selectValueInsideDropdown(application, "encapsulation_dropdown", "Encapsulation", encapsulation_value, xml);
-			//addDropdownValues_commonMethod(application, "Framing Type", "framingtype_dropdown", framingtype_value, xml);
-			//addDropdownValues_commonMethod(application, "Clock Source", "clocksource_dropdown", clocksource_value, xml);
 			selectValueInsideDropdown(application, "framingtype_dropdown", "Framing Type", framingtype_value, xml);
 			selectValueInsideDropdown(application, "clocksource_dropdown", "Clock Source", clocksource_value, xml);
 			addtextFields_commonMethod(application, "STM1 Number", "STM1Number_textfield", STM1Number_value, xml);
@@ -3946,9 +3979,6 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		}
 		else if(bearertype_value.equalsIgnoreCase("E3") || bearertype_value.equalsIgnoreCase("T3"))
 		{
-			//addDropdownValues_commonMethod(application, "Bandwidth", "bandwidth_dropdown", bandwidth_value, xml);
-			//addDropdownValues_commonMethod(application, "Card Type", "cardtype_dropdown", cardtype_dropdownvalue, xml);
-			//addDropdownValues_commonMethod(application, "Encapsulation", "encapsulation_dropdown", encapsulation_value, xml);
 			selectValueInsideDropdown(application, "bandwidth_dropdown", "Bandwidth", bandwidth_value, xml);
 			selectValueInsideDropdown(application, "cardtype_dropdown", "Card Type", cardtype_dropdownvalue, xml);
 			selectValueInsideDropdown(application, "encapsulation_dropdown", "Encapsulation", encapsulation_value, xml);
@@ -3957,9 +3987,6 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		}
 		else if(bearertype_value.equalsIgnoreCase("STM-1"))
 		{
-			//addDropdownValues_commonMethod(application, "Bandwidth", "bandwidth_dropdown", bandwidth_value, xml);
-			//addDropdownValues_commonMethod(application, "Card Type", "cardtype_dropdown", cardtype_dropdownvalue, xml);
-			//addDropdownValues_commonMethod(application, "Encapsulation", "encapsulation_dropdown", encapsulation_value, xml);
 			selectValueInsideDropdown(application, "bandwidth_dropdown", "Bandwidth", bandwidth_value, xml);
 			selectValueInsideDropdown(application, "cardtype_dropdown", "Card Type", cardtype_dropdownvalue, xml);
 			selectValueInsideDropdown(application, "encapsulation_dropdown", "Encapsulation", encapsulation_value, xml);
@@ -3967,7 +3994,6 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		}
 		else
 		{
-			//addDropdownValues_commonMethod(application, "Encapsulation", "encapsulation_dropdown", encapsulation_value, xml);
 			selectValueInsideDropdown(application, "encapsulation_dropdown", "Encapsulation", encapsulation_value, xml);
 			addtextFields_commonMethod(application, "STM1 Number", "STM1Number_textfield", STM1Number_value, xml);
 		}
@@ -3989,7 +4015,6 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		addCheckbox_commonMethod(application, "bgp_checkbox", "BGP", bgp_checkbox, "no", xml);
 		if(bgp_checkbox.equalsIgnoreCase("yes"))
 		{
-			//addDropdownValues_commonMethod(application, "BGP Templates Generate For", "bgptemplate_dropdown", bgptemplate_dropdownvalue, xml);
 			selectValueInsideDropdown(application, "bgptemplate_dropdown", "BGP Templates Generate For", bgptemplate_dropdownvalue, xml);
 			addtextFields_commonMethod(application, "CPE WAN", "cpewan_textfield", cpewan_value, xml);
 			addtextFields_commonMethod(application, "CPE WAN IPv6 Address", "cpewanipv6_textfield", cpewanipv6_value, xml);
@@ -4290,9 +4315,9 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			}
 
 			//configuration panel in edit interface page
-			ScrolltoElement(application, "configuration_header", xml);
 			if(edit_juniper_configureinterface_checkbox.equalsIgnoreCase("Yes"))
 			{
+				ScrolltoElement(application, "configuration_header", xml);
 				compareText(application, "Configuration", "configuration_header", "Configuration", xml);
 				click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
 				

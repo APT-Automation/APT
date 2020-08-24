@@ -370,6 +370,7 @@
 <viewUser_HiddenRouterToolCommandIPv4Huawei>//div[label[text()='Hide Router Tools IPv4 Commands(Huawei)']]//following-sibling::div</viewUser_HiddenRouterToolCommandIPv4Huawei>
 <viewUser_HiddenRouterToolCommandIPv6Cisco>//div[div[label[text()='Hide Router Tools IPv6 Commands(Cisco)']]]//following-sibling::div</viewUser_HiddenRouterToolCommandIPv6Cisco>
 
+<selectValueUnderUserPanel_ViewSericePage>//div[contains(text(),'value')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']</selectValueUnderUserPanel_ViewSericePage>
 
 <!-- Management Options panel in view service page -->
 
@@ -644,6 +645,7 @@
 <bandwidth_dropdown>//label[text()='Bandwidth']/parent::div//select</bandwidth_dropdown>
 <encapsulation_dropdown>//label[text()='Encapsulation']/parent::div//select</encapsulation_dropdown>
 <cardtype_dropdown>//label[text()='Card Type']/parent::div//select</cardtype_dropdown>
+<ciscovendor_interfaceaddressrange_textfield>//input[@name='interfaceAddressRange']</ciscovendor_interfaceaddressrange_textfield>
 <interfaceaddressrange_textfield>//input[@id='interfaceAddressRange']</interfaceaddressrange_textfield>
 <interfaceaddressrangeIPv6_textfield>//label[text()='Interface Address Range IPV6']/following-sibling::input</interfaceaddressrangeIPv6_textfield>
 <eipsubnetallocation_header>//div[text()='EIP Subnet Allocation']</eipsubnetallocation_header>
@@ -654,6 +656,7 @@
 <allocatesubnet_button>//span[text()='Allocate Subnet']</allocatesubnet_button>
 <eipallocationIPv6_header>//div[contains(text(),'EIP Address Allocation For Interface  ')]</eipallocationIPv6_header>
 <eipallocation_spacename>//label[text()=' Space Name ']/parent::div/following-sibling::div</eipallocation_spacename>
+<eipallocation_ipv6_subnetsize>//label[text()='Sub Net Size']/parent::div//input</eipallocation_ipv6_subnetsize>
 <availableblocks_dropdown>//label[text()='Available Blocks']/parent::div//input</availableblocks_dropdown>
 <bgp_checkbox>//input[@id='bgp']</bgp_checkbox>
 <configuration_header>//div[text()='Configuration']</configuration_header>

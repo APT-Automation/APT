@@ -1,6 +1,6 @@
 package com.colt.qa.apttestscripts;
 
-	import java.io.IOException;
+import java.io.IOException;
 import java.util.Map;
 
 import org.dom4j.DocumentException;

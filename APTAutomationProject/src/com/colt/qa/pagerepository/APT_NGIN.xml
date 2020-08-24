@@ -302,6 +302,8 @@
 <viewUser_HiddenRouterToolCommandIPv4Huawei>//div[label[text()='Hide Router Tools IPv4 Commands(Huawei)']]//following-sibling::div</viewUser_HiddenRouterToolCommandIPv4Huawei>
 <viewUser_HiddenRouterToolCommandIPv6Cisco>//div[div[label[text()='Hide Router Tools IPv6 Commands(Cisco)']]]//following-sibling::div</viewUser_HiddenRouterToolCommandIPv6Cisco>
 
+<selectValueUnderUserPanel_ViewSericePage>//div[contains(text(),'value')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']</selectValueUnderUserPanel_ViewSericePage>
+
 <!-- Management Options panel in view service page -->
 <managementoptions_header>//div[text()='Management Options']</managementoptions_header>
 <customeradmin_text>//label[text()='Customer Administration']</customeradmin_text>

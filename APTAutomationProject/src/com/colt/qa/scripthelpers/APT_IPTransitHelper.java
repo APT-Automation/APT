@@ -1412,7 +1412,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		}
 		catch (Exception e) {
 			String Synchronization_serviceError= getwebelement(xml.getlocator("//locators/" + application + "/synchronization_serviceerror")).getText();
-			DriverTestcase.logger.log(LogStatus.FAIL, "Synchronize link is not displaying. It is displaying as: " +Synchronization_serviceError);
+			DriverTestcase.logger.log(LogStatus.INFO, "Synchronize link is not displaying. It is displaying as: " +Synchronization_serviceError);
 		}
 		
 		scrolltoend();

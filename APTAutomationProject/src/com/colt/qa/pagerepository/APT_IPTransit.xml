@@ -208,7 +208,7 @@
 
 <vistamart_status>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[5]/span</vistamart_status>
 <vistamart_datetime>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[5]//p</vistamart_datetime>
-
+<synchronization_serviceerror>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[5]/span</synchronization_serviceerror>
 <synchronizelink>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[3]/div//a[text()='Synchronize']</synchronizelink>
 <managepage_backbutton>//span[text()='Back']</managepage_backbutton>
 <Servicestatus_popup>//div[@class='modal-content']</Servicestatus_popup>

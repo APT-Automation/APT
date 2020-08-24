@@ -3,18 +3,17 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.saksoft.qa.apttestscripts.APT_AutomationTest">
+      <class name="com.colt.qa.apttestscripts.APT_wholesale">
         <methods>
-          <include name="setup"/>
-          <include name="startReport"/>
-          <include name="endReport"/>
           <include name="Teardown"/>
-          <include name="verifycreateorder" invocation-numbers="0"/>
-          <include name="BeforeMethod"/>
-          <include name="BeforeSuite"/>
+          <include name="wholeSale" invocation-numbers="0"/>
           <include name="getResult"/>
+          <include name="BeforeMethod"/>
+          <include name="endReport"/>
+          <include name="startReport"/>
+          <include name="BeforeSuite"/>
         </methods>
-      </class> <!-- com.saksoft.qa.apttestscripts.APT_AutomationTest -->
+      </class> <!-- com.colt.qa.apttestscripts.APT_wholesale -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

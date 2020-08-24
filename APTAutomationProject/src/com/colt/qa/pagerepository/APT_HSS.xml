@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<locators>
+<hss>
+<ManageCustomerServiceLink>(//div[@class='ant-menu-submenu-title'])[2]</ManageCustomerServiceLink>
+<CreateOrderServiceLink>//li[text()='Create Order/Service']</CreateOrderServiceLink>
+<entercustomernamefield>//input[@id='customerName']</entercustomernamefield>
+<chooseCustomerdropdown>//div[label[text()='Choose a customer']]//input</chooseCustomerdropdown>
+
+<Next_Button>//button//Span[text()='Next']</Next_Button>
+
+<mcslink>//a[contains(text(),"Manage Customer's Service")]</mcslink>
+<createcustomerlink>//li[text()='Create Customer']</createcustomerlink>
+<createorderlink>//li[text()='Create Order/Service']</createorderlink>
+
+<!-- Create Customer Page -->
+<createcustomer_header>//div[@class='heading-green-row row']//p</createcustomer_header>
+<nametextfield>//input[@id='name']</nametextfield>
+<maindomaintextfield>//input[@id='mainDomain']</maindomaintextfield>
+<country>//div[label[contains(text(),'Country')]]//input</country>
+<ocntextfield>//input[@id='ocn']</ocntextfield>
+<referencetextfield>//input[@id='reference']</referencetextfield>
+<technicalcontactnametextfield>//input[@id='techinicalContactName']</technicalcontactnametextfield>
+<typedropdown>//div[label[contains(text(),'Type')]]//input</typedropdown>
+<emailtextfield>//input[@id='email']</emailtextfield>
+<phonetextfield>//input[@id='phone']</phonetextfield>
+<faxtextfield>//input[@id='fax']</faxtextfield>
+<enablededicatedportalcheckbox>//input[@id='enabledDedicatedPortal']</enablededicatedportalcheckbox>
+<dedicatedportaldropdown>//div[label[text()='Dedicated Portal']]//input</dedicatedportaldropdown>
+<customercreationsuccessmsg>//div[@role='alert']//span</customercreationsuccessmsg>
+<clearbutton>//span[text()='Clear']</clearbutton>
+<clearcountryvalue>//label[text()='Country']/parent::div//div[text()='×']</clearcountryvalue>
+<cleartypevalue>//label[text()='Type']/parent::div//div[text()='×']</cleartypevalue>
+
+<!--  Verify warning messages -->
+<customernamewarngmsg>//input[@id='name']/parent::div//div</customernamewarngmsg>
+<countrywarngmsg>//div[label[contains(text(),'Country')]]/following-sibling::div</countrywarngmsg>
+<ocnwarngmsg>//input[@id='ocn']/parent::div//div</ocnwarngmsg>
+<typewarngmsg>//div[label[contains(text(),'Type')]]/following-sibling::div</typewarngmsg>
+<emailwarngmsg>//input[@id='email']/parent::div//div</emailwarngmsg>
+<customer_createorderpage_warngmsg>//div[text()='Choose a customer']</customer_createorderpage_warngmsg>
+<sidwarngmsg>//input[@id='serviceIdentification']/parent::div//div</sidwarngmsg>
+
+<!-- create order/service page -->
+<createordernametextfield>//input[@id='customerName']</createordernametextfield>
+<customerdropdown>//div[label[text()='Customer']]/div</customerdropdown>
+<nextbutton>//span[contains(text(),'Next')]</nextbutton>
+<choosocustomerwarningmsg>//body/div[@id='root']/div/div[contains(@class,'app-container app-theme-white fixed-header fixed-sidebar fixed-footer')]/div[contains(@class,'app-main')]/div[contains(@class,'app-main__outer')]/div[contains(@class,'app-main__inner')]/div[contains(@class,'div-border div-margin container')]/form/div[contains(@class,'div-margin row')]/div[contains(@class,'col-12 col-sm-12 col-md-3')]/div[contains(@class,'position-relative form-group')]/div[2]</choosocustomerwarningmsg>
+
+<!-- Create Order/service panel in view customer page -->
+<CreateOrderHeader>//div[text()='Create Order / Service']</CreateOrderHeader>
+<ordercontractnumber>//div[div[label[text()='Order/Contract Number']]]//input[@size='9']</ordercontractnumber>
+<selectorderswitch>(//div[@class='react-switch-bg'])[1]</selectorderswitch>
+<createorderswitch>//form[@name='createOrder']//div[2]//div[1]//div[3]//div[1]//div[1]//div[1]</createorderswitch>
+<rfireqiptextfield>//div[contains(@class,'col-md-3 col-sm-12 col-12')]//input[@id='rfiRfqIpVoiceLineNo']</rfireqiptextfield>
+<existingorderdropdown>//label[text()='Order/Contract Number(Parent SID)']/parent::div//div//input</existingorderdropdown>
+<existingorderdropdownvalue>//span[text()='12345']</existingorderdropdownvalue>
+<createorderbutton>//button//span[text()='Create Order']</createorderbutton>
+<newordertextfield>//input[@id='orderName']</newordertextfield>
+<newrfireqtextfield>//div[@class='form-group']//input[@id='rfiRfqIpVoiceLineNo']</newrfireqtextfield>
+<OrderCreatedSuccessMsg>//div[@role='alert']//span[text()='Order created successfully']</OrderCreatedSuccessMsg>
+
+<order_contractnumber_warngmsg>//div[label[contains(text(),'Order/Contract Number(Parent SID)')]]/following-sibling::span</order_contractnumber_warngmsg>
+<servicetype_warngmsg>//div[label[contains(text(),'Service Type')]]/following-sibling::span</servicetype_warngmsg>
+
+<servicetypetextfield>//div[div[label[text()='Service Type']]]//input</servicetypetextfield>
+<networkconfigurationinputfield>//div[div[label[text()='Network Configuration']]]//input</networkconfigurationinputfield>
+<OrderContractNumber_Select>(//div[@class='react-dropdown-select-content react-dropdown-select-type-single css-jznujr-ContentComponent e1gn6jc30'])[1]</OrderContractNumber_Select>
+<changeorder_cancelbutton>//span[contains(text(),'Cancel')]</changeorder_cancelbutton>
+
+<!-- Service Creation -->
+<createorderservice_header>//div//div[text()=' Create Order / Service']</createorderservice_header>
+<userspanel_header>//div[text()='Users']</userspanel_header>
+<ServiceMessg>//span[contains(text(),'Service successfully created.')]</ServiceMessg>
+<ServiceIdentification>//input[@id='serviceIdentification']</ServiceIdentification>
+<forwardarrow>//span[contains(text(),'>>')]</forwardarrow>
+<forwardarrow_1>(//span[contains(text(),'>>')])[2]</forwardarrow_1>
+<EmailText>//div[label[contains(text(),'Email')]]//input</EmailText>
+<EmailLabel>//label[contains(text(),'Email')]</EmailLabel>
+<PhoneContact>//input[@id='phoneContact']</PhoneContact>
+<RemarkText>//textarea[@name='remark']</RemarkText>    
+<RemarkLabel>//label[contains(text(),'Remark')]</RemarkLabel>
+<PerformancereportingLabel>//label[contains(text(),'Performance Reporting')]</PerformancereportingLabel>
+<performanceReportingcheckbox>//div[label[contains(text(),'Performance Reporting')]]//input</performanceReportingcheckbox>
+
+<ServiceIdentificationLabel>//label[contains(text(),'Service Identification')]</ServiceIdentificationLabel>
+<ServiceTypeLabel>//label[contains(text(),'Service Type')]</ServiceTypeLabel>
+<PhoneContactLabel>//label[contains(text(),'Phone Contact')]</PhoneContactLabel>
+<PerformancereportingLabel>//label[contains(text(),'Performance Reporting')]</PerformancereportingLabel>
+<WaveServicelabel>//label[contains(text(),'Wave Service')]</WaveServicelabel>
+<waveServiceCheckbox>//div[label[contains(text(),'Wave Service')]]//input</waveServiceCheckbox>
+<serviceIdentificationerrmsg>//div[contains(text(),'Service Identification')]</serviceIdentificationerrmsg>
+<OKbutton>//span[contains(text(),'OK')]</OKbutton>
+<Cancelbtn>//span[contains(text(),'Cancel')]</Cancelbtn>
+
+<customerdetailsheader>//div[text()='Customer Details']</customerdetailsheader>
+<orderpanelheader>//div[text()='Order']</orderpanelheader>
+
+<!-- service panel -->
+<edit>//div[@class='dropdown-menu show']//a[text()='Edit']</edit>
+<serviceidentificationtextfield>//input[@id='serviceIdentification']</serviceidentificationtextfield>
+<remarktextarea>//textarea[contains(@name,'remark')]</remarktextarea>
+<servicepanel_serviceidentificationvalue>//label[contains(text(),'Service Identification')]/parent::div/following-sibling::div</servicepanel_serviceidentificationvalue>
+<servicepanel_servicetypevalue>//label[contains(text(),'Service Type')]/parent::div/following-sibling::div</servicepanel_servicetypevalue>
+<servicepanel_remarksvalue>//label[contains(text(),'Remark')]/following-sibling::div</servicepanel_remarksvalue>
+<servicepanel_terminationdate>//label[contains(text(),'Termination Date')]/parent::div/following-sibling::div</servicepanel_terminationdate>
+<servicepanel_email>//div[text()='Service']/parent::div/following-sibling::div//label[contains(text(),'Email')]/parent::div/following-sibling::div</servicepanel_email>
+<servicepanel_phone>//div[text()='Service']/parent::div/following-sibling::div//label[contains(text(),'Phone Contact')]/parent::div/following-sibling::div</servicepanel_phone>
+<servicepanel_billingtype>//label[contains(text(),'Billing Type')]/parent::div/following-sibling::div</servicepanel_billingtype>
+<servicepanel_header>//div[text()='Service']</servicepanel_header>
+<serviceactiondropdown>//div[div[text()='Service']]//button</serviceactiondropdown>
+
+<manageLink>//div[@class='dropdown-menu show']//a[text()='Manage']</manageLink>
+<synchronizelink_servicepanel>//a[text()='Synchronize']</synchronizelink_servicepanel>
+<manageservice_header>//div[text()='Manage Service']</manageservice_header>
+
+<status_serviceheader>(//div[text()='Status']/parent::div/parent::div//div[@class='div-margin row'])[1]//label[text()='Service']</status_serviceheader>
+<status_servicetypeheader>(//div[text()='Status']/parent::div/parent::div//div[@class='div-margin row'])[1]//label[text()='Service Type']</status_servicetypeheader>
+<status_detailsheader>(//div[text()='Status']/parent::div/parent::div//div[@class='div-margin row'])[1]//label[text()='Details']</status_detailsheader>
+<status_statusheader>(//div[text()='Status']/parent::div/parent::div//div[@class='div-margin row'])[1]//label[text()='Status']</status_statusheader>
+<status_modificationheader>(//div[text()='Status']/parent::div/parent::div//div[@class='div-margin row'])[1]//label[text()='Last Modification']</status_modificationheader>
+<sync_serviceheader>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[1]//label[text()='Service']</sync_serviceheader>
+<sync_servicetypeheader>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[1]//label[text()='Service Type']</sync_servicetypeheader>
+<sync_detailsheader>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[1]//label[text()='Details']</sync_detailsheader>
+<sync_syncstatus>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[1]//label[text()='Sync Status']</sync_syncstatus>
+<devicesforservice_deviceheader>(//div[text()='Devices for service']/parent::div/parent::div//div[@class='ag-div-margin heading-green row'])[1]//label[text()='Device']</devicesforservice_deviceheader>
+<devicesforservice_syncstatus>(//div[text()='Devices for service']/parent::div/parent::div//div[@class='ag-div-margin heading-green row'])[1]//label[text()='Sync Status']</devicesforservice_syncstatus>
+<devicesforservice_fetchinterfacesheader>(//div[text()='Devices for service']/parent::div/parent::div//div[@class='ag-div-margin heading-green row'])[1]//label[text()='Fetch Interfaces']</devicesforservice_fetchinterfacesheader>
+<devicesforservice_vistamartdeviceheader>(//div[text()='Devices for service']/parent::div/parent::div//div[@class='ag-div-margin heading-green row'])[1]//label[text()='VistaMart Device']</devicesforservice_vistamartdeviceheader>
+
+<status_ordername>(//div[text()='Status']/parent::div/parent::div//div[@class='div-margin row'])[2]/div/label</status_ordername>
+<status_servicename>(//div[text()='Status']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[1]/a</status_servicename>
+<status_servicetype>(//div[text()='Status']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[2]</status_servicetype>
+<status_servicedetails>(//div[text()='Status']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[3]//a</status_servicedetails>
+<status_currentstatus>(//div[text()='Status']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[4]</status_currentstatus>
+<status_modificationtime>(//div[text()='Status']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[5]</status_modificationtime>
+<statuslink>(//div[text()='Status']/parent::div/parent::div//div[@class='div-margin row'])[3]/div/a[text()='Status']</statuslink>
+
+<sync_ordername>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[2]/div/label</sync_ordername>
+<sync_servicename>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[1]/a</sync_servicename>
+<sync_servicetype>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[2]</sync_servicetype>
+<sync_servicedetails>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[3]//a</sync_servicedetails>
+<sync_status>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[4]</sync_status>
+<vistamart_status>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[5]/span</vistamart_status>
+<vistamart_datetime>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[5]//p</vistamart_datetime>
+<synchronization_serviceerror>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[5]/span</synchronization_serviceerror>
+<synchronizelink>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[3]/div//a[text()='Synchronize']</synchronizelink>
+<managepage_backbutton>//span[text()='Back']</managepage_backbutton>
+<Servicestatus_popup>//div[@class='modal-content']</Servicestatus_popup>
+<servicestatus_popupclose>(//div[text()='Service Status']/following-sibling::button//span)[1]</servicestatus_popupclose>
+<changestatus_dropdown>//label[text()='Change Status']/parent::div//input</changestatus_dropdown>
+<changestatus_dropdownvalue>//label[text()='Change Status']/parent::div//span</changestatus_dropdownvalue>
+
+<statuspanel_header>//div[text()='Status']</statuspanel_header>
+<servicestatus_header>//div[@class='modal-header']/div[text()='Service Status']</servicestatus_header>
+<statuspage_serviceidentification>//label[text()='Service Identification']/following-sibling::div</statuspage_serviceidentification>
+<statuspage_servicetype>//label[text()='Service Type']/following-sibling::div</statuspage_servicetype>
+<servicestatushistory_header>//div[text()='Service Status History']</servicestatushistory_header>
+<statuspage_currentstatus>//label[text()='Current Status']/following-sibling::div</statuspage_currentstatus>
+<statuspage_newstatusdropdown>//label[text()='New Status']/following-sibling::select</statuspage_newstatusdropdown>
+<statuspage_newstatusdropdownvalue>//label[text()='New Status']/following-sibling::select/option</statuspage_newstatusdropdownvalue>
+
+<servicestatushistory>//div[@class='modal-content']//div[@ref='eBodyViewport']//div[@role='row']</servicestatushistory>
+<Sync_successmsg>//div[@role='alert']//span</Sync_successmsg>
+
+<devicesforservice_header>//div[text()='Devices for service']</devicesforservice_header>
+<deviceforservicepanel_devicename>(//div[text()='Devices for service']/parent::div/parent::div//div[@class='div-margin row'])[1]//div[1]</deviceforservicepanel_devicename>
+<deviceforservicepanel_syncstatus>(//div[text()='Devices for service']/parent::div/parent::div//div[@class='div-margin row'])[1]//div[2]</deviceforservicepanel_syncstatus>
+<deviceforservicepanel_smartsstatus>(//div[text()='Devices for service']/parent::div/parent::div//div[@class='div-margin row'])[1]//div[3]/span</deviceforservicepanel_smartsstatus>
+<deviceforservicepanel_smartsdatetime>(//div[text()='Devices for service']/parent::div/parent::div//div[@class='div-margin row'])[1]//div[3]/p</deviceforservicepanel_smartsdatetime>
+<deviceforservicepanel_fetchinterfaces_status>(//div[text()='Devices for service']/parent::div/parent::div//div[@class='div-margin row'])[1]//div[3]/span</deviceforservicepanel_fetchinterfaces_status>
+<deviceforservicepanel_fetchinterfaces_datetime>(//div[text()='Devices for service']/parent::div/parent::div//div[@class='div-margin row'])[1]//div[3]/p</deviceforservicepanel_fetchinterfaces_datetime>
+<deviceforservicepanel_vistamart_status>(//div[text()='Devices for service']/parent::div/parent::div//div[@class='div-margin row'])[1]//div[4]/span</deviceforservicepanel_vistamart_status>
+<deviceforservicepanel_vistamart_datetime>(//div[text()='Devices for service']/parent::div/parent::div//div[@class='div-margin row'])[1]//div[4]/p</deviceforservicepanel_vistamart_datetime>
+<deviceforservicepanel_managelink>(//div[text()='Devices for service']/parent::div/parent::div//div[@class='div-margin row'])[1]//div/a[text()='Manage']</deviceforservicepanel_managelink>
+
+<managenetwork_header>(//div[@class='heading-green-row row'])[1]//div</managenetwork_header>
+
+<successmsg>//div[@role='alert']//span</successmsg>
+<editservice_okbutton>//span[contains(text(),'OK')]</editservice_okbutton>
+<managesubnets_link>//div[@class='dropdown-menu show']//a[text()='Manage Subnets']</managesubnets_link>
+<managesubnet_header>//div[@class='modal-header']//div[contains(text(),'Manage')]</managesubnet_header>
+<managesubnet_successmsg>(//div[@role='alert']//span)[2]</managesubnet_successmsg>
+<spacename_column>//span[text()='Space Name']</spacename_column>
+<blockname_column>//span[text()='Block Name']</blockname_column>
+<subnetname_column>//span[text()='Subnet Name']</subnetname_column>
+<startaddress_column>//span[text()='Start Address']</startaddress_column>
+<size_column>//span[text()='Size']</size_column>
+<closesymbol>//button[@type='button']//span[text()='×']</closesymbol>
+<dumppage_header>//div[@class='modal-header']//div[contains(text(),'Service')]</dumppage_header>
+<serviceretrieved_text>//div[@class='div-margin row'][contains(text(),'Service retrieved')]</serviceretrieved_text>
+<service_header>//label[text()='Service']</service_header>
+<dumppage_text>//label[text()='Service']/following-sibling::textarea</dumppage_text>
+
+<managesubnetsipv6_link>//div[@class='dropdown-menu show']//a[text()='Manage Subnets Ipv6']</managesubnetsipv6_link>
+<shownewinfovistareport_link>//div[@class='dropdown-menu show']//a[text()='Show New Infovista Report']</shownewinfovistareport_link>
+<showinfovistareport_link>//div[@class='dropdown-menu show']//a[text()='Show Infovista Report']</showinfovistareport_link>
+<dump_link>//div[@class='dropdown-menu show']//a[text()='Dump']</dump_link>
+<selectedemail>//select[@name='selectedEmail']//option</selectedemail>
+<selectedphone>//select[@name='selectedPhoneContact']//option</selectedphone>
+<emailremovearrow>(//label[text()='Email']/parent::div/parent::div/following-sibling::div//button//span)[2]</emailremovearrow>
+<phoneremovearrow>(//label[text()='Phone Contact']/parent::div/parent::div/following-sibling::div//button//span)[2]</phoneremovearrow>
+<emailtextfieldvalue>//div[label[text()='Email']]//input</emailtextfieldvalue>
+<phonecontacttextfieldvalue>//div[label[text()='Phone Contact']]//input</phonecontacttextfieldvalue>
+<emailaddarrow>//label[text()='Email']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</emailaddarrow>
+<phoneaddarrow>//label[text()='Phone Contact']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</phoneaddarrow>
+
+<!-- Device Header -->
+<addeddevices_list>//div[text()='Device']/parent::div/following-sibling::div[@class='div-margin row']//b</addeddevices_list>
+<addeddevice_selectinterfaceslink>//div[text()='Device']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Select Interfaces']</addeddevice_selectinterfaceslink>
+<deviceheader>//div[text()='Device']</deviceheader>
+<AddDevice>//a[text()='Add Device']</AddDevice>
+<showinterfaces_link>//a[text()='Show Interfaces']</showinterfaces_link>
+<adddevice_header>//p[text()='Add Device']</adddevice_header>
+<addnewdevice_togglebutton>(//div[@class='react-switch-handle'])[1]</addnewdevice_togglebutton>
+<Next_Button>//button//Span[text()='Next']</Next_Button>
+<portalaccess_header>//label[text()='Portal Access']</portalaccess_header>
+<successmsg>//div[@role='alert']//span</successmsg>
+<breadcrumb>//ol[@class='breadcrumb']//a[contains(text(),'value')]</breadcrumb>
+
+<!-- Create Device Page -->
+<name_dropdown>(//div[label[text()='Name']]//input)[1]</name_dropdown>
+<devicename_textfield>//input[@id='deviceName']</devicename_textfield>
+<vendormodelinput>//div[label[text()='Vendor/Model']]//input</vendormodelinput>
+<snmprotextfield>//input[@id='snmpro']</snmprotextfield>
+<countryinput>//div[label[contains(text(),'Country')]]//input</countryinput>
+<managementaddresstextbox>//input[@id='addressSelect']</managementaddresstextbox>
+<citydropdowninput>//div[label[@class='form-label labelStyle'][contains(text(),'City')]]//input</citydropdowninput>
+<sitedropdowninput>//div[label[@class='form-label labelStyle'][contains(text(),'Site')]]//input</sitedropdowninput>
+<premisedropdowninput>//div[label[@class='form-label labelStyle'][contains(text(),'Premise')]]//input</premisedropdowninput>
+<addcityswitch>//div[label[contains(text(),'Add City')]]/preceding-sibling::div//div[@class='react-switch']</addcityswitch>
+<addsiteswitch>//div[label[contains(text(),'Add Site')]]/preceding-sibling::div//div[@class='react-switch']</addsiteswitch>
+<addpremiseswitch>//div[label[contains(text(),'Add Premise')]]/preceding-sibling::div//div[@class='react-switch']</addpremiseswitch>
+<selectpremiseswitch>//div[label[contains(text(),'Select Premise')]]/preceding-sibling::div//div[@class='react-switch']</selectpremiseswitch>
+<selectsiteswitch>//div[label[contains(text(),'Select Site')]]/preceding-sibling::div//div[@class='react-switch']</selectsiteswitch>
+<selectcityswitch>//div[label[contains(text(),'Select City')]]/preceding-sibling::div//div[@class='react-switch']</selectcityswitch>
+<successMessage_Alert>//div[@role='alert']//span</successMessage_Alert>
+<addeddevice_interface_actiondropdown>//div[div[b[text()='value']]]//following-sibling::div//button[text()='Action']</addeddevice_interface_actiondropdown>
+<okbutton>//span[contains(text(),'OK')]</okbutton>
+
+<!-- view device page -->
+<viewpage_devicename>//label[text()='Name']/parent::div/following-sibling::div</viewpage_devicename>
+<viewpage_vendormodel>//label[text()='Vendor/Model']/parent::div/following-sibling::div</viewpage_vendormodel>
+<viewpage_managementaddress>//label[text()='Management Address']/parent::div/following-sibling::div</viewpage_managementaddress>
+<viewpage_country>//label[text()='Country']/parent::div/following-sibling::div</viewpage_country>
+<viewpage_city>//label[text()='City']/parent::div/following-sibling::div</viewpage_city>
+<viewpage_site>//label[text()='Site']/parent::div/following-sibling::div</viewpage_site>
+<viewpage_premise>//label[text()='Premise']/parent::div/following-sibling::div</viewpage_premise>
+<viewpage_connectivityprotocol>//label[text()='Connectiviy Protocol']/parent::div/following-sibling::div</viewpage_connectivityprotocol>
+<viewpage_snmpversion>//label[text()='SNMP Version']/parent::div/following-sibling::div</viewpage_snmpversion>
+<viewpage_snmpro>//label[text()='Snmpro']/parent::div/following-sibling::div</viewpage_snmpro>
+<viewpage_snmprw>//label[text()='Snmprw']/parent::div/following-sibling::div</viewpage_snmprw>
+<viewpage_snmpv3username>//label[text()='Snmp V3 User Name']/following-sibling::div</viewpage_snmpv3username>
+<viewpage_snmpv3privpassword>//label[text()='Snmp V3 Priv Password']/following-sibling::div</viewpage_snmpv3privpassword>
+<viewpage_snmpv3authpassword>//label[text()='Snmp V3 Auth Password']/following-sibling::div</viewpage_snmpv3authpassword>
+
+
+<!-- Edit Device -->
+<viewdevice_Actiondropdown>//div[text()='Device Details']/following-sibling::div//button[text()='Action']</viewdevice_Actiondropdown>
+<viewdevice_Edit>//div[text()='Device Details']/following-sibling::div//a[text()='Edit']</viewdevice_Edit>
+<editdeviceheader>//div[@class='heading-green-row row']//p[text()='Edit Device']</editdeviceheader>
+
+<existingdevicegrid>(//div[text()='Device']/parent::div/following-sibling::div[@class='div-margin row'])[2]</existingdevicegrid>
+<viewservicepage_viewdevicelink>//a//span[text()='View']</viewservicepage_viewdevicelink>
+<viewdevicepage_header>//div[text()='Device Details']</viewdevicepage_header>
+<viewservicepage_editdevicelink>//a/span[text()='Edit']</viewservicepage_editdevicelink>
+
+<!--  Delete Device -->
+<viewdevice_delete>//div[text()='Device Details']/following-sibling::div//a[text()='Delete']</viewdevice_delete>
+<deletealertclose>//div[@class='modal-content']//button//span[text()='×']</deletealertclose>
+<delete>//div[@class='dropdown-menu show']//a[contains(text(),'Delete')]</delete>
+<managementaddressbutton>//button//span[text()='Management Address']</managementaddressbutton>
+<addeddevice_deletefromservicelink>//div[text()='Device']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Delete']</addeddevice_deletefromservicelink>
+<delete_alertpopup>//div[@class='modal-content']</delete_alertpopup>
+<deletebutton>//button[text()='Delete']</deletebutton>
+
+<Deviceemsg>//span[contains(text(),'Device successfully created.')]</Deviceemsg>
+<Devicedeleteemsg>//span[contains(text(),'Device successfully deleted')]</Devicedeleteemsg>
+<InterfaceSpeedDropdown>(//div[label[text()='Interface Speed']]//input)[1]</InterfaceSpeedDropdown>
+<TypeofServiceDropdown>(//div[label[text()='Type Of Service']]//input)[1]</TypeofServiceDropdown>
+<ChangeordercontractNumberdropdown>(//div[label[text()='Order/Contract Number (Parent SID)']]//input)[1]</ChangeordercontractNumberdropdown>
+<AddDeviceName>(//div[label[text()='Name']]//input)[1]</AddDeviceName>
+<Xbutton>//div[text()='×']</Xbutton>
+<Backbutton>//span[contains(text(),'Back')]</Backbutton>
+<Synchronizemsg>//span[contains(text(),'Sync started successfully. Please check the sync status of this service.')]</Synchronizemsg>
+<Errormsg>//div[text()='Error']</Errormsg>
+
+<!-- order panel - view service page -->
+<orderactionbutton>//div[div[text()='Order']]//button</orderactionbutton>
+<editorderlink>//div[div[text()='Order']]//div//a[text()='Edit Order']</editorderlink>
+<changeorderlink>//a[contains(text(),'Change Order')]</changeorderlink>
+<ordernumbervalue>//label[text()='Order/Contract Number (Parent SID)']/parent::div/following-sibling::div[@class='customLabelValue form-label']</ordernumbervalue>
+<ordervoicelinenumbervalue>//label[text()='RFI/RFQ/IP Voice Line Number']/parent::div/following-sibling::div[@class='customLabelValue form-label']</ordervoicelinenumbervalue>
+<changeordervoicelinenumber>//label[text()='RFI / RFQ /IP Voice Line number']/following-sibling::input</changeordervoicelinenumber>
+<changeordernumber>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::input</changeordernumber>
+<changeorder_selectorderswitch>//div[@class='react-switch-bg']</changeorder_selectorderswitch>
+<changeorder_chooseorderdropdown>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::div//div[2]</changeorder_chooseorderdropdown>
+<changeorder_backbutton>//span[contains(text(),'Back')]</changeorder_backbutton>
+<changeorder_okbutton>//span[contains(text(),'OK')]</changeorder_okbutton>
+<orderpanelheader>(//div[contains(text(),'Order')])[1]</orderpanelheader>
+<editorderheader>//div[text()='Edit Order']</editorderheader>
+<editorderno>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::input</editorderno>
+<editvoicelineno>//label[text()='RFI/RFQ/IP Voice Line Number']/following-sibling::input</editvoicelineno>
+<editorder_okbutton>(//span[contains(text(),'OK')])[1]</editorder_okbutton>
+<changeorderheader>//div[text()='Change Order']</changeorderheader>
+<createorder_button>//button//span[text()='Create Order']</createorder_button>
+<changeorder_dropdownlist>//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false']</changeorder_dropdownlist>
+<cancelbutton>//span[contains(text(),'Cancel')]</cancelbutton>
+
+<!--  Search order  -->
+<searchorderlink>//li[text()='Search Order/Service']</searchorderlink>
+<servicefield>//label[text()='Service']/following-sibling::input</servicefield>
+<searchbutton>//span[text()='Search']</searchbutton>
+<serviceradiobutton>//div[@role='gridcell']//span[contains(@class,'unchecked')]</serviceradiobutton>
+<searchorder_actiondropdown>//div[@class='dropdown']//button</searchorder_actiondropdown>
+<view>//div[@class='dropdown-menu show']//a[text()='View']</view>
+
+<!-- Select Interface -->
+<viewdeviceheader>//div[text()='Device']</viewdeviceheader>
+<interfaceheader>//div[text()='Interfaces']</interfaceheader>
+<interfacespanel_actiondropdown>//div[div[text()='Interfaces']]//following-sibling::div//button[text()='Action']</interfacespanel_actiondropdown>
+<interfacespanel_OK_link>//button[text()='Action']/following-sibling::div/a[text()='Ok']</interfacespanel_OK_link>
+
+<!--  success Message -->
+<alertMsg>(//div[@role='alert'])[1]</alertMsg>
+<AlertForServiceCreationSuccessMessage>(//div[@role='alert']/span)[1]</AlertForServiceCreationSuccessMessage>
+
+
+</hss>
+
+</locators>
+
+

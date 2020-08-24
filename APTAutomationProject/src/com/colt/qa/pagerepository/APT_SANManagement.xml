@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<locators>
+<sanmgmt>
+
+<!--  SAN Management  -->
+<managecoltnetworklink>(//div[@class='ant-menu-submenu-title']/span/b)[2]</managecoltnetworklink>
+<customerdetailsheader>//div[text()='Customer Details']</customerdetailsheader>
+<searchsanlink>//li[text()='Search for SANs']</searchsanlink>
+<sansearchheader>//div[text()='SAN Search']</sansearchheader>
+<santextfield>//div[text()='SAN Search']/parent::div/following-sibling::form//div//input[@id='san']</santextfield>
+<san_searchbutton>//button[@type='submit']//span</san_searchbutton>
+<serviceprofilecolumn>//span[@role='columnheader'][text()='Service Profile']</serviceprofilecolumn>
+<customernamecolumn>//span[@role='columnheader'][text()='Customer Name']</customernamecolumn>
+<begindatecolumn>//span[@role='columnheader'][text()='Begin Date']</begindatecolumn>
+<ordernamecolumn>//span[@role='columnheader'][text()='Order Name']</ordernamecolumn>
+<downloadtoexcellink>//a//span[text()='  Download to Excel ']</downloadtoexcellink>
+<searchsan_actiondropdown>//button[text()='Action']</searchsan_actiondropdown>
+<searchsan_viewpageheader>//div//p[text()='View San']</searchsan_viewpageheader>
+<ordername_link>//div[@col-id='orderNumber']//a</ordername_link>
+<searchfororder_header>//div[@class='row']//h5//p</searchfororder_header>
+<searchfororder_viewlink>//div[@class='dropdown-menu show']//a[text()='View ']</searchfororder_viewlink>
+<searchfororder_managelink>//div[@class='dropdown-menu show']//a[text()='Manage']</searchfororder_managelink>
+<searchsan_announcementtoplayvalue>//label[text()='Announcement To Play']/parent::div/following-sibling::div</searchsan_announcementtoplayvalue>
+<searchsan_predestinationnumbervalue>//label[text()='Pre destination Number']/parent::div/following-sibling::div</searchsan_predestinationnumbervalue>
+<searchsan_internationalincomingcallsvalue>//label[text()='International Incoming Calls Barring']/parent::div/following-sibling::div</searchsan_internationalincomingcallsvalue>
+<searchsan_deletebutton>//button[text()='Delete']</searchsan_deletebutton>
+<manageservice_header>//div[text()='Manage Service']</manageservice_header>
+<viewsan_sanmgmt>(//label[text()='SAN(FRC) Number']/parent::div/parent::div//div)[2]</viewsan_sanmgmt>
+<edit>//div[@class='dropdown-menu show']//a[text()='Edit']</edit>
+<view>//div[@class='dropdown-menu show']//a[text()='View']</view>
+<delete>//div[@class='dropdown-menu show']//a[contains(text(),'Delete')]</delete>
+<frcnumber_column>//div[@col-id='frcNumber']//span[@role='columnheader']</frcnumber_column>
+<viewsan_customername>(//label[text()='Customer Name']/parent::div/parent::div//div)[2]</viewsan_customername>
+<serviceprofilevalue>//label[text()='Service Profile']/parent::div/following-sibling::div</serviceprofilevalue>
+<internationaloutgoingcallsvalue>//label[text()='International Outgoing Calls Forbidden']/parent::div/following-sibling::div</internationaloutgoingcallsvalue>
+<searchsan_internationalincomingcallsvalue>//label[text()='International Incoming Calls Barring']/parent::div/following-sibling::div</searchsan_internationalincomingcallsvalue>
+<mobilecallsallowedvalue>//label[text()='Mobile Calls Allowed']/parent::div/following-sibling::div</mobilecallsallowedvalue>
+<view_noreplytimervalue>//label[text()='No Reply Timer Value']/parent::div/following-sibling::div</view_noreplytimervalue>
+<maxcalldurationvalue>//label[text()='Max Call Duration']/parent::div/following-sibling::div</maxcalldurationvalue>
+<chargebandnamevalue>//label[text()='Charge Band Name']/parent::div/following-sibling::div</chargebandnamevalue>
+<payphoneblockingenabledvalue>//label[text()='Pay phone blocking enabled']/parent::div/following-sibling::div</payphoneblockingenabledvalue>
+<webaccessblockedvalue>//label[text()='Web Access Blocked']/parent::div/following-sibling::div</webaccessblockedvalue>
+<CPSvalue>//label[text()='CPS']/parent::div/following-sibling::div</CPSvalue>
+<ringtonumbervalue>//label[text()='Ring to Number']/parent::div/following-sibling::div</ringtonumbervalue>
+<viewpage_backbutton>//span[text()='Back']</viewpage_backbutton>
+<delete_alertpopup>//div[@class='modal-content']</delete_alertpopup>
+<deletebutton>//button[text()=' Delete']</deletebutton>
+
+<!--  success Message -->
+<alertMsg>(//div[@role='alert'])[1]</alertMsg>
+<AlertForServiceCreationSuccessMessage>(//div[@role='alert']/span)[1]</AlertForServiceCreationSuccessMessage>
+
+</sanmgmt>
+</locators>

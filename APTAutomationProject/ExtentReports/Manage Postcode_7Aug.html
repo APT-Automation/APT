@@ -1,0 +1,1560 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+ExtentReports Library 2.40.2 | http://relevantcodes.com/extentreports-for-selenium/ | https://github.com/anshooarora/
+Copyright (c) 2015, Anshoo Arora (Relevant Codes) | Copyrights licensed under the New BSD License | http://opensource.org/licenses/BSD-3-Clause
+Documentation: http://extentreports.relevantcodes.com 
+-->
+
+<meta charset='UTF-8' /> 
+<meta name='description' content='ExtentReports (by Anshoo Arora) is a reporting library for automation testing for .NET and Java. It creates detailed and beautiful HTML reports for modern browsers. ExtentReports shows test and step summary along with dashboards, system and environment details for quick analysis of your tests.' />
+<meta name='robots' content='noodp, noydir' />
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+
+<title>
+ExtentReports 2.0
+</title>
+
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+<link href='https://cdn.rawgit.com/anshooarora/extentreports/e4f8ea1de961161791c01b99a71a1e17f81125cf/cdn/extent.css' type='text/css' rel='stylesheet' />
+
+<style>
+
+            
+                
+            
+        
+</style>
+</head>
+
+
+<body class='extent standard hide-overflow'>
+<!-- nav -->
+<nav>
+<div class='logo-container'>
+<a class='logo-content' href='http://extentreports.relevantcodes.com'>
+<span>ExtentReports</span>
+</a>
+<a href='#' data-activates='slide-out' class='button-collapse hide-on-large-only'><i class='mdi-navigation-apps'></i></a>
+</div>
+<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+<li class='analysis waves-effect active'><a href='#!' class='test-view' onclick="_updateCurrentStage(0)"><i class='mdi-action-dashboard'></i>Test Details</a></li>
+<li class='analysis waves-effect'><a href='#!' class='dashboard-view'><i class='mdi-action-track-changes'></i></i>Analysis</a></li>
+</ul>
+<span class='report-name'>Automation Report</span> <span class='report-headline'></span>
+<ul class='right hide-on-med-and-down nav-right'>
+<li class='theme-selector' alt='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");' title='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");'>
+<i class='mdi-hardware-desktop-windows'></i>
+</li>
+<li>
+<span class='suite-started-time'>2020-08-07 13:56:08</span>
+</li>
+<li>
+<span>v2.40.2</span>
+</li>
+</ul>
+</nav>
+<!-- /nav -->
+
+<!-- container -->
+<div class='container'>
+
+<!-- dashboard -->
+<div id='dashboard-view' class='row'>
+<div class='time-totals'>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-tests'> 
+<span class='panel-name'>Total Tests</span> 
+<span class='total-tests'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-steps'> 
+<span class='panel-name'>Total Steps</span> 
+<span class='total-steps'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-current'> 
+<span class='panel-name'>Total Time Taken (Current Run)</span> 
+<span class='suite-total-time-current-value panel-lead'>0h 11m 56s+463ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-overall'> 
+<span class='panel-name'>Total Time Taken (Overall)</span> 
+<span class='suite-total-time-overall-value panel-lead'>0h 11m 56s+463ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-start-time'>
+<div class='card accent green-accent'> 
+<span class='panel-name'>Start</span> 
+<span class='panel-lead suite-started-time'>2020-08-07 13:44:11</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-end-time'>
+<div class='card accent pink-accent'> 
+<span class='panel-name'>End</span> 
+<span class='panel-lead suite-ended-time'>2020-08-07 13:56:08</span> 
+</div> 
+</div>
+</div>
+<div class='charts'>
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Tests View</span>
+</div> 
+<div class='panel-setting modal-trigger test-count-setting right'>
+<a href='#test-count-setting'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='test-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='t-pass-count weight-normal'></span> test(s) passed</span>
+</div> 
+<div>
+<span class='weight-light'><span class='t-fail-count weight-normal'></span> test(s) failed, <span class='t-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div> 
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Steps View</span>
+</div> 
+<div class='panel-setting modal-trigger step-status-filter right'>
+<a href='#step-status-filter'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='step-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='s-pass-count weight-normal'></span> step(s) passed </span>
+</div> 
+<div>
+<span class='weight-light'><span class='s-fail-count weight-normal'></span> step(s) failed, <span class='s-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div>
+<div class='col s12 m12 l4 fh'> 
+<div class='card-panel'> 
+<span class='panel-name'>Pass Percentage</span> 
+<span class='pass-percentage panel-lead'></span> 
+<div class='progress light-blue lighten-3'> 
+<div class='determinate light-blue'></div> 
+</div> 
+</div> 
+</div>
+</div>
+<div class='system-view'>
+<div class='col l4 m12 s12'>
+<div class='card-panel'>
+<span class='label info outline right'>Environment</span>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Windows Server 2016</td>
+</tr>
+<tr>
+<td>User Name</td>
+<td>Sai12345</td>
+</tr>
+<tr>
+<td>Java Version</td>
+<td>1.8.0_221</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td>QA</td>
+</tr>
+<tr>
+<td>Host Name</td>
+<td>APT_QA_Colt</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- /dashboard -->
+
+<!-- tests -->
+<div id='test-view' class='row _addedTable'>
+<div class='col _addedCell1'>
+<div class='contents'>
+<div class='card-panel heading'>
+<h5>Tests</h5>
+</div>
+<div class='card-panel filters'>
+<div>
+<a data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#' class='dropdown-button button tests-toggle'><i class='mdi-action-subject icon'></i></a>
+<ul id='tests-toggle' class='dropdown-content'>
+<li class='pass'><a href='#!'>Pass</a></li>
+<li class='fail'><a href='#!'>Fail</a></li>
+<li class='skip'><a href='#!'>Skip</a></li>
+<li class='divider'></li>
+<li class='clear'><a href='#!'>Clear Filters</a></li>
+</ul>
+</div>
+<div>
+<a id='clear-filters' alt='Clear Filters' title='Clear Filters'><i class='mdi-navigation-close icon'></i></a>
+</div>
+<div>&nbsp;&middot;&nbsp;</div>
+<div>
+<a id='enableDashboard' alt='Enable Dashboard' title='Enable Dashboard'><i class='mdi-action-track-changes icon'></i></a>
+</div>
+<div>
+<a id='refreshCharts' alt='Refresh Charts on Filters' title='Refresh Charts on Filters' class='enabled'><i class='mdi-navigation-refresh icon'></i></i></a>
+</div>
+<div>&nbsp;&middot;</div>
+<div class='search' alt='Search Tests' title='Search Tests'>
+<div class='input-field left'>
+<input id='searchTests' type='text' class='validate' placeholder='Search Tests...'>
+</div>
+<i class='mdi-action-search icon'></i>
+</div>
+</div>
+<div class='card-panel no-padding-h no-padding-v no-margin-v'>
+<div class='wrapper'>
+<ul id='test-collection' class='test-collection'>
+<li class='collection-item test displayed active pass ' extentid='61562fa7-c959-49d4-a98b-bbdb6fb731b3'>
+<div class='test-head'>
+<span class='test-name'>manageColtNetwork </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-08-07 13:44:12</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:44:48</td>
+<td class='step-details'>Mouse hovered on Manage Colt Network</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:44:51</td>
+<td class='step-details'>Manage Postcode link verified</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:44:58</td>
+<td class='step-details'>Clicked on Manage Postcode link</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='5bbf72ce-b8b3-40de-97f6-38de41c3d406'>
+<div class='test-head'>
+<span class='test-name'>verifyListofCountries </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-08-07 13:44:58</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>13:44:58</td>
+<td class='step-details'>Verifying list of countries</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:44:58</td>
+<td class='step-details'>Country names displaying are:</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:44:59</td>
+<td class='step-details'>Belgium</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:44:59</td>
+<td class='step-details'>Denmark</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:44:59</td>
+<td class='step-details'>France</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:44:59</td>
+<td class='step-details'>Germany</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:44:59</td>
+<td class='step-details'>Portugal</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:00</td>
+<td class='step-details'>Spain</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:01</td>
+<td class='step-details'>Sweden</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:01</td>
+<td class='step-details'>Switzerland</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='4ebaeed6-cc37-4cfa-8661-e5703174174b'>
+<div class='test-head'>
+<span class='test-name'>verifyAddPostCodeFieldsBelgium </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-08-07 13:45:01</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:09</td>
+<td class='step-details'>Step:Clicked on Belgium Manage Postcode</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:13</td>
+<td class='step-details'>Step: The Expected Text for 'You can use * as wildcard' field 'You can use * as wildcard' is same as the Acutal Text 'You can use * as wildcard'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:17</td>
+<td class='step-details'>Step: The Expected Text for 'Emergency Area ID' field 'Emergency Area ID' is same as the Acutal Text 'Emergency Area ID'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:20</td>
+<td class='step-details'>Step: The Expected Text for 'NT Service Area' field 'NT Service Area' is same as the Acutal Text 'NT Service Area'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:24</td>
+<td class='step-details'>Step: The Expected Text for 'Emergency Area (Subcom)' field 'Emergency Area (Subcom)' is same as the Acutal Text 'Emergency Area (Subcom)'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:28</td>
+<td class='step-details'>Step: The Expected Text for 'SubArea1 (Province)' field 'SubArea1 (Province)' is same as the Acutal Text 'SubArea1 (Province)'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:32</td>
+<td class='step-details'>Step: The Expected Text for 'SubArea 1-ID (SubArea1-ID)' field 'SubArea 1-ID (SubArea1-ID)' is same as the Acutal Text 'SubArea 1-ID (SubArea1-ID)'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:36</td>
+<td class='step-details'>Step: The Expected Text for 'SubArea2 (Community)' field 'SubArea2 (Community)' is same as the Acutal Text 'SubArea2 (Community)'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:40</td>
+<td class='step-details'>Step: The Expected Text for 'SubArea 2-ID (SubArea2-ID)' field 'SubArea 2-ID (SubArea2-ID)' is same as the Acutal Text 'SubArea 2-ID (SubArea2-ID)'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:44</td>
+<td class='step-details'>Step: The Expected Text for 'SubArea 3 (b)' field 'SubArea 3 (b)' is same as the Acutal Text 'SubArea 3 (b)'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:48</td>
+<td class='step-details'>Step: The Expected Text for 'SubArea 3-ID (Zipcode)' field 'SubArea 3-ID (Zipcode)' is same as the Acutal Text 'SubArea 3-ID (Zipcode)'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:52</td>
+<td class='step-details'>Step: The Expected Text for 'Last Update' field 'Last Update' is same as the Acutal Text 'Last Update'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:45:56</td>
+<td class='step-details'>Step: The Expected Text for 'Add Postcode' field 'Add Postcode' is same as the Acutal Text 'Add Postcode'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:00</td>
+<td class='step-details'>Step: The Expected Text for 'Upload Update File' field 'Upload Update File' is same as the Acutal Text 'Upload Update File'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:03</td>
+<td class='step-details'>Step: The Expected Text for 'View History' field 'View History' is same as the Acutal Text 'View History'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:06</td>
+<td class='step-details'>Step: The Expected Text for 'Add Emergency Numbers' field 'Add Emergency Numbers' is same as the Acutal Text 'Add Emergency Numbers'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:11</td>
+<td class='step-details'>Step: The Expected Text for 'Synchronize All Postcodes' field 'Synchronize All Postcodes' is same as the Acutal Text 'Synchronize All Postcodes'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:15</td>
+<td class='step-details'>Step: The Expected Text for 'Download NT Service Area' field 'Download NT Service Area' is same as the Acutal Text 'Download NT Service Area'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:19</td>
+<td class='step-details'>Step: The Expected Text for 'Upload NT Service Area' field 'Upload NT Service Area' is same as the Acutal Text 'Upload NT Service Area'</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='a3ff7bf6-2309-4039-9623-85572b09d0fc'>
+<div class='test-head'>
+<span class='test-name'>addpostcode </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-08-07 13:46:19</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>13:46:19</td>
+<td class='step-details'>Verifying Add Postcode</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:26</td>
+<td class='step-details'>Step:Clicked on Add Postcode</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:30</td>
+<td class='step-details'>Step: The Expected Text for 'Emergency Area ID(SUBCOM-ID)' field 'Emergency Area ID(SUBCOM-ID)' is same as the Acutal Text 'Emergency Area ID(SUBCOM-ID)'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:33</td>
+<td class='step-details'>Step: The Expected Text for 'SubArea1 (Province)' field 'SubArea1 (Province)' is same as the Acutal Text 'SubArea1 (Province)'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:38</td>
+<td class='step-details'>Step: The Expected Text for 'SubArea2 (Community)' field 'SubArea2 (Community)' is same as the Acutal Text 'SubArea2 (Community)'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:41</td>
+<td class='step-details'>Step: The Expected Text for 'SubArea3 (b)' field 'SubArea3 (b)' is same as the Acutal Text 'SubArea3 (b)'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:45</td>
+<td class='step-details'>Step: The Expected Text for 'SubArea3-ID (ZIP code)' field 'SubArea3-ID (ZIP code)' is same as the Acutal Text 'SubArea3-ID (ZIP code)'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:48</td>
+<td class='step-details'>Step: The Expected Text for 'Emergency Area (SUBCOM)' field 'Emergency Area (SUBCOM)' is same as the Acutal Text 'Emergency Area (SUBCOM)'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:51</td>
+<td class='step-details'>Step:SubArea1D field is displayed as:SubArea1-ID (SubArea1-ID)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:53</td>
+<td class='step-details'>Step:Sub Area 2 ID field is displayed as:SubArea2-ID (SubArea2-ID)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:54</td>
+<td class='step-details'>Step:NT Service Area Postcode field is displayed as:NT Service Area</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:55</td>
+<td class='step-details'>Step:To implement Switch field is displayed as:To Implement Switch</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:57</td>
+<td class='step-details'>Step:City Translator Nmbr field is displayed as:City Translator Number</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:46:59</td>
+<td class='step-details'>Step:Emergency Nmbr Key is displayed</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:00</td>
+<td class='step-details'>Step:Actual Provider Text Field is displayed</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:02</td>
+<td class='step-details'>Dummy Code field is displayed</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:03</td>
+<td class='step-details'>Empty Text box field is displayed as:</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:05</td>
+<td class='step-details'>forward arrow button field is displayed as: >></td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:06</td>
+<td class='step-details'>Backward arrow button field is displayed as: <<</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:07</td>
+<td class='step-details'>OK button is displayed</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:09</td>
+<td class='step-details'>Cancel button is displayed</td>
+</tr>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>13:47:14</td>
+<td class='step-details'>Entering Values to create postcode</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:15</td>
+<td class='step-details'>Emergency Area ID(SUBCOM-ID) text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:24</td>
+<td class='step-details'>Emergency Area ID(SUBCOM-ID) text field value added as: 786626</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:25</td>
+<td class='step-details'>NT Service Are field value is displaying as 32-786626 as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:26</td>
+<td class='step-details'>To Implement Switch text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:33</td>
+<td class='step-details'>To Implement Switch text field value added as: 1016</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:34</td>
+<td class='step-details'>City Translator Number text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:39</td>
+<td class='step-details'>City Translator Number text field value added as: A</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:40</td>
+<td class='step-details'>SubArea1 text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:45</td>
+<td class='step-details'>SubArea1 text field value added as: abc</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:47</td>
+<td class='step-details'>SubArea1-ID text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:53</td>
+<td class='step-details'>SubArea1-ID text field value added as: Xyz</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:54</td>
+<td class='step-details'>SubArea2 text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:47:59</td>
+<td class='step-details'>SubArea2 text field value added as: BCC</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:01</td>
+<td class='step-details'>SubArea2-ID text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:06</td>
+<td class='step-details'>SubArea2-ID text field value added as: wer</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:07</td>
+<td class='step-details'>SubArea3 text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:13</td>
+<td class='step-details'>SubArea3 text field value added as: QST</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:14</td>
+<td class='step-details'>SubArea3-ID text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:19</td>
+<td class='step-details'>SubArea3-ID text field value added as: JHY</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:21</td>
+<td class='step-details'>Emergency Area text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:27</td>
+<td class='step-details'>Emergency Area text field value added as: 104</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:28</td>
+<td class='step-details'>Emergency Number Key text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:35</td>
+<td class='step-details'>Emergency Number Key text field value added as: 128</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:36</td>
+<td class='step-details'>Actual Provider Mapping text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:42</td>
+<td class='step-details'>Actual Provider Mapping text field value added as: 108</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:43</td>
+<td class='step-details'>Dummy Code text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:48</td>
+<td class='step-details'>Dummy Code text field value added as: 198</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:48:54</td>
+<td class='step-details'>Step:Clciked on OK  button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:06</td>
+<td class='step-details'>Message is verified. It is displaying as: Postcode successfully created.</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='2ef66cd7-4cbd-41b6-a29d-440aa1b01f40'>
+<div class='test-head'>
+<span class='test-name'>verifyAddPostcode </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-08-07 13:49:08</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>13:49:08</td>
+<td class='step-details'>Verifying view Postcode</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:11</td>
+<td class='step-details'>Step:Value Entered in Search TextField</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:13</td>
+<td class='step-details'>Step:Clicked on search button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:18</td>
+<td class='step-details'>selected postcode record in Table</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:23</td>
+<td class='step-details'>Clicked on Action Dropdown</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:27</td>
+<td class='step-details'>Clicked on View in Action Dropdown</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:30</td>
+<td class='step-details'>The Expected value for 'Emergency Area ID(SUBCOM-ID)' field '786626' is same as the Acutal value '786626'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:33</td>
+<td class='step-details'>The Expected value for 'To Implement Switch:' field '1016' is same as the Acutal value '1016'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:35</td>
+<td class='step-details'>The Expected value for 'City Translator Number:' field 'A' is same as the Acutal value 'A'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:37</td>
+<td class='step-details'>The Expected value for 'SubArea1 (Province)' field 'abc' is same as the Acutal value 'abc'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:39</td>
+<td class='step-details'>The Expected value for 'SubArea1-ID (SubArea1-ID)' field 'Xyz' is same as the Acutal value 'Xyz'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:41</td>
+<td class='step-details'>The Expected value for 'SubArea2 (Community)' field 'BCC' is same as the Acutal value 'BCC'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:44</td>
+<td class='step-details'>The Expected value for 'SubArea2-ID (SubArea2-ID)' field 'wer' is same as the Acutal value 'wer'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:46</td>
+<td class='step-details'>The Expected value for 'SubArea3 (b)' field 'QST' is same as the Acutal value 'QST'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:49</td>
+<td class='step-details'>The Expected value for 'SubArea3-ID (ZIP code)' field 'JHY' is same as the Acutal value 'JHY'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:51</td>
+<td class='step-details'>The Expected value for 'Emergency Area (SUBCOM)' field '104' is same as the Acutal value '104'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:59</td>
+<td class='step-details'>Step:Clicked on back button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:49:59</td>
+<td class='step-details'>Step:Navigated to Manage Post code page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:50:01</td>
+<td class='step-details'>Step:Value Entered in Search TextField</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:50:03</td>
+<td class='step-details'>Step:Clicked on search button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:50:08</td>
+<td class='step-details'>selected postcode record in Table</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:50:12</td>
+<td class='step-details'>Clicked on Action Dropdown</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:50:16</td>
+<td class='step-details'>Clicked on Edit button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:50:20</td>
+<td class='step-details'>To Implement Switch text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:50:31</td>
+<td class='step-details'>To Implement Switch text field is edited as: 126.0</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:50:32</td>
+<td class='step-details'>City Translator Number text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:50:42</td>
+<td class='step-details'>City Translator Number text field is edited as: B</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:50:43</td>
+<td class='step-details'>SubArea1 text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:50:54</td>
+<td class='step-details'>SubArea1 text field is edited as: tygf</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:50:55</td>
+<td class='step-details'>SubArea1-ID text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:05</td>
+<td class='step-details'>SubArea1-ID text field is edited as: Xyz</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:06</td>
+<td class='step-details'>SubArea2 text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:07</td>
+<td class='step-details'>SubArea2 text field is not edited. It is displaying as BCC</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:09</td>
+<td class='step-details'>SubArea2-ID text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:11</td>
+<td class='step-details'>SubArea2-ID text field is not edited. It is displaying as wer</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:12</td>
+<td class='step-details'>SubArea3 text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:13</td>
+<td class='step-details'>SubArea3 text field is not edited. It is displaying as QST</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:14</td>
+<td class='step-details'>SubArea3-ID text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:16</td>
+<td class='step-details'>SubArea3-ID text field is not edited. It is displaying as JHY</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:17</td>
+<td class='step-details'>Emergency Area text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:19</td>
+<td class='step-details'>Emergency Area text field is not edited. It is displaying as 104</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:20</td>
+<td class='step-details'>Emergency Number Key text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:20</td>
+<td class='step-details'>No values added to text field Emergency Number Key</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:21</td>
+<td class='step-details'>Actual Provider Mapping text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:21</td>
+<td class='step-details'>No values added to text field Actual Provider Mapping</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:22</td>
+<td class='step-details'>Dummy Code text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:22</td>
+<td class='step-details'>No values added to text field Dummy Code</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:25</td>
+<td class='step-details'>Step: Clicked on '>>' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:33</td>
+<td class='step-details'>Clicked on OK button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:39</td>
+<td class='step-details'>Message is verified. It is displaying as: Postcode successfully updated.</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='ba5a12f9-296a-490e-9466-ad80f2bd207f'>
+<div class='test-head'>
+<span class='test-name'>Uploadupdatefile </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-08-07 13:51:41</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>13:51:46</td>
+<td class='step-details'>Verifying Upload Update file</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:48</td>
+<td class='step-details'>Clicked on Upload update file</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:53</td>
+<td class='step-details'>Step : 'Choose file' value is empty</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:51:56</td>
+<td class='step-details'>Step: The Expected Text for 'OK' field 'OK' is same as the Acutal Text 'OK'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:52:00</td>
+<td class='step-details'>Step: The Expected Text for 'Cancel' field 'Cancel' is same as the Acutal Text 'Cancel'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:52:01</td>
+<td class='step-details'>File uploaded</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:52:03</td>
+<td class='step-details'>Clicked on OK button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:52:27</td>
+<td class='step-details'>Message is verified. It is displaying as: Emergency Number successfully updated.PSX sync started successfully.</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='75aa783f-de05-4ec4-bdb9-4a3328d5f26e'>
+<div class='test-head'>
+<span class='test-name'>addEmergencyNumber </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-08-07 13:52:32</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>13:52:37</td>
+<td class='step-details'>Verifying Add Emergency number</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:52:39</td>
+<td class='step-details'>Clicked on Add Emergency Number</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:52:45</td>
+<td class='step-details'>Step : 'Choose file' value is empty</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:52:49</td>
+<td class='step-details'>Step: The Expected Text for 'OK' field 'OK' is same as the Acutal Text 'OK'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:52:53</td>
+<td class='step-details'>Step: The Expected Text for 'Cancel' field 'Cancel' is same as the Acutal Text 'Cancel'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:52:55</td>
+<td class='step-details'>File uploaded</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:52:57</td>
+<td class='step-details'>Step: Clicked on 'OK' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:53:02</td>
+<td class='step-details'>Message is verified. It is displaying as: Emergency Number successfully created.PSX sync started successfully. Please check the status of the Postcodes.</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='20612550-17ea-43e8-aa20-532dbf79ed4a'>
+<div class='test-head'>
+<span class='test-name'>viewHistory </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-08-07 13:53:06</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>13:53:06</td>
+<td class='step-details'>Verifying View History</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:53:09</td>
+<td class='step-details'>Clicked on View History</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:53:11</td>
+<td class='step-details'>Clicked on View History Record Link</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:53:17</td>
+<td class='step-details'>Step: The Expected Text for 'File Name' field 'File Name' is same as the Acutal Text 'File Name'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:53:20</td>
+<td class='step-details'>Step: The Expected Text for 'Date' field 'Date' is same as the Acutal Text 'Date'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:53:23</td>
+<td class='step-details'>Step: The Expected Text for 'User' field 'User' is same as the Acutal Text 'User'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:53:26</td>
+<td class='step-details'>Step: The Expected Text for 'Updated By' field 'Updated By' is same as the Acutal Text 'Updated By'</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='495312c3-08a3-45f7-b830-c27ab6606196'>
+<div class='test-head'>
+<span class='test-name'>NtserviceArea </span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-08-07 13:53:31</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>13:53:31</td>
+<td class='step-details'>Verifying Upload NT Service Area</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:53:33</td>
+<td class='step-details'>Clicked on Upload NT Service Area</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:53:39</td>
+<td class='step-details'>Step : 'Choose file' value is empty</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:53:42</td>
+<td class='step-details'>Step: The Expected Text for 'OK' field 'OK' is same as the Acutal Text 'OK'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:53:45</td>
+<td class='step-details'>Step: The Expected Text for 'Cancel' field 'Cancel' is same as the Acutal Text 'Cancel'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:53:47</td>
+<td class='step-details'>File uploaded</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:53:49</td>
+<td class='step-details'>Clicked on OK button</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>13:54:13</td>
+<td class='step-details'>Message is displaying and it gets mismatches. It is displaying as: The following errors were encountered: For input string: "10431346788" .The Expected value is: NT Service Area successfully updated.</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:55:31</td>
+<td class='step-details'>Step: Clicked on 'Cancel' button</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='8b463608-57ee-47a3-821e-2bc220f4f125'>
+<div class='test-head'>
+<span class='test-name'>verifyDownloadNtArea </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-08-07 13:55:31</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+<td class='timestamp'>13:55:31</td>
+<td class='step-details'>Verifying Download NT Service Area</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:55:33</td>
+<td class='step-details'>Clicked on Download Nt Service Area link</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:55:33</td>
+<td class='step-details'>Downloaded file name is displaying as: C:\Users\SKathiresan-ADM\Downloads\postcode_cld_63 (1).csv</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='589b5346-b44b-4d3d-aff1-620df8e28cf2'>
+<div class='test-head'>
+<span class='test-name'>delete postcode </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-08-07 13:55:33</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2020-08-07 13:56:07</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 33s+668ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:55:35</td>
+<td class='step-details'>Step:Value Entered in Search TextField</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:55:37</td>
+<td class='step-details'>Step:Clicked on search button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:55:42</td>
+<td class='step-details'>selected postcode record in Table</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:55:47</td>
+<td class='step-details'>Clicked on Action Dropdown</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:55:52</td>
+<td class='step-details'>Step: Clicked on 'Delete' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:55:54</td>
+<td class='step-details'>Delete Pop up message displays as: Are you sure that you want to delete this item?</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:55:58</td>
+<td class='step-details'>Step: Clicked on 'Delete' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>13:56:05</td>
+<td class='step-details'>Message is verified. It is displaying as: Postcode successfully deleted.</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id='test-details-wrapper' class='col _addedCell2'>
+<div class='contents'>
+<div class='card-panel details-view'>
+<h5 class='details-name'></h5>
+<div class='details-container'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- /tests -->
+
+<!-- categories -->
+<!-- /categories -->
+
+<!-- exceptions -->
+<!-- /exceptions -->
+
+<!-- testrunner logs -->
+<!-- /testrunner logs -->
+
+</div>
+<!-- /container -->
+
+<!-- test dashboard counts setting -->
+<div id='test-count-setting' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Configure Tests Count Setting</h5> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodes' class='with-gap'> 
+<label for='parentWithoutNodes'>Parent Tests Only (Does not include child nodes in counts)</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodesAndNodes' class='with-gap'> 
+<label for='parentWithoutNodesAndNodes'>Parent Tests Without Child Tests + Child Tests</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='childNodes' class='with-gap'> 
+<label for='childNodes'>Child Tests Only</label> 
+</div> 
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /test dashboard counts setting -->
+
+<!-- filter for step status -->
+<div id='step-status-filter' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Select status</h5> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-pass'> 
+<label for='step-dashboard-filter-pass'>Pass</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fail'> 
+<label for='step-dashboard-filter-fail'>Fail</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fatal'> 
+<label for='step-dashboard-filter-fatal'>Fatal</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-error'> 
+<label for='step-dashboard-filter-error'>Error</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-warning'> 
+<label for='step-dashboard-filter-warning'>Warning</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-skip'> 
+<label for='step-dashboard-filter-skip'>Skipped</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-info'> 
+<label for='step-dashboard-filter-info'>Info</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-unknown'> 
+<label for='step-dashboard-filter-unknown'>Unknown</label> 
+</div>
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /filter for step status -->
+
+<script src='https://cdn.rawgit.com/anshooarora/extentreports/c936a26fc8bb9c5fc0253b5bc6f289e1d14bb595/cdn/extent.js' type='text/javascript'></script>
+
+<script>$(document).ready(function() { $('.logo span').html('ExtentReports'); });</script>
+<script>
+
+            
+                $(document).ready(function() {
+                    
+                });
+            
+        
+</script>
+</body>
+</html>

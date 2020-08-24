@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite thread-count="1" verbose="1" name="APT_MCS Test Suite" parallel="classes">
+	<test name="APT_MCS" preserve-order="true">
+		<classes>
+			<class name="com.saksoft.qa.testscripts2.APT_MCS_CreateCustomer" />
+			<class name="com.saksoft.qa.testscripts2.APT_MCS_SearchCustomer" />
+			<class name="com.saksoft.qa.testscripts2.APT_MCS_CreateOrderService" />
+			<class name="com.saksoft.qa.testscripts2.APT_MCS_SearchOrderService" />
+			<class name="com.saksoft.qa.testscripts2.APT_MCS_AddMultilink" />
+			
+			<class name="com.saksoft.qa.testscripts2.Interface_ATM_WAN_PEedit" />
+			<class name="com.saksoft.qa.testscripts2.Interface_LAN_Edit" />
+			<class name="com.saksoft.qa.testscripts2.Interface_MLPPP_Edit" />
+			<class name="com.saksoft.qa.testscripts2.Interface_MultiLink_Edit" />
+			<class name="com.saksoft.qa.testscripts2.VOIP_Statistics" />
+			
+		</classes>
+	</test>
+</suite>
+

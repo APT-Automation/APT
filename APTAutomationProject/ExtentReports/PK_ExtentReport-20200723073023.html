@@ -1,0 +1,1889 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+ExtentReports Library 2.40.2 | http://relevantcodes.com/extentreports-for-selenium/ | https://github.com/anshooarora/
+Copyright (c) 2015, Anshoo Arora (Relevant Codes) | Copyrights licensed under the New BSD License | http://opensource.org/licenses/BSD-3-Clause
+Documentation: http://extentreports.relevantcodes.com 
+-->
+
+<meta charset='UTF-8' /> 
+<meta name='description' content='ExtentReports (by Anshoo Arora) is a reporting library for automation testing for .NET and Java. It creates detailed and beautiful HTML reports for modern browsers. ExtentReports shows test and step summary along with dashboards, system and environment details for quick analysis of your tests.' />
+<meta name='robots' content='noodp, noydir' />
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+
+<title>
+ExtentReports 2.0
+</title>
+
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+<link href='https://cdn.rawgit.com/anshooarora/extentreports/e4f8ea1de961161791c01b99a71a1e17f81125cf/cdn/extent.css' type='text/css' rel='stylesheet' />
+
+<style>
+
+            
+                
+            
+        
+</style>
+</head>
+
+
+<body class='extent standard hide-overflow'>
+<!-- nav -->
+<nav>
+<div class='logo-container'>
+<a class='logo-content' href='http://extentreports.relevantcodes.com'>
+<span>ExtentReports</span>
+</a>
+<a href='#' data-activates='slide-out' class='button-collapse hide-on-large-only'><i class='mdi-navigation-apps'></i></a>
+</div>
+<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+<li class='analysis waves-effect active'><a href='#!' class='test-view' onclick="_updateCurrentStage(0)"><i class='mdi-action-dashboard'></i>Test Details</a></li>
+<li class='analysis waves-effect'><a href='#!' class='dashboard-view'><i class='mdi-action-track-changes'></i></i>Analysis</a></li>
+</ul>
+<span class='report-name'>Automation Report</span> <span class='report-headline'></span>
+<ul class='right hide-on-med-and-down nav-right'>
+<li class='theme-selector' alt='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");' title='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");'>
+<i class='mdi-hardware-desktop-windows'></i>
+</li>
+<li>
+<span class='suite-started-time'>2020-07-23 19:37:43</span>
+</li>
+<li>
+<span>v2.40.2</span>
+</li>
+</ul>
+</nav>
+<!-- /nav -->
+
+<!-- container -->
+<div class='container'>
+
+<!-- dashboard -->
+<div id='dashboard-view' class='row'>
+<div class='time-totals'>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-tests'> 
+<span class='panel-name'>Total Tests</span> 
+<span class='total-tests'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-steps'> 
+<span class='panel-name'>Total Steps</span> 
+<span class='total-steps'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-current'> 
+<span class='panel-name'>Total Time Taken (Current Run)</span> 
+<span class='suite-total-time-current-value panel-lead'>0h 7m 20s+618ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-overall'> 
+<span class='panel-name'>Total Time Taken (Overall)</span> 
+<span class='suite-total-time-overall-value panel-lead'>0h 7m 20s+618ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-start-time'>
+<div class='card accent green-accent'> 
+<span class='panel-name'>Start</span> 
+<span class='panel-lead suite-started-time'>2020-07-23 19:30:23</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-end-time'>
+<div class='card accent pink-accent'> 
+<span class='panel-name'>End</span> 
+<span class='panel-lead suite-ended-time'>2020-07-23 19:37:43</span> 
+</div> 
+</div>
+</div>
+<div class='charts'>
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Tests View</span>
+</div> 
+<div class='panel-setting modal-trigger test-count-setting right'>
+<a href='#test-count-setting'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='test-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='t-pass-count weight-normal'></span> test(s) passed</span>
+</div> 
+<div>
+<span class='weight-light'><span class='t-fail-count weight-normal'></span> test(s) failed, <span class='t-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div> 
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Steps View</span>
+</div> 
+<div class='panel-setting modal-trigger step-status-filter right'>
+<a href='#step-status-filter'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='step-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='s-pass-count weight-normal'></span> step(s) passed </span>
+</div> 
+<div>
+<span class='weight-light'><span class='s-fail-count weight-normal'></span> step(s) failed, <span class='s-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div>
+<div class='col s12 m12 l4 fh'> 
+<div class='card-panel'> 
+<span class='panel-name'>Pass Percentage</span> 
+<span class='pass-percentage panel-lead'></span> 
+<div class='progress light-blue lighten-3'> 
+<div class='determinate light-blue'></div> 
+</div> 
+</div> 
+</div>
+</div>
+<div class='system-view'>
+<div class='col l4 m12 s12'>
+<div class='card-panel'>
+<span class='label info outline right'>Environment</span>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Windows Server 2016</td>
+</tr>
+<tr>
+<td>User Name</td>
+<td>PramodKumar12345</td>
+</tr>
+<tr>
+<td>Java Version</td>
+<td>1.8.0_221</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td>QA</td>
+</tr>
+<tr>
+<td>Host Name</td>
+<td>APT_QA_Colt</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- /dashboard -->
+
+<!-- tests -->
+<div id='test-view' class='row _addedTable'>
+<div class='col _addedCell1'>
+<div class='contents'>
+<div class='card-panel heading'>
+<h5>Tests</h5>
+</div>
+<div class='card-panel filters'>
+<div>
+<a data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#' class='dropdown-button button tests-toggle'><i class='mdi-action-subject icon'></i></a>
+<ul id='tests-toggle' class='dropdown-content'>
+<li class='pass'><a href='#!'>Pass</a></li>
+<li class='fail'><a href='#!'>Fail</a></li>
+<li class='skip'><a href='#!'>Skip</a></li>
+<li class='divider'></li>
+<li class='clear'><a href='#!'>Clear Filters</a></li>
+</ul>
+</div>
+<div>
+<a id='clear-filters' alt='Clear Filters' title='Clear Filters'><i class='mdi-navigation-close icon'></i></a>
+</div>
+<div>&nbsp;&middot;&nbsp;</div>
+<div>
+<a id='enableDashboard' alt='Enable Dashboard' title='Enable Dashboard'><i class='mdi-action-track-changes icon'></i></a>
+</div>
+<div>
+<a id='refreshCharts' alt='Refresh Charts on Filters' title='Refresh Charts on Filters' class='enabled'><i class='mdi-navigation-refresh icon'></i></i></a>
+</div>
+<div>&nbsp;&middot;</div>
+<div class='search' alt='Search Tests' title='Search Tests'>
+<div class='input-field left'>
+<input id='searchTests' type='text' class='validate' placeholder='Search Tests...'>
+</div>
+<i class='mdi-action-search icon'></i>
+</div>
+</div>
+<div class='card-panel no-padding-h no-padding-v no-margin-v'>
+<div class='wrapper'>
+<ul id='test-collection' class='test-collection'>
+<li class='collection-item test displayed active pass ' extentid='a45eff93-ead9-4046-a80d-4b44fc0048ce'>
+<div class='test-head'>
+<span class='test-name'>verifynavigationtocreatedevicepage </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-07-23 19:31:31</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:31:41</td>
+<td class='step-details'>Step : clicked on manage colt's Network link</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:31:50</td>
+<td class='step-details'>Step : clicked on manage colt's Network link</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='2d0ff09f-31d4-4a55-a4ac-7b5ff7bb4041'>
+<div class='test-head'>
+<span class='test-name'>verifycreateaccessrouterdevice </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-07-23 19:31:51</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:32:03</td>
+<td class='step-details'>Step :  validation message forCountry  field displayed as : Country is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:32:09</td>
+<td class='step-details'>Step :  validation message forCity  field displayed as : City is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:32:15</td>
+<td class='step-details'>Step :  validation message forSite  field displayed as : Site is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:32:24</td>
+<td class='step-details'>Step :  validation message forDevice Name  field displayed as : Name is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:32:29</td>
+<td class='step-details'>Step :  validation message forDevice Type  field displayed as : Device Type is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:32:36</td>
+<td class='step-details'>Step :  validation message forVendor/Model  field displayed as : Vendor/Model is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:32:42</td>
+<td class='step-details'>Step :  validation message forRouter Id  field displayed as : Router Id is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:32:45</td>
+<td class='step-details'>Name text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:32:54</td>
+<td class='step-details'>Name text field value added as: accessRouteest541</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:32:55</td>
+<td class='step-details'>Device Type dropdown is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:01</td>
+<td class='step-details'>List of values inside Device Type dropdown is:</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:02</td>
+<td class='step-details'>Access Router</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:02</td>
+<td class='step-details'>Access Switch</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:02</td>
+<td class='step-details'>Core Router</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:02</td>
+<td class='step-details'>DCN Device</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:02</td>
+<td class='step-details'>DSLAM Device</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:02</td>
+<td class='step-details'>Firewall</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:02</td>
+<td class='step-details'>Key Server</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:02</td>
+<td class='step-details'>Load Balancer</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:03</td>
+<td class='step-details'>MDF Firewall</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:03</td>
+<td class='step-details'>Mini DSLAM</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:03</td>
+<td class='step-details'>Prizmnet</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:03</td>
+<td class='step-details'>Router CPE</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:03</td>
+<td class='step-details'>Traffic Aggregator</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:03</td>
+<td class='step-details'>Voice-Gateway</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:03</td>
+<td class='step-details'>VOIPAccess DAS Switch</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:03</td>
+<td class='step-details'>WDM CPE</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:17</td>
+<td class='step-details'>Device Type dropdown value selected as: Access Router</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:19</td>
+<td class='step-details'>Vendor/Model dropdown is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:24</td>
+<td class='step-details'>List of values inside Vendor/Model dropdown is:</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:24</td>
+<td class='step-details'>ALU 7750</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:24</td>
+<td class='step-details'>Audioodes Mediant 1000</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:24</td>
+<td class='step-details'>Cisco 12008</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:24</td>
+<td class='step-details'>Cisco 12012</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:24</td>
+<td class='step-details'>Cisco 12404</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:24</td>
+<td class='step-details'>Cisco 12406 GSR</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:24</td>
+<td class='step-details'>Cisco 12410 GSR</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:24</td>
+<td class='step-details'>Cisco 2511-RJ-CH</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:24</td>
+<td class='step-details'>Cisco 2610</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:24</td>
+<td class='step-details'>Cisco 2611</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:25</td>
+<td class='step-details'>Cisco 2621</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:25</td>
+<td class='step-details'>Cisco 2911-K9-ISR G2</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:25</td>
+<td class='step-details'>Cisco 2924</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:25</td>
+<td class='step-details'>Cisco 2950</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:25</td>
+<td class='step-details'>Cisco 2960-24TC-L</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:25</td>
+<td class='step-details'>Cisco 2960-48TT-L</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:29</td>
+<td class='step-details'>Cisco 296048TT</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:29</td>
+<td class='step-details'>Cisco 2960S-24PS-L</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:29</td>
+<td class='step-details'>Cisco 2960S-24TS-L</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:29</td>
+<td class='step-details'>Cisco 2960S-48LPS-L</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:29</td>
+<td class='step-details'>Cisco 2960S-48TS-L</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:29</td>
+<td class='step-details'>Cisco 3508</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:29</td>
+<td class='step-details'>Cisco 3512</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:30</td>
+<td class='step-details'>Cisco 3524</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:30</td>
+<td class='step-details'>Cisco 3524XL</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:30</td>
+<td class='step-details'>Cisco 3548</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:30</td>
+<td class='step-details'>Cisco 3550</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:30</td>
+<td class='step-details'>Cisco 3560-24TS</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:30</td>
+<td class='step-details'>Cisco 3560-24TS-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:30</td>
+<td class='step-details'>Cisco 3560-48TS</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:30</td>
+<td class='step-details'>Cisco 3560-48TS-E</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:30</td>
+<td class='step-details'>Cisco 3560-48TS-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:30</td>
+<td class='step-details'>Cisco 3560-8PC</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:30</td>
+<td class='step-details'>Cisco 3560-X</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:30</td>
+<td class='step-details'>Cisco 3560G-24PS</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:30</td>
+<td class='step-details'>Cisco 3560V2-48TS-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3560X-24T-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3620</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3640</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3725</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3750</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3750-24PS-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3750-24TS-E</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3750-48PS-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3750-48TS-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 375024PS</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3750G-12S-E</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3750G-12S-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3750G-24PS-E</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3750G-24T-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3750G-24TS-E1U</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3750G-24TS-S1U</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:31</td>
+<td class='step-details'>Cisco 3750G-48PS-E</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 3750G-48TS-E</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 3750G-48TS-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 3750G48TS</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 3750V2-24PS-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 3750V2-24TS-E</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 3750V2-48PS-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 3750V2-48TS-E</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 3750V2-48TS-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 3750X-48P-E</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 3750X-48P-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 3750v248ps</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 3750v248ts</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 3850</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 4003</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 4006</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 4928-10GE</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 5505</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:32</td>
+<td class='step-details'>Cisco 6009</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:33</td>
+<td class='step-details'>Cisco 6503-E</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:34</td>
+<td class='step-details'>Cisco 6506E-S32-GE</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:34</td>
+<td class='step-details'>Cisco 6509</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:34</td>
+<td class='step-details'>Cisco 6509-E-PFC2</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:34</td>
+<td class='step-details'>Cisco 6509-E-RF</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:34</td>
+<td class='step-details'>Cisco 6509E-S32-GE</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:34</td>
+<td class='step-details'>Cisco 6K-MSFC</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:34</td>
+<td class='step-details'>Cisco 7204VXR</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:35</td>
+<td class='step-details'>Cisco 7206</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:35</td>
+<td class='step-details'>Cisco 7206VXR</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:35</td>
+<td class='step-details'>Cisco 7206VXR/300</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:35</td>
+<td class='step-details'>Cisco 7206VXR/400/GE</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:35</td>
+<td class='step-details'>Cisco 7507</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:35</td>
+<td class='step-details'>Cisco 7507MX</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:35</td>
+<td class='step-details'>Cisco 7513</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:35</td>
+<td class='step-details'>Cisco 7513MX</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:35</td>
+<td class='step-details'>Cisco 7513Z</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:35</td>
+<td class='step-details'>Cisco 7609</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:35</td>
+<td class='step-details'>Cisco 93180YC-EX</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:35</td>
+<td class='step-details'>Cisco 9348GC-FXP</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:36</td>
+<td class='step-details'>Cisco ACE-4710-K9</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:36</td>
+<td class='step-details'>Cisco ACE10-6500-K9</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:36</td>
+<td class='step-details'>Cisco AIR-CT5508-K9</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:36</td>
+<td class='step-details'>Cisco AS5300</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:36</td>
+<td class='step-details'>Cisco ASR1000</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:36</td>
+<td class='step-details'>Cisco ASR1001</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:36</td>
+<td class='step-details'>Cisco ASR1001-HX</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:36</td>
+<td class='step-details'>Cisco ASR1001X</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:36</td>
+<td class='step-details'>Cisco ASR1001X-2.5G-VPN</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:36</td>
+<td class='step-details'>Cisco ASR1002-F</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:36</td>
+<td class='step-details'>Cisco ASR1004</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:37</td>
+<td class='step-details'>Cisco C2960S-48FPS-L</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:37</td>
+<td class='step-details'>Cisco C3750V2-24TS-S</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:37</td>
+<td class='step-details'>Cisco C6509-E</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:37</td>
+<td class='step-details'>Cisco C6509E-S720-10G</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:37</td>
+<td class='step-details'>Cisco C9364C</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:37</td>
+<td class='step-details'>Cisco CRS-1</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:37</td>
+<td class='step-details'>Cisco Meraki MR53-HW</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:37</td>
+<td class='step-details'>Cisco Meraki MS350-24X-HW</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:37</td>
+<td class='step-details'>Cisco Meraki MX400-HW</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:37</td>
+<td class='step-details'>Cisco N5K-C5548UP-FA</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:37</td>
+<td class='step-details'>Cisco NCS540</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:37</td>
+<td class='step-details'>Cisco NCS5501</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:37</td>
+<td class='step-details'>Juniper E320</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:38</td>
+<td class='step-details'>Juniper ERX1400</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:38</td>
+<td class='step-details'>Juniper MX10</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:38</td>
+<td class='step-details'>Juniper MX204</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:38</td>
+<td class='step-details'>Juniper MX480</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:38</td>
+<td class='step-details'>Juniper MX960</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:49</td>
+<td class='step-details'>Vendor/Model dropdown value selected as: Cisco 2621</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:54</td>
+<td class='step-details'>Modular MSP checkbox is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:33:57</td>
+<td class='step-details'>Modular MSP checkbox is not selected by default as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:01</td>
+<td class='step-details'>Modular MSP checkbox is selected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:02</td>
+<td class='step-details'>Full IQNET checkbox is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:05</td>
+<td class='step-details'>Full IQNET checkbox is not selected by default as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:08</td>
+<td class='step-details'>Full IQNET checkbox is selected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:11</td>
+<td class='step-details'>When we click on 'IQNet' checkbox, an alert message displays as Please make sure this is IQNET device</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:13</td>
+<td class='step-details'>Step: Clicked on 'x button' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:15</td>
+<td class='step-details'>IOS-XR checkbox is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:19</td>
+<td class='step-details'>IOS-XR checkbox is not selected by default as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:20</td>
+<td class='step-details'>IOS-XR checkbox is selected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:23</td>
+<td class='step-details'>'SSH' is displaying under 'Connectivity protocol' as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:24</td>
+<td class='step-details'>'SSH' is selected under 'Connectivity protocol' by default as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:25</td>
+<td class='step-details'>'Telnet' is displaying under 'Connectivity protocol' as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:27</td>
+<td class='step-details'>'Telnet' is not selected under 'Connectivity protocol' by default as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:30</td>
+<td class='step-details'>Telnet checkbox is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:33</td>
+<td class='step-details'>Telnet checkbox is not selected by default as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:35</td>
+<td class='step-details'>Telnet checkbox is selected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:37</td>
+<td class='step-details'>SNMP Version-3 checkbox is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:40</td>
+<td class='step-details'>SNMP Version-3 checkbox is selected by default as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:40</td>
+<td class='step-details'>SNMP Version-3 checkbox is Selected by default</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:42</td>
+<td class='step-details'>Snmp v3 Username text field is displaying as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:43</td>
+<td class='step-details'>Value displaying under Snmp v3 Username field is: colt-nms</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:43</td>
+<td class='step-details'>Snmp v3 Username text field is not edited as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:44</td>
+<td class='step-details'>Snmp v3 Auth password text field is displaying as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:47</td>
+<td class='step-details'>Value displaying under Snmp v3 Auth password field is: OrHzjWmRvr4piJZb</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:47</td>
+<td class='step-details'>Snmp v3 Auth password text field is not edited as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:49</td>
+<td class='step-details'>Snmp v3 Priv password text field is displaying as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:50</td>
+<td class='step-details'>Value displaying under Snmp v3 Priv password field is: 3k0hw8thNxHucQkE</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:50</td>
+<td class='step-details'>Snmp v3 Priv password text field is not edited as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:51</td>
+<td class='step-details'>Router Id text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:34:59</td>
+<td class='step-details'>Router Id text field value added as: 144</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:02</td>
+<td class='step-details'>Management Address text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:08</td>
+<td class='step-details'>Management Address text field value added as: 12.25.4.71</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:12</td>
+<td class='step-details'>Country dropdown is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:19</td>
+<td class='step-details'>List of values inside Country dropdown is:</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:19</td>
+<td class='step-details'>AL (Albania)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:19</td>
+<td class='step-details'>AO (Angola)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:19</td>
+<td class='step-details'>AU (Australia)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:19</td>
+<td class='step-details'>AT (Austria)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:19</td>
+<td class='step-details'>BH (Bahrain)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:19</td>
+<td class='step-details'>BD (Bangladesh)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:19</td>
+<td class='step-details'>BY (Belarus)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:19</td>
+<td class='step-details'>BE (Belgium)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:19</td>
+<td class='step-details'>BR (Brazil)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:19</td>
+<td class='step-details'>BG (Bulgaria)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:19</td>
+<td class='step-details'>BI (Burundi)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>null (CH)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>null (COUNTRY)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>CM (Cameroon)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>CA (Canada)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>CL (Chile)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>CN (China)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>HR (Croatia)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>CY (Cyprus)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>CZ (Czech Republic)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>CD (DRC)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>DK (Denmark)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>EG (Egypt)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>EE (Estonia)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>FI (Finland)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>FR (France)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:20</td>
+<td class='step-details'>GM (Gambia)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>DE (Germany)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>GI (Gibraltar)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>GR (Greece)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>GN (Guinea)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>HK (Hong Kong)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>HU (Hungary)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>IS (Iceland)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>IN (India)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>XX (International)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>IE (Ireland)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>IL (Israel)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>IT (Italy)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>CI (Ivory Coast)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>JP (Japan)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>KE (Kenya)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>KR (Korea)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>LV (Latvia)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>LR (Liberia)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:21</td>
+<td class='step-details'>LI (Liechtenstein)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>LT (Lithuania)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>LU (Luxembourg)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>MD (MOLDOVA)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>MY (Malaysia)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>ML (Mali)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>MU (Mauritius)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>MX (Mexico)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>MC (Monaco)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>NL (Netherlands)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>NO (Norway)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>PL (Poland)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>PT (Portugal)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>RO (Romania)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>RU (Russian Federation)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>RW (Rwanda)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>SN (Senegal)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>SL (Sierra Leone)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:22</td>
+<td class='step-details'>SG (Singapore)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:24</td>
+<td class='step-details'>SK (Slovakia )</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:24</td>
+<td class='step-details'>SI (Slovenia)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:24</td>
+<td class='step-details'>ZA (South Africa)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:24</td>
+<td class='step-details'>ES (Spain)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:24</td>
+<td class='step-details'>SE (Sweden)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:24</td>
+<td class='step-details'>CH (Switzerland)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:24</td>
+<td class='step-details'>TZ (TANZANIA)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:24</td>
+<td class='step-details'>TW (Taiwan)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:24</td>
+<td class='step-details'>TU (Tunisia)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:24</td>
+<td class='step-details'>TR (Turkey)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:24</td>
+<td class='step-details'>null (UK)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:24</td>
+<td class='step-details'>UG (Uganda)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:24</td>
+<td class='step-details'>UA (Ukraine)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:25</td>
+<td class='step-details'>AE (United Arab Emirates)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:25</td>
+<td class='step-details'>UK (United Kingdom)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:25</td>
+<td class='step-details'>US (United States)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:25</td>
+<td class='step-details'>VN (VIETNAM)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:25</td>
+<td class='step-details'>YU (Yugoslavia)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:38</td>
+<td class='step-details'>Country dropdown value selected as: AU (Australia)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:39</td>
+<td class='step-details'>City dropdown is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:44</td>
+<td class='step-details'>List of values inside City dropdown is:</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:44</td>
+<td class='step-details'>Australia</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:45</td>
+<td class='step-details'>Injune</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:45</td>
+<td class='step-details'>SYDNEY</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:45</td>
+<td class='step-details'>Sydney</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:45</td>
+<td class='step-details'>Sydney 2</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:45</td>
+<td class='step-details'>VIENNA</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:45</td>
+<td class='step-details'>VRSAC</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:45</td>
+<td class='step-details'>WIEN</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:35:58</td>
+<td class='step-details'>City dropdown value selected as: Injune</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:36:10</td>
+<td class='step-details'>Site Name text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:36:15</td>
+<td class='step-details'>Site Name text field value added as: AR08</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:36:17</td>
+<td class='step-details'>Site Code text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:36:22</td>
+<td class='step-details'>Site Code text field value added as: oU6</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:36:24</td>
+<td class='step-details'>Premise Name text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:36:34</td>
+<td class='step-details'>Premise Name text field value added as: ARS7</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:36:36</td>
+<td class='step-details'>Premise Code text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:36:42</td>
+<td class='step-details'>Premise Code text field value added as: Rt6</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='64ae5b32-ee70-4b69-975d-bf4a0bd41664'>
+<div class='test-head'>
+<span class='test-name'>verifyDeviceCreationMessagefor_AccessRouterDevice </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-07-23 19:36:48</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'></span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'></span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:37:41</td>
+<td class='step-details'>'Success Message is displaying for device creation</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>19:37:43</td>
+<td class='step-details'>Success Message is displaying as: Device created successfully</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id='test-details-wrapper' class='col _addedCell2'>
+<div class='contents'>
+<div class='card-panel details-view'>
+<h5 class='details-name'></h5>
+<div class='details-container'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- /tests -->
+
+<!-- categories -->
+<!-- /categories -->
+
+<!-- exceptions -->
+<!-- /exceptions -->
+
+<!-- testrunner logs -->
+<!-- /testrunner logs -->
+
+</div>
+<!-- /container -->
+
+<!-- test dashboard counts setting -->
+<div id='test-count-setting' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Configure Tests Count Setting</h5> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodes' class='with-gap'> 
+<label for='parentWithoutNodes'>Parent Tests Only (Does not include child nodes in counts)</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodesAndNodes' class='with-gap'> 
+<label for='parentWithoutNodesAndNodes'>Parent Tests Without Child Tests + Child Tests</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='childNodes' class='with-gap'> 
+<label for='childNodes'>Child Tests Only</label> 
+</div> 
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /test dashboard counts setting -->
+
+<!-- filter for step status -->
+<div id='step-status-filter' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Select status</h5> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-pass'> 
+<label for='step-dashboard-filter-pass'>Pass</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fail'> 
+<label for='step-dashboard-filter-fail'>Fail</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fatal'> 
+<label for='step-dashboard-filter-fatal'>Fatal</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-error'> 
+<label for='step-dashboard-filter-error'>Error</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-warning'> 
+<label for='step-dashboard-filter-warning'>Warning</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-skip'> 
+<label for='step-dashboard-filter-skip'>Skipped</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-info'> 
+<label for='step-dashboard-filter-info'>Info</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-unknown'> 
+<label for='step-dashboard-filter-unknown'>Unknown</label> 
+</div>
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /filter for step status -->
+
+<script src='https://cdn.rawgit.com/anshooarora/extentreports/c936a26fc8bb9c5fc0253b5bc6f289e1d14bb595/cdn/extent.js' type='text/javascript'></script>
+
+<script>$(document).ready(function() { $('.logo span').html('ExtentReports'); });</script>
+<script>
+
+            
+                $(document).ready(function() {
+                    
+                });
+            
+        
+</script>
+</body>
+</html>

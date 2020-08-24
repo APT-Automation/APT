@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" name="Failed suite [APT_MCS Test Suite]">
+  <test name="APT_MCS(failed)">
+    <classes>
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Prizmnet">
+        <methods>
+          <include name="createAccessCoreDevice" invocation-numbers="0"/>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+          <include name="endReport"/>
+          <include name="startReport"/>
+          <include name="BeforeSuite"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Prizmnet -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Firewall">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Firewall -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessSwitch">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessSwitch -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DSLAM">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DSLAM -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_CoreRouter">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_CoreRouter -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_TrafficAggregator">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_TrafficAggregator -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_LoadBalancer">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+          <include name="verifyCreateAccessCoreDevice_LoadBalancer" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_LoadBalancer -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VOIPAccessDASSwitch">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="createAccessCoreDevice" invocation-numbers="0"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VOIPAccessDASSwitch -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DCNDevice">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DCNDevice -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MiniDSLAM">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+          <include name="verifynavigationtocreatedevicepage" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MiniDSLAM -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MDFFirewall">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MDFFirewall -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Keyserver">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Keyserver -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VoiceGateway">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="createAccessCoreDevice" invocation-numbers="0"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VoiceGateway -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter -->
+    </classes>
+  </test> <!-- APT_MCS(failed) -->
+</suite> <!-- Failed suite [APT_MCS Test Suite] -->

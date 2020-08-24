@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<locators>
+
+    <APT_login_1>
+		<Username>//input[@placeholder='Username']</Username>
+		<Password>//input[@placeholder='Password']</Password>
+		<Loginbutton>//button[text()='Login']</Loginbutton>
+	</APT_login_1>
+	
+	<APT_NonVoiceService>
+		<Username>//input[@placeholder='Username']</Username>
+		<Password>//input[@placeholder='Password']</Password>
+		<Loginbutton>//button[text()='Login']</Loginbutton>
+	</APT_NonVoiceService>
+	
+	<APT_VoiceService>
+		<Username>//input[@placeholder='Username']</Username>
+		<Password>//input[@placeholder='Password']</Password>
+		<Loginbutton>//button[text()='Login']</Loginbutton>
+	</APT_VoiceService>
+	
+	
+
+
+
+
+	<APT_reset>
+		<resetButton>//input[@type='reset']</resetButton>
+    </APT_reset>
+
+
+	<APT_forgotpassword>
+		<resetButton>//a[contains(text(),'Forgot your Password?')]</resetButton>
+	</APT_forgotpassword>
+	
+	
+	
+	
+	<APT_editprofile>
+	    <FirstName>name=user.givenName</FirstName>
+	    <Surname>name=user.lastName</Surname>
+	    <Password>name=user.password</Password>
+	    <ConfirmPassword>name=confirmPassword</ConfirmPassword>
+	    <PostalAddress>name=user.postalAddress</PostalAddress>
+	    <Phone>name=user.telephoneNumber</Phone>
+	    <Email>name=user.email</Email>
+	    <OkButton>//input[@type='submit' and @value='OK']</OkButton>
+	    <CancelButton>//input[@type='submit' and @value='Cancel']</CancelButton>
+	</APT_editprofile>
+
+
+
+
+
+
+<APT_logout>
+
+		<resetButton>//a[contains(text(),'Forgot your Password?')]</resetButton>
+		<Logout_Button>//a[text()='Logout']</Logout_Button>
+		
+</APT_logout>
+	
+	
+
+</locators>

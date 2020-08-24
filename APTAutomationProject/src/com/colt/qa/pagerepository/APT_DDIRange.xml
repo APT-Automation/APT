@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<locators>
+
+<DDIRange>
+<searchDDi_actionDropdown>//button[text()='Action']</searchDDi_actionDropdown>
+<searchDDI-viewLink>//a[text()='View']</searchDDI-viewLink>
+
+<selectTrunkName>//div[text()='value']</selectTrunkName>
+<FileuploadSuccess>//span[contains(text(),'File Upload successfull')]</FileuploadSuccess>
+<TrunkPanelView>(//a[text()='View'])</TrunkPanelView>
+<TrunkPanelAction>//div[div[div[text()='Trunk Group/Site Orders']]]//button[text()='Action']</TrunkPanelAction>
+<TrunkValue>//div[text()='" + TrunkValue + "']</TrunkValue>
+<OKbutton>//span[contains(text(),'OK')]</OKbutton>
+<Cancelbtn>//span[contains(text(),'Cancel')]</Cancelbtn>
+<DuplicateRecord>//span[contains(text(),'* Showing Duplicate DDI Ranges.')]</DuplicateRecord>
+<NoDuplicateRecord>//span[contains(text(),' * No Duplicate DDI Ranges Found.')]</NoDuplicateRecord>
+<DDICount>//span[contains(text(),'DDI Range Count:')]</DDICount>
+
+<NonServiceImpacting_Header>//p[contains(text(),'Non Service Impacting')]</NonServiceImpacting_Header>
+<Configuration_Header>//div[text()='Configuration']</Configuration_Header>
+
+
+<DDIpanelHeader>//div[h5[text()='DDI Range']]</DDIpanelHeader>
+<ChosefileDDI>(//input[@name='submitBulkJob'])</ChosefileDDI>
+<ManageCustomerServiceLink>//b[contains(text(),"MANAGE CUSTOMER'S SERVICE")]</ManageCustomerServiceLink>
+<SearchService>//li[text()='Search Order/Service']</SearchService>
+<TrunkName>//input[@id='trunkGrouptgName']</TrunkName>
+<Searchbtn>//span[text()='Search']</Searchbtn>
+<DDICheckbox>(//span[@class='ag-icon ag-icon-checkbox-unchecked'])[8]</DDICheckbox>
+<CountrycodeLabel>(//span[text()='Country Code'])</CountrycodeLabel>
+<LacLabel>//span[text()='LAC']</LacLabel>
+<MainNumberLabel>(//span[text()='Main Number/Range Start-End'])</MainNumberLabel>
+<ExtensionLabel>(//span[text()='Extension digits'])</ExtensionLabel>
+<EmergLabel>(//span[text()='Emerg Area'])</EmergLabel>
+<IncomingLabel>(//span[text()='Incoming Routing'])</IncomingLabel>
+<InGeoLabel>(//span[text()='IN GEO'])</InGeoLabel>
+<CreateInGeo>//label[text()='IN GEO']</CreateInGeo>
+<ActivateIncomingRouting>//label[text()='Activate Incoming Routing']</ActivateIncomingRouting>
+<CreateDDIExtension>//label[text()='Extension digits']</CreateDDIExtension>
+<CreateDDIRangeEnd>//label[text()='Range End']</CreateDDIRangeEnd>
+<CreateDDIRangeStart>//label[text()='Range Start']</CreateDDIRangeStart>
+<CreateDDIMainnumber>//label[text()='Main Number']</CreateDDIMainnumber>
+<CreateDDIPhoneNumbers>//label[text()='Phone Numbers']</CreateDDIPhoneNumbers>
+<CreateDDICountry>//label[text()='Country Code']</CreateDDICountry>
+<CreateDDILAC>//label[text()='LAC']</CreateDDILAC>
+<AddMore>//span[text()='Add More']</AddMore>
+<CountryCodeText>//input[@id='countryCode']</CountryCodeText>
+<LacText>//input[@id='lac']</LacText>
+<MainnumberText>//input[@id='mainNumber']</MainnumberText>
+<RangeStartText>//input[@id='rangeStart']</RangeStartText>
+<RangeEndText>//input[@id='rangeEnd']</RangeEndText>
+<ExtensionText>//input[@id='extensionDigitsAdd']</ExtensionText>
+<forwardarrow>//span[contains(text(),'>>')]</forwardarrow>
+<CheckboxRouting>//input[@id='incomingRoutingCheckAdd']</CheckboxRouting>
+<EmergencyAreaChooseButton>//span[contains(text(),'Choose')]</EmergencyAreaChooseButton>
+<EmergencyAreaSearchButton>//span[contains(text(),'Search')]</EmergencyAreaSearchButton>
+<EmergencyAreaIDCheckbox>(//div[1]//span[1]//span[1]//span[2])[1]</EmergencyAreaIDCheckbox>
+<CheckboxInGeo>//input[@id='ingeoCheckAdd']</CheckboxInGeo>
+<DDIcreationMsg>//span[text()='DDI Range successfully created.']</DDIcreationMsg>
+<LACFilter>(//span[@class='ag-icon ag-icon-menu'])[1]</LACFilter>
+<LACDropDown>//select[@id='filterType']</LACDropDown>
+<LACFilter_Text>//input[@id='filterText']</LACFilter_Text>
+<DDIRadiobtn>//input[@type='radio']</DDIRadiobtn>
+<Deletebtn>//button[text()='Delete']</Deletebtn>
+<DDIEdit>(//a[text()='Edit'])</DDIEdit>
+<DDIDelete>(//a[text()='Delete'])</DDIDelete>
+<DDIPanelAction>(//button[text()='Action'])[3]</DDIPanelAction>
+<AddDDIRange>//span[text()='Add DDI Range']</AddDDIRange>
+
+<AddDDIRangeSuccessMessage>//span[contains(text(),'DDI Range successfully created.')]</AddDDIRangeSuccessMessage>
+<DeleteDDIRangeSuccessMessage>//span[contains(text(),'DDIRange Delete successfully')]</DeleteDDIRangeSuccessMessage>
+<UpdateDDIRangeSuccessMessage>//span[contains(text(),'DDI Range successfully updated.')]</UpdateDDIRangeSuccessMessage>
+<DuplicateDDIRange>//span[text()='Show Duplicate DDI Ranges']</DuplicateDDIRange>
+<DownlaodDDIRanges>//span[text()='Download DDI Ranges']</DownlaodDDIRanges>
+<UploadDDIRanges>//span[text()='Upload DDI Ranges']</UploadDDIRanges>
+<ShowDDIRanges>//span[text()='Show DDI Ranges']</ShowDDIRanges>
+<countryLabel_viewPage>//label[text()='Country']</countryLabel_viewPage>
+<LAClabel_viewPage>//label[text()='LAC']</LAClabel_viewPage>
+<extensionLabel_viewPage>//label[text()='Extension digits']</extensionLabel_viewPage>
+<ConfigurationLabel>//div[text()='Configuration']</ConfigurationLabel>
+<PsxConfigurationLabel>//label[text()='PSX Configuration']</PsxConfigurationLabel>
+<PhoneNumerLabel>//label[text()='Phone Numbers']</PhoneNumerLabel>
+<ViewEmergLabel>//label[text()='Emerg Area']</ViewEmergLabel>
+<Backbutton>//span[text()='Back']</Backbutton>
+<DDIRangeUpdate>//span[text()='DDI Range successfully updated.']</DDIRangeUpdate>
+<ManageColtNetworkLink>//span[contains(text(),"Manage Colt's Network")]</ManageColtNetworkLink>
+<SearchDDI>//li[text()='Search DDI Ranges']</SearchDDI>
+<DDIWildcard>//label[text()='(You can use % as wildcard)']</DDIWildcard>
+<DDIISdcode>//label[text()='ISD Code(Country Code)']</DDIISdcode>
+<DDISTdcode>//label[text()='STD Code(LAC) ']</DDISTdcode>
+<DDIManageNmbr>//label[text()='Main Number/Range Start-End']</DDIManageNmbr>
+<DDIISdcode_Text>//input[@id='isdcode']</DDIISdcode_Text>
+<DDILAC_Text>//input[@id='stdcode']</DDILAC_Text>
+<Action>//button[text()='Action']</Action>
+
+<viewPage_countryValue>//div[div[div[div[label[text()='Country']]]]]//div[@class='customLabelValue form-label']</viewPage_countryValue>
+<viewPage_LACvalue>//div[div[div[div[label[text()='LAC']]]]]//div[@class='customLabelValue form-label']</viewPage_LACvalue>
+<viewPage_extensionDigitVale>//div[div[div[div[label[text()='Extension digits']]]]]//div[@class='customLabelValue form-label']</viewPage_extensionDigitVale>
+<viewPage_activateIncomingRouting>//div[div[div[div[label[text()='Activate Incoming Routing']]]]]//div[@class='customLabelValue form-label']</viewPage_activateIncomingRouting>
+<viewPage_INGEOValue>//div[div[div[div[label[text()='IN GEO']]]]]//div[@class='customLabelValue form-label']</viewPage_INGEOValue>
+
+
+<PSXconfigurationDropdown_viewDDI>(//div[label[text()='PSX Configuration']]//input)[1]</PSXconfigurationDropdown_viewDDI>
+<executeButton_vieDDI>//div[div[div[label[text()='PSX Configuration']]]]//following-sibling::div//button/span</executeButton_vieDDI>
+<DDIPSXConfigurationSuccessMessage>//span[contains(text(),'PSX sync started successfully. Please check the sy')]</DDIPSXConfigurationSuccessMessage>
+<DDIPSXConfigurationWarningMessage>//li[contains(text(),'PSX sync could not be started because this Trunk G')]</DDIPSXConfigurationWarningMessage>
+<alertMSG-viewPage>//div[@role='alert']/span/li</alertMSG-viewPage>
+<alertMSGviewPage>//div[@role='alert']/span/li</alertMSGviewPage>
+
+
+
+<viewLink_selectAddedDDI>(//div[div[h5[text()='DDI Range']]]//following-sibling::div//div[div[text()='43']])[1]//a[text()='value']</viewLink_selectAddedDDI>
+<selectLACvalue_searchFoeDDipage>(//div[@role='row']//div[text()='value'])[1]</selectLACvalue_searchFoeDDipage>
+<ssearchForDDI_viewLink>//a[text()='View']</ssearchForDDI_viewLink>
+<searchForDDI_actionDropdown>//button[text()='Action']</searchForDDI_actionDropdown>
+
+
+<!--  success Message -->
+<alertMsg>(//div[@role='alert'])[1]</alertMsg>
+<AlertForServiceCreationSuccessMessage>(//div[@role='alert']/span)[1]</AlertForServiceCreationSuccessMessage>
+
+
+</DDIRange>
+
+ 
+</locators>
+
+

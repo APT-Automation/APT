@@ -1,39 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="2" name="Failed suite [APT application End-to-End]" parallel="classes">
-  <listeners>
-    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
-    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
-  </listeners>
-  <test name="APT login1(failed)" parallel="classes">
+<suite name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
     <classes>
-      <class name="com.saksoft.qa.apttestscripts.APT_AutomationTest">
+      <class name="com.colt.qa.apttestscripts.APT_wholesale">
         <methods>
-          <include name="choosecustomer"/>
-          <include name="verifycreateorder"/>
-        </methods>
-      </class> <!-- com.saksoft.qa.apttestscripts.APT_AutomationTest -->
-      <class name="com.saksoft.qa.apttestscripts.APT_DomainManagementTest">
-        <methods>
+          <include name="Teardown"/>
+          <include name="wholeSale" invocation-numbers="0"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+          <include name="endReport"/>
+          <include name="startReport"/>
           <include name="BeforeSuite"/>
         </methods>
-      </class> <!-- com.saksoft.qa.apttestscripts.APT_DomainManagementTest -->
+      </class> <!-- com.colt.qa.apttestscripts.APT_wholesale -->
     </classes>
-  </test> <!-- APT login1(failed) -->
-  <test name="APT login2(failed)" parallel="classes">
-    <classes>
-      <class name="com.saksoft.qa.apttestscripts.APT_DomainManagementTest">
-        <methods>
-          <include name="verifycreateorder"/>
-          <include name="verifyorderpanelinviewservicepage"/>
-          <include name="verifyservicetypeselection"/>
-          <include name="verifyservicecreation"/>
-          <include name="choosecustomer"/>
-          <include name="verifyservicepanelInformation"/>
-          <include name="BeforeSuite"/>
-          <include name="CreateCustomer"/>
-        </methods>
-      </class> <!-- com.saksoft.qa.apttestscripts.APT_DomainManagementTest -->
-    </classes>
-  </test> <!-- APT login2(failed) -->
-</suite> <!-- Failed suite [APT application End-to-End] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

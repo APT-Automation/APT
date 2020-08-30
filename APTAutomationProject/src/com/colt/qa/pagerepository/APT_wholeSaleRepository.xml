@@ -226,6 +226,9 @@
 <OrderPanel>//div[div[text()='Order']]</OrderPanel>
 <ActionDropdown_InViewPage>//div[div[text()='Service']]//button[text()='Action']</ActionDropdown_InViewPage>
 <editLink_InViewPage>//a[text()='Edit']</editLink_InViewPage>
+
+<editService_Link>(//a[text()='Edit'])[2]</editService_Link>
+
 <editSerivcePage_pnaleHeader>//div[div[p[text()='Edit Service']]]</editSerivcePage_pnaleHeader>
 
 <!--  Dump -->
@@ -275,6 +278,9 @@
 <MAS_View_ActionLink>(//button[text()='Action'])[1]</MAS_View_ActionLink>
 <MAS_View_Action_EditLink>//a[text()='Edit']</MAS_View_Action_EditLink>
 <MAS_View_Action_DeleteLink>//a[text()='Delete']</MAS_View_Action_DeleteLink>
+
+<deleteServiceLink>(//a[text()='Delete'])[2]</deleteServiceLink>
+
 <MAS_View_Action_FetchDeviceInterfacesLink>//a[text()='Fetch Device Interfaces']</MAS_View_Action_FetchDeviceInterfacesLink>
 
 <MAS_deviceName>//div[label[text()='Name']]//input</MAS_deviceName>
@@ -555,6 +561,7 @@
 <PSXmanualConfig_checkbox>//input[@id='psxManualConfigCheckTG']</PSXmanualConfig_checkbox>
 <GSXmanualConfig_checkbox>//input[@id='gsxManualConfigCheck']</GSXmanualConfig_checkbox>
 <SBCmanualconfig_checkbox>//input[@id='sbcManualConfigCheck']</SBCmanualconfig_checkbox>
+<signalingTransportProtocol_labeName>//label[text()='Signalling Transport Protocol']</signalingTransportProtocol_labeName>
 
 <viewTrunkPage_IPinterface>//div[label[text()='IP Interface']]//following-sibling::div[@class='customLabelValue form-label']</viewTrunkPage_IPinterface>
 <viewTrunkPage_signallingPort>//div[label[text()='Signalling Port']]//following-sibling::div[@class='customLabelValue form-label']</viewTrunkPage_signallingPort>

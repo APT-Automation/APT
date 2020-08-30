@@ -1167,7 +1167,7 @@ public void Moveon(WebElement el) {
 		//verify whether checkbox is selected/unselected by default		
 			if(DefaultSelection.equalsIgnoreCase("yes")) {
 				if(isElementSelected) {
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is selected by default as expected");
+					DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is selected by default");
 					Log.info(labelname + " checkbox is selected by default as expected");
 				}else {
 					DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is not selected by default");
@@ -1180,18 +1180,18 @@ public void Moveon(WebElement el) {
 					DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is selected by default");
 					Log.info(labelname + " checkbox is selected by default as expected");
 				}else {
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is not selected by default as expected");
+					DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is not selected by default");
 					Log.info(labelname + " checkbox is not selected by default");
 				}
 				
 			}
-		Log.info("checkin");
+	
 		//Perform click on checkbox	
 			if(!expectedValue.equalsIgnoreCase("null")) {
 				if (expectedValue.equalsIgnoreCase("yes")) {
 
 					if(isElementSelected) {
-						DriverTestcase.logger.log(LogStatus.PASS, labelname +" checkbox is Selected by default");
+						DriverTestcase.logger.log(LogStatus.PASS, labelname +" checkbox is Selected.");
 					}else {
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
 						Log.info(labelname + " check box is selected");

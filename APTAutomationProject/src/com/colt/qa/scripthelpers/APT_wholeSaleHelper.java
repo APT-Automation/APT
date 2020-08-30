@@ -367,6 +367,7 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 		}
 
 
+
 public void verifysuccessmessageforEditService(String application) throws InterruptedException {
 			
 			scrollToTop();
@@ -751,7 +752,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		Thread.sleep(1000);
 		
 	//click on edit link
-		click_commonMethod(application, "edit", "editLink_InViewPage", xml);
+		click_commonMethod(application, "edit", "editService_Link", xml);
 		Thread.sleep(1000);
 		
 	}
@@ -1063,8 +1064,6 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		 String prefix_actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/prefix_textField")).getAttribute("value");
 		 if(prefix_actualvalue.isEmpty()) {
 			 
-			 verifysuccessmessage(application, "Prefix not available.Please enter manually");
-			 
 			 addtextFields_commonMethod(application, "Prefix", "prefix_textField", prefix, xml);
 			 
 		 }else {
@@ -1072,23 +1071,28 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			 Log.info("When we click on 'Allocate Prefix' button, Under 'Prefix' value is displaying as: "+prefix_actualvalue);
 		 }
 
-	//valdate the preifx value for adding into Trunk group Name field	 
+	//valdate the prefix value for adding into Trunk group Name field	 
 		 String preifxValueInsidetextField=getwebelement(xml.getlocator("//locators/" + application + "/prefix_textField")).getAttribute("value");
-		
+		 
 		 int prefixSize=preifxValueInsidetextField.length(); 
-		 if(prefixSize==3) {
-			 prefix_code=preifxValueInsidetextField;
-		}else if(prefixSize==4) {
+		if(prefixSize==4) {
 			prefix_code=preifxValueInsidetextField.substring(1);
-		}else if(prefixSize<3) {
-			Log.info("Prefix value cannot be less than 3");
+		}else if(prefixSize<4) {
+			Log.info("Prefix value cannot be less than 4");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be less than 4. Value is displaying as "+preifxValueInsidetextField);
 		}else if(prefixSize>4) {
+			prefix_code=preifxValueInsidetextField.substring(1);
 			Log.info("Prefix value cannot be greater than 4");
 			DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be greater than 4. Value is displaying as "+preifxValueInsidetextField);
 		}
 		 
-		
+		 if((country.equals("NL (Netherlands)"))) {
+			 prefix_code = "B" + prefix_code.substring(1);
+		 }else {
+			Log.info("No changes made in refix code"); 
+		 }
+
+		 
 	//Gateway
 		selectValueInsideDropdown(application, "gateway_Dropdown", "Gateway", gateway, xml);
 		gatewayCode=gateway_code(application, gateway);
@@ -1265,7 +1269,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				
 			}else {
 				
-				//VLAN Tag
+			//VLAN Tag
 				addtextFields_commonMethod(application, "VLAN Tag", "vlanTag_textField", vlanTag, xml);
 
 			//Sub Interface slot
@@ -1307,39 +1311,13 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is a mandatory field. No values has been passed as an input");
 				 
 					//IP Interface
-//					  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
-//					  if(ipInterface_Enabled) {
-//						  Log.info("'Ip Interface' text field is enabled");
-//						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
-//					  }else {
-//						  Log.info("'Ip Interface' text fieldis disabled");
-//						  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
-//					  }
 					  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField", ipInterfaceDEfaultValue, xml);  //verify default values
 					  
 				//Address Context
-//					  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
-//					  if(addressContext_Enabled) {
-//						  Log.info("'Address Context' text field is enabled");
-//						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
-//					  }else {
-//						  Log.info("'Address Context' text fieldis disabled");
-//						  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
-//					  }
-					  
 					  compareText_fromtextFields(application, "Address Context", "AddressContext_textField", addressContextDefaultValue, xml);  //verify default values
 					
 					  
 				//IP Interface Group
-//					  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
-//					  if(ipInterfaceGroup_Enabled) {
-//						  Log.info("'IP Inteface Group' text field is enabled");
-//						  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
-//					  }else {
-//						  Log.info("'IP Inteface Group' text field is disabled");
-//						  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
-//					  }
-					  
 					  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField", ipInterfaceGroupDefaultvalue, xml);    //verify default values
 					
 					  
@@ -1353,42 +1331,15 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						addtextFields_commonMethod(application, "VLAN Tag", "vlanTag_textField", vlanTag, xml);
 
 						//IP Interface
-//						  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
-//						  if(ipInterface_Enabled) {
-//							  Log.info("'Ip Interface' text field is enabled");
-//							  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
-//						  }else {
-//							  Log.info("'Ip Interface' text fieldis disabled");
-//							  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
-//						  }
-						  
 						  ipInterface = ipInterfaceDEfaultValue +vlanTag;
 						  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField",ipInterface , xml);  
 						  
 					//Address Context
-//						  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
-//						  if(addressContext_Enabled) {
-//							  Log.info("'Address Context' text field is enabled");
-//							  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
-//						  }else {
-//							  Log.info("'Address Context' text fieldis disabled");
-//							  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
-//						  }
-						  
 						  addressContext=addressContextDefaultValue+vlanTag;
 						  compareText_fromtextFields(application, "Address Context", "AddressContext_textField",addressContext , xml);  //verify default values
 						
 						  
 					//IP Interface Group
-//						  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
-//						  if(ipInterfaceGroup_Enabled) {
-//							  Log.info("'IP Inteface Group' text field is enabled");
-//							  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
-//						  }else {
-//							  Log.info("'IP Inteface Group' text field is disabled");
-//							  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
-//						  }
-						  
 						  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanTag;
 						  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField",ipInterfaceGroup , xml);    //verify default values
 				 
@@ -1417,42 +1368,15 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				  }
 				  
 					//IP Interface
-//				  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
-//				  if(ipInterface_Enabled) {
-//					  Log.info("'Ip Interface' text field is enabled");
-//					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
-//				  }else {
-//					  Log.info("'Ip Interface' text fieldis disabled");
-//					  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
-//				  }
-				  
 				  ipInterface = ipInterfaceDEfaultValue +vlanDefaultvalue;
 				  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField",ipInterface , xml);  
 				  
 			//Address Context
-//				  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
-//				  if(addressContext_Enabled) {
-//					  Log.info("'Address Context' text field is enabled");
-//					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
-//				  }else {
-//					  Log.info("'Address Context' text fieldis disabled");
-//					  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
-//				  }
-				  
 				  addressContext=addressContextDefaultValue+vlanDefaultvalue;
 				  compareText_fromtextFields(application, "Address Context", "AddressContext_textField",addressContext , xml);  //verify default values
 				
 				  
 			//IP Interface Group
-//				  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
-//				  if(ipInterfaceGroup_Enabled) {
-//					  Log.info("'IP Inteface Group' text field is enabled");
-//					  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
-//				  }else {
-//					  Log.info("'IP Inteface Group' text field is disabled");
-//					  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
-//				  }
-				  
 				  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanDefaultvalue;
 				  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField",ipInterfaceGroup , xml);    //verify default values
 			  }
@@ -1471,39 +1395,13 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					  }
 					  
 				//IP Interface
-//					  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
-//					  if(ipInterface_Enabled) {
-//						  Log.info("'Ip Interface' text field is enabled");
-//						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
-//					  }else {
-//						  Log.info("'Ip Interface' text fieldis disabled");
-//						  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
-//					  }
 					  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField", ipInterfaceDEfaultValue, xml);  //verify default values
 					  
 				//Address Context
-//					  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
-//					  if(addressContext_Enabled) {
-//						  Log.info("'Address Context' text field is enabled");
-//						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
-//					  }else {
-//						  Log.info("'Address Context' text fieldis disabled");
-//						  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
-//					  }
-					  
 					  compareText_fromtextFields(application, "Address Context", "AddressContext_textField", addressContextDefaultValue, xml);  //verify default values
 					
 					  
 				//IP Interface Group
-//					  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
-//					  if(ipInterfaceGroup_Enabled) {
-//						  Log.info("'IP Inteface Group' text field is enabled");
-//						  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
-//					  }else {
-//						  Log.info("'IP Inteface Group' text field is disabled");
-//						  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
-//					  }
-					  
 					  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField", ipInterfaceGroupDefaultvalue, xml);    //verify default values
 					
 					  
@@ -1535,42 +1433,15 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			  }
 			  
 				//IP Interface
-//			  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
-//			  if(ipInterface_Enabled) {
-//				  Log.info("'Ip Interface' text field is enabled");
-//				  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
-//			  }else {
-//				  Log.info("'Ip Interface' text fieldis disabled");
-//				  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
-//			  }
-			  
 			  ipInterface = ipInterfaceDEfaultValue +vlanDefaultvalue;
 			  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField",ipInterface , xml);  
 			  
 		//Address Context
-//			  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
-//			  if(addressContext_Enabled) {
-//				  Log.info("'Address Context' text field is enabled");
-//				  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
-//			  }else {
-//				  Log.info("'Address Context' text fieldis disabled");
-//				  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
-//			  }
-			  
 			  addressContext=addressContextDefaultValue+vlanDefaultvalue;
 			  compareText_fromtextFields(application, "Address Context", "AddressContext_textField",addressContext , xml);  //verify default values
 			
 			  
 		//IP Interface Group
-//			  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
-//			  if(ipInterfaceGroup_Enabled) {
-//				  Log.info("'IP Inteface Group' text field is enabled");
-//				  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
-//			  }else {
-//				  Log.info("'IP Inteface Group' text field is disabled");
-//				  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
-//			  }
-			  
 			  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanDefaultvalue;
 			  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField",ipInterfaceGroup , xml);    //verify default values
 			 }
@@ -1632,6 +1503,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			}
 		}
 		
+		WebElement signalingTransportprotocolLabelname=getwebelement(xml.getlocator("//locators/" + application + "/signalingTransportProtocol_labeName"));
+		scrolltoview(signalingTransportprotocolLabelname);
+		Thread.sleep(1000);
+		
 	//Call Rate Limit
 		addCheckbox_commonMethod(application, "callrateLimit_checkbox", "Call Rate Limit", callrateLimit, "No", xml);
 		if(callrateLimit.equalsIgnoreCase("yes")) {
@@ -1647,6 +1522,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					DriverTestcase.logger.log(LogStatus.FAIL, "The CallRateLimit should be less 100 for all Trunks");
 				}
 				else if(i<=100){
+					waitForpageload();
+					waitforPagetobeenable();
+					Thread.sleep(1000);
+					
 					edittextFields_commonMethod(application, "Call rate Limit", "callRateLimitt_textField", callrateLimiteValue, xml);
 				}
 			}else {
@@ -1759,7 +1638,16 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 	
 		
 	//Create Lower Case Routes
-		addCheckbox_commonMethod(application, "createLowerCaseRoute_checkbox", "Create Lower Case Routes", createLowerCaseRoutervalue, "no", xml);
+		if((country.equals("DK (Denmark)")) || (country.equals("IT (Italy)")) || (country.equals("IE (Ireland)")) || (country.equals("PT (Portugal)")) ||
+				(country.equals("ES (Spain)")) || (country.equals("SE (Sweden)")) || (country.equals("CH (Switzerland)")) || (country.equals("UK (UK)")))
+		{
+			addCheckbox_commonMethod(application, "createLowerCaseRoute_checkbox", "Create Lower Case Routes", createLowerCaseRoutervalue, "no", xml);
+		}
+		else
+		{
+			addCheckbox_commonMethod(application, "createLowerCaseRoute_checkbox", "Create Lower Case Routes", createLowerCaseRoutervalue, "Yes", xml);
+		}
+		
 		
 		
 	//PSX Manual Configuration	
@@ -2295,7 +2183,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			compareText_InViewPage(application, "CDR Delivery", CDRdelivery, xml);
 			
 		//Prefix
-			compareText_InViewPage(application, "Prefix", prefix, xml);
+//			compareText_InViewPage(application, "Prefix", prefix, xml);
 
 		//Gateway
 			compareText_InViewPage(application, "Gateway", gateway, xml);
@@ -2310,7 +2198,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			compareText_InViewPage(application, "Traffic Directions", trafficDirection, xml);
 			
 		//IP Address Type
-			compareText_InViewPage(application, "IP Address Type", ipAddresstype, xml);
+			compareText_InViewPage(application, "IP Address Type", "IPv4", xml);
 			
 		//Carrier IP Originating
 			compareText_InViewPage(application, "Carrier IP Originating", carrierIPoriginating, xml);
@@ -2449,21 +2337,26 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			
 			if(callAdmissionControl.equalsIgnoreCase("yes")) {
 			  //call limit	
-				compareText_InViewPage(application, "Call Limit",callLimit , xml);
 				
-				if(callLimit.equalsIgnoreCase("Defined")) {
-					//Limit Number
-					compareText_InViewPage(application, "Limit Number", limitNumber , xml);
+				if(limitNumber.equalsIgnoreCase("null")) {
+					Log.info("Limit Number value is not edited");
+				}else {
+					compareText_InViewPage(application, "Call Limit",limitNumber , xml);
 				}
+				
 			}
 		
 		//Call Rate Limit
 			if(callrateLimitSelection.equalsIgnoreCase("Yes")) {
-				
+				Thread.sleep(2000);
 				//call rate limit value
-				compareText_InViewPage(application,"Call Rate Limit", callrateLimiteValue, xml);
+				if(callrateLimiteValue.equalsIgnoreCase("null")) {
+					Log.info("Call rate Limit value is not edited");
+				}else {
+					compareText_InViewPage(application,"Call Rate Limit", callrateLimiteValue, xml);
+				}
+				
 			}
-			
 			
 			
 		//Source Address Filtering
@@ -2591,7 +2484,8 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			String editOutDMPMrule_existingFieldSelection, String editOutDMPMrule_newFieldSelection, String editOutDMPMrule_existingValue, String editOutDMPMrule_newValue,
 			String editFeatureControlprofile_existingFieldSelection, String editFeatureControlprofile_newFieldSelection, String editFeatureControlprofile_existingValue, String editFeatureControlprofile_newValue,
 			String editLocalRingBackTone_existingFieldSelection, String editLocalRingBackTone_newFieldSelection, String editLocalRingBackTone_existingValue, String editLocalRingBackTone_newValue,
-			String editCreateLowerCaseRoutervalue, String edit_PSXmanualConfigvalue, String edit_GSXmanualConfigvalue, String edit_SBCmanualconfigValue) throws InterruptedException, DocumentException, IOException {        
+			String editCreateLowerCaseRoutervalue, String edit_PSXmanualConfigvalue, String edit_GSXmanualConfigvalue, String edit_SBCmanualconfigValue,
+			String billingCoutry) throws InterruptedException, DocumentException, IOException {        
 		
 
 		DriverTestcase.logger.log(LogStatus.INFO, "Verifying 'Edit Trunk' Functionality");
@@ -2673,17 +2567,31 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				 String preifxValueInsidetextField=getwebelement(xml.getlocator("//locators/" + application + "/prefix_textField")).getAttribute("value");
 				
 				 int prefixSize=preifxValueInsidetextField.length(); 
-				 if(prefixSize==3) {
-					 prefix_code=preifxValueInsidetextField;
-				}else if(prefixSize==4) {
-					prefix_code=preifxValueInsidetextField.substring(1);
-				}else if(prefixSize<3) {
-					Log.info("Prefix value cannot be less than 3");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be less than 4. Value is displaying as "+preifxValueInsidetextField);
-				}else if(prefixSize>4) {
-					Log.info("Prefix value cannot be greater than 4");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be greater than 4. Value is displaying as "+preifxValueInsidetextField);
-				}
+				 
+				 String country=null;
+				 if(edit_BillingCountry.equalsIgnoreCase("null")) {
+					 country=billingCoutry;
+				 }
+				 else {
+					 country=edit_BillingCountry;
+				 }
+				 
+				 if(prefixSize==4) {
+						prefix_code=preifxValueInsidetextField.substring(1);
+					}else if(prefixSize<4) {
+						Log.info("Prefix value cannot be less than 4");
+						DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be less than 4. Value is displaying as "+preifxValueInsidetextField);
+					}else if(prefixSize>4) {
+						prefix_code=preifxValueInsidetextField.substring(1);
+						Log.info("Prefix value cannot be greater than 4");
+						DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be greater than 4. Value is displaying as "+preifxValueInsidetextField);
+					}
+					 
+					 if((country.equals("NL (Netherlands)"))) {
+						 prefix_code = "B" + prefix_code.substring(1);
+					 }else {
+						Log.info("No changes made in prefix code"); 
+					 }
 				 
 			//Gateway
 				selectValueInsideDropdown(application, "gateway_Dropdown", "Gateway", editGateway, xml);
@@ -4961,6 +4869,9 @@ try {
 				
 				DriverTestcase.logger.log(LogStatus.INFO, "Verifying 'view MAS Switch'");
 				
+				waitForpageload();
+				waitforPagetobeenable();
+				
 				WebElement managementOptions_header= getwebelement(xml.getlocator("//locators/" + application + "/managementOptionsPanelheader"));
 				scrolltoview(managementOptions_header);
 				Thread.sleep(2000);
@@ -7176,7 +7087,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		Thread.sleep(1000);
 		
 	//click on delete link
-		click_commonMethod(application, "Delete", "MAS_View_Action_DeleteLink", xml);
+		click_commonMethod(application, "Delete", "deleteServiceLink", xml);
 		
 		
 		 WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
@@ -7624,7 +7535,6 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 
 		WebElement availability=null;
 		List<String> ls = new ArrayList<String>();
-
 		try{
 
 			List<WebElement> elements= getwebelements(xml.getlocator("//locators/" + application + "/"+ xpath +""));
@@ -7852,9 +7762,6 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			Thread.sleep(1000);
 			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-//			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-//			Log.info("Navigated to order panel in view service page");
-//			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
 			compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_newOrderNumber, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
@@ -7876,9 +7783,6 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 				Thread.sleep(1000);
 				ScrolltoElement(application, "userspanel_header", xml);
 				Thread.sleep(1000);
-	//			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-	//			Log.info("Navigated to order panel in view service page");
-	//			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 				compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_existingOrderNumber, xml);
 				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 				Log.info("------ Change Order is successful ------");

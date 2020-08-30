@@ -5,9 +5,11 @@
     <classes>
       <class name="com.colt.qa.apttestscripts.APT_wholesale">
         <methods>
+          <include name="Teardown"/>
           <include name="wholeSale" invocation-numbers="0"/>
           <include name="getResult"/>
           <include name="BeforeMethod"/>
+          <include name="endReport"/>
           <include name="startReport"/>
           <include name="BeforeSuite"/>
         </methods>

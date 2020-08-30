@@ -25,6 +25,7 @@ public class APT_wholesale extends DriverTestcase{
 	public void wholeSale(Map<String, String> map) throws Exception {
 		
 		String devicename=map.get("Name");
+		String serviceIdentification=null;
 		
 		setup();	
 		
@@ -97,6 +98,12 @@ public class APT_wholesale extends DriverTestcase{
 			APT_Helper.get().verifyEnteredValuesForServiceUpdation("wholesaleService", map.get("ServiceIdentification"), map.get("ImproperEmailID"), map.get("properMailId"),
 					map.get("Phone"), map.get("remark"), map.get("PerformanceReporting"), map.get("edit_serviceId"), map.get("edit_remark"), map.get("edit_email"),
 					map.get("edit_phone"), map.get("edit_performanceReport"), map.get("serviceToBeSelected"));
+			
+			if(map.get("edit_serviceId").equalsIgnoreCase("null")) {
+				serviceIdentification = map.get("ServiceIdentification");
+			}else {
+				serviceIdentification = map.get("edit_serviceId");
+			}
 		
 	
 		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyManageSubnet_IPv6");
@@ -151,7 +158,7 @@ public class APT_wholesale extends DriverTestcase{
 		
 	
 		DriverTestcase.logger = DriverTestcase.extent.startTest("configureInterface_MAS Swicth");
-			APT_Helper.get().clickOnBreadCrump("wholesaleService", map.get("ServiceIdentification"));
+			APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 			
 			String deviceName_masswitch=null;
 			
@@ -186,7 +193,7 @@ public class APT_wholesale extends DriverTestcase{
 			}
 	
 			
-			APT_Helper.get().clickOnBreadCrump("wholesaleService", map.get("ServiceIdentification"));
+			APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 			APT_Helper.get().MSAdevice_clickOnselectInterface("wholesaleService", map.get("MAS_deviceName"));
 			
 			if(map.get("MAS_RemoveInterface_Selection").equalsIgnoreCase("yes")) {
@@ -201,7 +208,7 @@ public class APT_wholesale extends DriverTestcase{
 		
 			
 		DriverTestcase.logger = DriverTestcase.extent.startTest("deleteInterface_MAS Switch");
-			APT_Helper.get().clickOnBreadCrump("wholesaleService", map.get("ServiceIdentification"));
+			APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 			APT_Helper.get().selectInterface_AndDelete_MASswitch("wholesaleService", map.get("MAS_deviceName"), interfaceName);
 		
 	
@@ -259,7 +266,7 @@ public class APT_wholesale extends DriverTestcase{
 			
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("configureInterface_PE");
-			APT_Helper.get().clickOnBreadCrump("wholesaleService", map.get("ServiceIdentification"));
+			APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 			
 				String deviceName_PEdevice=null;
 				
@@ -289,7 +296,7 @@ public class APT_wholesale extends DriverTestcase{
 			
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("selectInterface_PE");
-			APT_Helper.get().clickOnBreadCrump("wholesaleService", map.get("ServiceIdentification"));
+			APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 			APT_Helper.get().PEdevice_clickOnselectInterface("wholesaleService", map.get("PE_deviceName"));
 			if(map.get("PE_RemoveInterface_Selection").equalsIgnoreCase("yes")) {
 				APT_Helper.get().SelectInterfacetoremovefromservice("wholesaleService", interfacename2);
@@ -303,7 +310,7 @@ public class APT_wholesale extends DriverTestcase{
 			
 			
 		DriverTestcase.logger = DriverTestcase.extent.startTest("deletInterfce");
-			APT_Helper.get().clickOnBreadCrump("wholesaleService", map.get("ServiceIdentification"));
+			APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 			APT_Helper.get().selectInterface_AndDelete_PEdevice("wholesaleService", map.get("PE_deviceName"), interfacename2);
 			
 		
@@ -314,7 +321,7 @@ public class APT_wholesale extends DriverTestcase{
 			
 		DriverTestcase.logger = DriverTestcase.extent.startTest("addTrunkSiteOrder");
 			String siteOrderNumber=null;
-			APT_Helper.get().clickOnBreadCrump("wholesaleService", map.get("ServiceIdentification"));
+			APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 			APT_Helper.get().addTrunkSiteOrder("wholesaleService", map.get("TrunkGroupOrder"), map.get("TrunkGroupOrderNumber"));
 			APT_Helper.get().editSiteOrder("wholesaleService", map.get("TrunkGroupOrderNumber"), map.get("edit_TrunkGroupOrder"), map.get("edit_TrunkGroupOrderNumber"));
 			
@@ -394,28 +401,9 @@ public class APT_wholesale extends DriverTestcase{
 					map.get("editOutDMPMrule_existingFieldSelection"), map.get("editOutDMPMrule_newFieldSelection"), map.get("editOutDMPMrule_existingValue"), map.get("editOutDMPMrule_newValue"),
 					map.get("editFeatureControlprofile_existingFieldSelection"), map.get("editFeatureControlprofile_newFieldSelection"), map.get("editFeatureControlprofile_existingValue"), map.get("editFeatureControlprofile_newValue"),
 					map.get("editLocalRingBackTone_existingFieldSelection"), map.get("editLocalRingBackTone_newFieldSelection"), map.get("editLocalRingBackTone_existingValue"), map.get("editLocalRingBackTone_newValue"),
-					map.get("editCreateLowerCaseRoutervalue"), map.get("edit_PSXmanualConfigvalue"), map.get("edit_GSXmanualConfigvalue"),map.get("edit_SBCmanualconfigValue"));
+					map.get("editCreateLowerCaseRoutervalue"), map.get("edit_PSXmanualConfigvalue"), map.get("edit_GSXmanualConfigvalue"),map.get("edit_SBCmanualconfigValue"), map.get("BillingCountry"));
 			
 
-		DriverTestcase.logger = DriverTestcase.extent.startTest("addResilientTrunk");	
-//			APT_Helper.get().verifyAddedSiteOrderAndTrunkLinkUnderTrunkPanel("wholesaleService", map.get("TrunkGroupOrderNumber"));
-//			APT_Helper.get().addResilienttrunk("wholesaleService", CustomerName, map.get("ServiceIdentification") ,map.get("trunkType"), map.get("voipProtocol"), map.get("BillingCountry"), map.get("CDRdelivery"),
-//					map.get("gateway"), map.get("quality"), map.get("trafficDirection"), map.get("ipAddresstype"), map.get("SIPsignallingPort"),
-//					map.get("internetBasedCustomer"), map.get("vlanTag"), map.get("subInterfaceSlot"), map.get("signallngZone"), map.get("signallingtransportProtocol"),
-//					map.get("coltSignalingIP"), map.get("mediaIP"), map.get("reuseNIFgroup"), map.get("reuseSigZonePart"), map.get("callAdmissionControl"),
-//					map.get("callrateLimitselection"), map.get("sourceAddressFiltering"), map.get("relSupport"), map.get("sipSessionkeepAliveTimer"), map.get("retryInvite"),
-//					map.get("routePriority"), map.get("addressReachability"), map.get("carrierIPoriginating"), map.get("carrierIPterminating"), map.get("TLSfield"),
-//					map.get("srtp"), map.get("prefix"), map.get("globalProfile_ExistingSelection"), map.get("globalProfile_newSelection"),map.get("globalProfile_ExistingValue"),map.get("globalProfile_newValue"), 
-//					map.get("localProfile_existingvalue"), map.get("localProfile_newvalue"),map.get("COSprofile_existingValue"), map.get("COSprofile_newValue"),
-//					map.get("pspgName_existingValue"), map.get("pspgName_newValue"),map.get("preferredPSP_exitingvalue"), map.get("preferredPSP_newvalue"),
-//					map.get("carrier_existingValue"), map.get("carrier_newValue"),map.get("IPsignallingProfile_existingValue"), map.get("IPsignallingProfile_newValue"),
-//					map.get("EgressIPsignal_existingValue"), map.get("EgressIPsignal_newValue"),map.get("InDMPMrule_existingValue"), map.get("InDMPMrule_newValue"),
-//					map.get("OutDMPMrule_existingValue"), map.get("OutDMPMrule_newValue"),map.get("featureControlprofile_existingValue"), map.get("featureControlprofile_newValue"),
-//					map.get("localRingBackTone_existingFieldSelection"), map.get("localRingBackTone_newFieldSelection"), map.get("localRingBackTone_existingValue"), map.get("localRingBackTone_newValue"),
-//					map.get("createLowerCaseRoutervalue"), map.get("PSXmanualConfigvalue"), map.get("GSXmanualConfigvalue"), map.get("callLimit"), map.get("limitNumber"), map.get("callrateLimiteValue"),
-//					map.get("gateway_resilientTrunk"), map.get("voip_resilientTrunk"), map.get("trafficDirection_resiltrunk"), map.get("ipAddressType_resilTrunk"), map.get("carierIPOrient_resiltrunk"),
-//					map.get("carierIPterminat_resiltrunk"));
-		
 		
 		DriverTestcase.logger = DriverTestcase.extent.startTest("viewTrunk_GSX_PSX_configuration");
 			APT_Helper.get().viewTrunk_PSX_executeConfiguration("wholesaleService", map.get("viewtrunk_PSXconfiguration"));
@@ -472,7 +460,7 @@ public class APT_wholesale extends DriverTestcase{
 		DriverTestcase.logger = DriverTestcase.extent.startTest("addCPEdevice");
 			String trunkName=APT_Helper.get().fetchTrunkName("wholesaleService");
 			TrunkName=trunkName;
-			APT_Helper.get().clickOnBreadCrump("wholesaleService", map.get("ServiceIdentification"));
+			APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 			APT_Helper.get().clickOnCPEdeviceLink("wholesaleService", trunkName, siteOrderNumber);
 			APT_Helper.get().addCPEdevice("wholesaleService", map.get("CPEdevice_routerID"), map.get("CPEdevice_vendorModel"),
 					map.get("CPEdevice_managementAddress"), map.get("CPEdevice_Snmpro"), map.get("CPEdevice_Snmprw"), map.get("CPEdevice_SNMPv3Contextname"),
@@ -518,7 +506,7 @@ public class APT_wholesale extends DriverTestcase{
 				routerId=map.get("editCPEdevice_routerID");
 			}
 			
-			APT_Helper.get().clickOnBreadCrump("wholesaleService", map.get("ServiceIdentification"));
+			APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 			APT_Helper.get().CPEdevice_clickOnDeleteLink("wholesaleService", routerId );
 			APT_Helper.get().verifysuccessmessage("wholesaleService", "CPE Device deleted successfully");
 			
@@ -526,7 +514,7 @@ public class APT_wholesale extends DriverTestcase{
 		DriverTestcase.logger = DriverTestcase.extent.startTest("deleteTrunk");
 			
 			String trunkName1=TrunkName;
-			APT_Helper.get().clickOnBreadCrump("wholesaleService", map.get("ServiceIdentification"));
+			APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 			Thread.sleep(2000);
 			APT_Helper.get().deleteTrunk("wholesaleService",  trunkName1, siteOrderNumber);
 			APT_Helper.get().deleteSiteOrder("wholesaleService", siteOrderNumber);

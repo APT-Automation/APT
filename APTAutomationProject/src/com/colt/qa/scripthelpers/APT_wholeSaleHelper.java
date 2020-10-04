@@ -1010,7 +1010,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			String OutDMPMrule_existingFieldSelection, String OutDMPMrule_newFieldSelection, String OutDMPMrule_existingValue, String OutDMPMrule_newValue,
 			String featureControlprofile_existingFieldSelection,String featureControlprofile_newFieldSelection, String featureControlprofile_existingValue, String featureControlprofile_newValue,
 			String localRingBackTone_existingFieldSelection, String localRingBackTone_newFieldSelection, String localRingBackTone_existingValue, String localRingBackTone_newValue,
-			String createLowerCaseRoutervalue,String PSXmanualConfigvalue, String GSXmanualConfigvalue, String callLimit, String limitNumber, String callrateLimiteValue, String SBCmanualconfigValue) throws IOException, InterruptedException, DocumentException {      
+			String createLowerCaseRoutervalue,String PSXmanualConfigvalue, String GSXmanualConfigvalue, String callLimit, String limitNumber, String callrateLimiteValue, String SBCmanualconfigValue) throws IOException, InterruptedException, DocumentException {       
 		
 		String gatewayCode=null;
 		String subInterfacename_starting="SIF-1-";
@@ -1145,7 +1145,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 		
 	//Carrier IP originating
-		warningMessage_commonMethod(application, "carrierIPoriginating_warningMessage", "Carrier IP Originating (Address/Mask)", xml);
+//		warningMessage_commonMethod(application, "carrierIPoriginating_warningMessage", "Carrier IP Originating (Address/Mask)", xml);
 		
 		addtextFields_commonMethod(application, "Carrier IP Originating (Address/Mask)", "carrierIPoriginating_textField", carrierIPoriginating, xml);
 		click_commonMethod(application, ">>", "carrierIPoriginating_addButtton", xml);
@@ -1153,7 +1153,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 		
 	//Carrier IP Terminating
-		warningMessage_commonMethod(application, "carrerIPterminating_warningMessage", "Carrier IP Terminating((Address)", xml);
+//		warningMessage_commonMethod(application, "carrerIPterminating_warningMessage", "Carrier IP Terminating((Address)", xml);
 		
 		addtextFields_commonMethod(application, "Carrier IP Terminating(Address)", "carrierIPterminating_textField", carrierIPterminating, xml);
 		click_commonMethod(application, ">>", "carrierIPterminating_addButton", xml);
@@ -4569,7 +4569,7 @@ try {
 			
 			waitForpageload();
 			waitforPagetobeenable();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			
 			scrollToTop();
 			WebElement breadcrumb=null;
@@ -5296,16 +5296,17 @@ try {
 			Thread.sleep(1000);
 			
 			
-			String gateway = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/HomeBreadcrump")));
+			String gateway = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/fetchGateway")));
 			
 			return gateway;
 		}
 
-		public void viewTrunk_PSX_executeConfiguration(String application, String expectedConfiguration) throws InterruptedException, DocumentException {
+		public void viewTrunk_PSX_executeConfiguration(String application, String expectedConfiguration, String trunkName, String carrierIPoriginating,
+				String carrierIPterminating) throws InterruptedException, DocumentException, IOException {
 			
 			waitForpageload();
 			waitforPagetobeenable();
-			Thread.sleep(7000);
+			Thread.sleep(2000);
 			
 			ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'PSX_Execute Configuration' Functionality");
 			
@@ -5339,8 +5340,6 @@ try {
 		    	 e.printStackTrace();
 		     }
 		     
-		     
-		     
 		     if(expectedConfiguration.equalsIgnoreCase("Delete Trunk Group")) {
 		    	 verifysuccessmessage(application, "PSX sync started successfully.");
 		     }
@@ -5350,14 +5349,56 @@ try {
 			    	   ExtentTestManager.getTest().log(LogStatus.FAIL, "After clicking on OK, No mEssage displays");
 				       Log.info("No Message displays"); 
 			       }else {
-			    	   ExtentTestManager.getTest().log(LogStatus.PASS, "After clicking on OK button, Alert message displays as: "+alertMessage);
-				       Log.info("text message for alert displays as: "+alertMessage);
+			    	   ExtentTestManager.getTest().log(LogStatus.PASS, "After clicking on OK button in alert box, another Alert message displays as: "+alertMessage);
+				       Log.info("After clicking on OK button in alert box, another Alert message displays as: "+alertMessage);
 				       
-				       alert.dismiss();
-//				       alert.accept();
-				       
-				       
-				       
+//				       alert.dismiss();
+				       alert.accept();
+				       waitForpageload();   waitforPagetobeenable();
+				     try { 
+				      boolean trunkPanel = getwebelement(xml.getlocator("//locators/" + application + "/addTrunkGroupPanel")).isDisplayed(); 
+				      if(trunkPanel) {
+				    	  
+				    	  Thread.sleep(3000);
+				    	  ExtentTestManager.getTest().log(LogStatus.PASS, "Navigated to 'Add Trunk' Page as expected");
+				    	  Log.info("Navigated to 'Add Trunk' Page as expected");
+				    	  
+				    	  scrollToTop();
+				    	  selectValueInsideDropdown(application, "primaryTrunkGroup_Dropdown", "Primary Trunk Group", trunkName, xml);
+					       
+				    	  WebElement traficDirection=getwebelement(xml.getlocator("//locators/" + application + "/trafficDirection_Dropdown"));
+							scrolltoview(traficDirection);
+							Thread.sleep(2000);
+							
+						     //Carrier IP originating
+								addtextFields_commonMethod(application, "Carrier IP Originating (Address/Mask)", "carrierIPoriginating_textField", carrierIPoriginating, xml);
+								click_commonMethod(application, ">>", "carrierIPoriginating_addButtton", xml);
+								GetTheValuesInsideDropdown(getwebelement(xml.getlocator("//locators/" + application + "/carrierIPOriginating_addedValue_selectDropdownField")), "Carrier IP Originating (Address/Mask)");
+								
+								
+							//Carrier IP Terminating
+								addtextFields_commonMethod(application, "Carrier IP Terminating(Address)", "carrierIPterminating_textField", carrierIPterminating, xml);
+								click_commonMethod(application, ">>", "carrierIPterminating_addButton", xml);
+								GetTheValuesInsideDropdown(getwebelement(xml.getlocator("//locators/" + application + "/carrierIPterminating_addedValue_selectDropdownField")), "Carrier IP Terminating (Address)");
+								
+								
+								scrolltoend();
+								Thread.sleep(1000);
+								click_commonMethod(application, "OK", "OKbutton", xml);
+								waitForpageload();  waitforPagetobeenable();
+								
+								verifysuccessmessage(application, "Trunk created successfully");
+								
+				      }else {
+				    	  ExtentTestManager.getTest().log(LogStatus.PASS, "'Add Trunk' Page is not displaying, after selcting 'add Destination IP Address'");
+				    	  Log.info("'Add Trunk' Page is not displaying, after selcting 'add Destination IP Address'");
+				    	  
+				      }
+				     } catch(Exception e) {
+				    	 e.printStackTrace();
+				    	 ExtentTestManager.getTest().log(LogStatus.PASS, "'Add Trunk' Page is not displaying, after selcting 'add Destination IP Address'");
+				    	 Log.info("'Add Trunk' Page is not displaying, after selcting 'add Destination IP Address'");
+				     }
 			       }
 		    	 
 		     }
@@ -6305,6 +6346,8 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 	
 	public void deleteTrunk(String application, String trunkGroupName, String siteOrderName) throws Exception {
 		
+		
+		waitForpageload();   waitforPagetobeenable();
 		scrolltoend();
 		Thread.sleep(3000);
 		
@@ -6322,7 +6365,6 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		
 		//click on delete link
 			click_commonMethod(application, "Delete", "MAS_View_Action_DeleteLink", xml);
-			
 			
 			 WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
 	         if(DeleteAlertPopup.isDisplayed())
@@ -7748,8 +7790,20 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 //		Log.info("Navigated to order panel in view service page");
 //		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
-		compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
-		compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		if(editorderno.equalsIgnoreCase("Null")) {
+			
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order/Contract Number (Parent SID)' field is not edited");
+			Log.info("'Order/Contract Number (Parent SID)' field is not edited");
+		}else {
+			compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
+		}
+		
+		if(editvoicelineno.equalsIgnoreCase("Null")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS,"'RFI/RFQ/IP Voice Line Number' field is not edited");
+			Log.info("'RFI/RFQ/IP Voice Line Number' field is not edited");
+		}else {
+			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		}
 		Log.info("------ Edit Order is successful ------");
 		}
 

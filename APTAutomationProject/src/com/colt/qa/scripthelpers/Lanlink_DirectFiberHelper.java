@@ -630,8 +630,20 @@ WebElement ChooseCustomer_Select, Next_Button, CreateOrderService_Text;
 //		Log.info("Navigated to order panel in view service page");
 //		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
-		compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
-		compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		if(editorderno.equalsIgnoreCase("Null")) {
+			
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order/Contract Number (Parent SID)' field is not edited");
+			Log.info("'Order/Contract Number (Parent SID)' field is not edited");
+		}else {
+			compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
+		}
+		
+		if(editvoicelineno.equalsIgnoreCase("Null")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS,"'RFI/RFQ/IP Voice Line Number' field is not edited");
+			Log.info("'RFI/RFQ/IP Voice Line Number' field is not edited");
+		}else {
+			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		}
 		Log.info("------ Edit Order is successful ------");
 		}
 
@@ -5066,8 +5078,6 @@ if(modularmsp.equalsIgnoreCase("no")) {
 				Thread.sleep(3000);
 				
 				click_commonMethod(application, "OK", "okbutton", xml);
-				Thread.sleep(2000);
-		
 		
 	}
 	
@@ -14083,7 +14093,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     
     public void returnbacktoviewsiteorderpage(String application) throws InterruptedException, DocumentException {
     	
-    	waitForpageload();
+//    	waitForpageload();
     	waitforPagetobeenable();
     	
     	scrolltoend();
@@ -23497,6 +23507,8 @@ Thread.sleep(3000);
 	public void addOvertureCircuit(String application, String serviceName)
 			throws InterruptedException, DocumentException, IOException {
 
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Circuit creation for 'Overture' device");
+		
 		scrolltoend();
 
 		// Click on Add Overture Link
@@ -23612,6 +23624,8 @@ Thread.sleep(3000);
 	
 	public void addOveture_PAMtest_selectRow(String application,  String interface1) throws InterruptedException, DocumentException {
 		
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Performing 'PAM Test'");
+		
 		waitForpageload();  waitforPagetobeenable();
 		
 		scrolltoend();
@@ -23695,6 +23709,8 @@ Thread.sleep(3000);
 
 	
 	public void deleteCircuit(String application) throws InterruptedException, DocumentException {
+		
+		ExtentTestManager.getTest().log(LogStatus.INFO, "delete Circuit");
 		
 		scrolltoend();
 		click_commonMethod(application, "deleteLink", "PAMTest_deleteButton", xml);

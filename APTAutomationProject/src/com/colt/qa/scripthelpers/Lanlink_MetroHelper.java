@@ -1274,7 +1274,7 @@ try {
 	
 
 	
-	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+	click_commonMethod(application, "OK", "okbutton", xml);
 
 }
 	
@@ -1490,7 +1490,7 @@ Thread.sleep(3000);
 	
 
 	
-	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+	click_commonMethod(application, "OK", "okbutton", xml);
 
 }
 
@@ -1746,7 +1746,7 @@ Thread.sleep(3000);
 			 System.out.println("'VPN topology' dropdown is not available under 'Configuration Options' panel in 'Create Service' page");
 		}
 	
-	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+	click_commonMethod(application, "OK", "okbutton", xml);
 
 }
 
@@ -4573,7 +4573,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 	
 	ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered for add site order");
 	
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -4735,7 +4735,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 		  
 //	scrolltoend();
 //		Thread.sleep(3000);
-//		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+//		click_commonMethod(application, "OK", "okbutton", xml);
 //		
 
 	}
@@ -4785,7 +4785,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 				scrolltoend();
 				Thread.sleep(3000);
 				
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+				click_commonMethod(application, "OK", "okbutton", xml);
 				Thread.sleep(2000);
 		
 	}
@@ -4839,7 +4839,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 				scrolltoend();
 				Thread.sleep(3000);
 				
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+				click_commonMethod(application, "OK", "okbutton", xml);
 				Thread.sleep(2000);
 		
 	}
@@ -4926,7 +4926,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 		scrolltoend();
 		Thread.sleep(3000);
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 	}
@@ -5015,7 +5015,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 		scrolltoend();
 		Thread.sleep(3000);
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 	}
@@ -5088,7 +5088,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 		scrolltoend();
 		Thread.sleep(3000);
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 		
@@ -5200,7 +5200,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 		scrolltoend();
 		Thread.sleep(3000);
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 	}
@@ -5295,7 +5295,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 		scrolltoend();
 		Thread.sleep(3000);
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 	}
 	
@@ -5429,7 +5429,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 		scrolltoend();
 		Thread.sleep(3000);
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 	}
 	
@@ -5527,7 +5527,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 		scrolltoend();
 		Thread.sleep(3000);
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 	}
 	
@@ -5624,7 +5624,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 		scrolltoend();
 		Thread.sleep(3000);
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 	}
@@ -5704,7 +5704,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 		scrolltoend();
 		Thread.sleep(3000);
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 	}
@@ -5811,7 +5811,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 			scrolltoend();
 			Thread.sleep(3000);
 			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+			click_commonMethod(application, "OK", "okbutton", xml);
 			Thread.sleep(2000);
 		
 	}
@@ -5897,7 +5897,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 			scrolltoend();
 			Thread.sleep(3000);
 			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+			click_commonMethod(application, "OK", "okbutton", xml);
 			Thread.sleep(2000);
 	}
 	
@@ -5949,12 +5949,9 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 	//Non-termination point
 			 editsiteorder_NonterminationPoint(application, nontermination); 
 		
-			 
 			 scrolltoend();
 				Thread.sleep(3000);
-				
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
-				Thread.sleep(2000);
+				click_commonMethod(application, "OK", "okbutton", xml);
 	}
 	
 	
@@ -6009,7 +6006,7 @@ public void verifysuccessmessageforCreateService(String application) throws Inte
 			 scrolltoend();
 				Thread.sleep(3000);
 				
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+				click_commonMethod(application, "OK", "okbutton", xml);
 				Thread.sleep(2000);
 	}
 	
@@ -12357,7 +12354,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 		}
 
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 		Thread.sleep(3000);
 
@@ -12607,7 +12604,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 scrolltoend();
 Thread.sleep(3000);
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 	}
@@ -12660,7 +12657,7 @@ Thread.sleep(3000);
 scrolltoend();
 Thread.sleep(3000);
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 	}
@@ -12715,7 +12712,7 @@ Thread.sleep(3000);
 		scrolltoend();
 		Thread.sleep(1000);
 	    
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 	}
@@ -12861,7 +12858,7 @@ Thread.sleep(3000);
 		scrolltoend();
 		Thread.sleep(2000);
 	    
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 	}
@@ -13006,7 +13003,7 @@ Thread.sleep(3000);
 		scrolltoend();
 		Thread.sleep(2000);
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 	}
@@ -13142,7 +13139,7 @@ Thread.sleep(3000);
 		
 				scrolltoend();
 				Thread.sleep(2000);
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 	}
@@ -13199,7 +13196,7 @@ Thread.sleep(3000);
 			
 		}
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 		Thread.sleep(3000);
 
@@ -13848,7 +13845,7 @@ Thread.sleep(3000);
 		Thread.sleep(2000);
 		
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 	
@@ -13910,7 +13907,7 @@ Thread.sleep(3000);
 		device_editlinkLostforwarding(application, linkLostForwarding);
 	    
 	    
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		
 	
@@ -16668,7 +16665,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 		
 	ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered inside Edit Interface page by selecting configure link under Intermediate Equipment");	
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(3000);
     
     }
@@ -16706,7 +16703,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 		Clickon(getwebelement("//div[text()='"+vlantype +"']"));
 		
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(5000);
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/CPEdevice_hideinterfaceslinkforequipment")));
@@ -16763,7 +16760,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 		
 	ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered inside Edit Interface page by selecting configure link under Intermediate Equipment");	
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(3000);
 	
 		   
@@ -16823,7 +16820,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 		
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered inside Edit Interfaec page by selecting configure link under Equipment");
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(3000);
 		   
     }
@@ -16886,7 +16883,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 		
 	ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered inside Edit Interface page by selecting configure link under Intermediate Equipment");	
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(3000);
 	
 		   
@@ -17645,7 +17642,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		ExtentTestManager.getTest().log(LogStatus.PASS,"Values has been Edited for Direct Fiber subtype under lanlink Service");
 
 		 //click on "Ok button to update
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(3000);
 
 	 }
@@ -17930,7 +17927,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		Thread.sleep(3000);
 		
 	 //click on "Ok button to update
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(3000);
 	 
 	 }
@@ -18279,7 +18276,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		Thread.sleep(3000);
 		
 	 //click on "Ok button to update
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(3000);
 	 
 	 }
@@ -18600,7 +18597,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 			ExtentTestManager.getTest().log(LogStatus.PASS,"Values has been Edited under Lanlink Metro subtype under Lanlink service");
 			
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 	 }
 	 
 	 
@@ -19511,7 +19508,7 @@ public void addOverture(String application, String serviceName) throws Interrupt
 	
 	
 	//Click on Next buttton to find mandatory message
-	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+	click_commonMethod(application, "OK", "okbutton", xml);
 	Thread.sleep(3000);
 	
 	
@@ -19585,7 +19582,7 @@ public void City_AddSiteorder(String application, String existingcityselection, 
 					
 					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_sitedropdown")));
 					Thread.sleep(3000);	
-					Clickon(getwebelement("//div[text()='" + sitevalue + "']"));
+					Clickon(getwebelement("//span[text()='" + sitevalue + "']"));
 					Thread.sleep(3000);
 					ExtentTestManager.getTest().log(LogStatus.PASS, sitevalue+  " is selected under Physical Site dropdown");
 	    		}
@@ -20539,7 +20536,7 @@ try {
     	 Thread.sleep(3000);
     	 scrolltoend();
     	 Thread.sleep(3000);
- 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+ 		click_commonMethod(application, "OK", "okbutton", xml);
     	 
 
      }
@@ -20595,7 +20592,7 @@ try {
      	 Thread.sleep(3000);
      	 scrolltoend();
      	 Thread.sleep(3000);
-  		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+  		click_commonMethod(application, "OK", "okbutton", xml);
      	 
 
       }
@@ -21783,7 +21780,7 @@ try {
   	
 	   scrolltoend();
 	   Thread.sleep(3000);
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
      }
      
@@ -21845,7 +21842,7 @@ try {
    	
  	   scrolltoend();
  	   Thread.sleep(3000);
- 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+ 		click_commonMethod(application, "OK", "okbutton", xml);
 
       }
 
@@ -21913,7 +21910,7 @@ try {
   	    ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered for add site order");
   	    scrolltoend();
   	    Thread.sleep(3000);
-  		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+  		click_commonMethod(application, "OK", "okbutton", xml);
        
      }
      
@@ -22087,7 +22084,7 @@ try {
    	
  	    scrolltoend();
  	   Thread.sleep(3000); 
- 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+ 		click_commonMethod(application, "OK", "okbutton", xml);
       }
 
      
@@ -23983,45 +23980,7 @@ public void device_editVLANIdField(String application, String VLANid) {
 	
 	public void createService_singleEndPointCPE(String application, String EndpointCPE) throws InterruptedException, DocumentException {
 		
-		boolean singleendpointCPE=false;
-		try {	
-			singleendpointCPE = getwebelement(xml.getlocator("//locators/" + application + "/EndpointCPE")).isDisplayed();
-			if(singleendpointCPE) {
-				
-				ExtentTestManager.getTest().log(LogStatus.PASS, " 'Single End Point CPE' checkbox is displaying as expected");
-				
-			if(!EndpointCPE.equalsIgnoreCase("null")) {
-				if (EndpointCPE.equals("yes")) {
-
-					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EndpointCPE")));
-					Thread.sleep(3000);
-					Log.info("End point CPE check box is selected");
-					
-					boolean CPEselection=getwebelement(xml.getlocator("//locators/" + application + "/EndpointCPE")).isSelected();
-					if(CPEselection) {
-						ExtentTestManager.getTest().log(LogStatus.PASS, " 'End point CPE' checkbox is selected as expected");
-					}else {
-						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'End point CPE' checkbox is not selected");
-					}
-					
-				}
-				else {
-
-					Log.info("Sing Endpoint CPE is not selected");
-					ExtentTestManager.getTest().log(LogStatus.PASS,"Sing Endpoint CPE is not selected "); 
-				}
-			}
-			}else {
-				ExtentTestManager.getTest().log(LogStatus.FAIL,  " 'Single endpoint cpe' field is not available under 'Create Service' page");
-			}
-		}catch(NoSuchElementException e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Single endpoint cpe' field is not available under 'Create Service' page");
-		}catch(Exception er) {
-			er.printStackTrace();
-			System.out.println("not able to select single end point CPE checkbox");
-			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'single end point CPE' checkbox");
-		}
+		addCheckbox_commonMethod(application, "EndpointCPE", "Single Endpoint CPE", EndpointCPE, "No", xml);
 	}
 	
 	
@@ -25635,7 +25594,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 	     cancelbutton_AddSiteOrder(application);
 	     
 	     
-	 Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+	 click_commonMethod(application, "OK", "okbutton", xml);
 	 Thread.sleep(4000);
 	 
 
@@ -26485,8 +26444,20 @@ Thread.sleep(3000);
 //			Log.info("Navigated to order panel in view service page");
 //			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
-			compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
-			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+			if(editorderno.equalsIgnoreCase("Null")) {
+				
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Order/Contract Number (Parent SID)' field is not edited");
+				Log.info("'Order/Contract Number (Parent SID)' field is not edited");
+			}else {
+				compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
+			}
+			
+			if(editvoicelineno.equalsIgnoreCase("Null")) {
+				ExtentTestManager.getTest().log(LogStatus.PASS,"'RFI/RFQ/IP Voice Line Number' field is not edited");
+				Log.info("'RFI/RFQ/IP Voice Line Number' field is not edited");
+			}else {
+				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+			}
 			Log.info("------ Edit Order is successful ------");
 			}
 		}

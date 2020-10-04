@@ -117,6 +117,8 @@
 
 <resetButton>//span[text()='Reset']</resetButton>
 
+<clearbutton>//span[text()='Reset']</clearbutton>
+
 <clearcountryvalue>//label[text()='Country']/parent::div//div[text()='×']</clearcountryvalue>
 
 <cleartypevalue>//label[text()='Type']/parent::div//div[text()='×']</cleartypevalue>

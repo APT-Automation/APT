@@ -115,6 +115,8 @@
 
 <customercreationsuccessmsg>//div[@role='alert']//span</customercreationsuccessmsg>
 
+<clearbutton>//span[text()='Reset']</clearbutton>
+
 <resetButton>//span[text()='Reset']</resetButton>
 
 <clearcountryvalue>//label[text()='Country']/parent::div//div[text()='×']</clearcountryvalue>

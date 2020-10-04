@@ -999,8 +999,13 @@ public void Moveon(WebElement el) {
 	}
 	
 //Common Methods
-	public void scrolltoend() {//Or Scroll Down
+	public void scrolltoend() throws InterruptedException {//Or Scroll Down
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		
+		clickOnBankPage();
+		Thread.sleep(1000);
+		Actions action=new Actions(driver);
+		action.keyDown(Keys.CONTROL).sendKeys(Keys.END).keyUp(Keys.CONTROL).perform();
 	}
 
 
@@ -1010,7 +1015,6 @@ public void Moveon(WebElement el) {
 		clickOnBankPage();
 		
 		Thread.sleep(1000);
-		
 		Actions action=new Actions(driver);
 		action.keyDown(Keys.CONTROL).sendKeys(Keys.HOME).keyUp(Keys.CONTROL).perform();
 		
@@ -1018,7 +1022,7 @@ public void Moveon(WebElement el) {
 
 
 	public void clickOnBankPage() {
-		driver.findElement(By.xpath("//body")).click();
+		driver.findElement(By.xpath("(//body)[1]")).click();
 	}
 
 
@@ -1129,11 +1133,9 @@ public void Moveon(WebElement el) {
 								 ls.add(valuetypes.getText());
 					}
 					
-					
 					    ExtentTestManager.getTest().log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
 			            System.out.println("list of values inside "+labelname+" dropdown is: "+ls);
 					
-					Thread.sleep(2000);
 				SendKeys(getwebelement("//div[label[text()='"+ labelname +"']]//input"), expectedValueToAdd);	
 				Thread.sleep(2000);
 					

@@ -12,6 +12,8 @@ import com.colt.qa.reporter.ExtentTestManager;
 
 public class Lanlink_Outbandmanagement extends DriverTestcase {
 	
+	APT_Login Login=new APT_Login();
+	
 	public String deviceName_Equip=null;
 	public String devicename_IntEquipment=null;
 	public String CPEdeviceName_CustomerPremiseEquipment = null;
@@ -19,6 +21,10 @@ public class Lanlink_Outbandmanagement extends DriverTestcase {
 		@Test(dataProviderClass = DataReader.class, dataProvider = "outBandManagement", priority=0)
 		public void chooseCustomer(Map<String, String> map) throws Exception {
 
+			setup();
+			
+			Login.APT_Login_1(map.get("url"));
+			
 			String CustomerName1=null;
 			String newCustomerName=map.get("newCustomerSelection");
 			String existingCustomer=map.get("existingCustomerSelection");

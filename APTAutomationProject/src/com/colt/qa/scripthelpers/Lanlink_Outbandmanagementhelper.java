@@ -3809,7 +3809,7 @@ scrolltoend();
 
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered for add site order");
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -3840,7 +3840,7 @@ scrolltoend();
 
 		scrolltoend();
 		Thread.sleep(3000);
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -3913,7 +3913,7 @@ scrolltoend();
 		scrolltoend();
 		Thread.sleep(3000);
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -5501,7 +5501,7 @@ scrolltoend();
 		Thread.sleep(3000);
 		scrolltoend();
 		Thread.sleep(3000);
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -7253,7 +7253,7 @@ scrolltoend();
 
 		}
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 		Thread.sleep(3000);
 
@@ -7417,7 +7417,7 @@ scrolltoend();
 		scrolltoend();
 		Thread.sleep(3000);
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 
 	}
@@ -7465,7 +7465,7 @@ scrolltoend();
 		// linklost forwarding
 		device_editlinklostforwarding_10G(application);
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 
 	}
@@ -7522,7 +7522,7 @@ scrolltoend();
 		scrolltoend();
 		Thread.sleep(3000);
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 
 	}
@@ -7571,7 +7571,7 @@ scrolltoend();
 		scrolltoend();
 		Thread.sleep(3000);
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 
 	}
@@ -7621,7 +7621,7 @@ scrolltoend();
 
 		}
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 		Thread.sleep(3000);
 
@@ -8054,7 +8054,7 @@ scrolltoend();
 		scrolltoend();
 		Thread.sleep(3000);
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 
 	}
@@ -8108,7 +8108,7 @@ scrolltoend();
 		// linklost forwarding
 		device_editlinkLostforwarding(application, linkLostForwarding);
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 
 	}
@@ -10377,7 +10377,7 @@ scrolltoend();
 		ExtentTestManager.getTest().log(LogStatus.PASS,
 				"Data has been entered inside Edit Interface page by selecting configure link under Intermediate Equipment");
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(3000);
 
 	}
@@ -10410,7 +10410,7 @@ scrolltoend();
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureVlanType")));
 		Clickon(getwebelement("//div[text()='" + vlantype + "']"));
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(5000);
 
 		Clickon(getwebelement(
@@ -10466,7 +10466,7 @@ scrolltoend();
 		ExtentTestManager.getTest().log(LogStatus.PASS,
 				"Data has been entered inside Edit Interface page by selecting configure link under Intermediate Equipment");
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(3000);
 
 	}
@@ -10522,7 +10522,7 @@ scrolltoend();
 		ExtentTestManager.getTest().log(LogStatus.PASS,
 				"Data has been entered inside Edit Interfaec page by selecting configure link under Equipment");
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(3000);
 
 	}
@@ -10584,7 +10584,7 @@ scrolltoend();
 		ExtentTestManager.getTest().log(LogStatus.PASS,
 				"Data has been entered inside Edit Interface page by selecting configure link under Intermediate Equipment");
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(3000);
 
 	}
@@ -11863,7 +11863,7 @@ scrolltoend();
 		ExtentTestManager.getTest().log(LogStatus.PASS,
 				"Values has been Edited under Lanlink Metro subtype under Lanlink service");
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 	}
 
 	public void EditLanlink_outbandmanagement(String application, String ServiceIdentificationNumber,
@@ -12162,7 +12162,7 @@ scrolltoend();
 		ExtentTestManager.getTest().log(LogStatus.PASS,
 				"Values has been Edited under lanlink outbandmanagement service subtype");
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -12529,7 +12529,7 @@ scrolltoend();
 		ExtentTestManager.getTest().log(LogStatus.PASS,
 				"Values has been Edited for 'OLO - (GCR/EU)' subtype under LALINK Service");
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -14804,7 +14804,7 @@ scrolltoend();
 		Thread.sleep(3000);
 		scrolltoend();
 		Thread.sleep(3000);
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -14890,7 +14890,7 @@ scrolltoend();
 
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered for add site order");
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -15110,7 +15110,7 @@ scrolltoend();
 
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered for add site order");
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -15176,7 +15176,7 @@ scrolltoend();
 
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered for add site order");
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -15285,7 +15285,7 @@ scrolltoend();
 
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered for add site order");
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -15873,7 +15873,7 @@ scrolltoend();
 
 		scrolltoend();
 		Thread.sleep(3000);
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -15940,7 +15940,7 @@ scrolltoend();
 
 		scrolltoend();
 		Thread.sleep(3000);
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -16010,7 +16010,7 @@ scrolltoend();
 
 		scrolltoend();
 		Thread.sleep(3000);
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -17223,7 +17223,7 @@ scrolltoend();
 			// cancel button
 			device_cancelButton(application);
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+			click_commonMethod(application, "OK", "okbutton", xml);
 			Thread.sleep(5000);
 
 			sa.assertAll();
@@ -17374,7 +17374,7 @@ scrolltoend();
 			// cancel button
 			device_cancelButton(application);
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+			click_commonMethod(application, "OK", "okbutton", xml);
 			Thread.sleep(5000);
 
 			sa.assertAll();
@@ -18039,50 +18039,8 @@ scrolltoend();
 
 	public void createService_singleEndPointCPE(String application, String EndpointCPE)
 			throws InterruptedException, DocumentException {
-
-		boolean singleendpointCPE = false;
-		try {
-			singleendpointCPE = getwebelement(xml.getlocator("//locators/" + application + "/EndpointCPE"))
-					.isDisplayed();
-			if (singleendpointCPE) {
-
-				ExtentTestManager.getTest().log(LogStatus.PASS, " 'Single End Point CPE' checkbox is displaying as expected");
-
-				if (!EndpointCPE.equalsIgnoreCase("null")) {
-					if (EndpointCPE.equals("yes")) {
-
-						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EndpointCPE")));
-						Thread.sleep(3000);
-						Log.info("End point CPE check box is selected");
-
-						boolean CPEselection = getwebelement(
-								xml.getlocator("//locators/" + application + "/EndpointCPE")).isSelected();
-						if (CPEselection) {
-							ExtentTestManager.getTest().log(LogStatus.PASS,
-									" 'End point CPE' checkbox is selected as expected");
-						} else {
-							ExtentTestManager.getTest().log(LogStatus.FAIL, " 'End point CPE' checkbox is not selected");
-						}
-
-					} else {
-
-						Log.info("Sing Endpoint CPE is not selected");
-						ExtentTestManager.getTest().log(LogStatus.PASS, "Sing Endpoint CPE is not selected ");
-					}
-				}
-			} else {
-				ExtentTestManager.getTest().log(LogStatus.FAIL,
-						" 'Single endpoint cpe' field is not available under 'Create Service' page");
-			}
-		} catch (NoSuchElementException e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL,
-					" 'Single endpoint cpe' field is not available under 'Create Service' page");
-		} catch (Exception er) {
-			er.printStackTrace();
-			System.out.println("not able to select single end point CPE checkbox");
-			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'single end point CPE' checkbox");
-		}
+		
+		addCheckbox_commonMethod(application, "EndpointCPE", "Single Endpoint CPE", EndpointCPE, "No", xml);
 	}
 
 	public void createSerivce_email(String application, String Email)
@@ -19655,7 +19613,7 @@ scrolltoend();
 			// CAncel button
 			cancelbutton_AddSiteOrder(application);
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+			click_commonMethod(application, "OK", "okbutton", xml);
 			Thread.sleep(4000);
 
 		} else {
@@ -22558,8 +22516,20 @@ scrolltoend();
 		ScrolltoElement(application, "userspanel_header", xml);
 		Thread.sleep(1000);
 
-		compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
-		compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		if(editorderno.equalsIgnoreCase("Null")) {
+			
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order/Contract Number (Parent SID)' field is not edited");
+			Log.info("'Order/Contract Number (Parent SID)' field is not edited");
+		}else {
+			compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
+		}
+		
+		if(editvoicelineno.equalsIgnoreCase("Null")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS,"'RFI/RFQ/IP Voice Line Number' field is not edited");
+			Log.info("'RFI/RFQ/IP Voice Line Number' field is not edited");
+		}else {
+			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		}
 		Log.info("------ Edit Order is successful ------");
 		}
 

@@ -36,7 +36,6 @@ public class DDI_Helper extends DriverHelper{
 	
 	public DDI_Helper(WebDriver dr) {
 		super(dr);
-		// TODO Auto-generated constructor stub
 	}
 	
 	WebElement ChooseCustomer_Select, Next_Button, CreateOrderService_Text, Wildcard, Search_Field, EmergencyAreaID_Text, OKbtn;
@@ -72,9 +71,6 @@ public class DDI_Helper extends DriverHelper{
 	
 	public void SearchTrunkName(String application ,String TrunkValue ) throws Exception 
 	{
-		//public void addtextFields_commonMethod(String application, String labelname, String xpathname, String expectedValueToAdd, XMLReader xml) throws InterruptedException, DocumentException, IOException {
-		
-		
 		Clickon(getwebelement(xml.getlocator("//locators/"+ application + "/ManageCustomerServiceLink")));
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Clicked on 'Manage Customer Service Link");
 		System.out.println("Clicked on 'Manage Customer Service Link");
@@ -129,7 +125,6 @@ public class DDI_Helper extends DriverHelper{
 	
 	public void showDDIRange(String application) throws Exception
 	{
-		//Thread.sleep(10000);
 		WebElement ShowDDIRanges = getwebelement(xml.getlocator("//locators/" + application + "/ShowDDIRanges"));
 		scrolltoview(ShowDDIRanges);
 		Thread.sleep(2000);
@@ -227,8 +222,6 @@ public class DDI_Helper extends DriverHelper{
 		
 		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/DownlaodDDIRanges")));
 		
-//		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Download DDI Ranges");
-		
 		Thread.sleep(4000);
 		
 		isFileDownloaded_DDI("C:\\Users\\PKumar4-ADM\\Downloads", "ddiRanges_Tgid");
@@ -304,17 +297,8 @@ public class DDI_Helper extends DriverHelper{
 	{
 		Thread.sleep(10000);
 
-//		scrolltoend();
-//		Thread.sleep(1000);
-//		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/DDIPanelAction")));
-//		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Action Dropdown");
-//		Thread.sleep(1000);
-		
 		scrolltoview(application, "Non Service Impacting header", "NonServiceImpacting_Header", xml);
 		click_commonMethod(application, "Add DDI Range Link", "AddDDIRange", xml);
-		//safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/AddDDIRange")));
-//		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Add DDI Range");
-//		Thread.sleep(2000);
 		
 		Set<String> allwindows = driver.getWindowHandles();
 		Iterator<String> itr = allwindows.iterator();
@@ -342,8 +326,6 @@ public class DDI_Helper extends DriverHelper{
 		    	compareText(application,"Activate Incoming Routing","ActivateIncomingRouting","Activate Incoming Routing",xml);
 		    	
 		    	compareText(application,"IN GEO","CreateInGeo","IN GEO",xml);
-		    	
-//		    	compareText(application,"Add More","AddMore","Add More",xml);
 		    	
 		    	compareText(application,"Cancel","Cancelbtn","Cancel",xml);
 		    	compareText(application,"OK","OKbutton","OK",xml);
@@ -421,26 +403,6 @@ public class DDI_Helper extends DriverHelper{
 
 		click_commonMethod(application, "Show DDI Range", "ShowDDIRanges", xml);
 		Thread.sleep(5000);	
-
-		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/LacLabel")));
-		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/LacLabel")));
-		
-		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/LACFilter")));
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/LACFilter")));
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Filterng LAC Value");
-		Thread.sleep(3000);
-		
-		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/LACFilter_Text")), LACValue);
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Entering LAC Value");
-		Thread.sleep(3000);
-
-//		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/DDIRadiobtn")));
-//		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Radio button");
-//		Thread.sleep(2000);
-//		
-//		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/DDIPanelAction")));
-//		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Action Dropdown");
-//		Thread.sleep(1000);
 
 		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/TrunkPanelView")));
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on View");
@@ -543,18 +505,6 @@ public class DDI_Helper extends DriverHelper{
 		//Thread.sleep(5000);	
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Show DDI Ranges");
 
-		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/LacLabel")));
-		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/LacLabel")));
-		
-		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/LACFilter")));
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/LACFilter")));
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Filterng LAC Value");
-		Thread.sleep(5000);
-		
-		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/LACFilter_Text")), LACValue);		
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Entering LAC Value");
-		Thread.sleep(5000);
-
 		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/DDIEdit")));
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Selected View from Action Dropdown");
 		Thread.sleep(2000);
@@ -605,28 +555,6 @@ public class DDI_Helper extends DriverHelper{
 	    	  safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/ShowDDIRanges")));
 	  		Thread.sleep(5000);	
 	  		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Show DDI Ranges");
-
-	  		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/LacLabel")));
-	  		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/LacLabel")));
-	  		
-	  		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/LACFilter")));
-	  		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/LACFilter")));
-	  		ExtentTestManager.getTest().log(LogStatus.PASS, "Filterng LAC Value");
-	  		Thread.sleep(5000);
-	  		
-	  		
-	  		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/LACFilter_Text")), LACValue);
-	  		ExtentTestManager.getTest().log(LogStatus.PASS, "Entering LAC Value");
-	  		Thread.sleep(5000);
-
-	  		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/DDIRadiobtn")));
-	  		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Radio button");
-	  		Thread.sleep(5000);
-	  		
-	  		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/DDIPanelAction")));
-	  		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Action Dropdown");
-	  		Thread.sleep(1000);
-
 	  		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/DDIDelete")));
 	  		ExtentTestManager.getTest().log(LogStatus.PASS, "Selected Delete from Action Dropdown");
 	  		Thread.sleep(2000);
@@ -830,17 +758,13 @@ public void implicitlyWait(String pageNavigation) {
 	public void webdriverWait(String application, String xpath, XMLReader xml) throws DocumentException, InterruptedException {
 		WebDriverWait wait=new WebDriverWait(driver, 300);
 				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xml.getlocator("//locators/" + application + "/"+ xpath +""))));
-				//wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
 	}
 	
 	
 	
-	//public static Boolean isFileDownloaded(String fileName, String downloadspath) {
 			public static Boolean isFileDownloaded(String fileName, String downloadspath) {
 
 			boolean flag = false;
-			//paste your directory path below
-			//eg: C:\\Users\\username\\Downloads
 			String dirPath = downloadspath; 
 			File dir = new File(dirPath);
 			File[] files = dir.listFiles();

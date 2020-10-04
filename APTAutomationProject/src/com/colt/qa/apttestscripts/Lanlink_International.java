@@ -39,15 +39,18 @@ public class Lanlink_International extends DriverTestcase{
 								map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), 
 								map.get("Fax"));
 						CustomerName1=map.get("newCustomer");
+						ExtentTestManager.endTest();
 						
 						logger= ExtentTestManager.startTest ("selectExistingCustomer_wholesaleSIPTrunking"); 
 						International.get().selectCustomertocreateOrder("apt",map.get("newCustomer"));
+						ExtentTestManager.endTest();
 						
 				}
 				else if(newCustomerName.equalsIgnoreCase("no") && existingCustomer.equalsIgnoreCase("Yes")) {
 						logger= ExtentTestManager.startTest ("selectExistingCustomer_Lanlink_OLO"); 
 						International.get().selectCustomertocreateOrder("apt",map.get("existingCustomer"));
 						CustomerName1 = map.get("existingCustomer");
+						ExtentTestManager.endTest();
 				}
 
 				
@@ -57,17 +60,17 @@ public class Lanlink_International extends DriverTestcase{
 					International.get().createorderservice("apt", map.get("NewOrderSelection"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"),
 								map.get("ExistingOrderSelection"), map.get("ExistingOrderNumber"));
 					International.get().selectServiceType("CreateOrderService", map.get("ServiceType"));
-	 
+					ExtentTestManager.endTest();
 				
 			logger= ExtentTestManager.startTest ("selectTheServiceType");
 					International.get().selectsubtypeunderServiceTypeSelected("LANLINK",map.get("Servicesubtype"),map.get("Interfacespeed"),map.get("Modularmsp"),
 							map.get("AutocreateService"), map.get("A_Endtechnology"), map.get("B_Endtechnology"));
-				
+					ExtentTestManager.endTest();
 				
 			logger= ExtentTestManager.startTest ("verifyFieldsFortheSubServicetypeselelcted");
 					International.get().VerifyFieldsForServiceSubTypeSelected("LANLINK",map.get("ServiceType"),map.get("Servicesubtype"), map.get("Interfacespeed"),
 							map.get("Notification management"), map.get("vpnTopology"), map.get("AggregateTraffic"), map.get("Modularmsp"));	
-			
+					ExtentTestManager.endTest();
 
 			logger= ExtentTestManager.startTest ("enterDatafortheServiceSubtypeSelected");
 					International.get().selectOrder("apt", map.get("NewOrderSelection"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"),
@@ -82,7 +85,7 @@ public class Lanlink_International extends DriverTestcase{
 							map.get("PerCoS preformance reporting_serviceCreation"), map.get("Actelis Based_service creation"), map.get("StandardCIR_ServiceCreation"), map.get("StandardEIR_ServiceCreation"), map.get("premiumCIR_ServiceCreation"), 
 							map.get("premiumEIR_ServiceCreation"), map.get("E_VPNtechnology"), map.get("HCoSPerformanceReporting"));
 					 International.get().verifysuccessmessage("LANLINK", "Service successfully created");
-					 
+					 ExtentTestManager.endTest();
 				
 //			logger= ExtentTestManager.startTest ("verifyUserDetailsInformation");
 //				International.get().VerifyUsersPanel("apt", map.get("UserName"), map.get("FirstName"), map.get("SurName"), map.get("PostalAddress"),
@@ -100,7 +103,7 @@ public class Lanlink_International extends DriverTestcase{
 				International.get().verifyorderpanel_editorder("apt", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
 				International.get().verifyorderpanel_changeorder("apt", map.get("ChangeOrder_newOrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
 							map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));		 
-					 
+				ExtentTestManager.endTest();
 					 
 			logger= ExtentTestManager.startTest ("verifydEnteredValues");
 					 International.get().VerifydatenteredForServiceSubTypeSelected("LANLINK",map.get("ServiceType"),map.get("Servicesubtype"),map.get("Interfacespeed"),map.get("serviceNumber"),map.get("endpointCPE"),map.get("email"), map.get("phone"), map.get("remark"), 
@@ -109,7 +112,7 @@ public class Lanlink_International extends DriverTestcase{
 							 map.get("AutocreateService"), map.get("ENNI checkbox"), map.get("manageConnectiondropdown"), map.get("A_Endtechnology"), map.get("B_Endtechnology"),  map.get("performanceReportngForServices"),
 							 map.get("PerCoS preformance reporting_serviceCreation"), map.get("Actelis Based_service creation"), map.get("StandardCIR_ServiceCreation"), map.get("StandardEIR_ServiceCreation"), map.get("premiumCIR_ServiceCreation"), 
 							 map.get("premiumEIR_ServiceCreation"), map.get("Notification management"),  map.get("E_VPNtechnology"), map.get("HCoSPerformanceReporting"));
-						
+					 ExtentTestManager.endTest();	
 					
 			logger= ExtentTestManager.startTest ("editServiceSubtype");
 					 International.get().EditTheservicesselected("LANLINK",map.get("Servicesubtype"),map.get("Interfacespeed"),map.get("Edit_serviceNumber"),map.get("Edit_endpointCPE"),map.get("EditService_email"), map.get("EditService_phone"), map.get("EditService_remark"), 
@@ -118,27 +121,27 @@ public class Lanlink_International extends DriverTestcase{
 								map.get("AutocreateService"), map.get("EditService_ENNI"), map.get("EditService_manageConnectiondropdown"), map.get("Edit_A_Endtechnology"), map.get("Edit_B_Endtechnology"), map.get("EditService_NotificationManagement"),
 								map.get("EditService_perCoSperformanceReport"), map.get("EditService_actelisBased"), map.get("EditService_standardCIR"), map.get("EditService_standardEIR"), map.get("EditService_premiumCIR"), map.get("EditService_premiumEIR"), 
 								map.get("CircuitType"), map.get("EditService_EVPNtechnology"), map.get("EditService_HCoSPerformanceReporting"));
-					  
+					 ExtentTestManager.endTest();
 					 
-//			logger= ExtentTestManager.startTest ("successmessageforServiceUpdation");
-//					 International.get().verifysuccessmessage("LANLINK", "Service successfully updated.");
-//					 
-//			
-//			logger= ExtentTestManager.startTest ("synchronizeService");
-//					International.get().syncservices("LANLINK");
-//		
-//					
-//			logger= ExtentTestManager.startTest ("showNewInfovistaReport");
-//					International.get().shownewInfovista("LANLINK");
-//					
-//					
-//			logger= ExtentTestManager.startTest ("ManageSubnets");
-//					International.get().manageSubnets("LANLINK");
-//		
-//		
-//			logger= ExtentTestManager.startTest ("Dump");
-//					International.get().dump_viewServicepage("LANLINK");		
+			logger= ExtentTestManager.startTest ("successmessageforServiceUpdation");
+					 International.get().verifysuccessmessage("LANLINK", "Service successfully updated.");
+					 ExtentTestManager.endTest();
+			
+			logger= ExtentTestManager.startTest ("synchronizeService");
+					International.get().syncservices("LANLINK");
+					ExtentTestManager.endTest();
+					
+			logger= ExtentTestManager.startTest ("showNewInfovistaReport");
+					International.get().shownewInfovista("LANLINK");
+					ExtentTestManager.endTest();
+					
+			logger= ExtentTestManager.startTest ("ManageSubnets");
+					International.get().manageSubnets("LANLINK");
+					ExtentTestManager.endTest();
 		
+			logger= ExtentTestManager.startTest ("Dump");
+					International.get().dump_viewServicepage("LANLINK");		
+					ExtentTestManager.endTest();
 					
 			logger= ExtentTestManager.startTest ("verifyAddSiteOrderFields_LANLINK");
 					String vpnTopology = map.get("vpnTopology");
@@ -151,11 +154,13 @@ public class Lanlink_International extends DriverTestcase{
 						
 			}
 			else {
+				
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Add Site Order' fields");
 						International.get().Enteraddsiteorder("LANLINK");
 						International.get().verifyAddsiteorderFields("LANLINK", map.get("Interfacespeed"), map.get("vpnTopology"), map.get("CircuitType"),
 								 map.get("SiteOrder_Offnet"),map.get("SiteOrder_EPNoffnet"), map.get("SiteOrder_EPNEOSDH"), map.get("Modularmsp"), map.get("AggregateTraffic"));
 						
-						
+				ExtentTestManager.getTest().log(LogStatus.INFO,"create Site Order'");		
 					logger= ExtentTestManager.startTest ("EnterValueInAddSiteOrderFields_LANLINK");	
 						International.get().Enteraddsiteorder("LANLINK");
 						International.get().addsiteorder("LANLINK", map.get("Interfacespeed"), map.get("vpnTopology"), map.get("CircuitType"),
@@ -167,11 +172,11 @@ public class Lanlink_International extends DriverTestcase{
 								   map.get("Siteordernumber"), map.get("siteOrder_CircuitReference"), map.get("SiteOrder_Offnet"), map.get("SiteOrder_Ivrefrence"),map.get("SiteOrer_GCROloType"),
 						  		   map.get("SiteOrder_Vlan"), map.get("SiteOrder_Vlanethertype"),map.get("siteOrder_PrimaryVlan"), map.get("SiteOrder_PrimaryVlanEtherType"), map.get("SiteOrder_EPNoffnet"), 
 						  		   map.get("SiteOrder_EPNEOSDH"), map.get("SiteOrder_mappingMode"), map.get("SiteOrder_portBased"), map.get("SiteOrder_vlanBased"), map.get("Modularmsp"), map.get("AggregateTraffic"), map.get("siteOrder_sitePreferenceType"));
-						
+						ExtentTestManager.endTest();
 						
 				logger= ExtentTestManager.startTest ("Successmessage_siteOrderCreation");
 						International.get().verifysuccessmessage("LANLINK", "Site order created successfully");
-						
+						ExtentTestManager.endTest();
 					 	
 				logger= ExtentTestManager.startTest ("verifyEnteredValues_ForSiteOrder");
 						International.get().VerifyDataEnteredForSiteOrder("LANLINK", map.get("Interfacespeed"), map.get("vpnTopology"), map.get("CircuitType"),
@@ -183,7 +188,7 @@ public class Lanlink_International extends DriverTestcase{
 								map.get("Siteordernumber"), map.get("siteOrder_CircuitReference"), map.get("SiteOrder_Offnet"), map.get("SiteOrder_Ivrefrence"),map.get("SiteOrer_GCROloType"),
 						  		map.get("SiteOrder_Vlan"), map.get("SiteOrder_Vlanethertype"),map.get("siteOrder_PrimaryVlan"), map.get("SiteOrder_PrimaryVlanEtherType"), map.get("SiteOrder_EPNoffnet"),
 						  		map.get("SiteOrder_EPNEOSDH"), map.get("Modularmsp"), map.get("AggregateTraffic"));
-						
+						ExtentTestManager.endTest();
 				
 				logger= ExtentTestManager.startTest ("editSiteOrder");
 						International.get().returnbacktoviewsiteorderpage("LANLINK");
@@ -197,7 +202,7 @@ public class Lanlink_International extends DriverTestcase{
 						     map.get("editsiteorder_primaryVLAN"),map.get("editsiteorder_primaryVlanEtherType"), map.get("SiteOrder_Offnet"), map.get("editSiteOrder_Offnet"), map.get("editSiteOrder_EPNOffnet"),
 						     map.get("editSiteOrder_mappingMode"), map.get("editSiteOrder_portbased"), map.get("editSiteorder_VlanBased"), map.get("SiteOrder_mappingMode"),  map.get("Modularmsp"), map.get("AggregateTraffic"), map.get("editEpNEosDH"),  map.get("CircuitType"), map.get("editSiteOrder_sitePreferenceType"));
 						International.get().verifysuccessmessage("LANLINK", "Site Order successfully updated.");
-				
+						ExtentTestManager.endTest();
 				}
 					
 					
@@ -220,6 +225,8 @@ public class Lanlink_International extends DriverTestcase{
 				}
 				
 				if(map.get("Interfacespeed").equals("1GigE")) {
+					
+					logger = ExtentTestManager.startTest("create Circuit for 1G");
 					
 					//Overture	
 						International.get().addOvertureCircuit("LANLINK", map.get("addOverture_serviceNameForCreatingCircuit"));
@@ -247,9 +254,11 @@ public class Lanlink_International extends DriverTestcase{
 						International.get().addOveture_PAMtest_selectRow("LANLINK",  map.get("addAtrica_interfaceName1"));
 						International.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addAtrica_serviceNameForCreatingCircuit"));
 						International.get().deleteCircuit("LANLINK");
-					
+						ExtentTestManager.endTest();
 					}
 					else if(map.get("Interfacespeed").equals("10GigE")) {
+						
+						logger = ExtentTestManager.startTest("create Circuit for 10G");
 						//Overture	
 						International.get().addOvertureCircuit("LANLINK", map.get("addOverture_serviceNameForCreatingCircuit"));
 						International.get().selectInterfaceForCircuits("LANLINK", map.get("addOverture_interfaceName1"), map.get("addOverture_interfaceName2"),
@@ -258,10 +267,11 @@ public class Lanlink_International extends DriverTestcase{
 						International.get().addOveture_PAMtest_selectRow("LANLINK", map.get("addOverture_interfaceName1"));
 						International.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addOverture_serviceNameForCreatingCircuit"));
 						International.get().deleteCircuit("LANLINK");
+						ExtentTestManager.endTest();
 					}
 			}
 			else {		
-			logger= ExtentTestManager.startTest ("Actelis");
+			logger= ExtentTestManager.startTest ("Actelis_Equipment Configuration");
 					String Technologyname=map.get("technology");
 					if(Technologyname.equalsIgnoreCase("Actelis")) {
 					boolean equipConfigurationPanel=International.get().EquipmentCOnfigurationPanel("LANLINK");
@@ -278,6 +288,8 @@ public class Lanlink_International extends DriverTestcase{
 					}else {
 						ExtentTestManager.getTest().log(LogStatus.FAIL, "'Equipment Configuration' panel is not displaying");
 					}
+					ExtentTestManager.endTest();
+					
 				//Actelis Configuration panel	
 					logger= ExtentTestManager.startTest ("Actelis Configuration Panel_Add DSLAM and HSL");
 					International.get().verifyAddDSLAMandHSLlink("LANLINK", map.get("ActelisTech_DSLAMdevice"));
@@ -285,6 +297,7 @@ public class Lanlink_International extends DriverTestcase{
 					International.get().showInterface_ActelisConfiguuration("LANLINK");
 					International.get().deletInterface_ActelisConfiguration("LANLINK", map.get("ActelisTech_DSLAMInterfacename"));
 					International.get().successMessage_deleteInterfaceFromDevice_ActelisConfiguration("LANLINK");
+					ExtentTestManager.endTest();
 					}
 					
 					
@@ -318,12 +331,13 @@ public class Lanlink_International extends DriverTestcase{
 							International.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
 							International.get().verifysuccessmessage("LANLINK", "Device successfully created");
 							International.get().verifyValuesforCPEexistingdevice_MSPselected("LANLINK" );
-							
+							ExtentTestManager.endTest();
 							
 							logger= ExtentTestManager.startTest ("editExistingDevice_MSPselected_Equipment");
 							International.get().eDITCPEdevicedetailsentered_MSPselected( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_MSPselected"),  map.get("cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
 									 map.get("EDIT_cpe_vender_MSPselected_VLANid") );
 							International.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+							ExtentTestManager.endTest();
 						}
 						else if(existingDevice.equalsIgnoreCase("No") && newDevice.equalsIgnoreCase("yes")) {
 							ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_MSPselected_Equipment");
@@ -332,6 +346,7 @@ public class Lanlink_International extends DriverTestcase{
 									 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"),
 									 map.get("cpe_Mspselected_VLANid"));
 							International.get().verifysuccessmessage("LANLINK", "Device successfully created");
+							ExtentTestManager.endTest();
 							
 							
 							logger= ExtentTestManager.startTest ("verifyEnteredValues_MSPselected_Eqiupment");
@@ -339,12 +354,13 @@ public class Lanlink_International extends DriverTestcase{
 								 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
 								 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"), map.get("cpe_newmanagementAddressSelection"), 
 								 map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"), map.get("cpe_Mspselected_VLANid"));
-							
+							ExtentTestManager.endTest();
 							
 							logger= ExtentTestManager.startTest ("editDevice_MSPselected_Equipment");
 							International.get().eDITCPEdevicedetailsentered_MSPselected( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_MSPselected"),  map.get("cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
 									 map.get("EDIT_cpe_vender_MSPselected_VLANid") );
 							International.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+							ExtentTestManager.endTest();
 						}
 					}
 					else
@@ -355,13 +371,14 @@ public class Lanlink_International extends DriverTestcase{
 								International.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
 								International.get().verifysuccessmessage("LANLINK", "Device successfully created");
 								International.get().verifyValuesforCPEexistingdevice_1G_Equipment("LANLINK" );
-								
+								ExtentTestManager.endTest();
 								
 								logger= ExtentTestManager.startTest ("editExistingDevice_1G_Equipment");
 								International.get().eDITCPEdevicedetailsentered_1G( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
 										 map.get("EDIT_cpe_poweralarm_1G"), map.get("EDIT_cpe_Mediaselection"),  map.get("EDIT_cpe_Macaddress"),  map.get("EDIT_cpe_serialNumber"),
 										 map.get("EDIT_cpe_hexaSerialnumber"),  map.get("EDIT_cpe_linkLostForwarding"), map.get("devicenameforEquipment"), map.get("technology"));
-								International.get().verifysuccessmessage("LANLINK", "Device successfully updated");							
+								International.get().verifysuccessmessage("LANLINK", "Device successfully updated");	
+								ExtentTestManager.endTest();
 							}
 							else if(existingDevice.equalsIgnoreCase("No") && newDevice.equalsIgnoreCase("Yes")) {
 								ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_1G_Equipment");
@@ -369,19 +386,20 @@ public class Lanlink_International extends DriverTestcase{
 										 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
 										 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"));
 								International.get().verifysuccessmessage("LANLINK", "Device successfully created");
-								
+								ExtentTestManager.endTest();
 								
 								logger= ExtentTestManager.startTest ("verifyEnteredValues_1G_Equipment");
 								International.get().verifydetailsEnteredforCPEdevice_1G( "LANLINK",  map.get("devicename_equip"), map.get("cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
 									 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
 									 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"), map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"));
-								
+								ExtentTestManager.endTest();
 								
 								logger= ExtentTestManager.startTest ("editDevice_1G_Equipment");
 								International.get().eDITCPEdevicedetailsentered_1G( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
 										 map.get("EDIT_cpe_poweralarm_1G"), map.get("EDIT_cpe_Mediaselection"),  map.get("EDIT_cpe_Macaddress"),  map.get("EDIT_cpe_serialNumber"),
 										 map.get("EDIT_cpe_hexaSerialnumber"),  map.get("EDIT_cpe_linkLostForwarding"), map.get("devicenameforEquipment"), map.get("technology"));
 								International.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+								ExtentTestManager.endTest();
 							}
 						}
 						if(speed.equals("10GigE")) {
@@ -390,13 +408,14 @@ public class Lanlink_International extends DriverTestcase{
 								International.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
 								International.get().verifysuccessmessage("LANLINK", "Device successfully created");
 								International.get().verifyValuesforCPEexistingdevice_10G_Equipment("LANLINK" );
-								
+								ExtentTestManager.endTest();
 								
 								logger= ExtentTestManager.startTest ("editExistingDevice_10G_Equipment");
 								International.get().eDITCPEdevicedetailsentered_10G( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_10G"),  map.get("EDIT_cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
 										 map.get("EDIT_cpe_poweralarm_10G"), map.get("EDIT_cpe_Mediaselection"),  map.get("EDIT_cpe_Macaddress"),  map.get("EDIT_cpe_serialNumber"),
 										 map.get("EDIT_cpe_hexaSerialnumber"),  map.get("EDIT_cpe_linkLostForwarding"), map.get("devicenameforEquipment"));
 								International.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+								ExtentTestManager.endTest();
 							}
 							else if(existingDevice.equalsIgnoreCase("No") && newDevice.equalsIgnoreCase("Yes")) {
 								ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_10G_Equipment");
@@ -404,19 +423,21 @@ public class Lanlink_International extends DriverTestcase{
 										 map.get("cpe_poweralarm_10G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
 										 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"));
 								International.get().verifysuccessmessage("LANLINK", "Device successfully created");
+								ExtentTestManager.endTest();
 								
 								
 								logger= ExtentTestManager.startTest ("verifyEnteredValues_10G_Equipment");
 								International.get().verifydetailsEnteredforCPEdevice_10G( "LANLINK",  map.get("devicename_equip"), map.get("cpe_vender_10G"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
 										 map.get("cpe_poweralarm_10G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
 										 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),  map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"));
-								
+								ExtentTestManager.endTest();
 								
 								logger= ExtentTestManager.startTest ("editDevice_10G_Equipment");
 								International.get().eDITCPEdevicedetailsentered_10G( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_10G"),  map.get("EDIT_cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
 										 map.get("EDIT_cpe_poweralarm_10G"), map.get("EDIT_cpe_Mediaselection"),  map.get("EDIT_cpe_Macaddress"),  map.get("EDIT_cpe_serialNumber"),
 										 map.get("EDIT_cpe_hexaSerialnumber"),  map.get("EDIT_cpe_linkLostForwarding"), map.get("devicenameforEquipment"));
 								International.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+								ExtentTestManager.endTest();
 							}
 						}
 					}	
@@ -452,12 +473,15 @@ public class Lanlink_International extends DriverTestcase{
 							String manageAdres=International.get().fetchManagementAddressValue_InviewPage("LANLINK");		//Management Address
 							String vendorModel=International.get().fetchVendorModelValue("LANLINK");		//Vendor/Model
 						
+						logger = ExtentTestManager.startTest("Test table Status");	
 							International.get().testStatus("LANLINK");  //fetch test status value
-						
+							ExtentTestManager.endTest();
+							
 						//Perform fetch from Interface
+						logger = ExtentTestManager.startTest("fetchdeviceInterface");
 						boolean link=International.get().fetchDeviceInterface_viewdevicepage("LANLINK", devicename);
 						Thread.sleep(1000);
-						
+						ExtentTestManager.endTest();
 //						if(link) {
 //							manageNetwork.get().verifyFetchInterface("LANLINK", devicename, map.get("InServiceStatus"),
 //									map.get("InMaintenanceStatus"), vendorModel, manageAdres, "JdhquA5", country, map.get("interfacename"));
@@ -466,7 +490,7 @@ public class Lanlink_International extends DriverTestcase{
 						
 						logger= ExtentTestManager.startTest ("routerTools_Equipment");
 							OLO.get().routerPanel("LANLINK", map.get("CommandIPv4_Routertool"), manageAdres);
-						
+							ExtentTestManager.endTest();
 						
 						logger= ExtentTestManager.startTest ("configureEquipment");
 							//Site Order Number	
@@ -494,7 +518,7 @@ public class Lanlink_International extends DriverTestcase{
 									map.get("editInterfacepage_bandwidth"), map.get("editInterfacepage_Vlanid"),
 									map.get("editInterfacepage_vlantype"));
 							DirectFiber.get().verifyeditedinterfacevalue("LANLINK", map.get("Interfacename_forEditInterface"));
-						
+							ExtentTestManager.endTest();
 						
 						logger= ExtentTestManager.startTest ("selectInterface_Equipment");
 							DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderValue);
@@ -509,7 +533,7 @@ public class Lanlink_International extends DriverTestcase{
 							}else {
 								ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces are not removed");
 							}
-							
+							ExtentTestManager.endTest();
 							
 						logger= ExtentTestManager.startTest ("showInterface_Equipment");
 							DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderValue);
@@ -517,7 +541,7 @@ public class Lanlink_International extends DriverTestcase{
 							DirectFiber.get().EnterdataForEditInterfaceforShowInterfacelinkunderEquipment("LANLINK",  map.get("Interfacename_forEditInterface"), map.get("editInterfacepage_circuitId"), map.get("editInterfacepage_BearerType"),
 									map.get("editInterfacepage_BearerSpeed"), map.get("editInterfacepage_bandwidth"), map.get("editInterfacepage_Vlanid"), map.get("editInterfacepage_vlantype"));
 							DirectFiber.get().hideInterfaceLink_Equipment("LANLINK");
-							
+							ExtentTestManager.endTest();
 							
 
 						logger= ExtentTestManager.startTest ("AMNvalidator_Equipment");
@@ -526,20 +550,23 @@ public class Lanlink_International extends DriverTestcase{
 							String countryName=DirectFiber.get().fetchSiteOrderCountryName("LANLINK");
 							DirectFiber.get().clickOnAMNvalidatorLink("LANLINK");
 							DirectFiber.get().AMNvalidator("LANLINK",siteOrderValue , deviceName_Equip, csrName, cityName, countryName);
-							
+							ExtentTestManager.endTest();
 							
 						logger= ExtentTestManager.startTest ("deleteDevice_Equipment");
 							DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderValue);
 							DirectFiber.get().deleteDeviceFromServiceForequipment("LANLINK", deviceName_Equip);
 							DirectFiber.get().successMessage_deleteFromService("LANLINK");
+							ExtentTestManager.endTest();
 							
 						}else {
 								ExtentTestManager.getTest().log(LogStatus.PASS, "Equipment device is not created as expected");
 								System.out.println("Equipment device is not created as expected");
+								ExtentTestManager.endTest();
 							}
 						}	else {
 							ExtentTestManager.getTest().log(LogStatus.INFO, " 'Equipment' panel is not displaying under 'view site order' page");
 							System.out.println(" 'Equipment' panel is not displaying under 'view site order' page");
+							ExtentTestManager.endTest();
 						}
 					
 					logger= ExtentTestManager.startTest ("IntermediateEquipment");
@@ -572,7 +599,7 @@ public class Lanlink_International extends DriverTestcase{
 								International.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
 								International.get().verifyFieldsandSelectCPEdevice_existingDevice_IntEquipment("LANLINK", map.get("intEquip_existingDeviceValue"));
 								International.get().verifyValuesforCPEexistingdevice_MSPselected("LANLINK");
-								
+								ExtentTestManager.endTest();
 								
 								logger= ExtentTestManager.startTest ("editCPEdevice_MSPselected_IntermediateEquipment");
 								International.get().EDITCPEdevicedforIntermediateEquipment_MSPselected("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"),map.get("EDIT_Intequip_device_vender_MSPselected"),
@@ -582,6 +609,7 @@ public class Lanlink_International extends DriverTestcase{
 										 map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"), 
 										 map.get("TechToBeselected_underTechpopup_device"), map.get("EDIT_Intequip_VLANid_MSPselected"));
 								International.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+								ExtentTestManager.endTest();
 								
 							}else if(existingDevice.equalsIgnoreCase("No")  && newDevice.equalsIgnoreCase("Yes")) {
 								ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_MSPselected_IntEquipment");
@@ -595,7 +623,7 @@ public class Lanlink_International extends DriverTestcase{
 										map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
 										map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"));	
 								International.get().verifysuccessmessage("LANLINK", "Device successfully created");
-								
+								ExtentTestManager.endTest();
 								
 								logger= ExtentTestManager.startTest ("verifyEnteredValues_MSPselected_IntermediateEquipment");
 								International.get().verifyCPEdevicedataenteredForIntermediateEquipment_MSPselected( "LANLINK",  map.get("device_intEquip_name"), 
@@ -606,7 +634,7 @@ public class Lanlink_International extends DriverTestcase{
 										map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
 										map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"),
 										map.get("TechToBeselected_underTechpopup_device"), map.get("device_intEquip_VLANid"));
-				
+								ExtentTestManager.endTest();
 								
 								logger= ExtentTestManager.startTest ("editDevice_MSpselected_IntermediateEquipment");
 								International.get().EDITCPEdevicedforIntermediateEquipment_MSPselected("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"),map.get("EDIT_Intequip_device_vender_MSPselected"),
@@ -616,6 +644,7 @@ public class Lanlink_International extends DriverTestcase{
 										map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"), 
 										map.get("TechToBeselected_underTechpopup_device"), map.get("EDIT_Intequip_VLANid_MSPselected"));
 								International.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+								ExtentTestManager.endTest();
 							}
 							}
 						else
@@ -627,7 +656,7 @@ public class Lanlink_International extends DriverTestcase{
 									International.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
 									International.get().verifyFieldsandSelectCPEdevice_existingDevice_IntEquipment("LANLINK", map.get("intEquip_existingDeviceValue"));
 									International.get().verifyValuesforCPEexistingdevice_1G_intEquipment("LANLINK");
-									
+									ExtentTestManager.endTest();
 									
 									logger= ExtentTestManager.startTest ("editCPEdevice_1G_IntermediateEquipment");
 									International.get().EDITCPEdevicedforIntermediateEquipment_1G("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"), map.get("EDIT_Intequip_device_vender_1G_Overtue"),map.get("EDIT_Intequip_device_vender_1G_Accedian"),
@@ -639,6 +668,7 @@ public class Lanlink_International extends DriverTestcase{
 												map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"), 
 												map.get("TechToBeselected_underTechpopup_device"));
 									International.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+									ExtentTestManager.endTest();
 									  
 								  }else if(existingDevice.equalsIgnoreCase("No")  && newDevice.equalsIgnoreCase("Yes")) {
 									  ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_1G_IntEquipment");
@@ -653,7 +683,7 @@ public class Lanlink_International extends DriverTestcase{
 												map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
 												map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"));	
 										International.get().verifysuccessmessage("LANLINK", "Device successfully created");
-										
+										ExtentTestManager.endTest();
 										
 										logger= ExtentTestManager.startTest ("verifyEnteredValues_1G_IntermediateEquipment");
 										International.get().verifyCPEdevicedataenteredForIntermediateEquipment_1G( "LANLINK",  map.get("device_intEquip_name"), map.get("device_intequip_vender_1G_Overture"),
@@ -664,7 +694,7 @@ public class Lanlink_International extends DriverTestcase{
 												map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
 												map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
 												map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"));
-				
+										ExtentTestManager.endTest();
 										
 										logger= ExtentTestManager.startTest ("editCPEdevice_1G_IntermediateEquipment");
 										International.get().EDITCPEdevicedforIntermediateEquipment_1G("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"), map.get("EDIT_Intequip_device_vender_1G_Overtue"),map.get("EDIT_Intequip_device_vender_1G_Accedian"),
@@ -676,6 +706,7 @@ public class Lanlink_International extends DriverTestcase{
 												map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"), 
 												map.get("TechToBeselected_underTechpopup_device"));
 										International.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+										ExtentTestManager.endTest();
 								  }
 								}
 								
@@ -686,7 +717,7 @@ public class Lanlink_International extends DriverTestcase{
 										International.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
 										International.get().verifyFieldsandSelectCPEdevice_existingDevice_IntEquipment("LANLINK", map.get("intEquip_existingDeviceValue"));
 										International.get().verifyValuesforCPEexistingdevice_10G_intEquipment("LANLINK");
-										
+										ExtentTestManager.endTest();
 										
 										logger= ExtentTestManager.startTest ("editCPEdevice_10G_IntermediateEquipment");
 										International.get().EDITCPEdevice_IntermediateEquipment_10G("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"), map.get("EDIT_Intequip_device_vender_10g_Accedian"), map.get("EDIT_Intequip_devic_snmpro"), 
@@ -698,6 +729,7 @@ public class Lanlink_International extends DriverTestcase{
 												   map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"),
 											       map.get("TechToBeselected_underTechpopup_device"));
 										International.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+										ExtentTestManager.endTest();
 											
 									}else if(existingDevice.equalsIgnoreCase("No")  && newDevice.equalsIgnoreCase("Yes")) {
 										ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_10G_IntEquipment");
@@ -712,7 +744,7 @@ public class Lanlink_International extends DriverTestcase{
 												map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
 												map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"));	
 										International.get().verifysuccessmessage("LANLINK", "Device successfully created");
-										
+										ExtentTestManager.endTest();
 										
 										logger= ExtentTestManager.startTest ("verifyEnteredValues_10G_IntermediateEquipment");
 										International.get().verifyCPEdevicedataenteredForIntermediateEquipment_10G( "LANLINK",  map.get("device_intEquip_name"), map.get("device_intequip_vender_10G_Accedian"),
@@ -723,7 +755,7 @@ public class Lanlink_International extends DriverTestcase{
 												map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
 												map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
 												map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"));
-									   
+										ExtentTestManager.endTest();
 										
 										logger= ExtentTestManager.startTest ("editCPEDevice_10G_IntermediateEquipment");
 										International.get().EDITCPEdevice_IntermediateEquipment_10G("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"), map.get("EDIT_Intequip_device_vender_10g_Accedian"), map.get("EDIT_Intequip_devic_snmpro"), 
@@ -735,6 +767,7 @@ public class Lanlink_International extends DriverTestcase{
 												map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"),
 												map.get("TechToBeselected_underTechpopup_device"));
 										International.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+										ExtentTestManager.endTest();
 									}
 								}
 							}
@@ -773,12 +806,16 @@ public class Lanlink_International extends DriverTestcase{
 							String vendorModel_intEqiup=International.get().fetchVendorModelValue("LANLINK");	//Vendor/Model	
 							String country_intEquip=International.get().fetchCountryValue_InviewPage("LANLINK");		//Country
 						
+							
+						logger = ExtentTestManager.startTest("Table_test Status");	
 							International.get().testStatus("LANLINK");
+							ExtentTestManager.endTest();
 						
-						
-							//Fetch device Interface	
+							//Fetch device Interface
+							logger = ExtentTestManager.startTest("fetchDeviceInterface");
 							boolean link=International.get().fetchDeviceInterface_viewdevicepage("LANLINK", devicename_intEquip);
 							Thread.sleep(1000);
+							ExtentTestManager.endTest();
 							
 			//				if(link) {
 			//					manageNetwork.get().verifyFetchInterface("LANLINK", devicename_intEquip, map.get("InServiceStatus"),
@@ -789,7 +826,7 @@ public class Lanlink_International extends DriverTestcase{
 							
 					logger= ExtentTestManager.startTest ("routerTools_intermediateEquipment");
 							International.get().routerPanel("LANLINK", map.get("CommandIPv4_Routertool"), manageAdres_intEquip);
-							
+							ExtentTestManager.endTest();
 							
 					logger= ExtentTestManager.startTest ("selectinterface_IntermediateEquipment");
 							DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderValue);
@@ -803,23 +840,25 @@ public class Lanlink_International extends DriverTestcase{
 							if(map.get("AddInterface_Selection").equalsIgnoreCase("yes")) {
 								DirectFiber.get().SelectInterfacetoaddwithservcie("LANLINK", map.get("Interfacetoselect_Interfacenumber"));
 							}
-							
+							ExtentTestManager.endTest();
 							
 					logger= ExtentTestManager.startTest ("showInterace_IntermediateEquipment");
 							DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderValue);
-												
 							DirectFiber.get().SelectShowInterfacelink_IntermediateequipmentAndVerifyEditInterfacePage("LANLINK", map.get("Interfacename_forEditInterface"),  devicename_IntEquipment );
 							DirectFiber.get().EnterdataForEditInterfaceforShowInterfacelinkunderIntermediateEquipment("LANLINK",  map.get("Interfacename_forEditInterface"), map.get("editInterfacepage_circuitId"), map.get("editInterfacepage_BearerType"),
 									map.get("editInterfacepage_BearerSpeed"), map.get("editInterfacepage_bandwidth"), map.get("editInterfacepage_Vlanid"), map.get("editInterfacepage_vlantype"));
 							DirectFiber.get().hideInterface_IntEquipment("LANLINK");
+							ExtentTestManager.endTest();
 							
 							
 					logger= ExtentTestManager.startTest ("deletDeviceFromService_IntermediateEquipment");
 							DirectFiber.get().deleteDeviceFromServiceForIntermediateequipment("LANLINK",  devicename_IntEquipment);
 							DirectFiber.get().successMessage_deleteFromService("LANLINK");
+							ExtentTestManager.endTest();
 						}
 							}else {
 								ExtentTestManager.getTest().log(LogStatus.PASS, " 'Intermediate Equipment' panel is not displaying under 'view site order' page");
+								ExtentTestManager.endTest();
 							}
 					
 					
@@ -834,12 +873,13 @@ public class Lanlink_International extends DriverTestcase{
 							DirectFiber.get().selectRowForsiteorder("LANLINK", map.get("Siteordernumber"), map.get("siteOrderNumber_PointToPoint"), 
 									map.get("vpnTopology"), map.get("Interfacespeed"), map.get("siteOrderNumber_10G_PointToPoint"));
 							DirectFiber.get().pamTest("LANLINK", ServiceID);
-							
+							ExtentTestManager.endTest();	
 							
 					logger= ExtentTestManager.startTest ("deleteSiteOrder");
 							DirectFiber.get().selectRowForsiteorder("LANLINK", map.get("Siteordernumber"), map.get("siteOrderNumber_PointToPoint"), 
 									map.get("vpnTopology"), map.get("Interfacespeed"), map.get("siteOrderNumber_10G_PointToPoint"));
 							DirectFiber.get().deleteSiteOrder("LANLINK");
+							ExtentTestManager.endTest();
 				}
 			
 			
@@ -853,6 +893,7 @@ public class Lanlink_International extends DriverTestcase{
 				logger= ExtentTestManager.startTest ("deleteService");
 						DirectFiber.get().clickOnBreadCrump("LANLINK", ServiceID);
 						DirectFiber.get().deleteService("LANLINK");
+						ExtentTestManager.endTest();
 			
 			
 		}

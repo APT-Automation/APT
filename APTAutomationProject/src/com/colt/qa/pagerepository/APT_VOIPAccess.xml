@@ -1,1921 +1,1384 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <locators>
-
-
 <voipservice>
 
 <ManageCustomerServiceLink>(//div[@class='ant-menu-submenu-title'])[2]</ManageCustomerServiceLink>
-
 <CreateOrderServiceLink>//li[text()='Create Order/Service']</CreateOrderServiceLink>
-
 <entercustomernamefield>//input[@id='customerName']</entercustomernamefield>
+
 
 <Next_Button>//button//Span[text()='Next']</Next_Button>
 
 <mcslink>//a[contains(text(),"Manage Customer's Service")]</mcslink>
-
 <createcustomerlink>//li[text()='Create Customer']</createcustomerlink>
-
 <createorderlink>//li[text()='Create Order/Service']</createorderlink>
-
+ 
 <!-- Create Customer in Customer creation page -->
-
-
 <createcustomer_header>//p[text()='Customer']</createcustomer_header>
-
 <nametextfield>//*[text()='Legal Customer Name']/following-sibling::input</nametextfield>
-
 <maindomaintextfield>//*[text()='Main Domain']/following-sibling::input</maindomaintextfield>
-
 <country>//*[text()='Country']/following-sibling::div//input</country>
-
 <ocntextfield>//*[text()='OCN']/following-sibling::input</ocntextfield>
-
 <referencetextfield>//*[text()='Reference']/following-sibling::input</referencetextfield>
-
 <technicalcontactnametextfield>//*[text()='Technical Contact Name']/following-sibling::input</technicalcontactnametextfield>
-
 <typedropdown>//div[label[contains(text(),'Type')]]//input</typedropdown>
-
 <emailtextfield>//*[text()='Email']/following-sibling::input</emailtextfield>
-
 <phonetextfield>//*[text()='Phone']/following-sibling::input</phonetextfield>
-
 <faxtextfield>//*[text()='Fax']/following-sibling::input</faxtextfield>
-
 <enablededicatedportalcheckbox>//*[text()='Enable Dedicated Portal']/following-sibling::div//input</enablededicatedportalcheckbox>
-
 <dedicatedportaldropdown>//div[label[text()='Dedicated Portal']]//input</dedicatedportaldropdown>
-
 <okbutton>//span[contains(text(),'OK')]</okbutton>
-
 <customercreationsuccessmsg>//div[@role='alert']//span</customercreationsuccessmsg>
-
 <clearbutton>//span[text()='Clear']</clearbutton>
-
 <clearcountryvalue>//label[text()='Country']/parent::div//div[text()='×']</clearcountryvalue>
-
 <cleartypevalue>//label[text()='Type']/parent::div//div[text()='×']</cleartypevalue>
 
-<!-- Verify warning messages -->
-
-
+<!--  Verify warning messages -->
 <customernamewarngmsg>//div[text()='Legal Customer Name']</customernamewarngmsg>
-
 <countrywarngmsg>//div[text()='Country']</countrywarngmsg>
-
 <ocnwarngmsg>//div[text()='OCN']</ocnwarngmsg>
-
 <typewarngmsg>//div[text()='Type']</typewarngmsg>
-
 <emailwarngmsg>//div[text()='Email']</emailwarngmsg>
-
 <customer_createorderpage_warngmsg>//div[text()='Choose a customer']</customer_createorderpage_warngmsg>
-
 <sidwarngmsg>//input[@id='serviceIdentification']/parent::div//div</sidwarngmsg>
+<DeleteServiceWarningMessage>//div/div[text()='Are you sure that you want to delete this item?']</DeleteServiceWarningMessage>
 
-<!-- Verify Customer details panel info in view service page -->
 
-
+<!--  Verify Customer details panel  info in view service page  -->
 <CustomerDetailsHeader>//div[text()='Customer Details']</CustomerDetailsHeader>
-
 <Name_Text>(//div//label[@for='name'])[1]</Name_Text>
-
 <Name_Value>//div[label[text()='Legal Customer Name']]/following-sibling::div</Name_Value>
-
 <MainDomain_Text>(//div//label[@for='name'])[2]</MainDomain_Text>
-
 <MainDomain_Value>//label[text()='Main Domain']/parent::div/parent::div//div[2]</MainDomain_Value>
-
 <Country_Text>(//div//label[@for='name'])[3]</Country_Text>
-
 <Country_Value>//label[text()='Country']/parent::div/parent::div//div[2]</Country_Value>
-
 <OCN_Text>(//div//label[@for='name'])[4]</OCN_Text>
-
 <OCN_Value>//label[text()='OCN']/parent::div/parent::div//div[2]</OCN_Value>
-
 <Reference_Text>(//div//label[@for='name'])[5]</Reference_Text>
-
 <Reference_Value>//label[text()='Reference']/parent::div/parent::div//div[2]</Reference_Value>
-
 <Type_Text>(//div//label[@for='name'])[6]</Type_Text>
-
 <Type_Value>//label[text()='Type']/parent::div/parent::div//div[2]</Type_Value>
-
 <TechnicalContactName_Text>(//div//label[@for='name'])[7]</TechnicalContactName_Text>
-
 <TechnicalContactName_Value>//label[text()='Technical Contact Name']/parent::div/parent::div//div[2]</TechnicalContactName_Value>
-
 <Email_Text>(//div//label[@for='name'])[8]</Email_Text>
-
 <Email_Value>//label[text()='Email']/parent::div/parent::div//div[2]</Email_Value>
-
 <Phone_Text>(//div//label[@for='name'])[9]</Phone_Text>
-
 <Phone_Value>//label[text()='Phone']/parent::div/parent::div//div[2]</Phone_Value>
-
 <Fax_Text>(//div//label[@for='name'])[10]</Fax_Text>
-
 <Fax_Value>//label[text()='Fax']/parent::div/parent::div//div[2]</Fax_Value>
 
+
+
 <!-- create order/service page -->
-
-
 <!-- <nametextfield>//input[@id='customerSearch']</nametextfield> -->
-
-
 <createordernametextfield>//input[@id='customerName']</createordernametextfield>
-
 <chooseCustomerdropdown>//div[label[text()='Choose a customer']]//input</chooseCustomerdropdown>
-
 <customerdropdown>//div[label[text()='Customer']]/div</customerdropdown>
-
 <nextbutton>//span[contains(text(),'Next')]</nextbutton>
-
 <choosocustomerwarningmsg>//body/div[@id='root']/div/div[contains(@class,'app-container app-theme-white fixed-header fixed-sidebar fixed-footer')]/div[contains(@class,'app-main')]/div[contains(@class,'app-main__outer')]/div[contains(@class,'app-main__inner')]/div[contains(@class,'div-border div-margin container')]/form/div[contains(@class,'div-margin row')]/div[contains(@class,'col-12 col-sm-12 col-md-3')]/div[contains(@class,'position-relative form-group')]/div[2]</choosocustomerwarningmsg>
-
 <leaglcustomername>//div[div[label[text()='Legal Customer Name']]]/div[2]</leaglcustomername>
-
 <maindomain>//div[div[label[text()='Main Domain']]]/div[2]</maindomain>
-
 <country>//div[div[label[text()='Country']]]/div[2]</country>
-
 <ocn>//div[div[label[text()='OCN']]]/div[2]</ocn>
-
 <reference>//div[div[label[text()='Reference']]]/div[2]</reference>
-
 <type>//div[div[label[text()='Type']]]/div[2]</type>
-
 <technicalcontactname>//div[div[label[text()='Technical Contact Name']]]/div[2]</technicalcontactname>
-
 <email>//div[div[label[text()='Email']]]/div[2]</email>
-
 <phone>//div[div[label[text()='Phone']]]/div[2]</phone>
-
 <fax>//div[div[label[text()='Fax']]]/div[2]</fax>
-
 <dedicatedportal>//div[div[label[text()='Dedicated Portal']]]/div[2]</dedicatedportal>
-
 <useractionbutton>//button[@id='dropdown-basic-button']</useractionbutton>
-
 <adduserbutton>//a[contains(text(),'Add')]</adduserbutton>
 
+
+
 <!-- Order Creation in Order/service panel in view customer page -->
-
-
 <CreateOrderHeader>//div[text()='Create Order / Service']</CreateOrderHeader>
-
 <ordercontractnumber>//div[div[label[text()='Order/Contract Number']]]//input[@size='9']</ordercontractnumber>
-
-<selectorderswitch>(//div[@class='react-switch-bg'])[1]</selectorderswitch>
-
+<selectorderswitch>(//div[@class='react-switch-bg'])[2]</selectorderswitch>
 <createorderswitch>//form[@name='createOrder']//div[2]//div[1]//div[3]//div[1]//div[1]//div[1]</createorderswitch>
-
 <rfireqiptextfield>//div[contains(@class,'col-md-3 col-sm-12 col-12')]//input[@id='rfiRfqIpVoiceLineNo']</rfireqiptextfield>
-
 <existingorderdropdown>//label[text()='Order/Contract Number(Parent SID)']/parent::div//div//input</existingorderdropdown>
-
 <existingorderdropdownvalue>//span[text()='12345']</existingorderdropdownvalue>
-
 <createorderbutton>//button//span[text()='Create Order']</createorderbutton>
-
 <newordertextfield>//*[text()='Order/Contract Number(Parent SID)']/following-sibling::input</newordertextfield>
-
 <newrfireqtextfield>//*[text()='RFI / RFQ /IP Voice Line number']/following-sibling::input</newrfireqtextfield>
-
 <OrderCreatedSuccessMsg>//div[@role='alert']//span[text()='Order created successfully']</OrderCreatedSuccessMsg>
 
-<order_contractnumber_warngmsg>//div[label[contains(text(),'Order/Contract Number(Parent SID)')]]/following-sibling::span</order_contractnumber_warngmsg>
-
+<order_contractnumber_warngmsg>//label[contains(text(),'Order/Contract Number(Parent SID)')]/following-sibling::span[3]</order_contractnumber_warngmsg>
 <servicetype_warngmsg>//div[label[contains(text(),'Service Type')]]/following-sibling::span</servicetype_warngmsg>
 
 <servicetypetextfield>//div[div[label[text()='Service Type']]]//input</servicetypetextfield>
-
 <networkconfigurationinputfield>//div[div[label[text()='Network Configuration']]]//input</networkconfigurationinputfield>
-
 <OrderContractNumber_Select>(//div[@class='react-dropdown-select-content react-dropdown-select-type-single css-jznujr-ContentComponent e1gn6jc30'])[1]</OrderContractNumber_Select>
-
 <changeorder_cancelbutton>//span[contains(text(),'Cancel')]</changeorder_cancelbutton>
 
 <!-- Service Creation Form in Service creation page -->
-
-
 <createorderservice_header>//div//p[text()='Create Order / Service']</createorderservice_header>
-
 <EditService_header>//p[contains(text(),'Edit Service')]</EditService_header>
-
 <serviceidentificationtextfield>//input[@id='serviceIdentification']</serviceidentificationtextfield>
-
 <ServiceIdentificationTextlabel>//label[contains(text(),'Service Identification')]</ServiceIdentificationTextlabel>
-
 <servicetypevalue>//div[div[label[text()='Service Type']]]//div[2]</servicetypevalue>
-
 <servicetype_value>//div[label[text()='Service Type']]/following-sibling::div</servicetype_value>
-
 <ResellerCodetextfield>//input[@id='resellerCode']</ResellerCodetextfield>
-
 <remarktextarea>//textarea[contains(@name,'remark')]</remarktextarea>
-
 <remarktextareavalue>//div[label[text()='Remark']]//textarea</remarktextareavalue>
-
 <Email_header>//div//label[text()='Email']</Email_header>
-
 <emailtextfield>//input[@id='email']</emailtextfield>
-
 <emailtextfieldvalue>//div[label[text()='Email']]//input</emailtextfieldvalue>
-
 <emailarrow>//label[text()='Email']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</emailarrow>
-
 <phonecontacttextfield>//input[@id='phoneContact']</phonecontacttextfield>
-
 <phonecontacttextfieldvalue>//div[label[text()='Phone Contact']]//input</phonecontacttextfieldvalue>
-
 <phonearrow>//label[text()='Phone Contact']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</phonearrow>
 
 <!-- Management Options in Service creation page -->
-
-
 <PackageDropdownDisabled>(//input[@placeholder='Select ...'])[1]</PackageDropdownDisabled>
-
 <ManageServicecheckbox>//input[@id='managedService']</ManageServicecheckbox>
-
 <SyslogEventViewcheckbox>//input[@id='syslogEventView']</SyslogEventViewcheckbox>
-
 <ServiceStatusViewcheckbox>//input[@id='serviceStatusView']</ServiceStatusViewcheckbox>
-
 <RouterConfigurationViewcheckbox>//input[@id='routerConfigView']</RouterConfigurationViewcheckbox>
-
 <PerformanceReportingcheckbox>//div[label[text()='Performance Reporting']]/div/input</PerformanceReportingcheckbox>
-
 <ProactiveNotificationcheckbox>//input[@id='proactiveMonitoring']</ProactiveNotificationcheckbox>
-
 <NotificationManagementTeamDropdown>(//input[@placeholder='Select ...'])[2]</NotificationManagementTeamDropdown>
-
 <DialUserAdministrationcheckbox>//input[@id='dialUserAdministration']</DialUserAdministrationcheckbox>
 
 <cancelbutton>//span[contains(text(),'Cancel')]</cancelbutton>
-
 <OKbutton_ServiceCreation>//span[contains(text(),'OK')]</OKbutton_ServiceCreation>
-
 <servicecreationmessage>//div[@role='alert']//span</servicecreationmessage>
 
 <!-- <cancelbutton>//button[@type='submit']//span[text()='Cancel']</cancelbutton> -->
 
 
-<!-- Search order page -->
 
-
+<!--  Search order page  -->
 <searchorderlink>//li[text()='Search Order/Service']</searchorderlink>
-
 <servicefield>//label[text()='Service']/following-sibling::input</servicefield>
-
 <searchbutton>//span[text()='Search']</searchbutton>
-
 <serviceradiobutton>//div[@role='gridcell']//span[contains(@class,'unchecked')]</serviceradiobutton>
-
 <searchorder_actiondropdown>//div[@class='dropdown']//button</searchorder_actiondropdown>
-
 <viewLink_SearchOrderPage>//div[@class='dropdown-menu show']//a[text()='View']</viewLink_SearchOrderPage>
 
+
+
 <!-- Customer panel in view service page -->
-
-
 <customerheader>//div[text()='Customer']</customerheader>
-
 <customerpanel_customername>(//label[text()='Customer Name']/parent::div/div//input)[1]</customerpanel_customername>
-
 <managecustomerheader>//div[@class='heading-green-row row']//span[text()='Manage Customer In OSP']</managecustomerheader>
-
 <customer_ocn>//div[@class='position-relative form-group']//label[text()='OCN']/following-sibling::input</customer_ocn>
-
 <customer_country>(//label[text()='Country']/parent::div//div//input)[1]</customer_country>
-
 <customername>(//label[text()='Customer Name']/parent::div//div//input)[1]</customername>
-
 <defaultcheckbox>//label[@class='form-label capitalize']//input[@value='defcustprof']</defaultcheckbox>
-
 <configurecheckbox>//label[@class='form-label capitalize']//input[@value='configcustprof']</configurecheckbox>
-
 <CustomerpanelActionDropdown>//div[contains(text(),'Customer')]/following-sibling::div/div//button[text()='Action']</CustomerpanelActionDropdown>
-
 <addcustomer_successmsg>//div[@role='alert']//span</addcustomer_successmsg>
-
 <customername_columnvalue>//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@col-id='trailCustomerName']</customername_columnvalue>
-
 <editcustomer_successmsg>(//div[@role='alert']//span)[1]</editcustomer_successmsg>
-
 <viewpage_editcustomer>//div[@class='dropdown-menu show']//a[text()='Edit Customer']</viewpage_editcustomer>
-
 <viewpage_deletecustomer>//div[@class='dropdown-menu show']//a[text()='Delete Customer']</viewpage_deletecustomer>
-
 <deletealertclose>//div[@class='modal-content']//button//span[text()='×']</deletealertclose>
-
 <customerpanel_customernamevalue>//label[text()='Customer Name']/parent::div/div//span</customerpanel_customernamevalue>
-
 <customerpanel_customernamecolumntext>//div[text()='Customer']/parent::div/following-sibling::div//span[text()='Customer Name']</customerpanel_customernamecolumntext>
-
 <customercountry_disabled>(//label[text()='Country']/parent::div//div//div)[1]</customercountry_disabled>
-
 <customername_disabled>(//label[text()='Customer Name']/parent::div//div//div)[1]</customername_disabled>
 
 <customer_countryvalue>//label[text()='Country']/parent::div/following-sibling::div</customer_countryvalue>
-
 <customer_customernamevalue>//label[text()='Customer Name']/parent::div/following-sibling::div</customer_customernamevalue>
-
 <customername_selectedtext>(//label[text()='Customer Name']/parent::div//div//span)[1]</customername_selectedtext>
+
+
+
 
 <!-- Users panel in view service page -->
 
-
 <LoginColumn>//div[@col-id='userName']</LoginColumn>
-
 <NameColumn>//div[@col-id='firstName']</NameColumn>
-
 <EmailColumn>//div[@col-id='email']</EmailColumn>
-
 <RolesColumn>//div[@col-id='roles']</RolesColumn>
-
 <AddressColumn>//div[@col-id='postalAddress']</AddressColumn>
-
 <ResourcesColumn>//div[@col-id='0']</ResourcesColumn>
-
 <ExistingUsers>//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']</ExistingUsers>
-
 <UserUnchecked>//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//span[@class='ag-icon ag-icon-checkbox-unchecked']</UserUnchecked>
-
 <UserChecked>//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//span[@class='ag-icon ag-icon-checkbox-checked']</UserChecked>
 
-<!-- New User creation page from view service page -->
 
 
+
+<!-- New User creation page  from view service page -->
 <UserActionDropdown>//div[contains(text(),'Users')]/following-sibling::div/div//button[text()='Action']</UserActionDropdown>
-
 <AddLink>//div[@class='dropdown-menu show']//a[text()='Add']</AddLink>
-
 <CreateUserHeader>//div[@class='heading-green-row row']//p</CreateUserHeader>
-
 <UserName>(//div[@class='position-relative form-group'])[1]//input[@id='userName']</UserName>
-
 <FirstName>(//div[@class='position-relative form-group'])[2]//input[@id='firstName']</FirstName>
-
 <SurName>(//div[@class='position-relative form-group'])[3]//input[@id='surname']</SurName>
-
 <PostalAddress>(//div[@class='position-relative form-group'])[4]//textarea[@name='postalAddress']</PostalAddress>
-
 <Email>(//div[@class='position-relative form-group'])[5]//input[@id='email']</Email>
-
 <Phone>(//div[@class='position-relative form-group'])[6]//input[@id='phone']</Phone>
-
 <Password>(//div[@class='position-relative form-group'])[9]//input[@id='password']</Password>
-
 <GeneratePassword>//div//span[text()='Generate Password']</GeneratePassword>
-
 <OkButton>//button[@type='submit']//span[text()='Ok']</OkButton>
-
 <edituser_header>//div[@class='heading-green-row row']//p</edituser_header>
-
 <delete_alertpopup>//div[@class='modal-content']</delete_alertpopup>
-
 <deletebutton>//button[text()='Delete']</deletebutton>
-
 <deletesuccessmsg>//div[@role='alert']//span</deletesuccessmsg>
-
 <userspanel_header>//div[text()='Users']</userspanel_header>
-
 <usernamevalue>//b[text()='User Name']/parent::label/parent::div/following-sibling::div</usernamevalue>
-
 <firstnamevalue>//b[text()='First Name']/parent::label/parent::div/following-sibling::div</firstnamevalue>
-
 <surnamevalue>//b[text()='Surname']/parent::label/parent::div/following-sibling::div</surnamevalue>
-
 <postaladdressvalue>//b[text()='Postal Address']/parent::label/parent::div/following-sibling::div</postaladdressvalue>
-
 <emailvalue>//b[text()='Email']/parent::label/parent::div/following-sibling::div</emailvalue>
-
 <phonevalue>//b[text()='Phone']/parent::label/parent::div/following-sibling::div</phonevalue>
 
+
+
+
+
 <!-- order panel - view service page -->
-
-
 <orderpanelheader>//div[text()='Order']</orderpanelheader>
-
 <orderactionbutton>//div[div[text()='Order']]//button</orderactionbutton>
-
 <editorderlink>//div[div[text()='Order']]//div//a[text()='Edit Order']</editorderlink>
-
 <changeorderlink>//a[contains(text(),'Change Order')]</changeorderlink>
-
 <ordernumbervalue>//label[text()='Order/Contract Number (Parent SID)']/parent::div/following-sibling::div[@class='customLabelValue form-label']</ordernumbervalue>
-
 <ordervoicelinenumbervalue>//label[text()='RFI/RFQ/IP Voice Line Number']/parent::div/following-sibling::div[@class='customLabelValue form-label']</ordervoicelinenumbervalue>
-
 <changeordervoicelinenumber>//label[text()='RFI / RFQ /IP Voice Line number']/following-sibling::input</changeordervoicelinenumber>
-
 <changeordernumber>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::input</changeordernumber>
-
 <changeorder_selectorderswitch>//div[@class='react-switch-bg']</changeorder_selectorderswitch>
-
-<changeorder_chooseorderdropdown>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::div//div[2]</changeorder_chooseorderdropdown>
-
+<changeorder_chooseorderdropdown>(//label[text()='Order/Contract Number (Parent SID)']/following-sibling::div//div[1])[1]</changeorder_chooseorderdropdown>
 <RFIRFQIPVoiceLineNumberText>//label[contains(text(),'RFI/RFQ/IP Voice Line Number')]</RFIRFQIPVoiceLineNumberText>
-
 <changeorder_backbutton>//span[contains(text(),'Back')]</changeorder_backbutton>
-
 <changeorder_okbutton>//span[contains(text(),'OK')]</changeorder_okbutton>
-
 <editorderheader>//div[text()='Edit Order']</editorderheader>
-
 <editorderno>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::input</editorderno>
-
-<editvoicelineno>//label[text()='Order/Contract Number (Parent SID)']/following-sibling::input</editvoicelineno>
-
+<editvoicelineno>//label[text()='RFI/RFQ/IP Voice Line Number']/following-sibling::input</editvoicelineno>
 <editorder_okbutton>(//span[contains(text(),'OK')])[1]</editorder_okbutton>
-
 <changeorderheader>//div[text()='Change Order']</changeorderheader>
-
 <createorder_button>//button//span[text()='Create Order']</createorder_button>
-
 <changeorder_dropdownlist>//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//div/div/div/div</changeorder_dropdownlist>
-
 <orderupdate_successmsg>//div[@role='alert']//span[text()='Order successfully updated']</orderupdate_successmsg>
+<ChangeOrder_successmsg>//div[@role='alert']//span[text()='Order successfully  changed.']</ChangeOrder_successmsg>
+
+
+
 
 <!-- service panel fields and actions list in view service page -->
-
-
 <servicepanel_header>//div[text()='Service']</servicepanel_header>
-
 <serviceactiondropdown>//div[div[text()='Service']]//button</serviceactiondropdown>
-
 <servicepanel_serviceidentificationvalue>//div[div[label[contains(text(),'Service Identification')]]]//div[2]</servicepanel_serviceidentificationvalue>
-
 <servicepanel_servicetypevalue>//div[div[label[contains(text(),'Service Type')]]]//div[2]</servicepanel_servicetypevalue>
-
 <servicepanel_ResselerCodevalue>//div[div[label[contains(text(),'Reseller Code')]]]//div[2]</servicepanel_ResselerCodevalue>
-
 <servicepanel_Emailvalue>(//div[div[label[contains(text(),'Email')]]]//div)[4]</servicepanel_Emailvalue>
-
 <servicepanel_PhoneContactvalue>(//div[div[label[contains(text(),'Phone Contact')]]]//div)[2]</servicepanel_PhoneContactvalue>
-
 <servicepanel_remarksvalue>(//div[div[label[contains(text(),'Remark')]]]//div)[2]</servicepanel_remarksvalue>
-
 <serviceupdate_successmsg>//div[@role='alert']//span[text()='Service successfully updated']</serviceupdate_successmsg>
 
 <edit>//div[@class='dropdown-menu show']//a[text()='Edit']</edit>
-
 <EditLink>//div[@class='dropdown-menu show']//a[text()='Edit']</EditLink>
-
 <delete>//div[@class='dropdown-menu show']//a[contains(text(),'Delete')]</delete>
-
 <DeleteLink>//div[@class='dropdown-menu show']//a[contains(text(),'Delete')]</DeleteLink>
-
 <ShowInfovistaReportLink>//div[@class='dropdown-menu show']//a[text()='Show Infovista Report']</ShowInfovistaReportLink>
-
 <ShowNewInfovistaReportLink>//div[@class='dropdown-menu show']//a[text()='Show New Infovista Report']</ShowNewInfovistaReportLink>
-
 <ManageSubnetsIpv6Link>//div[@class='dropdown-menu show']//a[text()='Manage Subnets Ipv6']</ManageSubnetsIpv6Link>
-
 <ManageSubnetsIpv6_header>//div[@class='modal-title h4']</ManageSubnetsIpv6_header>
-
 <ManageSubnetsIpv6_Confirmationmessage>//div/span[text()='There are no subnets to be managed for this service.']</ManageSubnetsIpv6_Confirmationmessage>
-
 <ManageSubnetsIpv6_action>(//div[div[button[@id='dropdown-basic-button' and @aria-haspopup='true']]]//div)[14]</ManageSubnetsIpv6_action>
-
 <ManageSubnetsIpv6_ManageIPs>//div[a[text()='Delete']]//a[text()='Manage IPs']</ManageSubnetsIpv6_ManageIPs>
-
 <ManageSubnetsIpv6__Delete>//div[a[text()='Manage IPs']]//a[text()='Delete']</ManageSubnetsIpv6__Delete>
-
 <ManageSubnetsIpv6_popupcloseX>//button[span[text()='Close']]</ManageSubnetsIpv6_popupcloseX>
-
 <DumpLink>//div[@class='dropdown-menu show']//a[text()='Dump']</DumpLink>
 
-<!-- Dump -->
-
-
+<!--  Dump -->
 <Editservice_actiondropdown>//div[div[text()='Service']]//button[text()='Action']</Editservice_actiondropdown>
-
 <Editservice_Dumplink>//a[text()='Dump']</Editservice_Dumplink>
-
 <dumpPage_header>//div[@class='modal-header']</dumpPage_header>
-
 <dumpheaderName>//div[@class='modal-header']/div</dumpheaderName>
-
 <dumpMessage_body>//div[@class='modal-body']/div</dumpMessage_body>
-
 <dump_xButton>//span[contains(text(),'×')]</dump_xButton>
 
-<manageSubnet_IPv6>//a[text()='Manage Subnets Ipv6']</manageSubnet_IPv6>
 
+<manageSubnet_IPv6>//a[text()='Manage Subnets Ipv6']</manageSubnet_IPv6>
 <manageSubnet_successMSG>//div[div[@class='modal-header']]//div[@role='alert']/span</manageSubnet_successMSG>
 
 <manageLink>//div[@class='dropdown-menu show']//a[text()='Manage']</manageLink>
 
 <!-- Status Panel -->
-
-
 <manageservice_header>//div[text()='Manage Service']</manageservice_header>
-
 <status_ordername>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='orderName']</status_ordername>
-
 <status_servicename>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceName']</status_servicename>
-
 <status_servicetype>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceType']</status_servicetype>
-
 <status_servicedetails>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceDetails']</status_servicedetails>
-
 <status_currentstatus>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='currentStatus']</status_currentstatus>
-
 <status_modificationtime>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='mTime']</status_modificationtime>
-
 <statuslink>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell']//a[text()='Status']</statuslink>
-
 <!-- Synchronization Panel -->
-
-
 <sync_ordername>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='orderName']</sync_ordername>
-
 <sync_servicename>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceName']</sync_servicename>
-
 <sync_servicetype>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceType']</sync_servicetype>
-
 <sync_servicedetails>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceDetails']</sync_servicedetails>
-
 <sync_status>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='syncStatus']</sync_status>
-
 <synchronizelink>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell']//a[text()='Synchronize']</synchronizelink>
-
 <managepage_backbutton>//span[text()='Back']</managepage_backbutton>
-
 <Servicestatus_popup>//div[@class='modal-content']</Servicestatus_popup>
-
 <servicestatus_popupclose>(//div[text()='Service Status']/following-sibling::button//span)[1]</servicestatus_popupclose>
-
 <changestatus_dropdown>//label[text()='Change Status']/parent::div//input</changestatus_dropdown>
-
 <changestatus_dropdownvalue>//label[text()='Change Status']/parent::div//span</changestatus_dropdownvalue>
-
 <servicestatushistory>//div[@class='modal-content']//div[@ref='eBodyViewport']//div[@role='row']</servicestatushistory>
-
 <Sync_successmsg>//div[@role='alert']//span</Sync_successmsg>
+
+
+
+
 
 <portalaccess_header>//label[text()='Portal Access']</portalaccess_header>
 
+
 <!-- Management Options panel text and text value in view service page -->
-
-
 <managementoptions_header>//div[text()='Management Options']</managementoptions_header>
-
 <managementOptionsPanelheader>//div[div[contains(text(),'Management Options')]]</managementOptionsPanelheader>
-
 <ManageService_text>//label[text()='Managed Service']</ManageService_text>
-
 <ManageService_value>//div[label[text()='Managed Service']]/following-sibling::div</ManageService_value>
-
 <SyslogEventView_text>//label[text()='Syslog Event View']</SyslogEventView_text>
-
 <SyslogEventView_value>//div[label[text()='Syslog Event View']]/following-sibling::div</SyslogEventView_value>
-
 <ServiceStatusView_text>//label[text()='Service Status View']</ServiceStatusView_text>
-
 <ServiceStatusView_value>//div[label[text()='Service Status View']]/following-sibling::div</ServiceStatusView_value>
-
 <RouterConfigurationView_text>//label[text()='Router Configuration View']</RouterConfigurationView_text>
-
 <RouterConfigurationView_Value>//div[label[text()='Router Configuration View']]/following-sibling::div</RouterConfigurationView_Value>
-
 <PerformanceReporting_text>//div[label[text()='Pro-active Notification']]</PerformanceReporting_text>
-
 <PerformanceReporting_value>//div[label[text()='Performance Reporting']]/following-sibling::div</PerformanceReporting_value>
-
 <ProactiveNotification_text>//label[text()='Pro-active Notification']</ProactiveNotification_text>
-
 <ProactiveNotification_Value>//div[label[text()='Pro-active Notification']]/following-sibling::div</ProactiveNotification_Value>
-
 <NotificationManagementTeam_text>//div[label[text()='Notification Management Team']]</NotificationManagementTeam_text>
-
 <NotificationManagementTeam_Value>//div[label[text()='Notification Management Team']]/following-sibling::div</NotificationManagementTeam_Value>
-
 <DialUserAdministration_text>//label[text()='Dial User Administration']</DialUserAdministration_text>
-
 <DialUserAdministration_Value>//div[label[text()='Dial User Administration']]/following-sibling::div</DialUserAdministration_Value>
 
-<existingMASdevicegrid>(//div[text()='MAS Switch']/parent::div/following-sibling::div)[2]</existingMASdevicegrid>
+<DeleteServiceSuccessMessage></DeleteServiceSuccessMessage>
 
+<existingMASdevicegrid>(//div[text()='MAS Switch']/parent::div/following-sibling::div)[2]</existingMASdevicegrid>
 <MAS_fetchAlldevice_InviewPage>//div[text()='MAS Switch']/parent::div/following-sibling::div[@class='div-margin row']//b</MAS_fetchAlldevice_InviewPage>
 
 <!-- MAS Switch panel in view service page -->
-
-
 <MASswitch_header>//div[div[text()='MAS Switch']]</MASswitch_header>
-
 <MAS_AddMASSwitchLink>//div//a[text()='Add MAS Switch']</MAS_AddMASSwitchLink>
-
-<MAS_ShowInterfaceLink>//div[a[text()='Add MAS Switch']]//div[a[text()='Show Interfaces']]</MAS_ShowInterfaceLink>
-> 
+<MAS_ShowInterfaceLink>//div[a[text()='Add MAS Switch']]//div[a[text()='Show Interfaces']]</MAS_ShowInterfaceLink>>
 <MAS_HideInterfaceLink>//div[a[text()='Add MAS Switch']]//div[a[text()='Hide Interfaces']]</MAS_HideInterfaceLink>
-
 <MAS_AddMASSwitch_header>//div[text()='Add MAS Switch']</MAS_AddMASSwitch_header>
-
 <MAS_IMSPOPLocationDropdown>//div[input[@placeholder='Select ...']]</MAS_IMSPOPLocationDropdown>
-
 <MAS_Cancelbutton>//button/span[text()='Cancel']</MAS_Cancelbutton>
-
 <MAS_OKbutton>//button/span[text()='OK']</MAS_OKbutton>
-
 <MAS_AddSwitchSuccessfulMessage>//div[span[text()='MAS switch added successfully']]</MAS_AddSwitchSuccessfulMessage>
-
 <MAS_AddSwitchWarningMessage>//div/div/div[@style='color: red;']</MAS_AddSwitchWarningMessage>
-
 <MAS_UpdateSwitchSuccessfulMessage>//div[span[text()='MAS switch updated successfully']]</MAS_UpdateSwitchSuccessfulMessage>
-
 <MAS_DeleteSwitchSuccessfulMessage>//div[span[text()='MAS switch deleted successfully']]</MAS_DeleteSwitchSuccessfulMessage>
-
 <MAS_ViewService_DeleteMASDeviceWarningMessage>//div/div[text()='Are you sure that you want to delete?']</MAS_ViewService_DeleteMASDeviceWarningMessage>
-
 <MAS_ViewService_DeleteButton>//div/button[text()='Delete']</MAS_ViewService_DeleteButton>
 
 <Edit_MASSwitch_Header>//div[contains(text(),'Edit MAS Switch')]</Edit_MASSwitch_Header>
-
 <MAS_editdevice1>(//div[div[div[text()='MAS Switch']]]//span[text()='Edit'])[1]</MAS_editdevice1>
-
 <MAS_editdevice2>(//div[div[div[text()='MAS Switch']]]//span[text()='Edit'])[2]</MAS_editdevice2>
-
 <MAS_SelectInterfacesdevice1>(//div[div[div[text()='MAS Switch']]]//span[text()='Select Interfaces'])[1]</MAS_SelectInterfacesdevice1>
-
 <MAS_SelectInterfacesdevice2>(//div[div[div[text()='MAS Switch']]]//span[text()='Select Interfaces'])[2]</MAS_SelectInterfacesdevice2>
-
-<MAS_configuredevice1Interface/>
-
-<MAS_configuredevice2Interface/>
-
+<MAS_configuredevice1Interface></MAS_configuredevice1Interface>
+<MAS_configuredevice2Interface></MAS_configuredevice2Interface>
 <MAS_deletefromservicedevice1>(//div[div[div[text()='MAS Switch']]]//span[text()='Delete from Service'])[1]</MAS_deletefromservicedevice1>
-
 <MAS_deletefromservicedevice2>(//div[div[div[text()='MAS Switch']]]//span[text()='Delete from Service'])[2]</MAS_deletefromservicedevice2>
 
 <MAS_ViewDevice_Header>//div[contains(text(),'Device')]</MAS_ViewDevice_Header>
-
 <MAS_viewdevice1>(//div[div[div[text()='MAS Switch']]]//span[text()='View'])[1]</MAS_viewdevice1>
-
 <MAS_viewdevice2>(//div[div[div[text()='MAS Switch']]]//span[text()='View'])[2]</MAS_viewdevice2>
 
 <MAS_deleteFromService_InViewPage>//div[text()='MAS Switch']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Delete from Service']</MAS_deleteFromService_InViewPage>
-
 <MAS_viewLink_InViewPage>//div[text()='MAS Switch']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='View']</MAS_viewLink_InViewPage>
-
 <MAS_selectInterface_InViewPage>//div[text()='MAS Switch']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Select Interfaces']</MAS_selectInterface_InViewPage>
 
-<!-- Below are the fields values information under view MAS Switch page -->
-
-
+<!-- Below are the fields values information under  view MAS Switch page -->
 <MAS_View_DeviceNameValue>//div[label[text()='Name']]/following-sibling::div</MAS_View_DeviceNameValue>
-
 <MAS_View_VendorModelValue>//div[label[text()='Vendor/Model']]/following-sibling::div</MAS_View_VendorModelValue>
-
 <MAS_View_ManagementAddressValue>//div[label[text()='Management Address']]/following-sibling::div</MAS_View_ManagementAddressValue>
-
 <MAS_View_SnmproValue>//div[label[text()='Snmpro']]/following-sibling::div</MAS_View_SnmproValue>
-
 <MAS_View_CountryValue>//div[label[text()='Country']]/following-sibling::div</MAS_View_CountryValue>
-
 <MAS_View_CityValue>//div[label[text()='City']]/following-sibling::div</MAS_View_CityValue>
-
 <MAS_View_SiteValue>//div[label[text()='Site']]/following-sibling::div</MAS_View_SiteValue>
-
 <MAS_View_PremiseValue>//div[label[text()='Premise']]/following-sibling::div</MAS_View_PremiseValue>
-
 <MAS_View_ActionLink>(//button[@id="dropdown-basic-button"])[1]</MAS_View_ActionLink>
-
 <MAS_View_TestColumnName>//div/table/div/thead/tr/th[text()='Test']</MAS_View_TestColumnName>
-
 <MAS_View_StatusColumnName>//div/table/div/thead/tr/th[text()='Status']</MAS_View_StatusColumnName>
-
 <MAS_View_LastRefresh>//div/div[text()='Last Refresh:']</MAS_View_LastRefresh>
-
 <MAS_View_Action_EditLink>//div//a[text()='Edit']</MAS_View_Action_EditLink>
-
 <MAS_Edit_PremiseLevel>//div//label[text()='Premise']</MAS_Edit_PremiseLevel>
 
 <MAS_View_Action_DeleteLink>//div//a[text()='Delete']</MAS_View_Action_DeleteLink>
-
 <MAS_ViewDevice_Action_DeleteMASDeviceWarningMessage>//div/div[text()='Are you sure that you want to delete this item?']</MAS_ViewDevice_Action_DeleteMASDeviceWarningMessage>
-
 <MAS_ViewDevice_Action_DeleteButton>//button//span[text()='Delete']</MAS_ViewDevice_Action_DeleteButton>
 
-<!-- Below Fetch Device Interface ==> Manage Colt Page for MAS Switch -->
+
+<!--   Edit Device Screen -->
+<MAS_PE_Edit_deviceName>//div[label[text()='Name']]//input</MAS_PE_Edit_deviceName>
+<MAS_PE_Edit_vendorModel>//div[label[text()='Vendor/Model']]//input</MAS_PE_Edit_vendorModel>
+<MAS_PE_Edit_managementAddress>//div[label[text()='Management Address']]//input</MAS_PE_Edit_managementAddress>
+<MAS_PE_Edit_snmpro>//div[label[text()='Snmpro']]//input</MAS_PE_Edit_snmpro>
+<countryinput>//select[@id='countryId']</countryinput>
+<citydropdowninput>//select[@id='cityId']</citydropdowninput>
+<sitedropdowninput>//select[@id='siteId']</sitedropdowninput>
+<premisedropdowninput>//select[@id='premiseId']</premisedropdowninput>
+<addcityswitch>//div[label[contains(text(),'Add City')]]/preceding-sibling::div//div[@class='react-switch']</addcityswitch>
+<addsiteswitch>//div[label[contains(text(),'Add Site')]]/preceding-sibling::div//div[@class='react-switch']</addsiteswitch>
+<addpremiseswitch>//div[label[contains(text(),'Add Premise')]]/preceding-sibling::div//div[@class='react-switch']</addpremiseswitch>
+<selectpremiseswitch>//div[label[contains(text(),'Select Premise')]]/preceding-sibling::div//div[@class='react-switch']</selectpremiseswitch>
+<selectsiteswitch>//div[label[contains(text(),'Select Site')]]/preceding-sibling::div//div[@class='react-switch']</selectsiteswitch>
+<selectcityswitch>//div[label[contains(text(),'Select City')]]/preceding-sibling::div//div[@class='react-switch']</selectcityswitch>
+<citynameinputfield>//input[@id='cityName']</citynameinputfield>
+<citycodeinputfield>//input[@id='cityCode']</citycodeinputfield>
+<sitenameinputfield_addCityToggleSelected>(//div[label[text()='Site Name']]//input)[1]</sitenameinputfield_addCityToggleSelected>
+<sitecodeinputfield_addCityToggleSelected>(//div[label[text()='Site Code']]//input)[1]</sitecodeinputfield_addCityToggleSelected>
+<premisecodeinputfield_addCityToggleSelected>(//div[label[text()='Premise Code']]//input)[1]</premisecodeinputfield_addCityToggleSelected>
+<premisenameinputfield_addCityToggleSelected>(//div[label[text()='Premise Name']]//input)[1]</premisenameinputfield_addCityToggleSelected>
+<sitenameinputfield_addSiteToggleSelected>(//div[label[text()='Site Name']]//input)[2]</sitenameinputfield_addSiteToggleSelected>
+<sitecodeinputfield_addSiteToggleSelected>(//div[label[text()='Site Code']]//input)[2]</sitecodeinputfield_addSiteToggleSelected>
+<premisecodeinputfield_addSiteToggleSelected>(//div[label[text()='Premise Code']]//input)[2]</premisecodeinputfield_addSiteToggleSelected>
+<premisenameinputfield_addSiteToggleSelected>(//div[label[text()='Premise Name']]//input)[2]</premisenameinputfield_addSiteToggleSelected>
+<premisecodeinputfield_addPremiseToggleSelected>(//div[label[text()='Premise Code']]//input)[3]</premisecodeinputfield_addPremiseToggleSelected>
+<premisenameinputfield_addPremiseToggleSelected>(//div[label[text()='Premise Name']]//input)[3]</premisenameinputfield_addPremiseToggleSelected>
 
 
+
+
+
+<!-- Below Fetch Device Interface ==> Manage Colt Page for MAS Switch  -->
 <MAS_View_Action_FetchDeviceInterfacesLink>//div//a[text()='Fetch Device Interfaces']</MAS_View_Action_FetchDeviceInterfacesLink>
-
 <MAS_FetchDeviceInterfacesSuccessMessage>//span[contains(text(),' Fetch Interfaces started successfully. Please check the sync status of this device ')]</MAS_FetchDeviceInterfacesSuccessMessage>
-
 <MAS_hereLink_UnderFetchDeviceInterfacesSuccessMessage>//a[text()='here']</MAS_hereLink_UnderFetchDeviceInterfacesSuccessMessage>
-
 <MAS_ManageCOLTsNetworkManageNetwork_header>//div[contains(text(),'Manage COLT')]</MAS_ManageCOLTsNetworkManageNetwork_header>
-
 <MAS_Manage_Status_DeviceValue>(//div[div[label[text()='Device']]]/parent::div//div/a)[1]</MAS_Manage_Status_DeviceValue>
-
 <MAS_Manage_Status_StatusValue>//div[div[label[text()='Device']]]/parent::div//div[text()='In Service']</MAS_Manage_Status_StatusValue>
-
 <MAS_Manage_Status_LastModificationValue>(//div[@class='col-12 col-sm-12 col-md-4'])[2]</MAS_Manage_Status_LastModificationValue>
-
 <MAS_Manage_Status_StatusLink>//a[contains(text(),'Status')]</MAS_Manage_Status_StatusLink>
-
 <MAS_Manage_Status_ViewInterfacesLink>//a[contains(text(),'View Interfaces')]</MAS_Manage_Status_ViewInterfacesLink>
-
 <MAS_Manage_Status_Servicestatus_popup>//div[@class='modal-content']</MAS_Manage_Status_Servicestatus_popup>
-
 <MAS_Device_Status_OK>//button/span[text()='OK']</MAS_Device_Status_OK>
-
 <MAS_servicestatus_popupclose>(//div[text()='Device']/following-sibling::button//span)[1]</MAS_servicestatus_popupclose>
-
 <MAS_servicestatushistory_successmsg>//div[@role='alert']//span</MAS_servicestatushistory_successmsg>
-
 <MAS_Status_successMessage>//div[@role='alert']//span</MAS_Status_successMessage>
-
 <MAS_servicestatushistoryValue>//div[@class='modal-content']//div[@ref='eBodyViewport']//div[@role='row']</MAS_servicestatushistoryValue>
 
 <MAS_Manage_Synchronization_DeviceValue>((//div[label[text()='Device']])[2]/parent::div/following-sibling::div//a)[1]</MAS_Manage_Synchronization_DeviceValue>
-
 <MAS_Manage_Synchronization_SyncStatusValue>(//div[@class='col-12 col-sm-12 col-md-2'])[9]</MAS_Manage_Synchronization_SyncStatusValue>
-
 <MAS_Manage_Synchronization_SmartsValue>(//div[@class='col-12 col-sm-12 col-md-2'])[10]</MAS_Manage_Synchronization_SmartsValue>
-
 <MAS_Manage_Synchronization_FetchInterfacesValue>(//div[@class='col-12 col-sm-12 col-md-2'])[11]</MAS_Manage_Synchronization_FetchInterfacesValue>
-
 <MAS_Manage_Synchronization_VistaMartDeviceValue>(//div[@class='col-12 col-sm-12 col-md-2'])[12]</MAS_Manage_Synchronization_VistaMartDeviceValue>
-
 <MAS_Manage_Synchronization_SynchronizeLink>//a[text()='Synchronize']</MAS_Manage_Synchronization_SynchronizeLink>
-
 <MAS_Manage_SynchronizeSuccessMessage>//div[@role='alert']//span</MAS_Manage_SynchronizeSuccessMessage>
-
 <MAS_Manage_SynchronizeWarningMessage>//div[@role='alert']//span</MAS_Manage_SynchronizeWarningMessage>
-
 <ServiceIDonTopOfTheBredcomeNavigation>//li/a[text()='VOIP-21-Feb']</ServiceIDonTopOfTheBredcomeNavigation>
-
 <HomeLink_Bredcome>//li/a[text()='Home']</HomeLink_Bredcome>
 
+
+
+
 <!-- Router Tool commands For MAS -->
-
-
 <RouterTool_header>//div/div[text()='Router Tools']</RouterTool_header>
-
 <MAS_PE_CommandIPV4_header>//label[text()='Command IPV4']</MAS_PE_CommandIPV4_header>
-
 <MAS_PE_Router_IPV4CommandsDropdown>//div[label[text()='Command IPV4']]//input</MAS_PE_Router_IPV4CommandsDropdown>
-
 <MAS_PE_Router_IPV4CommandTextfield>//input[@id='routertools.hostnameOrIPAddress']</MAS_PE_Router_IPV4CommandTextfield>
-
 <MAS_PE_Router_IPV4Command_Executebutton>(//button/span[text()='Execute'])[1]</MAS_PE_Router_IPV4Command_Executebutton>
-
 <MAS_PE_commandIPv4_hostnameTextfield>//input[@id='routertools.hostnameOrIPAddress']</MAS_PE_commandIPv4_hostnameTextfield>
-
 <MAS_PE_commandIPv4_vrfnameTextField>(//input[@id='routertools.vrfName'])[1]</MAS_PE_commandIPv4_vrfnameTextField>
 
 <MAS_PE_Router_IPV6CommandsDropdown>//div[label[text()='Command IPV6']]//input</MAS_PE_Router_IPV6CommandsDropdown>
-
 <MAS_PE_Router_IPV6CommandTextfield>//input[@id='routertools.hostnameOrIPv6Address']</MAS_PE_Router_IPV6CommandTextfield>
-
 <MAS_PE_Router_IPV6Command_Executebutton>(//button/span[text()='Execute'])[2]</MAS_PE_Router_IPV6Command_Executebutton>
-
 <MAS_PE_commandIPv6_hostnameTextfield>//input[@id='routertools.hostnameOrIPv6Address']</MAS_PE_commandIPv6_hostnameTextfield>
-
 <MAS_PE_commandIPv6_vrfnameTextField>(//input[@id='routertools.vrfName'])[2]</MAS_PE_commandIPv6_vrfnameTextField>
-
 <MAS_PE_result_textArea>//div[label[text()='Result']]//textarea</MAS_PE_result_textArea>
 
 <!-- ADD INTERFACE PART-->
-
-
 <MAS_PE_InterfacesPanel_header>//div[text()='Interfaces']</MAS_PE_InterfacesPanel_header>
-
 <MAS_PE_BackButton_viewdevicepage>//span[text()='Back']</MAS_PE_BackButton_viewdevicepage>
-
 <MAS_View_InterfacesActionLink>(//button[@id="dropdown-basic-button"])[2]</MAS_View_InterfacesActionLink>
-
 <MAS_PE_AddInterfaceLink>//a[text()='Add Interface/Link']</MAS_PE_AddInterfaceLink>
-
 <MAS_PE_Configuration_header>//div[8]/div[text()='Configuration']</MAS_PE_Configuration_header>
-
 <MAS_PE_Configuration_label>//label[text()='Configuration']</MAS_PE_Configuration_label>
-
 <MAS_PE_GenerateConfiguration_label>//div/label[text()='Generate Configuration ']</MAS_PE_GenerateConfiguration_label>
-
 <MAS_PE_OKButton>//span[text()='OK']</MAS_PE_OKButton>
-
 <MAS_PE_InterfaceWarningMessage>(//div[@style='color: red;'])[1]</MAS_PE_InterfaceWarningMessage>
-
 <PE_InterfaceSuggestionMessage>//div[@style='color: red;']/following-sibling::div</PE_InterfaceSuggestionMessage>
-
 <MAS_PE_ConfigurationWarningMessage>(//div[@style='color: red;'])[2]</MAS_PE_ConfigurationWarningMessage>
-
 <MAS_PE_AddInterface_header>//div[contains(text(),'Add Interface')]</MAS_PE_AddInterface_header>
-
 <MAS_PE_EditInterface_header>//div[contains(text(),'Edit Interface')]</MAS_PE_EditInterface_header>
-
 <MAS_PE_AccessMediaDropdown>(//div[label[text()='Access Media']]//div)[2]</MAS_PE_AccessMediaDropdown>
-
 <MAS_PE_NetworkDropdown>(//div[label[text()='Network']]//div)[2]</MAS_PE_NetworkDropdown>
-
 <MAS_PE_GenerateConfigurationDropdown>(//div[label[text()='Generate Configuration ']]//div)[2]//input</MAS_PE_GenerateConfigurationDropdown>
-
 <MAS_PE_HSRPBGPDropdown>(//div[label[text()='HSRP/BGP']]//div)[2]</MAS_PE_HSRPBGPDropdown>
-
 <MAS_PE_VRRPBGPDropdown>(//div[label[text()='VRRP/BGP']]//div)[2]</MAS_PE_VRRPBGPDropdown>
-
 <MAS_PE_InterfaceTextfield>//input[@id='interface']</MAS_PE_InterfaceTextfield>
-
 <MAS_PE_InterfaceAddressRangeTextfield>//input[@name='interfaceAddressRange']</MAS_PE_InterfaceAddressRangeTextfield>
-
 <MAS_PE_InterfaceAddressMaskTextfield>//input[@id='ipMaskField']</MAS_PE_InterfaceAddressMaskTextfield>
-
 <MAS_PE_HSRPIPTextfield>//input[@id='hsrpIP']</MAS_PE_HSRPIPTextfield>
-
 <MAS_PE_VRRPIPTextfield>//input[@id='vrrpIP']</MAS_PE_VRRPIPTextfield>
-
 <MAS_PE_InterfaceAddressRangeIPV6Textfield>//input[@name='interfaceAddressRangeIPV6']</MAS_PE_InterfaceAddressRangeIPV6Textfield>
-
 <MAS_PE_HSRPIPv6AddressTextfield>//input[@id='hsrpIPv6']</MAS_PE_HSRPIPv6AddressTextfield>
-
 <MAS_PE_VRRPIPv6AddressTextfield>//input[@id='vrrpIPv6']</MAS_PE_VRRPIPv6AddressTextfield>
-
 <MAS_PE_PrimaryIPv6onMas1Textfield>//input[@id='mas1IPv6']</MAS_PE_PrimaryIPv6onMas1Textfield>
-
 <MAS_PE_SecondaryIPv6onMas2Textfield>//input[@id='mas2IPv6']</MAS_PE_SecondaryIPv6onMas2Textfield>
-
 <MAS_PE_SecondaryIPv6onMas2header>//label[text()='Secondary IPv6 on Mas-2']</MAS_PE_SecondaryIPv6onMas2header>
-
 <MAS_PE_GroupNumberTextfield>//input[@id='groupNumber']</MAS_PE_GroupNumberTextfield>
-
 <MAS_PE_LinkTextfield>//input[@id='link']</MAS_PE_LinkTextfield>
-
 <MAS_PE_Linklabel>//label[text()='Link']</MAS_PE_Linklabel>
-
 <MAS_PE_VLANIDTextfield>//input[@id='vlanIdentification']</MAS_PE_VLANIDTextfield>
-
 <MAS_PE_VRRPGroupNameTextfield>//input[@id='vrrpGroupName']</MAS_PE_VRRPGroupNameTextfield>
-
 <MAS_PE_VRFTextfield>//input[@id='vrf']</MAS_PE_VRFTextfield>
-
 <MAS_PE_IVManagementCheckbox>//input[@id='ivMng']</MAS_PE_IVManagementCheckbox>
-
 <MAS_PE_GenerateConfigurationButton>//a[text()='Generate Configuration']</MAS_PE_GenerateConfigurationButton>
-
 <MAS_PE_SaveConfigurationtoFileButton>//a[text()='Save Configuration to File']</MAS_PE_SaveConfigurationtoFileButton>
-
 <MAS_PE_ConfigurationTextfield>//textarea[@name='configuration']</MAS_PE_ConfigurationTextfield>
-
 <MAS_PE_HSRPTrackInterfaceTextfield>//input[@id='HSRPTrackInterface']</MAS_PE_HSRPTrackInterfaceTextfield>
-
 <MAS_PE_VRRPTrackInterfaceTextfield>//input[@id='VRRPTrackInterface']</MAS_PE_VRRPTrackInterfaceTextfield>
-
 <MAS_PE_HSRPAuthenticationTextfield>//input[@id='liHSRPAuthnk']</MAS_PE_HSRPAuthenticationTextfield>
-
 <MAS_PE_VRRPAuthenticationTextfield>//input[@id='VRRPAuth']</MAS_PE_VRRPAuthenticationTextfield>
 
 <MAS_PE_AddInterfaceSuccessfullMessage>//span[text()='Interface added successfully']</MAS_PE_AddInterfaceSuccessfullMessage>
-
 <MAS_PE_UpdateInterfaceSuccessfullMessage>//span[text()='Interface updated successfully']</MAS_PE_UpdateInterfaceSuccessfullMessage>
-
 <MAS_PE_DeleteInterfaceSuccessfullMessage>//span[text()='Interface successfully removed from this service.']</MAS_PE_DeleteInterfaceSuccessfullMessage>
-
 <PE_DeleteInterfaceSuccessfullMessage>//span[text()='Interface deleted successfully']</PE_DeleteInterfaceSuccessfullMessage>
 
 <MAS_PE_Checkbox1_ViewServicePage>(//span/span/span[2])[1]</MAS_PE_Checkbox1_ViewServicePage>
-
 <MAS_PE_Checkbox2_ViewServicePage>(//span/span/span[2])[2]</MAS_PE_Checkbox2_ViewServicePage>
-
 <MASSwitch_ACTION_Device1>(//div[div[div[contains(text(),'MAS Switch')]]]//button[@id='dropdown-basic-button'])[1]</MASSwitch_ACTION_Device1>
-
 <MASSwitch_ACTION_Device2>(//div[div[div[contains(text(),'MAS Switch')]]]//button[@id='dropdown-basic-button'])[2]</MASSwitch_ACTION_Device2>
-
 <MAS_PE_ACTION_EditLink_Device1>(//a[text()='Edit'])[1]</MAS_PE_ACTION_EditLink_Device1>
-
 <MAS_PE_ACTION_EditLink_Device2>(//a[text()='Edit'])[2]</MAS_PE_ACTION_EditLink_Device2>
-
 <MAS_PE_ACTION_ResetLink_Device1>(//a[text()='Reset'])[1]</MAS_PE_ACTION_ResetLink_Device1>
-
 <MAS_PE_ACTION_ResetLink_Device2>(//a[text()='Reset'])[2]</MAS_PE_ACTION_ResetLink_Device2>
-
 <MAS_PE_ACTION_ConfigureLink_Device1>(//a[text()='Configure'])[1]</MAS_PE_ACTION_ConfigureLink_Device1>
-
 <MAS_PE_ACTION_ConfigureLink_Device2>(//a[text()='Configure'])[2]</MAS_PE_ACTION_ConfigureLink_Device2>
 
+
 <PE_ACTION_Device1>(//div[div[div[contains(text(),'Provider Equipment (PE)')]]]//button[@id='dropdown-basic-button'])[1]</PE_ACTION_Device1>
-
 <PE_ACTION_Device2>(//div[div[div[contains(text(),'Provider Equipment (PE)')]]]//button[@id='dropdown-basic-button'])[2]</PE_ACTION_Device2>
-
 <PE_ACTION_EditLink_Device1>(//div[div[div[text()='Provider Equipment (PE)']]]//div/a[text()='Edit'])[1]</PE_ACTION_EditLink_Device1>
-
 <PE_ACTION_EditLink_Device2>(//div[div[div[text()='Provider Equipment (PE)']]]//div/a[text()='Edit'])[2]</PE_ACTION_EditLink_Device2>
-
 <PE_ACTION_DeleteLink_Device1>(//div[div[div[text()='Provider Equipment (PE)']]]//div/a[text()='Delete'])[1]</PE_ACTION_DeleteLink_Device1>
-
 <PE_ACTION_DeleteLink_Device2>(//div[div[div[text()='Provider Equipment (PE)']]]//div/a[text()='delete'])[2]</PE_ACTION_DeleteLink_Device2>
-
 <PE_ACTION_ConfigureLink_Device1>(//div[div[div[text()='Provider Equipment (PE)']]]//div/a[text()='Configure'])[1]</PE_ACTION_ConfigureLink_Device1>
-
 <PE_ACTION_ConfigureLink_Device2>(//div[div[div[text()='Provider Equipment (PE)']]]//div/a[text()='Configure'])[2]</PE_ACTION_ConfigureLink_Device2>
 
+
+
 <MAS_PE_Configure_ConfigureInterface_header>//div[text()='Configure Interface']</MAS_PE_Configure_ConfigureInterface_header>
-
 <MAS_PE_DeleteInterfaceWarningMessage>//div/div[text()='Are you sure that you want to delete?']</MAS_PE_DeleteInterfaceWarningMessage>
-
 <MAS_PE_DeleteButton>//div/button[text()='Delete']</MAS_PE_DeleteButton>
 
+
 <!-- Configure Interfaces for MAS_PE -->
-
-
-<!-- Below are the fields values information under view MAS Switch page -->
-
-
+<!-- Below are the fields values information under  view MAS Switch page -->
 <MAS_PE_Configure_DeviceNameValue>//div[label[text()='Device Name']]/following-sibling::div</MAS_PE_Configure_DeviceNameValue>
-
 <MAS_PE_Configure_InterfaceValue>//div[label[text()='Interface']]/following-sibling::div</MAS_PE_Configure_InterfaceValue>
-
 <MAS_PE_Configure_LinkCircuitIdValue>//div[label[text()='Link/Circuit Id']]/following-sibling::div</MAS_PE_Configure_LinkCircuitIdValue>
-
 <MAS_PE_Configure_InterfaceAddressRangeValue>//div[label[text()='Interface Address Range']]/following-sibling::div</MAS_PE_Configure_InterfaceAddressRangeValue>
-
 <MAS_PE_Configure_InterfaceAddressMaskValue>//div[label[text()='Interface Address/Mask']]/following-sibling::div</MAS_PE_Configure_InterfaceAddressMaskValue>
-
 <MAS_PE_Configure_HSRPIPValue>//div[label[text()='HSRP IP']]/following-sibling::div</MAS_PE_Configure_HSRPIPValue>
-
 <MAS_PE_Configure_VRRPIPValue>//div[label[text()='VRRP IP']]/following-sibling::div</MAS_PE_Configure_VRRPIPValue>
-
 <MAS_PE_Configure_VRFValue>//div[label[text()='VRF']]/following-sibling::div</MAS_PE_Configure_VRFValue>
-
 <MAS_PE_Configure_GroupNumberValue>//div[label[text()='Group Number']]/following-sibling::div</MAS_PE_Configure_GroupNumberValue>
-
 <MAS_PE_Configure_BearerTypeValue>//div[label[text()='Bearer Type']]/following-sibling::div</MAS_PE_Configure_BearerTypeValue>
-
 <MAS_PE_Configure_BandWidthValue>//div[label[text()='Band Width']]/following-sibling::div</MAS_PE_Configure_BandWidthValue>
-
 <MAS_PE_Configure_VLANIdValue>//div[label[text()='VLAN Id']]/following-sibling::div</MAS_PE_Configure_VLANIdValue>
 
 <MAS_PE_Configure_Configuration_header>//div[text()='Configuration']</MAS_PE_Configure_Configuration_header>
-
 <MAS_PE_Configure_Configurationlabel>//label[text()='Configuration']</MAS_PE_Configure_Configurationlabel>
-
 <MAS_PE_Configure_ConfigurationTextfield>//textarea[@name='configurationDetails']</MAS_PE_Configure_ConfigurationTextfield>
-
 <MAS_PE_Configure_GenerateConfigurationDropdown>//div[label[contains(text(),'Configuration')]]/select</MAS_PE_Configure_GenerateConfigurationDropdown>
-
 <MAS_PE_Configure_GenerateConfigurationButton>//a[text()='Generate Configuration']</MAS_PE_Configure_GenerateConfigurationButton>
-
 <MAS_PE_Configure_GenerateConfigurationForAllCPERoutesButton>//a[text()='Generate Configuration for All CPE Routes']</MAS_PE_Configure_GenerateConfigurationForAllCPERoutesButton>
-
 <MAS_PE_Configure_SaveConfigurationButton>//a[text()='Save Configuration']</MAS_PE_Configure_SaveConfigurationButton>
-
 <MAS_PE_Configure_ExecuteConfigurationonDeviceButton>//a[text()='Execute Configuration on Device']</MAS_PE_Configure_ExecuteConfigurationonDeviceButton>
-
 <MAS_PE_Configure_BackButton>//span[text()='Back']</MAS_PE_Configure_BackButton>
 
-<existingPEdevicegrid>(//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div)[2]</existingPEdevicegrid>
 
+
+
+
+
+
+
+
+<existingPEdevicegrid>(//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div)[2]</existingPEdevicegrid>
 <PE_fetchAlldevice_InviewPage>//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div[@class='div-margin row']//b</PE_fetchAlldevice_InviewPage>
 
 <!-- Provider Equipment (PE) panel in view service page -->
-
-
 <ProviderEquipment_header>//div[div[text()='Provider Equipment (PE)']]</ProviderEquipment_header>
-
 <PE_AddPEDeviceLink>//a[contains(text(),'Add PE Device')]</PE_AddPEDeviceLink>
-
 <PE_showInterfacesLink>//div[a[text()='Add PE Device']]//div[a[text()='Show Interfaces']]</PE_showInterfacesLink>
-
 <PE_HideInterfaceLink>//div[a[text()='Add PE Device']]//div[a[text()='Hide Interfaces']]</PE_HideInterfaceLink>
-
 <PE_ACTION_Device1>(//div[div[div[contains(text(),'Provider Equipment (PE)')]]]//button[@id='dropdown-basic-button'])[1]</PE_ACTION_Device1>
-
 <PE_ACTION_Device1>(//div[div[div[contains(text(),'Provider Equipment (PE)')]]]//button[@id='dropdown-basic-button'])[2]</PE_ACTION_Device1>
-
 <PE_AddPEDevice_header>//div[text()='Add PE Device']</PE_AddPEDevice_header>
-
 <Edit_PEDevice_Header>//div[contains(text(),'Edit PE Device')]</Edit_PEDevice_Header>
 
 <PE_IMSPOPLocationDropdown>//div[input[@placeholder='Select ...']]</PE_IMSPOPLocationDropdown>
-
 <PE_Cancelbutton>//button/span[text()='Cancel']</PE_Cancelbutton>
-
 <PE_OKbutton>//button//span[text()='OK']</PE_OKbutton>
-
 <PE_AddPEDeviceSuccessfulMessage>//div[span[text()='PE Device added successfully']]</PE_AddPEDeviceSuccessfulMessage>
-
 <PE_AddPEDeviceWarningMessage>//div/div/div[@style='color: red;']</PE_AddPEDeviceWarningMessage>
-
 <PE_UpdatePEDeviceSuccessfulMessage>//div[span[text()='PE Device updated successfully']]</PE_UpdatePEDeviceSuccessfulMessage>
-
 <PE_DeletePEDeviceSuccessfulMessage>//div[span[text()='PE Device deleted successfully']]</PE_DeletePEDeviceSuccessfulMessage>
-
 <PE_ViewService_DeletePEDeviceWarningMessage>//div/div[text()='Are you sure that you want to delete?']</PE_ViewService_DeletePEDeviceWarningMessage>
-
 <PE_ViewService_DeleteButton>//div/button[text()='Delete']</PE_ViewService_DeleteButton>
 
 <PE_editdevice1>(//div[div[div[contains(text(),'Provider Equipment (PE)')]]]//a/span[text()='Edit'])[1]</PE_editdevice1>
-
 <PE_editdevice2>(//div[div[div[contains(text(),'Provider Equipment (PE)')]]]//a/span[text()='Edit'])[2]</PE_editdevice2>
-
 <PE_SelectInterfacesdevice1>(//div[div[div[contains(text(),'Provider Equipment (PE)')]]]//a/span[text()='Select Interfaces'])[1]</PE_SelectInterfacesdevice1>
-
 <PE_SelectInterfacesdevice2>(//div[div[div[contains(text(),'Provider Equipment (PE)')]]]//a/span[text()='Select Interfaces'])[2]</PE_SelectInterfacesdevice2>
-
 <PE_deletefromservicedevice1>(//div[div[div[contains(text(),'Provider Equipment (PE)')]]]//a/span[text()='Delete from Service'])[1]</PE_deletefromservicedevice1>
-
 <PE_deletefromservicedevice2>(//div[div[div[contains(text(),'Provider Equipment (PE)')]]]//a/span[text()='Delete from Service'])[2]</PE_deletefromservicedevice2>
-
-<PE_configuredevice1Interface/>
-
-<PE_configuredevice2Interface/>
-
+<PE_configuredevice1Interface></PE_configuredevice1Interface>
+<PE_configuredevice2Interface></PE_configuredevice2Interface>
 <PE_viewdevice1>(//div[div[div[contains(text(),'Provider Equipment (PE)')]]]//a/span[text()='View'])[1]</PE_viewdevice1>
-
 <PE_viewdevice2>(//div[div[div[contains(text(),'Provider Equipment (PE)')]]]//a/span[text()='View'])[2]</PE_viewdevice2>
-
 <PE_ViewDevice_Header>//div[contains(text(),'Device')]</PE_ViewDevice_Header>
 
-<!-- Below are the fields values information under view PE Device page -->
-
-
+<!-- Below are the fields values information under  view PE Device page -->
 <PE_View_DeviceNameValue>//div[label[text()='Name']]/following-sibling::div</PE_View_DeviceNameValue>
-
 <PE_View_VendorModelValue>//div[label[text()='Vendor/Model']]/following-sibling::div</PE_View_VendorModelValue>
-
 <PE_View_ManagementAddressValue>//div[label[text()='Management Address']]/following-sibling::div</PE_View_ManagementAddressValue>
-
 <PE_View_SnmproValue>//div[label[text()='Snmpro']]/following-sibling::div</PE_View_SnmproValue>
-
 <PE_View_CountryValue>//div[label[text()='Country']]/following-sibling::div</PE_View_CountryValue>
-
 <PE_View_CityValue>//div[label[text()='City']]/following-sibling::div</PE_View_CityValue>
-
 <PE_View_SiteValue>//div[label[text()='Site']]/following-sibling::div</PE_View_SiteValue>
-
 <PE_View_PremiseValue>//div[label[text()='Premise']]/following-sibling::div</PE_View_PremiseValue>
-
 <PE_View_ActionLink>(//button[@id="dropdown-basic-button"])[1]</PE_View_ActionLink>
-
 <PE_View_ActionLink2>(//button[@id="dropdown-basic-button"])[1]</PE_View_ActionLink2>
-
 <PE_View_InterfacesActionLink>(//button[@id="dropdown-basic-button"])[2]</PE_View_InterfacesActionLink>
-
 <PE_View_TestColumnName>//div/table/div/thead/tr/th[text()='Test']</PE_View_TestColumnName>
-
 <PE_View_StatusColumnName>//div/table/div/thead/tr/th[text()='Status']</PE_View_StatusColumnName>
-
 <PE_View_LastRefresh>//div/div[text()='Last Refresh:']</PE_View_LastRefresh>
-
 <PE_View_Action_EditLink>//div//a[text()='Edit']</PE_View_Action_EditLink>
-
 <PE_Edit_PremiseLevel>//div//label[text()='Premise']</PE_Edit_PremiseLevel>
-
 <PE_View_Action_DeleteLink>//div//a[text()='Delete']</PE_View_Action_DeleteLink>
-
 <PE_View_Action_FetchDeviceInterfacesLink>//div//a[text()='Fetch Device Interfaces']</PE_View_Action_FetchDeviceInterfacesLink>
-
 <PE_ViewDevice_Action_DeletePEDeviceWarningMessage>//div/div[text()='Are you sure that you want to delete this item?']</PE_ViewDevice_Action_DeletePEDeviceWarningMessage>
-
 <PE_ViewDevice_Action_DeleteButton>//button//span[text()='Delete']</PE_ViewDevice_Action_DeleteButton>
 
-<!-- Below Fetch Device Interface ==> Manage Colt Page for PE Device -->
 
 
+<!-- Below Fetch Device Interface ==> Manage Colt Page  for  PE Device -->
 <PE_View_Action_FetchDeviceInterfacesLink>//div//a[text()='Fetch Device Interfaces']</PE_View_Action_FetchDeviceInterfacesLink>
-
 <PE_FetchDeviceInterfacesSuccessMessage>//span[contains(text(),' Fetch Interfaces started successfully. Please check the sync status of this device')]</PE_FetchDeviceInterfacesSuccessMessage>
-
 <PE_hereLink_UnderFetchDeviceInterfacesSuccessMessage>//span[contains(text(),' Fetch Interfaces started successfully. Please check the sync status of this device')]//following-sibling::a[text()='here']</PE_hereLink_UnderFetchDeviceInterfacesSuccessMessage>
-
 <PE_ManageCOLTsNetworkManageNetwork_header>//div[contains(text(),'Manage COLT')]</PE_ManageCOLTsNetworkManageNetwork_header>
-
 <PE_Manage_Status_DeviceValue>(//div[div[label[text()='Device']]]/parent::div//div/a)[4]</PE_Manage_Status_DeviceValue>
-
 <PE_Manage_Status_StatusValue>(//div[@class='col-12 col-sm-12 col-md-3'])[4]</PE_Manage_Status_StatusValue>
-
 <PE_Manage_Status_LastModificationValue>(//div[@class='col-12 col-sm-12 col-md-4'])[2]</PE_Manage_Status_LastModificationValue>
-
 <PE_Manage_Status_StatusLink>//a[contains(text(),'Status')]</PE_Manage_Status_StatusLink>
-
 <PE_Manage_Status_ViewInterfacesLink>//a[contains(text(),'View Interfaces')]</PE_Manage_Status_ViewInterfacesLink>
-
 <PE_Manage_Status_Servicestatus_popup>//div[@class='modal-content']</PE_Manage_Status_Servicestatus_popup>
-
 <PE_Device_Status_OK>//button/span[text()='OK']</PE_Device_Status_OK>
-
 <PE_servicestatus_popupclose>(//div[text()='Device']/following-sibling::button//span)[1]</PE_servicestatus_popupclose>
-
 <PE_servicestatushistory_successmsg>//div[@role='alert']//span</PE_servicestatushistory_successmsg>
-
 <PE_Status_successMessage>//div[@role='alert']//span</PE_Status_successMessage>
-
 <PE_servicestatushistoryValue>//div[@class='modal-content']//div[@ref='eBodyViewport']//div[@role='row']</PE_servicestatushistoryValue>
 
 <PE_Manage_Synchronization_DeviceValue>(//div[div[label[text()='Device']]]/parent::div//div/a)[4]</PE_Manage_Synchronization_DeviceValue>
-
 <PE_Manage_Synchronization_SyncStatusValue>(//div[@class='col-12 col-sm-12 col-md-2'])[9]</PE_Manage_Synchronization_SyncStatusValue>
-
 <PE_Manage_Synchronization_SmartsValue>(//div[@class='col-12 col-sm-12 col-md-2'])[10]</PE_Manage_Synchronization_SmartsValue>
-
 <PE_Manage_Synchronization_FetchInterfacesValue>(//div[@class='col-12 col-sm-12 col-md-2'])[11]</PE_Manage_Synchronization_FetchInterfacesValue>
-
 <PE_Manage_Synchronization_VistaMartDeviceValue>(//div[@class='col-12 col-sm-12 col-md-2'])[12]</PE_Manage_Synchronization_VistaMartDeviceValue>
-
 <PE_Manage_Synchronization_SynchronizeLink>//a[text()='Synchronize']</PE_Manage_Synchronization_SynchronizeLink>
-
 <PE_Manage_SynchronizeSuccessMessage>//div[@role='alert']//span</PE_Manage_SynchronizeSuccessMessage>
-
 <ServiceIDonTopOfTheBredcomeNavigation_VOIP>//li/a[text()='VOIP-21-Feb']</ServiceIDonTopOfTheBredcomeNavigation_VOIP>
 
-<!-- Trunk Group/Site Orders Panel in view service page-->
 
 
+
+<!--  Trunk Group/Site Orders Panel in view service page-->
 <TrunkGroupSiteOrders_header>//div[text()='Trunk Group/Site Orders']</TrunkGroupSiteOrders_header>
-
 <ViewService_Trunk_DeleteSiteOrderLink>(//div[div[span[contains(text(),'')]]]//span[text()='Delete'])[1]</ViewService_Trunk_DeleteSiteOrderLink>
-
 <ViewService_Trunk_DeleteSiteOrderWarningMessage>//div/div[text()='Are you sure that you want to delete this item?']</ViewService_Trunk_DeleteSiteOrderWarningMessage>
-
 <ViewService_Trunk_DeleteButton>//button[text()='Delete']</ViewService_Trunk_DeleteButton>
-
 <ViewService_Trunk_AddSiteOrderSuccessMessage>//span[text()='Trunk Group added successfully']</ViewService_Trunk_AddSiteOrderSuccessMessage>
-
 <ViewService_Trunk_UpdateSiteOrderSuccessMessage>//span[text()='Trunk Group successfully updated']</ViewService_Trunk_UpdateSiteOrderSuccessMessage>
-
 <ViewService_Trunk_DeleteSiteOrderSuccessMessage>//span[text()='Trunk Group deleted successfully']</ViewService_Trunk_DeleteSiteOrderSuccessMessage>
 
 <ViewService_Trunk_TrunkNameText>//div[text()='"+ExistingTrunkName+"']</ViewService_Trunk_TrunkNameText>
-
 <ViewService_Trunk_ActionLink1>(//div[div[div[text()='Trunk Group/Site Orders']]]//button[text()='Action'])[1]</ViewService_Trunk_ActionLink1>
-
 <ViewService_Trunk_ActionLink2>(//div[div[div[text()='Trunk Group/Site Orders']]]//button[text()='Action'])[2]</ViewService_Trunk_ActionLink2>
-
 <ViewService_Trunk_EditTrunkLink>//a[text()='Edit']</ViewService_Trunk_EditTrunkLink>
-
 <ViewService_Trunk_DeleteTrunkLink>//a[text()='Delete']</ViewService_Trunk_DeleteTrunkLink>
-
 <ViewService_Trunk_AddCPEDeviceLink1>(//a[text()='Add CPE Device'])[1]</ViewService_Trunk_AddCPEDeviceLink1>
-
 <ViewService_Trunk_AddCPEDeviceLink2>(//a[text()='Add CPE Device'])[2]</ViewService_Trunk_AddCPEDeviceLink2>
 
 <ViewService_Trunk_ViewTrunkLink>(//a[text()='View'])[1]</ViewService_Trunk_ViewTrunkLink>
-
 <ViewService_Trunk_ViewTrunkLink2>(//a[text()='View'])[2]</ViewService_Trunk_ViewTrunkLink2>
 
+
+<selectTrunkName>//div[text()='value']</selectTrunkName>
+
+
+
 <!-- New -->
-
-
 <viewTrunkPage_PSXconfigurationValue>//label[contains(text(),'PSX Manual Configuration')]</viewTrunkPage_PSXconfigurationValue>
 
+
+
 <!-- DDI Range -->
-
-
 <DDIRange_Header>//h5[contains(text(),'DDI Range')]</DDIRange_Header>
 
+
 <!-- PSX Configuration -->
-
-
+<ViewTrunk_PSXSyncStatus>//font[contains(text(),'')]</ViewTrunk_PSXSyncStatus>
 <PSXconfigurationDropdown_viewtrunk>(//div[label[text()='PSX Configuration']]//input)[1]</PSXconfigurationDropdown_viewtrunk>
-
 <PSXconfig_sucessMessage>(//div[@role='alert']/span)[1]</PSXconfig_sucessMessage>
-
+<PSXconfig_WarningMessage>(//div[@role='alert']/span)[1]/li</PSXconfig_WarningMessage>
 <viewTrunk_PSX_executeButton>//div[div[div[label[text()='PSX Configuration']]]]//following-sibling::div//button/span[text()='Execute']</viewTrunk_PSX_executeButton>
 
 <!-- GSX Configuration -->
-
-
 <GSXconfigurationDropdown_viewtrunk>(//div[label[text()='GSX Configuration']]//input)[1]</GSXconfigurationDropdown_viewtrunk>
-
 <viewTrunk_GSX_generateConfigurationButton>//button/span[text()='Generate Configuration']</viewTrunk_GSX_generateConfigurationButton>
-
 <GSXcongig_textArea>//textarea[@name='gsxConfigNote']</GSXcongig_textArea>
-
 <GSX_config_executeButton>//span[text()='Execute']</GSX_config_executeButton>
-
 <GSXconfig_sucessMessage>(//div[@role='alert']/span)[1]</GSXconfig_sucessMessage>
 
 <!-- SBC Configuration -->
-
-
 <SBCconfigurationDropdown_viewtrunk>(//div[label[text()='SBC Configuration']]//input)[1]</SBCconfigurationDropdown_viewtrunk>
-
 <viewTrunk_SBC_executeButton>(//div[div[div[label[text()='SBC Configuration']]]]//following-sibling::div//button/span[text()='Execute'])[1]</viewTrunk_SBC_executeButton>
 
 <selectCreatedTrunk_InViewServicePage>//div[div[span[b[text()='Trunks ']]]]//following-sibling::div//div[text()='value']</selectCreatedTrunk_InViewServicePage>
-
 <trunkActionDropdown_InviewServicePage>//div[div[span[b[text()='Trunks ']]]]//following-sibling::div//button[text()='Action']</trunkActionDropdown_InviewServicePage>
+
 
 <fetchTrunkGroupName>(//div[@class='heading-green-row row']/div)[1]</fetchTrunkGroupName>
 
+
 <!-- SBC Manual Execution panel -->
-
-
 <SBCmanualConfig_PanelHeader>//div[contains(text(),'SBC Manually Executed Configurations')]</SBCmanualConfig_PanelHeader>
-
 <SBCManualConfig_actionDropdown>//div[div[contains(text(),'SBC Manually Executed Configurations')]]//button</SBCManualConfig_actionDropdown>
-
 <SBC_addLink>//a[text()='Add']</SBC_addLink>
-
 <SBC_editLink>//a[text()='Edit']</SBC_editLink>
-
 <SBC_deleteLink>//a[text()='Delete']</SBC_deleteLink>
-
 <SBC_selectCreatedValue>(//div[div[text()='SBC Manually Executed Configurations']]//following-sibling::div//div[contains(text(),'manualcfg')])[1]</SBC_selectCreatedValue>
-
 <SBC_columnNames>(//div[div[text()='SBC Manually Executed Configurations']]//following-sibling::div//span[@class='ag-header-cell-text'])</SBC_columnNames>
-
 <SBC_filenames>//div[div[text()='SBC Manually Executed Configurations']]//following-sibling::div//div[@role='gridcell'][@col-id='label']</SBC_filenames>
-
 <SBC_dates>//div[div[text()='SBC Manually Executed Configurations']]//following-sibling::div//div[@role='gridcell'][@col-id='value']</SBC_dates>
-
 <SBC_DeleteManualConfiguration_SuccessMessage>//span[contains(text(),'Deleted SBC manual config successfully.')]</SBC_DeleteManualConfiguration_SuccessMessage>
 
+
 <!-- PSX Manual Execution panel -->
-
-
 <PSXmanualConfig_PanelHeader>//div[contains(text(),'PSX Manually Executed Configurations')]</PSXmanualConfig_PanelHeader>
-
 <PSXManualConfig_actionDropdown>//div[div[contains(text(),'PSX Manually Executed Configurations')]]//button</PSXManualConfig_actionDropdown>
-
 <PSXcongig_textArea>///textarea[@name='manualConfigNote']</PSXcongig_textArea>
-
 <PSX_selectCreatedValue>(//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//div[contains(text(),'manualcfg')])[1]</PSX_selectCreatedValue>
-
 <PSX_columnNames>(//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//span[@class='ag-header-cell-text'])</PSX_columnNames>
-
 <PSX_fileName>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//div[@role='gridcell'][@col-id='label']</PSX_fileName>
-
 <PSX_dates>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//div[@role='gridcell'][@col-id='value']</PSX_dates>
-
 <AddManualConfiguration_SuccessMessage>//span[contains(text(),'Manual Configuration added Successfully')]</AddManualConfiguration_SuccessMessage>
-
 <UpdateManualConfiguration_SuccessMessage>//span[contains(text(),'Manual Configuration updated Successfully')]</UpdateManualConfiguration_SuccessMessage>
-
 <PSX_DeleteManualConfiguration_SuccessMessage>//span[contains(text(),'Deleted PSX manual config successfully.')]</PSX_DeleteManualConfiguration_SuccessMessage>
 
-<PSX_addLink>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//a[text()='Add ']</PSX_addLink>
-
+<PSX_addLink>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//a[text()='Add   ']</PSX_addLink>
 <PSX_editLink>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//a[text()='Edit ']</PSX_editLink>
-
-<PSX_deleteLink>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//a[text()='Delete ']</PSX_deleteLink>
-
+<PSX_deleteLink>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//a[text()='Delete   ']</PSX_deleteLink>
 <DeleteButton_PSX_GSX_SBC>//button[contains(text(),'Delete')]</DeleteButton_PSX_GSX_SBC>
-
 <DeleteMessae_PSX_GSX_SBC>//div[contains(text(),'Are you sure you want to delete?')]</DeleteMessae_PSX_GSX_SBC>
 
-<!-- GSX Manual Execution panel -->
-
-
+<!--  GSX Manual Execution panel -->
 <GSXmanualConfig_PanelHeader>//div[contains(text(),'GSX Manually Executed Configurations')]</GSXmanualConfig_PanelHeader>
-
 <GSXManualConfig_actionDropdown>//div[div[contains(text(),'GSX Manually Executed Configurations')]]//button</GSXManualConfig_actionDropdown>
-
 <GSX_selectCreatedValue>(//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//div[contains(text(),'manualcfg')])[1]</GSX_selectCreatedValue>
-
 <GSX_columnNames>(//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//span[@class='ag-header-cell-text'])</GSX_columnNames>
-
 <GSX_fileName>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//div[@role='gridcell'][@col-id='label']</GSX_fileName>
-
 <GSX_dates>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//div[@role='gridcell'][@col-id='value']</GSX_dates>
-
-<GSX_addLink>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//a[text()='Add ']</GSX_addLink>
-
-<GSX_editLink>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//a[text()='Edit ']</GSX_editLink>
-
-<GSX_deleteLink>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//a[text()='Delete ']</GSX_deleteLink>
-
+<GSX_addLink>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//a[text()='Add   ']</GSX_addLink>
+<GSX_editLink>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//a[text()='Edit   ']</GSX_editLink>
+<GSX_deleteLink>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//a[text()='Delete   ']</GSX_deleteLink>
 <GSX_editPage_SaveButton>//button/span[text()='Save']</GSX_editPage_SaveButton>
-
 <GSX_editPage_teaxtArea>//textarea[@name='manualConfigNote']</GSX_editPage_teaxtArea>
-
 <GSXManualConfiguration_SuccessMessage>//span[contains(text(),'Manual Configuration added Successfully')]</GSXManualConfiguration_SuccessMessage>
-
 <GSX_DeleteManualConfiguration_SuccessMessage>//span[contains(text(),'Deleted GSX manual config successfully.')]</GSX_DeleteManualConfiguration_SuccessMessage>
 
 <manualConfiguration_textArea>//textarea[@name='manualConfigNote']</manualConfiguration_textArea>
-
 <saveButton_manualConfiguration>//span[contains(text(),'Save')]</saveButton_manualConfiguration>
 
+
+
+
+
+
+
+
+
 <!-- ADD CPE DEVICE -->
-
-
 <commonDropdownValueTag>//div[@class='sc-htpNat AUGYd']/div</commonDropdownValueTag>
-
 <ViewService_Trunk_EditCPEDeviceLink>(//div[div[div[text()='Trunk Group/Site Orders']]]//span[text()='Edit'])[1]</ViewService_Trunk_EditCPEDeviceLink>
-
 <ViewService_Trunk_ViewCPEDeviceLink>(//div[div[div[text()='Trunk Group/Site Orders']]]//span[text()='View'])[1]</ViewService_Trunk_ViewCPEDeviceLink>
-
 <ViewService_Trunk_DeleteCPEDeviceLink>(//div[div[div[text()='Trunk Group/Site Orders']]]//span[text()='Delete'])[1]</ViewService_Trunk_DeleteCPEDeviceLink>
-
 <ViewService_Trunk_FetchDeviceInterfaceLink>(//div[div[div[text()='Trunk Group/Site Orders']]]//span[text()='Fetch device interfaces'])[1]</ViewService_Trunk_FetchDeviceInterfaceLink>
 
 <AddCPEDevice_header>//p[text()='Add CPE Device']</AddCPEDevice_header>
-
 <AddCPE_OKButton>//span[text()='OK']</AddCPE_OKButton>
-
 <AddCPE_CancelButton>//span[text()='Cancel']</AddCPE_CancelButton>
-
 <AddCPE_WarningMessage_RouterID>//div[contains(text(),'Router Id')]</AddCPE_WarningMessage_RouterID>
-
 <AddCPE_WarningMessage_DeviceName>//div[contains(text(),'Name')]</AddCPE_WarningMessage_DeviceName>
-
 <AddCPE_WarningMessage_VendorModel>//div[contains(text(),'Vendor/Model')]</AddCPE_WarningMessage_VendorModel>
-
 <AddCPE_WarningMessage_ManagementAddress>//div[contains(text(),'Management Address')]</AddCPE_WarningMessage_ManagementAddress>
-
 <AddCPE_WarningMessage_Snmpro>//div[contains(text(),'Snmpro')]</AddCPE_WarningMessage_Snmpro>
-
 <AddCPE_WarningMessage_Country>//div[contains(text(),'Country')]</AddCPE_WarningMessage_Country>
-
 <AddCPE_WarningMessage_City>//div[contains(text(),'City')]</AddCPE_WarningMessage_City>
-
 <AddCPE_WarningMessage_Site>//div[contains(text(),'Site')]</AddCPE_WarningMessage_Site>
 
 <CPE_RouterIdTextfield>//input[@id='routerId']</CPE_RouterIdTextfield>
-
 <CPE_DeviceNameTextfield>//input[@id='deviceName']</CPE_DeviceNameTextfield>
-
 <CPE_VendorModelDropdown>//div[label[text()='Vendor/Model']]/div</CPE_VendorModelDropdown>
-
 <CPE_ManagementAddressTextfield>//input[@id='ipField']</CPE_ManagementAddressTextfield>
-
 <CPE_SnmproTextfield>//input[@id='snmpro']</CPE_SnmproTextfield>
-
 <CPE_SnmprwTextfield>//input[@id='snmprw']</CPE_SnmprwTextfield>
-
 <CPE_Snmpv3ContextNameTextfield>//input[@id='snmpv3ContextName']</CPE_Snmpv3ContextNameTextfield>
-
 <CPE_snmpv3ContextEngineIdTextfield>//input[@id='snmpv3ContextEngineId']</CPE_snmpv3ContextEngineIdTextfield>
-
 <CPE_snmpv3SecurityUserNameTextfield>//input[@id='snmpv3SecurityUserName']</CPE_snmpv3SecurityUserNameTextfield>
-
 <CPE_SnmpV3AuthProtoDropdown>//div[label[text()='Snmp V3 Auth Proto']]/div</CPE_SnmpV3AuthProtoDropdown>
-
 <CPE_snmpv3AuthPasswordTextfield>//input[@id='snmpv3AuthPassword']</CPE_snmpv3AuthPasswordTextfield>
-
 <CPE_CountryDropdown>//div[label[text()='Country']]/select</CPE_CountryDropdown>
-
 <CPE_CityDropdown>//div[label[text()='City']]/select</CPE_CityDropdown>
-
 <CPE_SiteDropdown>//div[label[text()='Site']]/select</CPE_SiteDropdown>
-
 <CPE_PremiseDropdown>//div[label[text()='Premise']]/select</CPE_PremiseDropdown>
 
 <CPE_AddCPEDeviceSuccessMessage>//span[text()='CPE Device added successfully']</CPE_AddCPEDeviceSuccessMessage>
-
 <CPE_UpdateCPEDeviceSuccessMessage>//span[contains(text(),'CPE Device updated successfully')]</CPE_UpdateCPEDeviceSuccessMessage>
-
 <CPE_DeleteCPEDeviceSuccessMessage>//span[text()='CPE Device deleted successfully']</CPE_DeleteCPEDeviceSuccessMessage>
-
 <alertMsg>(//div[@role='alert'])[1]</alertMsg>
 
 <CPE_ViewDevice_Header>(//div/div[2]/div[1]/div[1]/span)[1]</CPE_ViewDevice_Header>
-
 <CPE_EditDevice_Header>//p[contains(text(),'Edit CPE Device')]</CPE_EditDevice_Header>
 
-<!-- Below are the fields values information under view CPE Device page -->
-
-
+<!-- Below are the fields values information under  view CPE Device page -->
 <CPE_View_RouterIdValue>//div[label[text()='Router Id']]/following-sibling::div</CPE_View_RouterIdValue>
-
 <CPE_View_DeviceNameValue>//div[label[text()='Device Name']]/following-sibling::div</CPE_View_DeviceNameValue>
-
 <CPE_View_VendorModelValue>//div[label[text()='Vendor/Model']]/following-sibling::div</CPE_View_VendorModelValue>
-
 <CPE_View_ManagementAddressValue>//div[label[text()='Management Address']]/following-sibling::div</CPE_View_ManagementAddressValue>
-
 <CPE_View_SnmproValue>//div[label[text()='Snmpro']]/following-sibling::div</CPE_View_SnmproValue>
-
 <CPE_View_SnmprwValue>//div[label[text()='Snmprw']]/following-sibling::div</CPE_View_SnmprwValue>
-
 <CPE_View_SnmpV3ContextNameValue>//div[label[text()='Snmp V3 Context Name']]/following-sibling::div</CPE_View_SnmpV3ContextNameValue>
-
 <CPE_View_SnmpV3ContextEngineIDValue>//div[label[text()='Snmp V3 Context Engine ID']]/following-sibling::div</CPE_View_SnmpV3ContextEngineIDValue>
-
 <CPE_View_SnmpV3SecurityUsernameValue>//div[label[text()='Snmp V3 Security Username']]/following-sibling::div</CPE_View_SnmpV3SecurityUsernameValue>
-
 <CPE_View_SnmpV3AuthProtoValue>//div[label[text()='Snmp V3 Auth Proto']]/following-sibling::div</CPE_View_SnmpV3AuthProtoValue>
-
 <CPE_View_SnmpV3AuthPasswordValue>//div[label[text()='Snmp V3 Auth Password']]/following-sibling::div</CPE_View_SnmpV3AuthPasswordValue>
-
 <CPE_View_CountryValue>//div[label[text()='Country']]/following-sibling::div</CPE_View_CountryValue>
-
 <CPE_View_CityValue>//div[label[text()='City']]/following-sibling::div</CPE_View_CityValue>
-
 <CPE_View_SiteValue>//div[label[text()='Site']]/following-sibling::div</CPE_View_SiteValue>
-
 <CPE_View_PremiseValue>//div[label[text()='Premise']]/following-sibling::div</CPE_View_PremiseValue>
-
 <CPE_View_SnmpV3AuthPasswordLabel>//label[text()='Snmp V3 Auth Password']</CPE_View_SnmpV3AuthPasswordLabel>
 
 <CPE_View_ActionLink>//div[@style='margin-top: -1px;']/button[@id='dropdown-basic-button']</CPE_View_ActionLink>
-
 <CPE_View_ActionLink2>(//button[@id="dropdown-basic-button"])[1]</CPE_View_ActionLink2>
-
 <CPE_View_TestColumnName>//div/table/div/thead/tr/th[text()='Test']</CPE_View_TestColumnName>
-
 <CPE_View_StatusColumnName>//div/table/div/thead/tr/th[text()='Status']</CPE_View_StatusColumnName>
-
 <CPE_View_LastRefresh>//div/div[text()='Last Refresh:']</CPE_View_LastRefresh>
-
 <CPE_View_Action_EditLink>//div//a[text()='Edit']</CPE_View_Action_EditLink>
-
 <CPE_Edit_PremiseLevel>//div//label[text()='Premise']</CPE_Edit_PremiseLevel>
-
 <CPE_View_Action_DeleteLink>//div//a[text()='Delete']</CPE_View_Action_DeleteLink>
-
 <CPE_ViewDevice_Action_DeletePEDeviceWarningMessage>//div/div[text()='Are you sure that you want to delete this item?']</CPE_ViewDevice_Action_DeletePEDeviceWarningMessage>
-
 <CPE_ViewDevice_Action_DeleteButton>//button//span[text()='Delete']</CPE_ViewDevice_Action_DeleteButton>
 
-<!-- Below Fetch Device Interface ==> Manage Colt Page for PE Device -->
 
-
+<!-- Below Fetch Device Interface ==> Manage Colt Page  for  PE Device -->
 <CPE_View_Action_FetchDeviceInterfacesLink>//div//a[text()='Fetch Device Interfaces']</CPE_View_Action_FetchDeviceInterfacesLink>
-
 <CPE_FetchDeviceInterfacesSuccessMessage>//span[contains(text(),'Fetch interfaces started successfully.Please check the sync status of this device ')]</CPE_FetchDeviceInterfacesSuccessMessage>
-
 <CPE_hereLink_UnderFetchDeviceInterfacesSuccessMessage>//a[text()='here']</CPE_hereLink_UnderFetchDeviceInterfacesSuccessMessage>
-
 <CPE_ManageCOLTsNetworkManageNetwork_header>//div[contains(text(),'Manage COLT')]</CPE_ManageCOLTsNetworkManageNetwork_header>
-
 <CPE_Manage_Status_DeviceValue>((//div[label[text()='Device']])[1]/parent::div/following-sibling::div//a)[1]</CPE_Manage_Status_DeviceValue>
-
 <CPE_Manage_Status_StatusValue>//div[div[label[text()='Device']]]/parent::div//div[text()='In Service']</CPE_Manage_Status_StatusValue>
-
 <CPE_Manage_Status_LastModificationValue>(//div[@class='col-12 col-sm-12 col-md-4'])[2]</CPE_Manage_Status_LastModificationValue>
-
 <CPE_Manage_Status_StatusLink>((//div[label[text()='Device']])[1]/parent::div/following-sibling::div//a)[2]</CPE_Manage_Status_StatusLink>
-
 <CPE_Manage_Status_ViewInterfacesLink>((//div[label[text()='Device']])[1]/parent::div/following-sibling::div//a)[3]</CPE_Manage_Status_ViewInterfacesLink>
-
 <CPE_Manage_Status_Servicestatus_popup>//div[@class='modal-content']</CPE_Manage_Status_Servicestatus_popup>
-
 <CPE_Device_Status_OK>//button/span[text()='OK']</CPE_Device_Status_OK>
-
 <CPE_servicestatus_popupclose>(//div[text()='Device']/following-sibling::button//span)[1]</CPE_servicestatus_popupclose>
-
 <CPE_servicestatushistory_successmsg>//div[@role='alert']//span</CPE_servicestatushistory_successmsg>
-
 <CPE_Status_successMessage>//div[@role='alert']//span</CPE_Status_successMessage>
-
 <CPE_servicestatushistoryValue>//div[@class='modal-content']//div[@ref='eBodyViewport']//div[@role='row']</CPE_servicestatushistoryValue>
 
 <CPE_Manage_Synchronization_DeviceValue>((//div[label[text()='Device']])[2]/parent::div/following-sibling::div//a)[1]</CPE_Manage_Synchronization_DeviceValue>
-
 <CPE_Manage_Synchronization_SyncStatusValue>(//div[@class='col-12 col-sm-12 col-md-2'])[7]</CPE_Manage_Synchronization_SyncStatusValue>
-
 <CPE_Manage_Synchronization_FetchInterfacesValue>(//div[@class='col-12 col-sm-12 col-md-2'])[8]</CPE_Manage_Synchronization_FetchInterfacesValue>
-
 <CPE_Manage_Synchronization_SynchronizeLink>//a[text()='Synchronize']</CPE_Manage_Synchronization_SynchronizeLink>
-
 <CPE_Manage_SynchronizeSuccessMessage>//div[@role='alert']//span</CPE_Manage_SynchronizeSuccessMessage>
-
 <CPE_Manage_SynchronizeWarningMessage>//div[@role='alert']//span</CPE_Manage_SynchronizeWarningMessage>
-
 <ServiceIDonTopOfTheBredcomeNavigation_VOIP>//li/a[text()='VOIP-21-Feb']</ServiceIDonTopOfTheBredcomeNavigation_VOIP>
 
+
+
+
+
 <!-- Router Tool For CPE Device -->
-
-
 <CPE_Router_IPV4CommandsDropdown>(//input[@placeholder='Select ...'])[1]</CPE_Router_IPV4CommandsDropdown>
-
 <CPE_Router_IPV4CommandTextfield>//input[@id='routertools.hostnameOrIPAddress']</CPE_Router_IPV4CommandTextfield>
-
 <CPE_Router_IPV4Command_Executebutton>(//button/span[text()='Execute'])[1]</CPE_Router_IPV4Command_Executebutton>
-
 <CPE_Router_IPV6CommandsDropdown>(//input[@placeholder='Select ...'])[2]</CPE_Router_IPV6CommandsDropdown>
-
 <CPE_Router_IPV6CommandTextfield>//input[@id='routertools.hostnameOrIPv6Address']</CPE_Router_IPV6CommandTextfield>
-
 <CPE_Router_IPV6Command_Executebutton>(//button/span[text()='Execute'])[2]</CPE_Router_IPV6Command_Executebutton>
 
 <CPE_InterfacesPanel_header>//div[text()='Interfaces']</CPE_InterfacesPanel_header>
 
-<!-- trunk creation -->
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  trunk creation -->
 <TrunkGroupSiteOrderPanel_header>//div[div[text()='Trunk Group/Site Orders']]</TrunkGroupSiteOrderPanel_header>
-
 <trunkPanel>//div[div[text()='Trunk Group/Site Orders']]</trunkPanel>
-
 <addTrunkSiteOrderlink>//a[text()='Add Trunk Group/Site Order']</addTrunkSiteOrderlink>
-
 <addtrunkSiteorderPage_panelheader>//div[div[p[text()='Trunk Group/Site Order']]]</addtrunkSiteorderPage_panelheader>
-
 <trunkGroupOrder_checkbox>//div[label[text()='Trunk Group Order']]//input</trunkGroupOrder_checkbox>
-
 <trunkGrouporder_warningmsg>//div[text()='Trunk Group Order']</trunkGrouporder_warningmsg>
-
 <trunkGroupOrderName_textField>//div[label[text()='Trunk Group Order Number']]//input</trunkGroupOrderName_textField>
-
 <trunkGroupOrderName_warningmsg>//div[text()='Trunk Group Order Number']</trunkGroupOrderName_warningmsg>
-
 <trunkGroupOrderName_errMsg>//div[@role='alert']</trunkGroupOrderName_errMsg>
-
 <alertMSg_siteorderCreation>(//div[@role='alert']/span)[1]</alertMSg_siteorderCreation>
-
 <trunk_okButton>//span[text()='OK']</trunk_okButton>
 
-<!-- ADD TRUNK PAGE / Trunk Creation -->
 
 
-<AddTrunk_Header>//div[contains(text(),'Add Trunk')]</AddTrunk_Header>
 
-<ViewTrunk_Header>//div[contains(text(),'View Trunk')]</ViewTrunk_Header>
+
+
+
+<!--  ADD TRUNK PAGE / Trunk Creation --> 
+<AddTrunk_Header>//div[contains(text(),'Add Trunk')]</AddTrunk_Header> 
+<EditTrunk_Header>//div[contains(text(),'Edit Trunk')]</EditTrunk_Header> 
+<ViewTrunk_Header>//div[contains(text(),'View Trunk')]</ViewTrunk_Header> 
 
 <trunkGroupDEscription_textField>//input[@id='tgDescription']</trunkGroupDEscription_textField>
-
 <PrimaryTrunk_Dropdown>//select[@id='priTgName']</PrimaryTrunk_Dropdown>
-
 <primaryTrunkGroup_Dropdown>//select[@id='priTgName']</primaryTrunkGroup_Dropdown>
-
 <voipProtocol_Dropdown>//select[@id='voipProtocol']</voipProtocol_Dropdown>
-
 <country_warningMessage>//div[text()='Billing Country']</country_warningMessage>
-
 <billingCoutry_Dropdown>//select[@id='billingCountry']</billingCoutry_Dropdown>
-
 <CDRdelivery_Dropdown>//select[@id='cdrDelivery']</CDRdelivery_Dropdown>
-
 <ResellerID_Textfield>//input[@id='resellerId']</ResellerID_Textfield>
-
 <gateway_Dropdown>//select[@id='gateway']</gateway_Dropdown>
-
 <quality_Dropdown>//select[@id='quality']</quality_Dropdown>
-
 <trunkGroupName_TextField>//input[@id='tgName']</trunkGroupName_TextField>
-
 <IPaddresstype_Dropdown>//select[@id='ipAddressType']</IPaddresstype_Dropdown>
-
 <IPPBXRange_warningMessage>//div[text()='IP PBX Range']</IPPBXRange_warningMessage>
-
 <IPPBXRange_textField>//input[@id='ipRangeField']</IPPBXRange_textField>
-
 <IPPBXRange_addButtton>//div[div[div[contains(text(),'IP PBX Range')]]]/following-sibling::div//span[text()='>>']</IPPBXRange_addButtton>
-
 <IPPBXRange_addedValue_selectDropdownField>//select[@id='selectedIpPbxRange']</IPPBXRange_addedValue_selectDropdownField>
-
 <IPPBXAddress_warningMessage>//div[text()='IP PBX Address']</IPPBXAddress_warningMessage>
-
 <IPPBXAddress_textField>//input[@id='ipPbxAddr']</IPPBXAddress_textField>
-
 <internetBasedCustomer_checkbox>//div[label[text()='Internet Based Customer']]//input</internetBasedCustomer_checkbox>
-
 <vlanTag_textField>//input[@id='vlanTg']</vlanTag_textField>
-
 <subInterfaceSlot_Dropdown>//select[@id='sifSlot']</subInterfaceSlot_Dropdown>
-
 <subInterfaceName_textField>//input[@id='sifName']</subInterfaceName_textField>
-
 <NIFgrouopp_textField>//input[@id='nifGroup']</NIFgrouopp_textField>
-
 <signallingZone_textField>//input[@id='sigZone']</signallingZone_textField>
-
 <signallingTransportProtocol_Dropdown>//select[@id='transProt']</signallingTransportProtocol_Dropdown>
-
 <SIPsignallingport_textField>//input[@id='sipSignallingPort']</SIPsignallingport_textField>
-
 <SIPsignallingPOrt_defaultValue_textvalue>//div[text()='Default Port:5060']</SIPsignallingPOrt_defaultValue_textvalue>
-
 <TLS_textField>//input[@id='tlsProfile']</TLS_textField>
-
 <srtp_checkbox>//input[@id='srtp']</srtp_checkbox>
-
 <signallingPort_textField>//input[@id='sigPort']</signallingPort_textField>
-
 <SignallingPortValue>(//div[div[label[contains(text(),'Signalling Port')]]]/div[2])[2]</SignallingPortValue>
-
 <CustomerDefaultNumber_textfield>//input[@id='custDefaultNumber']</CustomerDefaultNumber_textfield>
-
 <CustomerDefaultNumber_WarningMessage>//div[contains(text(),'Customer Default Number')]</CustomerDefaultNumber_WarningMessage>
-
 <CustomerDefaultNumber_Header>//label[contains(text(),'Customer Default Number')]</CustomerDefaultNumber_Header>
 
 <!-- Show All, Hide All -->
-
-
 <ShowAllButton_ViewTrunk>//a[text()='Show All']</ShowAllButton_ViewTrunk>
-
 <HideAllButton_ViewTrunk>//a[text()='Hide All']</HideAllButton_ViewTrunk>
-
 <ServiceImpacting_Header>//p[text()='Service Impacting']</ServiceImpacting_Header>
 
 <!-- CENTREX -->
-
-
 <CENTREX_Header>//div[text()='Centrex']</CENTREX_Header>
-
 <AddTrunk_CENTREX_Header>//p[text()='Centrex']</AddTrunk_CENTREX_Header>
-
 <ReuseNetworkSelectorTable_checkbox>//input[@id='reuseNetSelectTable']</ReuseNetworkSelectorTable_checkbox>
-
 <reuseNIFgroup_checkbox>//input[@id='reuseNIFGroup']</reuseNIFgroup_checkbox>
-
 <reuseSigZonePart_checkbox>//input[@id='reuseSigZonePart']</reuseSigZonePart_checkbox>
 
 <!-- CUSTOMIZED MEDIA, SIGNALING IP AND TRANSPORT PROTOCOL -->
-
-
 <coltSignalingIP_textField>//input[@id='sigIp']</coltSignalingIP_textField>
-
 <mediaIP_textField>//input[@id='mediaIp']</mediaIP_textField>
 
 <!-- PBX TYPE -->
-
-
 <PBXType_textfield>//input[@id='pbxType']</PBXType_textfield>
-
 <PBXProfile_Dropdown>//Select[@id='pbxProf']</PBXProfile_Dropdown>
 
 <!-- MANUAL CONFIGURATION -->
-
-
 <MANUALCONFIGURATION_Header>//div[contains(text(),'Manual Configuration')]</MANUALCONFIGURATION_Header>
-
 <PSXManualConfigurationTrunkGroup_checkbox>//input[@id='psxManualConfigTG']</PSXManualConfigurationTrunkGroup_checkbox>
-
 <PSXManualConfigurationDDIRange_checkbox>//input[@id='psxManualConfigDDI']</PSXManualConfigurationDDIRange_checkbox>
-
 <ManualConfigurationonGSX_checkbox>//input[@id='gsxManualConfig']</ManualConfigurationonGSX_checkbox>
 
+
 <!-- CAC AND CRL -->
-
-
 <NonServiceImpacting_Header>//h5[text()='Non Service Impacting']</NonServiceImpacting_Header>
-
 <callAdmissionControl_checkbox>//input[@id='cac']</callAdmissionControl_checkbox>
-
 <callLimit_Dropdown>//select[@id='callLimit']</callLimit_Dropdown>
-
 <limitNumber_textField>//input[@id='limit']</limitNumber_textField>
-
 <callrateLimit_checkbox>//input[@id='cacrt']</callrateLimit_checkbox>
-
 <callRateLimitt_textField>//input[@id='callrateLimit']</callRateLimitt_textField>
 
+
 <!-- SIP SERVICES -->
-
-
 <SIPSERVICES_Header>//p[text()='SIP Services']</SIPSERVICES_Header>
-
 <sourceAddressFiltering_Dropdown>//select[@id='sourceAddressFiltering']</sourceAddressFiltering_Dropdown>
-
 <relsupport_Dropdown>//select[@id='rel100Support']</relsupport_Dropdown>
-
 <sipSessionKeepAliverTimer_textField>//input[@id='sipSessionKeepAliveRetimer']</sipSessionKeepAliverTimer_textField>
 
 <!-- PSX TRUNK GROUP FIELDS -->
-
-
 <PSXTRUNKGROUPFIELDS_Header>//p[text()='PSX Trunk Group Fields']</PSXTRUNKGROUPFIELDS_Header>
-
 <Carrier_warningMessage>//div[contains(text(),'Carrier')]</Carrier_warningMessage>
-
 <carriers_TextField>//input[@id='carrierIdNew']</carriers_TextField>
-
 <IPsignallingProfile_textField>//input[@id='ipsigProfId']</IPsignallingProfile_textField>
-
 <EgressipSignal_TextField>//input[@id='iptgipsigProfId']</EgressipSignal_TextField>
 
-<addressReachability_Dropdown>//select[@id='addressReachability']</addressReachability_Dropdown>
 
+
+<addressReachability_Dropdown>//select[@id='addressReachability']</addressReachability_Dropdown>
 <COSprofile_Dropdown>//select[@id='cosProfile']</COSprofile_Dropdown>
 
 <defaultTextMessageUnderSIPsessionTimer>//div[label[text()='SIP Session Keepalive Timer(Sec)']]/div</defaultTextMessageUnderSIPsessionTimer>
-
 <ipInterface_textField>//input[@id='ipIinterface']</ipInterface_textField>
-
 <AddressContext_textField>//input[@id='addContext']</AddressContext_textField>
-
 <ipInterfaceGroup_textField>//input[@id='ipifgroup']</ipInterfaceGroup_textField>
 
 <COSprofile_TextField>//input[@id='cosProfileNew']</COSprofile_TextField>
-
 <COSprofile_checkbox>//input[@id='endiscosprof']</COSprofile_checkbox>
 
+
+
 <CreateTrunkSuccessMessage>//span[text()='Trunk created successfully']</CreateTrunkSuccessMessage>
-
 <UpdateTrunkSuccessMessage>//span[text()='Trunk updated successfully']</UpdateTrunkSuccessMessage>
-
 <DeleteTrunkSuccessMessage>//span[text()='Trunk deleted successfully']</DeleteTrunkSuccessMessage>
 
+
 <ViewTrunkPage_ActionButton>//div[div[text()='View Trunk']]//button[text()='Action']</ViewTrunkPage_ActionButton>
-
 <ViewTrunkPage_EditLink>//a[contains(text(),'Edit')]</ViewTrunkPage_EditLink>
-
 <ViewTrunkPage_DeleteLink>//a[contains(text(),'Delete')]</ViewTrunkPage_DeleteLink>
-
 <ViewTrunkPage_HistoryLink>//a[contains(text(),'History')]</ViewTrunkPage_HistoryLink>
-
 <ViewTrunkPage_PSXQueueLink>//a[contains(text(),'PSX Queue')]</ViewTrunkPage_PSXQueueLink>
 
 <ViewTrunkPage_DeleteButton>//button//span[text()='Delete']</ViewTrunkPage_DeleteButton>
-
 <ViewTrunk_DeleteWarningMessage>//div/div[text()='Are you sure that you want to delete?']</ViewTrunk_DeleteWarningMessage>
 
-<!-- HISTORY PAGE -->
 
 
+
+<!--  HISTORY PAGE -->
 <HistoryPage_Header>//div[contains(text(),'History')]</HistoryPage_Header>
-
 <Rivision_columnName>//div[span[text()='Revision']]</Rivision_columnName>
-
 <RestoredForm_columnName>//div[span[text()='Restored Form']]</RestoredForm_columnName>
-
 <RevisionType_columnName>//div[span[text()='Revision Type']]</RevisionType_columnName>
-
 <Date_columnName>//div[span[text()='Date']]</Date_columnName>
-
 <LastModifiedBy_columnName>//div[span[text()='Last Modified By ']]</LastModifiedBy_columnName>
-
 <TrunkGroupName_columnName>//div[span[text()='Trunk Group Name ']]</TrunkGroupName_columnName>
-
 <Gateway_columnName>//div[span[text()='Gateway ']]</Gateway_columnName>
-
 <VoIPProtocol_columnName>//div[span[text()='VoIP Protocol ']]</VoIPProtocol_columnName>
-
 <SignallingTransportProtocol_columnName>//div[span[text()='Signalling Transport Protocol ']]</SignallingTransportProtocol_columnName>
-
 <Action_columnName>//div[span[text()='Action']]</Action_columnName>
-
 <BackButton_History>//span[contains(text(),'Back')]</BackButton_History>
 
-<!-- PSX QUEUE PAGE -->
 
-
+<!--  PSX QUEUE PAGE -->
 <PSXQueuePage_Header>//div[contains(text(),'PSX Queue')]</PSXQueuePage_Header>
-
 <LastStartTime_columnName>//div[span[text()='Last Start Time']]</LastStartTime_columnName>
-
 <Customer_columnName>//div[span[text()='Customer']]</Customer_columnName>
-
 <Service_columnName>//div[span[text()='Service']]</Service_columnName>
-
 <TrunkName_columnName>//div[span[text()='Trunk Name']]</TrunkName_columnName>
 
+
 <!-- DISASTER RECOVERY -->
-
-
 <bulkinterfaceheader>//div[text()='Bulk Interface']</bulkinterfaceheader>
-
 <bulkjob_choosefilebutton>//label[text()='Submit Bulk Job']/parent::div/parent::div//input</bulkjob_choosefilebutton>
-
 <bulkjobsubmit>//span[text()='Submit']</bulkjobsubmit>
-
 <bulkjobcancel>(//span[text()='Cancel'])[1]</bulkjobcancel>
-
 <bulkinterfacelink>//a[text()='Bulk Interface']</bulkinterfacelink>
-
 <bulkinterface_archivelink>//a[text()='Archive']</bulkinterface_archivelink>
-
 <bulkinterface_refreshlink>//a[text()='Refresh']</bulkinterface_refreshlink>
-
 <bulkinterfacepage_cancel>(//span[text()='Cancel'])[2]</bulkinterfacepage_cancel>
-
 <successmsg>//div[@role='alert']//span</successmsg>
-
 <bulkinterface_actiondropdown>//div[contains(text(),'Bulk Interface')]/following-sibling::div/div//button[text()='Action']</bulkinterface_actiondropdown>
 
+
+
+
+
+
+
+
+
 <trunkType_Dropdown>//select[@id='trunkType']</trunkType_Dropdown>
+
+
+
+<!-- Add DR Plans -->
+<customizedmedia_header>//div[@class='card-header'][text()='Customized Media, Signaling IP and Transport Protocol']</customizedmedia_header>
+<recovery_header>//div[@class='card-header'][text()='Disaster Recovery']</recovery_header>
+<addDRplans_link>//a/span[text()='Add Dr Plan']</addDRplans_link>
+<DRplansBulkInterface_link>//a/span[text()='DR Plans Bulk Interface ']</DRplansBulkInterface_link>
+<downloadDRplans_link>//a/span[text()='Download DR Plans']</downloadDRplans_link>
+<addDRplan_header>//div[text()='Disaster Recovery Plans']</addDRplan_header>
+<DRplanA_header>//div[text()='DR Plan A']</DRplanA_header>
+<DRplanB_header>//div[text()='DR Plan B']</DRplanB_header>
+<DRplanC_header>//div[text()='DR Plan C']</DRplanC_header>
+<DRplanD_header>//div[text()='DR Plan D']</DRplanD_header>
+<DRplanE_header>//div[text()='DR Plan E']</DRplanE_header>
+<DRplanA_actiondropdown>(//button[text()='Action'])[1]</DRplanA_actiondropdown>
+<DRplanB_actiondropdown>(//button[text()='Action'])[2]</DRplanB_actiondropdown>
+<DRplanC_actiondropdown>(//button[text()='Action'])[3]</DRplanC_actiondropdown>
+<DRplanD_actiondropdown>(//button[text()='Action'])[4]</DRplanD_actiondropdown>
+<DRplanE_actiondropdown>(//button[text()='Action'])[5]</DRplanE_actiondropdown>
+<DRplan_addlink>//a[text()='Add']</DRplan_addlink>
+<DRplan_editlink>//a[text()='Edit']</DRplan_editlink>
+<DRplan_Deletelink>//a[text()='Delete']</DRplan_Deletelink>
+<DRplanD_E_addlink>(//a[text()='Add'])[2]</DRplanD_E_addlink>
+<DRplanD_E_editlink>(//a[text()='Edit'])[2]</DRplanD_E_editlink>
+<DRplanD_E_Deletelink>(//a[text()='Delete'])[2]</DRplanD_E_Deletelink>
+<addDRplan_header1>(//div[text()='Disaster Recovery Plans'])[2]</addDRplan_header1>
+<rangestart_cc_warngmsg>//input[@id='rangeStart_CC']/following-sibling::div</rangestart_cc_warngmsg>
+<rangestart_lac_warngmsg>//input[@id='rangeStart_LAC']/following-sibling::div</rangestart_lac_warngmsg>
+<rangestart_num_warngmsg>//input[@id='rangeStart_Num']/following-sibling::div</rangestart_num_warngmsg>
+<rangefinish_cc_warngmsg>//input[@id='rangeFinish_CC']/following-sibling::div</rangefinish_cc_warngmsg>
+<rangefinish_lac_warngmsg>//input[@id='rangeFinish_LAC']/following-sibling::div</rangefinish_lac_warngmsg>
+<rangefinish_num_warngmsg>//input[@id='rangeFinish_Num']/following-sibling::div</rangefinish_num_warngmsg>
+<destinationnumber_cc_warngmsg>//input[@id='destinationNumberCC']/following-sibling::div</destinationnumber_cc_warngmsg>
+<destinationnumber_lac_warngmsg>//input[@id='destinationNumberLC']/following-sibling::div</destinationnumber_lac_warngmsg>
+<destinationnumber_num_warngmsg>//input[@id='destinationNumberNum']/following-sibling::div</destinationnumber_num_warngmsg>
+<rangestart_label>//label[text()='Range Start']</rangestart_label>
+<rangestart_cc>//input[@id='rangeStart_CC']</rangestart_cc>
+<rangestart_lac>//input[@id='rangeStart_LAC']</rangestart_lac>
+<rangestart_num>//input[@id='rangeStart_Num']</rangestart_num>
+<rangefinish_label>//label[text()='Range Finish']</rangefinish_label>
+<rangefinish_cc>//input[@id='rangeFinish_CC']</rangefinish_cc>
+<rangefinish_lac>//input[@id='rangeFinish_LAC']</rangefinish_lac>
+<rangefinish_num>//input[@id='rangeFinish_Num']</rangefinish_num>
+<destinationnumber_label>//label[text()='Destination Number(DN)']</destinationnumber_label>
+<destinationnumber_cc>//input[@id='destinationNumberCC']</destinationnumber_cc>
+<destinationnumber_lac>//input[@id='destinationNumberLC']</destinationnumber_lac>
+<destinationnumber_num>//input[@id='destinationNumberNum']</destinationnumber_num>
+<activate_deactivate_label>//label[text()='Activate/Deactivate DR Plan']</activate_deactivate_label>
+<activate_deactivate_dropdownvalue>(//label[text()='Activate/Deactivate DR Plan']/parent::div/parent::div/following-sibling::div//input)[1]</activate_deactivate_dropdownvalue>
+<DRplanA_rangestart_columnheader>(//span[text()='Range Start'])[1]</DRplanA_rangestart_columnheader>
+<DRplanA_rangefinish_columnheader>(//span[text()='Range Finish'])[1]</DRplanA_rangefinish_columnheader>
+<DRplanA_destinationnumber_columnheader>(//span[text()='Destination Number(DN)'])[1]</DRplanA_destinationnumber_columnheader>
+<DRplanA_activateDeactivate_columnheader>(//span[text()='Activate/Deactivate DR Plan'])[1]</DRplanA_activateDeactivate_columnheader>
+<DRplanB_rangestart_columnheader>(//span[text()='Range Start'])[2]</DRplanB_rangestart_columnheader>
+<DRplanB_rangefinish_columnheader>(//span[text()='Range Finish'])[2]</DRplanB_rangefinish_columnheader>
+<DRplanB_destinationnumber_columnheader>(//span[text()='Destination Number(DN)'])[2]</DRplanB_destinationnumber_columnheader>
+<DRplanB_activateDeactivate_columnheader>(//span[text()='Activate/Deactivate DR Plan'])[2]</DRplanB_activateDeactivate_columnheader>
+<DRplanC_rangestart_columnheader>(//span[text()='Range Start'])[3]</DRplanC_rangestart_columnheader>
+<DRplanC_rangefinish_columnheader>(//span[text()='Range Finish'])[3]</DRplanC_rangefinish_columnheader>
+<DRplanC_destinationnumber_columnheader>(//span[text()='Destination Number(DN)'])[3]</DRplanC_destinationnumber_columnheader>
+<DRplanC_activateDeactivate_columnheader>(//span[text()='Activate/Deactivate DR Plan'])[3]</DRplanC_activateDeactivate_columnheader>
+<DRplanD_rangestart_columnheader>(//span[text()='Range Start'])[4]</DRplanD_rangestart_columnheader>
+<DRplanD_rangefinish_columnheader>(//span[text()='Range Finish'])[4]</DRplanD_rangefinish_columnheader>
+<DRplanD_destinationnumber_columnheader>(//span[text()='Destination Number(DN)'])[4]</DRplanD_destinationnumber_columnheader>
+<DRplanD_activateDeactivate_columnheader>(//span[text()='Activate/Deactivate DR Plan'])[4]</DRplanD_activateDeactivate_columnheader>
+<DRplanE_rangestart_columnheader>(//span[text()='Range Start'])[5]</DRplanE_rangestart_columnheader>
+<DRplanE_rangefinish_columnheader>(//span[text()='Range Finish'])[5]</DRplanE_rangefinish_columnheader>
+<DRplanE_destinationnumber_columnheader>(//span[text()='Destination Number(DN)'])[5]</DRplanE_destinationnumber_columnheader>
+<DRplanE_activateDeactivate_columnheader>(//span[text()='Activate/Deactivate DR Plan'])[5]</DRplanE_activateDeactivate_columnheader>
+<addedDRplan_tablelist>(//div[text()='value']/parent::div/following-sibling::div[@class='ag-div-margin row'])[1]//div[@ref='eBodyContainer']</addedDRplan_tablelist>
+<addedDRplan_rangestart>(//div[text()='value']/parent::div/following-sibling::div[@class='ag-div-margin row'])[1]//div[@ref='eBodyContainer']//div[@role='row']//div[@col-id='rangeStart']</addedDRplan_rangestart>
+
+<!--  DR Plans Bulk Interface -->
+<DRplans_bulkinterface_link>//a/span[text()='DR Plans Bulk Interface ']</DRplans_bulkinterface_link>
+<bulkinterfaceheader>//div[text()='Bulk Interface']</bulkinterfaceheader>
+<bulkjob_choosefilebutton>//label[text()='File:']/parent::div/parent::div/following-sibling::div//input</bulkjob_choosefilebutton>
+<bulkjobsubmit>//span[text()='Submit']</bulkjobsubmit>
+<bulkinterface_archivelink>//a[text()='Archive']</bulkinterface_archivelink>
+<bulkinterface_refreshlink>//a[text()='Refresh']</bulkinterface_refreshlink>
+<bulkinterfacepage_cancel>(//span[text()='Cancel'])[2]</bulkinterfacepage_cancel>
+<bulkinterface_actiondropdown>//div[contains(text(),'Bulk Interface')]/following-sibling::div/div//button[text()='Action']</bulkinterface_actiondropdown>
+<trunkgroupname_columnheader>(//span[text()='TrunkGroup Name'])[1]</trunkgroupname_columnheader>
+<username_columnheader>(//span[text()='User Name'])[1]</username_columnheader>
+<submittime_columnheader>(//span[text()='Submit Time'])[1]</submittime_columnheader>
+<starttime_columnheader>(//span[text()='Start Time'])[1]</starttime_columnheader>
+<endtime_columnheader>(//span[text()='End Time'])[1]</endtime_columnheader>
+<status_columnheader>(//span[text()='Status'])[1]</status_columnheader>
+<completion_columnheader>(//span[text()='Completion (%)'])[1]</completion_columnheader>
+<log_columnheader>(//span[text()='Log'])[1]</log_columnheader>
+<uploadfile_columnheader>(//span[text()='Upload File'])[1]</uploadfile_columnheader>
+<addedbulkinterface_tablelist>(//div[@ref='eBodyContainer'])[1]</addedbulkinterface_tablelist>
+<addedbulkinterface_trunkgroupname>(//div[@ref='eBodyContainer'])[1]/div[@role='row']/div[text()='value']</addedbulkinterface_trunkgroupname>
+<addedbulkinterface_rowid>(//div[@ref='eBodyContainer'])[1]//div[text()='value']/parent::div[@role='row']</addedbulkinterface_rowid>
+<bulkinterface_trunkgroupname_value>//div[@ref='eBodyContainer']//div[@row-id='value']/div[@col-id='tgName']</bulkinterface_trunkgroupname_value>
+<bulkinterface_username_value>//div[@ref='eBodyContainer']//div[@row-id='value']/div[@col-id='user']</bulkinterface_username_value>
+<bulkinterface_submittime_value>//div[@ref='eBodyContainer']//div[@row-id='value']/div[@col-id='submitTime']</bulkinterface_submittime_value>
+<bulkinterface_starttime_value>//div[@ref='eBodyContainer']//div[@row-id='value']/div[@col-id='startTime']</bulkinterface_starttime_value>
+<bulkinterface_endtime_value>//div[@ref='eBodyContainer']//div[@row-id='value']/div[@col-id='endTime']</bulkinterface_endtime_value>
+<bulkinterface_status_value>//div[@ref='eBodyContainer']//div[@row-id='value']/div[@col-id='status']</bulkinterface_status_value>
+<bulkinterface_completion_value>//div[@ref='eBodyContainer']//div[@row-id='value']/div[@col-id='completionPercentage']</bulkinterface_completion_value>
+<bulkinterface_log>//div[@ref='eBodyContainer']//div[@row-id='value']/div[@col-id='log']//div[text()='Log']</bulkinterface_log>
+<bulkinterface_file>//div[@ref='eBodyContainer']//div[@row-id='value']/div[@col-id='fileName']/div/div</bulkinterface_file>
+<bulkinterface_backbutton>(//span[text()='Back'])[1]</bulkinterface_backbutton>
+<archive_backbutton>(//span[text()='Back'])[2]</archive_backbutton>
+
+<!-- Download DR Plans -->
+<downloadDRplans_link>//a/span[text()='Download DR Plans']</downloadDRplans_link>
+
+
 
 </voipservice>
 
 
--<wholesaleService>
-
-<!-- Service creation -->
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<wholesaleService>
+<!--  Service creation -->
 <servicetypeDropdown>//div[label[text()='Service Type']]//input</servicetypeDropdown>
-
 <Nextbutton>//span[text()='Next']</Nextbutton>
-
 <OKbutton>//span[contains(text(),'OK')]</OKbutton>
-
 <serviceIdentificationWarningmsg>//div[text()='Service Identification']</serviceIdentificationWarningmsg>
-
 <secivceIdentification_textField>//div[label[text()='Service Identification']]//input</secivceIdentification_textField>
-
 <sericetype_defaultvalue>//div[@class='customLabelValue form-label']</sericetype_defaultvalue>
-
 <remark_textField>//div[label[text()='Remark']]//textarea</remark_textField>
-
 <Email_textfield>//div[label[contains(text(),'Email')]]//input</Email_textfield>
-
 <Email_addButton>//div[div[label[text()='Email']]]/following-sibling::div//span[text()='>>']</Email_addButton>
-
-<Phone_textField/>
-
+<Phone_textField></Phone_textField>
 <phoneContact_addButton>//div[div[label[text()='Phone Contact']]]/following-sibling::div//span[text()='>>']</phoneContact_addButton>
-
 <phoneContact_TextField>//div[label[text()='Phone Contact']]//input</phoneContact_TextField>
-
 <ImproperEmail_errValidationmsg>//div[text()='Email']</ImproperEmail_errValidationmsg>
-
 <performanceReporting_checkbox>//div[label[text()='Performance Reporting']]//input</performanceReporting_checkbox>
 
-<!-- Edit Service -->
-
-
+<!--  Edit Service -->
 <OrderPanel>//div[div[text()='Order']]</OrderPanel>
-
 <ActionDropdown_InViewPage>//div[div[text()='Service']]//button[text()='Action']</ActionDropdown_InViewPage>
-
 <editLink_InViewPage>//a[text()='Edit']</editLink_InViewPage>
-
 <editSerivcePage_pnaleHeader>//div[div[p[text()='Edit Service']]]</editSerivcePage_pnaleHeader>
 
-<!-- success Message -->
-
-
+<!--  success Message -->
 <alertMsg>(//div[@role='alert'])[1]</alertMsg>
-
 <AlertForServiceCreationSuccessMessage>(//div[@role='alert']/span)[1]</AlertForServiceCreationSuccessMessage>
 
-<!-- trunk creation -->
 
 
+
+
+
+
+<!--  trunk creation -->
 <!-- NO Use -->
-
-
 <trafficDirection_Dropdown>//select[@id='trafficDirection']</trafficDirection_Dropdown>
-
 <routepriority_Dropdown>//select[@id='routepriority']</routepriority_Dropdown>
-
-<PSPSGname_Dropdown>//select[@id='pspgnamecvnh']</PSPSGname_Dropdown>
-ressReachability_Dropdown> 
+<PSPSGname_Dropdown>//select[@id='pspgnamecvnh']</PSPSGname_Dropdown>ressReachability_Dropdown>
 <globalProfile_Dropdown>//select[@id='e164GlobalProfile']</globalProfile_Dropdown>
-
 <localProfile_Dropdown>//select[@id='e164LocalProfile']</localProfile_Dropdown>
-
 <preferredPSP_Dropdown>//select[@id='preferredpsp']</preferredPSP_Dropdown>
-
 <carriers_Dropdown>//select[@id='carrierIdNH']</carriers_Dropdown>
-
 <IPsignallingProfile_Dropdown>//select[@id='ipsigProfId']</IPsignallingProfile_Dropdown>
-
 <EgressIpsignal_Dropdown>//select[@id='iptgipsigProfId']</EgressIpsignal_Dropdown>
-
 <InDMPMrule_Dropdown>//select[@id='indmpmrule']</InDMPMrule_Dropdown>
-
 <OutDMPMrule_Dropdown>//select[@id='outdmpmrule']</OutDMPMrule_Dropdown>
-
 <featureControlprofile_Dropdown>//select[@id='featurecontrolprofile']</featureControlprofile_Dropdown>
-
 <localRingBackTone_Dropdown>//select[@id='localringbacktone']</localRingBackTone_Dropdown>
-
 <retryinvite_textField>//input[@id='retryinvite']</retryinvite_textField>
-
 <defaultTextMessageUnderretryInvite>//div[label[text()='Retry Invite']]/div</defaultTextMessageUnderretryInvite>
-
 <prefix_textField>//input[@id='prefix']</prefix_textField>
-
 <carrierIPterminating_textField>//input[@id='ipField']</carrierIPterminating_textField>
-
 <carrierIPterminating_addedValue_selectDropdownField>//select[@id='selecteddrPbxRange']</carrierIPterminating_addedValue_selectDropdownField>
-
 <globalProfile_textField>//input[@id='e164GlobalProfileValue']</globalProfile_textField>
-
 <localProfile_TextField>//input[@id='e164LocalProfileValue']</localProfile_TextField>
-
 <PSPGname_TextField>//input[@id='pspgnamecvnhValue']</PSPGname_TextField>
-
 <preferredPSP_TextField>//input[@id='preferredpspValue']</preferredPSP_TextField>
 
 <InDMPMrule_TextField>//input[@id='indmpmruleValue']</InDMPMrule_TextField>
-
 <OutDMPMrule_TextField>//input[@id='outdmpmruleValue']</OutDMPMrule_TextField>
-
 <featureControlprofile_TextField>//input[@id='featurecontrolprofileValue']</featureControlprofile_TextField>
-
 <localRingBackTone_TextField>//input[@id='localringbacktoneValue']</localRingBackTone_TextField>
-
 <globalProfile_Checkbox>//input[@id='e164GlobalProfileCheck']</globalProfile_Checkbox>
-
 <localProfile_checkbox>//input[@id='e164LocalProfileCheck']</localProfile_checkbox>
-
 <PSPGname_Checkbox>//input[@id='pspgnamecvnhcheck']</PSPGname_Checkbox>
-
 <preferredPSP_checkbox>//input[@id='preferredpspcheck']</preferredPSP_checkbox>
 
 <InDMPMrule_checkbox>//input[@id='indmpmrulecheck']</InDMPMrule_checkbox>
-
 <OutDMPMrule_checkbox>//input[@id='outdmpmrulecheck']</OutDMPMrule_checkbox>
-
 <featureControlprofile_Checkbox>//input[@id='featurecontrolprofilecheck']</featureControlprofile_Checkbox>
-
 <localRingBackTone_checkbox>//input[@id='localringbacktonecheck']</localRingBackTone_checkbox>
-
 <createLowerCaseRoute_checkbox>//input[@id='createLowerCaseRoutes']</createLowerCaseRoute_checkbox>
-
 <PSXmanualConfig_checkbox>//input[@id='psxManualConfigCheckTG']</PSXmanualConfig_checkbox>
-
 <GSXmanualConfig_checkbox>//input[@id='gsxManualConfigCheck']</GSXmanualConfig_checkbox>
-
 <allocatePrefix_button>//span[contains(text(),'Allocate Prefix')]</allocatePrefix_button>
-
 <carrierIPterminating_addButton>//div[div[div[contains(text(),'Carrier IP Terminating')]]]/following-sibling::div//span[text()='>>']</carrierIPterminating_addButton>
 
-</wholesaleService>
 
+
+
+</wholesaleService>
 </locators>

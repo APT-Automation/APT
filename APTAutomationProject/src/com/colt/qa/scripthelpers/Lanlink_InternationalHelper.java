@@ -26233,45 +26233,8 @@ public void device_editVLANIdField(String application, String VLANid) {
 	
 	public void createService_singleEndPointCPE(String application, String EndpointCPE) throws InterruptedException, DocumentException {
 		
-		boolean singleendpointCPE=false;
-		try {	
-			singleendpointCPE = getwebelement(xml.getlocator("//locators/" + application + "/EndpointCPE")).isDisplayed();
-			if(singleendpointCPE) {
-				
-				ExtentTestManager.getTest().log(LogStatus.PASS, " 'Single End Point CPE' checkbox is displaying as expected");
-				
-			if(!EndpointCPE.equalsIgnoreCase("null")) {
-				if (EndpointCPE.equals("yes")) {
-
-					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EndpointCPE")));
-					Thread.sleep(3000);
-					Log.info("End point CPE check box is selected");
-					
-					boolean CPEselection=getwebelement(xml.getlocator("//locators/" + application + "/EndpointCPE")).isSelected();
-					if(CPEselection) {
-						ExtentTestManager.getTest().log(LogStatus.PASS, " 'End point CPE' checkbox is selected as expected");
-					}else {
-						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'End point CPE' checkbox is not selected");
-					}
-					
-				}
-				else {
-
-					Log.info("Sing Endpoint CPE is not selected");
-					ExtentTestManager.getTest().log(LogStatus.PASS,"Sing Endpoint CPE is not selected "); 
-				}
-			}
-			}else {
-				ExtentTestManager.getTest().log(LogStatus.FAIL,  " 'Single endpoint cpe' field is not available under 'Create Service' page");
-			}
-		}catch(NoSuchElementException e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Single endpoint cpe' field is not available under 'Create Service' page");
-		}catch(Exception er) {
-			er.printStackTrace();
-			System.out.println("not able to select single end point CPE checkbox");
-			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'single end point CPE' checkbox");
-		}
+		addCheckbox_commonMethod(application, "EndpointCPE", "Single Endpoint CPE", EndpointCPE, "No", xml);
+		
 	}
 	
 	
@@ -30444,8 +30407,20 @@ Thread.sleep(3000);
 //			Log.info("Navigated to order panel in view service page");
 //			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
-			compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
-			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+			if(editorderno.equalsIgnoreCase("Null")) {
+				
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Order/Contract Number (Parent SID)' field is not edited");
+				Log.info("'Order/Contract Number (Parent SID)' field is not edited");
+			}else {
+				compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
+			}
+			
+			if(editvoicelineno.equalsIgnoreCase("Null")) {
+				ExtentTestManager.getTest().log(LogStatus.PASS,"'RFI/RFQ/IP Voice Line Number' field is not edited");
+				Log.info("'RFI/RFQ/IP Voice Line Number' field is not edited");
+			}else {
+				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+			}
 			Log.info("------ Edit Order is successful ------");
 			}
 

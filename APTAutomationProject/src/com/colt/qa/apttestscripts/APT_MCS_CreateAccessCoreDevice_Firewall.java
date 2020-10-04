@@ -7,7 +7,8 @@ import java.util.Map;
 import org.dom4j.DocumentException;
 import org.testng.annotations.Test;
 
-import com.colt.qa.driverlibrary.DataReader_PK;
+import com.colt.qa.excellibrary.DataReader;
+import com.colt.qa.reporter.ExtentTestManager;
 import com.colt.qa.driverlibrary.DriverTestcase;
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -16,7 +17,7 @@ public class APT_MCS_CreateAccessCoreDevice_Firewall extends DriverTestcase {
 	
 	APT_Login Login=new APT_Login();
 
-	@Test(description = "TC-01",dataProviderClass = DataReader_PK.class, dataProvider = "DataReader_Firewall_Device", priority=0)
+	@Test(description = "TC-01",dataProviderClass = DataReader.class, dataProvider = "DataReader_Firewall_Device", priority=0)
 	public void createAccessCoreDevice_Firewall(Map<String, String> map) throws Exception {
 
 		String devicename=map.get("Name");
@@ -25,12 +26,12 @@ public class APT_MCS_CreateAccessCoreDevice_Firewall extends DriverTestcase {
 		
 		Login.APT_Login_1(map.get("url"));
 		
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyNavigationtoCreateAccessCoreDevicePage_Firewall");
+		logger= ExtentTestManager.startTest ("verifyNavigationtoCreateAccessCoreDevicePage_Firewall");
 			APT_CreateFirewallDeviceHelper.get().navigatetomanagecoltnetwork("CreateAccessCoreDevice");
 			APT_CreateFirewallDeviceHelper.get().navigatetocreateaccesscoredevicepage("CreateAccessCoreDevice");
-
+			ExtentTestManager.endTest(); 
 		
-		DriverTestcase.logger = DriverTestcase.extent.startTest("createFirewalldevice");
+		logger= ExtentTestManager.startTest ("createFirewalldevice");
 			APT_CreateFirewallDeviceHelper.get().verifydevicecreation_AccessRouter("CreateAccessCoreDevice", map.get("Name"), map.get("DeviceType"), map.get("VendorModel"),map.get("Modular MSP"), 
 			map.get("Full IQNET"), map.get("IOSXR"), map.get("Telnet"), map.get("SSH"), map.get("Snmp2C"), map.get("SnmPro"), map.get("Snmprw"), 
 			map.get("SnmProNewValue"), map.get("SnmprwNewValue"), map.get("Snmp3"), map.get("Snmpv3Username"),
@@ -39,13 +40,13 @@ public class APT_MCS_CreateAccessCoreDevice_Firewall extends DriverTestcase {
 			map.get("Country"), map.get("Management Address"), map.get("ExistingCity"), map.get("ExistingCityValue"), map.get("ExistingSite"),
 			map.get("Existing SiteValue"), map.get("ExistingPremise"), map.get("Existing PremiseValue"), map.get("NewCity"), map.get("NewCityName"), map.get("NewCityCode"), 
 			map.get("NewSiteName"),map.get("NewSiteCode"), map.get("NewPremiseName"), map.get("NewPremiseCode"), map.get("NewSite"), map.get("NewPremise"));
-	
+			ExtentTestManager.endTest(); 
 
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyDeviceCreationMessagefor_FirewallDevice");
+		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessagefor_FirewallDevice");
 			APT_CreateFirewallDeviceHelper.get().verifyDeviceCreationMessage("CreateAccessCoreDevice");
-	
+			ExtentTestManager.endTest(); 
 
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyEnteredValueForDevice");
+		logger= ExtentTestManager.startTest ("verifyEnteredValueForDevice");
 			APT_CreateFirewallDeviceHelper.get().verifyenteredValue_forDeviceCreation("CreateAccessCoreDevice", map.get("Name"), map.get("DeviceType"), map.get("VendorModel"),map.get("Modular MSP"), 
 				map.get("Full IQNET"), map.get("IOSXR"), map.get("Telnet"), map.get("SSH"), map.get("Snmp2C"), map.get("SnmPro"), map.get("Snmprw"), 
 				map.get("SnmProNewValue"), map.get("SnmprwNewValue"), map.get("Snmp3"), map.get("Snmpv3Username"),
@@ -54,9 +55,9 @@ public class APT_MCS_CreateAccessCoreDevice_Firewall extends DriverTestcase {
 				map.get("Country"), map.get("Management Address"), map.get("ExistingCity"), map.get("ExistingCityValue"), map.get("ExistingSite"),
 				map.get("Existing SiteValue"), map.get("ExistingPremise"), map.get("Existing PremiseValue"), map.get("NewCity"), map.get("NewCityName"), map.get("NewCityCode"), 
 				map.get("NewSiteName"),map.get("NewSiteCode"), map.get("NewPremiseName"), map.get("NewPremiseCode"), map.get("NewSite"), map.get("NewPremise"));
-		
+			ExtentTestManager.endTest(); 
 
-		DriverTestcase.logger = DriverTestcase.extent.startTest("editFirewallDevice");
+		logger= ExtentTestManager.startTest ("editFirewallDevice");
 			APT_CreateFirewallDeviceHelper.get().verifydeviceEdit_AccessRouter("CreateAccessCoreDevice", map.get("editdeviceName"), map.get("DeviceType"),
 				map.get("editVendorModel"), map.get("editRouterID"), map.get("editModularMSP"), map.get("editFullIQNET"), map.get("editIOSXR"), map.get("editTelnet"),
 				map.get("editSSH"), map.get("editSnmp2C"), map.get("editSnmp3"), map.get("editSnmProNewValue"), map.get("editSnmprwNewValue"), map.get("editSnmpv3UsernameNewValue"),
@@ -64,13 +65,13 @@ public class APT_MCS_CreateAccessCoreDevice_Firewall extends DriverTestcase {
 				map.get("editExistingCityValue"), map.get("editExistingSite"), map.get("editExistingSiteValue"), map.get("editExistingPremise"), map.get("editExistingPremiseValue"),
 				map.get("editNewCity"), map.get("editNewSite"), map.get("editNewPremise"), map.get("editNewCityName"), map.get("editNewCityCode"), map.get("editNewSiteName"),
 				map.get("editNewSiteCode"), map.get("editNewPremiseName"), map.get("editNewPremiseCode"));
-
+			ExtentTestManager.endTest(); 
 			
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyDeviceCreationMessagefor_AccessRouterDevice");
+		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessagefor_AccessRouterDevice");
 			APT_CreateFirewallDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
-	
+			ExtentTestManager.endTest(); 
 
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyEnteredValueForDevice");
+		logger= ExtentTestManager.startTest ("verifyUpdatedValueForDevice");
 			APT_CreateFirewallDeviceHelper.get().verifEditedValue_Firewall("CreateAccessCoreDevice", map.get("editdeviceName"), map.get("DeviceType"),
 				map.get("editVendorModel"), map.get("editRouterID"), map.get("editModularMSP"), map.get("editFullIQNET"), map.get("editIOSXR"), map.get("editTelnet"),
 				map.get("editSSH"), map.get("editSnmp2C"), map.get("editSnmp3"), map.get("editSnmProNewValue"), map.get("editSnmprwNewValue"), map.get("editSnmpv3UsernameNewValue"),
@@ -78,13 +79,13 @@ public class APT_MCS_CreateAccessCoreDevice_Firewall extends DriverTestcase {
 				map.get("editExistingCityValue"), map.get("editExistingSite"), map.get("editExistingSiteValue"), map.get("editExistingPremise"), map.get("editExistingPremiseValue"),
 				map.get("editNewCity"), map.get("editNewSite"), map.get("editNewPremise"), map.get("editNewCityName"), map.get("editNewCityCode"), map.get("editNewSiteName"),
 				map.get("editNewSiteCode"), map.get("editNewPremiseName"), map.get("editNewPremiseCode"));
-		
+			ExtentTestManager.endTest(); 
 
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyTestCommandAndStatus");
+		logger= ExtentTestManager.startTest ("verifyTestCommandAndStatus");
 			APT_CreateFirewallDeviceHelper.get().testStatus("CreateAccessCoreDevice");
-	
+			ExtentTestManager.endTest(); 
 			
-		DriverTestcase.logger = DriverTestcase.extent.startTest("routerPanel");
+		logger= ExtentTestManager.startTest ("routerPanel");
 			String vendorModel=null;
 			 String editedVendor=map.get("editVendorModel");
 			 String addedVendor=map.get("VendorModel");
@@ -110,12 +111,12 @@ public class APT_MCS_CreateAccessCoreDevice_Firewall extends DriverTestcase {
 				}
 			  }
 			else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Router Panel will not display for the selected vendorModel: "+vendorModel);
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Router Panel will not display for the selected vendorModel: "+vendorModel);
 				System.out.println("Router Panel will not display for the selected vendorModel: "+vendorModel);
 			}
-
+			ExtentTestManager.endTest(); 
 			
-		DriverTestcase.logger = DriverTestcase.extent.startTest("fetchDeviceInterface");
+		logger= ExtentTestManager.startTest ("fetchDeviceInterface");
 			String DeviceName= null;
 			String VendorModel=null;
 			String managementAddress=null;
@@ -170,11 +171,11 @@ public class APT_MCS_CreateAccessCoreDevice_Firewall extends DriverTestcase {
 			APT_CreateFirewallDeviceHelper.get().fetchDeviceInterface_viewdevicepage("CreateAccessCoreDevice");
 			APT_ManageNetworkHelpr.get().verifyFetchInterface("ManageNetwork", DeviceName, map.get("InServiceStatus"), map.get("InMaintenanceStatus"), 
 					VendorModel, managementAddress, map.get("Snmpro"), country, map.get("InterfaceName"));
-
+			ExtentTestManager.endTest(); 
 			
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyFirewalldeviceDeleteFunctionality");
+		logger= ExtentTestManager.startTest ("verifyFirewalldeviceDeleteFunctionality");
 			APT_CreateFirewallDeviceHelper.get().verifydeviceDelete_AccessRouter("CreateAccessCoreDevice");
-	
+			ExtentTestManager.endTest(); 
 	}
 	
 	

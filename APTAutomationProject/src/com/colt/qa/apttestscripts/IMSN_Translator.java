@@ -4,9 +4,9 @@ import java.util.Map;
 
 import org.testng.annotations.Test;
 
-import com.colt.qa.driverlibrary.DataReader_PK;
+import com.colt.qa.excellibrary.DataReader;
+import com.colt.qa.reporter.ExtentTestManager;
 import com.colt.qa.driverlibrary.DriverTestcase;
-import com.colt.qa.excellibrary.APT_DataReader_SS;
 import com.relevantcodes.extentreports.LogStatus;
 
 
@@ -17,10 +17,10 @@ public class IMSN_Translator extends DriverTestcase{
 	   APT_Login Login = new APT_Login();
 	   
 	   
-		@Test(dataProviderClass = DataReader_PK.class, dataProvider = "DataReader_ManageTranslation", priority=1)
+		@Test(dataProviderClass = DataReader.class, dataProvider = "DataReader_ManageTranslation", priority=1)
 		public void manageColtNetwork(Map<String, String> map) throws Exception {
 
-			DriverTestcase.logger = DriverTestcase.extent.startTest("manageColtNetwork");
+			logger= ExtentTestManager.startTest ("manageColtNetwork");
 			
 			setup();
 			
@@ -28,69 +28,69 @@ public class IMSN_Translator extends DriverTestcase{
 		
 			ImsNmbrTranslator_Helper.get().selectImsTranslator("ManageColt");
 			
-			DriverTestcase.logger = DriverTestcase.extent.startTest("verifyListofCountries");
+			logger= ExtentTestManager.startTest ("verifyListofCountries");
 				ImsNmbrTranslator_Helper.get().verifyManageNumberTranslationcountrypage("ManageColt");
 				System.out.println("Verified the list of countries");
-
+				ExtentTestManager.endTest(); 
 				
-			DriverTestcase.logger = DriverTestcase.extent.startTest("verifyFieldsInManageTranslationPage");
+			logger= ExtentTestManager.startTest ("verifyFieldsInManageTranslationPage");
 				ImsNmbrTranslator_Helper.get().verifyManageNumberTranslation("ManageColt",map.get("countryCode"));
-			
+				ExtentTestManager.endTest(); 
 
-			DriverTestcase.logger = DriverTestcase.extent.startTest("wildcardsearch");
+			logger= ExtentTestManager.startTest ("wildcardsearch");
 				ImsNmbrTranslator_Helper.get().verifyWildcardsearch("ManageColt");
-			
+				ExtentTestManager.endTest(); 
 		
-			DriverTestcase.logger = DriverTestcase.extent.startTest("verifyAddTranslationfields");
+			logger= ExtentTestManager.startTest ("verifyAddTranslationfields");
 				ImsNmbrTranslator_Helper.get().verifyAddnumberTranslationfields("ManageColt",map.get("countryCode"));
+				ExtentTestManager.endTest(); 
 			
-			
-			DriverTestcase.logger = DriverTestcase.extent.startTest("entervaluesinAddTranslation");
+			logger= ExtentTestManager.startTest ("entervaluesinAddTranslation");
 				ImsNmbrTranslator_Helper.get().filladdtranslation("ManageColt",map.get("countryCode"),map.get("TranslateNumber"),map.get("TranslatedNumber"),
 						map.get("PrefixNumbertextField"), map.get("NatureOfAddress"),map.get("CarrierNo"), map.get("prefixCheckbox"), map.get("Range"),
 						map.get("sequence"), map.get("countryName"));
+				ExtentTestManager.endTest(); 
 			
-			
-			DriverTestcase.logger = DriverTestcase.extent.startTest("verifyAddedNumberTranslationFunction");
+			logger= ExtentTestManager.startTest ("verifyAddedNumberTranslationFunction");
 				ImsNmbrTranslator_Helper.get().verifyAddnumbertranslationfunction("ManageColt",map.get("countryCode"),
 						map.get("TranslateNumber"),map.get("TranslatedNumber"),map.get("PrefixNumbertextField"),map.get("CarrierNo"),
 						 map.get("prefixCheckbox"), map.get("Range"), map.get("sequence"), map.get("NatureOfAddress"));
 			
 				
-			DriverTestcase.logger = DriverTestcase.extent.startTest("editNumberTranslationFunction");	
+			logger= ExtentTestManager.startTest ("editNumberTranslationFunction");	
 				ImsNmbrTranslator_Helper.get().editIMSNT("ManageColt",map.get("countryCode"),map.get("TranslateNumber"),map.get("editTranslatedNumber"),
 						map.get("editPrefixNumber"), map.get("editCarrier"), map.get("editPrefixCheckbox"));
-			
+				ExtentTestManager.endTest(); 
 				
-			DriverTestcase.logger = DriverTestcase.extent.startTest("Synchronize");	
+			logger= ExtentTestManager.startTest ("Synchronize");	
 				ImsNmbrTranslator_Helper.get().synchronise("ManageColt", map.get("TranslateNumber"));
-
+				ExtentTestManager.endTest(); 
 				
-			DriverTestcase.logger = DriverTestcase.extent.startTest("verifyUploadupdatefile");
+			logger= ExtentTestManager.startTest ("verifyUploadupdatefile");
 				ImsNmbrTranslator_Helper.get().createFileForUploadUpdateFile("ManageColt", map.get("Operation"), map.get("TranslateNumber"), map.get("countryCode"),
 						map.get("TranslatedNumber"), map.get("editTranslatedNumber"), map.get("PrefixNumbertextField"), map.get("editPrefixNumber"),
 						map.get("CarrierNo"), map.get("editCarrier"), map.get("NatureOfAddress"), map.get("filePath"));
 				ImsNmbrTranslator_Helper.get().uploadUpdatefile("ManageColt", map.get("filePath"));
 				ImsNmbrTranslator_Helper.get().deleteFile(map.get("filePath"));
+				ExtentTestManager.endTest(); 
 			
-			
-			DriverTestcase.logger = DriverTestcase.extent.startTest("verifydownlaodTranslationlink");
+			logger= ExtentTestManager.startTest ("verifydownlaodTranslationlink");
 				ImsNmbrTranslator_Helper.get().downlaodTranslationlink("ManageColt");
 				Thread.sleep(2000);
-
+				ExtentTestManager.endTest(); 
 			
-			DriverTestcase.logger = DriverTestcase.extent.startTest("verifyviewUIHistory");
+			logger= ExtentTestManager.startTest ("verifyviewUIHistory");
 				ImsNmbrTranslator_Helper.get().viewUIHistory("ManageColt",map.get("Operation"),map.get("User"),map.get("TranslateNumber"));
 				Thread.sleep(2000);
-
+				ExtentTestManager.endTest(); 
 			
-			DriverTestcase.logger = DriverTestcase.extent.startTest("verifyViewHistory");
+			logger= ExtentTestManager.startTest ("verifyViewHistory");
 				ImsNmbrTranslator_Helper.get().viewuploadHistory("ManageColt");
+				ExtentTestManager.endTest(); 
 				
-				
-			DriverTestcase.logger = DriverTestcase.extent.startTest("deleteNumberTranslationFunction");	
+			logger= ExtentTestManager.startTest ("deleteNumberTranslationFunction");	
 				ImsNmbrTranslator_Helper.get().deleteIMST("ManageColt", map.get("TranslateNumber"));
-				
+				ExtentTestManager.endTest(); 
 			
 		}
 				

@@ -9,7 +9,8 @@
 
 <!-- Create Device Page -->
 <nametextfield>//input[@id='name']</nametextfield>
-<devicetypeinput>//div[label[text()='Device Type']]//input</devicetypeinput>
+<devicetypeinput>//select[@id='deviceTypeId']</devicetypeinput>
+<devicetypeinput1>//div[label[text()='Device Type']]//input</devicetypeinput1>
 <vendormodelinput>//div[label[text()='Vendor/Model']]//input</vendormodelinput>
 <routeridtextfield>//input[@id='routerId']</routeridtextfield>
 <snmproinputfield>//input[@id='snmpro']</snmproinputfield>

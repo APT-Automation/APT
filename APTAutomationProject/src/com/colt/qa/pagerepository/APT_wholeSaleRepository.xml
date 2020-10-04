@@ -6,11 +6,14 @@
 <ManageCustomerServiceLink>(//div[@class='ant-menu-submenu-title'])[2]</ManageCustomerServiceLink>
 <managecoltnetworklink>(//div[@class='ant-menu-submenu-title'])[4]</managecoltnetworklink>
 
+<createOrder_NextButton>//span[text()='Next']</createOrder_NextButton>
+<createOrderService_warningMessage>(//span[text()='Order/Contract Number(Parent SID) is required'])[2]</createOrderService_warningMessage>
+<serviceType_warningMessage>//span[text()='Service type is required']</serviceType_warningMessage>
 <CreateOrderServiceLink>//li[text()='Create Order/Service']</CreateOrderServiceLink>
 <entercustomernamefield>//input[@id='customerName']</entercustomernamefield>
 <CreateOrderHeader>//div[text()='Create Order / Service']</CreateOrderHeader>
 <ordercontractnumber>//div[div[label[text()='Order/Contract Number']]]//input[@size='9']</ordercontractnumber>
-<selectorderswitch>(//div[@class='react-switch-bg'])[1]</selectorderswitch>
+<selectorderswitch>(//div[@class='react-switch-bg'])[2]</selectorderswitch>
 <createorderswitch>//form[@name='createOrder']//div[2]//div[1]//div[3]//div[1]//div[1]//div[1]</createorderswitch>
 <rfireqiptextfield>//div[contains(@class,'col-md-3 col-sm-12 col-12')]//input[@id='rfiRfqIpVoiceLineNo']</rfireqiptextfield>
 <existingorderdropdown>//label[text()='Order/Contract Number(Parent SID)']/parent::div//div//input</existingorderdropdown>
@@ -60,7 +63,7 @@
 <dedicatedportaldropdown>//div[label[text()='Dedicated Portal']]//input</dedicatedportaldropdown>
 <okbutton>//span[contains(text(),'OK')]</okbutton>
 <customercreationsuccessmsg>//div[@role='alert']//span</customercreationsuccessmsg>
-<clearbutton>//span[text()='Clear']</clearbutton>
+<clearbutton>//span[text()='Reset']</clearbutton>
 <clearcountryvalue>//label[text()='Country']/parent::div//div[text()='×']</clearcountryvalue>
 <cleartypevalue>//label[text()='Type']/parent::div//div[text()='×']</cleartypevalue>
 
@@ -195,8 +198,98 @@
 <changeorder_cancelbutton>//button[span[text()='Cancel']]</changeorder_cancelbutton>
 <changeOrder_orderDropdown>//div[label[text()='Order/Contract Number (Parent SID)']]//input</changeOrder_orderDropdown>
 
+<fetchorderNumber>//label[text()='Order/Contract Number (Parent SID)']/parent::div//following-sibling::div</fetchorderNumber>
+
+<alertMsg>(//div[@role='alert'])[1]</alertMsg>
+
+<AlertForServiceCreationSuccessMessage>(//div[@role='alert']/span)[1]</AlertForServiceCreationSuccessMessage>
+
 
 </apt>
+
+
+
+<manageService>
+
+<orderpanelheader>(//div[contains(text(),'Order')])[1]</orderpanelheader>
+
+<servicepanel_serviceidentificationvalue>//div[label[contains(text(),'Service Identification')]]/div</servicepanel_serviceidentificationvalue>
+
+<servicepanel_servicetypevalue>//div[label[contains(text(),'Service Type')]]/div</servicepanel_servicetypevalue>
+
+<servicepanel_remarksvalue>//div[label[contains(text(),'Remark')]]/div</servicepanel_remarksvalue>
+
+<servicepanel_header>(//div[contains(text(),'Service')])[1]</servicepanel_header>
+
+<serviceactiondropdown>//div[div[text()='Service']]//button</serviceactiondropdown>
+
+<serviceupdate_successmsg>//div[@role='alert']//span[text()='Service successfully updated']</serviceupdate_successmsg>
+
+<manageLink>//div[@class='dropdown-menu show']//a[text()='Manage']</manageLink>
+
+<synchronizelink_servicepanel>//a[text()='Synchronize']</synchronizelink_servicepanel>
+
+<manageservice_header>//div[text()='Manage Service']</manageservice_header>
+
+<status_ordername>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='orderName']</status_ordername>
+
+<status_servicename>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceName']</status_servicename>
+
+<status_servicetype>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceType']</status_servicetype>
+
+<status_servicedetails>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceDetails']</status_servicedetails>
+
+<status_currentstatus>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='currentStatus']</status_currentstatus>
+
+<status_modificationtime>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell'][@col-id='mTime']</status_modificationtime>
+
+<statuslink>//div[text()='Status']/parent::div/parent::div//div[@role='gridcell']//a[text()='Status']</statuslink>
+
+<sync_ordername>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='orderName']</sync_ordername>
+
+<sync_servicename>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceName']</sync_servicename>
+
+<order_syncPanel>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='orderName']</order_syncPanel>
+
+<sync_servicetype>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceType']</sync_servicetype>
+
+<sync_servicedetails>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='serviceDetails']</sync_servicedetails>
+
+<sync_status>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell'][@col-id='syncStatus']</sync_status>
+
+<synchronizelink>//div[text()='Synchronization']/parent::div/parent::div//div[@role='gridcell']//a[text()='Synchronize']</synchronizelink>
+
+<managepage_backbutton>//span[text()='Back']</managepage_backbutton>
+
+<Servicestatus_popup>//div[@class='modal-content']</Servicestatus_popup>
+
+<servicestatus_popupclose>(//div[text()='Service Status']/following-sibling::button//span)[1]</servicestatus_popupclose>
+
+<changestatus_dropdown>//label[text()='Change Status']/parent::div//input</changestatus_dropdown>
+
+<changestatus_dropdownvalue>//label[text()='Change Status']/parent::div//span</changestatus_dropdownvalue>
+
+<servicestatushistory>(//div[@class='modal-content']//div[@ref='eBodyViewport']//div[@role='row'])[1]</servicestatushistory>
+
+<Sync_successmsg>//div[@role='alert']//span</Sync_successmsg>
+
+<alertMsg>(//div[@role='alert'])[1]</alertMsg>
+
+<AlertForServiceCreationSuccessMessage>(//div[@role='alert']/span)[1]</AlertForServiceCreationSuccessMessage>
+
+<serviceStatusPopup_sericeIdentificationValue>//div[div[div[text()='Service Status']]]//label[text()='Service Identification']/parent::div//following-sibling::div</serviceStatusPopup_sericeIdentificationValue>
+
+<serviceStatusPopup_serviceTypeValue>//div[div[div[text()='Service Status']]]//label[text()='Service Type']/parent::div//following-sibling::div</serviceStatusPopup_serviceTypeValue>
+
+<serviceStatusPopup_changeStatusDropdown>//div[label[text()='Change Status']]//input</serviceStatusPopup_changeStatusDropdown>
+
+<okbutton>//span[contains(text(),'OK')]</okbutton>
+
+<serviceStatusPopup_statusTable_statusColumn>(//div[@col-id='status'][@role='gridcell'])[1]</serviceStatusPopup_statusTable_statusColumn>
+
+</manageService>
+
+
 
 
 <wholesaleService>
@@ -227,12 +320,16 @@
 <ActionDropdown_InViewPage>//div[div[text()='Service']]//button[text()='Action']</ActionDropdown_InViewPage>
 <editLink_InViewPage>//a[text()='Edit']</editLink_InViewPage>
 
-<editService_Link>(//a[text()='Edit'])[2]</editService_Link>
+<editService_Link>//div[text()='Service']/parent::div//a[text()='Edit']</editService_Link>
 
 <editSerivcePage_pnaleHeader>//div[div[p[text()='Edit Service']]]</editSerivcePage_pnaleHeader>
 
 <!--  Dump -->
 <Editservice_actiondropdown>//div[div[text()='Service']]//button[text()='Action']</Editservice_actiondropdown>
+
+
+<!--  Show new infovista report -->
+<viewservice_infovistareport>//a[text()='Show Infovista Report']</viewservice_infovistareport>
 
 <Editservice_Dumplink>//a[text()='Dump']</Editservice_Dumplink>
 
@@ -279,7 +376,7 @@
 <MAS_View_Action_EditLink>//a[text()='Edit']</MAS_View_Action_EditLink>
 <MAS_View_Action_DeleteLink>//a[text()='Delete']</MAS_View_Action_DeleteLink>
 
-<deleteServiceLink>(//a[text()='Delete'])[2]</deleteServiceLink>
+<deleteServiceLink>//a[text()='Delete']</deleteServiceLink>
 
 <MAS_View_Action_FetchDeviceInterfacesLink>//a[text()='Fetch Device Interfaces']</MAS_View_Action_FetchDeviceInterfacesLink>
 
@@ -579,7 +676,8 @@
 <carrierIPterminating_addButton>//div[div[div[contains(text(),'Carrier IP Terminating')]]]/following-sibling::div//span[text()='>>']</carrierIPterminating_addButton>
 <viewPage_ActionButton>//div[div[text()='View Trunk']]//button[text()='Action']</viewPage_ActionButton>
 
-
+<HomeBreadcrump>//ol[@class='breadcrumb']//a[text()='Home']</HomeBreadcrump>
+<fetchGateway>//div[div[label[text()='Gateway']]]//div[@class='customLabelValue form-label']</fetchGateway>
 <editLink>//a[contains(text(),'Edit')]</editLink>
 <viewTrunk_historyLink>//a[contains(text(),'History')]</viewTrunk_historyLink>
 
@@ -600,8 +698,10 @@
 <trunkActionDropdown_InviewServicePage>//div[div[span[b[text()='Trunks ']]]]//following-sibling::div//button[text()='Action']</trunkActionDropdown_InviewServicePage>
 
 <GSXcongig_textArea>//textarea[@name='gsxConfigNote']</GSXcongig_textArea>
+<GSXconfig_textArea>//textarea[@name='gsxConfigNote']</GSXconfig_textArea>
 <GSX_config_executeButton>//span[text()='Execute']</GSX_config_executeButton>
 <GSXconfig_sucessMessage>(//div[@role='alert']/span)[1]</GSXconfig_sucessMessage>
+<GSXconfig_closeButton>//span[text()='Close']</GSXconfig_closeButton>
 
 <fetchTrunkGroupName>(//div[@class='heading-green-row row']/div)[1]</fetchTrunkGroupName>
 
@@ -674,7 +774,17 @@
 
 <addCitytogglebutton>//div[div[label[text()='Add City']]]//div[@class='react-switch-bg']</addCitytogglebutton>
 
+<viewTrunkPage_historyLink>//a[text()='History']</viewTrunkPage_historyLink>
 
+<historyPanel_revisionTypeColumn>//div[text()='History']/parent::div/parent::div//div[@role='gridcell'][@col-id='revision.revDesc']</historyPanel_revisionTypeColumn>
+<historyPanel_lastModifiedColumn>//div[text()='History']/parent::div/parent::div//div[@role='gridcell'][@col-id='m_user']</historyPanel_lastModifiedColumn>
+<historyPanel_trunkGroupNameColumn>//div[text()='History']/parent::div/parent::div//div[@role='gridcell'][@col-id='tgName']</historyPanel_trunkGroupNameColumn>
+<historyPanel_gatewayColumn>//div[text()='History']/parent::div/parent::div//div[@role='gridcell'][@col-id='gateway']</historyPanel_gatewayColumn>
+<historyPanel_voipProtocolColumn>//div[text()='History']/parent::div/parent::div//div[@role='gridcell'][@col-id='voipProtocol']</historyPanel_voipProtocolColumn>
+<historyPanel_signalingTransportprotocol>//div[text()='History']/parent::div/parent::div//div[@role='gridcell'][@col-id='signallingTransportProtocol']</historyPanel_signalingTransportprotocol>
+<historyPanel_viewLink>//div[text()='History']/parent::div/parent::div//div[@role='gridcell'][@col-id='view']//a[text()='View']</historyPanel_viewLink>
+
+<trunk_backbutton>//span[text()='Back']</trunk_backbutton>
 
 
 </wholesaleService>

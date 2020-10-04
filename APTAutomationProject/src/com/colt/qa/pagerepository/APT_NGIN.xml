@@ -30,6 +30,7 @@
 <dedicatedportaldropdown>//div[label[text()='Dedicated Portal']]//input</dedicatedportaldropdown>
 <okbutton>//span[contains(text(),'OK')]</okbutton>
 <customercreationsuccessmsg>//div[@role='alert']//span</customercreationsuccessmsg>
+<resetbutton>//span[text()='Reset']</resetbutton>
 <clearbutton>//span[text()='Clear']</clearbutton>
 <clearcountryvalue>//label[text()='Country']/parent::div//div[text()='×']</clearcountryvalue>
 <cleartypevalue>//label[text()='Type']/parent::div//div[text()='×']</cleartypevalue>
@@ -90,7 +91,7 @@
 <!-- Create Order/service panel in view customer page -->
 <CreateOrderHeader>//div[text()='Create Order / Service']</CreateOrderHeader>
 <ordercontractnumber>//div[div[label[text()='Order/Contract Number']]]//input[@size='9']</ordercontractnumber>
-<selectorderswitch>(//div[@class='react-switch-bg'])[1]</selectorderswitch>
+<selectorderswitch>//label[text()='Order/Contract Number(Parent SID)']/following-sibling::input/ancestor::div[@class='form-group']/parent::div/following-sibling::div//div[@class='react-switch-bg']</selectorderswitch>
 <createorderswitch>//form[@name='createOrder']//div[2]//div[1]//div[3]//div[1]//div[1]//div[1]</createorderswitch>
 <rfireqiptextfield>//div[contains(@class,'col-md-3 col-sm-12 col-12')]//input[@id='rfiRfqIpVoiceLineNo']</rfireqiptextfield>
 <existingorderdropdown>//label[text()='Order/Contract Number(Parent SID)']/parent::div//div//input</existingorderdropdown>
@@ -165,7 +166,7 @@
 <servicepanel_servicetypevalue>//div[label[contains(text(),'Service Type')]]/div</servicepanel_servicetypevalue>
 <servicepanel_remarksvalue>//div[label[contains(text(),'Remark')]]/div</servicepanel_remarksvalue>
 <servicepanel_header>(//div[contains(text(),'Service')])[1]</servicepanel_header>
-<serviceactiondropdown>//div[div[text()='Service']]//button</serviceactiondropdown>
+<serviceactiondropdown>//div[div[contains(text(),'Service')]]//button</serviceactiondropdown>
 <serviceupdate_successmsg>//div[@role='alert']//span[text()='Service  successfully updated']</serviceupdate_successmsg>
 <manageLink>//div[@class='dropdown-menu show']//a[text()='Manage']</manageLink>
 <synchronizelink_servicepanel>//a[text()='Synchronize']</synchronizelink_servicepanel>
@@ -307,11 +308,11 @@
 <!-- Management Options panel in view service page -->
 <managementoptions_header>//div[text()='Management Options']</managementoptions_header>
 <customeradmin_text>//label[text()='Customer Administration']</customeradmin_text>
-<customeradmin_value>(//div[@class='position-relative form-group']//div[text()='Yes'])[1]</customeradmin_value>
+<customeradmin_value>//div[label[text()='Customer Administration']]/div</customeradmin_value>
 <sanadmin_text>//label[text()='SAN Administration']</sanadmin_text>
-<sanadmin_value>(//div[@class='position-relative form-group']//div[text()='Yes'])[2]</sanadmin_value>
+<sanadmin_value>//div[label[text()='SAN Administration']]/div</sanadmin_value>
 <reselleradmin_text>//label[text()='Reseller Administration']</reselleradmin_text>
-<reselleradmin_value>(//div[@class='position-relative form-group']//div[text()='Yes'])[3]</reselleradmin_value>
+<reselleradmin_value>//div[label[text()='Reseller Administration']]/div</reselleradmin_value>
 
 
 <!-- Reseller panel in view service page -->
@@ -401,6 +402,7 @@
 <frcnumber_column>//div[@col-id='frcNumber']//span[@role='columnheader']</frcnumber_column>
 <addsan_link>//div[@class='dropdown-menu show']//a[text()='Add SAN']</addsan_link>
 <addsan_header>//div[@class='heading-green-row row']//div[text()='Add SAN']</addsan_header>
+<addanothersan_header>//div[@class='heading-green-row row']//div[text()='ADD']</addanothersan_header>
 <san_number>//div[@class='position-relative form-group']//label[text()='SAN(FRC) Number ']/following-sibling::input</san_number>
 <serviceprofile>(//label[text()='Service Profile']/parent::div//div//input)[1]</serviceprofile>
 <supervisionfield>//div[@class='position-relative form-group']//label[text()='Supervision Mode']/parent::div//span</supervisionfield>

@@ -4,9 +4,9 @@ import java.util.Map;
 
 import org.testng.annotations.Test;
 
-import com.colt.qa.driverlibrary.DataReader_PK;
+import com.colt.qa.excellibrary.DataReader;
+import com.colt.qa.reporter.ExtentTestManager;
 import com.colt.qa.driverlibrary.DriverTestcase;
-import com.colt.qa.excellibrary.APT_DataReader;
 import com.relevantcodes.extentreports.LogStatus;
 
 public class PerformOrder_Supply extends DriverTestcase{
@@ -14,7 +14,7 @@ public class PerformOrder_Supply extends DriverTestcase{
 	
 	APT_Login Login=new APT_Login();
 	
-	@Test(description = "TC-01",dataProviderClass = DataReader_PK.class, dataProvider = "DataReader_CreateCustomer_AddUser_SupplyService", priority = 1)
+	@Test(description = "TC-01",dataProviderClass = DataReader.class, dataProvider = "DataReader_CreateCustomer_AddUser_SupplyService", priority = 1)
 	public void Verify_serivceOrderCreationforCustomer(Map<String, String> map) throws Exception {
 		
 		setup();	
@@ -22,7 +22,7 @@ public class PerformOrder_Supply extends DriverTestcase{
 		Login.APT_Login_1(map.get("url"));	
 		
 		
-		DriverTestcase.logger = DriverTestcase.extent.startTest("Verify_SupplyServiceFromOneCustomerToOtherCustomer");
+		logger= ExtentTestManager.startTest ("Verify_SupplyServiceFromOneCustomerToOtherCustomer");
 		Thread.sleep(2000);
 		
 		createCustomerSeparateHelper.get().navigateToCreateCustomerPage("CreateCustomer");
@@ -62,21 +62,21 @@ public class PerformOrder_Supply extends DriverTestcase{
 		Thread.sleep(3000);
 		
 		createCustomerSeparateHelper.get().verifysuccessmessage( "CreateCustomer"  , "Service successfully created");
-		
+		ExtentTestManager.endTest(); 
 	}
 	
 
-	@Test(description = "TC-02",dataProviderClass = DataReader_PK.class, dataProvider = "DataReader_CreateCustomer_AddUser_SupplyService", priority = 2)
+	@Test(description = "TC-02",dataProviderClass = DataReader.class, dataProvider = "DataReader_CreateCustomer_AddUser_SupplyService", priority = 2)
 	public void Verify_SupplyServiceFromOneCustomerToOtherCustomer1(Map<String, String> map) throws Exception {
 		
-		DriverTestcase.logger = DriverTestcase.extent.startTest("Verify_SupplyServiceFromOneCustomerToOtherCustomer1");
+		logger= ExtentTestManager.startTest ("Verify_SupplyServiceFromOneCustomerToOtherCustomer1");
 		Thread.sleep(2000);
 		
 		String supplyService=map.get("SupplySevice");
 		
 		if(supplyService.equalsIgnoreCase("Yes")) {
 			
-			DriverTestcase.logger.log(LogStatus.INFO, "Going to perform Supply action for "+map.get("Name"));
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Going to perform Supply action for "+map.get("Name"));
 			
 			createCustomerSeparateHelper.get().clickOnSearchCustomerLink("CreateCustomer");
 			createCustomerSeparateHelper.get().searchCustomerAndperformSupply("CreateCustomer", map.get("Name"), map.get("OCN"), 
@@ -88,22 +88,23 @@ public class PerformOrder_Supply extends DriverTestcase{
 			
 		}else {
 			
-			DriverTestcase.logger.log(LogStatus.INFO, " Not going to perform supply action for "+map.get("Name"));
+			ExtentTestManager.getTest().log(LogStatus.INFO, " Not going to perform supply action for "+map.get("Name"));
 		}
+		ExtentTestManager.endTest(); 
 	}
 	
 	
-	@Test(description = "TC-03",dataProviderClass = DataReader_PK.class, dataProvider = "DataReader_CreateCustomer_AddUser_SupplyService", priority = 3)
+	@Test(description = "TC-03",dataProviderClass = DataReader.class, dataProvider = "DataReader_CreateCustomer_AddUser_SupplyService", priority = 3)
 	public void Verify_Subscribers(Map<String, String> map) throws Exception {
 		
-		DriverTestcase.logger = DriverTestcase.extent.startTest("Verify_Subscribers");
+		logger= ExtentTestManager.startTest ("Verify_Subscribers");
 		Thread.sleep(2000);
 		
 		String subscribedCustomer=map.get("SubscribedForService");
 		
 		if(subscribedCustomer.equalsIgnoreCase("Yes")) {
 			
-			DriverTestcase.logger.log(LogStatus.INFO, " Subscribe panel verification is going to be performed for "+ map.get("Name"));
+			ExtentTestManager.getTest().log(LogStatus.INFO, " Subscribe panel verification is going to be performed for "+ map.get("Name"));
 			
 			createCustomerSeparateHelper.get().clickOnSearchCustomerLink("CreateCustomer");
 			createCustomerSeparateHelper.get().verifySearchCustomerFunctionality("CreateCustomer", map.get("SupplyServiceToCustomerName"), map.get("OCN")); 
@@ -114,15 +115,15 @@ public class PerformOrder_Supply extends DriverTestcase{
 
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.INFO, " Subscribe panel verification is not performed for "+ map.get("Name"));
+			ExtentTestManager.getTest().log(LogStatus.INFO, " Subscribe panel verification is not performed for "+ map.get("Name"));
 		}
 	}
 	
 	
-	@Test(description = "TC-04",dataProviderClass = DataReader_PK.class, dataProvider = "DataReader_CreateCustomer_AddUser_SupplyService", priority = 4)
+	@Test(description = "TC-04",dataProviderClass = DataReader.class, dataProvider = "DataReader_CreateCustomer_AddUser_SupplyService", priority = 4)
 	public void deleteFunctionality(Map<String, String> map) throws Exception {
 		
-		DriverTestcase.logger = DriverTestcase.extent.startTest("deleteFunctionality");
+		logger= ExtentTestManager.startTest ("deleteFunctionality");
 		Thread.sleep(2000);
 		
 		createCustomerSeparateHelper.get().clickOnSearchCustomerLink("CreateCustomer");
@@ -147,7 +148,7 @@ public class PerformOrder_Supply extends DriverTestcase{
 	//delete Customer
 		createCustomerSeparateHelper.get().deleteCustomer("CreateCustomer");
 		createCustomerSeparateHelper.get().verifysuccessmessage("CreateCustomer", "Customer successfully deleted");
-		
+		ExtentTestManager.endTest(); 
 	}
 	
 	

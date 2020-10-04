@@ -24,7 +24,6 @@ import com.colt.qa.driverlibrary.DriverHelper;
 import com.colt.qa.driverlibrary.DriverTestcase;
 import com.colt.qa.driverlibrary.Log;
 import com.colt.qa.driverlibrary.XMLReader;
-import com.colt.qa.excellibrary.APT_DataWriter;
 import com.colt.qa.reporter.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;
 import com.sun.java_cup.internal.runtime.Scanner;
@@ -48,7 +47,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		
 		Moveon(getwebelement(xml.getlocator("//locators/"+application+"/ManageCustomerServiceLink")));
 		Thread.sleep(3000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : MCS page navigated");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse Hovered on 'Manage Customer Service'");
 		Log.info("=== MCS page navigated ===");
 		Thread.sleep(4000);
 	}
@@ -57,7 +56,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 	public void navigateToCreateCustomerPage(String application) throws InterruptedException, DocumentException {
 		navigateToManageCustomerServicePage(application);
 		Clickon(getwebelement(xml.getlocator("//locators/"+application+"/CreateCustomerLink"))); 	
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Create customer navigated");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Create customer navigated");
 		Log.info("=== Create customer navigated ===");	
 		Thread.sleep(5000);
 	}
@@ -143,7 +142,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		
 		
 		Clickon(getwebelement(xml.getlocator("//locators/"+application+"/DeleteButton_DeleteCustomer")));	Thread.sleep(1000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Clicked on Delete button");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Clicked on Delete button");
 		Log.info("=== Clicked on Delete button ===");
 		Thread.sleep(2000);
 	}
@@ -204,7 +203,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		String[] routerToolIPv4HuaweiTobeSelectedList =  HideRouterToolsIPv4CommandsHuiwai_ToBeSelected.split(",");
 		String[] ServicesTobeSelectedlist= HideServicesToBeSelected.split(",");
 		String[] siteOrdersToBeselectedList = HideSiteOrderToBeSelected.split(",");
-		
+		String[] routerToolIPv6ToBeSelectedList = HideRouterToolsIPv6CommandsCisco_ToBeSelected.split(",");
 		
 		scrolltoend();
 
@@ -239,16 +238,16 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 			if(password.isEmpty()) {
 				
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying after clicked on 'Generate password link");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Password Field is empty. No values displaying after clicked on 'Generate password link");
 
 				SendKeys(getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")), GeneratePassword);	
 				Thread.sleep(1000);
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Password entered manually not automatically generated :  "+GeneratePassword);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Password entered manually not automatically generated :  "+GeneratePassword);
 				Log.info("===Password entered manually not automatically generated ===");
 
 			}else {
 				Log.info("Automatically generated Password value is : "+ password);
-				DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+password);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Password generated and the value is displaying as :  "+password);
 			}
 
 			
@@ -283,7 +282,8 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			verifySelectedValuesInsideRightDropdown(application, "Hide Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
 			
 			
-//		//Hide Router Tool IPv6 Commands(Cisco)	
+//		//Hide Router Tool IPv6 Commands(Cisco)
+			selectAndRemoveValueFromRightDropdown(application, "Hide Router Tool IPv6 Commands(Cisco)", "hidenRouterIPv6_cisco", routerToolIPv6ToBeSelectedList, "hideRouterToolIPv6_Cisco_removeButton");
 //			selectAndAddValueFromLeftDropdown(application, "Hide Router Tool IPv6 Commands(Cisco)" , "HideRouterToolIPv6_Cisco_Available" , selectValue, xpathForAddButton);
 //			verifySelectedValuesInsideRightDropdown(application, "Hide Router Tool IPv6 Commands(Cisco)" , xpath);
 			
@@ -350,13 +350,13 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 			if(password.isEmpty()) {
 				
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying under'Generate password link");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Password Field is empty. No values displaying under'Generate password link");
 				
 				click_commonMethod(application, "Generate Password", "GeneratePasswordLink", xml);   //Generate Password Link
 				
 			}else {
 				Log.info("Automatically generated Password value is : "+ password);
-				DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+password);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Password generated and the value is displaying as :  "+password);
 			}
 
 			WebElement Email=getwebelement(xml.getlocator("//locators/"+application+"/EmailLabelname"));
@@ -413,7 +413,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		Log.info("user name is: "+username);
 		WebElement Username=getwebelement(xml.getlocator("//locators/"+application+"/selectUser").replace("value", username));
 		Clickon(Username);
-		DriverTestcase.logger.log(LogStatus.PASS, Username +" is selected");
+		ExtentTestManager.getTest().log(LogStatus.PASS, Username +" is selected");
 		Thread.sleep(1000);
 		
 		click_commonMethod(application, "User_Action", "Users_Action" , xml);
@@ -437,7 +437,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				
 				WebElement username=getwebelement(xml.getlocator("//locators/"+application+"/selectUser").replace("value", UserName));
 				Clickon(username);
-				DriverTestcase.logger.log(LogStatus.PASS, UserName +" is selected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, UserName +" is selected");
 				Thread.sleep(1000);
 				
 				click_commonMethod(application, "User_Action", "Users_Action" , xml);
@@ -483,7 +483,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 			for(WebElement listofHiddenCiscoValues : HRcisco) {
 				Log.info("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
-				DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
+				ExtentTestManager.getTest().log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
 			}
 	
 	scrolltoend();
@@ -494,7 +494,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 			for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
 				Log.info("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
-				DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
+				ExtentTestManager.getTest().log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
 			}	
 			
 		
@@ -503,7 +503,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 			for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
 				Log.info("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
-				DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
+				ExtentTestManager.getTest().log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
 			}			
 			
 		
@@ -525,7 +525,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			Log.info("user name is: "+username);
 			WebElement Username=getwebelement(xml.getlocator("//locators/"+application+"/selectUser").replace("value", username));
 			Clickon(Username);
-			DriverTestcase.logger.log(LogStatus.PASS, Username +" is selected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, Username +" is selected");
 			Thread.sleep(1000);
 			
 			click_commonMethod(application, "User_Action", "Users_Action" , xml);
@@ -556,18 +556,18 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 //			alertpopup=getwebelement(xml.getlocator("//locators/" + application + "/alertPopupForviewLink_underOrderpanel")).isDisplayed();
 //			if(alertpopup) {
 //				
-//				DriverTestcase.logger.log(LogStatus.PASS, "Alert popup displays as expected, when we click on 'delete' link ");
+//				ExtentTestManager.getTest().log(LogStatus.PASS, "Alert popup displays as expected, when we click on 'delete' link ");
 //				String alertmsg=getwebelement(xml.getlocator("//locators/" + application + "/alertmsgForviewlink_underOrderPanel")).getText();
 //				
 //				Log.info("Alert popup message displays as: "+alertmsg);
-//				DriverTestcase.logger.log(LogStatus.PASS, "Alert popup message displays as: "+alertmsg);
+//				ExtentTestManager.getTest().log(LogStatus.PASS, "Alert popup message displays as: "+alertmsg);
 //				
 //				click_commonMethod(application, "Delete", "viweServicepage_deleteButton", xml);
 //				Thread.sleep(2000);
 //				
 //			}else {
 //				Log.info("Alert popup did not display");
-//				DriverTestcase.logger.log(LogStatus.FAIL, "Alert popup is not displaying, when we click on 'delete' link ");
+//				ExtentTestManager.getTest().log(LogStatus.FAIL, "Alert popup is not displaying, when we click on 'delete' link ");
 //			}
 		   
 		   
@@ -576,10 +576,10 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		     // Capturing alert message.    
 		       String alertMessage= driver.switchTo().alert().getText();
 		       if(alertMessage.isEmpty()) {
-		    	   DriverTestcase.logger.log(LogStatus.FAIL, "No mEssage displays");
+		    	   ExtentTestManager.getTest().log(LogStatus.FAIL, "No mEssage displays");
 			       Log.info("No Message displays"); 
 		       }else {
-		    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+		    	   ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
 			       Log.info("text message for alert displays as: "+alertMessage);
 		       }
 		     
@@ -603,13 +603,13 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		successMsg=getwebelement(xml.getlocator("//locators/" + application + "/service_deleteSuccessMessage")).isDisplayed();
 		if(successMsg) {
 			
-			DriverTestcase.logger.log(LogStatus.PASS, "After deleting,  Success Message displays as expected ");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "After deleting,  Success Message displays as expected ");
 			Log.info("After deleting,  Success Message displays as expected ");
 			
 			successScreenshot(application);
 		}else {
 			
-			DriverTestcase.logger.log(LogStatus.PASS, "After deleting,  Success Message is not displaying ");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "After deleting,  Success Message is not displaying ");
 			Log.info("After deleting,  Success Message is not displaying");
 		}
 		
@@ -630,10 +630,10 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 	     // Capturing alert message.    
 	       String alertMessage= driver.switchTo().alert().getText();
 	       if(alertMessage.isEmpty()) {
-	    	   DriverTestcase.logger.log(LogStatus.FAIL, "No mEssage displays");
+	    	   ExtentTestManager.getTest().log(LogStatus.FAIL, "No mEssage displays");
 		       Log.info("No Message displays"); 
 	       }else {
-	    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+	    	   ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
 		       Log.info("text message for alert displays as: "+alertMessage);
 	       }
 	     
@@ -666,19 +666,19 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 					
 					if(expected.contains(alrtmsg)) {
 						
-						DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+						ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 						Log.info("Message is verified. It is displaying as: "+alrtmsg);
 						
 						successScreenshot(application);
 						
 					}else {
 						
-						DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 						Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
 					}
 					
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
 					Log.info(" Success Message is not displaying");
 				}
 				
@@ -686,7 +686,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				
 			}catch(Exception e) {
 				Log.info("failure in fetching success message - 'Service created Successfully'  ");
-				DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 				Log.info(expected+ " message is not getting dislpayed");
 				Thread.sleep(2000);
 			}
@@ -767,28 +767,28 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 		//Name	
 			if(Name.equalsIgnoreCase("null")) {
-				DriverTestcase.logger.log(LogStatus.PASS, "Customer Name is not edited");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Customer Name is not edited");
 			}else {
 				compareText_InViewPage(application, "Legal Customer Name", Name, xml);
 			}
 			
 		//Main Domain	
 			if(MainDomain.equalsIgnoreCase("null")) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Main Domain' field is not edited");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Main Domain' field is not edited");
 			}else {
 				compareText_InViewPage(application, "Main Domain", MainDomain, xml);
 			}	
 			
 		//Country	
 			if(CountryToBeSelected.equalsIgnoreCase("null")) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Country' field is not edited");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Country' field is not edited");
 			}else {
 				compareText_InViewPage(application, "Country" , CountryToBeSelected, xml);
 			}
 			
 		//Type
 			if(TypeToBeSelected.equalsIgnoreCase("null")) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Type' field is not edited");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Type' field is not edited");
 			}else {
 				compareText_InViewPage(application, "Type" , TypeToBeSelected, xml);
 			}
@@ -796,7 +796,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 		//OCN	
 			if(OCN.equalsIgnoreCase("null")) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'OCN' field is not edited");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'OCN' field is not edited");
 			}else {
 				compareText_InViewPage(application, "OCN" , OCN , xml);
 			}
@@ -804,7 +804,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 		//Reference	
 			if(Reference.equalsIgnoreCase("null")) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Reference' field is not edited");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Reference' field is not edited");
 			}else {
 				compareText_InViewPage(application, "Reference" , Reference, xml);
 			}
@@ -812,7 +812,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 		//Technical Contact Name	
 			if(TechnicalContactName.equalsIgnoreCase("null")) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Technical Contact Name' field is not edited");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Technical Contact Name' field is not edited");
 			}else {
 				compareText_InViewPage(application, "Technical Contact Name" , TechnicalContactName, xml);
 			}	
@@ -820,21 +820,21 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 		//Email	
 			if (Email.equalsIgnoreCase("null")) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Email' field is not edited");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Email' field is not edited");
 			} else {
 				compareText_InViewPage(application, "Email" , Email, xml);
 			}
 				
 			// Phone
 				if (Phone.equalsIgnoreCase("null")) {
-					DriverTestcase.logger.log(LogStatus.PASS, "'Phone' field is not edited");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "'Phone' field is not edited");
 				} else {
 					compareText_InViewPage(application, "Phone" , Phone, xml);
 				}
 		
 			//OCN
 				if (Fax.equalsIgnoreCase("null")) {
-					DriverTestcase.logger.log(LogStatus.PASS, "'Fax' field is not edited");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "'Fax' field is not edited");
 				} else {
 					compareText_InViewPage(application, "Fax" , Fax, xml);
 				}
@@ -858,7 +858,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				            ls.add(a.getText());
 				    }
 			
-				    DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
+				    ExtentTestManager.getTest().log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
 		            Log.info("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
 		            
 		      //select value inside the dropdown     
@@ -870,7 +870,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
                         if(selectValue[i].equals(ls.get(j)))
                         {
                         	  elements.get(j).click();
-                        	  DriverTestcase.logger.log(LogStatus.PASS, elements.get(j) + " got selected" );
+                        	  ExtentTestManager.getTest().log(LogStatus.PASS, elements.get(j) + " got selected" );
                               Thread.sleep(1000);
                               click_commonMethod(application, "Add", xpathForAddButton , xml);
                               Thread.sleep(5000);
@@ -879,13 +879,13 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
                   }
                   
               }else {
-            	  DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
+            	  ExtentTestManager.getTest().log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
             	  
             	  Log.info("No values displaying under " + labelname + " available dropdown");
               }
             }catch(Exception e) {
                   e.printStackTrace();
-                  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
+                  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
                   Log.info( "No values displaying under "+labelname + " available dropdown");
             }
 		}
@@ -909,7 +909,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				            ls.add(a.getText());
 				    }
 			
-				    DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
+				    ExtentTestManager.getTest().log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
 		            Log.info("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
 		            
 		      //select value inside the dropdown     
@@ -921,24 +921,24 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
                         if(selectValue[i].equals(ls.get(j)))
                         {
                         	  elements.get(j).click();
-                        	  DriverTestcase.logger.log(LogStatus.PASS, elements.get(j) + " got selected" );
+                        	  ExtentTestManager.getTest().log(LogStatus.PASS, elements.get(j) + " got selected" );
                               Thread.sleep(1000);
                               WebElement removeButton=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathForRemoveButton +"").replace("value", "<<"));
                               Clickon(removeButton);
-                              DriverTestcase.logger.log(LogStatus.PASS, "clicked on remove '<<' button");
+                              ExtentTestManager.getTest().log(LogStatus.PASS, "clicked on remove '<<' button");
                               Thread.sleep(3000);
                         }
                      }
                   }
                   
               }else {
-            	  DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
+            	  ExtentTestManager.getTest().log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
             	  
             	  Log.info("No values displaying under " + labelname + " available dropdown");
               }
             }catch(Exception e) {
                   e.printStackTrace();
-                  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
+                  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
                   Log.info( "No values displaying under "+labelname + " available dropdown");
             }
 		}
@@ -964,16 +964,16 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				            ls.add(a.getText());
 				    }
 			
-				    DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
+				    ExtentTestManager.getTest().log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
 		            Log.info("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
              }else {
-           	  DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
+           	  ExtentTestManager.getTest().log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
            	  
            	  Log.info("No values displaying under " + labelname + " available dropdown");
              }
            }catch(Exception e) {
                  e.printStackTrace();
-                 DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
+                 ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
                  Log.info( "No values displaying under "+labelname + " available dropdown");
            }
 	}
@@ -1002,12 +1002,12 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 
 			if(element==null)
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, labelname+" not found");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname+" not found");
 				Log.info(labelname+" not found");
 			}
 			
 			else if(emptyele!=null && emptyele.isEmpty()) {
-//				DriverTestcase.logger.log(LogStatus.PASS,  labelname + "' value is empty");
+//				ExtentTestManager.getTest().log(LogStatus.PASS,  labelname + "' value is empty");
 				
 				emptyele= "Null";
 				
@@ -1015,11 +1015,11 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				
 				if(emptyele.equalsIgnoreCase(ExpectedText)) {
 					
-					DriverTestcase.logger.log(LogStatus.PASS, " The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					ExtentTestManager.getTest().log(LogStatus.PASS, " The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 					Log.info(" The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
 					
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+					ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 					Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 				}
 				
@@ -1028,23 +1028,23 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			{   
 				text = element.getText();
 				if(text.equals(ExpectedText)) {
-					DriverTestcase.logger.log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 					Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 				}
 				else if(text.contains(ExpectedText)) {
-					DriverTestcase.logger.log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 					Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 				
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+					ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 					Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 				}
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
 			Log.info(labelname + " field is not displaying");
 		}
 
@@ -1066,7 +1066,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		click_commonMethod(application, "Order_Service_Action", "Orders_Services_Action", xml);
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddOrder_Link")));
-		DriverTestcase.logger.log(LogStatus.PASS, "Clicked on 'Add Order' link under Order/Services pannel");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on 'Add Order' link under Order/Services pannel");
 		Log.info(" === Clicked on 'Add Order' link under Orders/Services pannel ===");
 		Thread.sleep(2000);
 
@@ -1080,7 +1080,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		} else {
 
 			Log.info("Existing order is not selected");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step: Existing order is not selected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Existing order is not selected");
 			Log.info("=== Existing order is not selected ===");
 		}
 	}
@@ -1095,7 +1095,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/selectorderswitch")));
 			Thread.sleep(2000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked to 'Select Order Switch' toggle button for creating 'new order'");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked to 'Select Order Switch' toggle button for creating 'new order'");
 			Log.info("=== Clicked to create new order ===");
 
 			addtextFields_commonMethod(application, "Order/Contract Number(Parent SID)", "newordertextfield", neworderno, xml);
@@ -1106,7 +1106,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 
 		} else {
 			Log.info("New order not selected");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step: New order is not selected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: New order is not selected");
 			Log.info("New order is not selected");
 		}
 	}
@@ -1171,7 +1171,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			String displayedServiceTypevalue = getwebelement(
 					xml.getlocator("//locators/" + application + "/servicetypevalue")).getText();
 			Log.info("Displayed service type is : " + displayedServiceTypevalue);
-			DriverTestcase.logger.log(LogStatus.PASS,
+			ExtentTestManager.getTest().log(LogStatus.PASS,
 					"Step : Displayed service type is : " + displayedServiceTypevalue);
 			Log.info("Displayed service type is : " + displayedServiceTypevalue);
 			
@@ -1180,7 +1180,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			String displayednetworkconfiguration = getwebelement(
 					xml.getlocator("//locators/" + application + "/networkconfigurationvalue")).getText();
 			Log.info("Displayed network configuration is : " + displayednetworkconfiguration);
-			DriverTestcase.logger.log(LogStatus.PASS,
+			ExtentTestManager.getTest().log(LogStatus.PASS,
 					"Step : Displayed network configuration is : " + displayednetworkconfiguration);
 			Log.info("Displayed network configuration is : " + displayednetworkconfiguration);
 
@@ -1234,7 +1234,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		   addtextFields_commonMethod(application, "Trap Target Address", "traptargetAddress", Traptargetadress, xml);
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.PASS, " 'Trap target Address' text field is not available as 'SNMP notification' is not selected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, " 'Trap target Address' text field is not available as 'SNMP notification' is not selected");
 			Thread.sleep(5000);
 		}
 
@@ -1256,12 +1256,12 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			Thread.sleep(3000);
 
 			Log.info(elementname + "is displayed" + "and" + "selected in Management Options");
-			DriverTestcase.logger.log(LogStatus.PASS,
+			ExtentTestManager.getTest().log(LogStatus.PASS,
 					"Step :" + elementname + "is displayed" + "and" + "selected in Management Options");
 		} else {
 			elementname = ele.getAttribute("name");
 			Log.info(elementname + " not selected in Management Options");
-			DriverTestcase.logger.log(LogStatus.INFO,
+			ExtentTestManager.getTest().log(LogStatus.INFO,
 					"Step :" + elementname + " not selected in Management Options");
 		}
 
@@ -1295,7 +1295,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 	public void clickOnSearchCustomerLink(String application) throws InterruptedException, DocumentException {
 		
 		Moveon(getwebelement(xml.getlocator("//locators/"+application+"/ManageCustomerServiceLink")));
-		DriverTestcase.logger.log(LogStatus.PASS, "Mouse hovered on 'MANAGE CUSTOMER'S SERVICE'");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Mouse hovered on 'MANAGE CUSTOMER'S SERVICE'");
 		Log.info("Mouse hovered on 'MANAGE CUSTOMER'S SERVICE'");
 		Thread.sleep(1000);
 		
@@ -1319,7 +1319,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		//select the Customer		
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/SearchResultRowsRadioButton")));
 			Thread.sleep(2000);
-			DriverTestcase.logger.log(LogStatus.PASS, SearchName + " is selected under 'Search Customer Result");
+			ExtentTestManager.getTest().log(LogStatus.PASS, SearchName + " is selected under 'Search Customer Result");
 			Log.info(SearchName + " is selected under 'Search Customer Result");
 			
 			
@@ -1334,18 +1334,18 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		//Select an order to perform Supply
 			WebElement valueUnderOrderPanel=getwebelement(xml.getlocator("//locators/" + application + "/selectRowUnderOrderPanel").replace("value", OrderNumber));
 			safeJavaScriptClick(valueUnderOrderPanel);
-			DriverTestcase.logger.log(LogStatus.PASS, "selected the Order_"+OrderNumber);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "selected the Order_"+OrderNumber);
 			Log.info("=== Clicked on Radio Button in Order/Service Panel ===");
 			
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Order_Service_Action")));
 			Thread.sleep(1000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Action link under Order Service panel " );
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Action link under Order Service panel " );
 			Log.info("=== Clicked on Action link under Order Service pannel ===");
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Supply_Link")));
 			Thread.sleep(1000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Clicked on Supply Link");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Clicked on Supply Link");
 			Log.info("=== Clicked on Supply Link ===");	
 			
 		//Supply _Name Field	
@@ -1357,7 +1357,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		//Select Choose a customer dropdown
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/SupplyServicetoCustomer_ChooseACustomer")));
 			Thread.sleep(2000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on 'Choose a customer' dropdown");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on 'Choose a customer' dropdown");
 			Log.info("Clicked on 'Choose a customer' dropdown");
 			SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/SupplyServicetoCustomer_ChooseACustomer")),
 					SupplyServiceToCustomerName);
@@ -1375,7 +1375,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 //				Thread.sleep(2000);
 //				ChooseACustomer.click();
 //				Thread.sleep(4000);
-				DriverTestcase.logger.log(LogStatus.PASS, SupplyServiceToCustomerName + " is selected under 'Choose A Customer' dropdown");
+				ExtentTestManager.getTest().log(LogStatus.PASS, SupplyServiceToCustomerName + " is selected under 'Choose A Customer' dropdown");
 				Log.info("Selected Choose A Customer  is  : " + SupplyServiceToCustomerName);
 				
 			}else {
@@ -1385,13 +1385,13 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			//select value under 'Choose A Customer' dropdown	
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/SupplyServicetoCustomer_ChooseACustomer")));
 				Thread.sleep(2000);
-				DriverTestcase.logger.log(LogStatus.PASS, "Clicked on 'Choose A Customer' dropdown");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on 'Choose A Customer' dropdown");
 				
 				Clickon(getwebelement("//div[div[@class='modal-body']]//div[text()='×']"));
 				Thread.sleep(2000);
 				
 				Clickon(getwebelement("//div[text()='" + SupplyServiceToCustomerName + "']"));
-				DriverTestcase.logger.log(LogStatus.PASS, SupplyServiceToCustomerName + " is selected under 'Chooose A Customer' dropdown");
+				ExtentTestManager.getTest().log(LogStatus.PASS, SupplyServiceToCustomerName + " is selected under 'Chooose A Customer' dropdown");
 				Thread.sleep(3000);
 				
 			}
@@ -1399,7 +1399,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		}catch(Exception e) {
 			e.printStackTrace();
 			
-			DriverTestcase.logger.log(LogStatus.PASS, SupplyServiceToCustomerName + " value is not displaying under 'Chooose A Customer' dropdown");
+			ExtentTestManager.getTest().log(LogStatus.PASS, SupplyServiceToCustomerName + " value is not displaying under 'Chooose A Customer' dropdown");
 			Log.info(SupplyServiceToCustomerName + " value is not displaying under 'Chooose A Customer' dropdown");
 //			//clearing the name text field value and entering value again	
 //			edittextFields_commonMethod(application, "Name", "SupplyServicetoCustomer_Name", SupplyServiceToCustomerName, xml);
@@ -1426,12 +1426,12 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		catch (NullPointerException e) {
 		e.printStackTrace();
 		Log.info("Expected Value is not displayed in Search Customer Result Grid ");
-		DriverTestcase.logger.log(LogStatus.FAIL, " Expected Value is not displayed in Search Customer Result Grid :  " + e);
+		ExtentTestManager.getTest().log(LogStatus.FAIL, " Expected Value is not displayed in Search Customer Result Grid :  " + e);
 	}
 		catch (NoSuchElementException e) {
 		e.printStackTrace();
 		Log.info("Expected Value is not displayed in Search Customer Result Grid");
-		DriverTestcase.logger.log(LogStatus.FAIL, "Expected Value is not displayed in Search Customer Result Grid :  " + e);
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "Expected Value is not displayed in Search Customer Result Grid :  " + e);
 	
 		}
 		sa.assertAll();
@@ -1453,7 +1453,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				if(suppliesPanel) {
 					
 					Log.info("Supplies table is displaying as expected");
-					DriverTestcase.logger.log(LogStatus.INFO, "'Supplies' panel is displaying. Verifying values under 'Supplies' panel");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "'Supplies' panel is displaying. Verifying values under 'Supplies' panel");
 					
 					
 					//Customer Name
@@ -1475,14 +1475,14 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 						compareText(application, "Sync Status", "suppliesPanel_syncStatus", SyncStatus, xml);
 					
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, "Supplies table is not displaying");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Supplies table is not displaying");
 					Log.info("Supplies table is not displaying");
 				}
 				
 				
 			}catch(Exception rr) {
 				rr.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, "Supplies table is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Supplies table is not displaying");
 				Log.info("Supplies table is not displaying");
 			}
 		}	
@@ -1503,7 +1503,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/SearchResultRowsRadioButton")));
 			Thread.sleep(2000);
-			DriverTestcase.logger.log(LogStatus.PASS, SearchSubscribedCustomer + " is selected under 'Search Customer Result");
+			ExtentTestManager.getTest().log(LogStatus.PASS, SearchSubscribedCustomer + " is selected under 'Search Customer Result");
 			Log.info(SearchSubscribedCustomer + " is selected under 'Search Customer Result");
 			
 			
@@ -1532,7 +1532,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 			if(subscriberTable) {
 				Log.info("'Subscriber' Table is displaying as expected");
-				DriverTestcase.logger.log(LogStatus.INFO, "'Subscribes' Panel is displaying. verifying  value under 'Subscribes' table");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "'Subscribes' Panel is displaying. verifying  value under 'Subscribes' table");
 				
 				
 				//Customer column
@@ -1568,25 +1568,25 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				viewServicePage=getwebelement(xml.getlocator("//locators/"+application+"/viewServicePage_customerDetailsPanel")).isDisplayed();
 				if(viewServicePage) {
 					Log.info("got navigated to view Service page as expected");
-					DriverTestcase.logger.log(LogStatus.PASS, "Under 'Subscribe' panel after selecting the customer,if we click on 'view' link it gets navigated to 'view Service' page");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Under 'Subscribe' panel after selecting the customer,if we click on 'view' link it gets navigated to 'view Service' page");
 				}else {
 					Log.info("not getting navigated to 'view Service' page");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Under 'Subscribe' panel after selecting the customer,if we click on 'view' link it is not getting navigated to 'view Serice' page");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Under 'Subscribe' panel after selecting the customer,if we click on 'view' link it is not getting navigated to 'view Serice' page");
 				}
 			}catch(Exception er) {
 				er.printStackTrace();
 				Log.info("not getting navigated to 'view Service' page");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Under 'Subscribe' panel after selecting the customer,if we click on 'view' link it is not getting navigated to 'view Serice' page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Under 'Subscribe' panel after selecting the customer,if we click on 'view' link it is not getting navigated to 'view Serice' page");
 
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, " 'Subscribes' Table is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Subscribes' Table is not displaying");
 				Log.info(" 'Subscribes' Table is not displaying");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, " 'Subscribes' Table is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Subscribes' Table is not displaying");
 			Log.info(" 'Subscriber' Table is not displaying");
 		}
 			
@@ -1641,7 +1641,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 								if (resultflag) {
 									Log.info(results.get(i).getText());
 									results.get(i).click();
-									DriverTestcase.logger.log(LogStatus.PASS, customerName + " is selected under 'Subscribes' panel ");
+									ExtentTestManager.getTest().log(LogStatus.PASS, customerName + " is selected under 'Subscribes' panel ");
 									Thread.sleep(8000);
 									Clickon(getwebelement(xml.getlocator("//locators/"+application+"/subscribePanel_ActionDropdown")));
 									Thread.sleep(2000);
@@ -1662,7 +1662,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				}else {
 					Log.info("No values available in table");
 					Log.info("No values available inside the 'Subscribes' table");
-					DriverTestcase.logger.log(LogStatus.FAIL, "No value available inside 'Subscribes' panel");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "No value available inside 'Subscribes' panel");
 				}
 			}
 
@@ -1681,7 +1681,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 						
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/SearchResultRowsRadioButton")));
 			Thread.sleep(2000);
-			DriverTestcase.logger.log(LogStatus.PASS, SearchName + " is selected under 'Search Customer Result");
+			ExtentTestManager.getTest().log(LogStatus.PASS, SearchName + " is selected under 'Search Customer Result");
 			Log.info(SearchName + " is selected under 'Search Customer Result");
 
 			click_commonMethod(application, "Action", "SearchCustomerResult_Actionmenu", xml); // click on Action dropdown
@@ -1697,7 +1697,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			WebElement selectValueUnderSupliesTable=getwebelement(xml.getlocator("//locators/" + application + "/selectRowUnderSupplyPanel").replace("value", SupplyServiceToCustomerName));
 			Clickon(selectValueUnderSupliesTable);
 			Thread.sleep(1000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Selected "+ SupplyServiceToCustomerName + " value under 'Supplies' table");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected "+ SupplyServiceToCustomerName + " value under 'Supplies' table");
 			Log.info("Selected "+ SupplyServiceToCustomerName + " value under 'Supplies' table");
 				
 			click_commonMethod(application, "Action", "suppliesTable_ActionDropdown", xml);
@@ -1722,23 +1722,23 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				alertpopup=getwebelement(xml.getlocator("//locators/" + application + "/alertPopupForviewLink_underOrderpanel")).isDisplayed();
 				if(alertpopup) {
 					
-					DriverTestcase.logger.log(LogStatus.PASS, "Alert popup displays as expected, when we click on 'view' without selecting any Order ");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Alert popup displays as expected, when we click on 'view' without selecting any Order ");
 					String alertmsg=getwebelement(xml.getlocator("//locators/" + application + "/alertmsgForviewlink_underOrderPanel")).getText();
 					
 					Log.info("Alert popup message displays as: "+alertmsg);
-					DriverTestcase.logger.log(LogStatus.PASS, "Alert popup message displays as: "+alertmsg);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Alert popup message displays as: "+alertmsg);
 					
 					click_commonMethod(application, "x", "xbuttonForviewlink_underOrderPanel", xml);
 					Thread.sleep(2000);
 					
 				}else {
 					Log.info("Alert popup did not display");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Alert popup is not displaying, when we click on 'view' without selecting any Order ");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Alert popup is not displaying, when we click on 'view' without selecting any Order ");
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
 				Log.info("Alert popup did not display");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Alert popup is not displaying, when we click on 'view' without selecting any Order ");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Alert popup is not displaying, when we click on 'view' without selecting any Order ");
 			}
 				
 				
@@ -1747,7 +1747,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			WebElement selectValueUnderOrderTable=getwebelement(xml.getlocator("//locators/" + application + "/selectRowUnderOrderPanel").replace("value", OrderNumber));
 			Clickon(selectValueUnderOrderTable);
 			Thread.sleep(1000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Selected "+ OrderNumber + " value under 'Order' table");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Selected "+ OrderNumber + " value under 'Order' table");
 			Log.info("Selected "+ OrderNumber + " value under 'Order' table");
 				
 			click_commonMethod(application, "Action", "Order_Service_Action", xml);
@@ -1768,7 +1768,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		WebElement selectValueUnderOrderTable=getwebelement(xml.getlocator("//locators/" + application + "/selectRowUnderOrderPanel").replace("value", OrderNumber));
 		Clickon(selectValueUnderOrderTable);
 		Thread.sleep(1000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Selected "+ OrderNumber + " value under 'Order' table");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Selected "+ OrderNumber + " value under 'Order' table");
 		Log.info("Selected "+ OrderNumber + " value under 'Order' table");
 			
 		click_commonMethod(application, "Action", "Order_Service_Action", xml);

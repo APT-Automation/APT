@@ -76,19 +76,19 @@ public class ManagePostcode_Helper extends DriverHelper{
 			Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageColtNetworkLink")));
 			Thread.sleep(3000);
 			Log.info("Mouse hovered on Manage Colt Network ");
-			DriverTestcase.logger.log(LogStatus.PASS, "Mouse hovered on Manage Colt Network");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Mouse hovered on Manage Colt Network");
 			
 			Thread.sleep(2000);
 			boolean isDisplayed = getwebelement(xml.getlocator("//locators/" + application + "/ManagePostcode")).isDisplayed();
 			sa.assertTrue(isDisplayed,"Manage Postcode is not displayed ");
 			Log.info("Manage Postcode link verified");
-			DriverTestcase.logger.log(LogStatus.PASS, "Manage Postcode link verified");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Manage Postcode link verified");
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ManagePostcode")));
 			Thread.sleep(2000);
 			Log.info("=== Clicked on Manage post code link ===");
 			Log.info("Manage Postcode link clicked");
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Manage Postcode link");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Manage Postcode link");
 
 
 			Log.info("=== Manage Postcode for IMS platform Navigated ===");
@@ -99,8 +99,8 @@ public class ManagePostcode_Helper extends DriverHelper{
 		
 		String[] CountryList= {"Belgium","Denmark","France","Germany","Portugal","Spain","Sweden","Switzerland"};
 		Log.info("CountryLists");
-		DriverTestcase.logger.log(LogStatus.INFO, "Verifying list of countries");
-		DriverTestcase.logger.log(LogStatus.PASS, "Country names displaying are: ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying list of countries");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Country names displaying are: ");
 		
 		//Verifying list of Countries
 		//try {
@@ -116,7 +116,7 @@ public class ManagePostcode_Helper extends DriverHelper{
 				{
 					match = true;
 					Log.info("Country name : " + Country.getText());
-					DriverTestcase.logger.log(LogStatus.PASS, Country.getText());
+					ExtentTestManager.getTest().log(LogStatus.PASS, Country.getText());
 				}
 								
 			}
@@ -128,21 +128,21 @@ public class ManagePostcode_Helper extends DriverHelper{
 //		catch(Exception e)
 //		{
 //			Log.info("Country lists got mismatched");
-//			DriverTestcase.logger.log(LogStatus.FAIL, "Country lists are mismatching");
+//			ExtentTestManager.getTest().log(LogStatus.FAIL, "Country lists are mismatching");
 //		}
 		
 //		}
 	
 	public void verifyManagePostcodeinternal (String application, String Countrylist) throws InterruptedException, DocumentException
 	{
-		DriverTestcase.logger.log(LogStatus.INFO, "Verifying fields under 'Manage Postcode' page");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying fields under 'Manage Postcode' page");
 		if (Countrylist.equals("Belgium"))
 		{
 		Thread.sleep(5000);
 		Clickon(getwebelement(
 				xml.getlocator("//locators/" + application + "/BelMngPostcode")));
 		Log.info("Clicked on Belgium Manage Postcode");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on Belgium Manage Postcode");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Clicked on Belgium Manage Postcode");
 		
 		
 		compareText(application, "You can use * as wildcard","WildcardText","You can use * as wildcard", xml);
@@ -191,7 +191,7 @@ public class ManagePostcode_Helper extends DriverHelper{
 			Clickon(getwebelement(
 					xml.getlocator("//locators/" + application + "/DenMngPostcode")));
 			Log.info("Clicked on Denmark Manage Postcode");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on Denmark Manage Postcode");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Clicked on Denmark Manage Postcode");
 			Log.info("Clicked on Denmark Manage Postcode");
 
 			Thread.sleep(5000);
@@ -241,7 +241,7 @@ public class ManagePostcode_Helper extends DriverHelper{
 					xml.getlocator("//locators/" + application + "/FraMngPostcode")));
 			Log.info("Clicked on France Manage Postcode");
 			Log.info("Clicked on France Manage Postcode");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on France Manage Postcode");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Clicked on France Manage Postcode");
 
 
 			Thread.sleep(5000);
@@ -294,7 +294,7 @@ public class ManagePostcode_Helper extends DriverHelper{
 					xml.getlocator("//locators/" + application + "/GerMngPostcode")));
 			Log.info("Clicked on Germany Manage Postcode");
 			
-			DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on Germany Manage Postcode");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Clicked on Germany Manage Postcode");
 			Log.info("Clicked on France Manage Postcode");
 
 			Thread.sleep(5000);    
@@ -346,7 +346,7 @@ public class ManagePostcode_Helper extends DriverHelper{
 			Clickon(getwebelement(
 					xml.getlocator("//locators/" + application + "/PorMngPostcode")));
 			Log.info("Clicked on Portugal Manage Postcode");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on Portugal Manage Postcode");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Clicked on Portugal Manage Postcode");
 			Log.info("Clicked on Portugal Manage  Postcode");
 
 			Thread.sleep(5000);
@@ -398,7 +398,7 @@ public class ManagePostcode_Helper extends DriverHelper{
 			Clickon(getwebelement(
 					xml.getlocator("//locators/" + application + "/SpaMngPostcode")));
 			Log.info("Clicked on Spain Manage Postcode");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on Spain Manage Postcode");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Clicked on Spain Manage Postcode");
 			Log.info("Clicked on Spain Manage  Postcode");
 
 			Thread.sleep(5000);
@@ -446,7 +446,7 @@ public class ManagePostcode_Helper extends DriverHelper{
 			Clickon(getwebelement(
 					xml.getlocator("//locators/" + application + "/SweMngPostcode")));
 			Log.info("Clicked on Sweden Manage Postcode");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on Sweden Manage Postcode");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Clicked on Sweden Manage Postcode");
 			Log.info("Clicked on Sweden Manage  Postcode");
 			Thread.sleep(5000);
 			
@@ -492,7 +492,7 @@ public class ManagePostcode_Helper extends DriverHelper{
 			Clickon(getwebelement(
 					xml.getlocator("//locators/" + application + "/SwitMngPostcode")));
 			Log.info("Clicked on Switzerland Manage Postcode");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on Switzerland Manage Postcode");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Clicked on Switzerland Manage Postcode");
 			Log.info("Clicked on Switzerland Manage  Postcode");
 			
 			
@@ -554,12 +554,12 @@ String ActualValue,String DummyCodeValue) throws Exception
 	
 	{
 		
-		DriverTestcase.logger.log(LogStatus.INFO, "Verifying Add Postcode");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Add Postcode");
 	
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addpostcode")));
 		Thread.sleep(5000);
 		Log.info("Clicked on Add Postcode");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on Add Postcode");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Clicked on Add Postcode");
 
 		if(Countrylist.equalsIgnoreCase("Belgium"))
 		{
@@ -714,7 +714,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 				 sa.assertTrue(SubArea1D.isDisplayed(),"Sub Area 1D Field is not displayed");
 				Log.info("Sub Area 1D field is displayed");
 				Log.info("SubArea1D field is displayed as:"+SubArea1D.getText());
-				DriverTestcase.logger.log(LogStatus.PASS, "Step:SubArea1D field is displayed as:" +SubArea1D.getText());
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step:SubArea1D field is displayed as:" +SubArea1D.getText());
 						}
 				
 		if(Countrylist.equalsIgnoreCase("Belgium")||(Countrylist.equalsIgnoreCase("Denmark")||(Countrylist.equalsIgnoreCase("France")||
@@ -727,7 +727,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 				sa.assertTrue(SubArea2ID.isDisplayed(),"Sub Area2 ID Field is not displayed");
 				Log.info("Sub Area2 ID field is displayed");
 				Log.info("Sub Area 2 ID field is displayed as:"+SubArea2ID.getText());
-				DriverTestcase.logger.log(LogStatus.PASS, "Step:Sub Area 2 ID field is displayed as:" +SubArea2ID.getText());
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Sub Area 2 ID field is displayed as:" +SubArea2ID.getText());
 						}
 
 		
@@ -740,7 +740,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 			sa.assertTrue(NTServiceAreaPostcode.isDisplayed(),"NT Service Area Postcode Field is not displayed");
 			Log.info("NT Service Area Postcode field is displayed");
 			Log.info("NT Service Area Post code:"+NTServiceAreaPostcode.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, "Step:NT Service Area Postcode field is displayed as:" +NTServiceAreaPostcode.getText());
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step:NT Service Area Postcode field is displayed as:" +NTServiceAreaPostcode.getText());
 
 
 			
@@ -749,7 +749,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 			sa.assertTrue(ToimplemetSwitch.isDisplayed(),"To implement Switch  Field is not displayed");
 			Log.info("To implement Switch field is displayed");
 			Log.info("To implement Switch field is displayed as:"+ToimplemetSwitch.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, "Step:To implement Switch field is displayed as:" +ToimplemetSwitch.getText());
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step:To implement Switch field is displayed as:" +ToimplemetSwitch.getText());
 
 
 			
@@ -758,14 +758,14 @@ String ActualValue,String DummyCodeValue) throws Exception
 			sa.assertTrue(CityTranslatorNmbr.isDisplayed(),"City Translator Nmbr Field is not displayed");
 			Log.info("City Translator Nmbr field is displayed");
 			Log.info("City Translator Nmbr field is displayed as:"+CityTranslatorNmbr.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, "Step:City Translator Nmbr field is displayed as:" +CityTranslatorNmbr.getText());
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step:City Translator Nmbr field is displayed as:" +CityTranslatorNmbr.getText());
 			
 			WebElement EmergencyNmbrKey = getwebelement(
 					xml.getlocator("//locators/" + application + "/EmergencyKeyLabel"));
 			sa.assertTrue(EmergencyNmbrKey.isDisplayed(),"Emergency Nmbr Key Text Field is not displayed");
 			Log.info("Emergency Nmbr Key is displayed");
 			Log.info("Emergency Nmbr Key is displayed");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step:Emergency Nmbr Key is displayed");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Emergency Nmbr Key is displayed");
 	
 					
 			WebElement ActualProvider = getwebelement(
@@ -773,14 +773,14 @@ String ActualValue,String DummyCodeValue) throws Exception
 			sa.assertTrue(ActualProvider.isDisplayed(),"Actual Provider Text Field is not displayed");
 			Log.info("Actual Provider Text Field is displayed");
 			Log.info("Actual Provider Text Field is displayed");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step:Actual Provider Text Field is displayed");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Actual Provider Text Field is displayed");
 
 			WebElement DummyCode_Text = getwebelement(
 					xml.getlocator("//locators/" + application + "/DummyCodeLAbel"));
 			sa.assertTrue(DummyCode_Text.isDisplayed(),"Dummy Code Field is not displayed");
 			Log.info("Dummy Code Field is not displayed");
 			Log.info("Dummy Code field is displayed");
-			DriverTestcase.logger.log(LogStatus.PASS, "Dummy Code field is displayed");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Dummy Code field is displayed");
 
 
 			
@@ -789,7 +789,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 			sa.assertTrue(EmptyTextbox.isDisplayed(),"Empty Text box Field is not displayed");
 			Log.info("Empty Text box Field is displayed");
 			Log.info("Empty Text box field is displayed as:"+EmptyTextbox.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, "Empty Text box field is displayed as:");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Empty Text box field is displayed as:");
 
 
 			
@@ -797,7 +797,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 			 sa.assertTrue(forwardarrow.isDisplayed(),"forward arrow button Field is not displayed");
 			Log.info("forward arrow button Field is  displayed");
 			Log.info("forward arrow field is displayed as >>");
-			DriverTestcase.logger.log(LogStatus.PASS, "forward arrow button field is displayed as: >>");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "forward arrow button field is displayed as: >>");
 
 
 			
@@ -806,7 +806,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 			sa.assertTrue(BackwardArrow.isDisplayed(),"Back ward Arrow is not displayed");
 			Log.info("Back ward Arrow is  displayed");
 			Log.info("Backward Arrow field is displayed as <<");
-			DriverTestcase.logger.log(LogStatus.PASS, "Backward arrow button field is displayed as: <<");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Backward arrow button field is displayed as: <<");
 
 
 			
@@ -815,7 +815,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 			sa.assertTrue(OKbtn.isDisplayed(),"OK btn is not displayed");
 			Log.info("OK btn is displayed");
 			Log.info("OK btn is displayed");
-			DriverTestcase.logger.log(LogStatus.PASS, "OK button is displayed");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "OK button is displayed");
 
 
 			
@@ -824,7 +824,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 			sa.assertTrue(Cancelbtn.isDisplayed(),"Cancel button is not displayed");
 			Log.info("Cancel button is displayed");
 			Log.info("Cancel btn is displayed");
-			DriverTestcase.logger.log(LogStatus.PASS, "Cancel button is displayed");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Cancel button is displayed");
 
 		}		
 
@@ -848,16 +848,16 @@ String ActualValue,String DummyCodeValue) throws Exception
 		//Filling value in Mandatory fields
 				Thread.sleep(5000);
 				
-				DriverTestcase.logger.log(LogStatus.INFO, "Entering Values to create postcode");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Entering Values to create postcode");
 				
 				addtextFields_commonMethod(application, "Emergency Area ID(SUBCOM-ID)", "EmergencyAreaIDSubcom_TextField",EmergencyAreaIDSub,xml);
 				
 				String actualNTserviceAreaValue=getwebelement(xml.getlocator("//locators/" + application + "/NTServiceAreaPostcode_Text")).getAttribute("value");
 				if(expectedNTserviceArea.equals(actualNTserviceAreaValue)) {
-					DriverTestcase.logger.log(LogStatus.PASS, "NT Service Are field value is displaying as "+ actualNTserviceAreaValue +" as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "NT Service Are field value is displaying as "+ actualNTserviceAreaValue +" as expected");
 					Log.info("NT Service Are field value is displaying as "+ actualNTserviceAreaValue +" as expected");
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, "NT Service Are field value is displaying as "+ actualNTserviceAreaValue+". The expected value is: "+ expectedNTserviceArea);
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "NT Service Are field value is displaying as "+ actualNTserviceAreaValue+". The expected value is: "+ expectedNTserviceArea);
 					Log.info("NT Service Are field value is displaying as "+ actualNTserviceAreaValue +" as expected");
 				}
 				
@@ -889,7 +889,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 				Thread.sleep(1000);
 
 				safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/OkbtnPostcode")));
-				DriverTestcase.logger.log(LogStatus.PASS, "Step:Clciked on OK  button");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Clciked on OK  button");
 
 				Thread.sleep(5000);
 				
@@ -897,7 +897,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 				
 				verifysuccessmessage("ManageColt", "Postcode successfully created.");
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, Countrylist + " country is not available");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, Countrylist + " country is not available");
 			assertTrue(false);
 			
 		}
@@ -913,13 +913,13 @@ String ActualValue,String DummyCodeValue) throws Exception
 		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/Searchfield")),expectedNTserviceArea);
 		Log.info("Value Entered in TextField");
 		Log.info("Value Entered in Search TextField");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step:Value Entered in Search TextField" );
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Value Entered in Search TextField" );
 
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Searchbtn")));
 		Log.info("Clicked on Search button");
 		Log.info("Clicked on search button");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on search button" );
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Clicked on search button" );
 		
 		Thread.sleep(2000);
 		
@@ -930,12 +930,12 @@ String ActualValue,String DummyCodeValue) throws Exception
 		 	safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/PostcodeCheckbox").replace("value", EmergencyAreaIDSub)));
 			Log.info("Clicked on checkbox");
 			Log.info("Clicked on checkbox");
-			DriverTestcase.logger.log(LogStatus.PASS, "selected postcode record in Table");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "selected postcode record in Table");
 			Thread.sleep(3000);
 			
 		    safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/PostcodeAction")));
 			Log.info("Clicked on Action Dropdown");
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Action Dropdown");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Action Dropdown");
 			Thread.sleep(2000);
 
 	}
@@ -944,7 +944,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 			String SubProvinValue,String SubAreaValue, String SubAreaComValue,String SubAreaIDValue, String SubAreaBValue,String SubAreaZIpValue, String EmergencySUbValue )throws Exception 
 	{
 		
-		DriverTestcase.logger.log(LogStatus.INFO, "Verifying view Postcode");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying view Postcode");
 		
 	//select the postcode value in table and click on Action dropdown	
 		selectAddedPostCodeInTable(application, Countrylist, EmergencyAreaIDSub);
@@ -953,7 +953,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 		
 		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/PostcodeActionView")));
 		Log.info("Clicked on View");
-		DriverTestcase.logger.log(LogStatus.PASS, "Clicked on View in Action Dropdown" );
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on View in Action Dropdown" );
 		
 		if(Countrylist.equalsIgnoreCase("France"))
 		{
@@ -1169,33 +1169,33 @@ String ActualValue,String DummyCodeValue) throws Exception
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/PostcodeBackbtn")));
 		Log.info("Clicked on back button");
 		Log.info("Clicked on back button");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step:Clicked on back button");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Clicked on back button");
 
 		
 	    Log.info("Navigated to Manage Post code page");
 	    Log.info("Navigated to Manage Post code page");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step:Navigated to Manage Post code page");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step:Navigated to Manage Post code page");
 
 	   		
 		//Delete the Post code
-/*		DriverTestcase.logger.log(LogStatus.PASS, "Step: Deleting Postcode");
+/*		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Deleting Postcode");
 
 		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/PostcodeCheckbox")));
 		Log.info("Clicked on checkbox");
 		Log.info("Clicked on checkbox");
-		DriverTestcase.logger.log(LogStatus.PASS, "Clickedx on Checkbox");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Clickedx on Checkbox");
 
 	    
 		
 		 safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/PostcodeAction")));
 		 Log.info("Clicked on Action Dropdown");
-			DriverTestcase.logger.log(LogStatus.PASS, "Clickedx on Action Dropdown");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clickedx on Action Dropdown");
 
 			
 		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/PostcodeActionDelete")));
 		Log.info("Clicked on Delete option");
 		Log.info("Clicked on Delete Option");
-		DriverTestcase.logger.log(LogStatus.PASS, "Selected Delete option");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Selected Delete option");
 
 		Thread.sleep(5000);
 		
@@ -1204,11 +1204,11 @@ String ActualValue,String DummyCodeValue) throws Exception
 		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/PostcodeDeletebtn")));
 		Log.info("Clicked on Delete button ");
 	    Log.info("Clicked on Delete button");
-		DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Delete button");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Delete button");
 		
 
 
-		DriverTestcase.logger.log(LogStatus.PASS, "Verifying Delete Post code Message");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying Delete Post code Message");
 		
 		Thread.sleep(10000);
 		String ExpPostcodeDeletemsg = "Postcode deleted successfully..";
@@ -1218,10 +1218,10 @@ String ActualValue,String DummyCodeValue) throws Exception
 		if (ActPostcodeDeletemsg.getText().equals(ExpPostcodeDeletemsg))
 		{
 			Log.info("Postcode Delete Message : " + ActPostcodeDeletemsg.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, "Postcode Message :  :" + ActPostcodeDeletemsg.getText());
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Postcode Message :  :" + ActPostcodeDeletemsg.getText());
 			 Log.info("Post code Delete message as:"+ActPostcodeDeletemsg.getText());
-				DriverTestcase.logger.log(LogStatus.PASS, "Post code Delete message as:" +ActPostcodeDeletemsg.getText());
-				DriverTestcase.logger.log(LogStatus.PASS, "Post code Delete message verified");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Post code Delete message as:" +ActPostcodeDeletemsg.getText());
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Post code Delete message verified");
 
 
 		}
@@ -1230,7 +1230,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 			sa.assertTrue(ActPostUpdatecodemsg.isDisplayed(),"Message not displayed");
 			Log.info("Postcode deleted message not displayed");
 			 Log.info("Post code Delete message as:"+ActPostcodeDeletemsg.getText());
-				DriverTestcase.logger.log(LogStatus.PASS, "Post code Delete message verified");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Post code Delete message verified");
 
 
 		}
@@ -1244,13 +1244,13 @@ String ActualValue,String DummyCodeValue) throws Exception
 
 		Thread.sleep(5000);
 		
-		DriverTestcase.logger.log(LogStatus.INFO, "Verifying Add Emergency number");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Add Emergency number");
 
 		Clickon(getwebelement(
 				xml.getlocator("//locators/" + application + "/AddEmergencyNumber")));
 		Log.info("Clicked on Add Emergency Number");
 		 Log.info("Clicked on Add Emergency Number");
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Add Emergency Number");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Add Emergency Number");
 
 			waitForpageload();
 			waitforPagetobeenable();
@@ -1266,7 +1266,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 		
 		
 		 SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/Chosefile")), filepath);
-		 DriverTestcase.logger.log(LogStatus.PASS, "File uploaded");
+		 ExtentTestManager.getTest().log(LogStatus.PASS, "File uploaded");
 
 		 click_commonMethod(application, "OK", "OkbtnPostcode", xml);
 		 
@@ -1295,14 +1295,14 @@ String ActualValue,String DummyCodeValue) throws Exception
 			{
 		
 		
-		DriverTestcase.logger.log(LogStatus.INFO, "Verifying Upload NT Service Area");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Upload NT Service Area");
 
 		Clickon(getwebelement(
 				xml.getlocator("//locators/" + application + "/UploadNt")));
 		Log.info("Clicked on Upload NT Service Area");
 		 Log.info("Clicked on Upload NT Service Area");
 		
-		DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Upload NT Service Area");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Upload NT Service Area");
 		Thread.sleep(2000);
 		
 		waitForpageload();
@@ -1315,12 +1315,12 @@ String ActualValue,String DummyCodeValue) throws Exception
 		compareText("ManageColt", "Cancel", "Cancelbtn", "Cancel", xml);
 		
 		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/ChosefileTrans")), filepath);
-		DriverTestcase.logger.log(LogStatus.PASS, "File uploaded");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "File uploaded");
 		
 		 safeJavaScriptClick(getwebelement(
 					xml.getlocator("//locators/" + application + "/OkbtnPostcode")));
 			 Log.info("Clicked on OK button");
-				DriverTestcase.logger.log(LogStatus.PASS, "Clicked on OK button");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on OK button");
 				
 				
 				String ExpNtservicemsg = "NT Service Area successfully updated.";
@@ -1349,14 +1349,14 @@ String ActualValue,String DummyCodeValue) throws Exception
 	
 	public void verifyDownloadNt(String application)throws Exception
 	{
-		DriverTestcase.logger.log(LogStatus.INFO, "Verifying Download NT Service Area");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Download NT Service Area");
 		
 		safeJavaScriptClick(getwebelement(
 				xml.getlocator("//locators/" + application + "/DownloadNt")));
 
 		Log.info("Download Nt Link is displayed");
 		Log.info("Clicked on Download Nt Service Area link");
-		DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Download Nt Service Area link");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Download Nt Service Area link");
 		
 		isFileDownloaded("C:\\Users\\SKathiresan-ADM\\Downloads", "postcode_cld_63");
 
@@ -1371,13 +1371,13 @@ String ActualValue,String DummyCodeValue) throws Exception
 		waitforPagetobeenable();
 		
 		Thread.sleep(5000);
-		DriverTestcase.logger.log(LogStatus.INFO, "Verifying Upload Update file");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Upload Update file");
 		
 		safeJavaScriptClick(getwebelement(
 				xml.getlocator("//locators/" + application + "/Uploadupdatefile")));
 		Log.info("Clicked on Upload update file");
 		Log.info("Clicked on Upload update file");
-		DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Upload update file");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Upload update file");
 
 		Thread.sleep(2000);
 		
@@ -1389,13 +1389,13 @@ String ActualValue,String DummyCodeValue) throws Exception
 		compareText("ManageColt", "Cancel", "Cancelbtn", "Cancel", xml);
 		
 		 SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/Chosefile")), filepath);
-		 DriverTestcase.logger.log(LogStatus.PASS, "File uploaded");
+		 ExtentTestManager.getTest().log(LogStatus.PASS, "File uploaded");
 		
 		 
 		 safeJavaScriptClick(getwebelement(
 				xml.getlocator("//locators/" + application + "/OkbtnPostcode")));
 		 Log.info("Clicked on OK button");
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on OK button");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on OK button");
 			
 	    	
 	    	waitForpageload();
@@ -1425,14 +1425,14 @@ String ActualValue,String DummyCodeValue) throws Exception
 	     public void verifyViewHistory (String application, String countryName)throws Exception		{
 	    	 
 	 		
-		DriverTestcase.logger.log(LogStatus.INFO, "Verifying View History");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying View History");
 
 		safeJavaScriptClick(getwebelement(
 				xml.getlocator("//locators/" + application + "/ViewHistory")));
 		Log.info("Clicked on View History");
 		Log.info("Clicked on View History");
 		Thread.sleep(2000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Clicked on View History");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on View History");
 
 		waitForpageload();
 		waitforPagetobeenable();
@@ -1441,7 +1441,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 		Log.info("Clicked on View History Record link");
 		Log.info("Navigated to View Updated History Record");
 		Log.info("Clicked on View History Record link");
-		DriverTestcase.logger.log(LogStatus.PASS, "Clicked on View History Record Link");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on View History Record Link");
 
 
 		Thread.sleep(2000);
@@ -1455,6 +1455,10 @@ String ActualValue,String DummyCodeValue) throws Exception
    	    compareText("ManageColt", "User", "UserField", "User", xml);
    	    
    	    compareText("ManageColt", "Updated By", "Updatebyfield", "Updated By", xml);
+   	    
+   	    String viewHistoryTable = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/historyTableValue")));
+   	    
+   	    ExtentTestManager.getTest().log(LogStatus.PASS, "view history table value display as " + viewHistoryTable);
    	    
    	    scrolltoend();
    	    Thread.sleep(2000);
@@ -1485,25 +1489,25 @@ String ActualValue,String DummyCodeValue) throws Exception
 	 				
 	 				if(expected.contains(alrtmsg)) {
 	 					
-	 					DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+	 					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 	 					Log.info("Message is verified. It is displaying as: "+alrtmsg);
 	 					
 	 					successScreenshot(application);
 	 					
 	 				}else if(expected.equals(alrtmsg)){
 	 					
-	 					DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+	 					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 	 					Log.info("Message is verified. It is displaying as: "+alrtmsg);
 	 					
 	 					
 	 				}else {
 	 					
-	 					DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
+	 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 	 					Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
 	 				}
 	 				
 	 			}else {
-	 				DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
+	 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
 	 				Log.info(" Success Message is not displaying");
 	 			}
 	 			
@@ -1511,7 +1515,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 	 			
 	 		}catch(Exception e) {
 	 			Log.info("failure in fetching success message  ");
-	 			DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
+	 			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 	 			Log.info(expected+ " message is not getting dislpayed");
 	 			Thread.sleep(2000);
 	 		}
@@ -1536,25 +1540,25 @@ String ActualValue,String DummyCodeValue) throws Exception
 	 				
 	 				if(expected.contains(alrtmsg)) {
 	 					
-	 					DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+	 					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 	 					Log.info("Message is verified. It is displaying as: "+alrtmsg);
 	 					
 	 					successScreenshot(application);
 	 					
 	 				}else if(expected.equals(alrtmsg)){
 	 					
-	 					DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+	 					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 	 					Log.info("Message is verified. It is displaying as: "+alrtmsg);
 	 					
 	 					
 	 				}else {
 	 					
-	 					DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
+	 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 	 					Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
 	 				}
 	 				
 	 			}else {
-	 				DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
+	 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
 	 				Log.info(" Success Message is not displaying");
 	 			}
 	 			
@@ -1562,7 +1566,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 	 			
 	 		}catch(Exception e) {
 	 			Log.info("failure in fetching success message - 'Service created Successfully'  ");
-	 			DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
+	 			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 	 			Log.info(expected+ " message is not getting dislpayed");
 	 			Thread.sleep(2000);
 	 		}
@@ -1579,7 +1583,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 			    	  
 			    	  String downloadedFileName=dirContents[i].getName();
 			    	  Log.info("Downloaded file name is displaying as: "+ downloadedFileName);
-			    	  DriverTestcase.logger.log(LogStatus.PASS, "Downloaded file name is displaying as: "+ dirContents[i]);
+			    	  ExtentTestManager.getTest().log(LogStatus.PASS, "Downloaded file name is displaying as: "+ dirContents[i]);
 			    	  
 			          return true;
 			      }
@@ -1630,7 +1634,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 		   		    
 			safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/PostcodeActionEdit")));
 		    Log.info("Clicked on Edit button");
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Edit button");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Edit button");
 
 			waitForpageload();
 			waitforPagetobeenable();
@@ -1678,7 +1682,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 		    safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/OkbtnPostcode")));
 			Thread.sleep(5000);
 		    Log.info("Clicked on OK button");
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on OK button");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on OK button");
 
 			verifysuccessmessage(application, "Postcode successfully updated.");
 			
@@ -1687,7 +1691,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 	 	
 	 	public void deletePostcode(String application, String Countrylist, String EmergencyAreaIDSub) throws Exception {
 	 		
-	 		DriverTestcase.logger.log(LogStatus.INFO, "Verifying 'Delete' Functionality");
+	 		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Delete' Functionality");
 	 		
 	 		waitForpageload();
 	 		waitforPagetobeenable();
@@ -1704,7 +1708,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 	        if(DeleteAlertPopup.isDisplayed())
 	        {
 	      	 String deletPopUpMessage= Gettext(getwebelement(xml.getlocator("//locators/" + application + "/deleteMessages_textMessage")));
-	      	 DriverTestcase.logger.log(LogStatus.PASS, "Delete Pop up message displays as: "+ deletPopUpMessage);
+	      	 ExtentTestManager.getTest().log(LogStatus.PASS, "Delete Pop up message displays as: "+ deletPopUpMessage);
 	      	 
 	           click_commonMethod(application, "Delete", "deletebutton", xml);
 	           
@@ -1716,7 +1720,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 	        else
 	        {
 	              Log.info("Delete alert popup is not displayed");
-	              DriverTestcase.logger.log(LogStatus.FAIL, "Delete alert popup is not displayed");
+	              ExtentTestManager.getTest().log(LogStatus.FAIL, "Delete alert popup is not displayed");
 	        }    
 	 		
 	 	}
@@ -1794,8 +1798,8 @@ String ActualValue,String DummyCodeValue) throws Exception
 				pw.flush();
 				pw.close();
 				
-				DriverTestcase.logger.log(LogStatus.PASS, "'Add Emergency Number' file is created");
-				DriverTestcase.logger.log(LogStatus.PASS, "In 'Add Emergency Area' CSV file, test data is added as:  "+ emergencyID + "," + dummycode + "," + actualProviderMapping + "," + emergencyNumberKey);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Add Emergency Number' file is created");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "In 'Add Emergency Area' CSV file, test data is added as:  "+ emergencyID + "," + dummycode + "," + actualProviderMapping + "," + emergencyNumberKey);
 				
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -1824,8 +1828,8 @@ String ActualValue,String DummyCodeValue) throws Exception
 				pw.flush();
 				pw.close();
 				
-				DriverTestcase.logger.log(LogStatus.PASS, "'Upload NT Service Area' file is created");
-				DriverTestcase.logger.log(LogStatus.PASS, "In Upload NT Serice ARea CSV file, Test data is added as: "+ EmergencyAreaIDSub  + "," + expectedNTserviceArea);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Upload NT Service Area' file is created");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "In Upload NT Serice ARea CSV file, Test data is added as: "+ EmergencyAreaIDSub  + "," + expectedNTserviceArea);
 				
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -1833,7 +1837,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 	}
 	
 	
-	public void createFileForUploadupdateFile(String filepath, String column1, String column2) {
+	public void createFileForUploadupdateFile(String filepath, String dummyCode, String providerMapping) {
 		
 		
 	 		String tempFile=filepath;
@@ -1846,15 +1850,15 @@ String ActualValue,String DummyCodeValue) throws Exception
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter pw = new PrintWriter(bw); 
 				
-					pw.println(column1  + "," + column2);
+					pw.println(dummyCode  + "," + providerMapping);
 					
 				pw.flush();
 				pw.close();
 				
-				DriverTestcase.logger.log(LogStatus.PASS, "'Upload Update File' file is created");
-				DriverTestcase.logger.log(LogStatus.PASS, "In 'Upload Update File' CSV file, Test data is added as: "+ column1  + "," + column2);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Upload Update File' file is created");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "In 'Upload Update File' CSV file, Test data is added as: "+ dummyCode  + "," + providerMapping);
 				Log.info("'Upload Update File' file is created");
-				Log.info("In 'Upload Update File' CSV file, Test data is added as: "+ column1  + "," + column2);
+				Log.info("In 'Upload Update File' CSV file, Test data is added as: "+ dummyCode  + "," + providerMapping);
 				
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -1869,10 +1873,10 @@ String ActualValue,String DummyCodeValue) throws Exception
 	 		  
 	 		  if(newfile.delete()) {
 	 				Log.info(fileName + " file is deleted");
-	 				DriverTestcase.logger.log(LogStatus.PASS, fileName + " file is deleted");
+	 				ExtentTestManager.getTest().log(LogStatus.PASS, fileName + " file is deleted");
 	 			}else {
 	 				Log.info(fileName + " file is not deleted");
-	 				DriverTestcase.logger.log(LogStatus.FAIL, fileName + " file is not deleted");
+	 				ExtentTestManager.getTest().log(LogStatus.FAIL, fileName + " file is not deleted");
 	 			}
 	 		  
 	 	}

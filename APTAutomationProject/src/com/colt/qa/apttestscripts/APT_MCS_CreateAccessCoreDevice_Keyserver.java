@@ -7,7 +7,8 @@ import java.util.Map;
 import org.dom4j.DocumentException;
 import org.testng.annotations.Test;
 
-import com.colt.qa.driverlibrary.DataReader_PK;
+import com.colt.qa.excellibrary.DataReader;
+import com.colt.qa.reporter.ExtentTestManager;
 import com.colt.qa.driverlibrary.DriverTestcase;
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -16,7 +17,7 @@ public class APT_MCS_CreateAccessCoreDevice_Keyserver extends DriverTestcase {
 	
 	APT_Login Login=new APT_Login();
 	
-	@Test(description = "TC-01",dataProviderClass = DataReader_PK.class, dataProvider = "DataReader_Keyserver_Device", priority=0)
+	@Test(description = "TC-01",dataProviderClass = DataReader.class, dataProvider = "DataReader_Keyserver_Device", priority=0)
 	public void CreateAccessCoreDevice_keyServer(Map<String, String> map) throws Exception {
 		
 		String devicename=map.get("Name");
@@ -25,12 +26,12 @@ public class APT_MCS_CreateAccessCoreDevice_Keyserver extends DriverTestcase {
 		
 		Login.APT_Login_1(map.get("url"));	
 		
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyNavigationToCreateDevicePage_keyServer");
+		logger= ExtentTestManager.startTest ("verifyNavigationToCreateDevicePage_keyServer");
 			APT_CreateKeyserverDeviceHelper.get().navigatetomanagecoltnetwork("CreateAccessCoreDevice");
 			APT_CreateKeyserverDeviceHelper.get().navigatetocreateaccesscoredevicepage("CreateAccessCoreDevice");
-
+			ExtentTestManager.endTest(); 
 		
-		DriverTestcase.logger = DriverTestcase.extent.startTest("createKeyServerDevice_"+devicename);
+		logger= ExtentTestManager.startTest ("createKeyServerDevice_"+devicename);
 			APT_CreateKeyserverDeviceHelper.get().verifydevicecreation_AccessRouter("CreateAccessCoreDevice", map.get("Name"), map.get("DeviceType"), map.get("VendorModel"),map.get("Modular MSP"), 
 			map.get("Full IQNET"), map.get("IOSXR"), map.get("Telnet"), map.get("SSH"), map.get("Snmp2C"), map.get("SnmPro"), map.get("Snmprw"), 
 			map.get("SnmProNewValue"), map.get("SnmprwNewValue"), map.get("Snmp3"), map.get("Snmpv3Username"),
@@ -39,13 +40,13 @@ public class APT_MCS_CreateAccessCoreDevice_Keyserver extends DriverTestcase {
 			map.get("Country"), map.get("Management Address"), map.get("ExistingCity"), map.get("ExistingCityValue"), map.get("ExistingSite"),
 			map.get("Existing SiteValue"), map.get("ExistingPremise"), map.get("Existing PremiseValue"), map.get("NewCity"), map.get("NewCityName"), map.get("NewCityCode"), 
 			map.get("NewSiteName"),map.get("NewSiteCode"), map.get("NewPremiseName"), map.get("NewPremiseCode"), map.get("NewSite"), map.get("NewPremise"));
-	
+			ExtentTestManager.endTest(); 
 			
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyDeviceCreationMessageforKeyServerDevice_"+devicename);
+		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessageforKeyServerDevice_"+devicename);
 			APT_CreateKeyserverDeviceHelper.get().verifyDeviceCreationMessage("CreateAccessCoreDevice");
-
+			ExtentTestManager.endTest(); 
 			
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyEnteredValueForDevice_"+devicename);
+		logger= ExtentTestManager.startTest ("verifyEnteredValueForDevice_"+devicename);
 			APT_CreateKeyserverDeviceHelper.get().verifyenteredValue_forDeviceCreation("CreateAccessCoreDevice", map.get("Name"), map.get("DeviceType"), map.get("VendorModel"),map.get("Modular MSP"), 
 					map.get("Full IQNET"), map.get("IOSXR"), map.get("Telnet"), map.get("SSH"), map.get("Snmp2C"), map.get("SnmPro"), map.get("Snmprw"), 
 					map.get("SnmProNewValue"), map.get("SnmprwNewValue"), map.get("Snmp3"), map.get("Snmpv3Username"),
@@ -54,9 +55,9 @@ public class APT_MCS_CreateAccessCoreDevice_Keyserver extends DriverTestcase {
 					map.get("Country"), map.get("Management Address"), map.get("ExistingCity"), map.get("ExistingCityValue"), map.get("ExistingSite"),
 					map.get("Existing SiteValue"), map.get("ExistingPremise"), map.get("Existing PremiseValue"), map.get("NewCity"), map.get("NewCityName"), map.get("NewCityCode"), 
 					map.get("NewSiteName"),map.get("NewSiteCode"), map.get("NewPremiseName"), map.get("NewPremiseCode"), map.get("NewSite"), map.get("NewPremise"));
-		
+			ExtentTestManager.endTest(); 
 			
-		DriverTestcase.logger = DriverTestcase.extent.startTest("editKeyServerdevice_"+devicename);
+		logger= ExtentTestManager.startTest ("editKeyServerdevice_"+devicename);
 			APT_CreateKeyserverDeviceHelper.get().verifydeviceEdit_AccessRouter("CreateAccessCoreDevice", map.get("editdeviceName"), map.get("DeviceType"),
 					map.get("editVendorModel"), map.get("editRouterID"), map.get("editModularMSP"), map.get("editFullIQNET"), map.get("editIOSXR"), map.get("editTelnet"),
 					map.get("editSSH"), map.get("editSnmp2C"), map.get("editSnmp3"), map.get("editSnmProNewValue"), map.get("editSnmprwNewValue"), map.get("editSnmpv3UsernameNewValue"),
@@ -64,13 +65,13 @@ public class APT_MCS_CreateAccessCoreDevice_Keyserver extends DriverTestcase {
 					map.get("editExistingCityValue"), map.get("editExistingSite"), map.get("editExistingSiteValue"), map.get("editExistingPremise"), map.get("editExistingPremiseValue"),
 					map.get("editNewCity"), map.get("editNewSite"), map.get("editNewPremise"), map.get("editNewCityName"), map.get("editNewCityCode"), map.get("editNewSiteName"),
 					map.get("editNewSiteCode"), map.get("editNewPremiseName"), map.get("editNewPremiseCode"));
-
+			ExtentTestManager.endTest(); 
 	
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyDeviceUpdationSuccessMessagefor_keyServerDevice_"+devicename);
+		logger= ExtentTestManager.startTest ("verifyDeviceUpdationSuccessMessagefor_keyServerDevice_"+devicename);
 			APT_CreateKeyserverDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
-	
+			ExtentTestManager.endTest(); 
 			
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyUpdatedValueForDevice_"+devicename);
+		logger= ExtentTestManager.startTest ("verifyUpdatedValueForDevice_"+devicename);
 			APT_CreateKeyserverDeviceHelper.get().verifEditedValue_AccessRouter("CreateAccessCoreDevice", map.get("editdeviceName"), map.get("DeviceType"),
 				map.get("editVendorModel"), map.get("editRouterID"), map.get("editModularMSP"), map.get("editFullIQNET"), map.get("editIOSXR"), map.get("editTelnet"),
 				map.get("editSSH"), map.get("editSnmp2C"), map.get("editSnmp3"), map.get("editSnmProNewValue"), map.get("editSnmprwNewValue"), map.get("editSnmpv3UsernameNewValue"),
@@ -78,13 +79,13 @@ public class APT_MCS_CreateAccessCoreDevice_Keyserver extends DriverTestcase {
 				map.get("editExistingCityValue"), map.get("editExistingSite"), map.get("editExistingSiteValue"), map.get("editExistingPremise"), map.get("editExistingPremiseValue"),
 				map.get("editNewCity"), map.get("editNewSite"), map.get("editNewPremise"), map.get("editNewCityName"), map.get("editNewCityCode"), map.get("editNewSiteName"),
 				map.get("editNewSiteCode"), map.get("editNewPremiseName"), map.get("editNewPremiseCode"));
-		
+			ExtentTestManager.endTest(); 
 			
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyTestCommandAndStatus_"+devicename);
+		logger= ExtentTestManager.startTest ("verifyTestCommandAndStatus_"+devicename);
 			APT_CreateKeyserverDeviceHelper.get().testStatus("CreateAccessCoreDevice");
-	
+			ExtentTestManager.endTest(); 
 		
-		DriverTestcase.logger = DriverTestcase.extent.startTest("routerPanel_"+devicename);
+		logger= ExtentTestManager.startTest ("routerPanel_"+devicename);
 			String vendorModel=null;
 			 String editedVendor=map.get("editVendorModel");
 			 String addedVendor=map.get("VendorModel");
@@ -110,14 +111,72 @@ public class APT_MCS_CreateAccessCoreDevice_Keyserver extends DriverTestcase {
 				}
 			  }
 			else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Router Panel will not display for the selected vendorModel: "+vendorModel);
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Router Panel will not display for the selected vendorModel: "+vendorModel);
 				System.out.println("Router Panel will not display for the selected vendorModel: "+vendorModel);
 			}
+			ExtentTestManager.endTest(); 
+			
+		logger= ExtentTestManager.startTest ("fetchDeviceInterface_"+devicename);
+			String DeviceName= null;
+			String VendorModel=null;
+			String managementAddress=null;
+			String country=null;
+			
+			//Device name	
+			if(map.get("editdeviceName").equalsIgnoreCase("null")) {
+				DeviceName=map.get("Name");
+			}else {
+				DeviceName = map.get("editdeviceName");
+			}
+			
+	
+			//Vendor/Model
+			if(map.get("editVendorModel").equalsIgnoreCase("null")) {
+				VendorModel=map.get("VendorModel");
+			}else {
+				VendorModel=map.get("editVendorModel");
+			}
+			
+			//Management Address
+			if(map.get("editManagementAddress").equalsIgnoreCase("null")) {
+				managementAddress=map.get("Management Address");
+			}else {
+				managementAddress=map.get("editManagementAddress");
+			}
+			
+			//Country
+			if(map.get("editCountry").equalsIgnoreCase("null")) {
+			country=map.get("Country");
+			}else {
+				country=map.get("editCountry");
+			}
+			
+			//Snmpro
+			String Snmpro=null;
+			String snmproCreated=map.get("SnmProNewValue");
+			String snmproEdited=map.get("editSnmProNewValue");
+			String snmproDefaultValue="incc";
+			
+			if(snmproEdited.equalsIgnoreCase("null")) {
+				if(snmproCreated.equalsIgnoreCase("null")) {
+					Snmpro=snmproDefaultValue;
+				}else {
+					Snmpro=snmproCreated;
+				}
+			}
+			else {
+				Snmpro=snmproEdited;
+			}
+		
+			APT_CreateKeyserverDeviceHelper.get().fetchDeviceInterface_viewdevicepage("CreateAccessCoreDevice");
+			APT_ManageNetworkHelpr.get().manageNetworkPageUpdated("ManageNetwork", DeviceName, map.get("InServiceStatus"), map.get("InMaintenanceStatus"), 
+					VendorModel, managementAddress, map.get("Snmpro"), country, map.get("InterfaceName"));
+			ExtentTestManager.endTest(); 
 
 			
-		DriverTestcase.logger = DriverTestcase.extent.startTest("deleteKeyServerDevice_"+devicename);
+		logger= ExtentTestManager.startTest ("deleteKeyServerDevice_"+devicename);
 			APT_CreateKeyserverDeviceHelper.get().verifydeviceDelete_AccessRouter("CreateAccessCoreDevice");  
-		
+			ExtentTestManager.endTest(); 
 	}
 	
 

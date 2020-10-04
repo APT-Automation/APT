@@ -14,6 +14,8 @@
 <successmessageForUploadUpdateFile>//span[contains(text(),'Emergency Number successfully updated.PSX sync started successfully.')]</successmessageForUploadUpdateFile>
 <successMessageForEmergencyNumber>//span[contains(text(),'Emergency Number successfully created.PSX sync sta')]</successMessageForEmergencyNumber>
 
+<historyTableValue>//pre</historyTableValue>
+
 <alertMsg>//div[@role='alert']/span</alertMsg>
 <fetchListofCountryNames>//div[@class='ag-body-viewport-wrapper ag-layout-auto-height']//div[@role='row']/div[@col-id='name']</fetchListofCountryNames>
 <alertmessageUploadNT>//div[@role='alert']</alertmessageUploadNT>

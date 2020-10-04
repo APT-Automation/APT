@@ -28,12 +28,14 @@
 <synchronization_syncstatusvalue>//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']/div[2]/span</synchronization_syncstatusvalue>
 <synchronization_smartsvalue>(//label[text()='Smarts']/parent::div/parent::div/following-sibling::div//div)[3]/span</synchronization_smartsvalue>
 <synchronization_fetchinterfacesvalue>(//label[text()='Fetch Interfaces']/parent::div/parent::div/following-sibling::div//div)[4]/span</synchronization_fetchinterfacesvalue>
+<synchronization_vistamartValue_noManageAddress>(//div[@class='div-margin row']//div)[9]//span</synchronization_vistamartValue_noManageAddress>
 <synchronization_vistamartdevicevalue>(//div[@class='div-margin row']//div)[10]//span</synchronization_vistamartdevicevalue>
 <synchronization_synchronizelink>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div//a)[2]</synchronization_synchronizelink>
 <managenetwork_backbutton>(//div[@class='div-margin row'])[4]//button</managenetwork_backbutton>
 <smarts_datetimevalue>(//div[text()='Synchronization']/parent::div/following-sibling::div[@class='div-margin row']//div)[4]//span/parent::div</smarts_datetimevalue>
 <fetchinterfaces_datetime>(//label[text()='Fetch Interfaces']/parent::div/parent::div/following-sibling::div//div)[4]</fetchinterfaces_datetime>
 <vistamartdevice_datetime>(//label[text()='VistaMart Device']/parent::div/parent::div/following-sibling::div//div)[5]</vistamartdevice_datetime>
+<vistamartDEvice_dateTime_noManageAddress>(//label[text()='VistaMart Device']/parent::div/parent::div/following-sibling::div//div)[4]</vistamartDEvice_dateTime_noManageAddress>
 <Sync_successmsg>//div[@role='alert']//span</Sync_successmsg>
 <staus_statuspopup>//div[@class='modal-content']</staus_statuspopup>
 <Statuspage_header>//div[@class='modal-header']//div</Statuspage_header>

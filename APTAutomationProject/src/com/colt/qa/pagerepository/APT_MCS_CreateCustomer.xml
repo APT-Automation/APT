@@ -355,7 +355,9 @@
 <hideRouterToolIPv4_Cisco_Available>//select[@id='availableIPV4CommandCisco']//option</hideRouterToolIPv4_Cisco_Available>
 <hideRouterToolIPv4_Cisco_addButton>//div[label[text()='Hide Router Tools IPv4 Commands(Cisco)']]//following-sibling::div//span[text()='>>']</hideRouterToolIPv4_Cisco_addButton>
 <hideRouterToolIPv4_Cisco_removeButton>//div[label[text()='Hide Router Tools IPv4 Commands(Cisco)']]//following-sibling::div//span[text()='value']</hideRouterToolIPv4_Cisco_removeButton>
+<hideRouterToolIPv6_Cisco_removeButton>//div[label[text()='Hide Router Tools IPv6 Commands(Cisco)']]//following-sibling::div//span[text()='value']</hideRouterToolIPv6_Cisco_removeButton>
 <hideRouterToolIpv4_Cisco_selectedvalues>//select[@id='selectedIPV4CommandCisco']//option</hideRouterToolIpv4_Cisco_selectedvalues>
+<hidenRouterIPv6_cisco>//select[@id='selectedIPV6Command']//option</hidenRouterIPv6_cisco>
 
 <HideService_Available>//select[@id='availableHideService']//option</HideService_Available>
 <HideService_addButton>//div[label[text()='Hide Services']]//following-sibling::div//span[text()='>>']</HideService_addButton>

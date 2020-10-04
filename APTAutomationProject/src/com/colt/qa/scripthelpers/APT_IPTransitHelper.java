@@ -40,10 +40,13 @@ import com.colt.qa.driverlibrary.DriverHelper;
 import com.colt.qa.driverlibrary.DriverTestcase;
 import com.colt.qa.driverlibrary.Log;
 import com.colt.qa.driverlibrary.XMLReader;
+import com.colt.qa.reporter.ExtentTestManager;
 
 
 public class APT_IPTransitHelper extends DriverHelper {
 
+	public static String InterfaceName="Null";
+	
 	public APT_IPTransitHelper(WebDriver dr) {
 		super(dr);
 		// TODO Auto-generated constructor stub
@@ -62,11 +65,11 @@ public class APT_IPTransitHelper extends DriverHelper {
 		if (flag) {
 
 			System.out.println("webElement is present " + ele.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, msg);
+			ExtentTestManager.getTest().log(LogStatus.PASS, msg);
 		} else {
 
 			System.out.println("webElement is not  present" + ele.getText());
-			DriverTestcase.logger.log(LogStatus.FAIL, msg);
+			ExtentTestManager.getTest().log(LogStatus.FAIL, msg);
 		}
 
 	}
@@ -79,7 +82,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(2000);
 		System.out.println("Mouse hovered on Manage Customer's Service");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
@@ -100,8 +103,8 @@ public class APT_IPTransitHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "Main Domain", "maindomaintextfield", maindomain, xml);
 		Thread.sleep(1000);
 		scrolltoend();
-		click_commonMethod(application, "Clear", "clearbutton", xml);
-		DriverTestcase.logger.log(LogStatus.PASS, "All text field values are cleared");
+		click_commonMethod(application, "Reset", "resetbutton", xml);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "All text field values are cleared");
 		Log.info("All text field values are cleared");
 
 		//Create customer by providing all info
@@ -118,7 +121,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 		scrolltoend();
 		Thread.sleep(1000);
 		click_commonMethod(application, "Ok", "okbutton", xml);
-		//compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.", xml);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Customer successfully created.");
 		sa.assertAll();
 	}
@@ -130,7 +133,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(3000);
 		System.out.println("Mouse hovered on Manage Customer's Service");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "Create Order/Service", "CreateOrderServiceLink", xml);
@@ -152,7 +155,7 @@ public class APT_IPTransitHelper extends DriverHelper {
         addDropdownValues_commonMethod(application, "Choose a customer", "chooseCustomerdropdown", ChooseCustomerToBeSelected, xml);
 
 		click_commonMethod(application, "Next", "nextbutton", xml);
-
+		waitforPagetobeenable();
 	}
 
 	public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
@@ -161,16 +164,21 @@ public class APT_IPTransitHelper extends DriverHelper {
 			throws InterruptedException, IOException, DocumentException {
 
 		scrolltoend();
+		Thread.sleep(1000);
+		click_commonMethod(application, "Next", "nextbutton", xml);
+		Thread.sleep(2000);
+		waitforPagetobeenable();
+		//Warning messages verify
+		warningMessage_commonMethod(application, "servicetype_warngmsg", "Service Type", xml);
+		
 		if (neworder.equalsIgnoreCase("YES")) {
 
 			ScrolltoElement(application, "CreateOrderHeader", xml);
 			Thread.sleep(2000);
-
-			click_commonMethod(application, "select order switch", "selectorderswitch", xml);
 			addtextFields_commonMethod(application, "Order/Contract Number", "newordertextfield", neworderno, xml);
 			addtextFields_commonMethod(application, "RFI Voice line Number", "newrfireqtextfield", newrfireqno, xml);
 			click_commonMethod(application, "create order", "createorderbutton", xml);
-			//compareText(application, "create order success message", "OrderCreatedSuccessMsg", "Order created successfully", xml);			
+			waitforPagetobeenable();
 			verifysuccessmessage(application, "Order created successfully");
 			ScrolltoElement(application, "CreateOrderHeader", xml);
 
@@ -179,6 +187,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 		} 
 
 		else if (existingorderservice.equalsIgnoreCase("YES")) {
+			click_commonMethod(application, "select order switch", "selectorderswitch", xml);
 			addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber, xml);
 			Log.info("=== Order Contract Number selected===");
 
@@ -188,7 +197,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 		} else {
 
 			System.out.println("Order not selected");
-			DriverTestcase.logger.log(LogStatus.INFO, "Step :Order not selected");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step :Order not selected");
 		}
 	}
 
@@ -202,12 +211,12 @@ public class APT_IPTransitHelper extends DriverHelper {
 		try {  
 			availability=getwebelement(xml.getlocator("//locators/" + application + "/servicetypetextfield")).isDisplayed();
 			if(availability) {
-				DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown is displaying");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Service Type dropdown is displaying");
 				System.out.println("Service Type dropdown is displaying");
 
 				if(servicetype.equalsIgnoreCase("null")) {
 
-					DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Service Type dropdown");
+					ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under Service Type dropdown");
 					System.out.println(" No values selected under Service Type dropdown");
 				}else {
 
@@ -217,12 +226,12 @@ public class APT_IPTransitHelper extends DriverHelper {
 					//verify list of values inside dropdown
 					List<WebElement> listofvalues = getwebelements("//div[@class='sc-ifAKCX oLlzc']");
 
-					DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Service Type dropdown is:  ");
+					ExtentTestManager.getTest().log(LogStatus.PASS, " List of values inside Service Type dropdown is:  ");
 					System.out.println( " List of values inside Service Type dropdown is:  ");
 
 					for (WebElement valuetypes : listofvalues) {
 						Log.info("service sub types : " + valuetypes.getText());
-						DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+						ExtentTestManager.getTest().log(LogStatus.PASS," " + valuetypes.getText());
 						System.out.println(" " + valuetypes.getText());
 					}
 
@@ -237,29 +246,29 @@ public class APT_IPTransitHelper extends DriverHelper {
 					Thread.sleep(3000);
 
 					String actualValue=getwebelement("//label[text()='Service Type']/following-sibling::div//span").getText();
-					DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
 					System.out.println("Service Type dropdown value selected as: "+ actualValue);
 
 				}
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Service Type is not displaying");
 				System.out.println("Service Type is not displaying");
 			}
 		}catch(NoSuchElementException e) {
-			DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Service Type is not displaying");
 			System.out.println("Service Type is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Service Type dropdown");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under Service Type dropdown");
 			System.out.println(" NO value selected under Service Type dropdown");
 		}
 		// click on next button
+		scrolltoend();
 		click_commonMethod(application, "Next", "nextbutton", xml);
+		waitforPagetobeenable();
 		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
 
 	}
-
-
 
 
 	public void verifyservicecreation(String application, String sid, String Remarks, String orderno, String rfireqno, String servicetype, String terminationdate, String billingtypevalue, String email, String phonecontact, String performancereporting_checkbox, String ipguardian_checkbox) throws InterruptedException, IOException, DocumentException {
@@ -270,21 +279,26 @@ public class APT_IPTransitHelper extends DriverHelper {
 		scrolltoend();
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		scrollToTop();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to create order page");
-			System.out.println("Navigated to create order page");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to create order page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to create order page");
 		}
 
 		//Create service
 		ScrolltoElement(application, "CreateOrderHeader", xml);
+		Thread.sleep(1000);
+		click_commonMethod(application, "select order switch", "selectorderswitch", xml);
 		addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", orderno, xml);
 		addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
 		// click on next button
+		ScrolltoElement(application, "nextbutton", xml);
+		Thread.sleep(2000);
 		click_commonMethod(application, "Next", "nextbutton", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		scrollToTop();
 		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
 
@@ -309,27 +323,14 @@ public class APT_IPTransitHelper extends DriverHelper {
 		scrolltoend();
 
 		// management options panel
-		if(performancereporting_checkbox.equalsIgnoreCase("Yes"))
-		{
-			addCheckbox_commonMethod(application, "performancereporting_checkbox", "Performance Reporting", performancereporting_checkbox, "no", xml);
-		}
-		else
-		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Performance Reporting checkbox is not checked");
-		}
-
-		if(ipguardian_checkbox.equalsIgnoreCase("Yes"))
-		{
-			addCheckbox_commonMethod(application, "ipguardian_checkbox", "IP Guardian", ipguardian_checkbox, "no", xml);
-		}
-		else
-		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : IP Guardian checkbox is not checked");
-		}
-
+		addCheckbox_commonMethod(application, "performancereporting_checkbox", "Performance Reporting", performancereporting_checkbox, "no", xml);
+		
+		addCheckbox_commonMethod(application, "ipguardian_checkbox", "IP Guardian", ipguardian_checkbox, "no", xml);
+		
+		scrolltoend();
 		click_commonMethod(application, "Next", "nextbutton", xml);
 		Thread.sleep(2000);
-		//compareText(application, "Service creation success msg", "servicecreationmessage", "Service successfully created", xml);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Service successfully created");
 		sa.assertAll();
 	}
@@ -403,15 +404,18 @@ public class APT_IPTransitHelper extends DriverHelper {
         //Cancel User
         click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
         click_commonMethod(application, "Add", "AddLink", xml);
+        waitforPagetobeenable();
         compareText(application, "Create User Header", "CreateUserHeader", "Create User", xml);
         scrolltoend();
         click_commonMethod(application, "Cancel", "cancelbutton", xml);
+        waitforPagetobeenable();
         compareText(application, "User panel Header", "userspanel_header", "Users", xml);
 
         //Create User
         ScrolltoElement(application, "customerdetailsheader", xml);
         click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
         click_commonMethod(application, "Add", "AddLink", xml);
+        waitforPagetobeenable();
         compareText(application, "Create User Header", "CreateUserHeader", "Create User", xml);
 
         //Warning messages verify
@@ -431,8 +435,8 @@ public class APT_IPTransitHelper extends DriverHelper {
         addtextFields_commonMethod(application, "First Name", "FirstName", Firstname, xml);
         addtextFields_commonMethod(application, "SurName", "SurName", Surname, xml);
         addtextFields_commonMethod(application, "Postal Address", "PostalAddress", Postaladdress, xml);
-        addtextFields_commonMethod(application, "Email", "Email", Email, xml);
-        addtextFields_commonMethod(application, "Phone", "Phone", Phone, xml);
+        addtextFields_commonMethod(application, "Email", "emailtextfield", Email, xml);
+        addtextFields_commonMethod(application, "Phone", "phonetextfield", Phone, xml);
         addtextFields_commonMethod(application, "IPGuardian Account Group" , "IPGuardianAccountGroup" , IPGuardianAccountGroup, xml);
         addtextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", ColtOnlineUser, xml);
         click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
@@ -441,19 +445,19 @@ public class APT_IPTransitHelper extends DriverHelper {
 
         if(password.isEmpty()) {
 
-              DriverTestcase.logger.log(LogStatus.PASS, "Step : Password Field is empty. No values displaying after clicked on 'Generate password link");
+              ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Password Field is empty. No values displaying after clicked on 'Generate password link");
 
         SendKeys(getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")), GeneratePassword);      
               Thread.sleep(1000);
-              DriverTestcase.logger.log(LogStatus.PASS, "Step : Password entered manually not automatically generated :  "+GeneratePassword);
+              ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Password entered manually not automatically generated :  "+GeneratePassword);
               Log.info("===Password entered manually not automatically generated ===");
 
         }else {
               Log.info("Automatically generated Password value is : "+ password);
-              DriverTestcase.logger.log(LogStatus.PASS, "Password generated and the value is displaying as :  "+password);
+              ExtentTestManager.getTest().log(LogStatus.PASS, "Password generated and the value is displaying as :  "+password);
         }
 
-        ScrolltoElement(application, "Email", xml);
+        ScrolltoElement(application, "emailtextfield", xml);
         Thread.sleep(2000);
 
         //Role      
@@ -491,8 +495,9 @@ public class APT_IPTransitHelper extends DriverHelper {
         Thread.sleep(1000);
         click_commonMethod(application, "OK", "OK_button", xml);
         Thread.sleep(2000);
-        compareText(application, "Create User success message", "successmsg", "User successfully created", xml);
-        DriverTestcase.logger.log(LogStatus.PASS, "Step : User added successfully");
+        waitforPagetobeenable();
+        verifysuccessmessage(application, "User successfully created");
+        ExtentTestManager.getTest().log(LogStatus.PASS, "Step : User added successfully");
         Log.info("User added successfully");
 
         //Edit User
@@ -505,11 +510,12 @@ public class APT_IPTransitHelper extends DriverHelper {
         {
               WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
               AddedUser.click();
-              DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+              ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
               Log.info("clicked on Existing user radio button");
 
               click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
               click_commonMethod(application, "Edit", "edit", xml);
+              waitforPagetobeenable();
               Thread.sleep(2000);
               compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
               scrollToTop();
@@ -517,8 +523,8 @@ public class APT_IPTransitHelper extends DriverHelper {
               edittextFields_commonMethod(application, "First Name", "FirstName" , EditFirstname, xml);
               edittextFields_commonMethod(application, "Sur Name", "SurName" , EditSurname, xml);
               edittextFields_commonMethod(application, "Postal Address", "PostalAddress" , EditPostaladdress, xml);
-              edittextFields_commonMethod(application, "Email", "Email" , EditEmail, xml);
-              edittextFields_commonMethod(application, "Phone", "Phone" , EditPhone, xml);
+              edittextFields_commonMethod(application, "Email", "emailtextfield" , EditEmail, xml);
+              edittextFields_commonMethod(application, "Phone", "phonetextfield" , EditPhone, xml);
               edittextFields_commonMethod(application, "IPGuardian Account Group" , "IPGuardianAccountGroup" , editIPGuardianAccountGroup, xml);
               edittextFields_commonMethod(application, "Colt Online User", "ColtOnlineUser", editColtOnlineUser, xml);
 
@@ -527,16 +533,16 @@ public class APT_IPTransitHelper extends DriverHelper {
 
               if(editpassword.isEmpty()) {
 
-                    DriverTestcase.logger.log(LogStatus.FAIL, "Step : Password Field is empty. No values displaying under'Generate password link");
+                    ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Password Field is empty. No values displaying under'Generate password link");
 
                     click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
 
               }else {
                     Log.info("Automatically generated Password value is : "+ editpassword);
-                    DriverTestcase.logger.log(LogStatus.PASS, "Password value is displaying as :  "+editpassword);
+                    ExtentTestManager.getTest().log(LogStatus.PASS, "Password value is displaying as :  "+editpassword);
               }
 
-              ScrolltoElement(application, "Email", xml);
+              ScrolltoElement(application, "emailtextfield", xml);
 
               //Role      
               selectAndRemoveValueFromRightDropdown(application, "Roles_Hidden", "roleDropdown_selectedValues", rolestobeAvailableList, "roleDropdown_removeButton");
@@ -570,11 +576,12 @@ public class APT_IPTransitHelper extends DriverHelper {
               Thread.sleep(1000);
               click_commonMethod(application, "OK", "OK_button", xml);
               Thread.sleep(2000);
-              compareText(application, "User update success message", "successmsg", "User successfully updated", xml);
+              waitforPagetobeenable();
+              verifysuccessmessage(application, "User successfully updated");
         }
         else
         {
-              DriverTestcase.logger.log(LogStatus.FAIL, "Step : No users displayed");
+              ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No users displayed");
               Log.info("No users displayed");
         }
 
@@ -596,11 +603,12 @@ public class APT_IPTransitHelper extends DriverHelper {
                     WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
                     AddedUser.click();
               }
-              DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+              ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
               Log.info("clicked on Existing user radio button");
 
               click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
               click_commonMethod(application, "view", "view", xml);
+              waitforPagetobeenable();
               scrollToTop();
               
         //Username  
@@ -646,7 +654,7 @@ public class APT_IPTransitHelper extends DriverHelper {
               }     
               
 
-              //IP Guardian Accouunt Group
+              //IP Guardian Account Group
               GetText(application, "IPGuardian Account Group", "IPGuardianAccountGroup_viewpage");
 
               //Colt Online User
@@ -664,7 +672,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 
               for(WebElement listofHiddenCiscoValues : HRcisco) {
                     System.out.println("list of values in Hide router Tool Command IPv4(Cisco) are: "+listofHiddenCiscoValues.getText());
-                    DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
+                    ExtentTestManager.getTest().log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
               }
 
               scrolltoend();
@@ -675,7 +683,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 
               for(WebElement listofHuaweiValues : Ipv4CommandHuawei) {
                     System.out.println("list of values in Hide router Tool Command (Cisco) are: "+listofHuaweiValues.getText());
-                    DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
+                    ExtentTestManager.getTest().log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Huawei) are: "+ listofHuaweiValues.getText());
               }     
 
 
@@ -684,17 +692,18 @@ public class APT_IPTransitHelper extends DriverHelper {
 
               for(WebElement listofHiddenIPv6CiscoValues : HiddenIPv6cisco) {
                     System.out.println("list of values in Hide router Tool Command IPv6 (Cisco) are: "+listofHiddenIPv6CiscoValues.getText());
-                    DriverTestcase.logger.log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
+                    ExtentTestManager.getTest().log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
               }                 
 
               scrolltoend();
               Thread.sleep(2000);
               click_commonMethod(application, "Back", "viewpage_backbutton", xml);
               Log.info("------ View User successful ------");
+              waitforPagetobeenable();
         }
         else
         {
-              DriverTestcase.logger.log(LogStatus.FAIL, "Step : No users displayed");
+              ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No users displayed");
               Log.info("No users displayed");
         }
 
@@ -718,7 +727,7 @@ public class APT_IPTransitHelper extends DriverHelper {
                                 //getwebelement("//div[contains(text(),'" +  + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
                     AddedUser.click();
               }
-              DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+              ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
               Log.info("clicked on Existing user radio button");
 
               click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
@@ -730,38 +739,27 @@ public class APT_IPTransitHelper extends DriverHelper {
       	     // Capturing alert message   
       	       String alertMessage= driver.switchTo().alert().getText();
       	       if(alertMessage.isEmpty()) {
-      	    	   DriverTestcase.logger.log(LogStatus.FAIL, "No message displays");
+      	    	   ExtentTestManager.getTest().log(LogStatus.FAIL, "No message displays");
       		       System.out.println("No Message displays"); 
       	       }else {
-      	    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+      	    	   ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
       		       System.out.println("Text message for alert displays as: "+alertMessage);
       	       }
       	     
       	     try {  
       	       alert.accept();
+      	     Thread.sleep(1000);
+      	       verifysuccessmessage(application, "User successfully deleted");
       	       Thread.sleep(2000);
       	      
       	     }catch(Exception e) {
       	    	 e.printStackTrace();
       	     } 
       	     
-//              WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-//              if(DeleteAlertPopup.isDisplayed())
-//              {
-//                    
-//                    click_commonMethod(application, "Delete", "userdelete", xml);
-//                    compareText(application, "User delete success msg", "deletesuccessmsg", "User successfully deleted", xml);
-//              }
-//              else
-//              {
-//                    Log.info("Delete alert popup is not displayed");
-//                    DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-//              }
-              
         }
         else
         {
-              DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+              ExtentTestManager.getTest().log(LogStatus.PASS, "Step : No users displayed");
               Log.info("No users displayed");
         }
 
@@ -785,7 +783,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 					ls.add(a.getText());
 				}
 
-				DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
 				System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
 
 				//select value inside the dropdown     
@@ -797,7 +795,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 						if(selectValue[i].equals(ls.get(j)))
 						{
 							elements.get(j).click();
-							DriverTestcase.logger.log(LogStatus.PASS, elements.get(j) + " got selected" );
+							ExtentTestManager.getTest().log(LogStatus.PASS, elements.get(j) + " got selected" );
 							Thread.sleep(1000);
 							click_commonMethod(application, "Add", xpathForAddButton , xml);
 							Thread.sleep(5000);
@@ -806,13 +804,13 @@ public class APT_IPTransitHelper extends DriverHelper {
 				}
 
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
 
 				System.out.println("No values displaying under " + labelname + " available dropdown");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
 			System.out.println( "No values displaying under "+labelname + " available dropdown");
 		}
 	}
@@ -836,16 +834,16 @@ public class APT_IPTransitHelper extends DriverHelper {
 					ls.add(a.getText());
 				}
 
-				DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
 				System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
 
 				System.out.println("No values displaying under " + labelname + " available dropdown");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
 			System.out.println( "No values displaying under "+labelname + " available dropdown");
 		}
 	}
@@ -866,7 +864,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 					ls.add(a.getText());
 				}
 
-				DriverTestcase.logger.log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "list of values displaying inside "+labelname+" available dropdown is: "+ls);
 				System.out.println("list of values dipslaying inside "+labelname+" dropdown is: "+ls);
 
 				//select value inside the dropdown     
@@ -878,24 +876,24 @@ public class APT_IPTransitHelper extends DriverHelper {
 						if(selectValue[i].equals(ls.get(j)))
 						{
 							elements.get(j).click();
-							DriverTestcase.logger.log(LogStatus.PASS, elements.get(j) + " got selected" );
+							ExtentTestManager.getTest().log(LogStatus.PASS, elements.get(j) + " got selected" );
 							Thread.sleep(1000);
 							WebElement removeButton=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathForRemoveButton +"").replace("value", "<<"));
 							Clickon(removeButton);
-							DriverTestcase.logger.log(LogStatus.PASS, "clicked on remove '<<' button");
+							ExtentTestManager.getTest().log(LogStatus.PASS, "clicked on remove '<<' button");
 							Thread.sleep(3000);
 						}
 					}
 				}
 
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "No values displaying under " + labelname + " dropdown");
 
 				System.out.println("No values displaying under " + labelname + " available dropdown");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under "+labelname + " available dropdown");
 			System.out.println( "No values displaying under "+labelname + " available dropdown");
 		}
 	}
@@ -914,17 +912,17 @@ public class APT_IPTransitHelper extends DriverHelper {
 			if (expectedorderno.equalsIgnoreCase(actualorderno)&& expectedvoicelineno.equalsIgnoreCase(actualvoicelineno)) {
 
 				System.out.println("order information is matched");
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : order information is matched");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : order information is matched");
 			} else {
 				sa.fail("order information is not matched");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : order information is not matched");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : order information is not matched");
 				System.out.println("order information is not matched");
 			}
 
 		} else {
 
 			System.out.println("existing order is not selected");
-			DriverTestcase.logger.log(LogStatus.INFO, "Step : existing order is not selected");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : existing order is not selected");
 		}
 
 		sa.assertAll();
@@ -946,17 +944,17 @@ public class APT_IPTransitHelper extends DriverHelper {
 			if (expectedneworderno.equalsIgnoreCase(actualorderno)&& expectednewvoicelineno.equalsIgnoreCase(actualvoicelineno)) {
 
 				System.out.println("order information is matched");
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : order information is matched");				
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : order information is matched");				
 			} else {
 				sa.fail("order information is not matched");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : order information is not matched");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : order information is not matched");
 				System.out.println("order information is not matched");
 			}
 
 		} else {
 
 			System.out.println("new order is not selected");
-			DriverTestcase.logger.log(LogStatus.INFO, "Step : new order is not selected");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : new order is not selected");
 		}
 
 		sa.assertAll();
@@ -964,38 +962,37 @@ public class APT_IPTransitHelper extends DriverHelper {
 
 	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
 
-		ScrolltoElement(application, "userspanel_header", xml);
-
+		ScrolltoElement(application, "orderpanelheader", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		//Cancel Edit order in Order panel
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
+		waitforPagetobeenable();
 		compareText(application, "Edit Order", "editorderheader", "Edit Order", xml);
 		Thread.sleep(1000);
 
 		WebElement EditOrderNo= getwebelement(xml.getlocator("//locators/" + application + "/editorderno"));
 		click_commonMethod(application, "Order Number", "editorderno", xml);
 		Thread.sleep(2000);
-		Clear(EditOrderNo);
-		Thread.sleep(2000);
-		addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
+		edittextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
 
 		WebElement EditVoiceLineNo= getwebelement(xml.getlocator("//locators/" + application + "/editvoicelineno"));
 		click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
 		Thread.sleep(2000);
-		Clear(EditVoiceLineNo);
-		Thread.sleep(2000);
-		addtextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
+		edittextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
+		waitforPagetobeenable();
 		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
 		Log.info("Navigated to order panel in view service page");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 		//Edit Order
-		Thread.sleep(1000);
-		ScrolltoElement(application, "userspanel_header", xml);
+		ScrolltoElement(application, "orderpanelheader", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
+		waitforPagetobeenable();
 		compareText(application, "Edit Order Header", "editorderheader", "Edit Order", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Order Number", "editorderno", xml);
@@ -1009,12 +1006,13 @@ public class APT_IPTransitHelper extends DriverHelper {
 		Thread.sleep(2000);
 		addtextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "OK", "editorder_okbutton", xml);
-		Thread.sleep(1000);
-		ScrolltoElement(application, "userspanel_header", xml);
+		waitforPagetobeenable();
+		ScrolltoElement(application, "orderpanelheader", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		Thread.sleep(1000);
 		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
 		Log.info("Navigated to order panel in view service page");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 		compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
 		compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
@@ -1024,10 +1022,11 @@ public class APT_IPTransitHelper extends DriverHelper {
 
 	public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
 
-		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);
+		ScrolltoElement(application, "orderpanelheader", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Change Order", "changeorderlink", xml);
+		waitforPagetobeenable();
 		compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
@@ -1041,28 +1040,29 @@ public class APT_IPTransitHelper extends DriverHelper {
 			//Cancel change order
 			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
 			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
+			waitforPagetobeenable();
 			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
 			Log.info("Navigated to order panel in view service page");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 			//Change order
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			waitforPagetobeenable();
 			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/changeorder_dropdownvalue")));
 			Thread.sleep(3000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected order from dropdown");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected order from dropdown");
 			click_commonMethod(application, "OK", "changeorder_okbutton", xml);
 			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
+			waitforPagetobeenable();
+			ScrolltoElement(application, "orderpanelheader", xml);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
 			Log.info("Navigated to order panel in view service page");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
@@ -1086,6 +1086,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 			//Change Order
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			waitforPagetobeenable();
 			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
@@ -1097,11 +1098,12 @@ public class APT_IPTransitHelper extends DriverHelper {
 			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 			click_commonMethod(application, "Create Order", "createorder_button", xml);
 			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
+			waitforPagetobeenable();
+			ScrolltoElement(application, "orderpanelheader", xml);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
 			Log.info("Navigated to order panel in view service page");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
 			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
@@ -1129,50 +1131,57 @@ public class APT_IPTransitHelper extends DriverHelper {
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Edit", "edit", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		scrolltoend();
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
 		Thread.sleep(2000);
-		ScrolltoElement(application, "orderpanelheader", xml);
+		waitforPagetobeenable();
+		ScrolltoElement(application, "servicepanel_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		if(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")).isDisplayed())
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to view service page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to view service page");
 		}
 		else
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
 
 		//Edit service
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Edit", "edit", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		scrollToTop();
 		edittextFields_commonMethod(application, "Service Identification", "serviceidentificationtextfield", sid, xml);
 		edittextFields_commonMethod(application, "Termination Date", "terminationdate_field", editterminationdate, xml);
 		edittextFields_commonMethod(application, "Billing Type", "billingtype_dropdown", editbillingtypevalue, xml);
 		edittextFields_commonMethod(application, "Remarks", "remarktextarea", EditRemarks, xml);
 		
+		ScrolltoElement(application, "remarktextarea", xml);
 		//Edit email
 		click_commonMethod(application, "Selected Email", "selectedemail", xml);
 		click_commonMethod(application, "Email remove arrow", "emailremovearrow", xml);
 		edittextFields_commonMethod(application, "Email", "emailtextfieldvalue", editemail, xml);
 		click_commonMethod(application, "Email adding arrow", "emailaddarrow", xml);
 		//Edit phone contact
+		ScrolltoElement(application, "remarktextarea", xml);
 		click_commonMethod(application, "Selected phone contact", "selectedphone", xml);
 		click_commonMethod(application, "Phonecontact remove arrow", "phoneremovearrow", xml);
 		edittextFields_commonMethod(application, "Phone Contact", "phonecontacttextfieldvalue", editphonecontact, xml);
 		click_commonMethod(application, "phonecontact adding Arrow", "phoneaddarrow", xml);
 
 		// management options panel
+		ScrolltoElement(application, "managementoptions_header", xml);
 		editcheckbox_commonMethod(application, edit_performancereporting_checkbox, "performancereporting_checkbox", "Performance Reporting", xml);
 		editcheckbox_commonMethod(application, edit_ipguardian_checkbox, "ipguardian_checkbox", "IP Guardian", xml);
 		Thread.sleep(2000);
 		scrolltoend();
 		click_commonMethod(application, "OK", "editservice_okbutton", xml);
 		Thread.sleep(3000);
+		waitforPagetobeenable();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
 			System.out.println("Navigated to view service page");
-			//compareText(application, "Service updated success message", "successmsg", "Service updated successfully", xml);
 			verifysuccessmessage(application, "Service updated successfully");
 		}
 		else
@@ -1185,10 +1194,11 @@ public class APT_IPTransitHelper extends DriverHelper {
 	
 	public void verifyManageSubnets(String application) throws InterruptedException, DocumentException {
 		
-				ScrolltoElement(application, "orderpanelheader", xml);
+		ScrolltoElement(application, "orderpanelheader", xml);
 				click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 				click_commonMethod(application, "Manage Subnets", "managesubnets_link", xml);
 				Thread.sleep(3000);
+				waitforPagetobeenable();
 				GetText(application, "Manage Subnet header", "managesubnet_header");
 				compareText(application, "Manage subnet message", "managesubnet_successmsg", "There are no subnets to be managed for this service.", xml);
 				compareText(application, "Space Name", "spacename_column", "Space Name", xml);
@@ -1203,10 +1213,11 @@ public class APT_IPTransitHelper extends DriverHelper {
 	
 public void verifyManageSubnetsIPv6(String application) throws InterruptedException, DocumentException {
 		
-			ScrolltoElement(application, "orderpanelheader", xml);
+	ScrolltoElement(application, "orderpanelheader", xml);
 			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 			click_commonMethod(application, "Manage Subnets Ipv6", "managesubnetsipv6_link", xml);
 			Thread.sleep(3000);
+			waitforPagetobeenable();
 			GetText(application, "Manage Subnet header", "managesubnet_header");
 			compareText(application, "Manage subnet message", "managesubnet_successmsg", "There are no subnets to be managed for this service.", xml);
 			compareText(application, "Space Name", "spacename_column", "Space Name", xml);
@@ -1225,6 +1236,7 @@ public void verifyDump(String application) throws InterruptedException, Document
 	click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 	click_commonMethod(application, "Dump", "dump_link", xml);
 	Thread.sleep(2000);
+	waitforPagetobeenable();
 	GetText(application, "Dump header", "dumppage_header");
 	GetText(application, "Service retrieved time", "serviceretrieved_text");
 	compareText(application, "Service header", "service_header", "Service", xml);
@@ -1270,11 +1282,11 @@ public void shownewInfovista(String application) throws Exception {
 		driver.close();
 		driver.switchTo().window(browserTabs.get(0)); 
 
-		DriverTestcase.logger.log(LogStatus.PASS, "on clicking 'Show Infovista link', it got naviagted to "+ pageTitle + " as expected");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "on clicking 'Show Infovista link', it got naviagted to "+ pageTitle + " as expected");
 		Thread.sleep(3000);
 
-		DriverTestcase.logger.log(LogStatus.PASS, "show info vista page actual title: "+pageTitle );
-		DriverTestcase.logger.log(LogStatus.PASS, "show info vista page expected title: "+ expectedPageName);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "show info vista page actual title: "+pageTitle );
+		ExtentTestManager.getTest().log(LogStatus.PASS, "show info vista page expected title: "+ expectedPageName);
 		
 		}
 		else
@@ -1291,7 +1303,7 @@ public void shownewInfovista(String application) throws Exception {
 		driver.close();
 		driver.switchTo().window(browserTabs.get(0));
 
-		DriverTestcase.logger.log(LogStatus.FAIL, expectedPageName + " page is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, expectedPageName + " page is not displaying");
 
 	}
 	sa.assertAll();
@@ -1299,22 +1311,25 @@ public void shownewInfovista(String application) throws Exception {
 
 public void verifySynchronize(String application) throws InterruptedException, DocumentException {
 	
-ScrolltoElement(application, "orderpanelheader", xml);
+	ScrolltoElement(application, "servicepanel_header", xml);
+	((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 Thread.sleep(1000);
 click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 click_commonMethod(application, "Synchronize", "synchronizelink_servicepanel", xml);
 ScrolltoElement(application, "customerdetailsheader", xml);
-//compareText(application, "Synchronize Success Msg", "Sync_successmsg", "Sync started successfully. Please check the sync status of this service.", xml);
+waitforPagetobeenable();
 verifysuccessmessage(application, "Sync started successfully. Please check the sync status of this service.");
 }
 
 	
 	public void verifyManageService(String application, String changeorderno, String sid, String servicetype, String servicestatus, String syncstatus, String servicestatuschangerequired) throws InterruptedException, DocumentException, IOException {
 		//Manage service
-		ScrolltoElement(application, "orderpanelheader", xml);
+		ScrolltoElement(application, "servicepanel_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Manage", "manageLink", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		scrollToTop();
 		compareText(application, "Manage service header", "manageservice_header", "Manage Service", xml);
 		compareText(application, "Status header", "statuspanel_header", "Status", xml);
@@ -1366,25 +1381,25 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				{
 					if(ServiceStatusHistory.isDisplayed())
 					{
-						DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request logged");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request logged");
 					}
 					else
 					{
-						DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request is not logged");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request is not logged");
 					}
 				}
 				catch(StaleElementReferenceException e)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "No service history to display");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "No service history to display");
 				}
 				click_commonMethod(application, "Close", "servicestatus_popupclose", xml);
 			}
 			else
-				DriverTestcase.logger.log(LogStatus.FAIL, "Status link is not working");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Status link is not working");
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change not required");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change not required");
 		}
 
 		//synchronize panel in manage service page
@@ -1407,12 +1422,13 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			if(getwebelement(xml.getlocator("//locators/" + application + "/synchronizelink")).isDisplayed())
 			{
 				click_commonMethod(application, "Synchronize", "synchronizelink", xml);
+				Thread.sleep(2000);
 				verifysuccessmessage(application, "Sync started successfully. Please check the sync status of this service.");
 			}
 		}
 		catch (Exception e) {
 			String Synchronization_serviceError= getwebelement(xml.getlocator("//locators/" + application + "/synchronization_serviceerror")).getText();
-			DriverTestcase.logger.log(LogStatus.INFO, "Synchronize link is not displaying. It is displaying as: " +Synchronization_serviceError);
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Synchronize link is not displaying. It is displaying as: " +Synchronization_serviceError);
 		}
 		
 		scrolltoend();
@@ -1428,9 +1444,9 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		
 		GetText(application, "Device Name", "deviceforservicepanel_devicename");
 		GetText(application, "Sync Status", "deviceforservicepanel_syncstatus");
-		verify_SmartsValue(application);
-		verify_FetchInterfacesValue(application);
-		verify_VistamartDeviceValue(application);
+//		verify_SmartsValue(application);
+//		verify_FetchInterfacesValue(application);
+//		verify_VistamartDeviceValue(application);
 		click_commonMethod(application, "Manage", "deviceforservicepanel_managelink", xml);
 		Thread.sleep(2000);
 		scrollToTop();
@@ -1441,7 +1457,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		Thread.sleep(2000);
 		click_commonMethod(application, "Back", "managepage_backbutton", xml);
 		Thread.sleep(2000);
-
+		waitforPagetobeenable();
 	}
 	
 	public void verify_SmartsValue(String application) {
@@ -1453,7 +1469,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			}
 		}
 		catch (Exception e) {
-			DriverTestcase.logger.log(LogStatus.PASS, "No values displaying under Smarts column");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "No values displaying under Smarts column");
 		}
 	 }
 	
@@ -1466,7 +1482,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			}
 		}
 		catch (Exception e) {
-			DriverTestcase.logger.log(LogStatus.PASS, "No values displaying under Fetch Interfaces column");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "No values displaying under Fetch Interfaces column");
 		}
 	 }
 	
@@ -1479,24 +1495,28 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			}
 		}
 		catch (Exception e) {
-			DriverTestcase.logger.log(LogStatus.PASS, "No values displaying under VistaMart device column");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "No values displaying under VistaMart device column");
 		}
 	 }
 	 
 	public void verifyManagementOptionspanel(String application, String performancereporting_checkbox, String ipguardian_checkbox) throws InterruptedException, DocumentException, IOException {
 
-		ScrolltoElement(application, "servicepanel_header", xml);
+		ScrolltoElement(application, "managementoptions_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		compareText(application, "Management options header", "managementoptions_header", "Management Options", xml);
+		
 		compareText(application, "Performance Reporting", "managementoptions_performancereporting", performancereporting_checkbox, xml);
 		compareText(application, "IP Guardian", "managementoptions_ipguardian", ipguardian_checkbox, xml);
 	}
 
 	public void navigateToAddNewDevicepage(String application) throws InterruptedException, DocumentException {
-		ScrolltoElement(application, "portalaccess_header", xml);
+		ScrolltoElement(application, "providerequipment_header", xml);
+		
 		Thread.sleep(1000);
 		compareText(application, "Provider Equipment (PE)", "providerequipment_header", "Provider Equipment (PE)", xml);
 		click_commonMethod(application, "Add PE Device", "addpedevice_link", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		compareText(application, "Add PE Device Header", "addpedevice_header", "Add PE Device", xml);
 		click_commonMethod(application, "Add New Device toggle", "addnewdevice_togglebutton", xml);
 		Thread.sleep(2000);
@@ -1526,11 +1546,11 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 		} catch (NoSuchElementException e) {
 			System.out.println("webElement is not  present");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step: expected field is not displayed in page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: expected field is not displayed in page ");
 			e.printStackTrace();
 		}catch (TimeoutException e) {
 			System.out.println("webElement is not  present" );
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step: expected field is not displayed in page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: expected field is not displayed in page ");
 			e.printStackTrace();
 
 		}
@@ -1563,11 +1583,9 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			addtextFields_commonMethod(application, "Name", "nametextfield", name, xml);
 
 			//vendormodel
-			//addDropdownValues_commonMethod(application, "Vendor/Model", "vendormodelinput", vendormodel, xml);
 			selectValueInsideDropdown(application, "vendormodelinput", "Vendor/Model", vendormodel, xml);
 
 			//Management address
-			//javascriptexecutor(getwebelement(xml.getlocator("//locators/" + application + "/managementaddresstextbox")));
 			addtextFields_commonMethod(application, "Management Address", "managementaddresstextbox", managementaddress, xml);
 
 			//Connectivity Protocol		
@@ -1628,7 +1646,6 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			//select country
 			scrolltoend();
 			Thread.sleep(2000);
-			//addDropdownValues_commonMethod(application, "Country", "countryinput", Country, xml);
 			selectValueInsideDropdown(application, "countryinput", "Country", Country, xml);
 
 			//New City		
@@ -1652,12 +1669,10 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			//Existing City	
 			else if(existingcity.equalsIgnoreCase("yes") & newcity.equalsIgnoreCase("no")) {
 
-				//addDropdownValues_commonMethod(application, "City", "citydropdowninput", existingcityvalue, xml);
 				selectValueInsideDropdown(application, "citydropdowninput", "City", existingcityvalue, xml);
 
 				//Existing Site
 				if(existingsite.equalsIgnoreCase("yes") & newsite.equalsIgnoreCase("no")) {
-					//addDropdownValues_commonMethod(application, "Site", "sitedropdowninput", existingsitevalue, xml);
 					selectValueInsideDropdown(application, "sitedropdowninput", "Site", existingsitevalue, xml);
 					
 					//Existing Premise
@@ -1697,28 +1712,25 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		}
 
 		scrolltoend();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		click_commonMethod(application, "Next", "Next_Button", xml);
-		Thread.sleep(3000);
-		//compareText(application, "Add Device success msg", "successmsg", "Device successfully created", xml);
+		Thread.sleep(1000);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Device successfully created");
 		Thread.sleep(2000);
 	}
 
-	public void verifyViewpage_Devicedetails(String application, String name, String vendormodel, String telnet, String ssh, String snmp2c,String SnmPro, String Snmprw, 
-			String snmpro2cvalue, String snmprw2cvalue , String snmp3 , String Snmpv3Username,String 
-			Snmpv3Authpassword, String Snmpv3Privpassword, String Snmpv3Usernamevalue, String Snmpv3Authpasswordvalue,
-			String Snmpv3Privpasswordvalue, String Country, String managementaddress, String existingcity, 
-			String existingcityvalue, String existingsite, 
-			String existingsitevalue, String existingpremise, 
-			String existingpremisevalue, String newcity,String cityname,String Citycode,
-			String sitename, String sitecode,  String premisename,  String premisecode, 
-			String newsite, String NewPremise) throws InterruptedException, IOException, DocumentException {
+	public void verifyViewpage_Devicedetails(String application, String name, String vendormodel, String telnet
+			, String ssh, String snmp2c, String snmpro2cvalue, String snmprw2cvalue
+			, String snmp3, String Snmpv3Usernamevalue, String Snmpv3Authpasswordvalue,String Snmpv3Privpasswordvalue
+			, String Country, String managementaddress, String existingcity, String existingcityvalue
+			, String existingsite, String existingsitevalue, String existingpremise, String existingpremisevalue
+			, String newcity,String cityname,String Citycode, String sitename, String sitecode
+			, String premisename, String premisecode, String newsite, String NewPremise) throws InterruptedException, IOException, DocumentException {
 
 
 		//Device Name
 		compareText(application, "Name", "viewpage_devicename", name, xml);
-
 
 		//Vendor/model
 		compareText(application, "Vendor/Model", "viewpage_vendormodel", vendormodel, xml);
@@ -1735,31 +1747,55 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		if((snmp2c.equalsIgnoreCase("Yes")) && (snmp3.equalsIgnoreCase("No"))) {
 
 			//snmp version
-			compareText(application, "Snmpro", "viewpage_snmpversion", "2c", xml);
+			compareText(application, "SNMP Version", "viewpage_snmpversion", "2c", xml);
 
 			//Snmpro
-			compareText(application, "Snmpro", "viewpage_snmpro", "incc", xml);
+			if(!snmpro2cvalue.equalsIgnoreCase("Null")) {
+			compareText(application, "Snmpro", "viewpage_snmpro", snmpro2cvalue, xml);
+			}
+			else {
+				compareText(application, "Snmpro", "viewpage_snmpro", "incc", xml);
+			}
 
 			//Snmprw
+			if(!snmprw2cvalue.equalsIgnoreCase("Null")) {
+				compareText(application, "Snmprw", "viewpage_snmprw", snmprw2cvalue, xml);
+			}
+			else {
 			compareText(application, "Snmprw", "viewpage_snmprw", "ip4corp3", xml);
+			}
 
 		}
 		else if((snmp2c.equalsIgnoreCase("No")) && (snmp3.equalsIgnoreCase("Yes"))) {
 
 			//Snmp v3 Username
-			compareText(application, "Snmp v3 Username", "viewpage_snmpv3username", "colt-nms", xml);
-
+			if(!Snmpv3Usernamevalue.equalsIgnoreCase("Null")) {
+				compareText(application, "Snmp v3 Username", "viewpage_snmpv3username", Snmpv3Usernamevalue, xml);
+			}
+			else {
+				compareText(application, "Snmp v3 Username", "viewpage_snmpv3username", "colt-nms", xml);
+			}
 
 			//Snmp v3 Auth Password
-			compareText(application, "Snmp V3 Auth Password", "viewpage_snmpv3authpassword", "OrHzjWmRvr4piJZb", xml);
+			if(!Snmpv3Authpasswordvalue.equalsIgnoreCase("Null")) {
+			compareText(application, "Snmp V3 Auth Password", "viewpage_snmpv3authpassword", Snmpv3Authpasswordvalue, xml);
+			}
+			else {
+				compareText(application, "Snmp V3 Auth Password", "viewpage_snmpv3authpassword", "OrHzjWmRvr4piJZb", xml);
+			}
 
 			//Snmp v3 Priv Password
+			if(!Snmpv3Privpasswordvalue.equalsIgnoreCase("Null")) {
+				compareText(application, "Snmp V3 Priv Password", "viewpage_snmpv3privpassword", Snmpv3Privpasswordvalue, xml);
+			}
+			else {
 			compareText(application, "Snmp V3 Priv Password", "viewpage_snmpv3privpassword", "3k0hw8thNxHucQkE", xml);
+			}
 		}
 
 		//Management Address
-		compareText(application, "Management Address", "viewpage_managementaddress", managementaddress, xml);
-
+		GetText(application, "Management Address", "viewpage_managementaddress");
+		
 		//Country
 		GetText(application, "Country", "viewpage_country");
 
@@ -1805,6 +1841,8 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 	}
 
 	public void verifyViewDevicepage_Links(String application) throws InterruptedException, DocumentException {
+		
+		scrollToTop();
 		click_commonMethod(application, "Action", "viewdevice_Actiondropdown", xml);
 		compareText(application, "Edit", "viewdevice_Edit", "Edit", xml);
 		compareText(application, "Delete", "viewdevice_delete", "Delete", xml);
@@ -1813,55 +1851,49 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		//Edit in view device page
 		click_commonMethod(application, "Edit", "viewdevice_Edit", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		scrollToTop();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/editdeviceheader")).isDisplayed())
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Navigated to 'Edit PE Device' page successfully");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Navigated to 'Edit PE Device' page successfully");
 			scrolltoend();
 			Thread.sleep(1000);
 			click_commonMethod(application, "Cancel", "cancelbutton", xml);
 			Thread.sleep(2000);
-			ScrolltoElement(application, "portalaccess_header", xml);
+			waitforPagetobeenable();
+			ScrolltoElement(application, "providerequipment_header", xml);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 			if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 			{
 				click_commonMethod(application, "View", "viewservicepage_viewdevicelink", xml);
 				Thread.sleep(5000);
+				waitforPagetobeenable();
 				compareText(application, "View device header", "viewdevicepage_header", "Device Details", xml);
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 			}
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Not navigated to 'Edit PE Device' page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Not navigated to 'Edit PE Device' page");
 		}
 
 		//verify delete device in view device page
 		click_commonMethod(application, "Action", "viewdevice_Actiondropdown", xml);
 		click_commonMethod(application, "Delete", "viewdevice_delete", xml);
 		Thread.sleep(2000);
-//		WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-//		if(DeleteAlertPopup.isDisplayed())
-//		{
-//			DriverTestcase.logger.log(LogStatus.PASS, "Step : Delete alert is displayed as expected");
-//			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/deletealertclose")));
-//		}
-//		else
-//		{
-//			Log.info("Delete alert popup is not displayed");
-//			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert is not displayed");
-//		}
+
 		 Alert alert = driver.switchTo().alert();		
   		
 	     // Capturing alert message   
 	       String alertMessage= driver.switchTo().alert().getText();
 	       if(alertMessage.isEmpty()) {
-	    	   DriverTestcase.logger.log(LogStatus.FAIL, "No message displays");
+	    	   ExtentTestManager.getTest().log(LogStatus.FAIL, "No message displays");
 		       System.out.println("No Message displays"); 
 	       }else {
-	    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+	    	   ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
 		       System.out.println("Text message for alert displays as: "+alertMessage);
 	       }
 	     
@@ -1876,12 +1908,14 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		scrolltoend();
 		click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 	}
 
 	public static String InterfaceAddress;
 	public void verifyFetchInterface(String application, String devicename, String Inservice_status, String Inmaintenance_status, String vendormodel, String managementaddress, String snmpro, String country, String interfacename) throws InterruptedException, DocumentException, IOException {
 
-		ScrolltoElement(application, "portalaccess_header", xml);
+		ScrolltoElement(application, "providerequipment_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
 			List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/existingdevicegrid"));
@@ -1893,25 +1927,26 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				if(AddedDeviceNameText.contains(devicename))
 				{
 					WebElement AddedDevice_ViewLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_viewlink").replace("value", AddedDevice_SNo));
-					//driver.findElement(By.xpath("//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'"+AddedDevice_SNo+"')]/parent::div/following-sibling::div//span[text()='View']"));
 					Clickon(AddedDevice_ViewLink);
-					Thread.sleep(5000);
+					Thread.sleep(3000);
+					waitforPagetobeenable();
 					compareText(application, "View device header", "viewdevicepage_header", "Device Details", xml);
 				}
 			}
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 		}
 
 		click_commonMethod(application, "Action", "viewdevice_Actiondropdown", xml);
 		click_commonMethod(application, "Fetch Interface", "viewdevice_fetchinterfacelink", xml);
-		Thread.sleep(3000);
-		//compareText(application, "Fetch Interface success msg", "fetchsuccessmsg", "Fetch interfaces started successfully. Please check the sync status of this device", xml);
+		Thread.sleep(2000);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Fetch interfaces started successfully. Please check the sync status of this device here");
 		click_commonMethod(application, "here", "herelink_fetchinterface", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 
 		//Manage Network
 		compareText(application, "Manage Network header", "managenetwork_header", "Manage COLT's Network - Manage Network", xml);
@@ -1962,7 +1997,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		}catch(Exception e)
 		{
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Last Modification column value field is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Last Modification column value field is not displaying");
 		}
 
 		click_commonMethod(application, "Status", "status_statuslink", xml);
@@ -2005,7 +2040,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		WebElement selectNewStatusvalue= getwebelement(xml.getlocator("//locators/" + application + "/statuspage_newstatusdropdownvalue"));
 		Clickon(selectNewStatusvalue);
 		String NewStatusvalue= getwebelement(xml.getlocator("//locators/" + application + "/statuspage_newstatusdropdownvalue")).getText();
-		DriverTestcase.logger.log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue);
 		click_commonMethod(application, "OK", "statuspage_okbutton", xml);
 		Thread.sleep(2000);
 		scrollToTop();
@@ -2039,7 +2074,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 						if ((numofrows == 0)) {
 
-							DriverTestcase.logger.log(LogStatus.PASS, "Device Status History is empty");
+							ExtentTestManager.getTest().log(LogStatus.PASS, "Device Status History is empty");
 						}
 						else {
 							// Current page
@@ -2057,7 +2092,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 									System.out.println(Devicehistorydata);
 									if (Devicehistorydata.contains(NewStatusvalue)) 
 									{
-										DriverTestcase.logger.log(LogStatus.PASS, "Device status history table has data");
+										ExtentTestManager.getTest().log(LogStatus.PASS, "Device status history table has data");
 										Thread.sleep(2000);
 										compareText(application, "New Status", "statuspage_newstatusvalue", NewStatusvalue, xml);
 										try {
@@ -2079,7 +2114,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 										}catch(Exception e)
 										{
 											e.printStackTrace();
-											DriverTestcase.logger.log(LogStatus.FAIL, "Step : Changed on column value field is not displaying");
+											ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Changed on column value field is not displaying");
 										}
 
 										GetText(application, "Changed By", "statuspage_changedbyvalue");
@@ -2098,7 +2133,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 					}
 					else
 					{
-						DriverTestcase.logger.log(LogStatus.INFO, "No interfaces added");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "No interfaces added");
 
 					}
 				}
@@ -2107,7 +2142,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 			System.out.println("No data available in table");
 			Log.info("No data available in table");
-			DriverTestcase.logger.log(LogStatus.FAIL, "No data available in table");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No data available in table");
 		}
 
 		//verify view interfaces page
@@ -2158,7 +2193,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 						if ((numofrows == 0)) {
 
-							DriverTestcase.logger.log(LogStatus.PASS, "Interface table is empty");
+							ExtentTestManager.getTest().log(LogStatus.PASS, "Interface table is empty");
 						}
 						else {
 							// Current page
@@ -2181,32 +2216,32 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 										//verify interface values in table
 										String DeviceNamevalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='deviceName']").getText();
-										DriverTestcase.logger.log(LogStatus.PASS, "Step: Interface Device Name value is displayed as : "+DeviceNamevalue);
+										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Device Name value is displayed as : "+DeviceNamevalue);
 										String InterfaceNamevalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='name']").getText();
-										DriverTestcase.logger.log(LogStatus.PASS, "Step: Interface Name value is displayed as : "+InterfaceNamevalue);
+										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Name value is displayed as : "+InterfaceNamevalue);
 										String InterfaceAddressvalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='address']").getText();
-										DriverTestcase.logger.log(LogStatus.PASS, "Step: Interface Address value is displayed as : "+InterfaceAddressvalue);
+										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Address value is displayed as : "+InterfaceAddressvalue);
 										WebElement InterfaceAddressRowValue1= getwebelement(xml.getlocator("//locators/" + application + "/interfacetype_rowvalue"));
 										Clickon(InterfaceAddressRowValue1);
 										InterfaceAddressRowValue1.sendKeys(Keys.TAB);
 										String InterfaceTypevalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='type.desc']").getText();
-										DriverTestcase.logger.log(LogStatus.PASS, "Step: Interface Type value is displayed as : "+InterfaceTypevalue);
+										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Type value is displayed as : "+InterfaceTypevalue);
 										WebElement InterfaceTypeRowValue1= getwebelement(xml.getlocator("//locators/" + application + "/interfacetype_rowvalue"));
 										Clickon(InterfaceTypeRowValue1);
 										InterfaceTypeRowValue1.sendKeys(Keys.TAB);
 										String Statusvalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='currentStatus.desc']").getText();
-										DriverTestcase.logger.log(LogStatus.PASS, "Step: Status value is displayed as : "+Statusvalue);
+										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Status value is displayed as : "+Statusvalue);
 										WebElement StatusRowValue1= getwebelement(xml.getlocator("//locators/" + application + "/viewinterface_status_rowvalue"));
 										Clickon(StatusRowValue1);
 										StatusRowValue1.sendKeys(Keys.TAB);
 										String LastModificationvalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='m_time']").getText();
-										DriverTestcase.logger.log(LogStatus.PASS, "Step: Last Modification value is displayed as : "+LastModificationvalue);
+										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Last Modification value is displayed as : "+LastModificationvalue);
 										WebElement LastModificationRowValue= getwebelement(xml.getlocator("//locators/" + application + "/viewinterface_lastmod_rowvalue"));
 										Clickon(LastModificationRowValue);
 										LastModificationRowValue.sendKeys(Keys.TAB);
 										WebElement StatusLink= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='Status']/div/a");
 										Clickon(StatusLink);
-										DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked on Status link in interface table");
+										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked on Status link in interface table");
 
 										InterfaceAddress= InterfaceAddressvalue;
 										break outerloop;
@@ -2246,11 +2281,10 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			WebElement selectNewStatusvalue1= getwebelement(xml.getlocator("//locators/" + application + "/interface_statuspage_newstatusdropdownvalue"));
 			Clickon(selectNewStatusvalue1);
 			String NewStatusvalue1= getwebelement(xml.getlocator("//locators/" + application + "/interface_statuspage_newstatusdropdownvalue")).getText();
-			DriverTestcase.logger.log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue1);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue1);
 			click_commonMethod(application, "OK", "interface_statuspage_okbutton", xml);
 			Thread.sleep(2000);
 			scrollToTop();
-			//compareText(application, "Interface status update success message", "Sync_successmsg", "Interface Status History successfully changed.", xml);
 			verifysuccessmessage(application, "Interface Status History successfully changed.");
 			Thread.sleep(1000);
 			scrolltoend();
@@ -2279,7 +2313,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 						if ((numofrows == 0)) {
 
-							DriverTestcase.logger.log(LogStatus.PASS, "Interface Status History is empty");
+							ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Status History is empty");
 						}
 						else {
 							// Current page
@@ -2296,7 +2330,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 									System.out.println(Interfacehistorydata);
 									if (Interfacehistorydata.contains(NewStatusvalue1)) 
 									{
-										DriverTestcase.logger.log(LogStatus.PASS, "Interface status history table has data");
+										ExtentTestManager.getTest().log(LogStatus.PASS, "Interface status history table has data");
 										Thread.sleep(2000);
 										compareText(application, "New Status", "interface_statuspage_newstatusvalue", NewStatusvalue1, xml);
 										try {
@@ -2318,7 +2352,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 										}catch(Exception e)
 										{
 											e.printStackTrace();
-											DriverTestcase.logger.log(LogStatus.FAIL, "Step : Changed On column value field is not displaying");
+											ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Changed On column value field is not displaying");
 										}
 
 										compareText(application, "Changed By", "interface_statuspage_changedbyvalue", Getkeyvalue("APT_login_1_Username"), xml);
@@ -2340,17 +2374,17 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 				System.out.println("No data available in status history table");
 				Log.info("No data available in status history table");
-				DriverTestcase.logger.log(LogStatus.FAIL, "No data available in status history table");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "No data available in status history table");
 			}
 			}else {
 
 				System.out.println("No data available in Interface table");
 				Log.info("No data available in Interface table");
-				DriverTestcase.logger.log(LogStatus.FAIL, "No data available in Interface table");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "No data available in Interface table");
 			}
 		}else
 		{
-			DriverTestcase.logger.log(LogStatus.INFO, "No Interface added in table");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "No Interface added in table");
 		}
 
 		click_commonMethod(application, "Close", "viewinterface_closebutton", xml);
@@ -2380,7 +2414,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				SmartsDateTimevalue = Smartsvalue;
 			}
 
-			DriverTestcase.logger.log(LogStatus.PASS, "Smarts date value is displayed as: "+SmartsDateTimevalue);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Smarts date value is displayed as: "+SmartsDateTimevalue);
 			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
 			if (SmartsDateTimevalue.length() > 3) 
 			{
@@ -2414,7 +2448,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				FetchInterfaces_DateTimevalue = FetchInterfacesvalue;
 			}
 
-			DriverTestcase.logger.log(LogStatus.PASS, "Fetch Interfaces date value is displayed as: "+FetchInterfaces_DateTimevalue);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Fetch Interfaces date value is displayed as: "+FetchInterfaces_DateTimevalue);
 			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
 			if (FetchInterfaces_DateTimevalue.length() > 3) 
 			{
@@ -2429,7 +2463,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		}catch(Exception e)
 		{
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Fetch Interfaces date value field is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Fetch Interfaces date value field is not displaying");
 		}
 
 		//verify vistamart device value
@@ -2449,7 +2483,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				VistaMartDevice_DateTimevalue = VistaMartDevicevalue;
 			}
 
-			DriverTestcase.logger.log(LogStatus.PASS, "Vistamart Device date value is displayed as: "+VistaMartDevice_DateTimevalue);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Vistamart Device date value is displayed as: "+VistaMartDevice_DateTimevalue);
 			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
 			if (VistaMartDevice_DateTimevalue.length() > 3) 
 			{
@@ -2475,36 +2509,9 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		verifysuccessmessage(application, "Sync started successfully. Please check the sync status of this device.");
 		Thread.sleep(3000);
 		scrollToTop();
-		//driver.navigate().back();
 		clickOnBreadCrumb(application, devicename);
 		Thread.sleep(5000);
-		//driver.navigate().back();
-		//scrolltoend();
-		//click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-		//clickOnBreadCrumb(application, "IPTransitDevice_08", devicename);
-		//Thread.sleep(2000);
-		
-		//			//verify device name link in status panel
-		//			click(application, "Device", "status_devicevalue", xml);
-		//			Thread.sleep(2000);
-		//			compareText(application, "Search for Device header", "searchdevice_header", "Search For Device", xml);
-		//			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to 'Search for device' page");
-		//			driver.navigate().back();
-		//			Thread.sleep(1000);
-		//			
-		//			//verify device name link in synchronization panel
-		//			click(application, "Device", "synchronization_devicevalue", xml);
-		//			Thread.sleep(2000);
-		//			compareText(application, "Search for Device header", "searchdevice_header", "Search For Device", xml);
-		//			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to 'Search for device' page");
-		//			driver.navigate().back();
-		//			Thread.sleep(2000);
-		//			driver.navigate().back();
-		//			Thread.sleep(2000);
-		//			scrolltoend();
-		//			click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-		//			Thread.sleep(2000);
-		//	
+		waitforPagetobeenable();	
 	}
 
 	public void verifyEditDevice(String application, String editDevicename, String editVendorModel, String editTelnet, String editSSH, String editSnmp2C, String editSnmp3,
@@ -2515,21 +2522,13 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 		try {
 
-			ScrolltoElement(application, "portalaccess_header", xml);
+			ScrolltoElement(application, "providerequipment_header", xml);
 			Thread.sleep(1000);
 			if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 			{
 				click_commonMethod(application, "Edit", "viewservicepage_editdevicelink", xml);
 				Thread.sleep(5000);
-			
-//				scrollToTop();
-//				click_commonMethod(application, "Action", "viewdevice_Actiondropdown", xml);
-//				click_commonMethod(application, "Edit", "viewdevice_Edit", xml);
-//				Thread.sleep(2000);
-//				scrollToTop();
-//				if(getwebelement(xml.getlocator("//locators/" + application + "/editdeviceheader")).isDisplayed())
-//				{
-//					
+				waitforPagetobeenable();
 				compareText(application, "Edit PE Device header", "editdeviceheader", "Edit PE Device", xml);
 
 				//edit device fields
@@ -2538,7 +2537,6 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				edittextFields_commonMethod(application, "Name", "nametextfield", editDevicename, xml);
 				
 				//vendormodel
-				//addDropdownValues_commonMethod(application, "Vendor/Model", "vendormodelinput", editVendorModel, xml);
 				selectValueInsideDropdown(application, "vendormodelinput", "Vendor/Model", editVendorModel, xml);
 				
 				//Management address
@@ -2575,7 +2573,6 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				//select country
 				scrolltoend();
 				Thread.sleep(2000);
-				//addDropdownValues_commonMethod(application, "Country", "countryinput", editCountry, xml);
 				selectValueInsideDropdown(application, "countryinput", "Country", editCountry, xml);
 				
 				//New City		
@@ -2599,12 +2596,10 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				//Existing City	
 				else if(editExistingCity.equalsIgnoreCase("yes") & editNewCity.equalsIgnoreCase("no")) {
 
-					//addDropdownValues_commonMethod(application, "City", "citydropdowninput", editExistingCityValue, xml);
 					selectValueInsideDropdown(application, "citydropdowninput", "City", editExistingCityValue, xml);
 
 					//Existing Site
 					if(editExistingSite.equalsIgnoreCase("yes") & editNewSite.equalsIgnoreCase("no")) {
-						//addDropdownValues_commonMethod(application, "Site", "sitedropdowninput", editExistingSiteValue, xml);
 						selectValueInsideDropdown(application, "sitedropdowninput", "Site", editExistingSiteValue, xml);
 						
 						//Existing Premise
@@ -2639,7 +2634,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 			else if(editCountry.equalsIgnoreCase("Null")) {
 
-				DriverTestcase.logger.log(LogStatus.PASS, " No changes made for 'Country' dropdown");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " No changes made for 'Country' dropdown");
 
 				//City	
 				editCity(application, editExistingCity, editNewCity, "citydropdowninput", "selectcityswitch", "addcityswitch",
@@ -2659,14 +2654,8 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 			}
-				
-//				}
-//				else
-//				{
-//					DriverTestcase.logger.log(LogStatus.FAIL, "Not navigated to 'Edit PE Device' page");
-//				}
 				
 		} catch (StaleElementReferenceException e) {
 
@@ -2674,10 +2663,10 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		}
 
 		scrolltoend();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		click_commonMethod(application, "OK", "okbutton", xml);
-		Thread.sleep(3000);
-		//compareText(application, "Edit Device success msg", "successmsg", "Device successfully updated", xml);
+		Thread.sleep(2000);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Device successfully updated");
 		Thread.sleep(2000);
 
@@ -2712,7 +2701,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 		else if(editExistingPremise.equalsIgnoreCase("null") & editNewPremise.equalsIgnoreCase("null")) {
 
-			DriverTestcase.logger.log(LogStatus.PASS, "No changes made under 'Premise' field");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made under 'Premise' field");
 			System.out.println("No changes made under 'Premise' field");
 
 		}
@@ -2819,7 +2808,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 		else if(editExistingCity.equalsIgnoreCase("null") & editNewCity.equalsIgnoreCase("null")) {
 
-			DriverTestcase.logger.log(LogStatus.PASS, "No changes made under 'Site' field");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made under 'Site' field");
 			System.out.println("No changes made under 'Site' field");
 
 		}
@@ -2925,7 +2914,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 		else if(editExistingCity.equalsIgnoreCase("null") & editNewCity.equalsIgnoreCase("null")) {
 
-			DriverTestcase.logger.log(LogStatus.PASS, "No chnges made under 'City' field");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "No chnges made under 'City' field");
 			System.out.println("No chnges made under 'City' field");
 		}
 
@@ -3006,16 +2995,18 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			String editManagementAddress, String name, String vendormodel, String telnet, String ssh, String snmp2c,String SnmPro, String Snmprw, String snmpro2cvalue, String snmprw2cvalue , String snmp3 , String Snmpv3Username,String 
 			Snmpv3Authpassword, String Snmpv3Privpassword, String Snmpv3Usernamevalue, String Snmpv3Authpasswordvalue, String Snmpv3Privpasswordvalue, String managementaddress) throws InterruptedException, IOException, DocumentException {
 
-		ScrolltoElement(application, "portalaccess_header", xml);
+		ScrolltoElement(application, "providerequipment_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
 			click_commonMethod(application, "View", "viewservicepage_viewdevicelink", xml);
-			Thread.sleep(5000);
+			Thread.sleep(2000);
+			waitforPagetobeenable();
 			compareText(application, "View device header", "viewdevicepage_header", "Device Details", xml);
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 		}
 
 		//Device name
@@ -3098,18 +3089,18 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		//Premise
 			GetText(application, "Premise", "viewpage_premise");
 		
-		//		scrolltoend();
-		//		click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 		Thread.sleep(2000);
 	}
 
 
 	public void addExistingPEDevice(String application, String existingdevicename) throws InterruptedException, DocumentException {
-		ScrolltoElement(application, "portalaccess_header", xml);
+		
+		ScrolltoElement(application, "providerequipment_header", xml);
 		Thread.sleep(1000);
 		compareText(application, "Provider Equipment (PE)", "providerequipment_header", "Provider Equipment (PE)", xml);
 		click_commonMethod(application, "Add PE Device", "addpedevice_link", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		compareText(application, "Add PE Device Header", "addpedevice_header", "Add PE Device", xml);
 		//addDropdownValues_commonMethod(application, "Type PE name to filter", "typepename_dropdown", existingdevicename, xml);
 		
@@ -3117,13 +3108,13 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		try {  
 			availability=getwebelement(xml.getlocator("//locators/" + application + "/typepename_dropdown")).isDisplayed();
 			if(availability) {
-				DriverTestcase.logger.log(LogStatus.PASS, "PE Name dropdown is displaying");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "PE Name dropdown is displaying");
 				System.out.println("PE Name dropdown is displaying");
 				Log.info("PE Name dropdown is displaying");
 
 				if(existingdevicename.equalsIgnoreCase("null")) {
 
-					DriverTestcase.logger.log(LogStatus.PASS, " No values selected under PE Name dropdown");
+					ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under PE Name dropdown");
 					System.out.println("No values selected under PE Name dropdown");
 					Log.info("No values selected under PE Name dropdown");
 				}else {
@@ -3134,44 +3125,42 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 					//verify list of values inside dropdown
 					List<WebElement> listofvalues = getwebelements("//div[label[text()='Type PE name to filter']]/div//span[@role='option']");
 
-					DriverTestcase.logger.log(LogStatus.PASS, "List of values inside PE Name dropdown is:  ");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "List of values inside PE Name dropdown is:  ");
 					System.out.println( "List of values inside PE Name dropdown is:  ");
 					Log.info("List of values inside PE Name dropdown is:  ");
 
 					for (WebElement valuetypes : listofvalues) {
 						Log.info("PE Names : " + valuetypes.getText());
-						DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+						ExtentTestManager.getTest().log(LogStatus.PASS," " + valuetypes.getText());
 						System.out.println(" " + valuetypes.getText());
 					}
 
 					Thread.sleep(2000);
 					SendKeys(getwebelement("//div[label[text()='Type PE name to filter']]/div//input"), existingdevicename);	
-					Thread.sleep(2000);
-
-					scrolltoend();
+					Thread.sleep(1000);
 					ScrolltoElement(application, "nextbutton", xml);
 					Thread.sleep(2000);
 					Clickon(getwebelement("(//span[text()='"+existingdevicename+"'])[1]"));
 					Thread.sleep(3000);
 
 					String actualValue=getwebelement("//div[label[text()='Type PE name to filter']]//div//span").getText();
-					DriverTestcase.logger.log(LogStatus.PASS, "PE Name dropdown value selected as: "+ actualValue );
+					ExtentTestManager.getTest().log(LogStatus.PASS, "PE Name dropdown value selected as: "+ actualValue );
 					System.out.println("PE Name dropdown value selected as: "+ actualValue);
 					Log.info("PE Name dropdown value selected as: "+ actualValue);
 
 				}
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "PE Name is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "PE Name is not displaying");
 				System.out.println("PE Name is not displaying");
 				Log.info("PE Name is not displaying");
 			}
 		}catch(NoSuchElementException e) {
-			DriverTestcase.logger.log(LogStatus.FAIL, "PE Name is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "PE Name is not displaying");
 			System.out.println("PE Name is not displaying");
 			Log.info("PE Name is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "Not able to perform selection under PE Name dropdown");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Not able to perform selection under PE Name dropdown");
 			System.out.println("NO value selected under PE Name dropdown");
 			Log.info("NO value selected under PE Name dropdown");
 		}
@@ -3207,8 +3196,8 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		scrolltoend();
 		Thread.sleep(2000);
 		click_commonMethod(application, "Next", "Next_Button", xml);
-		Thread.sleep(3000);
-		//compareText(application, "Add Device success msg", "successmsg", "Device successfully created", xml);
+		Thread.sleep(2000);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Device successfully created");
 		Thread.sleep(2000);
 	}
@@ -3268,7 +3257,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 	public void deleteExistingDevice(String application, String existingdevicename) throws InterruptedException, DocumentException {
 
-		ScrolltoElement(application, "portalaccess_header", xml);
+		ScrolltoElement(application, "providerequipment_header", xml);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
 			List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/addeddevices_list"));
@@ -3280,20 +3269,18 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				if(AddedDeviceNameText.contains(existingdevicename))
 				{
 					WebElement AddedDevice_DeletefromserviceLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_deletefromservicelink").replace("value", AddedDevice_SNo));
-					//driver.findElement(By.xpath("//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'"+AddedDevice_SNo+"')]/parent::div/following-sibling::div//span[text()='Delete from Service']"));
 					Clickon(AddedDevice_DeletefromserviceLink);
 					Thread.sleep(2000);
-					//WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
 					
 					 Alert alert = driver.switchTo().alert();		
 			     		
 				     // Capturing alert message   
 				       String alertMessage= driver.switchTo().alert().getText();
 				       if(alertMessage.isEmpty()) {
-				    	   DriverTestcase.logger.log(LogStatus.FAIL, "No message displays");
+				    	   ExtentTestManager.getTest().log(LogStatus.FAIL, "No message displays");
 					       System.out.println("No Message displays"); 
 				       }else {
-				    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+				    	   ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
 					       System.out.println("Text message for alert displays as: "+alertMessage);
 				       }
 				     
@@ -3311,13 +3298,13 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 		}
 	}
 
-	public void deleteDevice(String application, String name) throws InterruptedException, DocumentException {
+	public void deleteDevice(String application, String devicename) throws InterruptedException, DocumentException {
 
-		ScrolltoElement(application, "portalaccess_header", xml);
+		scrolltoend();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
 			List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/addeddevices_list"));
@@ -3326,33 +3313,38 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			for(int i=0;i<AddedDevicesCount;i++) {
 				String AddedDeviceNameText= addeddevicesList.get(i).getText();
 				String AddedDevice_SNo= AddedDeviceNameText.substring(0, 1);
-				if(AddedDeviceNameText.contains(name))
+				if(AddedDeviceNameText.contains(devicename))
 				{
 					WebElement AddedDevice_DeletefromserviceLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_deletefromservicelink").replace("value", AddedDevice_SNo));
-					//driver.findElement(By.xpath("//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'"+AddedDevice_SNo+"')]/parent::div/following-sibling::div//span[text()='Delete from Service']"));
 					Clickon(AddedDevice_DeletefromserviceLink);
 					Thread.sleep(2000);
-					WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-					if(DeleteAlertPopup.isDisplayed())
-					{
-						click_commonMethod(application, "Delete", "deletebutton", xml);
-						Thread.sleep(2000);
-						//compareText(application, "Device delete success message", "successmsg", "Device successfully removed from service.", xml);
-						verifysuccessmessage(application, "Device successfully removed from service.");
-					}
-					else
-					{
-						Log.info("Delete alert popup is not displayed");
-						DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-					}
-				
+					
+					Alert alert = driver.switchTo().alert();       
+					  
+					  // Capturing alert message.    
+					    String alertMessage= driver.switchTo().alert().getText();
+					    if(alertMessage.isEmpty()) {
+					       ExtentTestManager.getTest().log(LogStatus.FAIL, "No message displays");
+					          System.out.println("No Message displays"); 
+					    }else {
+					       ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+					          System.out.println("text message for alert displays as: "+alertMessage);
+					    }
+					  
+					  try {  
+					    alert.accept();
+					    Thread.sleep(2000);
+					  }catch(Exception e) {
+					     e.printStackTrace();
+					  } 
+					  verifysuccessmessage(application, "Device successfully removed from service.");
 				break;
 				}
 			}
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 		}
 	}
 
@@ -3401,14 +3393,41 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 	}
 
-	public void verify_CiscoVendor_AddInterface(String application, String configureinterface_checkbox, String interfacename, String getaddress, String ipv6_getaddress_button, String interfaceaddressrange_value, String eipallocation_city, String eipallocation_subnetsize, String eipallocation_ipv6_subnetsize, String eipallocation_availableblocksvalue, String link_value, String bearertype_value, String ciscovendor_bandwidth_value, String encapsulation_value, String bgp_checkbox, String framingtype_value, String vlanID_value, String bgptemplate_dropdownvalue, String cpewan_value, String cpewanipv6_value, String descriptionfield_value, String ascustomerfield_value, String bgppassword_value) throws InterruptedException, DocumentException, IOException {
+	public String DeviceName(String application) throws InterruptedException, DocumentException {
+		
+		scrollToTop();
+		String DeviceNameValue= GetText(application, "Name", "viewpage_devicename");
+		
+		return DeviceNameValue;
+	}
 
-		ScrolltoElement(application, "routertools_header", xml);
-		Thread.sleep(1000);
+	public String VendorModel(String application) throws InterruptedException, DocumentException {
+		
+		scrollToTop();
+		String VendorModelValue= GetText(application, "Vendor/Model", "viewpage_vendormodel");
+		
+		return VendorModelValue;
+	}
+	
+	
+	public void verify_CiscoVendor_AddInterface(String application, String configureinterface_checkbox
+			, String interfaceaddressrange_value
+			, String eipallocation_city, String existingAddressRangeIPv4selection, String existingAddressIPv4DropdownValue
+			, String newAddressRangeIpv4selection, String newinterfaceAddressrange, String subnetSizeValue_IPv4
+			,String existingAddressRangeIPv6selection, String existingAddressIPv6DropdownValue, String newAddressRangeIpv6selection
+			, String newinterfaceAddressrangeIPv6, String subnetSizeValue_IPv6, String availableBlocksValue_IPv6
+			, String link_value, String bearertype_value, String ciscovendor_bandwidth_value, String encapsulation_value
+			, String bgp_checkbox, String framingtype_value, String vlanID_value, String bgptemplate_dropdownvalue
+			, String cpewan_value, String cpewanipv6_value, String descriptionfield_value, String ascustomerfield_value
+			, String bgppassword_value) throws InterruptedException, DocumentException, IOException {
+
+		ScrolltoElement(application, "interfaces_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		compareText(application, "Interfaces header", "interfaces_header", "Interfaces", xml);
 		click_commonMethod(application, "Action dropdown", "interfacepanel_actiondropdown", xml);
 		click_commonMethod(application, "Add Interface/Link", "addinterface_link", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		scrollToTop();
 		GetText(application, "Add Interface header", "addinterface_header");
 		scrolltoend();
@@ -3423,91 +3442,11 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 		//Add Interface
 		addCheckbox_commonMethod(application, "configureinterface_checkbox", "Configure Interface on Device", configureinterface_checkbox, "no", xml);
-		addtextFields_commonMethod(application, "Interface", "interfacename_textfield", interfacename, xml);
 		compareText(application, "Network", "network_fieldvalue", "XFER", xml);
 
-		//verify EIP Allocation
-		Thread.sleep(1000);
-		scrollToTop();
-		click_commonMethod(application, "EIP Allocation button", "eipallocation1_button", xml);
-		if(getwebelement(xml.getlocator("//locators/" + application + "/eipsubnetallocation_header")).isDisplayed())
-		{
-			compareText(application, "EIP Subnet Allocation", "eipsubnetallocation_header", "EIP Subnet Allocation", xml);
-			GetText(application, "Subnet Type", "subnettype_value");
-			addDropdownValues_commonMethod(application, "City", "eipallocation_citydropdown", eipallocation_city, xml);
-			addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_subnetsize", eipallocation_subnetsize, xml);
-			GetText(application, "Available Pools", "eipallocation_availablepools_value");
-			//click_commonMethod(application, "Allocate subnet button", "allocatesubnet_button", xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Close", "closesymbol", xml);
-		}
-		else
-		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "EIP Allocation button is not working");
-		}
-		Thread.sleep(2000);
-
-		//verify getaddress
-		if(getaddress.equalsIgnoreCase("yes"))
-		{
-			click_commonMethod(application, "Get Address", "getaddress1_button", xml);
-			if(getwebelement(xml.getlocator("//locators/" + application + "/interfacerange_Address_dropdown")).isDisplayed()) 
-			{
-			addDropdownValues_commonMethod(application, "Interface Address Range", "interfacerange_Address_dropdown", interfaceaddressrange_value, xml);
-			click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
-			}
-			else
-			{
-			addtextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrange_textfield", interfaceaddressrange_value, xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
-			}
-		}
-
-		compareText_fromtextFields(application, "Network", "networkipv6_fieldvalue", "WAN (XFER)", xml);
-
-		//verify EIP Allocation
-		Thread.sleep(1000);
-		ScrolltoElement(application, "network_fieldvalue", xml);
-		click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
-		if(getwebelement(xml.getlocator("//locators/" + application + "/eipallocationIPv6_header")).isDisplayed())
-		{
-			//compareText(application, "EIP Address Allocation header", "eipallocationIPv6_header", "EIP Address Allocation For Interface  ", xml);
-			GetText(application, "EIP Address Allocation header", "eipallocationIPv6_header");
-			GetText(application, "Subnet Type", "subnettype_value");
-			GetText(application, "Space Name", "eipallocation_spacename");
-			addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_ipv6_subnetsize", eipallocation_ipv6_subnetsize, xml);
-			addDropdownValues_commonMethod(application, "Available Blocks", "availableblocks_dropdown", eipallocation_availableblocksvalue, xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
-			Thread.sleep(2000);
-			scrollToTop();
-			GetText(application, "Subnet allocation success message", "successmsg");
-			//verifysuccessmessage(application, "Subnet Allocation IPTransitService_05-IPTransitService_05-XFER-0017527 (null)Successfully");
-		}
-		else
-		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "EIP Allocation button is not working");
-		}
-		Thread.sleep(2000);
-		ScrolltoElement(application, "network_fieldvalue", xml);
-		//verify getaddress ipv6
-		if(ipv6_getaddress_button.equalsIgnoreCase("yes"))
-		{
-			click_commonMethod(application, "Get Address", "getaddress2_button", xml);
-			if(getwebelement(xml.getlocator("//locators/" + application + "/interfacerange_AddressIpv6_dropdown")).isDisplayed()) 
-			{
-			addDropdownValues_commonMethod(application, "Interface Address Range IPv6", "interfacerange_AddressIpv6_dropdown", interfaceaddressrange_value, xml);
-			click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
-		}
-		else
-		{
-			addtextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", interfaceaddressrange_value, xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
-		}
-		}
-
+		interfaceAddressRangeIPv4(application, existingAddressRangeIPv4selection, newAddressRangeIpv4selection, subnetSizeValue_IPv4, eipallocation_city, existingAddressIPv4DropdownValue, newinterfaceAddressrange);
+		interfaceAddressRangeIPv6(application, existingAddressRangeIPv6selection, newAddressRangeIpv6selection, subnetSizeValue_IPv6, availableBlocksValue_IPv6, newinterfaceAddressrangeIPv6);
+		
 		ScrolltoElement(application, "link_textfield", xml);
 		addtextFields_commonMethod(application, "Link", "link_textfield", link_value, xml);
 		selectValueInsideDropdown(application, "bearertype_dropdown", "Bearer Type", bearertype_value, xml);
@@ -3528,6 +3467,9 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		
 		Thread.sleep(1000);
 		ScrolltoElement(application, "link_textfield", xml);
+		InterfaceName= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_textfield")).getAttribute("value");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Interface value is displayed as:"+InterfaceName);
+		
 		addCheckbox_commonMethod(application, "bgp_checkbox", "BGP", bgp_checkbox, "no", xml);
 		if(bgp_checkbox.equalsIgnoreCase("yes"))
 		{
@@ -3541,188 +3483,100 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 		scrolltoend();
 		//configuration panel in add interface page
-		if(configureinterface_checkbox.equalsIgnoreCase("yes"))
-		{
-			compareText(application, "Configuration", "configuration_header", "Configuration", xml);
-			click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
-			Thread.sleep(2000);
-			GetText(application, "Configuration", "configuration_textarea");
-			Thread.sleep(1000);
-			click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
-			Thread.sleep(2000);
-			click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
-		}
-		else
-		{
-			click_commonMethod(application, "OK", "okbutton", xml);
-		}
+		generateConfiguration(application);
+		
 		Thread.sleep(5000);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Interface added successfully");
 		Thread.sleep(2000);
 
 		//Verify added interface
-		ScrolltoElement(application, "routertools_header", xml);
+		ScrolltoElement(application, "interfaces_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		WebElement AddedInterfaces= getwebelement(xml.getlocator("//locators/" + application + "/addedinterfaces"));
 		String addedinterfacecheck= AddedInterfaces.getAttribute("style");
 		if(!addedinterfacecheck.contains("height: 1px"))
 		{
 			compareText(application, "Interfaces", "interfaces_header", "Interfaces", xml);
-			String Interface_RowID= getwebelement(xml.getlocator("//locators/" + application + "/interface_rowid").replace("value", interfacename)).getAttribute("row-id");
-			//driver.findElement(By.xpath("//div[@col-id='interfaceName'][text()='"+interfacename+"']/parent::div")).getAttribute("row-id");
+			String Interface_RowID= getwebelement(xml.getlocator("//locators/" + application + "/interface_rowid").replace("value", InterfaceName)).getAttribute("row-id");
 
 			WebElement InterfaceName_value= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_tablevalue").replace("value", Interface_RowID));
-			DriverTestcase.logger.log(LogStatus.PASS, "Interface value is displayed as:"+InterfaceName_value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interface value is displayed as:"+InterfaceName_value);
 			WebElement Link_value= getwebelement(xml.getlocator("//locators/" + application + "/link_tablevalue").replace("value", Interface_RowID));
-			DriverTestcase.logger.log(LogStatus.PASS, "Link/Circuit Id value is displayed as:"+Link_value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Link/Circuit Id value is displayed as:"+Link_value);
 			WebElement InterfaceAddressRange_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddressrange_tablevalue").replace("value", Interface_RowID));
-			DriverTestcase.logger.log(LogStatus.PASS, "Interface Address Range value is displayed as:"+InterfaceAddressRange_value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Address Range value is displayed as:"+InterfaceAddressRange_value);
 			WebElement InterfaceAddress_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddress_tablevalue").replace("value", Interface_RowID));
-			DriverTestcase.logger.log(LogStatus.PASS, "Interface Address value is displayed as:"+InterfaceAddress_value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Address value is displayed as:"+InterfaceAddress_value);
 			WebElement BearerType_value= getwebelement(xml.getlocator("//locators/" + application + "/bearertype_tablevalue").replace("value", Interface_RowID));
-			DriverTestcase.logger.log(LogStatus.PASS, "Bearer Type value is displayed as:"+BearerType_value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Bearer Type value is displayed as:"+BearerType_value);
 			WebElement Bandwidth_value= getwebelement(xml.getlocator("//locators/" + application + "/bandwidth_tablevalue").replace("value", Interface_RowID));
-			DriverTestcase.logger.log(LogStatus.PASS, "Bandwidth value is displayed as:"+Bandwidth_value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Bandwidth value is displayed as:"+Bandwidth_value);
 			Clickon(Bandwidth_value);
 			Bandwidth_value.sendKeys(Keys.TAB);
 			WebElement vlanIDValue= getwebelement(xml.getlocator("//locators/" + application + "/vlanid_tablevalue").replace("value", Interface_RowID));
-			DriverTestcase.logger.log(LogStatus.PASS, "VLAN Id value is displayed as:"+vlanIDValue);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "VLAN Id value is displayed as:"+vlanIDValue);
 			Clickon(vlanIDValue);
 			vlanIDValue.sendKeys(Keys.TAB);
 			WebElement IfInOctets_Value= getwebelement(xml.getlocator("//locators/" + application + "/ifinoctets_tablevalue").replace("value", Interface_RowID));
-			DriverTestcase.logger.log(LogStatus.PASS, "IfInOctets value is displayed as:"+IfInOctets_Value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "IfInOctets value is displayed as:"+IfInOctets_Value);
 			Thread.sleep(2000);
 
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "No Interfaces added under Interfaces panel");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Interfaces added under Interfaces panel");
 		}
 		scrolltoend();
 		click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 		Thread.sleep(2000);
-
+		waitforPagetobeenable();
 	}
 
-	public void verify_CiscoVendor_EditInterface(String application, String interfacename, String getaddress, String ipv6_getaddress_button, String name, String editDevicename, String edit_configureinterface_checkbox, String edit_interfacename, String edit_network, String edit_eipallocation_city, String edit_interfaceaddressrange_value, String edit_interfaceaddressrangeIPv6_value, String edit_ipallocation_availableblocksvalue, String edit_linkvalue, String edit_bearertype_value, String edit_ciscovendor_bandwidth_value, String edit_framingtype_value, String edit_encapsulation_value, String edit_vlanID_value, String edit_bgp_checkbox, String edit_bgptemplate_dropdownvalue, String edit_cpewan_value, String edit_cpewanipv6_value, String edit_descriptionfield_value, String edit_ascustomerfield_value, String edit_bgppassword_value, String ipsubnetipv6_value, String ipsubnetipv4_value, String edit_eipallocation_subnetsize, String edit_eipallocation_ipv6_subnetsize) throws InterruptedException, DocumentException, IOException {
+	public void verify_CiscoVendor_EditInterface(String application, String devicename, String edit_configureinterface_checkbox
+			, String edit_network, String interfaceaddressrange_value
+			, String eipallocation_city, String existingAddressRangeIPv4selection, String existingAddressIPv4DropdownValue
+			, String newAddressRangeIpv4selection, String newinterfaceAddressrange, String subnetSizeValue_IPv4
+			,String existingAddressRangeIPv6selection, String existingAddressIPv6DropdownValue, String newAddressRangeIpv6selection
+			, String newinterfaceAddressrangeIPv6, String subnetSizeValue_IPv6, String availableBlocksValue_IPv6
+			, String edit_linkvalue, String edit_bearertype_value, String edit_ciscovendor_bandwidth_value
+			, String edit_framingtype_value, String edit_encapsulation_value, String edit_vlanID_value
+			, String edit_bgp_checkbox, String edit_bgptemplate_dropdownvalue, String edit_cpewan_value
+			, String edit_cpewanipv6_value, String edit_descriptionfield_value, String edit_ascustomerfield_value
+			, String edit_bgppassword_value, String ipsubnetipv6_value, String ipsubnetipv4_value
+			, String edit_eipallocation_subnetsize, String edit_eipallocation_ipv6_subnetsize) throws InterruptedException, DocumentException, IOException {
 		
 		//edit Interface
-		ScrolltoElement(application, "portalaccess_header", xml);
+		scrolltoend();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/showinterfaces_link")).isDisplayed())
 		{
 		click_commonMethod(application, "Show Interfaces", "showinterfaces_link", xml);
 		}
-		Thread.sleep(1000);
-		WebElement SelectInterface= getwebelement(xml.getlocator("//locators/" + application + "/selectinterface").replace("value", interfacename));
+		Thread.sleep(2000);
+		WebElement SelectInterface= getwebelement(xml.getlocator("//locators/" + application + "/selectinterface").replace("value", InterfaceName));
 		if(SelectInterface.isDisplayed())
 		{
 			Clickon(SelectInterface);
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on existing Interface radio button");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on existing Interface radio button");
 			Thread.sleep(1000);
-			if(getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name)).isDisplayed())
-			{
-				WebElement AddedDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name));
-				Clickon(AddedDevice_Interface_Actiondropdown);
-			}
-			else if(getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", editDevicename)).isDisplayed())
-			{
-				WebElement EditDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", editDevicename));
-				Clickon(EditDevice_Interface_Actiondropdown);	
-			}
+			WebElement AddedDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", devicename));
+			Clickon(AddedDevice_Interface_Actiondropdown);
+			
 
 			click_commonMethod(application, "Edit", "edit", xml);
 			Thread.sleep(2000);
+			waitforPagetobeenable();
 			compareText(application, "Edit Interface/Link", "editinterface_header", "Edit", xml);
 			scrollToTop();
 			editcheckbox_commonMethod(application, edit_configureinterface_checkbox, "configureinterface_checkbox", "Configure Interface on Device", xml);
-			if(!edit_interfacename.equalsIgnoreCase("null"))
-			{
-				cleartext(application, "Interface", "interfacename_textfield");
-				addtextFields_commonMethod(application, "Interface", "interfacename_textfield", edit_interfacename, xml);
-			}
-			else
-			{
-				GetText(application, "Interface", "interfacename_textfield");
-			}
+			
 			addDropdownValues_commonMethod(application, "Network", "network_fieldvalue", edit_network, xml);
 
-			//verify EIP Allocation
-			Thread.sleep(1000);
-			click_commonMethod(application, "EIP Allocation button", "eipallocation1_button", xml);
-			if(getwebelement(xml.getlocator("//locators/" + application + "/eipsubnetallocation_header")).isDisplayed())
-			{
-				compareText(application, "EIP Subnet Allocation", "eipsubnetallocation_header", "EIP Subnet Allocation", xml);
-				GetText(application, "Subnet Type", "subnettype_value");
-				addDropdownValues_commonMethod(application, "City", "eipallocation_citydropdown", edit_eipallocation_city, xml);
-				addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_subnetsize", edit_eipallocation_subnetsize, xml);
-				GetText(application, "Available Pools", "eipallocation_availablepools_value");
-				//click_commonMethod(application, "Allocate subnet button", "allocatesubnet_button", xml);
-				Thread.sleep(1000);
-				click_commonMethod(application, "Close", "closesymbol", xml);
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "EIP Allocation button is not working");
-			}
-			Thread.sleep(2000);
-
-			//verify getaddress
-			if(getaddress.equalsIgnoreCase("yes"))
-			{
-				click_commonMethod(application, "Get Address", "getaddress1_button", xml);
-				addDropdownValues_commonMethod(application, "Interface Address Range", "interfacerange_Address_dropdown", edit_interfaceaddressrange_value, xml);
-				click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
-			}
-			else
-			{
-				addtextFields_commonMethod(application, "Interface Address Range", "ciscovendor_interfaceaddressrange_textfield", edit_interfaceaddressrange_value, xml);
-				Thread.sleep(1000);
-				click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
-
-			}
-			compareText_fromtextFields(application, "Network", "networkipv6_fieldvalue", "WAN(XFER)", xml);
-
-			//verify EIP Allocation
-			Thread.sleep(1000);
-			ScrolltoElement(application, "network_fieldvalue", xml);
-			click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
-			if(getwebelement(xml.getlocator("//locators/" + application + "/eipallocationIPv6_header")).isDisplayed())
-			{
-				//compareText(application, "EIP Address Allocation header", "eipallocationIPv6_header", "EIP Address Allocation For Interface  ", xml);
-				GetText(application, "EIP Address Allocation header", "eipallocationIPv6_header");
-				GetText(application, "Subnet Type", "subnettype_value");
-				GetText(application, "Space Name", "eipallocation_spacename");
-				addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_ipv6_subnetsize", edit_eipallocation_ipv6_subnetsize, xml);
-				addDropdownValues_commonMethod(application, "Available Blocks", "availableblocks_dropdown", edit_ipallocation_availableblocksvalue, xml);
-				Thread.sleep(1000);
-				click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
-				Thread.sleep(2000);
-				scrollToTop();
-				GetText(application, "Subnet aalocation success message", "successmsg");
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "EIP Allocation button is not working");
-			}
-			Thread.sleep(2000);
-
-			//verify getaddress ipv6
-			ScrolltoElement(application, "network_fieldvalue", xml);
-			if(ipv6_getaddress_button.equalsIgnoreCase("yes"))
-			{
-				click_commonMethod(application, "Get Address", "getaddress2_button", xml);
-				addDropdownValues_commonMethod(application, "Interface Address Range IPv6", "interfacerange_AddressIpv6_dropdown", edit_interfaceaddressrangeIPv6_value, xml);
-				click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
-			}
-			else
-			{
-				addtextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", edit_interfaceaddressrangeIPv6_value, xml);
-				Thread.sleep(1000);
-				click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
-
-			}
-
+			interfaceAddressRangeIPv4(application, existingAddressRangeIPv4selection, newAddressRangeIpv4selection, subnetSizeValue_IPv4, eipallocation_city, existingAddressIPv4DropdownValue, newinterfaceAddressrange);
+			interfaceAddressRangeIPv6(application, existingAddressRangeIPv6selection, newAddressRangeIpv6selection, subnetSizeValue_IPv6, availableBlocksValue_IPv6, newinterfaceAddressrangeIPv6);
+			
 			ScrolltoElement(application, "link_textfield", xml);
-			addtextFields_commonMethod(application, "Link", "link_textfield", edit_linkvalue, xml);
+			edittextFields_commonMethod(application, "Link", "link_textfield", edit_linkvalue, xml);
 			addDropdownValues_commonMethod(application, "Bearer Type", "bearertype_dropdown", edit_bearertype_value, xml);
 			addDropdownValues_commonMethod(application, "Bandwidth", "bandwidth_dropdown", edit_ciscovendor_bandwidth_value, xml);
 			if(edit_bearertype_value.equalsIgnoreCase("E1")) {
@@ -3731,7 +3585,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			}
 			else if(edit_bearertype_value.equalsIgnoreCase("Ethernet"))
 			{
-				addtextFields_commonMethod(application, "VLAN Id", "vlanid_textfield", edit_vlanID_value, xml);
+				edittextFields_commonMethod(application, "VLAN Id", "vlanid_textfield", edit_vlanID_value, xml);
 			}
 			else
 			{
@@ -3740,6 +3594,8 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			Thread.sleep(1000);
 			
 			ScrolltoElement(application, "link_textfield", xml);
+			InterfaceName= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_textfield")).getAttribute("value");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interface value is displayed as: "+InterfaceName);
 			
 				editcheckbox_commonMethod(application, edit_bgp_checkbox, "bgp_checkbox", "BGP", xml);
 				if(edit_bgp_checkbox.equalsIgnoreCase("yes"))
@@ -3749,7 +3605,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				if(!edit_cpewan_value.equalsIgnoreCase("null"))
 				{
 					cleartext(application, "CPE WAN", "cpewan_textfield");
-					addtextFields_commonMethod(application, "CPE WAN", "cpewan_textfield", edit_cpewan_value, xml);
+					edittextFields_commonMethod(application, "CPE WAN", "cpewan_textfield", edit_cpewan_value, xml);
 				}
 				else
 				{
@@ -3758,7 +3614,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				if(!edit_cpewanipv6_value.equalsIgnoreCase("null"))
 				{
 					cleartext(application, "CPE WAN IPv6 Address", "cpewanipv6_textfield");
-					addtextFields_commonMethod(application, "CPE WAN IPv6 Address", "cpewanipv6_textfield", edit_cpewanipv6_value, xml);
+					edittextFields_commonMethod(application, "CPE WAN IPv6 Address", "cpewanipv6_textfield", edit_cpewanipv6_value, xml);
 				}
 				else
 				{
@@ -3767,7 +3623,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				if(!edit_descriptionfield_value.equalsIgnoreCase("null"))
 				{
 					cleartext(application, "Description", "bgp-descriptionfield");
-					addtextFields_commonMethod(application, "Description", "bgp-descriptionfield", edit_descriptionfield_value, xml);
+					edittextFields_commonMethod(application, "Description", "bgp-descriptionfield", edit_descriptionfield_value, xml);
 				}
 				else
 				{
@@ -3776,7 +3632,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				if(!edit_ascustomerfield_value.equalsIgnoreCase("null"))
 				{
 					cleartext(application, "AS CUSTOMER", "bgp_ascustomerfield");
-					addtextFields_commonMethod(application, "AS CUSTOMER", "bgp_ascustomerfield", edit_ascustomerfield_value, xml);
+					edittextFields_commonMethod(application, "AS CUSTOMER", "bgp_ascustomerfield", edit_ascustomerfield_value, xml);
 				}
 				else
 				{
@@ -3785,7 +3641,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				if(!edit_bgppassword_value.equalsIgnoreCase("null"))
 				{
 					cleartext(application, "BGP PASSWORD", "bgppassword_field");
-					addtextFields_commonMethod(application, "BGP PASSWORD", "bgppassword_field", edit_bgppassword_value, xml);
+					edittextFields_commonMethod(application, "BGP PASSWORD", "bgppassword_field", edit_bgppassword_value, xml);
 				}
 				else
 				{
@@ -3793,7 +3649,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				}
 				//Add IP Subnet IPv6
 				click_commonMethod(application, "IP Subnet IPv6 Add", "ipsubnetipv6_addbutton", xml);
-				addtextFields_commonMethod(application, "IP Subnet IPv6", "ipsubnetipv6_textfield", ipsubnetipv6_value, xml);
+				edittextFields_commonMethod(application, "IP Subnet IPv6", "ipsubnetipv6_textfield", ipsubnetipv6_value, xml);
 				//Remove IP Subnet IPv6
 				click_commonMethod(application, "IP Subnet IPv6 Remove", "ipsubnetipv6_removebutton", xml);
 				//Add IP Subnet IPv6
@@ -3801,66 +3657,376 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				addtextFields_commonMethod(application, "IP Subnet IPv6", "ipsubnetipv6_textfield", ipsubnetipv6_value, xml);
 				//Add IP Subnet IPv4
 				click_commonMethod(application, "IP Subnet IPv4 Add", "ipsubnetipv4_addbutton", xml);
-				addtextFields_commonMethod(application, "IP Subnet IPv4", "ipsubnetipv4_textfield", ipsubnetipv4_value, xml);
+				edittextFields_commonMethod(application, "IP Subnet IPv4", "ipsubnetipv4_textfield", ipsubnetipv4_value, xml);
 				//Remove IP Subnet IPv4
 				click_commonMethod(application, "IP Subnet IPv4 Remove", "ipsubnetipv4_removebutton", xml);
 				//Add IP Subnet IPv4
 				click_commonMethod(application, "IP Subnet IPv4 Add", "ipsubnetipv4_addbutton", xml);
-				addtextFields_commonMethod(application, "IP Subnet IPv4", "ipsubnetipv4_textfield", ipsubnetipv4_value, xml);
+				edittextFields_commonMethod(application, "IP Subnet IPv4", "ipsubnetipv4_textfield", ipsubnetipv4_value, xml);
 			}
 			Thread.sleep(1000);
+			
 			scrolltoend();
 			//configuration panel in edit interface page
-			if(edit_configureinterface_checkbox.equalsIgnoreCase("Yes"))
-			{
-				ScrolltoElement(application, "configuration_header", xml);
-				compareText(application, "Configuration", "configuration_header", "Configuration", xml);
-				click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
-				
-				Thread.sleep(2000);
-				//click_commonMethod(application, "OK", "configAlert_okbutton", xml);
-				GetText(application, "Configuration", "configuration_textarea");
-				Thread.sleep(1000);
-				click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
-				Thread.sleep(2000);
-				scrolltoend();
-				Thread.sleep(1000);
-				compareText(application, "Interface Configuration History header", "interfaceconfighistory_header", "Interface Configuration History", xml);
-				compareText(application, "Date column", "date_column", "Date", xml);
-				compareText(application, "File Name column", "filename_column", "File Name", xml);
-				Thread.sleep(1000);
-				click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
-				
-				Thread.sleep(5000);
-				//compareText(application, "Interface update success message", "successmsg", "Interface successfully updated", xml);
-				verifysuccessmessage(application, "Interface successfully updated");
-			}
-			else
-			{
-				scrolltoend();
-				click_commonMethod(application, "OK", "okbutton", xml);
-			Thread.sleep(2000);
+			generateConfiguration(application);
+			waitforPagetobeenable();
 			verifysuccessmessage(application, "Interface successfully updated");
-			}
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Interface is not added");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Interface is not added");
 		}
 
 	}
-	public static String JuniperInterfaceNameValue, Edit_JuniperInterfaceNameValue;
-	public void verify_JuniperVendor_AddInterface(String application, String interfacename, String getaddress, String ipv6_getaddress_button, String interfaceaddressrange_value, String eipallocation_city, String eipallocation_subnetsize, String eipallocation_ipv6_subnetsize, String eipallocation_availableblocksvalue, String link_value, String bearertype_value, String bandwidth_value, String encapsulation_value, String bgp_checkbox, String framingtype_value, String vlanID_value, String bgptemplate_dropdownvalue, String cpewan_value, String cpewanipv6_value, String descriptionfield_value, String ascustomerfield_value, String bgppassword_value, String juniper_configureinterface_checkbox, String cardtype_dropdownvalue, String clocksource_value, String STM1Number_value, String bearerNo_value, String unitid_value, String slot_value, String pic_value, String port_value, String ivmanagement_checkbox, String atricaconnected_checkbox, String cardtype_dropdownvalue_gigabit) throws InterruptedException, DocumentException, IOException {
-
-		ScrolltoElement(application, "routertools_header", xml);
+	
+	public void generateConfiguration(String application) throws InterruptedException, DocumentException, IOException {
+		
+		//perform Generate configuration
+		boolean configurationpanel=false;
+		configurationpanel=getwebelement(xml.getlocator("//locators/" + application + "/configuration_header")).isDisplayed();
+		if(configurationpanel) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Configuration' panel is displaying");
+			System.out.println("'Configuration' panel is displaying");
+			
+			click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
+			waitforPagetobeenable();
+			Thread.sleep(2000);
+			if(getwebelement(xml.getlocator("//locators/" + application + "/staus_statuspopup")).isDisplayed()) {
+				click_commonMethod(application, "OK", "configAlert_okbutton", xml);
+				}
+				  waitforPagetobeenable();
+			scrolltoend();
+			Thread.sleep(1000);
+			
+			String configurationvalues=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/configuration_textarea")));
+			if(configurationvalues.isEmpty()) {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "After clicking on 'Generate' button, no values displaying under 'Configuration' text box");
+				System.out.println("After clicking on 'Generate' button, no values displaying under 'Configuration' text box");
+			}else {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "After clicking on 'Generate' button, "
+						+ "under 'Configuration' textbox values displaying as: "+configurationvalues);
+				System.out.println("After clicking on 'Generate' button, "
+						+ "under 'Configuration' textbox values displaying as: "+configurationvalues);
+			}
+		
+			click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
+			Thread.sleep(2000);
+			click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
+			Thread.sleep(2000);
+			
+		}else {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "'Configuration' panel is not displaying");
+			System.out.println("'Configuration' panel is not displaying");
+			click_commonMethod(application, "OK", "okbutton", xml);
+		}
+	}
+	
+	public void Juniper_generateConfiguration(String application) throws InterruptedException, DocumentException, IOException {
+		
+		//perform Generate configuration
+		boolean configurationpanel=false;
+		configurationpanel=getwebelement(xml.getlocator("//locators/" + application + "/configuration_header")).isDisplayed();
+		if(configurationpanel) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Configuration' panel is displaying");
+			System.out.println("'Configuration' panel is displaying");
+			
+			click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
+			waitforPagetobeenable();
+			Thread.sleep(2000);
+			
+			if(getwebelement(xml.getlocator("//locators/" + application + "/staus_statuspopup")).isDisplayed()) {
+			click_commonMethod(application, "OK", "configAlert_okbutton", xml);
+			}
+			  waitforPagetobeenable();
+			scrolltoend();
+			Thread.sleep(1000);
+			
+			String configurationvalues=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/configuration_textarea")));
+			if(configurationvalues.isEmpty()) {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "After clicking on 'Generate' button, no values displaying under 'Configuration' text box");
+				System.out.println("After clicking on 'Generate' button, no values displaying under 'Configuration' text box");
+			}else {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "After clicking on 'Generate' button, "
+						+ "under 'Configuration' textbox values displaying as: "+configurationvalues);
+				System.out.println("After clicking on 'Generate' button, "
+						+ "under 'Configuration' textbox values displaying as: "+configurationvalues);
+			}
+		
+			click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
+			Thread.sleep(2000);
+			click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
+			Thread.sleep(2000);
+			
+		}else {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "'Configuration' panel is not displaying");
+			System.out.println("'Configuration' panel is not displaying");
+			click_commonMethod(application, "OK", "okbutton", xml);
+		}
+	}
+	
+	public void interfaceAddressRangeIPv4(String application, String existingAddressRangeIPv4selection
+			, String newAddressRangeIpv4selection, String subnetSizeValue_IPv4, String eipallocation_city
+			, String existingAddressIPv4DropdownValue, String newinterfaceAddressrange) throws InterruptedException, DocumentException, IOException {
+		
+		boolean addressValue=false;
+		
+	//IPv4 Configuration
+	if(existingAddressRangeIPv4selection.equalsIgnoreCase("yes") && newAddressRangeIpv4selection.equalsIgnoreCase("no")) {
+		
+	//EIP Allocation
 		Thread.sleep(1000);
+		click_commonMethod(application, "EIP Allocation button", "eipallocation1_button" , xml);
+		
+		compareText(application, "EIP Subnet Allocation", "eipsubnetallocation_header", "EIP Subnet Allocation", xml);
+		GetText(application, "Subnet Type", "subnettype_value");
+		addDropdownValues_commonMethod(application, "City", "eipallocation_citydropdown", eipallocation_city, xml);
+		addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_subnetsize", subnetSizeValue_IPv4, xml);
+		GetText(application, "Available Pools", "eipallocation_availablepools_value");
+		//click_commonMethod(application, "Allocate subnet button", "allocatesubnet_button", xml);
+		Thread.sleep(1000);
+		//EIPallocationSuccessMessage(application, "successfully allocated");
+		click_commonMethod(application, "Close", "closesymbol", xml);
+		Thread.sleep(2000);
+		
+		waitForpageload();  
+		waitforPagetobeenable();
+		click_commonMethod(application, "Get Address", "getaddress1_button", xml);
+		Thread.sleep(1000);
+		
+		 Clickon(getwebelement("//div[label[text()='Interface Address Range']]//div[text()='×']"));
+		  Thread.sleep(3000);	 
+		 
+		 String interfaceAddressRange=GetText(application, "Value", "interfaceaddressrange_optionslist");
+		 
+		if(interfaceAddressRange.isEmpty()) {
+			
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Interface Address Range' dropdown");
+			System.out.println("No values displaying under 'Interface Address Range' dropdown");
+			  
+		}else {
+			
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Interface Address Range' dropdown value displays as: "+ interfaceAddressRange);
+			System.out.println("'Interface Address Range' dropdown value displays as: "+ interfaceAddressRange);
+				
+			Thread.sleep(5000);
+			waitForpageload();   
+			waitforPagetobeenable();
+			
+			addressValue = getwebelement(xml.getlocator("//locators/" + application + "/interfacerange_Address_dropdown")).isDisplayed();
+			if(addressValue) {
+				
+				selectEnableValueUnderAddressDropdown(application, "Address", "interfacerange_Address_dropdown" , existingAddressIPv4DropdownValue);
+				
+			}else {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Address' dropdown is not displaying");
+				System.out.println("'Address' dropdown is not displaying");
+			}
+		}
+	}
+	else if(existingAddressRangeIPv4selection.equalsIgnoreCase("No") && newAddressRangeIpv4selection.equalsIgnoreCase("Yes")) {
+		
+		  addtextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrange_textfield" , newinterfaceAddressrange , xml);
+		  GetText(application, "Address", "address_textfield");
+		  
+	}
+}
+
+	
+public void interfaceAddressRangeIPv6(String application, String existingAddressRangeIPv6selection
+		, String newAddressRangeIpv6selection, String subnetSizeValue_IPv6, String availableBlocksValue_IPv6
+		, String newinterfaceAddressrangeIPv6) throws InterruptedException, DocumentException, IOException {
+	
+	
+	ScrolltoElement(application, "network_fieldvalue", xml);
+//IPv6 Configuration
+	if(existingAddressRangeIPv6selection.equalsIgnoreCase("yes") && newAddressRangeIpv6selection.equalsIgnoreCase("no")) {
+		
+		//EIP Allocation
+		click_commonMethod(application, "EIP Allocation button", "eipallocation2_button" , xml);
+		GetText(application, "EIP Address Allocation header", "eipallocationIPv6_header");
+		GetText(application, "Subnet Type", "subnettype_value");
+		GetText(application, "Space Name", "eipallocation_spacename");
+		addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_ipv6_subnetsize", subnetSizeValue_IPv6, xml);
+		addDropdownValues_commonMethod(application, "Available Blocks", "availableblocks_dropdown", availableBlocksValue_IPv6, xml);
+		Thread.sleep(1000);
+		click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
+		Thread.sleep(2000);
+		
+			//EIPallocationSuccessMessage(application, "successfully allocated");
+			
+			click_commonMethod(application, "x", "closesymbol", xml);
+			
+			waitForpageload();
+			waitforPagetobeenable();
+			click_commonMethod(application, "Get Address", "getaddress2_button", xml);
+			Thread.sleep(1000);
+			
+			String interfaceAddressRange=getwebelement(xml.getlocator("//locators/" + application + "/interfacerange_AddressIpv6_dropdown")).getText();
+			
+			if(interfaceAddressRange.isEmpty()) {
+				
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Interface Address Range_IPv6' dropdown");
+				System.out.println("No values displaying under 'Interface Address Range_IPv6' dropdown");
+				
+			}else {
+				
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Interface Address Range_IPv6' dropdown value displays as: "+ interfaceAddressRange);
+				System.out.println("'Interface Address Range_IPv6' dropdown value displays as: "+ interfaceAddressRange);
+				
+				click_commonMethod(application, ">>" , "interfaceaddressIPv6_Addarrow", xml);
+				Thread.sleep(4000);
+				waitForpageload();  waitforPagetobeenable();
+				
+				String AddressValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/addressIPv6_textfield")).getAttribute("value");
+				  if(AddressValueIntextField.isEmpty()) {
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values dipslaying under 'Address_IPv6' text field");
+					  System.out.println("No values dipslaying under 'Address_IPv6' text field");
+				  }else {
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "value in 'Address_IPv6' text field is displaying as: "+AddressValueIntextField);
+					  System.out.println( "value in 'Address_IPv6' text field is displaying as: "+AddressValueIntextField);
+				  }
+		
+			}
+	}
+		else if(existingAddressRangeIPv6selection.equalsIgnoreCase("No") && newAddressRangeIpv6selection.equalsIgnoreCase("Yes")) {
+			
+			  addtextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrangeIPv6_textfield" , newinterfaceAddressrangeIPv6 , xml);
+			
+			  click_commonMethod(application, ">>" , "interfaceaddressIPv6_Addarrow", xml);
+			  
+			  String interfaceValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/addressIPv6_textfield")).getAttribute("value");
+			  if(interfaceValueIntextField.isEmpty()) {
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values dipslaying under 'Address_IPv6' text field");
+				  System.out.println("No values dipslaying under 'Address_IPv6' text field");
+			  }else {
+				  ExtentTestManager.getTest().log(LogStatus.PASS, "value in 'Address_IPv6' text field is displaying as: "+interfaceValueIntextField);
+				  System.out.println( "value in 'Address_IPv6' text field is displaying as: "+interfaceValueIntextField);
+			  }
+		}
+}
+
+public void EIPallocationSuccessMessage(String application, String expected) throws InterruptedException {
+	
+	waitForpageload();
+	waitforPagetobeenable();
+	
+	scrollToTop();
+	Thread.sleep(3000);
+	try {	
+		
+		boolean successMsg=getwebelement(xml.getlocator("//locators/" + application + "/serivceAlert")).isDisplayed();
+
+		if(successMsg) {
+			String alrtmsg=getwebelement(xml.getlocator("//locators/" + application + "/AlertForServiceCreationSuccessMessage")).getText();
+			if(alrtmsg.contains(expected)) {
+				ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+				System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+				
+			}else if(expected.equals(alrtmsg)){
+				ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+				System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+			}else {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
+				System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+			}
+		}else {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
+			System.out.println(" Success Message is not displaying");
+		}
+		Thread.sleep(2000);
+		
+	}catch(Exception e) {
+		Log.info("failure in fetching success message");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
+		System.out.println(expected+ " message is not getting dislpayed");
+		Thread.sleep(2000);
+	}
+
+}
+
+public void selectEnableValueUnderAddressDropdown(String application, String labelname, String xpath, String expectedValueToAdd ) {
+	
+	  List<String> ls = new ArrayList<String>();
+	  boolean availability = false;
+	  
+	try {  
+
+	  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
+	  if(availability) {
+		  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
+		  System.out.println(labelname + " dropdown is displaying");
+		  
+		  if(expectedValueToAdd.equalsIgnoreCase("null")) {
+			  
+			  ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under "+ labelname + " dropdown");
+			  System.out.println(" No values selected under "+ labelname + " dropdown");
+		  }else {
+			  
+			  Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
+			  Thread.sleep(3000);
+			  
+			  //verify list of values inside dropdown
+			  List<WebElement> listofvalues = driver
+						.findElements(By.xpath("//div[@class='sc-bxivhb kqVrwh']"));
+			  
+			  ExtentTestManager.getTest().log(LogStatus.PASS, " List of values inside "+ labelname + " dropdown is:  ");
+			  System.out.println( " List of values inside "+ labelname + "dropdown is:  ");
+			  
+				for (WebElement valuetypes : listofvalues) {
+							Log.info("service sub types : " + valuetypes.getText());
+							ls.add(valuetypes.getText());
+				}
+				
+				    ExtentTestManager.getTest().log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
+		            System.out.println("list of values inside "+labelname+" dropdown is: "+ls);
+		            
+		         Clickon(getwebelement(xml.getlocator("//locators/" + application + "/selectFirstValueUnderAddressDropdown")));
+		         Thread.sleep(1000);
+				
+			  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
+			  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
+			  System.out.println( labelname + " dropdown value selected as: "+ actualValue);
+		  }
+	  }else {
+		  ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
+		  System.out.println(labelname + " is not displaying");
+	  }
+	}catch(NoSuchElementException e) {
+		ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
+		  System.out.println(labelname + " is not displaying");
+	}catch(Exception ee) {
+		ee.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
+		System.out.println(" NO value selected under "+ labelname + " dropdown");
+	}
+}
+
+	
+	public void verify_JuniperVendor_AddInterface(String application, String juniper_configureinterface_checkbox
+			, String interfaceaddressrange_value
+			, String eipallocation_city, String existingAddressRangeIPv4selection, String existingAddressIPv4DropdownValue
+			, String newAddressRangeIpv4selection, String newinterfaceAddressrange, String subnetSizeValue_IPv4
+			,String existingAddressRangeIPv6selection, String existingAddressIPv6DropdownValue
+			, String newAddressRangeIpv6selection, String newinterfaceAddressrangeIPv6, String subnetSizeValue_IPv6
+			, String availableBlocksValue_IPv6, String link_value, String bearertype_value, String bandwidth_value
+			, String encapsulation_value, String bgp_checkbox, String framingtype_value, String vlanID_value
+			, String bgptemplate_dropdownvalue, String cpewan_value, String cpewanipv6_value, String descriptionfield_value
+			, String ascustomerfield_value, String bgppassword_value, String cardtype_dropdownvalue, String clocksource_value
+			, String STM1Number_value, String bearerNo_value, String unitid_value, String slot_value, String pic_value
+			, String port_value, String ivmanagement_checkbox, String atricaconnected_checkbox
+			, String cardtype_dropdownvalue_gigabit) throws InterruptedException, DocumentException, IOException {
+
+		ScrolltoElement(application, "interfaces_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		compareText(application, "Interfaces header", "interfaces_header", "Interfaces", xml);
 		click_commonMethod(application, "Action dropdown", "interfacepanel_actiondropdown", xml);
 		click_commonMethod(application, "Add Interface/Link", "addinterface_link", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		scrollToTop();
 		GetText(application, "Add Interface header", "addinterface_header");
-		scrolltoend();
+		ScrolltoElement(application, "executeandsave_button", xml);
+		Thread.sleep(2000);
 		click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
 		Thread.sleep(1000);
 		scrollToTop();
@@ -3875,89 +4041,15 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		warningMessage_commonMethod(application, "interface_warngmsg", "Interface", xml);
 
 		//Add Interface
+		scrollToTop();
+		Thread.sleep(2000);
 		addCheckbox_commonMethod(application, "configureinterface_checkbox", "Configure Interface on Device", juniper_configureinterface_checkbox, "yes", xml);
+		Thread.sleep(2000);
 		compareText(application, "Network", "network_fieldvalue", "XFER", xml);
 
-		//verify EIP Allocation
-		Thread.sleep(1000);
-		click_commonMethod(application, "EIP Allocation button", "eipallocation1_button", xml);
-		if(getwebelement(xml.getlocator("//locators/" + application + "/eipsubnetallocation_header")).isDisplayed())
-		{
-			compareText(application, "EIP Subnet Allocation", "eipsubnetallocation_header", "EIP Subnet Allocation", xml);
-			GetText(application, "Subnet Type", "subnettype_value");
-			addDropdownValues_commonMethod(application, "City", "eipallocation_citydropdown", eipallocation_city, xml);
-			addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_subnetsize", eipallocation_subnetsize, xml);
-			Thread.sleep(2000);
-			GetText(application, "Available Pools", "eipallocation_availablepools_value");
-			//click_commonMethod(application, "Allocate subnet button", "allocatesubnet_button", xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Close", "closesymbol", xml);
-		}
-		else
-		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "EIP Allocation button is not working");
-		}
-		Thread.sleep(2000);
-
-		//verify getaddress
-		if(getaddress.equalsIgnoreCase("yes"))
-		{
-			click_commonMethod(application, "Get Address", "getaddress1_button", xml);
-			
-			if(getwebelement(xml.getlocator("//locators/" + application + "/interfacerange_Address_dropdown")).isDisplayed()) 
-			{
-			addDropdownValues_commonMethod(application, "Interface Address Range", "interfacerange_Address_dropdown", interfaceaddressrange_value, xml);
-			click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
-			}
-			else
-			{
-			addtextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrange_textfield", interfaceaddressrange_value, xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
-			}
-		}
-		compareText_fromtextFields(application, "Network", "networkipv6_fieldvalue", "WAN (XFER)", xml);
-
-		//verify EIP Allocation
-		Thread.sleep(1000);
-		click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
-		if(getwebelement(xml.getlocator("//locators/" + application + "/eipallocationIPv6_header")).isDisplayed())
-		{
-			//compareText(application, "EIP Address Allocation header", "eipallocationIPv6_header", "EIP Address Allocation For Interface  ", xml);
-			GetText(application, "EIP Address Allocation header", "eipallocationIPv6_header");
-			GetText(application, "Subnet Type", "subnettype_value");
-			GetText(application, "Space Name", "eipallocation_spacename");
-			addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_subnetsize", eipallocation_ipv6_subnetsize, xml);
-			addDropdownValues_commonMethod(application, "Available Blocks", "availableblocks_dropdown", eipallocation_availableblocksvalue, xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
-			Thread.sleep(2000);
-			scrollToTop();
-			GetText(application, "Subnet allocation success message", "successmsg");
-			//verifysuccessmessage(application, "Subnet Allocation IPTransitService_05-IPTransitService_05-XFER-0017527 (null)Successfully");
-		}
-		else
-		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "EIP Allocation button is not working");
-		}
-		Thread.sleep(2000);
-
-		//verify getaddress ipv6
-		if(ipv6_getaddress_button.equalsIgnoreCase("yes"))
-		{
-			ScrolltoElement(application, "getaddress1_button", xml);
-			click_commonMethod(application, "Get Address", "getaddress2_button", xml);
-			addDropdownValues_commonMethod(application, "Interface Address Range IPv6", "interfacerange_AddressIpv6_dropdown", interfaceaddressrange_value, xml);
-			click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
-		}
-		else
-		{
-			addtextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", interfaceaddressrange_value, xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
-
-		}
-
+		interfaceAddressRangeIPv4(application, existingAddressRangeIPv4selection, newAddressRangeIpv4selection, subnetSizeValue_IPv4, eipallocation_city, existingAddressIPv4DropdownValue, newinterfaceAddressrange);
+		interfaceAddressRangeIPv6(application, existingAddressRangeIPv6selection, newAddressRangeIpv6selection, subnetSizeValue_IPv6, availableBlocksValue_IPv6, newinterfaceAddressrangeIPv6);
+		
 		ScrolltoElement(application, "getaddress2_button", xml);
 		addtextFields_commonMethod(application, "Link", "link_textfield", link_value, xml);
 		selectValueInsideDropdown(application, "bearertype_dropdown", "Bearer Type", bearertype_value, xml);
@@ -4002,9 +4094,8 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		addtextFields_commonMethod(application, "Slot", "slot_textfield", slot_value, xml);
 		addtextFields_commonMethod(application, "Pic", "pic_textfield", pic_value, xml);
 		addtextFields_commonMethod(application, "Port", "port_textfield", port_value, xml);
-		//addtextFields_commonMethod(application, "Interface", "interfacename_textfield", interfacename, xml);
 		Thread.sleep(1000);
-		String Juniper_InterfaceName= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_textfield")).getAttribute("value");
+		InterfaceName= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_textfield")).getAttribute("value");
 		if(encapsulation_value.equalsIgnoreCase("802.1q"))
 		{
 			addtextFields_commonMethod(application, "VLAN Id", "vlanid_textfield", vlanID_value, xml);
@@ -4024,192 +4115,137 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		}
 		scrolltoend();
 		//configuration panel in add interface page
-		if(juniper_configureinterface_checkbox.equalsIgnoreCase("yes") || juniper_configureinterface_checkbox.equalsIgnoreCase("null"))
-		{
-			compareText(application, "Configuration", "configuration_header", "Configuration", xml);
-			click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
-			Thread.sleep(2000);
-			click_commonMethod(application, "OK", "configAlert_okbutton", xml);
-
-			GetText(application, "Configuration", "configuration_textarea");
-			Thread.sleep(1000);
-			click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
-			Thread.sleep(2000);
-			click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
-		}
-		else
-		{
-			click_commonMethod(application, "OK", "okbutton", xml);
-		}
-		Thread.sleep(5000);
-		//compareText(application, "Interface Added success message", "successmsg", "Interface added successfully", xml);
+		Juniper_generateConfiguration(application);
+		Thread.sleep(4000);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Interface added successfully");
 		Thread.sleep(2000);
 
 		//Verify added interface
-		ScrolltoElement(application, "routertools_header", xml);
+		ScrolltoElement(application, "interfaces_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		WebElement AddedInterfaces= getwebelement(xml.getlocator("//locators/" + application + "/addedinterfaces"));
 		String addedinterfacecheck= AddedInterfaces.getAttribute("style");
 		if(!addedinterfacecheck.contains("height: 1px"))
 		{
 			compareText(application, "Interfaces", "interfaces_header", "Interfaces", xml);
-			String Interface_RowID= getwebelement(xml.getlocator("//locators/" + application + "/interface_rowid").replace("value", Juniper_InterfaceName)).getAttribute("row-id");
+			String Interface_RowID= getwebelement(xml.getlocator("//locators/" + application + "/interface_rowid").replace("value", InterfaceName)).getAttribute("row-id");
 
 			String InterfaceName_value= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_tablevalue").replace("value", Interface_RowID)).getText();
-			DriverTestcase.logger.log(LogStatus.PASS, "Interface value is displayed as:"+InterfaceName_value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interface value is displayed as:"+InterfaceName_value);
 			String Link_value= getwebelement(xml.getlocator("//locators/" + application + "/link_tablevalue").replace("value", Interface_RowID)).getText();
-			DriverTestcase.logger.log(LogStatus.PASS, "Link/Circuit Id value is displayed as:"+Link_value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Link/Circuit Id value is displayed as:"+Link_value);
 			String InterfaceAddressRange_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddressrange_tablevalue").replace("value", Interface_RowID)).getText();
-			DriverTestcase.logger.log(LogStatus.PASS, "Interface Address Range value is displayed as:"+InterfaceAddressRange_value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Address Range value is displayed as:"+InterfaceAddressRange_value);
 			String InterfaceAddress_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddress_tablevalue").replace("value", Interface_RowID)).getText();
-			DriverTestcase.logger.log(LogStatus.PASS, "Interface Address value is displayed as:"+InterfaceAddress_value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Address value is displayed as:"+InterfaceAddress_value);
 			String BearerType_value= getwebelement(xml.getlocator("//locators/" + application + "/bearertype_tablevalue").replace("value", Interface_RowID)).getText();
-			DriverTestcase.logger.log(LogStatus.PASS, "Bearer Type value is displayed as:"+BearerType_value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Bearer Type value is displayed as:"+BearerType_value);
 			WebElement Bandwidth= getwebelement(xml.getlocator("//locators/" + application + "/bandwidth_tablevalue").replace("value", Interface_RowID));
 			String Bandwidth_value= Bandwidth.getText();
-			DriverTestcase.logger.log(LogStatus.PASS, "Bandwidth value is displayed as:"+Bandwidth_value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Bandwidth value is displayed as:"+Bandwidth_value);
 			Clickon(Bandwidth);
 			Bandwidth.sendKeys(Keys.TAB);
 			WebElement vlanID= getwebelement(xml.getlocator("//locators/" + application + "/vlanid_tablevalue").replace("value", Interface_RowID));
 			String vlanID_Value= vlanID.getText();
-			DriverTestcase.logger.log(LogStatus.PASS, "VLAN Id value is displayed as:"+vlanID_Value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "VLAN Id value is displayed as:"+vlanID_Value);
 			Clickon(vlanID);
 			vlanID.sendKeys(Keys.TAB);
 			String IfInOctets_Value= getwebelement(xml.getlocator("//locators/" + application + "/ifinoctets_tablevalue").replace("value", Interface_RowID)).getText();
-			DriverTestcase.logger.log(LogStatus.PASS, "IfInOctets value is displayed as:"+IfInOctets_Value);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "IfInOctets value is displayed as:"+IfInOctets_Value);
 			Thread.sleep(2000);
 
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "No Interfaces added under Interfaces panel");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Interfaces added under Interfaces panel");
 		}
 		scrolltoend();
 		click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		
-		JuniperInterfaceNameValue= Juniper_InterfaceName;
 	}
 	
-	public void verify_JuniperVendor_EditInterface(String application, String name, String editDevicename, String edit_configureinterface_checkbox, String edit_interfacename, String edit_network, String edit_eipallocation_city, String edit_interfaceaddressrange_value, String edit_interfaceaddressrangeIPv6_value, String edit_availableblocksvalue, String edit_linkvalue, String edit_bearertype_value, String edit_bandwidth_value, String edit_framingtype_value, String edit_encapsulation_value, String edit_vlanID_value, String edit_bgp_checkbox, String edit_bgptemplate_dropdownvalue, String edit_cpewan_value, String edit_cpewanipv6_value, String edit_descriptionfield_value, String edit_ascustomerfield_value, String edit_bgppassword_value, String edit_juniper_configureinterface_checkbox, String edit_juniper_interfacename, String edit_cardtype_dropdownvalue, String edit_clocksource_value, String edit_STM1Number_value, String edit_bearerNo_value, String edit_unitid_value, String edit_slot_value, String edit_pic_value, String edit_port_value, String edit_ivmanagement_checkbox, String edit_atricaconnected_checkbox, String cardtype_dropdownvalue_gigabit, String edit_eipallocation_subnetsize, String edit_eipallocation_ipv6_subnetsize, String edit_eipallocation1, String edit_getaddress, String edit_eipallocation2, String edit_ipv6_getaddress, String edit_ipsubnetipv6_value, String edit_ipsubnetipv4_value) throws InterruptedException, DocumentException, IOException {
+	public boolean availableBlocks_dropdownCheck(String application, String labelname, String xpath) {
+		
+		boolean availability=false;
+		boolean Value=false;
+		try {  
+		  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
+		  if(availability) {
+			  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
+			  
+				  Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
+				  Thread.sleep(3000);
+				  
+				  //verify list of values inside dropdown
+				  List<WebElement> listofvalues = driver
+							.findElements(By.xpath("//div[@class='sc-bxivhb kqVrwh']"));
+				  if(listofvalues.isEmpty()) {
+					  Value= false;
+				  }
+				  
+		  }else {
+			  ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
+			  System.out.println(labelname + " is not displaying");
+		  }
+		}catch(NoSuchElementException e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
+			  System.out.println(labelname + " is not displaying");
+		}catch(Exception ee) {
+			ee.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
+			System.out.println(" NO value selected under "+ labelname + " dropdown");
+		}
+		
+		return Value;
+	}
+
+	public void verify_JuniperVendor_EditInterface(String application, String devicename, String edit_configureinterface_checkbox
+			, String edit_network, String interfaceaddressrange_value
+			, String eipallocation_city, String existingAddressRangeIPv4selection, String existingAddressIPv4DropdownValue
+			, String newAddressRangeIpv4selection, String newinterfaceAddressrange, String subnetSizeValue_IPv4
+			,String existingAddressRangeIPv6selection, String existingAddressIPv6DropdownValue
+			, String newAddressRangeIpv6selection, String newinterfaceAddressrangeIPv6, String subnetSizeValue_IPv6
+			, String availableBlocksValue_IPv6, String edit_linkvalue, String edit_bearertype_value, String edit_bandwidth_value
+			, String edit_framingtype_value, String edit_encapsulation_value, String edit_vlanID_value, String edit_bgp_checkbox
+			, String edit_bgptemplate_dropdownvalue, String edit_cpewan_value, String edit_cpewanipv6_value
+			, String edit_descriptionfield_value, String edit_ascustomerfield_value, String edit_bgppassword_value
+			, String edit_cardtype_dropdownvalue, String edit_clocksource_value, String edit_STM1Number_value
+			, String edit_bearerNo_value, String edit_unitid_value, String edit_slot_value, String edit_pic_value
+			, String edit_port_value, String edit_ivmanagement_checkbox, String edit_atricaconnected_checkbox
+			, String cardtype_dropdownvalue_gigabit, String edit_ipsubnetipv6_value, String edit_ipsubnetipv4_value) throws InterruptedException, DocumentException, IOException {
 		
 		//edit Interface
-		ScrolltoElement(application, "portalaccess_header", xml);
+		ScrolltoElement(application, "providerequipment_header", xml);
+		Thread.sleep(2000);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/showinterfaces_link")).isDisplayed())
 		{
 		click_commonMethod(application, "Show Interfaces", "showinterfaces_link", xml);
 		}
 		Thread.sleep(1000);
 		scrolltoend();
-		WebElement SelectInterface= getwebelement(xml.getlocator("//locators/" + application + "/selectinterface").replace("value", JuniperInterfaceNameValue));
-		//WebElement SelectInterface= getwebelement("//div[@role='gridcell'][@col-id='interfaceName'][text()='e3-4468/2799/3456:4:38962.033256']/preceding-sibling::div//span[contains(@class,'unchecked')]");
+		WebElement SelectInterface= getwebelement(xml.getlocator("//locators/" + application + "/selectinterface").replace("value", InterfaceName));
 		if(SelectInterface.isDisplayed())
 		{
 			Clickon(SelectInterface);
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on existing Interface radio button");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on existing Interface radio button");
 			Thread.sleep(1000);
-			if(getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name)).isDisplayed())
-			{
-				WebElement AddedDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name));
-				Clickon(AddedDevice_Interface_Actiondropdown);
-			}
-			else if(getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", editDevicename)).isDisplayed())
-			{
-				WebElement EditDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", editDevicename));
-				Clickon(EditDevice_Interface_Actiondropdown);	
-			}
+			WebElement AddedDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", devicename));
+			Clickon(AddedDevice_Interface_Actiondropdown);
 
 			click_commonMethod(application, "Edit", "edit", xml);
 			Thread.sleep(2000);
+			waitforPagetobeenable();
 			compareText(application, "Edit Interface/Link", "editinterface_header", "Edit", xml);
 
-			editcheckbox_commonMethod(application, edit_juniper_configureinterface_checkbox, "configureinterface_checkbox", "Configure Interface on Device", xml);
+			editcheckbox_commonMethod(application, edit_configureinterface_checkbox, "configureinterface_checkbox", "Configure Interface on Device", xml);
 			addDropdownValues_commonMethod(application, "Network", "network_fieldvalue", edit_network, xml);
 
-			//verify EIP Allocation
-			Thread.sleep(1000);
-			if(edit_eipallocation1.equalsIgnoreCase("yes"))
-			{
-			click_commonMethod(application, "EIP Allocation button", "eipallocation1_button", xml);
-			if(getwebelement(xml.getlocator("//locators/" + application + "/eipsubnetallocation_header")).isDisplayed())
-			{
-				compareText(application, "EIP Subnet Allocation", "eipsubnetallocation_header", "EIP Subnet Allocation", xml);
-				GetText(application, "Subnet Type", "subnettype_value");
-				addDropdownValues_commonMethod(application, "City", "eipallocation_citydropdown", edit_eipallocation_city, xml);
-				addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_subnetsize", edit_eipallocation_subnetsize, xml);
-				GetText(application, "Available Pools", "eipallocation_availablepools_value");
-				//click_commonMethod(application, "Allocate subnet button", "allocatesubnet_button", xml);
-				Thread.sleep(1000);
-				click_commonMethod(application, "Close", "closesymbol", xml);
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "EIP Allocation button is not working");
-			}
-			}
-			Thread.sleep(2000);
-
-			//verify getaddress
-			if(edit_getaddress.equalsIgnoreCase("yes"))
-			{
-				click_commonMethod(application, "Get Address", "getaddress1_button", xml);
-				if(getwebelement(xml.getlocator("//locators/" + application + "/interfacerange_Address_dropdown")).isDisplayed()) 
-				{
-				addDropdownValues_commonMethod(application, "Interface Address Range", "interfacerange_Address_dropdown", edit_interfaceaddressrange_value, xml);
-				click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
-				}
-				else
-				{
-				edittextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrange_textfield", edit_interfaceaddressrange_value, xml);
-				Thread.sleep(1000);
-				click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
-				}
-			}
+			interfaceAddressRangeIPv4(application, existingAddressRangeIPv4selection, newAddressRangeIpv4selection, subnetSizeValue_IPv4, eipallocation_city, existingAddressIPv4DropdownValue, newinterfaceAddressrange);
+			interfaceAddressRangeIPv6(application, existingAddressRangeIPv6selection, newAddressRangeIpv6selection, subnetSizeValue_IPv6, availableBlocksValue_IPv6, newinterfaceAddressrangeIPv6);
 			
-				Thread.sleep(1000);
-				click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
-
-			compareText_fromtextFields(application, "Network", "networkipv6_fieldvalue", "WAN (XFER)", xml);
-
-			//verify EIP Allocation
-			if(edit_eipallocation2.equalsIgnoreCase("yes"))
-			{
-			Thread.sleep(1000);
-			click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
-			if(getwebelement(xml.getlocator("//locators/" + application + "/eipallocationIPv6_header")).isDisplayed())
-			{
-				compareText(application, "EIP Address Allocation header", "eipallocationIPv6_header", "EIP Address Allocation For Interface  ", xml);
-				GetText(application, "Subnet Type", "subnettype_value");
-				GetText(application, "Space Name", "eipallocation_spacename");
-				addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_ipv6_subnetsize", edit_eipallocation_ipv6_subnetsize, xml);
-				addDropdownValues_commonMethod(application, "Available Blocks", "availableblocks_dropdown", edit_availableblocksvalue, xml);
-				Thread.sleep(1000);
-				click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
-				Thread.sleep(2000);
-				scrollToTop();
-				GetText(application, "Subnet aalocation success message", "successmsg");
-			}
-			else
-			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "EIP Allocation button is not working");
-			}
-			}
-			Thread.sleep(2000);
-
-			//verify getaddress ipv6
-			if(edit_ipv6_getaddress.equalsIgnoreCase("yes"))
-			{
-				click_commonMethod(application, "Get Address", "getaddress2_button", xml);
-				addDropdownValues_commonMethod(application, "Interface Address Range IPv6", "interfacerange_AddressIpv6_dropdown", edit_interfaceaddressrangeIPv6_value, xml);
-				click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
-			}
-			else
-			{
-				edittextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", edit_interfaceaddressrangeIPv6_value, xml);
-				Thread.sleep(1000);
-				click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
-			}
-
 			ScrolltoElement(application, "link_textfield", xml);
 			edittextFields_commonMethod(application, "Link", "link_textfield", edit_linkvalue, xml);
 			
@@ -4229,24 +4265,6 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				selectValueInsideDropdown(application, "clocksource_dropdown", "Clock Source", edit_clocksource_value, xml);
 				edittextFields_commonMethod(application, "STM1 Number", "STM1Number_textfield", edit_STM1Number_value, xml);
 				edittextFields_commonMethod(application, "Bearer No", "bearerno_textfield", edit_bearerNo_value, xml);
-//				if(!edit_STM1Number_value.equalsIgnoreCase("null") || !edit_STM1Number_value.equalsIgnoreCase("no"))
-//				{
-//					cleartext(application, "STM1 Number", "STM1Number_textfield");
-//					addtextFields_commonMethod(application, "STM1 Number", "STM1Number_textfield", edit_STM1Number_value, xml);
-//				}
-//				else
-//				{
-//					addtextFields_commonMethod(application, "STM1 Number", "STM1Number_textfield", edit_STM1Number_value, xml);
-//				}
-//				if(!edit_bearerNo_value.equalsIgnoreCase("null") || !edit_bearerNo_value.equalsIgnoreCase("no"))
-//				{
-//					cleartext(application, "Bearer No", "bearerno_textfield");
-//					addtextFields_commonMethod(application, "Bearer No", "bearerno_textfield", edit_bearerNo_value, xml);
-//				}
-//				else
-//				{
-//					addtextFields_commonMethod(application, "Bearer No", "bearerno_textfield", edit_bearerNo_value, xml);
-//				}
 			}
 			else if(edit_bearertype_value.equalsIgnoreCase("E3") || edit_bearertype_value.equalsIgnoreCase("T3"))
 			{
@@ -4274,7 +4292,9 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			edittextFields_commonMethod(application, "Pic", "pic_textfield", edit_pic_value, xml);
 			edittextFields_commonMethod(application, "Port", "port_textfield", edit_port_value, xml);
 			
-			String edit_Juniper_InterfaceName= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_textfield")).getAttribute("value");
+			InterfaceName= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_textfield")).getAttribute("value");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interface value is displayed as: "+InterfaceName);
+			
 			if(edit_encapsulation_value.equalsIgnoreCase("802.1q"))
 			{
 				edittextFields_commonMethod(application, "VLAN Id", "vlanid_textfield", edit_vlanID_value, xml);
@@ -4285,14 +4305,26 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			if(edit_bgp_checkbox.equalsIgnoreCase("yes"))
 			{
 				selectValueInsideDropdown(application, "bgptemplate_dropdown", "BGP Templates Generate For", edit_bgptemplate_dropdownvalue, xml);
-				//addDropdownValues_commonMethod(application, "BGP Templates Generate For", "bgptemplate_dropdown", edit_bgptemplate_dropdownvalue, xml);
 				edittextFields_commonMethod(application, "CPE WAN", "cpewan_textfield", edit_cpewan_value, xml);
 				edittextFields_commonMethod(application, "CPE WAN IPv6 Address", "cpewanipv6_textfield", edit_cpewanipv6_value, xml);
 				edittextFields_commonMethod(application, "Description", "bgp-descriptionfield", edit_descriptionfield_value, xml);
 				edittextFields_commonMethod(application, "AS CUSTOMER", "bgp_ascustomerfield", edit_ascustomerfield_value, xml);
 				edittextFields_commonMethod(application, "BGP PASSWORD", "bgppassword_field", edit_bgppassword_value, xml);
-
+				
+				//Add IP Subnet IPv4
+				scrolltoend();
+				click_commonMethod(application, "IP Subnet IPv4 Add", "ipsubnetipv4_addbutton", xml);
+				edittextFields_commonMethod(application, "IP Subnet IPv4", "ipsubnetipv4_textfield", edit_ipsubnetipv4_value, xml);
+				
+				//Remove IP Subnet IPv4	
+				click_commonMethod(application, "IP Subnet IPv4 Remove", "ipsubnetipv4_removebutton", xml);
+				//Add IP Subnet IPv4
+				click_commonMethod(application, "IP Subnet IPv4 Add", "ipsubnetipv4_addbutton", xml);
+				edittextFields_commonMethod(application, "IP Subnet IPv4", "ipsubnetipv4_textfield", edit_ipsubnetipv4_value, xml);
+				
+				
 				//Add IP Subnet IPv6
+				scrolltoend();
 				click_commonMethod(application, "IP Subnet IPv6 Add", "ipsubnetipv6_addbutton", xml);
 				edittextFields_commonMethod(application, "IP Subnet IPv6", "ipsubnetipv6_textfield", edit_ipsubnetipv6_value, xml);
 				
@@ -4302,77 +4334,79 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				click_commonMethod(application, "IP Subnet IPv6 Add", "ipsubnetipv6_addbutton", xml);
 				edittextFields_commonMethod(application, "IP Subnet IPv6", "ipsubnetipv6_textfield", edit_ipsubnetipv6_value, xml);
 				
-				//Add IP Subnet IPv4
-				click_commonMethod(application, "IP Subnet IPv4 Add", "ipsubnetipv4_addbutton", xml);
-				edittextFields_commonMethod(application, "IP Subnet IPv4", "ipsubnetipv4_textfield", edit_ipsubnetipv4_value, xml);
-				
-				//Remove IP Subnet IPv4
-				click_commonMethod(application, "IP Subnet IPv4 Remove", "ipsubnetipv4_removebutton", xml);
-				//Add IP Subnet IPv4
-				click_commonMethod(application, "IP Subnet IPv4 Add", "ipsubnetipv4_addbutton", xml);
-				edittextFields_commonMethod(application, "IP Subnet IPv4", "ipsubnetipv4_textfield", edit_ipsubnetipv4_value, xml);
-				
 			}
 
 			//configuration panel in edit interface page
-			if(edit_juniper_configureinterface_checkbox.equalsIgnoreCase("Yes"))
-			{
-				ScrolltoElement(application, "configuration_header", xml);
-				compareText(application, "Configuration", "configuration_header", "Configuration", xml);
-				click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
-				
-//				Alert alert = driver.switchTo().alert();       
-//                
-//                // Capturing alert message.    
-//                  String alertMessage= driver.switchTo().alert().getText();
-//                  if(alertMessage.isEmpty()) {
-//                     DriverTestcase.logger.log(LogStatus.FAIL, "No message displays");
-//                        System.out.println("No Message displays"); 
-//                  }else {
-//                     DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
-//                        System.out.println("text message for alert displays as: "+alertMessage);
-//                  }
-//                
-//                try {  
-//                  alert.accept();
-//                  Thread.sleep(2000);
-//                }catch(Exception e) {
-//                   e.printStackTrace();
-//                } 
-				
-				Thread.sleep(2000);
-				click_commonMethod(application, "OK", "configAlert_okbutton", xml);
-				GetText(application, "Configuration", "configuration_textarea");
-				Thread.sleep(1000);
-				click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
-				Thread.sleep(2000);
-				scrolltoend();
-				click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
-				
-				Thread.sleep(1000);
-				compareText(application, "Interface Configuration History header", "interfaceconfighistory_header", "Interface Configuration History", xml);
-				compareText(application, "Date column", "date_column", "Date", xml);
-				compareText(application, "File Name column", "filename_column", "File Name", xml);
-				Thread.sleep(5000);
-				//compareText(application, "Interface update success message", "successmsg", "Interface successfully updated", xml);
-				verifysuccessmessage(application, "Interface successfully updated");
-			}
-			else
-			{
-				scrolltoend();
-				click_commonMethod(application, "OK", "okbutton", xml);
-			}
+			scrolltoend();
+			Thread.sleep(2000);
+			generateConfiguration(application);
+			waitforPagetobeenable();
+			verifysuccessmessage(application, "Interface successfully updated");
 			
-			Edit_JuniperInterfaceNameValue= edit_Juniper_InterfaceName;
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Interface is not added");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interface is not added");
 		}
 		
 	}
 
-	public void deleteInterface(String application, String interfacename, String name, String editDevicename, String vendormodel) throws InterruptedException, DocumentException {
+	public void deleteInterface(String application, String devicename, String vendormodel) throws InterruptedException, DocumentException {
+		//Delete Interface
+		Thread.sleep(2000);
+		ScrolltoElement(application, "providerequipment_header", xml);
+		if(getwebelement(xml.getlocator("//locators/" + application + "/showinterfaces_link")).isDisplayed())
+		{
+		click_commonMethod(application, "Show Interfaces", "showinterfaces_link", xml);
+		}
+		Thread.sleep(1000);
+		if(vendormodel.contains("Cisco"))
+		{
+			WebElement Interface= getwebelement(xml.getlocator("//locators/" + application + "/selectinterface").replace("value", InterfaceName));
+			if(Interface.isDisplayed())
+			{
+				Clickon(Interface);
+			}
+		}
+			else
+			{
+				WebElement EditInterface= getwebelement(xml.getlocator("//locators/" + application + "/selectinterface").replace("value", InterfaceName));
+				if(EditInterface.isDisplayed())
+				{
+				Clickon(EditInterface);
+				}
+			}
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on existing Interface radio button");
+			Thread.sleep(1000);
+			WebElement AddedDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", devicename));
+			Clickon(AddedDevice_Interface_Actiondropdown);
+
+			click_commonMethod(application, "Delete", "delete", xml);
+			Thread.sleep(2000);
+			
+			Alert alert = driver.switchTo().alert();       
+			  
+			  // Capturing alert message.    
+			    String alertMessage= driver.switchTo().alert().getText();
+			    if(alertMessage.isEmpty()) {
+			       ExtentTestManager.getTest().log(LogStatus.FAIL, "No message displays");
+			          System.out.println("No Message displays"); 
+			    }else {
+			       ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+			          System.out.println("text message for alert displays as: "+alertMessage);
+			    }
+			  
+			  try {  
+			    alert.accept();
+			    Thread.sleep(2000);
+			  }catch(Exception e) {
+			     e.printStackTrace();
+			  } 
+			verifysuccessmessage(application, "Interface successfully deleted.");
+	
+	}
+	
+	public void delete_MultilinkInterface(String application, String multilink_interfacename, String devicename, String vendormodel) throws InterruptedException, DocumentException {
 		//Delete Interface
 		Thread.sleep(2000);
 		ScrolltoElement(application, "portalaccess_header", xml);
@@ -4381,45 +4415,67 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		click_commonMethod(application, "Show Interfaces", "showinterfaces_link", xml);
 		}
 		Thread.sleep(1000);
-		if(vendormodel.equalsIgnoreCase("Cisco"))
+		if(vendormodel.contains("Cisco"))
 		{
-			WebElement CiscoInterface= getwebelement(xml.getlocator("//locators/" + application + "/selectinterface").replace("value", interfacename));
-			if(CiscoInterface.isDisplayed())
+			WebElement CiscoMultilinkInterface= getwebelement(xml.getlocator("//locators/" + application + "/selectinterface").replace("value", Cisco_Multilink_InterfaceName));
+			if(CiscoMultilinkInterface.isDisplayed())
 			{
-				Clickon(CiscoInterface);
+				Clickon(CiscoMultilinkInterface);
 			}
 		}
-			else
+		else
+		{
+			WebElement JuniperMultilinkInterface= getwebelement(xml.getlocator("//locators/" + application + "/selectinterface").replace("value", Juniper_Multilink_InterfaceName));
+			if(JuniperMultilinkInterface.isDisplayed())
 			{
-				WebElement JuniperInterface= getwebelement(xml.getlocator("//locators/" + application + "/selectinterface").replace("value", JuniperInterfaceNameValue));
-				if(JuniperInterface.isDisplayed())
-				{
-				Clickon(JuniperInterface);
-				}
+				Clickon(JuniperMultilinkInterface);
 			}
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on existing Interface radio button");
+		}
+		
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on existing Interface radio button");
 			Thread.sleep(1000);
-			if(getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name)).isDisplayed())
-			{
-				WebElement AddedDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name));
-				Clickon(AddedDevice_Interface_Actiondropdown);
-			}
-			else if(getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", editDevicename)).isDisplayed())
-			{
-				WebElement EditDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", editDevicename));
-				Clickon(EditDevice_Interface_Actiondropdown);	
-			}
+			WebElement AddedDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", devicename));
+			Clickon(AddedDevice_Interface_Actiondropdown);
 
 			click_commonMethod(application, "Delete", "delete", xml);
 			Thread.sleep(2000);
-			//compareText(application, "Interface delete success message", "successmsg", "Interface successfully deleted.", xml);
+			
+			Alert alert = driver.switchTo().alert();       
+			  
+			  // Capturing alert message.    
+			    String alertMessage= driver.switchTo().alert().getText();
+			    if(alertMessage.isEmpty()) {
+			       ExtentTestManager.getTest().log(LogStatus.FAIL, "No message displays");
+			          System.out.println("No Message displays"); 
+			    }else {
+			       ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+			          System.out.println("text message for alert displays as: "+alertMessage);
+			    }
+			  
+			  try {  
+			    alert.accept();
+			    Thread.sleep(2000);
+			  }catch(Exception e) {
+			     e.printStackTrace();
+			  } 
 			verifysuccessmessage(application, "Interface successfully deleted.");
 	
 	}
 	
-	public void verifyAddMultilink(String application, String name, String multilink_interfacename, String getaddress, String ipv6_getaddress_button, String interfaceaddressrange_value, String eipallocation_city, String eipallocation_subnetsize, String eipallocation_ipv6_subnetsize, String eipallocation_availableblocksvalue, String link_value, String bandwidth_value, String encapsulation_value, String multilink_bgpcheckbox, String bgptemplate_dropdownvalue, String cpewan_value, String cpewanipv6_value, String descriptionfield_value, String ascustomerfield_value, String bgppassword_value, String multilink_configureinterface_checkbox, String interfacename, String checktoaddinterface_checkbox, String unitid_value, String slot_value, String pic_value, String port_value) throws InterruptedException, DocumentException, IOException {
+	public static String Juniper_Multilink_InterfaceName;
+	public void verify_JuniperVendor_AddMultilink(String application, String name, String multilink_interfacename
+			, String vendormodel, String interfaceaddressrange_value
+			, String eipallocation_city, String existingAddressRangeIPv4selection, String existingAddressIPv4DropdownValue
+			, String newAddressRangeIpv4selection, String newinterfaceAddressrange, String subnetSizeValue_IPv4
+			,String existingAddressRangeIPv6selection, String existingAddressIPv6DropdownValue
+			, String newAddressRangeIpv6selection, String newinterfaceAddressrangeIPv6, String subnetSizeValue_IPv6
+			, String availableBlocksValue_IPv6, String link_value, String bandwidth_value, String encapsulation_value
+			, String multilink_bgpcheckbox, String bgptemplate_dropdownvalue, String cpewan_value, String cpewanipv6_value
+			, String descriptionfield_value, String ascustomerfield_value, String bgppassword_value
+			, String multilink_configureinterface_checkbox, String checktoaddinterface_checkbox, String unitid_value
+			, String slot_value, String pic_value, String port_value) throws InterruptedException, DocumentException, IOException {
 		
-		ScrolltoElement(application, "portalaccess_header", xml);
+		scrolltoend();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
 			List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/addeddevices_list"));
@@ -4468,92 +4524,13 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 					//isDisplayed(application, "Multilink", "multilink_text");
 					addtextFields_commonMethod(application, "Interface", "interfacename_textfield", multilink_interfacename, xml);
 					
-					//verify EIP Allocation
-					Thread.sleep(1000);
-					click_commonMethod(application, "EIP Allocation button", "eipallocation1_button", xml);
-					if(getwebelement(xml.getlocator("//locators/" + application + "/eipsubnetallocation_header")).isDisplayed())
-					{
-						compareText(application, "EIP Subnet Allocation", "eipsubnetallocation_header", "EIP Subnet Allocation", xml);
-						GetText(application, "Subnet Type", "subnettype_value");
-						addDropdownValues_commonMethod(application, "City", "eipallocation_citydropdown", eipallocation_city, xml);
-						addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_subnetsize", eipallocation_subnetsize, xml);
-						Thread.sleep(2000);
-						GetText(application, "Available Pools", "eipallocation_availablepools_value");
-						//click_commonMethod(application, "Allocate subnet button", "allocatesubnet_button", xml);
-						Thread.sleep(1000);
-						click_commonMethod(application, "Close", "closesymbol", xml);
-					}
-					else
-					{
-						DriverTestcase.logger.log(LogStatus.FAIL, "EIP Allocation button is not working");
-					}
-					Thread.sleep(2000);
-
-					//verify getaddress
-					if(getaddress.equalsIgnoreCase("yes"))
-					{
-						click_commonMethod(application, "Get Address", "getaddress1_button", xml);
-						if(getwebelement(xml.getlocator("//locators/" + application + "/interfacerange_Address_dropdown")).isDisplayed()) 
-						{
-						addDropdownValues_commonMethod(application, "Interface Address Range", "interfacerange_Address_dropdown", interfaceaddressrange_value, xml);
-						click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
-						}
-						else
-						{
-						addtextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrange_textfield", interfaceaddressrange_value, xml);
-						Thread.sleep(1000);
-						click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
-						}
-					}
-
-					compareText_fromtextFields(application, "Network", "networkipv6_fieldvalue", "WAN (XFER)", xml);
-
-					//verify EIP Allocation
-					Thread.sleep(1000);
-					click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
-					if(getwebelement(xml.getlocator("//locators/" + application + "/eipallocationIPv6_header")).isDisplayed())
-					{
-						//compareText(application, "EIP Address Allocation header", "eipallocationIPv6_header", "EIP Address Allocation For Interface  ", xml);
-						GetText(application, "EIP Address Allocation header", "eipallocationIPv6_header");
-						GetText(application, "Subnet Type", "subnettype_value");
-						GetText(application, "Space Name", "eipallocation_spacename");
-						addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_subnetsize", eipallocation_ipv6_subnetsize, xml);
-						addDropdownValues_commonMethod(application, "Available Blocks", "availableblocks_dropdown", eipallocation_availableblocksvalue, xml);
-						Thread.sleep(1000);
-						click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
-						Thread.sleep(2000);
-						scrollToTop();
-						GetText(application, "Subnet aalocation success message", "successmsg");
-					}
-					else
-					{
-						DriverTestcase.logger.log(LogStatus.FAIL, "EIP Allocation button is not working");
-					}
-					Thread.sleep(2000);
-
-					//verify getaddress ipv6
-					ScrolltoElement(application, "getaddress1_button", xml);
-					if(ipv6_getaddress_button.equalsIgnoreCase("yes"))
-					{
-						click_commonMethod(application, "Get Address", "getaddress2_button", xml);
-						if(getwebelement(xml.getlocator("//locators/" + application + "/interfacerange_AddressIpv6_dropdown")).isDisplayed()) 
-						{
-						addDropdownValues_commonMethod(application, "Interface Address Range IPv6", "interfacerange_AddressIpv6_dropdown", interfaceaddressrange_value, xml);
-						click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
-						}
-						else
-						{
-						addtextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", interfaceaddressrange_value, xml);
-						Thread.sleep(1000);
-						click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
-
-						}
-					}
+					interfaceAddressRangeIPv4(application, existingAddressRangeIPv4selection, newAddressRangeIpv4selection, subnetSizeValue_IPv4, eipallocation_city, existingAddressIPv4DropdownValue, newinterfaceAddressrange);
+					interfaceAddressRangeIPv6(application, existingAddressRangeIPv6selection, newAddressRangeIpv6selection, subnetSizeValue_IPv6, availableBlocksValue_IPv6, newinterfaceAddressrangeIPv6);
 					
+					ScrolltoElement(application, "getaddress2_button", xml);
 					addtextFields_commonMethod(application, "Link", "link_textfield", link_value, xml);
 					Thread.sleep(1000);
 					addDropdownValues_commonMethod(application, "Bandwidth", "multilink_bandwidth_dropdown", bandwidth_value, xml);
-					//addDropdownValues_commonMethod(application, "Encapsulation", "encapsulation_dropdown", encapsulation_value, xml);
 					selectValueInsideDropdown(application, "encapsulation_dropdown", "Encapsulation", encapsulation_value, xml);
 					ScrolltoElement(application, "link_textfield", xml);
 					addtextFields_commonMethod(application, "Unit ID", "unitid_textfield", unitid_value, xml);
@@ -4561,6 +4538,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 					addtextFields_commonMethod(application, "Pic", "pic_textfield", pic_value, xml);
 					addtextFields_commonMethod(application, "Port", "port_textfield", port_value, xml);
 					Thread.sleep(1000);
+					ScrolltoElement(application, "encapsulation_dropdown", xml);
 					addCheckbox_commonMethod(application, "bgp_checkbox", "BGP", multilink_bgpcheckbox, "no", xml);
 					if(multilink_bgpcheckbox.equalsIgnoreCase("yes"))
 					{
@@ -4587,143 +4565,268 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 					
 					if(!MultilinkBearer_ExistingInterface.contains("height: 1px"))
 					{
-						DriverTestcase.logger.log(LogStatus.PASS, "Existing interface details are displaying in multilink bearer table");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Existing interface details are displaying in multilink bearer table");
 						if(checktoaddinterface_checkbox.equalsIgnoreCase("yes"))
 						{
-							if(name.contains("Cisco"))
-							{
-								WebElement CheckToAddInterface= getwebelement(xml.getlocator("//locators/" + application + "/checktoaddinterface").replace("value", interfacename));
-								Clickon(CheckToAddInterface);
-							}
-							else
-							{
-								WebElement CheckToAddInterface= getwebelement(xml.getlocator("//locators/" + application + "/checktoaddinterface").replace("value", Edit_JuniperInterfaceNameValue));
-								Clickon(CheckToAddInterface);
-							}
+							WebElement CheckToAddInterface= getwebelement(xml.getlocator("//locators/" + application + "/checktoaddinterface").replace("value", InterfaceName));
+							Clickon(CheckToAddInterface);
 						}
-						
 					}
 					else
 					{
-						DriverTestcase.logger.log(LogStatus.PASS, "No existing interfaces to display");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "No existing interfaces to display");
 					}
 					scrolltoend();
 					//configuration panel in add interface page
-					if(multilink_configureinterface_checkbox.equalsIgnoreCase("yes") || multilink_configureinterface_checkbox.equalsIgnoreCase("null"))
-					{
-						compareText(application, "Configuration", "configuration_header", "Configuration", xml);
-						click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
-						Thread.sleep(2000);
-						GetText(application, "Configuration", "configuration_textarea");
-						Thread.sleep(1000);
-						click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
-						Thread.sleep(2000);
-						click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
-					}
-					else
-					{
-						click_commonMethod(application, "OK", "okbutton", xml);
-					}
+					generateConfiguration(application);
 					
-					Thread.sleep(5000);
-					//compareText(application, "Add Multilink success message", "successmsg", "Multilink Interface successfully created", xml);
+					Thread.sleep(3000);
+					waitforPagetobeenable();
 					verifysuccessmessage(application, "Multilink Interface successfully created");
-					ScrolltoElement(application, "routertools_header", xml);
+					ScrolltoElement(application, "interfaces_header", xml);
 					Thread.sleep(1000);
+					((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 					compareText(application, "Interfaces header", "interfaces_header", "Interfaces", xml);
 
 					//Multilink table values under interfaces panel
-					if(name.equalsIgnoreCase("Cisco"))
-					{
-					String Cisco_Multilink_Name= "Multilink"+multilink_interfacename;
-					String Cisco_Multilink_RowID= getwebelement(xml.getlocator("//locators/" + application + "/multilink_rowid").replace("value", Cisco_Multilink_Name)).getAttribute("row-id");
-
-					String InterfaceName_value= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_tablevalue").replace("value", Cisco_Multilink_RowID)).getText();
-					DriverTestcase.logger.log(LogStatus.PASS, "Interface value is displayed as:"+InterfaceName_value);
-					String Link_value= getwebelement(xml.getlocator("//locators/" + application + "/link_tablevalue").replace("value", Cisco_Multilink_RowID)).getText();
-					DriverTestcase.logger.log(LogStatus.PASS, "Link/Circuit Id value is displayed as:"+Link_value);
-					String InterfaceAddressRange_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddressrange_tablevalue").replace("value", Cisco_Multilink_RowID)).getText();
-					DriverTestcase.logger.log(LogStatus.PASS, "Interface Address Range value is displayed as:"+InterfaceAddressRange_value);
-					String InterfaceAddress_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddress_tablevalue").replace("value", Cisco_Multilink_RowID)).getText();
-					DriverTestcase.logger.log(LogStatus.PASS, "Interface Address value is displayed as:"+InterfaceAddress_value);
-					String BearerType_value= getwebelement(xml.getlocator("//locators/" + application + "/bearertype_tablevalue").replace("value", Cisco_Multilink_RowID)).getText();
-					DriverTestcase.logger.log(LogStatus.PASS, "Bearer Type value is displayed as:"+BearerType_value);
-					WebElement Bandwidth= getwebelement(xml.getlocator("//locators/" + application + "/bandwidth_tablevalue").replace("value", Cisco_Multilink_RowID));
-					String Bandwidth_value= Bandwidth.getText();
-					DriverTestcase.logger.log(LogStatus.PASS, "Bandwidth value is displayed as:"+Bandwidth_value);
-					Clickon(Bandwidth);
-					Bandwidth.sendKeys(Keys.TAB);
-					WebElement vlanID= getwebelement(xml.getlocator("//locators/" + application + "/vlanid_tablevalue").replace("value", Cisco_Multilink_RowID));
-					String vlanID_value= vlanID.getText();
-					DriverTestcase.logger.log(LogStatus.PASS, "VLAN Id value is displayed as:"+vlanID_value);
-					Clickon(vlanID);
-					vlanID.sendKeys(Keys.TAB);
-					String IfInOctets_Value= getwebelement(xml.getlocator("//locators/" + application + "/ifinoctets_tablevalue").replace("value", Cisco_Multilink_RowID)).getText();
-					DriverTestcase.logger.log(LogStatus.PASS, "IfInOctets value is displayed as:"+IfInOctets_Value);
-					Thread.sleep(2000);
-					}
-					else
-					{
+						String Juniper_Multilink_Name= "Multilink"+multilink_interfacename;
 						String Multilink_RowID= getwebelement(xml.getlocator("//locators/" + application + "/multilink_rowid").replace("value", multilink_interfacename)).getAttribute("row-id");
-
 						String InterfaceName_value= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_tablevalue").replace("value", Multilink_RowID)).getText();
-						DriverTestcase.logger.log(LogStatus.PASS, "Interface value is displayed as:"+InterfaceName_value);
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Interface value is displayed as:"+InterfaceName_value);
 						String Link_value= getwebelement(xml.getlocator("//locators/" + application + "/link_tablevalue").replace("value", Multilink_RowID)).getText();
-						DriverTestcase.logger.log(LogStatus.PASS, "Link/Circuit Id value is displayed as:"+Link_value);
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Link/Circuit Id value is displayed as:"+Link_value);
 						String InterfaceAddressRange_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddressrange_tablevalue").replace("value", Multilink_RowID)).getText();
-						DriverTestcase.logger.log(LogStatus.PASS, "Interface Address Range value is displayed as:"+InterfaceAddressRange_value);
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Address Range value is displayed as:"+InterfaceAddressRange_value);
 						String InterfaceAddress_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddress_tablevalue").replace("value", Multilink_RowID)).getText();
-						DriverTestcase.logger.log(LogStatus.PASS, "Interface Address value is displayed as:"+InterfaceAddress_value);
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Address value is displayed as:"+InterfaceAddress_value);
 						String BearerType_value= getwebelement(xml.getlocator("//locators/" + application + "/bearertype_tablevalue").replace("value", Multilink_RowID)).getText();
-						DriverTestcase.logger.log(LogStatus.PASS, "Bearer Type value is displayed as:"+BearerType_value);
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Bearer Type value is displayed as:"+BearerType_value);
 						WebElement Bandwidth= getwebelement(xml.getlocator("//locators/" + application + "/bandwidth_tablevalue").replace("value", Multilink_RowID));
 						String Bandwidth_value= Bandwidth.getText();
-						DriverTestcase.logger.log(LogStatus.PASS, "Bandwidth value is displayed as:"+Bandwidth_value);
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Bandwidth value is displayed as:"+Bandwidth_value);
 						Clickon(Bandwidth);
 						Bandwidth.sendKeys(Keys.TAB);
 						WebElement vlanID= getwebelement(xml.getlocator("//locators/" + application + "/vlanid_tablevalue").replace("value", Multilink_RowID));
 						String vlanID_value= vlanID.getText();
-						DriverTestcase.logger.log(LogStatus.PASS, "VLAN Id value is displayed as:"+vlanID_value);
+						ExtentTestManager.getTest().log(LogStatus.PASS, "VLAN Id value is displayed as:"+vlanID_value);
 						Clickon(vlanID);
 						vlanID.sendKeys(Keys.TAB);
 						String IfInOctets_Value= getwebelement(xml.getlocator("//locators/" + application + "/ifinoctets_tablevalue").replace("value", Multilink_RowID)).getText();
-						DriverTestcase.logger.log(LogStatus.PASS, "IfInOctets value is displayed as:"+IfInOctets_Value);
+						ExtentTestManager.getTest().log(LogStatus.PASS, "IfInOctets value is displayed as:"+IfInOctets_Value);
 						Thread.sleep(2000);
-					}
 					scrolltoend();
 					click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 					Thread.sleep(2000);
+					
+				Juniper_Multilink_InterfaceName= Juniper_Multilink_Name;
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Invalid device name");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Invalid device name");
 				}
 			}
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 		}
 
 	}
 
-	public void verifyInterfaceConfigHistory(String application) throws InterruptedException, DocumentException {
-		ScrolltoElement(application, "interfaces_header", xml);
-		Thread.sleep(1000);
+	public static String Cisco_Multilink_InterfaceName;
+	public void verify_CiscoVendor_AddMultilink(String application, String devicename, String multilink_interfacename
+			, String vendormodel, String interfaceaddressrange_value
+			, String eipallocation_city, String existingAddressRangeIPv4selection, String existingAddressIPv4DropdownValue
+			, String newAddressRangeIpv4selection, String newinterfaceAddressrange, String subnetSizeValue_IPv4
+			,String existingAddressRangeIPv6selection, String existingAddressIPv6DropdownValue
+			, String newAddressRangeIpv6selection, String newinterfaceAddressrangeIPv6, String subnetSizeValue_IPv6
+			, String availableBlocksValue_IPv6, String link_value, String multilink_bandwidth_value
+			, String encapsulation_value, String multilink_bgpcheckbox, String bgptemplate_dropdownvalue, String cpewan_value
+			, String cpewanipv6_value, String descriptionfield_value, String ascustomerfield_value, String bgppassword_value
+			, String multilink_configureinterface_checkbox, String checktoaddinterface_checkbox, String unitid_value
+			, String slot_value, String pic_value, String port_value) throws InterruptedException, DocumentException, IOException {
+		
+		scrolltoend();
+		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
+		{
+			List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/addeddevices_list"));
+			System.out.println(addeddevicesList);
+			int AddedDevicesCount= addeddevicesList.size();
+			for(int i=0;i<AddedDevicesCount;i++) {
+				String AddedDeviceNameText= addeddevicesList.get(i).getText();
+				String AddedDevice_SNo= AddedDeviceNameText.substring(0, 1);
+				if(AddedDeviceNameText.contains(devicename))
+				{
+					WebElement AddedDevice_ViewLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_viewlink").replace("value", AddedDevice_SNo));
+					Clickon(AddedDevice_ViewLink);
+					Thread.sleep(5000);
+					compareText(application, "View device header", "viewdevicepage_header", "Device Details", xml);
+
+					ScrolltoElement(application, "interfaces_header", xml);
+					Thread.sleep(1000);
+					((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+					compareText(application, "Interfaces header", "interfaces_header", "Interfaces", xml);
+					click_commonMethod(application, "Action dropdown", "interfacepanel_actiondropdown", xml);
+					click_commonMethod(application, "Add Multilink", "addmultilink_link", xml);
+					Thread.sleep(2000);
+					scrollToTop();
+					GetText(application, "Add Multilink header", "addmultilink_header");
+					addCheckbox_commonMethod(application, "configureinterface_checkbox", "Configure Interface on Device", multilink_configureinterface_checkbox, "no", xml);
+					scrolltoend();
+					Thread.sleep(1000);
+					if(multilink_configureinterface_checkbox.equalsIgnoreCase("no"))
+					{
+					click_commonMethod(application, "OK", "okbutton", xml);
+					Thread.sleep(1000);
+					}
+					else
+					{
+						click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
+						Thread.sleep(1000);
+					}
+					scrollToTop();
+					//verify warning messages in add interface page
+					warningMessage_commonMethod(application, "interface_warngmsg", "Interface", xml);
+					warningMessage_commonMethod(application, "encapsulation_warngmsg", "Encapsulation", xml);
+
+					//Add Multilink
+					//isDisplayed(application, "Multilink", "multilink_text");
+					addtextFields_commonMethod(application, "Interface", "interfacename_textfield", multilink_interfacename, xml);
+					
+					interfaceAddressRangeIPv4(application, existingAddressRangeIPv4selection, newAddressRangeIpv4selection, subnetSizeValue_IPv4, eipallocation_city, existingAddressIPv4DropdownValue, newinterfaceAddressrange);
+					interfaceAddressRangeIPv6(application, existingAddressRangeIPv6selection, newAddressRangeIpv6selection, subnetSizeValue_IPv6, availableBlocksValue_IPv6, newinterfaceAddressrangeIPv6);
+					
+					ScrolltoElement(application, "link_textfield", xml);
+					addtextFields_commonMethod(application, "Link", "link_textfield", link_value, xml);
+					Thread.sleep(1000);
+					selectValueInsideDropdown(application, "multilink_bandwidth_dropdown", "Bandwidth", multilink_bandwidth_value, xml);
+					selectValueInsideDropdown(application, "encapsulation_dropdown", "Encapsulation", encapsulation_value, xml);
+					ScrolltoElement(application, "link_textfield", xml);
+					Thread.sleep(1000);
+					
+					if(multilink_bgpcheckbox.equalsIgnoreCase("yes"))
+					{
+						addCheckbox_commonMethod(application, "bgp_checkbox", "BGP", multilink_bgpcheckbox, "no", xml);
+						addDropdownValues_commonMethod(application, "BGP Templates Generate For", "multilink_bgptemplate_dropdown", bgptemplate_dropdownvalue, xml);
+						addtextFields_commonMethod(application, "CPE WAN", "cpewan_textfield", cpewan_value, xml);
+						addtextFields_commonMethod(application, "CPE WAN IPv6 Address", "cpewanipv6_textfield", cpewanipv6_value, xml);
+						addtextFields_commonMethod(application, "Description", "bgp-descriptionfield", descriptionfield_value, xml);
+						addtextFields_commonMethod(application, "AS CUSTOMER", "bgp_ascustomerfield", ascustomerfield_value, xml);
+						addtextFields_commonMethod(application, "BGP PASSWORD", "bgppassword_field", bgppassword_value, xml);
+					}
+
+					//Multilinked Bearers table
+					scrolltoend();
+					compareText(application, "Multilinked Bearers", "multilinkedbearers_header", "Multilinked Bearers", xml);
+
+					//table columns
+					compareText(application, "Check to add Interface", "checktoaddinterface_column", "Check to add Interface", xml);
+					compareText(application, "Interface", "multilink_interface_column", "Interface", xml);
+					compareText(application, "Link/Circuit", "multilink_link_column", "Link/Circuit", xml);
+					compareText(application, "Bearer Type", "multilink_BearerType_column", "Bearer Type", xml);
+					compareText(application, "VLAN Id", "multilink_vlanid_column", "VLAN Id", xml);
+					
+					String MultilinkBearer_ExistingInterface= getwebelement(xml.getlocator("//locators/" + application + "/multilinkbearer_tabledata")).getAttribute("style");
+					
+					if(!MultilinkBearer_ExistingInterface.contains("height: 1px"))
+					{
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Existing interface details are displaying in multilink bearer table");
+						if(checktoaddinterface_checkbox.equalsIgnoreCase("yes"))
+						{
+							WebElement CheckToAddInterface= getwebelement(xml.getlocator("//locators/" + application + "/checktoaddinterface").replace("value", InterfaceName));
+							Clickon(CheckToAddInterface);
+						}
+					}
+					else
+					{
+						ExtentTestManager.getTest().log(LogStatus.PASS, "No existing interfaces to display");
+					}
+					scrolltoend();
+					//configuration panel in add interface page
+					generateConfiguration(application);
+					
+					Thread.sleep(3000);
+					waitforPagetobeenable();
+					verifysuccessmessage(application, "Multilink Interface successfully created");
+					ScrolltoElement(application, "interfaces_header", xml);
+					Thread.sleep(1000);
+					((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+					compareText(application, "Interfaces header", "interfaces_header", "Interfaces", xml);
+
+					//Multilink table values under interfaces panel
+					String Cisco_Multilink_Name= "Multilink"+multilink_interfacename;
+					String Cisco_Multilink_RowID= getwebelement(xml.getlocator("//locators/" + application + "/multilink_rowid").replace("value", Cisco_Multilink_Name)).getAttribute("row-id");
+
+					String InterfaceName_value= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_tablevalue").replace("value", Cisco_Multilink_RowID)).getText();
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Interface value is displayed as:"+InterfaceName_value);
+					String Link_value= getwebelement(xml.getlocator("//locators/" + application + "/link_tablevalue").replace("value", Cisco_Multilink_RowID)).getText();
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Link/Circuit Id value is displayed as:"+Link_value);
+					String InterfaceAddressRange_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddressrange_tablevalue").replace("value", Cisco_Multilink_RowID)).getText();
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Address Range value is displayed as:"+InterfaceAddressRange_value);
+					String InterfaceAddress_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddress_tablevalue").replace("value", Cisco_Multilink_RowID)).getText();
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Address value is displayed as:"+InterfaceAddress_value);
+					String BearerType_value= getwebelement(xml.getlocator("//locators/" + application + "/bearertype_tablevalue").replace("value", Cisco_Multilink_RowID)).getText();
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Bearer Type value is displayed as:"+BearerType_value);
+					WebElement Bandwidth= getwebelement(xml.getlocator("//locators/" + application + "/bandwidth_tablevalue").replace("value", Cisco_Multilink_RowID));
+					String Bandwidth_value= Bandwidth.getText();
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Bandwidth value is displayed as:"+Bandwidth_value);
+					Clickon(Bandwidth);
+					Bandwidth.sendKeys(Keys.TAB);
+					WebElement vlanID= getwebelement(xml.getlocator("//locators/" + application + "/vlanid_tablevalue").replace("value", Cisco_Multilink_RowID));
+					String vlanID_value= vlanID.getText();
+					ExtentTestManager.getTest().log(LogStatus.PASS, "VLAN Id value is displayed as:"+vlanID_value);
+					Clickon(vlanID);
+					vlanID.sendKeys(Keys.TAB);
+					String IfInOctets_Value= getwebelement(xml.getlocator("//locators/" + application + "/ifinoctets_tablevalue").replace("value", Cisco_Multilink_RowID)).getText();
+					ExtentTestManager.getTest().log(LogStatus.PASS, "IfInOctets value is displayed as:"+IfInOctets_Value);
+					Thread.sleep(2000);
+					
+					scrolltoend();
+					click_commonMethod(application, "Back", "viewpage_backbutton", xml);
+					Thread.sleep(2000);
+					
+					Cisco_Multilink_InterfaceName= Cisco_Multilink_Name;
+				}
+				else
+				{
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Invalid device name");
+				}
+			}
+		}
+		else
+		{
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
+		}
+
+	}
+
+	public void verifyInterfaceConfigHistory(String application, String vendormodel) throws InterruptedException, DocumentException {
+		
+		if(vendormodel.contains("Juniper"))
+		{
+			ScrolltoElement(application, "interfaceconfighistory_header", xml);
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		compareText(application, "Interface Configuration History", "interfaceconfighistory_header", "Interface Configuration History", xml);
 		compareText(application, "Date column", "date_column", "Date", xml);
 		compareText(application, "File Name column", "filename_column", "File Name", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Back", "viewpage_backbutton", xml);
+		}
+		else
+		{
+			scrolltoend();
+			click_commonMethod(application, "Back", "viewpage_backbutton", xml);	
+		}
 
 	}
 
 
 	public void selectInterfacelinkforDevice(String application, String name) throws InterruptedException, DocumentException {
 		
-		ScrolltoElement(application, "portalaccess_header", xml);
+		scrolltoend();
 		Thread.sleep(1000);
-		DriverTestcase.logger.log(LogStatus.INFO, "check 'Select Interface' link");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "check 'Select Interface' link");
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
@@ -4741,31 +4844,38 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Invalid device name");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Invalid device name");
 				}
 			}
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 		}
 					
 	}
 
-	public void SelectInterfacetoremovefromservice(String application, String interfacename, String vendormodel)
+	public void SelectInterfacetoremovefromservice(String application)
 			throws IOException, InterruptedException, DocumentException {
 
-		ScrolltoElement(application, "viewpage_vendormodel", xml);
-		Thread.sleep(2000);
+//		ScrolltoElement(application, "viewpage_vendormodel", xml);
+//		Thread.sleep(2000);
+//		
+			ScrolltoElement(application, "InterfaceInService_panelHeader", xml);
+			click_commonMethod(application, "Interfaces in Service Filter", "interfacesinservice_filter", xml);
+			addtextFields_commonMethod(application, "Interface in Service search", "interfaceinservice_fitertext", InterfaceName, xml);
+			WebElement InterfaceName_GridSelect= getwebelement(xml.getlocator("//locators/" + application + "/interfaceinservice_gridselect").replace("value", InterfaceName));
+			Clickon(InterfaceName_GridSelect);
+			ExtentTestManager.getTest().log(LogStatus.PASS, InterfaceName + " is selected under 'Interface to select' table");
+			Thread.sleep(8000);
 
-		if(vendormodel.equalsIgnoreCase("Cisco"))
-		{
-		Cisco_selectRowforInterfaceInService(application, interfacename);
-		}
-		else
-		{
-			Juniper_selectRowforInterfaceInService(application);
-		}
+			ScrolltoElement(application, "InterfaceInService_panelHeader", xml);
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+			click_commonMethod(application, "Action Dropdown", "InterfaceInselect_Actiondropdown", xml);
+			Thread.sleep(1000);
+			click_commonMethod(application, "Remove", "InterfaceInselect_removebuton", xml);
+			Thread.sleep(1000);
 
 	}
 
@@ -4795,7 +4905,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 					System.out.println("Currently we are in page number: " + Current_page);
 
-					List<WebElement> results = getwebelements(xml.getlocator("//locators/" + application + "/interfacesinservice_list").replace("value", Edit_JuniperInterfaceNameValue));
+					List<WebElement> results = getwebelements(xml.getlocator("//locators/" + application + "/interfacesinservice_list").replace("value", InterfaceName));
 
 					int numofrows = results.size();
 					System.out.println("no of results: " + numofrows);
@@ -4818,26 +4928,25 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 								if (resultflag) {
 									System.out.println(results.get(i).getText());
 									results.get(i).click();
-									DriverTestcase.logger.log(LogStatus.PASS, Edit_JuniperInterfaceNameValue + " is selected under 'Interface in Service' table");
+									ExtentTestManager.getTest().log(LogStatus.PASS, InterfaceName + " is selected under 'Interface in Service' table");
 									Clickon(getwebelement(xml.getlocator(
 											"//locators/" + application + "/InterfaceInselect_Actiondropdown")));
 
 									Thread.sleep(3000);
 
 									Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceInselect_removebuton")));
-									DriverTestcase.logger.log(LogStatus.PASS, Edit_JuniperInterfaceNameValue + " has been selected to get removed from service");
+									ExtentTestManager.getTest().log(LogStatus.PASS, InterfaceName + " has been selected to get removed from service");
 
 								}
 
 							} catch (StaleElementReferenceException e) {
 								// TODO Auto-generated catch block
 								// e.printStackTrace();
-								results = getwebelements(xml.getlocator("//locators/" + application + "/interfacesinservice_list").replace("value", Edit_JuniperInterfaceNameValue));
-									//driver.findElements(By.xpath("//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//div[div[text()='"+ interfacenumber+"']]//input"));
+								results = getwebelements(xml.getlocator("//locators/" + application + "/interfacesinservice_list").replace("value", InterfaceName));
 								numofrows = results.size();
 								// results.get(i).click();
 								Log.info("selected row is : " + i);
-								DriverTestcase.logger.log(LogStatus.FAIL, "failure while selecting interface to remove from service");
+								ExtentTestManager.getTest().log(LogStatus.FAIL, "failure while selecting interface to remove from service");
 
 							}
 
@@ -4905,14 +5014,14 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 								if (resultflag) {
 									System.out.println(results.get(i).getText());
 									results.get(i).click();
-									DriverTestcase.logger.log(LogStatus.PASS, interfacename + " is selected under 'Interface in Service' table");
+									ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected under 'Interface in Service' table");
 									Clickon(getwebelement(xml.getlocator(
 											"//locators/" + application + "/InterfaceInselect_Actiondropdown")));
 
 									Thread.sleep(3000);
 
 									Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceInselect_removebuton")));
-									DriverTestcase.logger.log(LogStatus.PASS, interfacename + " has been selected to get removed from service");
+									ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " has been selected to get removed from service");
 
 								}
 
@@ -4924,7 +5033,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 								numofrows = results.size();
 								// results.get(i).click();
 								Log.info("selected row is : " + i);
-								DriverTestcase.logger.log(LogStatus.FAIL, "failure while selecting interface to remove from service");
+								ExtentTestManager.getTest().log(LogStatus.FAIL, "failure while selecting interface to remove from service");
 
 							}
 
@@ -4953,21 +5062,33 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 	}
 
-	public void SelectInterfacetoaddwithservcie(String application, String interfacename, String vendormodel)
+	public void SelectInterfacetoaddwithservcie(String application, String sid)
 			throws InterruptedException, DocumentException, IOException {
 
 		scrolltoend();
 		Thread.sleep(2000);
 
-		if(vendormodel.equalsIgnoreCase("Cisco"))
-		{
-			Cisco_selectrowforInterfaceToselecttable(application, interfacename);
-		}
-		else
-		{
-			Juniper_selectrowforInterfaceToselecttable(application);
-		}
-		click_commonMethod(application, "Back", "viewpage_backbutton", xml);
+		ScrolltoElement(application, "interfacesToSelect_header", xml);
+		Thread.sleep(1000);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		
+		click_commonMethod(application, "Interfaces To Select Filter", "InteraceColumn_Filter", xml);
+		addtextFields_commonMethod(application, "Interface search", "InterfacefilterTxt", InterfaceName, xml);
+		WebElement InterfaceName_GridSelect= getwebelement(xml.getlocator("//locators/" + application + "/interface_gridselect").replace("value", InterfaceName));
+		Clickon(InterfaceName_GridSelect);
+		ExtentTestManager.getTest().log(LogStatus.PASS, InterfaceName + " is selected under 'Interface to select' table");
+		Thread.sleep(8000);
+
+		ScrolltoElement(application, "interfacesToSelect_header", xml);
+		Thread.sleep(1000);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		click_commonMethod(application, "Action Dropdown", "InterfaceToselect_Actiondropdown", xml);
+		Thread.sleep(1000);
+		click_commonMethod(application, "Add", "InterfaceToselect_addbuton", xml);
+		Thread.sleep(1000);
+		scrollToTop();
+		clickOnBreadCrumb(application, sid);
+		Thread.sleep(2000);
 	}
 
 	public void Juniper_selectrowforInterfaceToselecttable(String application)
@@ -5021,7 +5142,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 								if (resultflag) {
 									System.out.println(results.get(i).getText());
 									results.get(i).click();
-									DriverTestcase.logger.log(LogStatus.PASS, Edit_JuniperInterfaceNameValue + " is selected under 'Interface to select' table");
+									ExtentTestManager.getTest().log(LogStatus.PASS, Edit_JuniperInterfaceNameValue + " is selected under 'Interface to select' table");
 									Thread.sleep(8000);
 									Clickon(getwebelement(xml.getlocator(
 											"//locators/" + application + "/InterfaceToselect_Actiondropdown")));
@@ -5030,7 +5151,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 									Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceToselect_addbuton")));
 									Thread.sleep(3000);
-									DriverTestcase.logger.log(LogStatus.PASS, Edit_JuniperInterfaceNameValue + " is added to service");
+									ExtentTestManager.getTest().log(LogStatus.PASS, Edit_JuniperInterfaceNameValue + " is added to service");
 
 
 								}
@@ -5042,7 +5163,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 								numofrows = results.size();
 								// results.get(i).click();
 								Log.info("selected row is : " + i);
-								DriverTestcase.logger.log(LogStatus.FAIL, " Failure on selecting an Interface to ad with service ");
+								ExtentTestManager.getTest().log(LogStatus.FAIL, " Failure on selecting an Interface to ad with service ");
 
 
 							}
@@ -5113,7 +5234,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 								if (resultflag) {
 									System.out.println(results.get(i).getText());
 									results.get(i).click();
-									DriverTestcase.logger.log(LogStatus.PASS, interfacename + " is selected under 'Interface to select' table");
+									ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected under 'Interface to select' table");
 									Thread.sleep(8000);
 									Clickon(getwebelement(xml.getlocator(
 											"//locators/" + application + "/InterfaceToselect_Actiondropdown")));
@@ -5122,7 +5243,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 									Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceToselect_addbuton")));
 									Thread.sleep(3000);
-									DriverTestcase.logger.log(LogStatus.PASS, interfacename + " is added to service");
+									ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is added to service");
 
 
 								}
@@ -5134,7 +5255,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 								numofrows = results.size();
 								// results.get(i).click();
 								Log.info("selected row is : " + i);
-								DriverTestcase.logger.log(LogStatus.FAIL, " Failure on selecting an Interface to ad with service ");
+								ExtentTestManager.getTest().log(LogStatus.FAIL, " Failure on selecting an Interface to ad with service ");
 
 
 							}
@@ -5162,31 +5283,31 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			conectivityProtocolssh_availability=getwebelement(xml.getlocator("//locators/" + application + "/sshradiobutton")).isDisplayed();
 			if(conectivityProtocolssh_availability) {
 
-				DriverTestcase.logger.log(LogStatus.PASS, " 'SSH' is displaying under 'Connectivity protocol' as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " 'SSH' is displaying under 'Connectivity protocol' as expected");
 				System.out.println(" 'SSH' is displaying under 'Connectivity protocol' as expected");
 
 				conectivityProtocolssh_Selection=getwebelement(xml.getlocator("//locators/" + application + "/sshradiobutton")).isSelected();
 				if(conectivityProtocolssh_Selection) {
-					DriverTestcase.logger.log(LogStatus.PASS, " 'SSH' is selected under 'Connectivity protocol' by default as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, " 'SSH' is selected under 'Connectivity protocol' by default as expected");
 					System.out.println(" 'SSH' is selected under 'Connectivity protocol' as expected");
 
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, " 'SSH' is not selected by default under 'Connectivity protocol'");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'SSH' is not selected by default under 'Connectivity protocol'");
 					System.out.println(" 'SSH' is not selected under 'Connectivity protocol'");
 				}
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, " 'SSH' is not displaying under 'Connectivity protocol'");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'SSH' is not displaying under 'Connectivity protocol'");
 				System.out.println(" 'SSH' is not displaying under 'Connectivity protocol'");
 			}
 
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, " 'SSH' is not displaying under 'Connectivity protocol'");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'SSH' is not displaying under 'Connectivity protocol'");
 			System.out.println(" 'SSH' is not displaying under 'Connectivity protocol'");
 
 		}catch(Exception ee) {
 			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, " 'SSH' is not selected under 'Connectivity protocol'");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'SSH' is not selected under 'Connectivity protocol'");
 			System.out.println(" 'SSH' is not selected under 'Connectivity protocol'");
 
 		}
@@ -5200,27 +5321,27 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			conectivityProtocoltelnet_availability=getwebelement(xml.getlocator("//locators/" + application + "/telnetradiobutton")).isDisplayed();
 			if(conectivityProtocoltelnet_availability) {
 
-				DriverTestcase.logger.log(LogStatus.PASS, " 'Telnet' is displaying under 'Connectivity protocol' as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " 'Telnet' is displaying under 'Connectivity protocol' as expected");
 				System.out.println(" 'Telnet' is displaying under 'Connectivity protocol' as expected");
 
 				conectivityProtocoltelnet_Selection=getwebelement(xml.getlocator("//locators/" + application + "/telnetradiobutton")).isSelected();
 				if(conectivityProtocoltelnet_Selection) {
-					DriverTestcase.logger.log(LogStatus.FAIL, " 'Telnet' is selected under 'Connectivity protocol' by default");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Telnet' is selected under 'Connectivity protocol' by default");
 					System.out.println(" 'Telnet' is selected under 'Connectivity protocol'");
 
 				}else {
-					DriverTestcase.logger.log(LogStatus.PASS, " 'Telnet' is not selected under 'Connectivity protocol' by default as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, " 'Telnet' is not selected under 'Connectivity protocol' by default as expected");
 					System.out.println(" 'Telnet' is not selected under 'Connectivity protocol'");
 				}
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, " 'Telnet' is not displaying under 'Connectivity protocol'");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Telnet' is not displaying under 'Connectivity protocol'");
 				System.out.println(" 'Telnet' is not displaying under 'Connectivity protocol'");
 			}
 
 
 		}catch(Exception ee) {
 			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, " 'Telnet' is not displaying under 'Connectivity protocol'");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Telnet' is not displaying under 'Connectivity protocol'");
 			System.out.println(" 'Telnet' is not displaying under 'Connectivity protocol'");
 
 		}
@@ -5231,18 +5352,18 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		try {	
 			availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
 			if(availability) {
-				DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is displaying as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is displaying as expected");
 				System.out.println(labelname + " text field is displaying as expected");
 
 				String actualvalueInsidetextfield=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
 
 				if(actualvalueInsidetextfield.isEmpty()) {
 
-					DriverTestcase.logger.log(LogStatus.PASS, "No values displaying under "+labelname+" text field");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "No values displaying under "+labelname+" text field");
 					System.out.println("No values displaying under "+labelname+" text field");
 
 					if(expectedValueToEdit.equalsIgnoreCase("null")) {
-						//DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is not edited as expected");
+						//ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is not edited as expected");
 						System.out.println(labelname + " text field is not edited as expected");
 					}else {
 
@@ -5253,16 +5374,16 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 						Thread.sleep(3000);
 
 						String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
-						DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field value is edited as: "+ actualvalue);
+						ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field value is edited as: "+ actualvalue);
 					}
 
 				}else {
 
-					DriverTestcase.logger.log(LogStatus.PASS, "Value displaying under "+labelname + " field is: "+actualvalueInsidetextfield);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Value displaying under "+labelname + " field is: "+actualvalueInsidetextfield);
 					System.out.println("Value displaying under "+labelname + " field is: "+actualvalueInsidetextfield);
 
 					if(expectedValueToEdit.equalsIgnoreCase("null")) {
-						DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is not edited as expected");
+						ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is not edited as expected");
 						System.out.println(labelname + " text field is not edited as expected");
 					}else {
 
@@ -5273,20 +5394,20 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 						Thread.sleep(3000);
 
 						String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
-						DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field value is edited as: "+ actualvalue);
+						ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field value is edited as: "+ actualvalue);
 					}
 				}
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
 				System.out.println(labelname + " text field is not displaying");
 			}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
 			System.out.println(labelname + " text field is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, " Not able to enter value under "+ labelname + " text field");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under "+ labelname + " text field");
 			System.out.println(" Not able to enter value under "+ labelname + " text field");
 		}
 	}
@@ -5307,20 +5428,20 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		try {	
 			remarkField=getwebelement(xml.getlocator("//locators/" + application + "/result_textArea")).isDisplayed();
 			if(remarkField) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Remark' text field is displaying");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Remark' text field is displaying");
 				System.out.println( "'Remark' text field is displaying");
 
 				String remarkvalue=getwebelement(xml.getlocator("//locators/" + application + "/result_textArea")).getText();
-				DriverTestcase.logger.log(LogStatus.PASS, "value under 'Remark' field displaying as "+ remarkvalue);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "value under 'Remark' field displaying as "+ remarkvalue);
 				System.out.println("value under 'Remark' field displaying as "+ remarkvalue);
 
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'Remark' text field is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Remark' text field is not displaying");
 				System.out.println( "'Remark' text field is not displaying");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Remark' text field is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Remark' text field is not displaying");
 			System.out.println("'Remark' text field is not displaying");
 		}
 
@@ -5336,13 +5457,13 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				addtextFields_commonMethod(application, "IP Address or Hostname", "commandIPv4_hostnameTextfield", ipAddress, xml);
 
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
+				ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 				System.out.println("'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 
-			DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
+			ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 			System.out.println("'Hostname or IpAddress' for 'Ipv4' text field is not displaying for "+ command_ipv4);
 		}
 	}
@@ -5359,39 +5480,39 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				if(IPV4availability) {
 					addtextFields_commonMethod(application, "Router Vrf Name", "commandIPv4_vrfnameTextField", vrfname_ipv4, xml);
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 					System.out.println("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 				System.out.println("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 			}
 
 		}else {
-			DriverTestcase.logger.log(LogStatus.PASS, "'VRF Name IPv4' text field is not displaying for "+ command_ipv4);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'VRF Name IPv4' text field is not displaying for "+ command_ipv4);
 			System.out.println("'VRF Name IPv4' text field is not displaying for "+ command_ipv4 +" command");
 		}
 
 	}
 
 	public void hostnametextField_IPV6(String application, String commandIPv6, String ipv6Address) {
-		boolean IPV4availability=false;
+		boolean IPV6availability=false;
 		try {  
-			IPV4availability=getwebelement(xml.getlocator("//locators/" + application + "/commandIPv6_hostnameTextfield")).isDisplayed();
+			IPV6availability=getwebelement(xml.getlocator("//locators/" + application + "/commandIPv6_hostnameTextfield")).isDisplayed();
 
-			if(IPV4availability) {
+			if(IPV6availability) {
 
 				addtextFields_commonMethod(application, "IP Address or Hostname", "commandIPv6_hostnameTextfield", ipv6Address, xml);
 
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
+				ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 				System.out.println("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 
-			DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
+			ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 			System.out.println("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 		}
 	}
@@ -5407,17 +5528,17 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				if(IPV6availability) {
 					addtextFields_commonMethod(application, "Router Vrf Name", "commandIPv6_vrfnameTextField", vrfname_IPV6, xml);
 				}else {
-					DriverTestcase.logger.log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
+					ExtentTestManager.getTest().log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 					System.out.println("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
+				ExtentTestManager.getTest().log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 				System.out.println("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 			}
 		}
 		else {
-			DriverTestcase.logger.log(LogStatus.PASS, "'VRF Name IPv6' text field is not displaying for "+ commandIPV6);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'VRF Name IPv6' text field is not displaying for "+ commandIPV6);
 			System.out.println("'VRF Name IPv6' text field is not displaying for "+ commandIPV6 +" command");
 		}
 
@@ -5426,23 +5547,33 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 	public void deleteService(String application) throws InterruptedException, DocumentException	{
 
+		ScrolltoElement(application, "servicepanel_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		//Delete Service
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Delete", "delete", xml);
 		Thread.sleep(2000);
-		WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-		if(DeleteAlertPopup.isDisplayed())
-		{
-			click_commonMethod(application, "Delete", "deletebutton", xml);
-			Thread.sleep(2000);
-			//compareText(application, "Service Delete success msg", "deletesuccessmsg", "Service successfully deleted", xml);
-			verifysuccessmessage(application, "Service successfully deleted");
-		}
-		else
-		{
-			Log.info("Delete alert popup is not displayed");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-		}
+		
+		Alert alert = driver.switchTo().alert();       
+		  
+		  // Capturing alert message.    
+		    String alertMessage= driver.switchTo().alert().getText();
+		    if(alertMessage.isEmpty()) {
+		       ExtentTestManager.getTest().log(LogStatus.FAIL, "No message displays");
+		          System.out.println("No Message displays"); 
+		    }else {
+		       ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+		          System.out.println("text message for alert displays as: "+alertMessage);
+		    }
+		  
+		  try {  
+		    alert.accept();
+		    Thread.sleep(2000);
+		  }catch(Exception e) {
+		     e.printStackTrace();
+		  } 
+		  Thread.sleep(2000);
+		  verifysuccessmessage(application, "Service successfully deleted");
 		
 	}
 
@@ -5458,13 +5589,13 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		File[] files = dir.listFiles();
 		if (files.length == 0 || files == null) {
 			System.out.println("The directory is empty");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Downloads folder is empty");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Downloads folder is empty");
 			flag = false;
 		} else {
 			for (File listFile : files) {
 				if (listFile.getName().contains(fileName)) {
 					System.out.println(fileName + " is present");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+fileName+"' excel file is downloaded successfully");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+fileName+"' excel file is downloaded successfully");
 					break;
 				}
 				flag = true;
@@ -5503,7 +5634,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			String value= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 			if(element==null)
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 			}
 			else if(value!=null) {
 				Thread.sleep(1000);
@@ -5523,14 +5654,14 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			System.out.println(availability);
 			if (availability) {
 				Thread.sleep(2000);
-				DriverTestcase.logger.log(LogStatus.PASS, "Step: '"+labelname+"' is displayed as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step: '"+labelname+"' is displayed as expected");
 			}
 			else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step: '"+labelname+"' is not displaying as expected");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: '"+labelname+"' is not displaying as expected");
 			}
 
 		} catch (Exception e) {
-			DriverTestcase.logger.log(LogStatus.FAIL,"Step: '"+labelname+"' is not available to display");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: '"+labelname+"' is not available to display");
 			e.printStackTrace();
 		}
 	}
@@ -5559,19 +5690,19 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			String ele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 			if(element==null)
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' is not found");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' is not found");
 			}
 			else if (ele!=null && ele.isEmpty()) {
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
 			}
 			else {   
 
 				text = element.getText();
-				DriverTestcase.logger.log(LogStatus.PASS,"Step: '"+ labelname +"' value is displayed as : '"+text+"'");
+				ExtentTestManager.getTest().log(LogStatus.PASS,"Step: '"+ labelname +"' value is displayed as : '"+text+"'");
 
 			}
 		}catch (Exception e) {
-			DriverTestcase.logger.log(LogStatus.FAIL,"Step: '"+ labelname +"' value is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: '"+ labelname +"' value is not displaying");
 			e.printStackTrace();
 		}
 		return text;
@@ -5623,7 +5754,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
            					try {  
            					  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
            					  if(availability) {
-           						  DriverTestcase.logger.log(LogStatus.PASS, labelname + " dropdown is displaying");
+           						  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
            						  System.out.println(labelname + " dropdown is displaying");
            						  
            						  WebElement el =getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
@@ -5631,7 +5762,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
            						  Select sel = new Select(el);
            						  
            						 String firstSelectedOption=sel.getFirstSelectedOption().getText();
-           						 DriverTestcase.logger.log(LogStatus.PASS, "By default "+ labelname+" dropdown is displaying as: "+firstSelectedOption);
+           						 ExtentTestManager.getTest().log(LogStatus.PASS, "By default "+ labelname+" dropdown is displaying as: "+firstSelectedOption);
            						 System.out.println("By default "+ labelname+" dropdown is displaying as: "+firstSelectedOption);
            						 
            						    List<WebElement> we = sel.getOptions();
@@ -5644,28 +5775,28 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
            						        }
            						    }
            					
-           						    DriverTestcase.logger.log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
+           						    ExtentTestManager.getTest().log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
            				            System.out.println("list of values inside "+labelname+" dropdown is: "+ls);
            				            
            						  if(expectedValueToAdd.equalsIgnoreCase("null")) {
            							  
-           							  DriverTestcase.logger.log(LogStatus.PASS, "No values selected under "+ labelname + " dropdown");
+           							  ExtentTestManager.getTest().log(LogStatus.PASS, "No values selected under "+ labelname + " dropdown");
            						  }else {
            							  Select s1=new Select(el);
            							  s1.selectByVisibleText(expectedValueToAdd);
            							  
            							  String SelectedValueInsideDropdown=sel.getFirstSelectedOption().getText();
-           								 DriverTestcase.logger.log(LogStatus.PASS,  labelname+" dropdown value selected as: "+SelectedValueInsideDropdown);
+           								 ExtentTestManager.getTest().log(LogStatus.PASS,  labelname+" dropdown value selected as: "+SelectedValueInsideDropdown);
            								 System.out.println(labelname+" dropdown value selected as: "+SelectedValueInsideDropdown);
            						  }
            						 }
            						
            					}catch(NoSuchElementException e) {
-           						DriverTestcase.logger.log(LogStatus.FAIL, labelname + " Value is not displaying");
+           						ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " Value is not displaying");
            						  System.out.println(labelname + " value is not displaying");
            					}catch(Exception ee) {
            						ee.printStackTrace();
-           						DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
+           						ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
            						System.out.println(" NO value selected under "+ labelname + " dropdown");
            					}
            			}
@@ -5684,23 +5815,23 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
         				
         				if(expected.contains(alrtmsg)) {
         					
-        					DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+        					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
         					System.out.println("Message is verified. It is displaying as: "+alrtmsg);
         					
         				}else {
         					
-        					DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
+        					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
         					System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
         				}
         				
         			}else {
-        				DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
+        				ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
         				System.out.println(" Success Message is not displaying");
         			}
         			
         		}catch(Exception e) {
         			Log.info("failure in fetching success message");
-        			DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
+        			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
         			System.out.println(expected+ " message is not getting dislpayed");
         		}
 

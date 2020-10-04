@@ -27,6 +27,7 @@ import org.testng.asserts.SoftAssert;
 	import com.colt.qa.driverlibrary.DriverTestcase;
 	import com.colt.qa.driverlibrary.Log;
 	import com.colt.qa.driverlibrary.XMLReader;
+import com.colt.qa.reporter.ExtentTestManager;
 
 	public class APT_HSSHelper extends DriverHelper{
 		
@@ -50,7 +51,7 @@ import org.testng.asserts.SoftAssert;
 			Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 			Thread.sleep(2000);
 			System.out.println("Mouse hovered on Manage Customer's Service");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 			Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 			click_commonMethod(application, "create customer link", "createcustomerlink", xml);
@@ -71,8 +72,8 @@ import org.testng.asserts.SoftAssert;
 			addtextFields_commonMethod(application, "Main Domain", "maindomaintextfield", maindomain, xml);
 			Thread.sleep(1000);
 			scrolltoend();
-			click_commonMethod(application, "Clear", "clearbutton", xml);
-			DriverTestcase.logger.log(LogStatus.PASS, "All text field values are cleared");
+			click_commonMethod(application, "Reset", "resetbutton", xml);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "All text field values are cleared");
 			Log.info("All text field values are cleared");
 
 			//Create customer by providing all info
@@ -88,8 +89,8 @@ import org.testng.asserts.SoftAssert;
 			addtextFields_commonMethod(application, "Fax", "faxtextfield", fax, xml);
 			scrolltoend();
 			Thread.sleep(1000);
+			waitforPagetobeenable();
 			click_commonMethod(application, "Ok", "okbutton", xml);
-			//compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.", xml);
 			verifysuccessmessage(application, "Customer successfully created.");
 			sa.assertAll();
 		}
@@ -101,7 +102,7 @@ import org.testng.asserts.SoftAssert;
 			Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 			Thread.sleep(3000);
 			System.out.println("Mouse hovered on Manage Customer's Service");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 			Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 			click_commonMethod(application, "Create Order/Service", "CreateOrderServiceLink", xml);
@@ -123,6 +124,7 @@ import org.testng.asserts.SoftAssert;
 	        addDropdownValues_commonMethod(application, "Choose a customer", "chooseCustomerdropdown", ChooseCustomerToBeSelected, xml);
 
 			click_commonMethod(application, "Next", "nextbutton", xml);
+			waitforPagetobeenable();
 
 		}
 
@@ -134,20 +136,18 @@ import org.testng.asserts.SoftAssert;
 			scrolltoend();
 			Thread.sleep(1000);
 			click_commonMethod(application, "Next", "nextbutton", xml);
-			Thread.sleep(1000);
-
+			Thread.sleep(2000);
+			waitforPagetobeenable();
 			//Warning messages verify
-			warningMessage_commonMethod(application, "order_contractnumber_warngmsg", "Order/Contract Number(Parent SID)", xml);
 			warningMessage_commonMethod(application, "servicetype_warngmsg", "Service Type", xml);
 
 			if (neworder.equalsIgnoreCase("YES")) {
 
 				Thread.sleep(2000);
-				click_commonMethod(application, "select order switch", "selectorderswitch", xml);
 				addtextFields_commonMethod(application, "Order/Contract Number", "newordertextfield", neworderno, xml);
 				addtextFields_commonMethod(application, "RFI Voice line Number", "newrfireqtextfield", newrfireqno, xml);
 				click_commonMethod(application, "create order", "createorderbutton", xml);
-				//compareText(application, "create order success message", "OrderCreatedSuccessMsg", "Order created successfully", xml);			
+				waitforPagetobeenable();
 				verifysuccessmessage(application, "Order created successfully");
 				ScrolltoElement(application, "CreateOrderHeader", xml);
 
@@ -156,6 +156,7 @@ import org.testng.asserts.SoftAssert;
 			} 
 
 			else if (existingorderservice.equalsIgnoreCase("YES")) {
+				click_commonMethod(application, "select order switch", "selectorder_switch", xml);
 				addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber, xml);
 				Log.info("=== Order Contract Number selected===");
 
@@ -164,7 +165,7 @@ import org.testng.asserts.SoftAssert;
 				SelectOrderNumber = existingordernumber;
 			} else {
 				System.out.println("Order not selected");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step :Order not selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step :Order not selected");
 				Log.info("Order not selected");
 			}
 		}
@@ -179,13 +180,13 @@ import org.testng.asserts.SoftAssert;
 			try {  
 				availability=getwebelement(xml.getlocator("//locators/" + application + "/servicetypetextfield")).isDisplayed();
 				if(availability) {
-					DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown is displaying");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Service Type dropdown is displaying");
 					System.out.println("Service Type dropdown is displaying");
 					Log.info("Service Type dropdown is displaying");
 
 					if(servicetype.equalsIgnoreCase("null")) {
 
-						DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Service Type dropdown");
+						ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under Service Type dropdown");
 						System.out.println("No values selected under Service Type dropdown");
 						Log.info("No values selected under Service Type dropdown");
 					}else {
@@ -196,13 +197,13 @@ import org.testng.asserts.SoftAssert;
 						//verify list of values inside dropdown
 						List<WebElement> listofvalues = getwebelements("//div[@class='sc-ifAKCX oLlzc']");
 
-						DriverTestcase.logger.log(LogStatus.PASS, "List of values inside Service Type dropdown is:  ");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "List of values inside Service Type dropdown is:  ");
 						System.out.println( "List of values inside Service Type dropdown is:  ");
 						Log.info("List of values inside Service Type dropdown is:  ");
 
 						for (WebElement valuetypes : listofvalues) {
 							Log.info("service sub types : " + valuetypes.getText());
-							DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+							ExtentTestManager.getTest().log(LogStatus.PASS," " + valuetypes.getText());
 							System.out.println(" " + valuetypes.getText());
 						}
 
@@ -217,30 +218,30 @@ import org.testng.asserts.SoftAssert;
 						Thread.sleep(3000);
 
 						String actualValue=getwebelement("//label[text()='Service Type']/following-sibling::div//span").getText();
-						DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
 						System.out.println("Service Type dropdown value selected as: "+ actualValue);
 						Log.info("Service Type dropdown value selected as: "+ actualValue);
 
 					}
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Service Type is not displaying");
 					System.out.println("Service Type is not displaying");
 					Log.info("Service Type is not displaying");
 				}
 			}catch(NoSuchElementException e) {
-				DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Service Type is not displaying");
 				System.out.println("Service Type is not displaying");
 				Log.info("Service Type is not displaying");
 			}catch(Exception ee) {
 				ee.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, "Not able to perform selection under Service Type dropdown");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Not able to perform selection under Service Type dropdown");
 				System.out.println("NO value selected under Service Type dropdown");
 				Log.info("NO value selected under Service Type dropdown");
 			}
 			// click on next button
 			click_commonMethod(application, "Next", "nextbutton", xml);
-			//compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
-
+			waitforPagetobeenable();
+			
 		}
 
 		
@@ -249,7 +250,7 @@ import org.testng.asserts.SoftAssert;
 	        scrolltoend();
 	        Thread.sleep(1000);
 			Clickon(getwebelement("//span[contains(text(),'OK')]"));
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on OK button to check mandatory messages");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on OK button to check mandatory messages");
 
 			Thread.sleep(5000);
 			
@@ -280,108 +281,64 @@ import org.testng.asserts.SoftAssert;
 		}
 		
 		
-		public void verifyservicecreation(String application ,String ServiceIdvalue, String RemarkValue, String EmailValue,
-			String PhoneContactValue ,String Performanceexpected, String PerformanceDefault ,String Waveexpected, String WaveDefault, String InterfaceSpeedValue, String TypeOfServiceValue ) 
+		public void verifyservicecreation(String application ,String ServiceIdvalue, String RemarkValue
+				, String EmailValue, String PhoneContactValue, String PerformanceReporting_Checkbox 
+				,String WaveService_checkbox, String InterfaceSpeedValue, String TypeOfServiceValue) 
 				throws InterruptedException, DocumentException, IOException 
 		{
-			//public void addtextFields_commonMethod(String application, String labelname, String xpathname, String expectedValueToAdd, XMLReader xml) throws InterruptedException, DocumentException, IOException {
-
 			
 			addtextFields_commonMethod(application, "Service Identification", "ServiceIdentification", ServiceIdvalue,xml);
 			
 			addtextFields_commonMethod(application, "Remark", "RemarkText",RemarkValue,xml);
 			
 			addtextFields_commonMethod(application, "Email", "EmailText",EmailValue,xml);
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/forwardarrow")));
-			
+			click_commonMethod(application, ">>", "forwardarrow", xml);
 			
 			addtextFields_commonMethod(application, "Phone Contact", "PhoneContact",PhoneContactValue,xml);
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/forwardarrow_1")));
+			click_commonMethod(application, ">>", "forwardarrow_1", xml);
 			
-			if(Performanceexpected.equalsIgnoreCase("Yes"))
-			{
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/performanceReportingcheckbox")));
-				DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Performance Reporting Checkbox");
-
-
-		    //addCheckbox_commonMethod(application,"performanceReportingcheckbox","Performance Reporting","Performanceexpected","PerformanceDefault",xml);
-			}
+			ScrolltoElement(application, "managementoptions_header", xml);
+			Thread.sleep(1000);
+		    addCheckbox_commonMethod(application,"performanceReportingcheckbox","Performance Reporting",PerformanceReporting_Checkbox,"no",xml);
 			
-			if(Waveexpected.equalsIgnoreCase("Yes"))
-			{
-			   // addCheckbox_commonMethod(application,"waveServiceCheckbox","waveServiceCheckbox","Waveexpected","WaveDefault",xml);
+			 addCheckbox_commonMethod(application,"waveServiceCheckbox","waveServiceCheckbox",WaveService_checkbox,"no",xml);
 
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/waveServiceCheckbox")));
-				
-				DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Wave Service Checkbox");
-				Thread.sleep(1000);
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceSpeedDropdown")));
-				Clickon(getwebelement("//div[text()='" + InterfaceSpeedValue + "']"));
-				DriverTestcase.logger.log(LogStatus.PASS, "Interface Speed Value Selected");
-				
-				Thread.sleep(1000);
-				
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/TypeofServiceDropdown")));
-				Clickon(getwebelement("//div[text()='" + TypeOfServiceValue + "']"));
-				DriverTestcase.logger.log(LogStatus.PASS, "Interface Speed Value Selected");
-				
-			}
+			 if(WaveService_checkbox.equalsIgnoreCase("Yes")) {
+				 addDropdownValues_commonMethod(application, "Interface Speed", "InterfaceSpeedDropdown", InterfaceSpeedValue, xml);
+				 addDropdownValues_commonMethod(application, "Type Of Service", "TypeofServiceDropdown", TypeOfServiceValue, xml);
+			 }
+			 
+				scrolltoend();
+				click_commonMethod(application, "OK", "OKbutton", xml);
+				waitforPagetobeenable();
+				verifysuccessmessage(application, "Service successfully created.");
 		    
 		}
 		 
 		
-		public void verifyservicepanelInformationinviewservicepage(String application ,String ServiceIdvalue, String RemarkValue, String EmailValue,
-				String PhoneContactValue,String ServiceType ,String Performanceexpected, String PerformanceDefault ,String Waveexpected, String WaveDefault ) throws InterruptedException, DocumentException, IOException
-		{
-			scrolltoend();
+		public void verifyservicepanelInformationinviewservicepage(String application ,String ServiceIdvalue
+				, String RemarkValue, String EmailValue, String PhoneContactValue, String ServiceType
+				) throws InterruptedException, DocumentException, IOException{
 			
-			Clickon(getwebelement("//span[contains(text(),'OK')]"));
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on OK");
-			Thread.sleep(5000);	
+			ScrolltoElement(application, "servicepanel_header", xml);
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 			
-			
-			
-			//Service creation success message
-					WebElement Serviceordrmsg = getwebelement(xml.getlocator("//locators/" + application + "/ServiceMessg"));
-					
-					scrollToTop();
-					
-					Thread.sleep(2000);
-					
-					
-					boolean successMsgForSevicecreation=Serviceordrmsg.isDisplayed();
-					if(successMsgForSevicecreation) {
-						System.out.println("Service creation message is displaying as expected:" +Serviceordrmsg.getText());
-						DriverTestcase.logger.log(LogStatus.PASS, "Service creation success message displays as:" +Serviceordrmsg.getText());
-					}else {
-						System.out.println("Success mesage for new order is not getting displayed");
-						DriverTestcase.logger.log(LogStatus.FAIL, "Success mesage for new order creation is not getting displayed");
-					}
-					
-					
-					
-					compareText_InViewPage(application ,"Service Identification",ServiceIdvalue,xml);
-					
-					//compareText_InViewPage(application ,"Remark",RemarkValue,xml);
-					//compareText(application, "Remark", "servicepanel_remarksvalue", RemarkValue, xml);
-					
-					compareText(application, "Email", "servicepanel_email", EmailValue, xml);
-					
-					compareText_InViewPage(application ,"Phone Contact",PhoneContactValue,xml);
-					
-					compareText_InViewPage(application ,"Service Type",ServiceType,xml);
-					
-					compareText_InViewPage(application ,"Performance Reporting",Performanceexpected,xml);
-					
-					compareText_InViewPage(application ,"Wave Service",Waveexpected,xml);		
-			
+			compareText_InViewPage(application ,"Service Identification",ServiceIdvalue,xml);
+			compareText_InViewPage(application ,"Service Type",ServiceType,xml);
+			compareText(application, "Remarks", "servicepanel_remarksvalue", RemarkValue, xml);
+			compareText(application, "Email", "servicepanel_email", EmailValue, xml);
+			compareText_InViewPage(application ,"Phone Contact",PhoneContactValue,xml);
 			
 		}
 		
 		
 		public void VerifyEditService(String application, String EditRemarks, String sid, String editemail, String editphonecontact) throws Exception
 		{
-			ScrolltoElement(application, "orderpanelheader", xml);
+
+			ScrolltoElement(application, "servicepanel_header", xml);
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 			//Edit service
 			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 			click_commonMethod(application, "Edit", "edit", xml);
@@ -421,9 +378,12 @@ import org.testng.asserts.SoftAssert;
 		
 		public void verifyDump(String application) throws InterruptedException, DocumentException {
 			
-			ScrolltoElement(application, "orderpanelheader", xml);
+			ScrolltoElement(application, "servicepanel_header", xml);
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 			click_commonMethod(application, "Dump", "dump_link", xml);
+			waitforPagetobeenable();
 			Thread.sleep(2000);
 			GetText(application, "Dump header", "dumppage_header");
 			compareText(application, "Service header", "service_header", "Service", xml);
@@ -433,11 +393,15 @@ import org.testng.asserts.SoftAssert;
 		}
 		
 		public void verifyManageService(String application, String changeorderno, String sid, String servicetype, String servicestatus, String syncstatus, String servicestatuschangerequired) throws InterruptedException, DocumentException, IOException {
+			
 			//Manage service
-			ScrolltoElement(application, "orderpanelheader", xml);
+			ScrolltoElement(application, "servicepanel_header", xml);
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 			click_commonMethod(application, "Manage", "manageLink", xml);
 			Thread.sleep(2000);
+			waitforPagetobeenable();
 			scrollToTop();
 			compareText(application, "Manage service header", "manageservice_header", "Manage Service", xml);
 			compareText(application, "Status header", "statuspanel_header", "Status", xml);
@@ -471,6 +435,7 @@ import org.testng.asserts.SoftAssert;
 			if(servicestatuschangerequired.equalsIgnoreCase("Yes"))
 			{
 				click_commonMethod(application, "Status", "statuslink", xml);
+				waitforPagetobeenable();
 				Thread.sleep(1000);
 				WebElement ServiceStatusPage= getwebelement(xml.getlocator("//locators/" + application + "/Servicestatus_popup"));
 				if(ServiceStatusPage.isDisplayed())
@@ -491,25 +456,25 @@ import org.testng.asserts.SoftAssert;
 					{
 						if(ServiceStatusHistory.isDisplayed())
 						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request logged");
+							ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request logged");
 						}
 						else
 						{
-							DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request is not logged");
+							ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request is not logged");
 						}
 					}
 					catch(StaleElementReferenceException e)
 					{
-						DriverTestcase.logger.log(LogStatus.FAIL, "No service history to display");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "No service history to display");
 					}
 					click_commonMethod(application, "Close", "servicestatus_popupclose", xml);
 				}
 				else
-					DriverTestcase.logger.log(LogStatus.FAIL, "Status link is not working");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Status link is not working");
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change not required");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change not required");
 			}
 
 			//synchronize panel in manage service page
@@ -535,7 +500,7 @@ import org.testng.asserts.SoftAssert;
 			}
 			catch (Exception e) {
 				String Synchronization_serviceError= getwebelement(xml.getlocator("//locators/" + application + "/synchronization_serviceerror")).getText();
-				DriverTestcase.logger.log(LogStatus.INFO, "Synchronize link is not displaying. It is displaying as: " +Synchronization_serviceError);
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Synchronize link is not displaying. It is displaying as: " +Synchronization_serviceError);
 			}
 			
 			scrolltoend();
@@ -545,17 +510,12 @@ import org.testng.asserts.SoftAssert;
 			//Devices for service panel headers
 			compareText(application, "Device header", "devicesforservice_deviceheader", "Device", xml);
 			compareText(application, "Sync Status header", "devicesforservice_syncstatus", "Sync Status", xml);
-//			compareText(application, "Fetch Interfaces header", "devicesforservice_fetchinterfacesheader", "Fetch Interfaces", xml);
-//			compareText(application, "VistaMart Device header", "devicesforservice_vistamartdeviceheader", "VistaMart Device", xml);
 			
 			GetText(application, "Device Name", "deviceforservicepanel_devicename");
 			GetText(application, "Sync Status", "deviceforservicepanel_syncstatus");
-//			GetText(application, "Smarts Status", "deviceforservicepanel_smartsstatus");
-//			GetText(application, "Smarts DateTime", "deviceforservicepanel_smartsdatetime");
-//			verify_FetchInterfacesValue(application);
-//			verify_VistamartDeviceValue(application);
 			click_commonMethod(application, "Manage", "deviceforservicepanel_managelink", xml);
 			Thread.sleep(2000);
+			waitforPagetobeenable();
 			scrollToTop();
 			compareText(application, "Manage Network header", "managenetwork_header", "Manage COLT's Network - Manage Network", xml);
 			driver.navigate().back();
@@ -564,6 +524,7 @@ import org.testng.asserts.SoftAssert;
 			Thread.sleep(2000);
 			click_commonMethod(application, "Back", "managepage_backbutton", xml);
 			Thread.sleep(2000);
+			waitforPagetobeenable();
 
 		}
 
@@ -576,7 +537,7 @@ import org.testng.asserts.SoftAssert;
 				}
 			}
 			catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.PASS, "No values displaying under Fetch Interfaces column");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "No values displaying under Fetch Interfaces column");
 			}
 		 }
 		
@@ -589,7 +550,7 @@ import org.testng.asserts.SoftAssert;
 				}
 			}
 			catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.PASS, "No values displaying under VistaMart device column");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "No values displaying under VistaMart device column");
 			}
 		 }
 		 
@@ -601,12 +562,15 @@ import org.testng.asserts.SoftAssert;
 
 		public void shownewInfovista(String application) throws Exception {
 
-			ScrolltoElement(application, "orderpanelheader", xml);
+			ScrolltoElement(application, "servicepanel_header", xml);
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 			Thread.sleep(3000);
 			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 			Thread.sleep(2000);
 			click_commonMethod(application, "Show New Infovista Report", "shownewinfovistareport_link", xml);
-			Thread.sleep(6000);
+			Thread.sleep(3000);
+			waitforPagetobeenable();
 
 			String expectedPageName= "SSO Login Page";
 
@@ -627,11 +591,11 @@ import org.testng.asserts.SoftAssert;
 				driver.close();
 				driver.switchTo().window(browserTabs.get(0)); 
 
-				DriverTestcase.logger.log(LogStatus.PASS, "on clicking 'Show Infovista link', it got naviagted to "+ pageTitle + " as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "on clicking 'Show Infovista link', it got naviagted to "+ pageTitle + " as expected");
 				Thread.sleep(3000);
 
-				DriverTestcase.logger.log(LogStatus.PASS, "show info vista page actual title: "+pageTitle );
-				DriverTestcase.logger.log(LogStatus.PASS, "show info vista page expected title: "+ expectedPageName);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "show info vista page actual title: "+pageTitle );
+				ExtentTestManager.getTest().log(LogStatus.PASS, "show info vista page expected title: "+ expectedPageName);
 
 			}catch(Exception e) {
 
@@ -641,7 +605,7 @@ import org.testng.asserts.SoftAssert;
 				driver.close();
 				driver.switchTo().window(browserTabs.get(0));
 
-				DriverTestcase.logger.log(LogStatus.FAIL, expectedPageName + " page is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, expectedPageName + " page is not displaying");
 
 			}
 			sa.assertAll();
@@ -655,13 +619,14 @@ import org.testng.asserts.SoftAssert;
 
 		public void showInfovista(String application) throws Exception {
 
-			ScrolltoElement(application, "orderpanelheader", xml);
-			Thread.sleep(3000);
+			ScrolltoElement(application, "servicepanel_header", xml);
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 			Thread.sleep(2000);
 			click_commonMethod(application, "Show Infovista Report", "showinfovistareport_link", xml);
-			Thread.sleep(6000);
-
+			Thread.sleep(3000);
+			waitforPagetobeenable();
 			String expectedPageName= "SSO Login Page";
 
 			//Switch to new tab
@@ -683,11 +648,11 @@ import org.testng.asserts.SoftAssert;
 				driver.close();
 				driver.switchTo().window(browserTabs.get(0)); 
 
-				DriverTestcase.logger.log(LogStatus.PASS, "on clicking 'Show Infovista link', it got naviagted to "+ pageTitle + " as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "on clicking 'Show Infovista link', it got naviagted to "+ pageTitle + " as expected");
 				Thread.sleep(3000);
 
-				DriverTestcase.logger.log(LogStatus.PASS, "show info vista page actual title: "+pageTitle );
-				DriverTestcase.logger.log(LogStatus.PASS, "show info vista page expected title: "+ expectedPageName);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "show info vista page actual title: "+pageTitle );
+				ExtentTestManager.getTest().log(LogStatus.PASS, "show info vista page expected title: "+ expectedPageName);
 				}
 				else
 				{
@@ -702,29 +667,48 @@ import org.testng.asserts.SoftAssert;
 				driver.close();
 				driver.switchTo().window(browserTabs.get(0));
 
-				DriverTestcase.logger.log(LogStatus.FAIL, expectedPageName + " page is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, expectedPageName + " page is not displaying");
 
 			}
 			sa.assertAll();
 		}
 		
-		public void VerifyManagementPanel(String application ,String Performanceexpected, String Waveexpected, String InterfaceSpeed, 
-				String TypeOfService  ) throws InterruptedException, DocumentException, IOException
+		public void VerifyManagementPanel(String application , String PerformanceReporting_Checkbox , String WaveService_checkbox, String InterfaceSpeedValue
+				, String TypeOfServiceValue) throws InterruptedException, DocumentException, IOException
 		{
-			compareText_InViewPage(application ,"Performance Reporting",Performanceexpected,xml);
+			ScrolltoElement(application, "managementoptions_header", xml);
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 			
-			compareText_InViewPage(application ,"Wave Service",Waveexpected,xml);
-			
-			if(Waveexpected.equals("Yes")) 
-				
-			{
-			compareText_InViewPage(application ,"Interface Speed",InterfaceSpeed,xml);	
-			
-			compareText_InViewPage(application ,"Type Of Service",TypeOfService,xml);	
+			compareText(application, "Management Options", "managementoptions_header", "Management Options", xml);
+			//Verify Performance Reporting
+			if(PerformanceReporting_Checkbox.equalsIgnoreCase("Null")) {
+				compareText(application, "Performance Reporting", "performancereporting_value", "No", xml);
 			}
-		  	
+			else if(PerformanceReporting_Checkbox.equalsIgnoreCase("Yes")) {
+				compareText(application, "Performance Reporting", "performancereporting_value", "Yes", xml);
+			}
+			else {
+				compareText(application, "Performance Reporting", "performancereporting_value", "No", xml);
+			}
+			//Verify Wave Service
+			if(WaveService_checkbox.equalsIgnoreCase("Null")) {
+				compareText(application, "Wave Service", "waveservice_value", "No", xml);
+			}
+			else if(WaveService_checkbox.equalsIgnoreCase("Yes")) {
+				compareText(application, "Wave Service", "waveservice_value", "Yes", xml);
+			}
+			else {
+				compareText(application, "Wave Service", "waveservice_value", "No", xml);
+			}
+			
+			if(WaveService_checkbox.equalsIgnoreCase("Yes")) {
+				//verify interface speed
+				GetText(application, "Interface Speed", "interfacespeed_value");
+				//verify Type of service
+				GetText(application, "Type Of Service", "typeofservice_value");
+			}
 		}
-		
 		
 		public void verifyorderpanelinformation_Neworder(String application, String neworder, String expectedneworderno,
 				String expectednewvoicelineno) throws InterruptedException, DocumentException {
@@ -742,11 +726,11 @@ import org.testng.asserts.SoftAssert;
 				if (expectedneworderno.equalsIgnoreCase(actualorderno)&& expectednewvoicelineno.equalsIgnoreCase(actualvoicelineno)) {
 
 					System.out.println("order information is matched");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : order information is matched");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : order information is matched");
 					Log.info("order information is matched");
 				} else {
 					sa.fail("order information is not matched");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : order information is not matched");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : order information is not matched");
 					System.out.println("order information is not matched");
 					Log.info("order information is not matched");
 				}
@@ -754,7 +738,7 @@ import org.testng.asserts.SoftAssert;
 			} else {
 
 				System.out.println("new order is not selected");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : new order is not selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : new order is not selected");
 				Log.info("new order is not selected");
 			}
 
@@ -763,11 +747,14 @@ import org.testng.asserts.SoftAssert;
 
 		public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
 
-			ScrolltoElement(application, "userspanel_header", xml);
+			ScrolltoElement(application, "orderpanelheader", xml);
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 
 			//Cancel Edit order in Order panel
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Edit Order", "editorderlink", xml);
+			waitforPagetobeenable();
 			compareText(application, "Edit Order", "editorderheader", "Edit Order", xml);
 			Thread.sleep(1000);
 
@@ -787,7 +774,7 @@ import org.testng.asserts.SoftAssert;
 			click_commonMethod(application, "Cancel", "cancelbutton", xml);
 //			compareText(application, "Order Header", "orderpanelheader", "Order", xml);
 //			Log.info("Navigated to order panel in view service page");
-//			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+//			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 			//Edit Order
 			Thread.sleep(1000);
@@ -813,7 +800,7 @@ import org.testng.asserts.SoftAssert;
 			Thread.sleep(1000);
 //			compareText(application, "Order Header", "orderpanelheader", "Order", xml);
 //			Log.info("Navigated to order panel in view service page");
-//			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+//			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 			compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
@@ -823,7 +810,9 @@ import org.testng.asserts.SoftAssert;
 
 		public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
 
-			ScrolltoElement(application, "userspanel_header", xml);
+			ScrolltoElement(application, "orderpanelheader", xml);
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 			Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Change Order", "changeorderlink", xml);
@@ -840,12 +829,10 @@ import org.testng.asserts.SoftAssert;
 				//Cancel change order
 				click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
 				Thread.sleep(1000);
-				ScrolltoElement(application, "userspanel_header", xml);
+				ScrolltoElement(application, "orderpanelheader", xml);
 				Thread.sleep(1000);
-//				compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-//				Log.info("Navigated to order panel in view service page");
-//				DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-
+				((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+				
 				//Change order
 				click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 				click_commonMethod(application, "Change Order", "changeorderlink", xml);
@@ -854,15 +841,13 @@ import org.testng.asserts.SoftAssert;
 				click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
 				Clickon(getwebelement("//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false'][1]"));
 				Thread.sleep(3000);
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected order from dropdown");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected order from dropdown");
 				Log.info("Selected order from dropdown");
 				click_commonMethod(application, "OK", "changeorder_okbutton", xml);
 				Thread.sleep(1000);
-				ScrolltoElement(application, "userspanel_header", xml);
+				ScrolltoElement(application, "orderpanelheader", xml);
 				Thread.sleep(1000);
-//				compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-//				Log.info("Navigated to order panel in view service page");
-//				DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+				((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 				compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
 				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 				Log.info("------ Change Order is successful ------");
@@ -878,10 +863,9 @@ import org.testng.asserts.SoftAssert;
 				Thread.sleep(3000);
 				addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 				click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-				ScrolltoElement(application, "userspanel_header", xml);
+				ScrolltoElement(application, "orderpanelheader", xml);
 				Thread.sleep(1000);
-//				compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-//				Log.info("Navigated to order panel in view service page");
+				((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 
 				//Change Order
 				click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
@@ -897,11 +881,9 @@ import org.testng.asserts.SoftAssert;
 				addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 				click_commonMethod(application, "Create Order", "createorder_button", xml);
 				Thread.sleep(1000);
-				ScrolltoElement(application, "userspanel_header", xml);
+				ScrolltoElement(application, "orderpanelheader", xml);
 				Thread.sleep(1000);
-//				compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-//				Log.info("Navigated to order panel in view service page");
-//				DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
+				((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 				compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
 				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 				Log.info("------ Change Order is successful ------");
@@ -909,7 +891,9 @@ import org.testng.asserts.SoftAssert;
 		}
 
 		public void navigateToAddNewDevicepage(String application) throws InterruptedException, DocumentException {
-			ScrolltoElement(application, "portalaccess_header", xml);
+
+			ScrolltoElement(application, "deviceheader", xml);
+			Thread.sleep(1000);
 			compareText(application, "Device", "deviceheader", "Device", xml);
 			click_commonMethod(application, "Add Device", "AddDevice", xml);
 			compareText(application, "Add Device Header", "adddevice_header", "Add Device", xml);
@@ -917,9 +901,11 @@ import org.testng.asserts.SoftAssert;
 		}
 		
 		public void addNewPEDevice(String application, String name, String devicetype, 
-				String vendormodel, String Country, String managementaddress, String existingcity, 
-				String existingcityvalue, String existingsite,
-				String existingsitevalue, String existingpremise, 
+				String vendormodel, String telnet, String ssh, String snmp2c,String SnmPro, String Snmprw, 
+				String snmpro2cvalue, String snmprw2cvalue , String snmp3 , String Snmpv3Username,String 
+				Snmpv3Authpassword, String Snmpv3Privpassword, String Snmpv3Usernamevalue, String Snmpv3Authpasswordvalue,
+				String Snmpv3Privpasswordvalue, String securityprotocols_dropdownvalue, String Country, String managementaddress, String existingcity, 
+				String existingcityvalue, String existingsite,String existingsitevalue, String existingpremise, 
 				String existingpremisevalue, String newcity,String cityname,String Citycode,
 				String sitename, String sitecode, String premisename, String premisecode, 
 				String newsite, String NewPremise) throws InterruptedException, IOException, DocumentException {
@@ -935,12 +921,72 @@ import org.testng.asserts.SoftAssert;
 				addDropdownValues_commonMethod(application, "Vendor/Model", "vendormodelinput", vendormodel, xml);
 
 				//Management address
-				//javascriptexecutor(getwebelement(xml.getlocator("//locators/" + application + "/managementaddresstextbox")));
 				addtextFields_commonMethod(application, "Management Address", "managementaddresstextbox", managementaddress, xml);
 
 				//snmpro
 				String SnmproValue= getwebelement(xml.getlocator("//locators/" + application + "/snmprotextfield")).getAttribute("value");
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Snmpro value is displayed as: " +SnmproValue);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Snmpro value is displayed as: " +SnmproValue);
+				
+				if(vendormodel.contains("Ciena")) {
+					
+					//Connectivity Protocol		
+					if((telnet.equalsIgnoreCase("No")) && (ssh.equalsIgnoreCase("No"))) {
+
+						verifyDefaultSelection_connectivityprotocol_ssh(application);
+
+						verifyDefaultSelection_connectivityprotocol_telnet(application);
+
+					}else{
+
+						verifyDefaultSelection_connectivityprotocol_ssh(application);
+
+						verifyDefaultSelection_connectivityprotocol_telnet(application);
+
+						if((telnet.equalsIgnoreCase("Yes")) && (ssh.equalsIgnoreCase("No"))) {
+
+							//telnet
+							addCheckbox_commonMethod(application, "telnetradiobutton", "Telnet", telnet, "No", xml);
+
+						}
+						else if((telnet.equalsIgnoreCase("No")) && (ssh.equalsIgnoreCase("Yes"))) {
+
+							//ssh
+							addCheckbox_commonMethod(application, "sshradiobutton", "SSH", ssh, "Yes", xml);
+
+						}
+
+					}
+
+					//SNMP version		
+					if((snmp2c.equalsIgnoreCase("Yes"))  && (snmp3.equalsIgnoreCase("NO"))) {
+
+						addCheckbox_commonMethod(application, "c2cradiobutton", "SNMP Version-2c", snmp2c, "No", xml);
+
+						//snmpro	
+						edittextFields_SNMPversion(application, "Snmpro", "snmprotextfield", snmpro2cvalue);
+
+						//snmprw 
+						edittextFields_SNMPversion(application, "Snmprw", "snmprwtextfield", snmprw2cvalue);
+
+					}
+					else if((snmp2c.equalsIgnoreCase("no"))  && (snmp3.equalsIgnoreCase("yes"))) {
+
+						addCheckbox_commonMethod(application, "c3radiobutton", "SNMP Version-3", snmp3, "Yes", xml);
+
+						//Snmp v3 Username	
+						edittextFields_SNMPversion(application, "Snmp v3 Username", "snmpv3username", Snmpv3Usernamevalue);
+
+						//Snmp v3 Auth password
+						edittextFields_SNMPversion(application, "Snmp v3 Auth password", "snmpv3authpassword", Snmpv3Authpasswordvalue);
+
+						//Snmp v3 Priv password
+						edittextFields_SNMPversion(application, "Snmp v3 Priv password", "snmpv3privpassword", Snmpv3Privpasswordvalue);
+
+					}
+					
+					addDropdownValues_commonMethod(application, "Security Protocols", "securityprotocols_dropdown", securityprotocols_dropdownvalue, xml);
+					
+				}
 				
 				//select country
 				scrolltoend();
@@ -1013,10 +1059,147 @@ import org.testng.asserts.SoftAssert;
 
 			scrolltoend();
 			click_commonMethod(application, "OK", "OKbutton", xml);
-			//compareText(application, "Add Device success msg", "successmsg", "Device successfully created", xml);
+			waitforPagetobeenable();
 			verifysuccessmessage(application, "Device successfully created.");
 		}
 
+		public void verifyDefaultSelection_connectivityprotocol_ssh(String application) throws InterruptedException, DocumentException {
+			boolean conectivityProtocolssh_availability=false;
+			boolean conectivityProtocolssh_Selection=false;
+			try {	
+				conectivityProtocolssh_availability=getwebelement(xml.getlocator("//locators/" + application + "/sshradiobutton")).isDisplayed();
+				if(conectivityProtocolssh_availability) {
+
+					ExtentTestManager.getTest().log(LogStatus.PASS, " 'SSH' is displaying under 'Connectivity protocol' as expected");
+					System.out.println(" 'SSH' is displaying under 'Connectivity protocol' as expected");
+
+					conectivityProtocolssh_Selection=getwebelement(xml.getlocator("//locators/" + application + "/sshradiobutton")).isSelected();
+					if(conectivityProtocolssh_Selection) {
+						ExtentTestManager.getTest().log(LogStatus.PASS, " 'SSH' is selected under 'Connectivity protocol' by default as expected");
+						System.out.println(" 'SSH' is selected under 'Connectivity protocol' as expected");
+
+					}else {
+						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'SSH' is not selected by default under 'Connectivity protocol'");
+						System.out.println(" 'SSH' is not selected under 'Connectivity protocol'");
+					}
+				}else {
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'SSH' is not displaying under 'Connectivity protocol'");
+					System.out.println(" 'SSH' is not displaying under 'Connectivity protocol'");
+				}
+
+			}catch(NoSuchElementException e) {
+				e.printStackTrace();
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'SSH' is not displaying under 'Connectivity protocol'");
+				System.out.println(" 'SSH' is not displaying under 'Connectivity protocol'");
+
+			}catch(Exception ee) {
+				ee.printStackTrace();
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'SSH' is not selected under 'Connectivity protocol'");
+				System.out.println(" 'SSH' is not selected under 'Connectivity protocol'");
+
+			}
+		}
+
+
+		public void verifyDefaultSelection_connectivityprotocol_telnet(String application) throws InterruptedException, DocumentException {
+			boolean conectivityProtocoltelnet_availability=false;
+			boolean conectivityProtocoltelnet_Selection=false;
+			try {	
+				conectivityProtocoltelnet_availability=getwebelement(xml.getlocator("//locators/" + application + "/telnetradiobutton")).isDisplayed();
+				if(conectivityProtocoltelnet_availability) {
+
+					ExtentTestManager.getTest().log(LogStatus.PASS, " 'Telnet' is displaying under 'Connectivity protocol' as expected");
+					System.out.println(" 'Telnet' is displaying under 'Connectivity protocol' as expected");
+
+					conectivityProtocoltelnet_Selection=getwebelement(xml.getlocator("//locators/" + application + "/telnetradiobutton")).isSelected();
+					if(conectivityProtocoltelnet_Selection) {
+						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Telnet' is selected under 'Connectivity protocol' by default");
+						System.out.println(" 'Telnet' is selected under 'Connectivity protocol'");
+
+					}else {
+						ExtentTestManager.getTest().log(LogStatus.PASS, " 'Telnet' is not selected under 'Connectivity protocol' by default as expected");
+						System.out.println(" 'Telnet' is not selected under 'Connectivity protocol'");
+					}
+				}else {
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Telnet' is not displaying under 'Connectivity protocol'");
+					System.out.println(" 'Telnet' is not displaying under 'Connectivity protocol'");
+				}
+
+
+			}catch(Exception ee) {
+				ee.printStackTrace();
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Telnet' is not displaying under 'Connectivity protocol'");
+				System.out.println(" 'Telnet' is not displaying under 'Connectivity protocol'");
+
+			}
+		}
+
+		public void edittextFields_SNMPversion(String application, String labelname, String xpathname, String expectedValueToEdit) throws InterruptedException, DocumentException, IOException {
+			boolean availability=false;
+			try {	
+				availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
+				if(availability) {
+					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is displaying as expected");
+					System.out.println(labelname + " text field is displaying as expected");
+
+					String actualvalueInsidetextfield=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
+
+					if(actualvalueInsidetextfield.isEmpty()) {
+
+						ExtentTestManager.getTest().log(LogStatus.PASS, "No values displaying under "+labelname+" text field");
+						System.out.println("No values displaying under "+labelname+" text field");
+
+						if(expectedValueToEdit.equalsIgnoreCase("null")) {
+							//ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is not edited as expected");
+							System.out.println(labelname + " text field is not edited as expected");
+						}else {
+
+							getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).clear();
+							Thread.sleep(3000);
+
+							SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")), expectedValueToEdit);
+							Thread.sleep(3000);
+
+							String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
+							ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field value is edited as: "+ actualvalue);
+						}
+
+					}else {
+
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Value displaying under "+labelname + " field is: "+actualvalueInsidetextfield);
+						System.out.println("Value displaying under "+labelname + " field is: "+actualvalueInsidetextfield);
+
+						if(expectedValueToEdit.equalsIgnoreCase("null")) {
+							ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is not edited as expected");
+							System.out.println(labelname + " text field is not edited as expected");
+						}else {
+
+							getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).clear();
+							Thread.sleep(3000);
+
+							SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")), expectedValueToEdit);
+							Thread.sleep(3000);
+
+							String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
+							ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field value is edited as: "+ actualvalue);
+						}
+					}
+				}else {
+					ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
+					System.out.println(labelname + " text field is not displaying");
+				}
+			}catch(NoSuchElementException e) {
+				e.printStackTrace();
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
+				System.out.println(labelname + " text field is not displaying");
+			}catch(Exception ee) {
+				ee.printStackTrace();
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under "+ labelname + " text field");
+				System.out.println(" Not able to enter value under "+ labelname + " text field");
+			}
+		}
+
+		
 		public void Clickon_addToggleButton(String application, String xpath) throws InterruptedException, DocumentException {
 
 			//Add Toggle button
@@ -1024,16 +1207,27 @@ import org.testng.asserts.SoftAssert;
 			Thread.sleep(5000);
 		}
 		
-		public void verifyViewpage_Devicedetails(String application, String sid, String name, String vendormodel, String Country, String managementaddress, String existingcity, 
-				String existingcityvalue, String existingsite, 
+		public void verifyViewpage_Devicedetails(String application, String sid, String name, String vendormodel
+				, String telnet, String ssh, String snmp2c, String snmpro2cvalue, String snmprw2cvalue
+				, String snmp3, String Snmpv3Usernamevalue, String Snmpv3Authpasswordvalue,String Snmpv3Privpasswordvalue
+				, String securityprotocols_dropdownvalue, String Country, String managementaddress, String existingcity 
+				, String existingcityvalue, String existingsite, 
 				String existingsitevalue, String existingpremise, 
 				String existingpremisevalue, String newcity,String cityname,String Citycode,
 				String sitename, String sitecode,  String premisename,  String premisecode, 
 				String newsite, String NewPremise) throws InterruptedException, IOException, DocumentException {
 
-
+			
+//			ScrolltoElement(application, "deviceheader", xml);
+//			Thread.sleep(1000);
+//			if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
+//			{
+//				click_commonMethod(application, "View", "viewservicepage_viewdevicelink", xml);
+//				Thread.sleep(5000);
+			
+			waitforPagetobeenable();
+			scrollToTop();
 			//Device Name
-			//compareText(application, "Name", "viewpage_devicename", name, xml);
 			GetText(application, "Name", "viewpage_devicename");
 
 			//Vendor/model
@@ -1042,8 +1236,68 @@ import org.testng.asserts.SoftAssert;
 			//Management Address
 			compareText(application, "Management Address", "viewpage_managementaddress", managementaddress, xml);
 
-			//snmpro
-			compareText_InViewPage(application, "Snmpro", "incc", xml);
+			if(vendormodel.contains("Ciena")) 
+			{
+			//Connectivity protocol
+			if((telnet.equalsIgnoreCase("Yes")) && (ssh.equalsIgnoreCase("No"))){
+				compareText(application, "Telnet", "viewpage_connectivityprotocol", "telnet", xml);
+			}
+			else if((telnet.equalsIgnoreCase("no")) && (ssh.equalsIgnoreCase("Yes"))){
+				compareText(application, "SSH", "viewpage_connectivityprotocol", "ssh", xml);
+			}
+
+			//SNMP Version
+			if((snmp2c.equalsIgnoreCase("Yes")) && (snmp3.equalsIgnoreCase("No"))) {
+
+				//snmp version
+				compareText(application, "SNMP Version", "viewpage_snmpversion", "2c", xml);
+
+				//Snmpro
+				if(!snmpro2cvalue.equalsIgnoreCase("Null")) {
+				compareText(application, "Snmpro", "viewpage_snmpro", snmpro2cvalue, xml);
+				}
+				else {
+					compareText(application, "Snmpro", "viewpage_snmpro", "incc", xml);
+				}
+
+				//Snmprw
+				if(!snmprw2cvalue.equalsIgnoreCase("Null")) {
+					compareText(application, "Snmprw", "viewpage_snmprw", snmprw2cvalue, xml);
+				}
+				else {
+				compareText(application, "Snmprw", "viewpage_snmprw", "ip4corp3", xml);
+				}
+
+			}
+			else if((snmp2c.equalsIgnoreCase("No")) && (snmp3.equalsIgnoreCase("Yes"))) {
+
+				//Snmp v3 Username
+				if(!Snmpv3Usernamevalue.equalsIgnoreCase("Null")) {
+					compareText(application, "Snmp v3 Username", "viewpage_snmpv3username", Snmpv3Usernamevalue, xml);
+				}
+				else {
+					compareText(application, "Snmp v3 Username", "viewpage_snmpv3username", "colt-nms", xml);
+				}
+
+				//Snmp v3 Auth Password
+				if(!Snmpv3Authpasswordvalue.equalsIgnoreCase("Null")) {
+				compareText(application, "Snmp V3 Auth Password", "viewpage_snmpv3authpassword", Snmpv3Authpasswordvalue, xml);
+				}
+				else {
+					compareText(application, "Snmp V3 Auth Password", "viewpage_snmpv3authpassword", "OrHzjWmRvr4piJZb", xml);
+				}
+
+				//Snmp v3 Priv Password
+				if(!Snmpv3Privpasswordvalue.equalsIgnoreCase("Null")) {
+					compareText(application, "Snmp V3 Priv Password", "viewpage_snmpv3privpassword", Snmpv3Privpasswordvalue, xml);
+				}
+				else {
+				compareText(application, "Snmp V3 Priv Password", "viewpage_snmpv3privpassword", "3k0hw8thNxHucQkE", xml);
+				}
+			}
+			GetText(application, "Security Protocols", "viewpage_securityprotocols");
+			
+			}
 			
 			//Country
 			GetText(application, "Country", "viewpage_country");
@@ -1089,21 +1343,31 @@ import org.testng.asserts.SoftAssert;
 			}
 			
 			clickOnBreadCrumb(application, sid);
+//			}
+//			else
+//			{
+//				ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
+//			}
+			waitforPagetobeenable();
 		}
 
-		public void verifyEditDevice(String application, String editDevicename, String editVendorModel,
-				String editManagementAddress, String editCountry, String editExistingCity, String editExistingCityValue, String editExistingSite, String editExistingSiteValue,
+		public void verifyEditDevice(String application, String editDevicename, String editVendorModel
+				, String editTelnet, String editSSH, String editSnmp2C, String editSnmp3,String editSnmProNewValue
+				, String editSnmprwNewValue, String editSnmpv3UsernameNewValue, String editSnmpv3AuthpasswordNewValue
+				, String editSnmpv3PrivpasswordNewValue, String edit_securityprotocols_dropdownvalue, String editManagementAddress, String editCountry
+				, String editExistingCity, String editExistingCityValue, String editExistingSite, String editExistingSiteValue,
 				String editExistingPremise, String editExistingPremiseValue, String editNewCity, String editNewSite, String editNewPremise, String editNewCityName,
 				String editNewCityCode, String editNewSiteName, String editNewSiteCode, String editNewPremiseName, String editNewPremiseCode) throws InterruptedException, DocumentException, IOException {
 
 			try {
 
-				ScrolltoElement(application, "portalaccess_header", xml);
+				ScrolltoElement(application, "deviceheader", xml);
 				Thread.sleep(1000);
 				if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 				{
 					click_commonMethod(application, "Edit", "viewservicepage_editdevicelink", xml);
 					Thread.sleep(5000);
+					waitforPagetobeenable();
 					scrollToTop();
 					compareText(application, "Edit Device header", "editdeviceheader", "Edit Device", xml);
 
@@ -1111,24 +1375,55 @@ import org.testng.asserts.SoftAssert;
 
 					//name
 					String DeviceNameValue= getwebelement(xml.getlocator("//locators/" + application + "/devicename_textfield")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Device Name value is displayed as: " +DeviceNameValue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Device Name value is displayed as: " +DeviceNameValue);
 					
 					//vendormodel
 					addDropdownValues_commonMethod(application, "Vendor/Model", "vendormodelinput", editVendorModel, xml);
 
 					//Management address
-					//javascriptexecutor(getwebelement(xml.getlocator("//locators/" + application + "/managementaddresstextbox")));
 					edittextFields_commonMethod(application, "Management Address", "managementaddresstextbox", editManagementAddress, xml);
 
 					//snmpro
 					String SnmproValue= getwebelement(xml.getlocator("//locators/" + application + "/snmprotextfield")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Snmpro value is displayed as: " +SnmproValue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Snmpro value is displayed as: " +SnmproValue);
+					
+					if(editVendorModel.contains("Ciena")) {
+						
+						//SNMP version		
+						if((editSnmp2C.equalsIgnoreCase("Yes"))  && (editSnmp3.equalsIgnoreCase("NO"))) {
+
+							editcheckbox_commonMethod(application, editSnmp2C, "c2cradiobutton", "SNMP Version-2c", xml);
+
+							//snmpro	
+							edittextFields_SNMPversion(application, "Snmpro", "snmprotextfield", editSnmProNewValue);
+
+							//snmprw 
+							edittextFields_SNMPversion(application, "Snmprw", "snmprwtextfield", editSnmprwNewValue);
+
+						}
+						else if((editSnmp2C.equalsIgnoreCase("no"))  && (editSnmp3.equalsIgnoreCase("yes"))) {
+
+							editcheckbox_commonMethod(application, editSnmp3, "c3radiobutton", "SNMP Version-3", xml);
+
+							//Snmp v3 Username	
+							edittextFields_SNMPversion(application, "Snmp v3 Username", "snmpv3username", editSnmpv3UsernameNewValue);
+
+							//Snmp v3 Auth password
+							edittextFields_SNMPversion(application, "Snmp v3 Auth password", "snmpv3authpassword", editSnmpv3AuthpasswordNewValue);
+
+							//Snmp v3 Priv password
+							edittextFields_SNMPversion(application, "Snmp v3 Priv password", "snmpv3privpassword", editSnmpv3PrivpasswordNewValue);
+
+						}
+						
+						addDropdownValues_commonMethod(application, "Security Protocols", "securityprotocols_dropdown", edit_securityprotocols_dropdownvalue, xml);
+					}
 					
 					//select country
 					scrolltoend();
 					Thread.sleep(2000);
 					addDropdownValues_commonMethod(application, "Country", "countryinput", editCountry, xml);
-
+					if(editCountry.equalsIgnoreCase("Yes")) {
 					//New City		
 					if(editExistingCity.equalsIgnoreCase("no") & editNewCity.equalsIgnoreCase("yes")) {
 						Clickon_addToggleButton(application, "addcityswitch");
@@ -1151,7 +1446,6 @@ import org.testng.asserts.SoftAssert;
 					else if(editExistingCity.equalsIgnoreCase("yes") & editNewCity.equalsIgnoreCase("no")) {
 
 						addDropdownValues_commonMethod(application, "City", "citydropdowninput", editExistingCityValue, xml);
-
 
 						//Existing Site
 						if(editExistingSite.equalsIgnoreCase("yes") & editNewSite.equalsIgnoreCase("no")) {
@@ -1186,11 +1480,10 @@ import org.testng.asserts.SoftAssert;
 							edittextFields_commonMethod(application, "Premise Code", "premisecodeinputfield_addSiteToggleSelected", editNewPremiseCode, xml);
 						}
 					}
-
 				}
-				else if(editCountry.equalsIgnoreCase("Null")) {
+				else {
 
-					DriverTestcase.logger.log(LogStatus.PASS, " No changes made for 'Country' dropdown");
+					ExtentTestManager.getTest().log(LogStatus.PASS, " No changes made for 'Country' dropdown");
 
 					//City	
 					editCity(application, editExistingCity, editNewCity, "citydropdowninput", "selectcityswitch", "addcityswitch",
@@ -1206,10 +1499,10 @@ import org.testng.asserts.SoftAssert;
 							"addpremiseswitch", editExistingPremiseValue, editNewPremiseName, editNewPremiseCode, "Premise");
 
 				}
-
+				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 				}
 			} catch (StaleElementReferenceException e) {
 
@@ -1218,7 +1511,7 @@ import org.testng.asserts.SoftAssert;
 
 			scrolltoend();
 			click_commonMethod(application, "OK", "OKbutton", xml);
-			//compareText(application, "Edit Device success msg", "successmsg", "Device successfully updated", xml);
+			waitforPagetobeenable();
 			verifysuccessmessage(application, "Device successfully updated.");
 		}
 
@@ -1251,7 +1544,7 @@ import org.testng.asserts.SoftAssert;
 
 			else if(editExistingPremise.equalsIgnoreCase("null") & editNewPremise.equalsIgnoreCase("null")) {
 
-				DriverTestcase.logger.log(LogStatus.PASS, "No changes made under 'Premise' field");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made under 'Premise' field");
 				System.out.println("No changes made under 'Premise' field");
 
 			}
@@ -1358,7 +1651,7 @@ import org.testng.asserts.SoftAssert;
 
 			else if(editExistingCity.equalsIgnoreCase("null") & editNewCity.equalsIgnoreCase("null")) {
 
-				DriverTestcase.logger.log(LogStatus.PASS, "No changes made under 'Site' field");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made under 'Site' field");
 				System.out.println("No changes made under 'Site' field");
 
 			}
@@ -1464,7 +1757,7 @@ import org.testng.asserts.SoftAssert;
 
 			else if(editExistingCity.equalsIgnoreCase("null") & editNewCity.equalsIgnoreCase("null")) {
 
-				DriverTestcase.logger.log(LogStatus.PASS, "No chnges made under 'City' field");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "No chnges made under 'City' field");
 				System.out.println("No chnges made under 'City' field");
 			}
 
@@ -1541,7 +1834,8 @@ import org.testng.asserts.SoftAssert;
 
 		public void AddExistingDevice(String application, String existingDeviceName) throws InterruptedException, DocumentException {
 			
-		ScrolltoElement(application, "portalaccess_header", xml);
+			ScrolltoElement(application, "deviceheader", xml);
+			Thread.sleep(1000);
 		compareText(application, "Device", "deviceheader", "Device", xml);
 		click_commonMethod(application, "Add Device", "AddDevice", xml);
 		compareText(application, "Add Device Header", "adddevice_header", "Add Device", xml);
@@ -1550,18 +1844,18 @@ import org.testng.asserts.SoftAssert;
 		Thread.sleep(2000);
 		scrolltoend();
 		click_commonMethod(application, "OK", "okbutton", xml);
-		//compareText(application, "Add Device success msg", "successmsg", "Device successfully created", xml);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Device successfully created.");
 		scrolltoend();
 		click_commonMethod(application, "Back", "Backbutton", xml);
-		
+		waitforPagetobeenable();
 	}
 		
 		public void selectInterfacelinkforDevice(String application, String existingDeviceName) throws InterruptedException, DocumentException {
 			
 			Thread.sleep(2000);
-			ScrolltoElement(application, "portalaccess_header", xml);
-			Thread.sleep(2000);
+			ScrolltoElement(application, "deviceheader", xml);
+			Thread.sleep(1000);
 			
 			if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 			{
@@ -1575,13 +1869,14 @@ import org.testng.asserts.SoftAssert;
 					{
 						WebElement AddedDevice_SelectInterfacesLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_selectinterfaceslink").replace("value", AddedDevice_SNo));
 						Clickon(AddedDevice_SelectInterfacesLink);
-						Thread.sleep(5000);
+						Thread.sleep(3000);
+						waitforPagetobeenable();
 					}
 				}
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 			}
 						
 		}
@@ -1599,11 +1894,12 @@ public void SelectInterface(String application) throws InterruptedException, Doc
 				Thread.sleep(1000);
 				click_commonMethod(application, "Action dropdown", "interfacespanel_actiondropdown", xml);
 				click_commonMethod(application, "OK", "interfacespanel_OK_link", xml);
-				Thread.sleep(5000);
+				Thread.sleep(3000);
+				waitforPagetobeenable();
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "No Interfaces available to select");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "No Interfaces available to select");
 				click_commonMethod(application, "Back", "Backbutton", xml);
 			}
 				scrolltoend();
@@ -1613,7 +1909,8 @@ public void SelectInterface(String application) throws InterruptedException, Doc
 
 public void deleteDevice(String application, String name) throws InterruptedException, DocumentException {
 
-		ScrolltoElement(application, "portalaccess_header", xml);
+	ScrolltoElement(application, "deviceheader", xml);
+	Thread.sleep(1000);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
 		List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/addeddevices_list"));
@@ -1638,7 +1935,7 @@ public void deleteDevice(String application, String name) throws InterruptedExce
 				else
 				{
 					Log.info("Delete alert popup is not displayed");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
 				}
 				break;
 			}
@@ -1648,13 +1945,14 @@ public void deleteDevice(String application, String name) throws InterruptedExce
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 		}
 }
 	
 public void deleteExistingDevice(String application, String existingDeviceName) throws InterruptedException, DocumentException {
 
-	ScrolltoElement(application, "portalaccess_header", xml);
+	ScrolltoElement(application, "deviceheader", xml);
+	Thread.sleep(1000);
 	if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 	{
 	List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/addeddevices_list"));
@@ -1679,7 +1977,7 @@ public void deleteExistingDevice(String application, String existingDeviceName) 
 			else
 			{
 				Log.info("Delete alert popup is not displayed");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
 			}
 			break;
 		}
@@ -1689,14 +1987,16 @@ public void deleteExistingDevice(String application, String existingDeviceName) 
 	}
 	else
 	{
-		DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 	}
 }
 
 public void deleteService(String application) throws InterruptedException, DocumentException	{
 
 	//Delete Service
-	ScrolltoElement(application, "orderpanelheader", xml);
+	ScrolltoElement(application, "servicepanel_header", xml);
+	Thread.sleep(1000);
+	((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 	click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 	click_commonMethod(application, "Delete", "delete", xml);
 	Thread.sleep(2000);
@@ -1706,10 +2006,10 @@ public void deleteService(String application) throws InterruptedException, Docum
   // Capturing alert message.    
     String alertMessage= driver.switchTo().alert().getText();
     if(alertMessage.isEmpty()) {
-       DriverTestcase.logger.log(LogStatus.FAIL, "No message displays");
+       ExtentTestManager.getTest().log(LogStatus.FAIL, "No message displays");
           System.out.println("No Message displays"); 
     }else {
-       DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+       ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
           System.out.println("text message for alert displays as: "+alertMessage);
     }
   
@@ -1719,21 +2019,6 @@ public void deleteService(String application) throws InterruptedException, Docum
   }catch(Exception e) {
      e.printStackTrace();
   } 
-	
-	
-//	WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-//	if(DeleteAlertPopup.isDisplayed())
-//	{
-//		click_commonMethod(application, "Delete", "deletebutton", xml);
-//		Thread.sleep(2000);
-//		//compareText(application, "Service Delete success msg", "deletesuccessmsg", "Service successfully deleted", xml);
-//		verifysuccessmessage(application, "Service successfully deleted");
-//	}
-//	else
-//	{
-//		Log.info("Delete alert popup is not displayed");
-//		DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-//	}
 	
 }
 
@@ -1769,7 +2054,7 @@ public void deleteService(String application) throws InterruptedException, Docum
 				String value= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 				if(element==null)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 				}
 				else if(value!=null) {
 					Thread.sleep(1000);
@@ -1794,6 +2079,7 @@ public void deleteService(String application) throws InterruptedException, Docum
 			ScrolltoElement(application, "searchbutton", xml);
 			Clickon(searchbutton);
 			Thread.sleep(2000);
+			waitforPagetobeenable();
 			scrolltoend();
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/serviceradiobutton")));
 			Thread.sleep(3000);
@@ -1801,6 +2087,7 @@ public void deleteService(String application) throws InterruptedException, Docum
 			Thread.sleep(1000);
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/view")));
 			Thread.sleep(3000);
+			waitforPagetobeenable();
 		}
 	 
 	 public String GetText(String application, String labelname, String xpath) throws InterruptedException, DocumentException {
@@ -1814,19 +2101,19 @@ public void deleteService(String application) throws InterruptedException, Docum
 				String ele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 				if(element==null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' is not found");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' is not found");
 				}
 				else if (ele!=null && ele.isEmpty()) {
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
 				}
 				else {   
 
 					text = element.getText();
-					DriverTestcase.logger.log(LogStatus.PASS,"Step: '"+ labelname +"' value is displayed as : '"+text+"'");
+					ExtentTestManager.getTest().log(LogStatus.PASS,"Step: '"+ labelname +"' value is displayed as : '"+text+"'");
 
 				}
 			}catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.FAIL,"Step: '"+ labelname +"' value is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: '"+ labelname +"' value is not displaying");
 				e.printStackTrace();
 			}
 			return text;
@@ -1873,23 +2160,23 @@ public void deleteService(String application) throws InterruptedException, Docum
  				
  				if(expected.contains(alrtmsg)) {
  					
- 					DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+ 					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
  					System.out.println("Message is verified. It is displaying as: "+alrtmsg);
  					
  				}else {
  					
- 					DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
+ 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
  					System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
  				}
  				
  			}else {
- 				DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
+ 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
  				System.out.println(" Success Message is not displaying");
  			}
  			
  		}catch(Exception e) {
  			Log.info("failure in fetching success message");
- 			DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
+ 			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
  			System.out.println(expected+ " message is not getting dislpayed");
  		}
 

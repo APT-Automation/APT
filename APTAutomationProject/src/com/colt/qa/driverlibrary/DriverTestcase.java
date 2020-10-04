@@ -27,11 +27,19 @@ import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
+import com.colt.qa.reporter.ExtentManager;
+import com.colt.qa.reporter.ExtentTestManager;
+import com.colt.qa.scripthelpers.APT_LoginHelper;
+import com.colt.qa.scripthelpers.APT_VOIPAccessHelper;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import com.colt.qa.scripthelpers.APT_CreateAccessCoreDevice_ManageNetworkHelper;
 import com.colt.qa.scripthelpers.APT_DomainManagementHelper;
 import com.colt.qa.scripthelpers.APT_HSSHelper;
@@ -57,18 +65,26 @@ import com.colt.qa.scripthelpers.APT_NGINHelper;
 import com.colt.qa.scripthelpers.APT_NGINMessageHelper;
 import com.colt.qa.scripthelpers.APT_SANManagementHelper;
 import com.colt.qa.scripthelpers.APT_VOIPAccessHelper;
+import com.colt.qa.scripthelpers.APT_VoiceLineHelper;
 import com.colt.qa.scripthelpers.APT_wholeSaleHelper;
 import com.colt.qa.scripthelpers.ImsNmbrTranslator_Helper;
 import com.colt.qa.scripthelpers.ManagePostcode_Helper;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import com.colt.qa.scripthelpers.Lanlink_DirectFiberHelper;
+import com.colt.qa.scripthelpers.Lanlink_InternationalHelper;
+import com.colt.qa.scripthelpers.Lanlink_MetroHelper;
+import com.colt.qa.scripthelpers.Lanlink_NationalHelper;
+import com.colt.qa.scripthelpers.Lanlink_OLOHelper;
+import com.colt.qa.scripthelpers.Lanlink_Outbandmanagementhelper;
+
+
 
 public class DriverTestcase {
 
 	public static final ThreadLocal<WebDriver> WEB_DRIVER_THREAD_LOCAL = new InheritableThreadLocal<>();
-	// public static final ThreadLocal<RemoteWebDriver> WEB_DRIVER_THREAD_LOCAL =
-	// new InheritableThreadLocal<>();
+	// public static final ThreadLocal<RemoteWebDriver> WEB_DRIVER_THREAD_LOCAL = new InheritableThreadLocal<>();
 
 	
 	public static final ThreadLocal<APT_LoginHelper> APTLogin = new InheritableThreadLocal<>();
@@ -99,9 +115,24 @@ public class DriverTestcase {
 	public static final ThreadLocal<APT_HSSHelper> APT_HSSHelper=new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_SANManagementHelper> APT_SANMgmtHelper=new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_NGINMessageHelper> APT_NGINMessageHelper=new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_VoiceLineHelper> APT_VoiceLineHelper = new InheritableThreadLocal<>();
+	
 	
 	public static final ThreadLocal<APT_VOIPAccessHelper> APT_VOIPHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<com.colt.qa.scripthelpers.DDI_Helper> DDI_Helper = new InheritableThreadLocal<>();
+	
+	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_DirectFiberHelper> DirectFiber = new ThreadLocal<>();
+	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_MetroHelper> Metro=new ThreadLocal<>();
+	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_OLOHelper> OLO=new ThreadLocal<>();
+	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_Outbandmanagementhelper> Outband = new InheritableThreadLocal<>();
+	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_InternationalHelper> International = new InheritableThreadLocal<>();
+	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_NationalHelper> National= new InheritableThreadLocal<>();
+
+
+
+	
+	
+	
 	
 	
 	
@@ -110,14 +141,12 @@ public class DriverTestcase {
 	public static SessionId session_id;
 	public static ChromeDriver driver;
 	public static int itr;
-	public static ExtentReports extent;
-	public static ExtentTest logger;
+	public  ExtentTest logger;
 
 	
 	@BeforeMethod
 	public void BeforeMethod(Method method, ITestContext ctx, Object[] data) throws IOException, Exception 
 	{
-//		setup();
 		Object[] st = null;
 		try
 		{
@@ -222,33 +251,55 @@ public class DriverTestcase {
 		
 		APT_NGINHelper ngin = new APT_NGINHelper(getwebdriver());
 		APT_NGIN.set(ngin);
+		
 		APT_DomainManagementHelper DM= new APT_DomainManagementHelper(getwebdriver());
 		APT_DomainManageHelper.set(DM);
+		
 		APT_ManageNetworkHelper managenetwork1= new APT_ManageNetworkHelper(getwebdriver());
 		APT_ManageNetworkHelper.set(managenetwork1);
+		
 		APT_IPTransitHelper iptransit= new APT_IPTransitHelper(getwebdriver());
 		APT_IPTransitHelper.set(iptransit);
+		
 		APT_HSSHelper Hss=new APT_HSSHelper(getwebdriver());
 		APT_HSSHelper.set(Hss);
+		
 		APT_SANManagementHelper san=new APT_SANManagementHelper(getwebdriver());
 		APT_SANMgmtHelper.set(san);
+		
 		APT_NGINMessageHelper nginmsg=new APT_NGINMessageHelper(getwebdriver());
 		APT_NGINMessageHelper.set(nginmsg);
+		
+		APT_VoiceLineHelper vlv= new APT_VoiceLineHelper(getwebdriver());
+		APT_VoiceLineHelper.set(vlv);
+		
 		
 		APT_VOIPAccessHelper voip = new APT_VOIPAccessHelper(getwebdriver());
 		APT_VOIPHelper.set(voip);
 
 		com.colt.qa.scripthelpers.DDI_Helper Ddi = new com.colt.qa.scripthelpers.DDI_Helper(getwebdriver());
 		DDI_Helper.set(Ddi);
-
 		
-//		 APT_Login aptLogin=new APT_Login();
-//		 aptLogin.APT_Login_1();
+		com.colt.qa.scripthelpers.Lanlink_DirectFiberHelper dirctFbr = new com.colt.qa.scripthelpers.Lanlink_DirectFiberHelper(getwebdriver());
+		DirectFiber.set(dirctFbr);
+		
+		com.colt.qa.scripthelpers.Lanlink_MetroHelper metro= new com.colt.qa.scripthelpers.Lanlink_MetroHelper(getwebdriver());
+		Metro.set(metro);
+		
+		com.colt.qa.scripthelpers.Lanlink_OLOHelper olo=new com.colt.qa.scripthelpers.Lanlink_OLOHelper(getwebdriver());
+		OLO.set(olo);
+		
+		com.colt.qa.scripthelpers.Lanlink_Outbandmanagementhelper out= new com.colt.qa.scripthelpers.Lanlink_Outbandmanagementhelper(getwebdriver());
+		Outband.set(out);
+		
+		com.colt.qa.scripthelpers.Lanlink_InternationalHelper intnal = new com.colt.qa.scripthelpers.Lanlink_InternationalHelper(getwebdriver());
+		International.set(intnal);
+		
+		com.colt.qa.scripthelpers.Lanlink_NationalHelper natnal=new com.colt.qa.scripthelpers.Lanlink_NationalHelper(getwebdriver());
+		National.set(natnal);
 
-		// OR
-//		apt.Login("APT_login_1");
 
-		System.out.println("Method started");
+
 	}
 	
 	@org.testng.annotations.BeforeSuite
@@ -277,15 +328,12 @@ public class DriverTestcase {
 	public void startReport() 
 	{
 
-		String dateName1 = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-
-		// E:\Sai Workspace\APT_Automation_NGIN
-		// extent = new ExtentReports
-		// ("C:/Automation/ExtentReports/SS_ExtentReport-"+dateName1+".html", true);
-		extent = new ExtentReports(
-				System.getProperty("user.dir") + "/ExtentReports/" + "SS_ExtentReport-" + dateName1 + ".html", true);
-		extent.addSystemInfo("Host Name", "APT_QA_Colt").addSystemInfo("Environment", "QA").addSystemInfo("User Name",
-				"Sai12345");
+//		String dateName1 = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+//
+//		extent = new ExtentReports(
+//				System.getProperty("user.dir") + "/ExtentReports/" + "SS_ExtentReport-" + dateName1 + ".html", true);
+//		extent.addSystemInfo("Host Name", "APT_QA_Colt").addSystemInfo("Environment", "QA").addSystemInfo("User Name",
+//				"Sai12345");
 	}
 
 	public static String getScreenhot(WebDriver driver, String screenshotName) throws Exception 
@@ -318,10 +366,20 @@ public class DriverTestcase {
 	@AfterTest
 	public void endReport() 
 	{
-		extent.endTest(logger);
-		extent.flush();
+		ExtentManager.getReporter().flush();
+	}
 
-		// extent.close();
+	
+	
+	@AfterSuite
+	public void closeReport() 
+	{
+		ExtentManager.getReporter().flush();
+		
+		ExtentTestManager.endAllTest();
+		
+		ExtentManager.getReporter().close();
+
 
 	}
 

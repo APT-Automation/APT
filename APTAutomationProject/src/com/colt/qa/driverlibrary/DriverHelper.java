@@ -48,6 +48,9 @@ import org.testng.asserts.SoftAssert;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import com.colt.qa.driverlibrary.DriverTestcase;
+import com.colt.qa.driverlibrary.Log;
+import com.colt.qa.reporter.ExtentTestManager;
 
 //wholesale
 
@@ -954,7 +957,7 @@ public void Moveon(WebElement el) {
 	}
 	
 	
-//	DriverTestcase.logger.log(LogStatus.PASS, "Step : MCS page navigated");
+//	ExtentTestManager.getTest().log(LogStatus.PASS, "Step : MCS page navigated");
 //	DriverTestcase dtc=new DriverTestcase();
 //	public static ExtentReports extent;
 //	public static ExtentTest logger;
@@ -968,17 +971,17 @@ public void Moveon(WebElement el) {
 			if(flag) {
 				
 				Log.info(customTextpass);
-				DriverTestcase.logger.log(LogStatus.PASS,customTextpass );
+				ExtentTestManager.getTest().log(LogStatus.PASS,customTextpass );
 			}else {
 				
 				try {
 					Log.info(customtextfail);
-					DriverTestcase.logger.log(LogStatus.FAIL,customtextfail );
+					ExtentTestManager.getTest().log(LogStatus.FAIL,customtextfail );
 				} catch (TimeoutException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					Log.info("Element is not available");
-					DriverTestcase.logger.log(LogStatus.FAIL,customtextfail );
+					ExtentTestManager.getTest().log(LogStatus.FAIL,customtextfail );
 				}
 			}
 		} catch (NoSuchElementException e) {
@@ -1001,9 +1004,18 @@ public void Moveon(WebElement el) {
 	}
 
 
-	public void scrollToTop() {
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0)");
+
+	public void scrollToTop() throws InterruptedException {
+		
+		clickOnBankPage();
+		
+		Thread.sleep(1000);
+		
+		Actions action=new Actions(driver);
+		action.keyDown(Keys.CONTROL).sendKeys(Keys.HOME).keyUp(Keys.CONTROL).perform();
+		
 	}
+
 
 	public void clickOnBankPage() {
 		driver.findElement(By.xpath("//body")).click();
@@ -1034,38 +1046,41 @@ public void Moveon(WebElement el) {
 	 * @throws DocumentException
 	 * @throws IOException
 	 */
-	public void addtextFields_commonMethod(String application, String labelname, String xpathname, String expectedValueToAdd, XMLReader xml) throws InterruptedException, DocumentException, IOException {
+	public void addtextFields_commonMethod(String application, String labelname, String xpathname, String expectedValueToAdd, XMLReader xml)
+			throws InterruptedException, DocumentException, IOException {
 		boolean availability=false;
-	try {	
+	try {
+		
+
 		availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
 		if(availability) {
-			DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is displaying");
-			Log.info(labelname + " text field is displaying");
+			ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is displaying");
+			System.out.println(labelname + " text field is displaying");
 			
 			if(expectedValueToAdd.equalsIgnoreCase("null")) {
-				DriverTestcase.logger.log(LogStatus.PASS, "No values added to text field "+labelname);
-				Log.info("No values added to text field "+labelname);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "No values added to text field "+labelname);
+				System.out.println("No values added to text field "+labelname);
 			}else {
 				
 				SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")), expectedValueToAdd);
 				Thread.sleep(3000);
 				
 				String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
-				DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field value added as: "+ actualvalue);
+				ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field value added as: "+ actualvalue);
 			}
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
-			Log.info(labelname + " text field is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
+			System.out.println(labelname + " text field is not displaying");
 		}
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
-		Log.info(labelname + " text field is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
+		System.out.println(labelname + " text field is not displaying");
 	}catch(Exception ee) {
 		ee.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL, " Not able to add value to "+ labelname + " text field");
-		Log.info(" Not able to add value to "+ labelname + " text field");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to add value to "+ labelname + " text field");
+		System.out.println(" Not able to add value to "+ labelname + " text field");
 	}
 }
 	
@@ -1081,18 +1096,22 @@ public void Moveon(WebElement el) {
 	 * @throws InterruptedException
 	 * @throws DocumentException
 	 */
-	public void addDropdownValues_commonMethod(String application, String labelname, String xpath, String expectedValueToAdd , XMLReader xml) throws InterruptedException, DocumentException {
+	public void addDropdownValues_commonMethod(String application, String labelname, String xpath, String expectedValueToAdd , XMLReader xml)
+			throws InterruptedException, DocumentException {
 		  boolean availability=false;
+		  List<String> ls = new ArrayList<String>();
+		  
 		try {  
+			
 		  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 		  if(availability) {
-			  DriverTestcase.logger.log(LogStatus.PASS, labelname + " dropdown is displaying");
-			  Log.info(labelname + " dropdown is displaying");
+			  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
+			  System.out.println(labelname + " dropdown is displaying");
 			  
 			  if(expectedValueToAdd.equalsIgnoreCase("null")) {
 				  
-				  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under "+ labelname + " dropdown");
-				  Log.info(" No values selected under "+ labelname + " dropdown");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under "+ labelname + " dropdown");
+				  System.out.println(" No values selected under "+ labelname + " dropdown");
 			  }else {
 				  
 				  Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
@@ -1102,38 +1121,41 @@ public void Moveon(WebElement el) {
 				  List<WebElement> listofvalues = driver
 							.findElements(By.xpath("//div[@class='sc-bxivhb kqVrwh']"));
 				  
-				  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside "+ labelname + " dropdown is:  ");
-				  Log.info( " List of values inside "+ labelname + "dropdown is:  ");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, " List of values inside "+ labelname + " dropdown is:  ");
+				  System.out.println( " List of values inside "+ labelname + "dropdown is:  ");
 				  
 					for (WebElement valuetypes : listofvalues) {
-								Log.info("service sub types : " + valuetypes.getText());
-								DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-								Log.info(" " + valuetypes.getText());
+								Log.info("List of values : " + valuetypes.getText());
+								 ls.add(valuetypes.getText());
 					}
+					
+					
+					    ExtentTestManager.getTest().log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
+			            System.out.println("list of values inside "+labelname+" dropdown is: "+ls);
 					
 					Thread.sleep(2000);
 				SendKeys(getwebelement("//div[label[text()='"+ labelname +"']]//input"), expectedValueToAdd);	
 				Thread.sleep(2000);
 					
-				  Clickon(getwebelement("(//div[contains(text(),'"+ expectedValueToAdd +"')])[1]"));
+				  Clickon(getwebelement("(//div[label[text()='"+ labelname +"']]//div[contains(text(),'"+ expectedValueToAdd +"')])[1]"));
 				  Thread.sleep(3000);
 				  
 				  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
-				  DriverTestcase.logger.log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
-				  Log.info( labelname + " dropdown value selected as: "+ actualValue);
+				  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
+				  System.out.println( labelname + " dropdown value selected as: "+ actualValue);
 				  
 			  }
 		  }else {
-			  DriverTestcase.logger.log(LogStatus.FAIL, labelname + " is not displaying");
-			  Log.info(labelname + " is not displaying");
+			  ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
+			  System.out.println(labelname + " is not displaying");
 		  }
 		}catch(NoSuchElementException e) {
-			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " is not displaying");
-			  Log.info(labelname + " is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
+			  System.out.println(labelname + " is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
-			Log.info(" NO value selected under "+ labelname + " dropdown");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
+			System.out.println(" NO value selected under "+ labelname + " dropdown");
 		}
 		
 	}
@@ -1151,15 +1173,17 @@ public void Moveon(WebElement el) {
 	 * @throws InterruptedException
 	 * @throws DocumentException
 	 */
-	public void addCheckbox_commonMethod(String application, String xpath, String labelname, String expectedValue, String DefaultSelection, XMLReader xml) throws InterruptedException, DocumentException {
+	public void addCheckbox_commonMethod(String application, String xpath, String labelname, String expectedValue, String DefaultSelection, XMLReader xml)
+			throws InterruptedException, DocumentException {
 		
 		boolean availability=false;
 		try {	
+			
 			availability = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 			if(availability) {
 				
-				DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is displaying");
-				Log.info(labelname + " checkbox is displaying");
+				ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " checkbox is displaying");
+				System.out.println(labelname + " checkbox is displaying");
 				
 			boolean isElementSelected=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isSelected();
 			Thread.sleep(2000);
@@ -1167,66 +1191,63 @@ public void Moveon(WebElement el) {
 		//verify whether checkbox is selected/unselected by default		
 			if(DefaultSelection.equalsIgnoreCase("yes")) {
 				if(isElementSelected) {
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is selected by default");
-					Log.info(labelname + " checkbox is selected by default as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " checkbox is selected by default as expected");
+					System.out.println(labelname + " checkbox is selected by default as expected");
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is not selected by default");
-					Log.info(labelname + " checkbox is not selected by default");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " checkbox is not selected by default");
+					System.out.println(labelname + " checkbox is not selected by default");
 				}
 				
 			}
 			else if(DefaultSelection.equalsIgnoreCase("no")) {
 				if(isElementSelected) {
-					DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is selected by default");
-					Log.info(labelname + " checkbox is selected by default as expected");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " checkbox is selected by default");
+					System.out.println(labelname + " checkbox is selected by default as expected");
 				}else {
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is not selected by default");
-					Log.info(labelname + " checkbox is not selected by default");
+					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " checkbox is not selected by default as expected");
+					System.out.println(labelname + " checkbox is not selected by default");
 				}
 				
 			}
-	
+		
 		//Perform click on checkbox	
 			if(!expectedValue.equalsIgnoreCase("null")) {
 				if (expectedValue.equalsIgnoreCase("yes")) {
-
 					if(isElementSelected) {
-						DriverTestcase.logger.log(LogStatus.PASS, labelname +" checkbox is Selected.");
+						ExtentTestManager.getTest().log(LogStatus.PASS, labelname +" checkbox is Selected by default");
 					}else {
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
 						Log.info(labelname + " check box is selected");
-						DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is selected");
+						ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " checkbox is selected");
 					}
 				}
 				else if (expectedValue.equalsIgnoreCase("no")) {
-					
 					if(isElementSelected) {
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
 						Log.info(labelname + " check box is unselected");
-						DriverTestcase.logger.log(LogStatus.PASS,labelname + " is selected");
+						ExtentTestManager.getTest().log(LogStatus.PASS,labelname + " is unselected");
 						
 					}else {
-						DriverTestcase.logger.log(LogStatus.PASS, "No changes made for "+ labelname +" checkbox");
-						Log.info("No changes made for "+ labelname +" checkbox");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made for "+ labelname +" checkbox");
+						System.out.println("No changes made for "+ labelname +" checkbox");
 					}
-					
 				}
 			}else {
-				DriverTestcase.logger.log(LogStatus.PASS, "No changes made for "+ labelname +" checkbox");
-				Log.info("No changes made for "+ labelname +" checkbox");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made for "+ labelname +" checkbox");
+				System.out.println("No changes made for "+ labelname +" checkbox");
 			}
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checbox is not available");
-				Log.info(labelname + " checbox is not available");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " checbox is not available");
+				System.out.println(labelname + " checbox is not available");
 			}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, labelname +  " checkbox is not available ");
-			Log.info( labelname +  " checkbox is not available ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname +  " checkbox is not available ");
+			System.out.println( labelname +  " checkbox is not available ");
 		}catch(Exception er) {
 			er.printStackTrace();
-			Log.info("Not able to perform selection for "+ labelname+ " checkbox");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Not able to perform selection for "+ labelname+ " checkbox");
+			System.out.println("Not able to perform selection for "+ labelname+ " checkbox");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Not able to perform selection for "+ labelname+ " checkbox");
 		}
 	}
 
@@ -1245,16 +1266,21 @@ public void Moveon(WebElement el) {
  */
 	public void edittextFields_commonMethod(String application, String labelname, String xpathname, String expectedValueToEdit, XMLReader xml) throws InterruptedException, DocumentException, IOException {
 			boolean availability=false;
-		try {	
+		try {
+			
+			ScrolltoElement(application, xpathname , xml);
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)"); 
+			
 			availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
 			if(availability) {
-				DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is displaying");
+				ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is displaying");
 				Log.info(labelname + " text field is displaying");
 				
 				if(expectedValueToEdit.equalsIgnoreCase("null")) {
 					
 					String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is not edited. It is displaying as "+actualvalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is not edited. It is displaying as "+actualvalue);
 					Log.info(labelname + " text field is not edited as expected. It is displaying as "+actualvalue);
 				}else {
 					
@@ -1265,20 +1291,20 @@ public void Moveon(WebElement el) {
 					Thread.sleep(3000);
 					
 					String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is edited as: "+ actualvalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is edited as: "+ actualvalue);
 				}
 				
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
 				Log.info(labelname + " text field is not displaying");
 			}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
 			Log.info(labelname + " text field is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, " Not able to perform editing under"+ labelname + " text field");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to perform editing under"+ labelname + " text field");
 			Log.info(" Not able to perform editing under "+ labelname + " text field");
 		}
 		}
@@ -1300,25 +1326,25 @@ public void Moveon(WebElement el) {
 		 			try {
 		 				message = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath  +"")).isDisplayed();
 		 				Thread.sleep(3000);
-		 			sa.assertTrue(message, fieldlabelName + " field warning message is not displayed ");
-		 			if(message) {
+
+		 		if(message) {
 		 			String ErrMsg = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath  +"")).getText();
 		 			
 		 			Log.info( fieldlabelName + " field warning  message displayed as : " + ErrMsg);
-		 			DriverTestcase.logger.log(LogStatus.PASS, "Step :  validation message for"+ fieldlabelName +"  field displayed as : " + ErrMsg);
+		 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step :  validation message for"+ fieldlabelName +"  field displayed as : " + ErrMsg);
 		 			Log.info(fieldlabelName + " field warning  message displayed as : " + ErrMsg);
 		 			}else{
-		 				DriverTestcase.logger.log(LogStatus.FAIL, "validation message for"+ fieldlabelName +"  field is not displaying");
+		 				ExtentTestManager.getTest().log(LogStatus.FAIL, "validation message for"+ fieldlabelName +"  field is not displaying");
 		 				Log.info("validation message for"+ fieldlabelName +"  field is not displaying");
 		 			}
 		 			}catch(NoSuchElementException e) {
 		 				e.printStackTrace();
 		 				Log.info( "No warning message displayed for "+ fieldlabelName);
-		 				DriverTestcase.logger.log(LogStatus.FAIL, "No warning message displayed for "+ fieldlabelName);
+		 				ExtentTestManager.getTest().log(LogStatus.FAIL, "No warning message displayed for "+ fieldlabelName);
 		 			}catch(Exception ed) {
 		 				ed.printStackTrace();
 		 				Log.info( "No warning message displayed for "+ fieldlabelName);
-		 				DriverTestcase.logger.log(LogStatus.FAIL, "No warning message displayed for "+ fieldlabelName);
+		 				ExtentTestManager.getTest().log(LogStatus.FAIL, "No warning message displayed for "+ fieldlabelName);
 		 			}
 		 }
 		
@@ -1332,15 +1358,15 @@ public void Moveon(WebElement el) {
 				element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 				if(element==null)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 				}
 				else {
 					element.click();	
-					DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
 				}
 
 			} catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
 				e.printStackTrace();
 			}
 		}
@@ -1359,11 +1385,16 @@ public void Moveon(WebElement el) {
 			 
 			  boolean Availability=false;
 			  try {
+				  
+				  ScrolltoElement(application, xpath , xml);
+					Thread.sleep(1000);
+					((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)"); 
+					
 				  Availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 			  
 			  if(Availability) {
 				  
-				  DriverTestcase.logger.log(LogStatus.PASS,  labelname+ " checkbox is displaying in edit page");
+				  ExtentTestManager.getTest().log(LogStatus.PASS,  labelname+ " checkbox is displaying in edit page");
 				  Log.info(labelname+ " checkbox is displaying in edit page");
 				  
 				if(!expectedResult.equalsIgnoreCase("null")) {
@@ -1373,11 +1404,11 @@ public void Moveon(WebElement el) {
 					if (expectedResult.equalsIgnoreCase("yes")) {
 						
 						if(isElementSelected) {
-							DriverTestcase.logger.log(LogStatus.PASS, labelname +" checkbox is not edited and it is already Selected while creating");
+							ExtentTestManager.getTest().log(LogStatus.PASS, labelname +" checkbox is not edited and it is already Selected while creating");
 						}else {
 							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
 							Log.info(labelname + " check box is selected");
-							DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is selected");
+							ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " checkbox is selected");
 						}
 					}
 					else if (expectedResult.equalsIgnoreCase("no")) {
@@ -1385,26 +1416,26 @@ public void Moveon(WebElement el) {
 						if(isElementSelected) {
 							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
 							Log.info(labelname + " check box is unselected");
-							DriverTestcase.logger.log(LogStatus.PASS,labelname + " is edited and gets unselected");
+							ExtentTestManager.getTest().log(LogStatus.PASS,labelname + " is edited and gets unselected");
 						}else {
-							DriverTestcase.logger.log(LogStatus.PASS, labelname + " is not edited and it remains unselected");
+							ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " is not edited and it remains unselected");
 						}
 						
 					}
 				}else {
-					DriverTestcase.logger.log(LogStatus.PASS,"No changes made for "+ labelname +"  chekbox");
+					ExtentTestManager.getTest().log(LogStatus.PASS,"No changes made for "+ labelname +"  chekbox");
 				}
 			  }else {
-				  DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is not available in 'Edit Service' page");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " checkbox is not available in 'Edit Service' page");
 			  }
 
 				}catch(NoSuchElementException e) {
 					e.printStackTrace();
-					DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is not displaying under 'Edit service' page");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " checkbox is not displaying under 'Edit service' page");
 					Log.info(labelname+" checkbox is not displaying under 'Edit service' page");
 				}catch(Exception err) {
 					err.printStackTrace();
-					DriverTestcase.logger.log(LogStatus.FAIL, " Not able to click on "+ labelname + " checkbox");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on "+ labelname + " checkbox");
 					Log.info(" Not able to click on "+ labelname + " checkbox");
 				}
 		}
@@ -1424,7 +1455,7 @@ public void Moveon(WebElement el) {
 			Thread.sleep(1000);	
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
 			Thread.sleep(2000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on delete link");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on delete link");
 
 			WebElement DeleteAlertPopup= driver.findElement(By.xpath("//div[@class='modal-content']"));
 			if(DeleteAlertPopup.isDisplayed())
@@ -1438,7 +1469,7 @@ public void Moveon(WebElement el) {
 			else
 			{
 				Log.info("Delete alert popup is not displayed");
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Delete alert popup is not displayed");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Delete alert popup is not displayed");
 			}
 		}
 		
@@ -1457,17 +1488,18 @@ public void Moveon(WebElement el) {
 			try {
 				Thread.sleep(1000);
 				element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
+				System.out.println(element);
 				if(element==null)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 				}
 				else {
 					element.click();	
-					DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
 				}
 
 			} catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
 				e.printStackTrace();
 			}
 		}
@@ -1494,10 +1526,10 @@ public void Moveon(WebElement el) {
 				String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 				if(element==null)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 				}
 				else if (emptyele!=null && emptyele.isEmpty()) {
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
 				}else 
 				{
 					   
@@ -1508,40 +1540,40 @@ public void Moveon(WebElement el) {
 						String[] expectedValue =ExpectedText.split(" ");
 						
 						if(expectedValue[0].equalsIgnoreCase(actualTextValue[0])) {
-							DriverTestcase.logger.log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 							Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 						}
 						else if(expectedValue[0].contains(actualTextValue[0])) {
-							DriverTestcase.logger.log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 						
 						}
 						else
 						{
-							DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+							ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 						}
 						
 					}else {
 						if(ExpectedText.equalsIgnoreCase(text)) {
-							DriverTestcase.logger.log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 							Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 						}
 						else if(ExpectedText.contains(text)) {
-							DriverTestcase.logger.log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 						
 						}
 						else
 						{
-							DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+							ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 						}
 					}
 				}
 			}catch (Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
 				Log.info(labelname + " field is not displaying");
 			}
 
@@ -1559,25 +1591,25 @@ public void Moveon(WebElement el) {
 				String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 				if(element==null)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 				}
 				else if (emptyele!=null && emptyele.isEmpty()) {
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
 				}else 
 				{   
 					if(emptyele.equals(ExpectedText)) {
-						DriverTestcase.logger.log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+emptyele+"'");
+						ExtentTestManager.getTest().log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+emptyele+"'");
 					}
 					else if(emptyele.contains(ExpectedText)) {
-						DriverTestcase.logger.log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+emptyele+"'");
+						ExtentTestManager.getTest().log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+emptyele+"'");
 					}
 					else
 					{
-						DriverTestcase.logger.log(LogStatus.FAIL,"Step: The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+emptyele+"'");
+						ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+emptyele+"'");
 					}
 				}
 			}catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
 				Log.info(labelname + " field is not displaying");
 				e.printStackTrace();
 			}
@@ -1608,11 +1640,11 @@ public void Moveon(WebElement el) {
 
 				if(element==null)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, labelname+" not found");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, labelname+" not found");
 					Log.info(labelname+" not found");
 				}
 				else if (emptyele!=null && emptyele.isEmpty()) {
-//					DriverTestcase.logger.log(LogStatus.PASS,  labelname + "' value is empty");
+//					ExtentTestManager.getTest().log(LogStatus.PASS,  labelname + "' value is empty");
 					
 					emptyele= "Null";
 					
@@ -1620,11 +1652,11 @@ public void Moveon(WebElement el) {
 					
 					if(emptyele.equalsIgnoreCase(ExpectedText)) {
 						
-						DriverTestcase.logger.log(LogStatus.PASS, "The Expected value for '"+ labelname +"' field  is same as the Acutal value. It is id displaying blank");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "The Expected value for '"+ labelname +"' field  is same as the Acutal value. It is id displaying blank");
 						Log.info("The Expected value for '\"+ labelname +\"' field  is same as the Acutal value. It is displaying blank");
 						
 					}else {
-						DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+						ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 						Log.info(" The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 					}
 					
@@ -1638,33 +1670,33 @@ public void Moveon(WebElement el) {
 						String[] expectedValue =ExpectedText.split(" ");
 						
 						if(expectedValue[0].equalsIgnoreCase(actualTextValue[0])) {
-							DriverTestcase.logger.log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 							Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 						}
 						else if(expectedValue[0].contains(actualTextValue[0])) {
-							DriverTestcase.logger.log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 						
 						}
 						else
 						{
-							DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+							ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 						}
 						
 					}else {
 						if(ExpectedText.equalsIgnoreCase(text)) {
-							DriverTestcase.logger.log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 							Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 						}
 						else if(ExpectedText.contains(text)) {
-							DriverTestcase.logger.log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 						
 						}
 						else
 						{
-							DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+							ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 						}
 					}
@@ -1673,7 +1705,7 @@ public void Moveon(WebElement el) {
 				}
 			}catch (Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
 				Log.info(labelname + " field is not displaying");
 			}
 
@@ -1696,15 +1728,15 @@ public void Moveon(WebElement el) {
 					element = getwebelement(webelement);
 					if(element==null)
 					{
-						DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 					}
 					else {
 						element.click();	
-						DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
 					}
 
 				} catch (Exception e) {
-					DriverTestcase.logger.log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
+					ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
 					e.printStackTrace();
 				}
 			}
@@ -1728,7 +1760,7 @@ public void selectValueInsideDropdown(String application, String xpath, String l
 					try {  
 					  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 					  if(availability) {
-						  DriverTestcase.logger.log(LogStatus.PASS, labelname + " dropdown is displaying");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
 						  Log.info(labelname + " dropdown is displaying");
 						  
 						  WebElement el =getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
@@ -1736,7 +1768,7 @@ public void selectValueInsideDropdown(String application, String xpath, String l
 						  Select sel = new Select(el);
 						  
 						 String firstSelectedOption=sel.getFirstSelectedOption().getText();
-						 DriverTestcase.logger.log(LogStatus.PASS, "By default "+ labelname+" dropdown is displaying as: "+firstSelectedOption);
+						 ExtentTestManager.getTest().log(LogStatus.PASS, "By default "+ labelname+" dropdown is displaying as: "+firstSelectedOption);
 						 Log.info("By default "+ labelname+" dropdown is displaying as: "+firstSelectedOption);
 						 
 						    List<WebElement> we = sel.getOptions();
@@ -1749,28 +1781,28 @@ public void selectValueInsideDropdown(String application, String xpath, String l
 						        }
 						    }
 					
-						    DriverTestcase.logger.log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
+						    ExtentTestManager.getTest().log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
 				            Log.info("list of values inside "+labelname+" dropdown is: "+ls);
 				            
 						  if(expectedValueToAdd.equalsIgnoreCase("null")) {
 							  
-							  DriverTestcase.logger.log(LogStatus.PASS, "No values selected under "+ labelname + " dropdown");
+							  ExtentTestManager.getTest().log(LogStatus.PASS, "No values selected under "+ labelname + " dropdown");
 						  }else {
 							  Select s1=new Select(el);
 							  s1.selectByVisibleText(expectedValueToAdd);
 							  
 							  String SelectedValueInsideDropdown=sel.getFirstSelectedOption().getText();
-								 DriverTestcase.logger.log(LogStatus.PASS,  labelname+" dropdown value selected as: "+SelectedValueInsideDropdown);
+								 ExtentTestManager.getTest().log(LogStatus.PASS,  labelname+" dropdown value selected as: "+SelectedValueInsideDropdown);
 								 Log.info(labelname+" dropdown value selected as: "+SelectedValueInsideDropdown);
 						  }
 						 }
 						
 					}catch(NoSuchElementException e) {
-						DriverTestcase.logger.log(LogStatus.FAIL, labelname + " Value is not displaying");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " Value is not displaying");
 						  Log.info(labelname + " value is not displaying");
 					}catch(Exception ee) {
 						ee.printStackTrace();
-						DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
 						Log.info(" NO value selected under "+ labelname + " dropdown");
 					}
 			}
@@ -1778,8 +1810,8 @@ public void selectValueInsideDropdown(String application, String xpath, String l
 
 public void successScreenshot(String application) {
 	String screenshotBase64 = "data:image/jpg;base64," +((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
-	String ScreenshottoReport= DriverTestcase.logger.addScreenCapture(screenshotBase64);
-	DriverTestcase.logger.log(LogStatus.PASS, ScreenshottoReport);
+	String ScreenshottoReport= ExtentTestManager.getTest().addScreenCapture(screenshotBase64);
+	ExtentTestManager.getTest().log(LogStatus.PASS, ScreenshottoReport);
 	
 	}
 
@@ -1794,7 +1826,7 @@ public void SelectDropdownValueUnderSpanTag(String application ,String lebelname
 			
 			for (WebElement dropdownvaluelist : dropdownValueList) {
 				Log.info("Available " +lebelname+ " are : " + dropdownvaluelist.getText().toString()+ "  ,  ");
-				DriverTestcase.logger.log(LogStatus.PASS,"Step : Available  '" +lebelname+ "'  is : " + dropdownvaluelist.getText().toString());
+				ExtentTestManager.getTest().log(LogStatus.PASS,"Step : Available  '" +lebelname+ "'  is : " + dropdownvaluelist.getText().toString());
 				Log.info("Available " +lebelname+ " is : " + dropdownvaluelist.getText().toString());
 			}
 			
@@ -1802,7 +1834,7 @@ public void SelectDropdownValueUnderSpanTag(String application ,String lebelname
 			// click on Country dropdown
 			WebElement selectDropdownValue = driver.findElement(By.xpath("//span[@aria-label='"+dropdownToBeSelectedInTheEnd+"']"));//span[text()='" + dropdownToBeSelectedInTheEnd + "']
 			Log.info("Selected  '" +lebelname+ "'  is : "+ selectDropdownValue.getText().toString());
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected  '"+lebelname+ "'  is : "+ selectDropdownValue.getText().toString());
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected  '"+lebelname+ "'  is : "+ selectDropdownValue.getText().toString());
 			Log.info("Selected  '" +lebelname+ "'  is : " +selectDropdownValue.getText().toString());
 			selectDropdownValue.click();
 			Thread.sleep(2000);
@@ -1812,13 +1844,13 @@ public void SelectDropdownValueUnderSpanTag(String application ,String lebelname
 }catch(NoSuchElementException e) {
 	e.printStackTrace();
 	
-	DriverTestcase.logger.log(LogStatus.FAIL, lebelname + " dropdown is not displaying" );
+	ExtentTestManager.getTest().log(LogStatus.FAIL, lebelname + " dropdown is not displaying" );
 	Log.info( lebelname + " dropdown is not displaying");
 	
 }catch(Exception ee) {
 	ee.printStackTrace();
 	
-	DriverTestcase.logger.log(LogStatus.FAIL, lebelname + " dropdown is not displaying" );
+	ExtentTestManager.getTest().log(LogStatus.FAIL, lebelname + " dropdown is not displaying" );
 	Log.info( lebelname + " dropdown is not displaying");
 }
 
@@ -1834,22 +1866,31 @@ public void ClearAndEnterTextValue(String application, String labelname,  String
 		
 		if(value.isEmpty())
 		{
-			DriverTestcase.logger.log(LogStatus.INFO, "Step: '"+labelname+"' text field is empty");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step: '"+labelname+"' text field is empty");
 			Log.info(value);
 		
 		}else {
 			element.clear();
 			Thread.sleep(1000);
 			element.sendKeys(newValue);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step: Entered '"+newValue+"' into '"+labelname+"' text field");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Entered '"+newValue+"' into '"+labelname+"' text field");
 		}
 
 	} catch (Exception e) {
-		DriverTestcase.logger.log(LogStatus.FAIL,"Not able to enter '"+newValue+"' into '"+labelname+"' text field");
+		ExtentTestManager.getTest().log(LogStatus.FAIL,"Not able to enter '"+newValue+"' into '"+labelname+"' text field");
 		e.printStackTrace();
 	}
 
 }
+
+
+public void scrolltoview (String application, String labelname, String xpath, XMLReader xml) throws InterruptedException, DocumentException {
+	WebElement element = null;
+	element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
+
+	((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+}
+
 			
 			
 			

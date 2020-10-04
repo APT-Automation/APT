@@ -3,17 +3,17 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.colt.qa.apttestscripts.APT_wholesale">
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessSwitch">
         <methods>
           <include name="Teardown"/>
-          <include name="wholeSale" invocation-numbers="0"/>
+          <include name="createAccessCoreDevice_AccessSwitch" invocation-numbers="0"/>
           <include name="getResult"/>
           <include name="BeforeMethod"/>
           <include name="endReport"/>
           <include name="startReport"/>
           <include name="BeforeSuite"/>
         </methods>
-      </class> <!-- com.colt.qa.apttestscripts.APT_wholesale -->
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessSwitch -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

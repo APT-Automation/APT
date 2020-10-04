@@ -28,6 +28,7 @@
 <enablededicatedportalcheckbox>//input[@id='enabledDedicatedPortal']</enablededicatedportalcheckbox>
 <dedicatedportaldropdown>//div[label[text()='Dedicated Portal']]//input</dedicatedportaldropdown>
 <customercreationsuccessmsg>//div[@role='alert']//span</customercreationsuccessmsg>
+<resetbutton>//span[text()='Reset']</resetbutton>
 <clearbutton>//span[text()='Clear']</clearbutton>
 <clearcountryvalue>//label[text()='Country']/parent::div//div[text()='×']</clearcountryvalue>
 <cleartypevalue>//label[text()='Type']/parent::div//div[text()='×']</cleartypevalue>
@@ -50,7 +51,7 @@
 <!-- Create Order/service panel in view customer page -->
 <CreateOrderHeader>//div[text()='Create Order / Service']</CreateOrderHeader>
 <ordercontractnumber>//div[div[label[text()='Order/Contract Number']]]//input[@size='9']</ordercontractnumber>
-<selectorderswitch>(//div[@class='react-switch-bg'])[1]</selectorderswitch>
+<selectorder_switch>//label[text()='Order/Contract Number(Parent SID)']/following-sibling::input/ancestor::div[@class='form-group']/parent::div/following-sibling::div//div[@class='react-switch-bg']</selectorder_switch>
 <createorderswitch>//form[@name='createOrder']//div[2]//div[1]//div[3]//div[1]//div[1]//div[1]</createorderswitch>
 <rfireqiptextfield>//div[contains(@class,'col-md-3 col-sm-12 col-12')]//input[@id='rfiRfqIpVoiceLineNo']</rfireqiptextfield>
 <existingorderdropdown>//label[text()='Order/Contract Number(Parent SID)']/parent::div//div//input</existingorderdropdown>
@@ -60,7 +61,7 @@
 <newrfireqtextfield>//div[@class='form-group']//input[@id='rfiRfqIpVoiceLineNo']</newrfireqtextfield>
 <OrderCreatedSuccessMsg>//div[@role='alert']//span[text()='Order created successfully']</OrderCreatedSuccessMsg>
 
-<order_contractnumber_warngmsg>//div[label[contains(text(),'Order/Contract Number(Parent SID)')]]/following-sibling::span</order_contractnumber_warngmsg>
+<order_contractnumber_warngmsg>//div[label[contains(text(),'Order/Contract Number(Parent SID)')]]//span[contains(text(),'Order/Contract Number(Parent SID)')]</order_contractnumber_warngmsg>
 <servicetype_warngmsg>//div[label[contains(text(),'Service Type')]]/following-sibling::span</servicetype_warngmsg>
 
 <servicetypetextfield>//div[div[label[text()='Service Type']]]//input</servicetypetextfield>
@@ -97,6 +98,8 @@
 <orderpanelheader>//div[text()='Order']</orderpanelheader>
 
 <!-- service panel -->
+<servicepanel_header>//div[text()='Service']</servicepanel_header>
+<managementoptions_header>//div[text()='Management Options']</managementoptions_header>
 <edit>//div[@class='dropdown-menu show']//a[text()='Edit']</edit>
 <serviceidentificationtextfield>//input[@id='serviceIdentification']</serviceidentificationtextfield>
 <remarktextarea>//textarea[contains(@name,'remark')]</remarktextarea>
@@ -205,6 +208,11 @@
 <emailaddarrow>//label[text()='Email']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</emailaddarrow>
 <phoneaddarrow>//label[text()='Phone Contact']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</phoneaddarrow>
 
+<performancereporting_value>//div[label[text()='Performance Reporting']]/following-sibling::div</performancereporting_value>
+<waveservice_value>//div[label[text()='Wave Service']]/following-sibling::div</waveservice_value>
+<interfacespeed_value>//div[label[text()='Interface Speed']]/following-sibling::div</interfacespeed_value>
+<typeofservice_value>//div[label[text()='Type Of Service']]/following-sibling::div</typeofservice_value>
+
 <!-- Device Header -->
 <addeddevices_list>//div[text()='Device']/parent::div/following-sibling::div[@class='div-margin row']//b</addeddevices_list>
 <addeddevice_selectinterfaceslink>//div[text()='Device']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Select Interfaces']</addeddevice_selectinterfaceslink>
@@ -223,6 +231,16 @@
 <devicename_textfield>//input[@id='deviceName']</devicename_textfield>
 <vendormodelinput>//div[label[text()='Vendor/Model']]//input</vendormodelinput>
 <snmprotextfield>//input[@id='snmpro']</snmprotextfield>
+<telnetradiobutton>//input[@value='telnet']</telnetradiobutton>
+<sshradiobutton>//input[@value='ssh']</sshradiobutton>
+<c2cradiobutton>//input[@value='2c']</c2cradiobutton>
+<c3radiobutton>//input[@value='3']</c3radiobutton>
+<snmprotextfield>//input[@id='snmpro']</snmprotextfield>
+<snmprwtextfield>//input[@id='snmprw']</snmprwtextfield>
+<snmpv3username>//div[label[text()='Snmp v3 Username']]//input</snmpv3username>
+<snmpv3authpassword>//div[label[text()='Snmp v3 Auth Password']]//input</snmpv3authpassword>
+<snmpv3privpassword>//div[label[text()='Snmp v3 Priv Password']]//input</snmpv3privpassword>
+<securityprotocols_dropdown>//div[label[contains(text(),'Security Protocols')]]//input</securityprotocols_dropdown>
 <countryinput>//div[label[contains(text(),'Country')]]//input</countryinput>
 <managementaddresstextbox>//input[@id='addressSelect']</managementaddresstextbox>
 <citydropdowninput>//div[label[@class='form-label labelStyle'][contains(text(),'City')]]//input</citydropdowninput>
@@ -242,6 +260,7 @@
 <viewpage_devicename>//label[text()='Name']/parent::div/following-sibling::div</viewpage_devicename>
 <viewpage_vendormodel>//label[text()='Vendor/Model']/parent::div/following-sibling::div</viewpage_vendormodel>
 <viewpage_managementaddress>//label[text()='Management Address']/parent::div/following-sibling::div</viewpage_managementaddress>
+<viewpage_securityprotocols>//label[text()='Security Protocols']/parent::div/following-sibling::div</viewpage_securityprotocols>
 <viewpage_country>//label[text()='Country']/parent::div/following-sibling::div</viewpage_country>
 <viewpage_city>//label[text()='City']/parent::div/following-sibling::div</viewpage_city>
 <viewpage_site>//label[text()='Site']/parent::div/following-sibling::div</viewpage_site>

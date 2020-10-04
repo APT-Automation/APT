@@ -69,7 +69,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 	{
 		
 		Log.info("select Manage Colt's Network");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on 'Manage colt's Network' link");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on 'Manage colt's Network' link");
 
 
 		Thread.sleep(3000);
@@ -77,23 +77,23 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageColtNetworkLink")));
 			Thread.sleep(3000);
 			Log.info("Mouse hovered on Manage Colt Network ");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on Manage Colt Network");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on Manage Colt Network");
 			
 			Thread.sleep(2000);
 			boolean isDisplayed = getwebelement(xml.getlocator("//locators/" + application + "/ManageIms")).isDisplayed();
 			sa.assertTrue(isDisplayed,"Manage IMS Number Translation is not displayed ");
 			
 			Log.info("Manage IMS Number Translation link verifeid");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step :Manage IMS Number Translation is displayed ");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step :Manage IMS Number Translation is displayed ");
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ManageIms")));
 			Thread.sleep(2000);
 			Log.info("=== Clicked on Manage IMS Number Translation link ===");
 			Log.info("Clicked on Manage IMS Number Translation link");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step :Clicked on Manage IMS Number Translation link");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step :Clicked on Manage IMS Number Translation link");
 
 			
- 		    DriverTestcase.logger.log(LogStatus.PASS, "Navigated to Manage Number Translation");
+ 		    ExtentTestManager.getTest().log(LogStatus.PASS, "Navigated to Manage Number Translation");
 
 
 			Log.info("=== Navigated to Manage Number Translation ===");
@@ -105,7 +105,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 		String[] CountryList= {"SE Manage Number Translation","UK Manage Number Translation","BR Manage Number Translation","PT Manage Number Translation","CH Manage Number Translation",
 				"IE Manage Number Translation","AT Manage Number Translation","IT Manage Number Translation"};
 		Log.info(""+CountryList.length);
-		DriverTestcase.logger.log(LogStatus.PASS, " Verifying list of countries");
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Verifying list of countries");
 
 		
 		//Verifying list of Countries
@@ -114,7 +114,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 		for (WebElement Country: CountryPresent ) {
 			boolean match = false;
 			Log.info("Country list displaying from application:"  +Country.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, "Country list displaying from application:"+Country.getText());
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Country list displaying from application:"+Country.getText());
 
 			
 			for (int i=0; i < CountryList.length;i++)
@@ -122,16 +122,16 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				if (Country.getText().equals(CountryList[i])) {
 					match = true;
 					Log.info("Country name : " + Country.getText());
-					DriverTestcase.logger.log(LogStatus.PASS, "Country name :" + Country.getText());
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Country name :" + Country.getText());
 //					Log.info(CountryPresent);
 //					Log.info("Country list matched");
-//					DriverTestcase.logger.log(LogStatus.PASS, "Country list matched");
+//					ExtentTestManager.getTest().log(LogStatus.PASS, "Country list matched");
 
 				}
 								
 			}
 				Log.info("Country lists got mismatched");
-				//DriverTestcase.logger.log(LogStatus.PASS, "Country list not matched");
+				//ExtentTestManager.getTest().log(LogStatus.PASS, "Country list not matched");
 				sa.assertTrue(match);
 
 					}
@@ -144,7 +144,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 	{
 		if (Countrylist.equals("BR"))
 		{
-		DriverTestcase.logger.log(LogStatus.PASS, "Verifying Manage Number Translation filed for BR");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying Manage Number Translation filed for BR");
 	
 		Thread.sleep(5000);
 		safeJavaScriptClick(getwebelement(
@@ -152,13 +152,13 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 		Log.info("Clicked on BR Manage Number Translation");
 		Log.info("Clicked on BR Manage Number Translation");
 
-		DriverTestcase.logger.log(LogStatus.PASS, "Clicked on BR Manage Number Translation");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on BR Manage Number Translation");
 		
 		}
 		
 		else if (Countrylist.equals("IT"))
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Verifying Manage Number Translation filed for IT");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying Manage Number Translation filed for IT");
 			
 			Thread.sleep(5000);
 			safeJavaScriptClick(getwebelement(
@@ -166,13 +166,13 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			Log.info("Clicked on IT Manage Number Translation");
 			Log.info("Clicked on IT Manage Number Translation");
 
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on IT Manage Number Translation");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on IT Manage Number Translation");
 	
 		}
 		
 		else if (Countrylist.equals("CH"))
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Verifying Manage Number Translation filed for CH");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying Manage Number Translation filed for CH");
 			
 			Thread.sleep(5000);
 			safeJavaScriptClick(getwebelement(
@@ -180,14 +180,14 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			Log.info("Clicked on CH Manage Number Translation");
 			Log.info("Clicked on CH Manage Number Translation");
 
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on IT Manage Number Translation");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on IT Manage Number Translation");
 	
 		}
 
 		
 		else if (Countrylist.equals("IE"))
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Verifying Manage Number Translation filed for IE");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying Manage Number Translation filed for IE");
 			
 			Thread.sleep(5000);
 			safeJavaScriptClick(getwebelement(
@@ -195,14 +195,14 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			Log.info("Clicked on IE Manage Number Translation");
 			Log.info("Clicked on IE Manage Number Translation");
 
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on IE Manage Number Translation");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on IE Manage Number Translation");
 	
 		}
 		
 		
 		else if (Countrylist.equals("AT"))
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Verifying Manage Number Translation filed for AT");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying Manage Number Translation filed for AT");
 			
 			Thread.sleep(5000);
 			safeJavaScriptClick(getwebelement(
@@ -210,13 +210,13 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			Log.info("Clicked on AT Manage Number Translation");
 			Log.info("Clicked on AT Manage Number Translation");
 
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on AT Manage Number Translation");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on AT Manage Number Translation");
 	
 		}
 		
 		else if (Countrylist.equals("SE"))
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Verifying Manage Number Translation filed for SE");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying Manage Number Translation filed for SE");
 			
 			Thread.sleep(5000);
 			safeJavaScriptClick(getwebelement(
@@ -224,13 +224,13 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			Log.info("Clicked on SE Manage Number Translation");
 			Log.info("Clicked on SE Manage Number Translation");
 
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on SE Manage Number Translation");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on SE Manage Number Translation");
 	
 		}
 		
 		else if (Countrylist.equals("UK"))
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Verifying Manage Number Translation filed for UK");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying Manage Number Translation filed for UK");
 			
 			Thread.sleep(5000);
 			safeJavaScriptClick(getwebelement(
@@ -238,12 +238,12 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			Log.info("Clicked on UK Manage Number Translation");
 			Log.info("Clicked on UK Manage Number Translation");
 
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on UK Manage Number Translation");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on UK Manage Number Translation");
 	
 		}
 		else if (Countrylist.equals("PT"))
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Verifying Manage Number Translation filed for PT");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying Manage Number Translation filed for PT");
 			
 			Thread.sleep(5000);
 			safeJavaScriptClick(getwebelement(
@@ -251,7 +251,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			Log.info("Clicked on PT Manage Number Translation");
 			Log.info("Clicked on PT Manage Number Translation");
 
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on PT Manage Number Translation");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on PT Manage Number Translation");
 	
 		}
 		
@@ -288,17 +288,17 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 		
 		public void verifyWildcardsearch (String application) throws Exception
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Verifying Wildcard * search field");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying Wildcard * search field");
 			
 			SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/ImsSearcfield")),"*");
 			Log.info("Value Entered in TextField");
 			Log.info("Value Entered in Search TextField");
-			DriverTestcase.logger.log(LogStatus.PASS, "Value Entered in Search TextField" );
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Value Entered in Search TextField" );
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Searchbtn")));
 			Log.info("Clicked on Search button");
 			Log.info("Clicked on search button");
-			DriverTestcase.logger.log(LogStatus.PASS, "Clicked on search button" );
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on search button" );
 			
 			Thread.sleep(5000);
 			
@@ -309,10 +309,10 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			if (ActWildcardmsg.getText().equals(ExpWildcardmsg))
 			{
 				Log.info("Wildcarde Message : " + ActWildcardmsg.getText());
-				DriverTestcase.logger.log(LogStatus.PASS, "Postcode Message :  :" + ActWildcardmsg.getText());
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Postcode Message :  :" + ActWildcardmsg.getText());
 				Log.info("Message Displayed as:"+ActWildcardmsg.getText());
-				DriverTestcase.logger.log(LogStatus.PASS, "Wildcard Search Message Displayed as:" +ActWildcardmsg.getText());
-				DriverTestcase.logger.log(LogStatus.PASS, "Wildcard Search Method Verified and Passed" );
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Wildcard Search Message Displayed as:" +ActWildcardmsg.getText());
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Wildcard Search Method Verified and Passed" );
 
 			}
 			else
@@ -320,7 +320,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				sa.assertTrue(ActWildcardmsg.isDisplayed(),"Message not displayed");
 				Log.info("Postcode success message not displayed");
 				Log.info("Wildcard Search message not displayed or mismatched");
-				DriverTestcase.logger.log(LogStatus.PASS, "Wildcard Search message not displayed or mismatched and Test Failed" );
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Wildcard Search message not displayed or mismatched and Test Failed" );
 
 			}
 			Thread.sleep(5000);
@@ -331,12 +331,12 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			public void verifyAddnumberTranslationfields (String application ,String Countrylist) throws Exception
 			{
 				
-				DriverTestcase.logger.log(LogStatus.INFO, "Verifying Add number Translation field" );
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Add number Translation field" );
 				
 				safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/AddnumberTranslation")));
 				Log.info("Clicked on Add Number Translation Link");
 				Log.info("Clicked on Add Number Translation Link");
-				DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Add Number Translation Link");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Add Number Translation Link");
 				
 			//Number to translate	
 				compareText(application, "Number to Translate", "Numbertranslate","Number to Translate", xml);
@@ -354,14 +354,14 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				{
 					Log.info("Country Code is same as selected country" + ActCountrycode.getText());
 					Log.info("Country Code is same as selected country:" +ActCountrycode.getText());
-					DriverTestcase.logger.log(LogStatus.PASS, "Country Code is same as selected country" + ActCountrycode.getText());
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Country Code is same as selected country" + ActCountrycode.getText());
 				}
 				else
 				{
 					sa.assertTrue(ActCountrycode.isDisplayed(),"Country Code not displayed or mismatched");
 					Log.info("Country Code not displayed or mismatched");
 					Log.info("Country Code not displayed or mismatched");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Country Code not displayed or mismatched" );
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Country Code not displayed or mismatched" );
 
 				}							
 				
@@ -388,7 +388,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				boolean Natureofadddropdown = getwebelement(xml.getlocator("//locators/" + application + "/Natureofadddropdown")).isDisplayed();
 				sa.assertTrue(Natureofadddropdown,"Nature of adddress dropdown is not displayed");
 				Log.info("Nature of adddress dropdown field is verified");
-				DriverTestcase.logger.log(LogStatus.PASS, "Nature of adddress dropdown field is verified");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Nature of adddress dropdown field is verified");
 				
 				//Verifying list of values from dropdown
 				
@@ -398,7 +398,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 					
 				{
 					Log.info("Country list displaying from application:"  +valueslist.getText());
-					DriverTestcase.logger.log(LogStatus.PASS, "Country list displaying from application:"+valueslist.getText());
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Country list displaying from application:"+valueslist.getText());
 					boolean match = false;
 					
 					for (int i = 0; i <NatureofAddress.length;i++) {
@@ -407,12 +407,12 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 							match = true;
 							Log.info("Nature of address values displaying from page dropdown" + valueslist.getText());
 							Log.info("Nature of address values displaying from page dropdown :" + valueslist.getText());
-							DriverTestcase.logger.log(LogStatus.PASS, "Nature of address values displaying from page dropdown : " + valueslist.getText());
+							ExtentTestManager.getTest().log(LogStatus.PASS, "Nature of address values displaying from page dropdown : " + valueslist.getText());
 						}
 						
 					}
 					Log.info("Nature of address values displaying from page dropdown not matched");
-					DriverTestcase.logger.log(LogStatus.PASS, "Nature of address values displaying from page dropdown not matched");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Nature of address values displaying from page dropdown not matched");
 					sa.assertTrue(match);
 
 				}
@@ -515,7 +515,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 					
 					safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/PostcodeAction")));
 					Log.info("Clicked on Action Dropdown");
-					DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Action Dropdown" );
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Action Dropdown" );
 					
 					List<WebElement> ActualActionDD =getwebelements(xml.getlocator("//locators/" +application+ "/ActionDD"));
 
@@ -524,7 +524,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 						
 					{
 						Log.info("Action Drop down Values displaying from application:"  +Dropdownlist.getText());
-						DriverTestcase.logger.log(LogStatus.PASS, "Country list displaying from application:"+Dropdownlist.getText());
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Country list displaying from application:"+Dropdownlist.getText());
 						boolean match = false;
 						
 						for (int i = 0; i <ExpectedActiondrop.length;i++) {
@@ -533,7 +533,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 								match = true;
 								Log.info("Action Drop down values" + Dropdownlist.getText());
 								Log.info("Action Drop down values as:" + Dropdownlist.getText());
-								DriverTestcase.logger.log(LogStatus.PASS, "Action Drop down values are as expected:"  +Dropdownlist.getText());
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Action Drop down values are as expected:"  +Dropdownlist.getText());
 							}
 							
 						}
@@ -567,7 +567,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 					prefixValue="false";
 					
 				}
-				DriverTestcase.logger.log(LogStatus.INFO, "Verifying View operation" );
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying View operation" );
 				Log.info("Verifying View operation ");
 				
 
@@ -634,7 +634,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				}
 				
 				safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/Closesign")));
-				DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Close button");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Close button");
 
 				Thread.sleep(2000);
 				
@@ -645,7 +645,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 					String PrefixNumber , String CarrierNo, String prefixCheckboxvalue) throws InterruptedException, DocumentException, Exception {
 				
 				
-				DriverTestcase.logger.log(LogStatus.INFO, "Verifying Edit operation and Update message" );
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Edit operation and Update message" );
 				Log.info("Verifying Edit operation and Update message");
 				Thread.sleep(5000);
 					
@@ -659,10 +659,10 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			//Number to Translate
 				String actualNumberToTranslate=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/editPage_NumberToTranslateElement")));
 				if(actualNumberToTranslate.equals(TranslateNumber)) {
-					DriverTestcase.logger.log(LogStatus.PASS, "Number To Translate field value is displaying as "+ actualNumberToTranslate + " as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Number To Translate field value is displaying as "+ actualNumberToTranslate + " as expected");
 					Log.info("Number To Translate field value is displaying as "+ actualNumberToTranslate + " as expected");
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, "Number To Tanslate value is mismatching. Actual dipslaying as "+actualNumberToTranslate + ". .The expected value is +" + TranslateNumber);
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Number To Tanslate value is mismatching. Actual dipslaying as "+actualNumberToTranslate + ". .The expected value is +" + TranslateNumber);
 					Log.info("Number To Tanslate value is mismatching. Actual dipslaying as "+actualNumberToTranslate + " .The expected value is " + TranslateNumber);
 					
 				}
@@ -670,10 +670,10 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			//Country Code
 				String actualCountryCode=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/editPage_countryCodeElement")));
 				if(actualCountryCode.equals(Countrylist)) {
-					DriverTestcase.logger.log(LogStatus.PASS, "Country code field value is displaying as "+ actualCountryCode + " as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Country code field value is displaying as "+ actualCountryCode + " as expected");
 					Log.info("Country code field value is displaying as "+ actualCountryCode + " as expected");
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, "Country code value is mismatching. Actual dipslaying as "+actualCountryCode + ". .The expected value is +" + Countrylist);
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Country code value is mismatching. Actual dipslaying as "+actualCountryCode + ". .The expected value is +" + Countrylist);
 					Log.info("Country code value is mismatching. Actual dipslaying as "+actualCountryCode + " .The expected value is " + Countrylist);
 				}
 				
@@ -714,7 +714,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 
 				
 				 safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/OKbtn")));
-				 DriverTestcase.logger.log(LogStatus.PASS, "Clicked on OK button");
+				 ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on OK button");
 				 
 				 Thread.sleep(10000);
 				 
@@ -727,7 +727,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			
 			public void uploadUpdatefile (String application, String filepath) throws Exception 
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Verifying Upload Update file Service Area Link and Fields");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying Upload Update file Service Area Link and Fields");
 				
 				click_commonMethod(application, "Upload Update File", "Uploadupdatefile", xml);		//click on upload update file link
 				Thread.sleep(2000);
@@ -737,7 +737,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				compareText("ManageColt", "OK", "OkbtnPostcode", "OK", xml);	
 				
 				 SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/ChosefileTransImsnt")), filepath );
-					DriverTestcase.logger.log(LogStatus.PASS, "File uploaded");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "File uploaded");
 
 	 
 				click_commonMethod(application, "OK", "OkbtnPostcode", xml);
@@ -748,16 +748,16 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			
 			public void viewuploadHistory (String application) throws Exception 
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Verifying View upload History link and fields");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying View upload History link and fields");
 				
 				
-				String expectedTitleName="GSX Configuration";
+				String expectedTitleName="View Upload History";
 				
 				safeJavaScriptClick(getwebelement(
 						xml.getlocator("//locators/" + application + "/ViewUploadHistory")));
 				Log.info("Clicked on View Upload History");
 				Log.info("Clicked on View Upload History");
-				DriverTestcase.logger.log(LogStatus.PASS, "Clicked on View Upload History");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on View Upload History");
 				
 				Thread.sleep(3000);
 				
@@ -772,10 +772,10 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 	                        
 	                        String actualTitlename=driver.switchTo().window(childWindow).getTitle();
 	                        if(expectedTitleName.equals(actualTitlename)) {
-	                        	DriverTestcase.logger.log(LogStatus.PASS, "Page title is displaying as "+ actualTitlename +" as expected");
+	                        	ExtentTestManager.getTest().log(LogStatus.PASS, "Page title is displaying as "+ actualTitlename +" as expected");
 	                        	Log.info("Page title is displaying as "+ actualTitlename +" as expected");
 	                        }else {
-	                        	DriverTestcase.logger.log(LogStatus.FAIL, "Page title is mismatching. Expected title is: "+expectedTitleName +" ."
+	                        	ExtentTestManager.getTest().log(LogStatus.FAIL, "Page title is mismatching. Expected title is: "+expectedTitleName +" ."
 	                        			+ "But actual title displaying is: "+ actualTitlename);
 	                        	Log.info("Page title is mismatching. Expected title is: "+expectedTitleName +" ."
 	                        			+ "But actual title displaying is: "+ actualTitlename);
@@ -798,7 +798,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 		public void synchronise(String application, String numberToTranslate) throws InterruptedException, DocumentException, Exception {
 				
 			//Synchronize operation
-				DriverTestcase.logger.log(LogStatus.INFO, "Verifying Synchronize operation and synchronize message" );
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Synchronize operation and synchronize message" );
 				Log.info("Verifying Synchronize operation and synchronize message");
 
 
@@ -817,7 +817,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				//Delete Operation
 				waitForpageload();
 				waitforPagetobeenable();
-				DriverTestcase.logger.log(LogStatus.INFO, "Verifying Delete operation and message" );
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Delete operation and message" );
 				Log.info("Verifying Delete operation and message");
 
 				Thread.sleep(10000);
@@ -832,11 +832,11 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/PostcodeDeletebtn")));
 				Log.info("Clicked on Delete button ");
 			    Log.info("Clicked on Delete button");
-				DriverTestcase.logger.log(LogStatus.PASS, "Clicked on Delete button");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Delete button");
 				
 				Thread.sleep(1000);
 				
-				DriverTestcase.logger.log(LogStatus.PASS, "Verifying Delete  Message");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying Delete  Message");
 				
 				Thread.sleep(10000);
 				
@@ -846,7 +846,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			
 		public void viewUIHistory (String application, String OperationDropDvalue,String Userfield,String NumberToTranslate) throws Exception 
 		{
-				DriverTestcase.logger.log(LogStatus.PASS, "Verifying View UI History link and fields");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying View UI History link and fields");
 				
 				click_commonMethod(application, "View UI History", "ViewUIHistory", xml);
 				
@@ -873,7 +873,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				click_commonMethod(application, "Search", "ViewUISearch", xml);
 
 				
-				DriverTestcase.logger.log(LogStatus.PASS, "Values populated as per Option selected from Dropdown and Value provided in Number to translate");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Values populated as per Option selected from Dropdown and Value provided in Number to translate");
 
 				Thread.sleep(3000);
 				
@@ -917,11 +917,11 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 
 			             if(element==null)
 			             {
-			                   DriverTestcase.logger.log(LogStatus.FAIL, labelname+" not found");
+			                   ExtentTestManager.getTest().log(LogStatus.FAIL, labelname+" not found");
 			                   Log.info(labelname+" not found");
 			             }
 			             else if (emptyele!=null && emptyele.isEmpty()) {
-//			                 DriverTestcase.logger.log(LogStatus.PASS,  labelname + "' value is empty");
+//			                 ExtentTestManager.getTest().log(LogStatus.PASS,  labelname + "' value is empty");
 			                   
 			                   emptyele= "Null";
 			                   
@@ -929,13 +929,13 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			                   
 			                   if(emptyele.equalsIgnoreCase(ExpectedText)) {
 			                         
-			                         DriverTestcase.logger.log(LogStatus.PASS, " The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+			                         ExtentTestManager.getTest().log(LogStatus.PASS, " The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 			                         Log.info(" The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
 			                         
 			                   }
 			                   else 
 			                   {
-			                         DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+			                         ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 			                         Log.info(" The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 			                   }
 			                   
@@ -952,23 +952,23 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			                   }
 			                   
 			                   if(text.equals(ExpectedText)) {
-			                         DriverTestcase.logger.log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+			                         ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 			                         Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 			                   }
 			                   else if(text.contains(ExpectedText)) {
-			                         DriverTestcase.logger.log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+			                         ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 			                         Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 			                   
 			                   }
 			                   else
 			                   {
-			                         DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+			                         ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 			                         Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 			                   }
 			             }
 			       }catch (Exception e) {
 			             text = element.getText();
-			             DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+			             ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 			             Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 			             e.printStackTrace();
 			       }
@@ -1003,7 +1003,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				    	  
 				    	  String downloadedFileName=dirContents[i].getName();
 				    	  Log.info("Downloaded file name is displaying as: "+ downloadedFileName);
-				    	  DriverTestcase.logger.log(LogStatus.PASS, "Downloaded file name is displaying as: "+ dirContents[i]);
+				    	  ExtentTestManager.getTest().log(LogStatus.PASS, "Downloaded file name is displaying as: "+ dirContents[i]);
 				    	  
 				          return true;
 				      }
@@ -1034,25 +1034,25 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			 				
 			 				if(expected.contains(alrtmsg)) {
 			 					
-			 					DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+			 					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 			 					Log.info("Message is verified. It is displaying as: "+alrtmsg);
 			 					
 			 					successScreenshot(application);
 			 					
 			 				}else if(expected.equals(alrtmsg)){
 			 					
-			 					DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+			 					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 			 					Log.info("Message is verified. It is displaying as: "+alrtmsg);
 			 					
 			 					
 			 				}else {
 			 					
-			 					DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
+			 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 			 					Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
 			 				}
 			 				
 			 			}else {
-			 				DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
+			 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
 			 				Log.info(" Success Message is not displaying");
 			 			}
 			 			
@@ -1060,7 +1060,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			 			
 			 		}catch(Exception e) {
 			 			Log.info("failure in fetching success message  ");
-			 			DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
+			 			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 			 			Log.info(expected+ " message is not getting dislpayed");
 			 			Thread.sleep(2000);
 			 		}
@@ -1089,7 +1089,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 					 	safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/ImsntCheckbox").replace("value", numberToTranslate)));
 						Log.info("Clicked on checkbox");
 						Log.info("Clicked on checkbox");
-						DriverTestcase.logger.log(LogStatus.PASS, "selected Number To Translate record in Table");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "selected Number To Translate record in Table");
 						Thread.sleep(3000);
 						
 						click_commonMethod(application, "Action", "PostcodeAction", xml);
@@ -1193,7 +1193,7 @@ public String viewPage_country(String application, String countryName) {
 			pw.flush();
 			pw.close();
 			
-			DriverTestcase.logger.log(LogStatus.PASS, "'Number Translation' file is created");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Number Translation' file is created");
 			Log.info("'Number Translation' file is deleted");
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -1208,10 +1208,10 @@ public String viewPage_country(String application, String countryName) {
 	  
 	  if(newfile.delete()) {
 			Log.info("'Number Translation' file is deleted");
-			DriverTestcase.logger.log(LogStatus.PASS, "'Number Translation' file is deleted");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Number Translation' file is deleted");
 		}else {
 			Log.info("'Number Translation' file is not deleted");
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Number Translation' file is not deleted");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Number Translation' file is not deleted");
 		}
 	  
   }

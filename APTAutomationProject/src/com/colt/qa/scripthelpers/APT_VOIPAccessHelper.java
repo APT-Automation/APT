@@ -38,6 +38,7 @@ import com.colt.qa.driverlibrary.DriverTestcase;
 import com.colt.qa.driverlibrary.Log;
 import com.colt.qa.driverlibrary.XMLReader;
 import com.colt.qa.listeners.Retry;
+import com.colt.qa.reporter.ExtentTestManager;
 
 
 public class APT_VOIPAccessHelper extends DriverHelper {
@@ -74,12 +75,12 @@ public class APT_VOIPAccessHelper extends DriverHelper {
 			System.out.println("element presence state : " + flag);
 			if (flag) {
 
-				Log.info("webElement is present " + ele.getText());
-				DriverTestcase.logger.log(LogStatus.PASS, msg);
+				System.out.println("webElement is present " + ele.getText());
+				ExtentTestManager.getTest().log(LogStatus.PASS, msg);
 			} else {
 
 				System.out.println("webElement is not  present" + ele.getText());
-				DriverTestcase.logger.log(LogStatus.FAIL, msg);
+				ExtentTestManager.getTest().log(LogStatus.FAIL, msg);
 			}
 
 		}
@@ -112,37 +113,47 @@ public class APT_VOIPAccessHelper extends DriverHelper {
 		}
 		
 		
-		public void searchorder(String application, String sid) throws InterruptedException, DocumentException, IOException {
-
-
+		public void searchorder2(String application, String sid) throws InterruptedException, DocumentException, IOException {
 			Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-			//Thread.sleep(2000);
-
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorderlink")));
-
 			SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/servicefield")),sid);
-			//Thread.sleep(1000);
-
 			WebElement searchbutton= getwebelement(xml.getlocator("//locators/" + application + "/searchbutton"));
-//			scrolltoview(searchbutton);
 			scrolltoend();
-			//Thread.sleep(2000);
 			Clickon(searchbutton);
 			scrolltoend();
-			//Thread.sleep(2000);
 			scrolltoend();
-			//Thread.sleep(2000);
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/serviceradiobutton")));
-			//Thread.sleep(3000);
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorder_actiondropdown")));
-			//Thread.sleep(1000);
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewLink_SearchOrderPage")));
-			//Thread.sleep(3000);
 		}
 		
 		
 	
-		
+		public void searchorder(String application, String sid) throws InterruptedException, DocumentException, IOException {
+			Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
+			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorderlink")));
+			SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/servicefield")),sid);
+			WebElement searchbutton= getwebelement(xml.getlocator("//locators/" + application + "/searchbutton"));
+			scrolltoend();
+			Clickon(searchbutton);
+			scrolltoend();
+			scrolltoend();
+			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/serviceradiobutton")));
+			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorder_actiondropdown")));
+			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewLink_SearchOrderPage")));
+			Thread.sleep(2000);
+			SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/servicefield")),sid);
+			WebElement searchbutton2= getwebelement(xml.getlocator("//locators/" + application + "/searchbutton"));
+			scrolltoend();
+			Clickon(searchbutton2);
+			scrolltoend();
+			scrolltoend();
+			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/serviceradiobutton")));
+			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorder_actiondropdown")));
+			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewLink_SearchOrderPage")));
+			Thread.sleep(2000);
+			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewLink_SearchOrderPage")));
+		}
 		
 		
 		public void searchorder_UI(String application, String sid) throws InterruptedException, DocumentException, IOException {
@@ -184,23 +195,23 @@ public class APT_VOIPAccessHelper extends DriverHelper {
 					
 					if(expected.contains(alrtmsg)) {
 						
-						DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+						ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 						System.out.println("Message is verified. It is displaying as: "+alrtmsg);
 						
 					}else {
 						
-						DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 						System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
 					}
 					
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
 					System.out.println(" Success Message is not displaying");
 				}
 				
 			}catch(Exception e) {
 				Log.info("failure in fetching success message - 'Service created Successfully'  ");
-				DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 				System.out.println(expected+ " message is not getting dislpayed");
 			}
 
@@ -223,22 +234,22 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					
 					if(alrtmsg.equals(expected)) {
 						
-						DriverTestcase.logger.log(LogStatus.PASS," 'service successfully created' message is verified. It is displaying as: "+alrtmsg);
+						ExtentTestManager.getTest().log(LogStatus.PASS," 'service successfully created' message is verified. It is displaying as: "+alrtmsg);
 						System.out.println(" 'service successfully created' message is verified. It is displaying as: "+alrtmsg);
 						
 					}else {
 						
-						DriverTestcase.logger.log(LogStatus.FAIL, "Service creation message is displaying but the success message display as: "+ alrtmsg);
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "Service creation message is displaying but the success message display as: "+ alrtmsg);
 						System.out.println("Service creation message is displaying and the message gets mismatches. It is displaying as: "+ alrtmsg);
 					}
 					
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, " 'Service updated successfully' message is not displaying after creating service");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Service updated successfully' message is not displaying after creating service");
 				}
 				
 			}catch(Exception e) {
 				Log.info("failure in fetching success message - 'Service updated successfully'  ");
-				DriverTestcase.logger.log(LogStatus.FAIL, " 'Service updated successfully' message is not displaying after editing the service");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Service updated successfully' message is not displaying after editing the service");
 				System.out.println("Success message for edit Service is not getting dislpayed");
 			}
 
@@ -253,12 +264,12 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			try {  
 				availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 				if(availability) {
-					DriverTestcase.logger.log(LogStatus.PASS, fieldname + " dropdown is displaying as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, fieldname + " dropdown is displaying as expected");
 					System.out.println(fieldname + " dropdown is displaying as expected");
 
 					if(expectedValueToAdd.equalsIgnoreCase("null")) {
 
-						DriverTestcase.logger.log(LogStatus.PASS, " No values selected under "+ fieldname + " dropdown");
+						ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under "+ fieldname + " dropdown");
 						System.out.println(" No values selected under "+ fieldname + " dropdown");
 					}else {
 
@@ -269,13 +280,13 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						List<WebElement> listofvalues = driver
 								.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
 
-						DriverTestcase.logger.log(LogStatus.PASS, " List of values inside "+ fieldname + " dropdown is:  ");
+						ExtentTestManager.getTest().log(LogStatus.PASS, " List of values inside "+ fieldname + " dropdown is:  ");
 						System.out.println( " List of values inside "+ fieldname + "dropdown is:  ");
 
 						for (WebElement valuetypes : listofvalues) {
 
 							Log.info("service sub types : " + valuetypes.getText());
-							DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+							ExtentTestManager.getTest().log(LogStatus.PASS," " + valuetypes.getText());
 							System.out.println(" " + valuetypes.getText());
 
 						}
@@ -285,20 +296,20 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						Thread.sleep(3000);
 
 						String actualValue=getwebelement("//div[label[text()='"+ fieldname +"']]//span").getText();
-						DriverTestcase.logger.log(LogStatus.PASS, fieldname + " dropdown value selected as: "+ actualValue );
+						ExtentTestManager.getTest().log(LogStatus.PASS, fieldname + " dropdown value selected as: "+ actualValue );
 						System.out.println( fieldname + " dropdown value selected as: "+ actualValue);
 
 					}
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, fieldname + " is not displaying");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, fieldname + " is not displaying");
 					System.out.println(fieldname + " is not displaying");
 				}
 			}catch(NoSuchElementException e) {
-				DriverTestcase.logger.log(LogStatus.FAIL, fieldname + " is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, fieldname + " is not displaying");
 				System.out.println(fieldname + " is not displaying");
 			}catch(Exception ee) {
 				ee.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, " NO value selected under "+ fieldname + " dropdown");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " NO value selected under "+ fieldname + " dropdown");
 				System.out.println(" NO value selected under "+ fieldname + " dropdown");
 			}
 
@@ -312,7 +323,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			Thread.sleep(1000);	
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
 			Thread.sleep(2000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on delete link");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on delete link");
 
 			if(getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup")).isDisplayed())
 			{
@@ -337,17 +348,17 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 				if(element==null)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step: '"+labelname+"' text field not found");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: '"+labelname+"' text field not found");
 					System.out.println(element);
 				}
 				else 
 				{
 					element.sendKeys(value);
-					DriverTestcase.logger.log(LogStatus.PASS, "Step: Entered '"+value+"' into '"+labelname+"' text field");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Entered '"+value+"' into '"+labelname+"' text field");
 				}
 
 			} catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.FAIL,"Not able to enter '"+value+"' into '"+labelname+"' text field");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,"Not able to enter '"+value+"' into '"+labelname+"' text field");
 				e.printStackTrace();
 			}
 
@@ -361,15 +372,15 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 				if(element==null)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 				}
 				else {
 					element.click();	
-					DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
 				}
 
 			} catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
 				e.printStackTrace();
 			}
 		}
@@ -385,26 +396,26 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 				if(element==null)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 				}
 				else if (emptyele!=null && emptyele.isEmpty()) {
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
 				}else 
 				{   
 					text = element.getText();
 					if(text.equals(ExpectedText)) {
-						DriverTestcase.logger.log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
+						ExtentTestManager.getTest().log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
 					}
 					else if(text.contains(ExpectedText)) {
-						DriverTestcase.logger.log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
+						ExtentTestManager.getTest().log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
 					}
 					else
 					{
-						DriverTestcase.logger.log(LogStatus.FAIL,"Step: The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+text+"'");
+						ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+text+"'");
 					}
 				}
 			}catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.FAIL,"Step: The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+text+"'");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+text+"'");
 				e.printStackTrace();
 			}
 
@@ -424,21 +435,21 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 				//Thread.sleep(2000);
 				if(element==null) {
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 				}
 				else
 				{
 					String WarningMsg = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getText();
 
 					System.out.println("'"+labelname+"' field warning  message displayed as : " + WarningMsg);
-					DriverTestcase.logger.log(LogStatus.PASS,
+					ExtentTestManager.getTest().log(LogStatus.PASS,
 							"Step : validation message for '"+labelname+"' text field displayed as : " + WarningMsg);
 					Log.info("'"+labelname+"' field warning message displayed as : " + WarningMsg);
 				}
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
 				System.out.println("'"+labelname+"' field warning message is not dipslaying");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step: '"+labelname+"' field warning message is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: '"+labelname+"' field warning message is not displaying");
 			}catch(Exception ed) {
 				ed.printStackTrace();
 			}
@@ -455,7 +466,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				String value= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 				if(element==null)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 				}
 				else if(value!=null) {
 					Thread.sleep(1000);
@@ -477,18 +488,18 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				
 				if(value.isEmpty())
 				{
-					DriverTestcase.logger.log(LogStatus.INFO, "Step: '"+labelname+"' text field is empty");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "Step: '"+labelname+"' text field is empty");
 					System.out.println(value);
 				
 				}else {
 					element.clear();
 					//Thread.sleep(1000);
 					element.sendKeys(newValue);
-					DriverTestcase.logger.log(LogStatus.PASS, "Step: Entered '"+newValue+"' into '"+labelname+"' text field");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Entered '"+newValue+"' into '"+labelname+"' text field");
 				}
 
 			} catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.FAIL,"Not able to enter '"+newValue+"' into '"+labelname+"' text field");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,"Not able to enter '"+newValue+"' into '"+labelname+"' text field");
 				e.printStackTrace();
 			}
 
@@ -521,19 +532,19 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				String ele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 				if(element==null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' is not found");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' is not found");
 				}
 				else if (ele!=null && ele.isEmpty()) {
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
 				}
 				else {   
 
 					text = element.getText();
-					DriverTestcase.logger.log(LogStatus.PASS,"Step: '"+ labelname +"' value is displayed as : '"+text+"'");
+					ExtentTestManager.getTest().log(LogStatus.PASS,"Step: '"+ labelname +"' value is displayed as : '"+text+"'");
 
 				}
 			}catch (Exception e) {
-				DriverTestcase.logger.log(LogStatus.FAIL,"Step: '"+ labelname +"' value is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: '"+ labelname +"' value is not displaying");
 				e.printStackTrace();
 			}
 			return text;
@@ -619,11 +630,11 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		try {	
 			availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
 			if(availability) {
-				DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is displaying");
+				ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is displaying");
 				System.out.println(labelname + " text field is displaying");
 				
 				if(expectedValueToAdd.equalsIgnoreCase("null")) {
-					DriverTestcase.logger.log(LogStatus.PASS, "No values added to text field "+labelname);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "No values added to text field "+labelname);
 					System.out.println("No values added to text field "+labelname);
 				}else {
 					
@@ -631,20 +642,20 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					//Thread.sleep(3000);
 					
 					String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field value added as: "+ actualvalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field value added as: "+ actualvalue);
 				}
 				
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
 				System.out.println(labelname + " text field is not displaying");
 			}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
 			System.out.println(labelname + " text field is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, " Not able to add value to "+ labelname + " text field");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to add value to "+ labelname + " text field");
 			System.out.println(" Not able to add value to "+ labelname + " text field");
 		}
 	}
@@ -666,12 +677,12 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 //			try {  
 //			  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 //			  if(availability) {
-//				  DriverTestcase.logger.log(LogStatus.PASS, labelname + " dropdown is displaying");
+//				  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
 //				  System.out.println(labelname + " dropdown is displaying");
 //				  
 //				  if(expectedValueToAdd.equalsIgnoreCase("null")) {
 //					  
-//					  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under "+ labelname + " dropdown");
+//					  ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under "+ labelname + " dropdown");
 //					  System.out.println(" No values selected under "+ labelname + " dropdown");
 //				  }else {
 //					  
@@ -682,12 +693,12 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 //					  List<WebElement> listofvalues = driver
 //								.findElements(By.xpath("//div[@role='list']//span[@role='option']"));
 //					  
-//					  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside "+ labelname + " dropdown is:  ");
+//					  ExtentTestManager.getTest().log(LogStatus.PASS, " List of values inside "+ labelname + " dropdown is:  ");
 //					  System.out.println( " List of values inside "+ labelname + "dropdown is:  ");
 //					  
 //						for (WebElement valuetypes : listofvalues) {
 //									Log.info("service sub types : " + valuetypes.getText());
-//									DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+//									ExtentTestManager.getTest().log(LogStatus.PASS," " + valuetypes.getText());
 //									System.out.println(" " + valuetypes.getText());
 //						}
 //						
@@ -699,20 +710,20 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 //					  Thread.sleep(3000);
 //					  
 //					  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
-//					  DriverTestcase.logger.log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
+//					  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
 //					  System.out.println( labelname + " dropdown value selected as: "+ actualValue);
 //					  
 //				  }
 //			  }else {
-//				  DriverTestcase.logger.log(LogStatus.FAIL, labelname + " is not displaying");
+//				  ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
 //				  System.out.println(labelname + " is not displaying");
 //			  }
 //			}catch(NoSuchElementException e) {
-//				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " is not displaying");
+//				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
 //				  System.out.println(labelname + " is not displaying");
 //			}catch(Exception ee) {
 //				ee.printStackTrace();
-//				DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
+//				ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
 //				System.out.println(" NO value selected under "+ labelname + " dropdown");
 //			}
 //			
@@ -738,7 +749,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				availability = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 				if(availability) {
 					
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is displaying");
+					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " checkbox is displaying");
 					System.out.println(labelname + " checkbox is displaying");
 					
 				boolean isElementSelected=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isSelected();
@@ -747,20 +758,20 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			//verify whether checkbox is selected/unselected by default		
 				if(DefaultSelection.equalsIgnoreCase("yes")) {
 					if(isElementSelected) {
-						DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is selected by default as expected");
+						ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " checkbox is selected by default as expected");
 						System.out.println(labelname + " checkbox is selected by default as expected");
 					}else {
-						DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is not selected by default");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " checkbox is not selected by default");
 						System.out.println(labelname + " checkbox is not selected by default");
 					}
 					
 				}
 				else if(DefaultSelection.equalsIgnoreCase("no")) {
 					if(isElementSelected) {
-						DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is selected by default");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " checkbox is selected by default");
 						System.out.println(labelname + " checkbox is selected by default as expected");
 					}else {
-						DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is not selected by default as expected");
+						ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " checkbox is not selected by default as expected");
 						System.out.println(labelname + " checkbox is not selected by default");
 					}
 					
@@ -771,11 +782,11 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					if (expectedValue.equalsIgnoreCase("yes")) {
 
 						if(isElementSelected) {
-							DriverTestcase.logger.log(LogStatus.PASS, labelname +" checkbox is Selected by default");
+							ExtentTestManager.getTest().log(LogStatus.PASS, labelname +" checkbox is Selected by default");
 						}else {
 							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
 							Log.info(labelname + " check box is selected");
-							DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is selected");
+							ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " checkbox is selected");
 						}
 					}
 					else if (expectedValue.equalsIgnoreCase("no")) {
@@ -783,30 +794,30 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						if(isElementSelected) {
 							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
 							Log.info(labelname + " check box is unselected");
-							DriverTestcase.logger.log(LogStatus.PASS,labelname + " is selected");
+							ExtentTestManager.getTest().log(LogStatus.PASS,labelname + " is selected");
 							
 						}else {
-							DriverTestcase.logger.log(LogStatus.PASS, "No changes made for "+ labelname +" checkbox");
+							ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made for "+ labelname +" checkbox");
 							System.out.println("No changes made for "+ labelname +" checkbox");
 						}
 						
 					}
 				}else {
-					DriverTestcase.logger.log(LogStatus.PASS, "No changes made for "+ labelname +" checkbox");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made for "+ labelname +" checkbox");
 					System.out.println("No changes made for "+ labelname +" checkbox");
 				}
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checbox is not available");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " checbox is not available");
 					System.out.println(labelname + " checbox is not available");
 				}
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, labelname +  " checkbox is not available ");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname +  " checkbox is not available ");
 				System.out.println( labelname +  " checkbox is not available ");
 			}catch(Exception er) {
 				er.printStackTrace();
 				System.out.println("Not able to perform selection for "+ labelname+ " checkbox");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Not able to perform selection for "+ labelname+ " checkbox");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Not able to perform selection for "+ labelname+ " checkbox");
 			}
 		}
 
@@ -828,13 +839,13 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			try {	
 				availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
 				if(availability) {
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is displaying");
+					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is displaying");
 					System.out.println(labelname + " text field is displaying");
 					
 					if(expectedValueToEdit.equalsIgnoreCase("null")) {
 						
 						String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
-						DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is not edited. It is displaying as "+actualvalue);
+						ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is not edited. It is displaying as "+actualvalue);
 						System.out.println(labelname + " text field is not edited as expected. It is displaying as "+actualvalue);
 					}else {
 						
@@ -845,20 +856,20 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						//Thread.sleep(3000);
 						
 						String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
-						DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is edited as: "+ actualvalue);
+						ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is edited as: "+ actualvalue);
 					}
 					
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
 					System.out.println(labelname + " text field is not displaying");
 				}
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
 				System.out.println(labelname + " text field is not displaying");
 			}catch(Exception ee) {
 				ee.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, " Not able to perform editing under"+ labelname + " text field");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to perform editing under"+ labelname + " text field");
 				System.out.println(" Not able to perform editing under "+ labelname + " text field");
 			}
 			}
@@ -885,20 +896,20 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			 			String ErrMsg = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath  +"")).getText();
 			 			
 			 			System.out.println( fieldlabelName + " field warning  message displayed as : " + ErrMsg);
-			 			DriverTestcase.logger.log(LogStatus.PASS, "Step :  validation message for"+ fieldlabelName +"  field displayed as : " + ErrMsg);
+			 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step :  validation message for"+ fieldlabelName +"  field displayed as : " + ErrMsg);
 			 			Log.info(fieldlabelName + " field warning  message displayed as : " + ErrMsg);
 			 			}else{
-			 				DriverTestcase.logger.log(LogStatus.FAIL, "validation message for"+ fieldlabelName +"  field is not displaying");
+			 				ExtentTestManager.getTest().log(LogStatus.FAIL, "validation message for"+ fieldlabelName +"  field is not displaying");
 			 				System.out.println("validation message for"+ fieldlabelName +"  field is not displaying");
 			 			}
 			 			}catch(NoSuchElementException e) {
 			 				e.printStackTrace();
 			 				System.out.println( "No warning message displayed for "+ fieldlabelName);
-			 				DriverTestcase.logger.log(LogStatus.FAIL, "No warning message displayed for "+ fieldlabelName);
+			 				ExtentTestManager.getTest().log(LogStatus.FAIL, "No warning message displayed for "+ fieldlabelName);
 			 			}catch(Exception ed) {
 			 				ed.printStackTrace();
 			 				System.out.println( "No warning message displayed for "+ fieldlabelName);
-			 				DriverTestcase.logger.log(LogStatus.FAIL, "No warning message displayed for "+ fieldlabelName);
+			 				ExtentTestManager.getTest().log(LogStatus.FAIL, "No warning message displayed for "+ fieldlabelName);
 			 			}
 			 }
 			
@@ -912,15 +923,15 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 					if(element==null)
 					{
-						DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 					}
 					else {
 						element.click();	
-						DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
 					}
 
 				} catch (Exception e) {
-					DriverTestcase.logger.log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
+					ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
 					e.printStackTrace();
 				}
 			}
@@ -943,7 +954,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				  
 				  if(Availability) {
 					  
-					  DriverTestcase.logger.log(LogStatus.PASS,  labelname+ " checkbox is displaying in edit page");
+					  ExtentTestManager.getTest().log(LogStatus.PASS,  labelname+ " checkbox is displaying in edit page");
 					  System.out.println(labelname+ " checkbox is displaying in edit page");
 					  
 					if(!expectedResult.equalsIgnoreCase("null")) {
@@ -953,11 +964,11 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						if (expectedResult.equalsIgnoreCase("yes")) {
 							
 							if(isElementSelected) {
-								DriverTestcase.logger.log(LogStatus.PASS, labelname +" checkbox is not edited and it is already Selected while creating");
+								ExtentTestManager.getTest().log(LogStatus.PASS, labelname +" checkbox is not edited and it is already Selected while creating");
 							}else {
 								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
 								Log.info(labelname + " check box is selected");
-								DriverTestcase.logger.log(LogStatus.PASS, labelname + " checkbox is selected");
+								ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " checkbox is selected");
 							}
 						}
 						else if (expectedResult.equalsIgnoreCase("no")) {
@@ -965,26 +976,26 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 							if(isElementSelected) {
 								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
 								Log.info(labelname + " check box is unselected");
-								DriverTestcase.logger.log(LogStatus.PASS,labelname + " is edited and gets unselected");
+								ExtentTestManager.getTest().log(LogStatus.PASS,labelname + " is edited and gets unselected");
 							}else {
-								DriverTestcase.logger.log(LogStatus.PASS, labelname + " is not edited and it remains unselected");
+								ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " is not edited and it remains unselected");
 							}
 							
 						}
 					}else {
-						DriverTestcase.logger.log(LogStatus.PASS,"No changes made for "+ labelname +"  chekbox");
+						ExtentTestManager.getTest().log(LogStatus.PASS,"No changes made for "+ labelname +"  chekbox");
 					}
 				  }else {
-					  DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is not available in 'Edit Service' page");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " checkbox is not available in 'Edit Service' page");
 				  }
 
 					}catch(NoSuchElementException e) {
 						e.printStackTrace();
-						DriverTestcase.logger.log(LogStatus.FAIL, labelname + " checkbox is not displaying under 'Edit service' page");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " checkbox is not displaying under 'Edit service' page");
 						System.out.println(labelname+" checkbox is not displaying under 'Edit service' page");
 					}catch(Exception err) {
 						err.printStackTrace();
-						DriverTestcase.logger.log(LogStatus.FAIL, " Not able to click on "+ labelname + " checkbox");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on "+ labelname + " checkbox");
 						System.out.println(" Not able to click on "+ labelname + " checkbox");
 					}
 			}
@@ -1004,7 +1015,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				Thread.sleep(1000);	
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
 				Thread.sleep(2000);
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on delete link");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on delete link");
 
 				WebElement DeleteAlertPopup= driver.findElement(By.xpath("//div[@class='modal-content']"));
 				if(DeleteAlertPopup.isDisplayed())
@@ -1018,7 +1029,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				else
 				{
 					Log.info("Delete alert popup is not displayed");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Delete alert popup is not displayed");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Delete alert popup is not displayed");
 				}
 			}
 			
@@ -1054,27 +1065,27 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 //					String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 //					if(element==null)
 //					{
-//						DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+//						ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 //					}
 //					else if (emptyele!=null && emptyele.isEmpty()) {
-//						DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+//						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
 //					}else 
 //					{   
 //						text = element.getText();
 //						if(text.equals(ExpectedText)) {
-//							DriverTestcase.logger.log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
+//							ExtentTestManager.getTest().log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
 //						}
 //						else if(text.contains(ExpectedText)) {
-//							DriverTestcase.logger.log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
+//							ExtentTestManager.getTest().log(LogStatus.PASS,"Step: The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
 //						}
 //						else
 //						{
-//							DriverTestcase.logger.log(LogStatus.FAIL,"Step: The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+text+"'");
+//							ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: The ExpectedText '"+ExpectedText+"' is not same as the Acutal Text '"+text+"'");
 //						}
 //					}
 //				}catch (Exception e) {
 //					e.printStackTrace();
-//					DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
+//					ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
 //					System.out.println(labelname + " field is not displaying");
 //				}
 //
@@ -1104,11 +1115,11 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 //
 //					if(element==null)
 //					{
-//						DriverTestcase.logger.log(LogStatus.FAIL, labelname+" not found");
+//						ExtentTestManager.getTest().log(LogStatus.FAIL, labelname+" not found");
 //						System.out.println(labelname+" not found");
 //					}
 //					else if (emptyele!=null && emptyele.isEmpty()) {
-////						DriverTestcase.logger.log(LogStatus.PASS,  labelname + "' value is empty");
+////						ExtentTestManager.getTest().log(LogStatus.PASS,  labelname + "' value is empty");
 //						
 //						emptyele= "Null";
 //						
@@ -1116,13 +1127,13 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 //						
 //						if(emptyele.equalsIgnoreCase(ExpectedText)) {
 //							
-//							DriverTestcase.logger.log(LogStatus.PASS, " The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+//							ExtentTestManager.getTest().log(LogStatus.PASS, " The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 //							System.out.println(" The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
 //					
 //							
 //						}else {
 //							
-//							DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+//							ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 //							System.out.println(" The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 //							
 //								}
@@ -1132,23 +1143,23 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 //					{   
 //						text = element.getText();
 //						if(text.equals(ExpectedText)) {
-//							DriverTestcase.logger.log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+//							ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 //							System.out.println(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 //						}
 //						else if(text.contains(ExpectedText)) {
-//							DriverTestcase.logger.log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+//							ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 //							System.out.println("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 //						
 //						}
 //						else
 //						{
-//							DriverTestcase.logger.log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+//							ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 //							System.out.println("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 //						}
 //					}
 //				}catch (Exception e) {
 //					e.printStackTrace();
-//					DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
+//					ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
 //					System.out.println(labelname + " field is not displaying");
 //				}
 //
@@ -1171,15 +1182,15 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						element = getwebelement(webelement);
 						if(element==null)
 						{
-							DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+							ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 						}
 						else {
 							element.click();	
-							DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
+							ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
 						}
 
 					} catch (Exception e) {
-						DriverTestcase.logger.log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
+						ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
 						e.printStackTrace();
 					}
 				}
@@ -1194,7 +1205,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						try {  
 						  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 						  if(availability) {
-							  DriverTestcase.logger.log(LogStatus.PASS, labelname + " dropdown is displaying");
+							  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
 							  System.out.println(labelname + " dropdown is displaying");
 							  
 							  WebElement el =getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
@@ -1202,7 +1213,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 							  Select sel = new Select(el);
 							  
 							 String firstSelectedOption=sel.getFirstSelectedOption().getText();
-							 DriverTestcase.logger.log(LogStatus.PASS, "By default "+ labelname+" dropdown is displaying as: "+firstSelectedOption);
+							 ExtentTestManager.getTest().log(LogStatus.PASS, "By default "+ labelname+" dropdown is displaying as: "+firstSelectedOption);
 							 System.out.println("By default "+ labelname+" dropdown is displaying as: "+firstSelectedOption);
 							 
 							    List<WebElement> we = sel.getOptions();
@@ -1216,28 +1227,28 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 							    }
 						
 							    
-							    DriverTestcase.logger.log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
+							    ExtentTestManager.getTest().log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
 					            System.out.println("list of values inside "+labelname+" dropdown is: "+ls);
 					            
 							  if(expectedValueToAdd.equalsIgnoreCase("null")) {
 								  
-								  DriverTestcase.logger.log(LogStatus.PASS, "No values selected under "+ labelname + " dropdown");
+								  ExtentTestManager.getTest().log(LogStatus.PASS, "No values selected under "+ labelname + " dropdown");
 							  }else {
 								  Select s1=new Select(el);
 								  s1.selectByVisibleText(expectedValueToAdd);
 								  
 								  String SelectedValueInsideDropdown=sel.getFirstSelectedOption().getText();
-									 DriverTestcase.logger.log(LogStatus.PASS,  labelname+" dropdown value selected as: "+SelectedValueInsideDropdown);
+									 ExtentTestManager.getTest().log(LogStatus.PASS,  labelname+" dropdown value selected as: "+SelectedValueInsideDropdown);
 									 System.out.println(labelname+" dropdown value selected as: "+SelectedValueInsideDropdown);
 							  }
 							 }
 							
 						}catch(NoSuchElementException e) {
-							DriverTestcase.logger.log(LogStatus.FAIL, labelname + " Value is not displaying");
+							ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " Value is not displaying");
 							  System.out.println(labelname + " value is not displaying");
 						}catch(Exception ee) {
 							ee.printStackTrace();
-							DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
+							ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
 							System.out.println(" NO value selected under "+ labelname + " dropdown");
 						}
 				}
@@ -1255,7 +1266,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 							
 							for (WebElement dropdownvaluelist : dropdownValueList) {
 								System.out.println("Available " +lebelname+ " are : " + dropdownvaluelist.getText().toString()+ "  ,  ");
-								DriverTestcase.logger.log(LogStatus.PASS,"Step : Available  '" +lebelname+ "'  is : " + dropdownvaluelist.getText().toString());
+								ExtentTestManager.getTest().log(LogStatus.PASS,"Step : Available  '" +lebelname+ "'  is : " + dropdownvaluelist.getText().toString());
 								Log.info("Available " +lebelname+ " is : " + dropdownvaluelist.getText().toString());
 							}
 							
@@ -1264,7 +1275,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 							// click on Country dropdown
 							WebElement selectDropdownValue = driver.findElement(By.xpath("//div[contains(text(),'" + dropdownToBeSelectedInTheEnd + "')]"));
 							System.out.println("Selected  '" +lebelname+ "'  is : " + selectDropdownValue.getText().toString());
-							DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected  '"+lebelname+ "'  is : " + selectDropdownValue.getText().toString());
+							ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected  '"+lebelname+ "'  is : " + selectDropdownValue.getText().toString());
 							Log.info("Selected  '" +lebelname+ "'  is : " + selectDropdownValue.getText().toString());
 							selectDropdownValue.click();
 							Thread.sleep(2000);
@@ -1273,13 +1284,13 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				}catch(NoSuchElementException e) {
 					e.printStackTrace();
 					
-					DriverTestcase.logger.log(LogStatus.FAIL, lebelname + " dropdown is not displaying" );
+					ExtentTestManager.getTest().log(LogStatus.FAIL, lebelname + " dropdown is not displaying" );
 					System.out.println( lebelname + " dropdown is not displaying");
 					
 				}catch(Exception ee) {
 					ee.printStackTrace();
 					
-					DriverTestcase.logger.log(LogStatus.FAIL, lebelname + " dropdown is not displaying" );
+					ExtentTestManager.getTest().log(LogStatus.FAIL, lebelname + " dropdown is not displaying" );
 					System.out.println( lebelname + " dropdown is not displaying");
 				}
 
@@ -1303,7 +1314,7 @@ public void SelectDropdownValueUnderSelectTag(String application, String labelna
 			try {  
 			  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ dropdownXpath +"")).isDisplayed();
 			  if(availability) {
-				  DriverTestcase.logger.log(LogStatus.PASS, labelname + " dropdown is displaying");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
 				  System.out.println(labelname + " dropdown is displaying");
 				  
 				  WebElement el =getwebelement(xml.getlocator("//locators/" + application + "/"+ dropdownXpath +""));
@@ -1311,7 +1322,7 @@ public void SelectDropdownValueUnderSelectTag(String application, String labelna
 				  Select sel = new Select(el);
 				  
 				 String firstSelectedOption=sel.getFirstSelectedOption().getText();
-				 DriverTestcase.logger.log(LogStatus.PASS, "By default "+ labelname+" dropdown is displaying as: "+firstSelectedOption);
+				 ExtentTestManager.getTest().log(LogStatus.PASS, "By default "+ labelname+" dropdown is displaying as: "+firstSelectedOption);
 				 System.out.println("By default "+ labelname+" dropdown is displaying as: "+firstSelectedOption);
 				 
 				    List<WebElement> we = sel.getOptions();
@@ -1325,28 +1336,28 @@ public void SelectDropdownValueUnderSelectTag(String application, String labelna
 				    }
 			
 				    
-				    DriverTestcase.logger.log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
+				    ExtentTestManager.getTest().log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
 		            System.out.println("list of values inside "+labelname+" dropdown is: "+ls);
 		            
 				  if(dropdownToBeSelectedInTheEnd.equalsIgnoreCase("null")) {
 					  
-					  DriverTestcase.logger.log(LogStatus.PASS, "No values selected under "+ labelname + " dropdown");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "No values selected under "+ labelname + " dropdown");
 				  }else {
 					  Select s1=new Select(el);
 					  s1.selectByVisibleText(dropdownToBeSelectedInTheEnd);
 					  
 					  String SelectedValueInsideDropdown=sel.getFirstSelectedOption().getText();
-						 DriverTestcase.logger.log(LogStatus.PASS,  labelname+" dropdown value selected as: "+SelectedValueInsideDropdown);
+						 ExtentTestManager.getTest().log(LogStatus.PASS,  labelname+" dropdown value selected as: "+SelectedValueInsideDropdown);
 						 System.out.println(labelname+" dropdown value selected as: "+SelectedValueInsideDropdown);
 				  }
 				 }
 				
 			}catch(NoSuchElementException e) {
-				DriverTestcase.logger.log(LogStatus.FAIL, labelname + " Value is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " Value is not displaying");
 				  System.out.println(labelname + " value is not displaying");
 			}catch(Exception ee) {
 				ee.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
 				System.out.println(" NO value selected under "+ labelname + " dropdown");
 			}
 		}
@@ -1380,7 +1391,7 @@ public void createcustomer(String application, String name, String maindomain, S
 	Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 	Thread.sleep(2000);
 	System.out.println("Mouse hovered on Manage Customer's Service");
-	DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+	ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 	Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 	click_commonMethod(application, "create customer link", "createcustomerlink", xml);
@@ -1402,7 +1413,7 @@ public void createcustomer(String application, String name, String maindomain, S
 	Thread.sleep(1000);
 	scrolltoend();
 	click_commonMethod(application, "Clear", "clearbutton", xml);
-	DriverTestcase.logger.log(LogStatus.PASS, "All text field values are cleared");
+	ExtentTestManager.getTest().log(LogStatus.PASS, "All text field values are cleared");
 	Log.info("All text field values are cleared");
 
 	//Create customer by providing all info
@@ -1433,14 +1444,14 @@ public void customerCreationForm_UI(String application)	throws Exception {
 	Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 	Thread.sleep(2000);
 	System.out.println("Mouse hovered on Manage Customer's Service");
-	DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+	ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 	Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 	click_commonMethod(application, "create customer link", "createcustomerlink", xml);
 	Thread.sleep(2000);
 	
 	if(getwebelement(xml.getlocator("//locators/" + application + "/createcustomer_header")).isDisplayed()) {
-		DriverTestcase.logger.log(LogStatus.PASS, "'Create Customer' page navigated as expected");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'Create Customer' page navigated as expected");
 		System.out.println("'Create Customer' page navigated as expected");
 		
 	scrolltoend();
@@ -1469,7 +1480,7 @@ public void customerCreationForm_UI(String application)	throws Exception {
 	isDisplayed(application, "okbutton", "OK", xml);
 
 	}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "'Create Customer' page not navigated");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'Create Customer' page not navigated");
 		System.out.println("'Create Customer' page navigated");
 	}
 	sa.assertAll();
@@ -1484,7 +1495,7 @@ public void selectCustomertocreateOrder(String application, String ChooseCustome
 	Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 	Thread.sleep(3000);
 	System.out.println("Mouse hovered on Manage Customer's Service");
-	DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+	ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 	Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 	click_commonMethod(application, "Create Order/Service", "CreateOrderServiceLink", xml);
@@ -1519,7 +1530,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	isDisplayed(application, "ManageCustomerServiceLink", "MANAGE CUSTOMER'S SERVICE Link", xml);
 	Thread.sleep(3000);
 	System.out.println("Mouse hovered on Manage Customer's Service");
-	DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+	ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 	Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 	isDisplayed(application, "CreateOrderServiceLink", "Create Order/Service Link", xml);
@@ -1556,7 +1567,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(3000);
 		System.out.println("Mouser hovered on Manage Customer's Service");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouser hovered on 'Manage Customers Service' menu item");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouser hovered on 'Manage Customers Service' menu item");
 
 		click(application, "Create Order/Service Link", "CreateOrderServiceLink");	
 		Log.info("=== Create Order/Service navigated ===");
@@ -1600,7 +1611,6 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			addtextFields_commonMethod(application, "Order/Contract Number", "newordertextfield", neworderno, xml);
 			addtextFields_commonMethod(application, "RFI Voice line Number", "newrfireqtextfield", newrfireqno, xml);
 			click_commonMethod(application, "create order", "createorderbutton", xml);
-			//compareText(application, "create order success message", "OrderCreatedSuccessMsg", "Order created successfully", xml);			
 			compareText(application, "Order Creation Success message", "OrderCreatedSuccessMsg", "Order created successfully", xml);
 			ScrolltoElement(application, "CreateOrderHeader", xml);
 
@@ -1617,7 +1627,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			SelectOrderNumber = existingordernumber;
 		} else {
 			System.out.println("Order not selected");
-			DriverTestcase.logger.log(LogStatus.INFO, "Step :Order not selected");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step :Order not selected");
 			Log.info("Order not selected");
 		}
 	}
@@ -1658,7 +1668,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			SelectOrderNumber = existingordernumber;
 		} else {
 			System.out.println("Order not selected");
-			DriverTestcase.logger.log(LogStatus.INFO, "Step :Order not selected");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step :Order not selected");
 			Log.info("Order not selected");
 		}
 	}
@@ -1724,11 +1734,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in View Service page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in View Service page");
 			System.out.println(  e+ " : Field is not displayed in View Service page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in View Service page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in View Service page ");
 			System.out.println(  e+" : Field is not displayed in View Service page");
 		}
 		
@@ -1801,7 +1811,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			WebElement OKButton= getwebelement(xml.getlocator("//locators/" + application + "/OkButton"));
 			scrolltoview(OKButton);
 			click(application, "OK", "OkButton");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : User added successfully");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : User added successfully");
 
 			//Edit User
 			List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
@@ -1818,10 +1828,10 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				WebElement AddedUser = driver
 						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
 				AddedUser.click();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
 			else
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : No users displayed");
 
 			click(application, "Action dropdown", "UserActionDropdown");
 			click(application, "Edit", "edit");
@@ -1857,10 +1867,10 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				WebElement AddedUser = driver
 						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
 				AddedUser.click();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
 			else
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : No users displayed");
 
 			click(application, "Action dropdown", "UserActionDropdown");
 			click(application, "view", "view");
@@ -1887,10 +1897,10 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				WebElement AddedUser = driver
 						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
 				AddedUser.click();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
 			else
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : No users displayed");
 
 			click(application, "Action dropdown", "UserActionDropdown");
 			delete(application, "delete", "User", "User successfully deleted");
@@ -1913,10 +1923,10 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				WebElement AddedUser = driver
 						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
 				AddedUser.click();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
 			else
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : No users displayed");
 
 			click(application, "Action dropdown", "UserActionDropdown");
 			click(application, "Edit", "edit");
@@ -1952,10 +1962,10 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				WebElement AddedUser = driver
 						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
 				AddedUser.click();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
 			else
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : No users displayed");
 
 			click(application, "Action dropdown", "UserActionDropdown");
 			click(application, "view", "view");
@@ -1982,10 +1992,10 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				WebElement AddedUser = driver
 						.findElement(By.xpath("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
 				AddedUser.click();
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
 			}
 			else
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : No users displayed");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : No users displayed");
 
 			click(application, "Action dropdown", "UserActionDropdown");
 			delete("nginservice", "delete", "User", "User successfully deleted");
@@ -2009,27 +2019,27 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		   boolean DumpPage=false;
 		   DumpPage=getwebelement(xml.getlocator("//locators/" + application + "/dumpPage_header")).isDisplayed();
 		   if(DumpPage) {
-			   DriverTestcase.logger.log(LogStatus.PASS, "Service Dump Detail page is displaying");
+			   ExtentTestManager.getTest().log(LogStatus.PASS, "Service Dump Detail page is displaying");
 			   System.out.println("Service Dump Detail page is displaying");
 			  
 			  //Header 
 			   String headerName=getwebelement(xml.getlocator("//locators/" + application + "/dumpheaderName")).getText();
 			   if(headerName.isEmpty()) {
-				   DriverTestcase.logger.log(LogStatus.FAIL, "Header name is not displaying");
+				   ExtentTestManager.getTest().log(LogStatus.FAIL, "Header name is not displaying");
 				   System.out.println("Header name is not displaying");
 				 
 			   }else {
-				   DriverTestcase.logger.log(LogStatus.PASS, "Dump header name is displaying as "+ headerName);  
+				   ExtentTestManager.getTest().log(LogStatus.PASS, "Dump header name is displaying as "+ headerName);  
 				   System.out.println("Dump header name is displaying as "+ headerName);
 			   }
 			   
 			   //body
 			   String bodyContent=getwebelement(xml.getlocator("//locators/" + application + "/dumpMessage_body")).getText();
 			   if(bodyContent.isEmpty()) {
-				   DriverTestcase.logger.log(LogStatus.FAIL, "Dump value is not displaying");
+				   ExtentTestManager.getTest().log(LogStatus.FAIL, "Dump value is not displaying");
 				   System.out.println("Dump value is not displaying");
 			   }else {
-				   DriverTestcase.logger.log(LogStatus.PASS, "Dump value is displaying as "+bodyContent);
+				   ExtentTestManager.getTest().log(LogStatus.PASS, "Dump value is displaying as "+bodyContent);
 				   System.out.println("Dump value is displaying as "+bodyContent);
 			   }
 			   
@@ -2045,7 +2055,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				compareText(application, "Dump Link", "DumpLink", "Dump");
 				click(application, "Action dropdown", "serviceactiondropdown");
 		   }else {
-			   DriverTestcase.logger.log(LogStatus.FAIL, "Service Dump Detail page is not displaying");
+			   ExtentTestManager.getTest().log(LogStatus.FAIL, "Service Dump Detail page is not displaying");
 			   System.out.println("Service Dump Detail page is not displaying");
 
 		   }
@@ -2067,28 +2077,28 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		   boolean DumpPage=false;
 		   DumpPage=getwebelement(xml.getlocator("//locators/" + application + "/dumpPage_header")).isDisplayed();
 		   if(DumpPage) {
-			   DriverTestcase.logger.log(LogStatus.PASS, "Manage Subnet IPv6 page is displaying");
+			   ExtentTestManager.getTest().log(LogStatus.PASS, "Manage Subnet IPv6 page is displaying");
 			   System.out.println("manage subnet ipv6 page is displaying");
 			  
 			   try {
 			  //Header 
 			   String headerName=getwebelement(xml.getlocator("//locators/" + application + "/dumpheaderName")).getText();
 			   if(headerName.isEmpty()) {
-				   DriverTestcase.logger.log(LogStatus.FAIL, "Header name is not displaying");
+				   ExtentTestManager.getTest().log(LogStatus.FAIL, "Header name is not displaying");
 				   System.out.println("Header name is not displaying");
 				 
 			   }else {
-				   DriverTestcase.logger.log(LogStatus.PASS, "manage Subnet IPv6 header name is displaying as "+ headerName);  
+				   ExtentTestManager.getTest().log(LogStatus.PASS, "manage Subnet IPv6 header name is displaying as "+ headerName);  
 				   System.out.println("manage subnet ipv6 header name is displaying as "+ headerName);
 			   }
 			   
 			   //body
 			   String bodyContent=getwebelement(xml.getlocator("//locators/" + application + "/manageSubnet_successMSG")).getText();
 			   if(bodyContent.isEmpty()) {
-				   DriverTestcase.logger.log(LogStatus.FAIL, "manage subnet value is not displaying");
+				   ExtentTestManager.getTest().log(LogStatus.FAIL, "manage subnet value is not displaying");
 				   System.out.println("manage subnet value is not displaying");
 			   }else {
-				   DriverTestcase.logger.log(LogStatus.PASS, "manage subnet message is displaying as "+bodyContent);
+				   ExtentTestManager.getTest().log(LogStatus.PASS, "manage subnet message is displaying as "+bodyContent);
 				   System.out.println("manage subnet message is displaying as "+bodyContent);
 			   }
 			   
@@ -2097,16 +2107,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			   
 		   }catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in manage subnet ipv6");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in manage subnet ipv6");
 				System.out.println(  e+ " : Field is not displayed in manage subnet ipv6");
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in manage subnet ipv6 ");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in manage subnet ipv6 ");
 				System.out.println(  e+" : Field is not displayed in manage subnet ipv6");
 			}
 			
 		   }else {
-			   DriverTestcase.logger.log(LogStatus.FAIL, "manage subnet ipv6 page is not displaying");
+			   ExtentTestManager.getTest().log(LogStatus.FAIL, "manage subnet ipv6 page is not displaying");
 			   System.out.println("manage subnet ipv6 page is not displaying");
 
 		   }
@@ -2131,27 +2141,27 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		   boolean DumpPage=false;
 		   DumpPage=getwebelement(xml.getlocator("//locators/" + application + "/dumpPage_header")).isDisplayed();
 		   if(DumpPage) {
-			   DriverTestcase.logger.log(LogStatus.PASS, "Manage Subnet IPv6 page is displaying");
+			   ExtentTestManager.getTest().log(LogStatus.PASS, "Manage Subnet IPv6 page is displaying");
 			   System.out.println("manage subnet ipv6 page is displaying");
 			  
 			  //Header 
 			   String headerName=getwebelement(xml.getlocator("//locators/" + application + "/dumpheaderName")).getText();
 			   if(headerName.isEmpty()) {
-				   DriverTestcase.logger.log(LogStatus.FAIL, "Header name is not displaying");
+				   ExtentTestManager.getTest().log(LogStatus.FAIL, "Header name is not displaying");
 				   System.out.println("Header name is not displaying");
 				 
 			   }else {
-				   DriverTestcase.logger.log(LogStatus.PASS, "manage Subnet IPv6 header name is displaying as "+ headerName);  
+				   ExtentTestManager.getTest().log(LogStatus.PASS, "manage Subnet IPv6 header name is displaying as "+ headerName);  
 				   System.out.println("manage subnet ipv6 header name is displaying as "+ headerName);
 			   }
 			   
 			   //body
 			   String bodyContent=getwebelement(xml.getlocator("//locators/" + application + "/manageSubnet_successMSG")).getText();
 			   if(bodyContent.isEmpty()) {
-				   DriverTestcase.logger.log(LogStatus.FAIL, "manage subnet value is not displaying");
+				   ExtentTestManager.getTest().log(LogStatus.FAIL, "manage subnet value is not displaying");
 				   System.out.println("manage subnet value is not displaying");
 			   }else {
-				   DriverTestcase.logger.log(LogStatus.PASS, "manage subnet message is displaying as "+bodyContent);
+				   ExtentTestManager.getTest().log(LogStatus.PASS, "manage subnet message is displaying as "+bodyContent);
 				   System.out.println("manage subnet message is displaying as "+bodyContent);
 			   }
 			   
@@ -2160,18 +2170,18 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			   
 			   
 		   }else {
-			   DriverTestcase.logger.log(LogStatus.FAIL, "manage subnet ipv6 page is not displaying");
+			   ExtentTestManager.getTest().log(LogStatus.FAIL, "manage subnet ipv6 page is not displaying");
 			   System.out.println("manage subnet ipv6 page is not displaying");
 
 		   }
 		   
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in manage subnet ipv6");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in manage subnet ipv6");
 			System.out.println(  e+ " : Field is not displayed in manage subnet ipv6");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in manage subnet ipv6 ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in manage subnet ipv6 ");
 			System.out.println(  e+" : Field is not displayed in manage subnet ipv6");
 		}
 		
@@ -2207,11 +2217,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in View Service page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in View Service page");
 			System.out.println(  e+ " : Field is not displayed in View Service page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in View Service page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in View Service page ");
 			System.out.println(  e+" : Field is not displayed in View Service page");
 		}
 		
@@ -2276,7 +2286,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/manageresellerheader")));
 		Thread.sleep(1000);
 		String resellername= getwebelement(xml.getlocator("//locators/" + application + "/resellername")).getAttribute("value");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Reseller Name is displaying as: '"+resellername+"'");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Reseller Name is displaying as: '"+resellername+"'");
 		EnterTextValue(application, email, "Email", "reseller_email");	
 		EnterTextValue(application, city, "City", "reseller_city");
 		EnterTextValue(application, streetname, "Street Name", "reseller_streetname");
@@ -2316,7 +2326,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			for(int i=0;i<ResellerLinksCount;i++)
 			{
 				String Link= ResellerLinks.get(i).getText();
-				DriverTestcase.logger.log(LogStatus.PASS, ""+Link+" link is displaying under reseller panel");
+				ExtentTestManager.getTest().log(LogStatus.PASS, ""+Link+" link is displaying under reseller panel");
 				System.out.println("Reseller link:"+ Link + "is displaying");
 				Thread.sleep(2000);
 			}
@@ -2331,7 +2341,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		else
 			Log.info("Reseller is not added in the grid");
 		System.out.println("Reseller is not added in the grid");
-		DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "Reseller is not added in the grid");
 		ResellerName= ocn;		
 	}
 
@@ -2389,7 +2399,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		{
 			Log.info("Reseller is not added in the grid");
 			System.out.println("Reseller is not added in the grid");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Reseller is not added in the grid");
 		}
 
 		//View reseller
@@ -2427,7 +2437,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				//Edit link in view reseller page
 				click(application, "View page Edit", "edit");
 				compareText(application, "Manage Reseller Header", "manageresellerheader", "Manage Reseller in OSP");
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Edit Reseller page is displaying as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Edit Reseller page is displaying as expected");
 				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				click(application, "Cancel", "cancelbutton");
 
@@ -2441,7 +2451,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			{
 				Log.info("Reseller is not added in the grid");
 				System.out.println("Reseller is not added in the grid");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Reseller is not added in the grid");
 			}
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")));
 			WebElement AddedReseller2= driver.findElement(By.xpath("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ ocn +"')]/parent::div//input[@type='radio']"));
@@ -2464,10 +2474,10 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 					if(getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup")).isDisplayed())
 					{
-						DriverTestcase.logger.log(LogStatus.PASS, "Step : Delete Reseller alert is displaying as expected");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Delete Reseller alert is displaying as expected");
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/deletealertclose")));
 						Thread.sleep(2000);
-						DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on delete alert popup close button");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on delete alert popup close button");
 					}
 					else
 						Log.info("Delete alert popup is not displayed");
@@ -2481,18 +2491,18 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				{
 					Log.info("Navigated to view service page");
 					System.out.println("Navigated to view service page");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Associate Reseller with NGIN Objects link verified");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Associate Reseller with NGIN Objects link verified");
 				}
 
 			}
 			else
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : View link is not displaying under Reseller panel");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : View link is not displaying under Reseller panel");
 		}
 		else
 		{
 			Log.info("Reseller is not added in the grid");
 			System.out.println("Reseller is not added in the grid");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Reseller is not added in the grid");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Reseller is not added in the grid");
 		}
 	}
 
@@ -2504,11 +2514,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/AddLink")).isDisplayed())
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Add link is displaying under Customer panel");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Add link is displaying under Customer panel");
 			Log.info("Add link is displayed");
 		}
 		else
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Add link is not displaying under Customer panel");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Add link is not displaying under Customer panel");
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/CustomerDetailsHeader")));
 
@@ -2556,7 +2566,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		//Select Country from dropdown
 		addDropdownValues(application, "Country", "customer_country", country);
 		String CustomerOCN= getwebelement(xml.getlocator("//locators/" + application + "/customer_ocn")).getAttribute("value");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : OCN is displaying as: '"+CustomerOCN+"'");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : OCN is displaying as: '"+CustomerOCN+"'");
 
 		//Select Customer Name from dropdown
 		/*	try {	
@@ -2566,20 +2576,20 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 				SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/customerpanel_customername")), selectcustomer);
 				Thread.sleep(2000);
-				DriverTestcase.logger.log(LogStatus.PASS, "Step :selected customer is : " + selectcustomer);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step :selected customer is : " + selectcustomer);
 
 				WebElement el1 = driver
 						.findElement(By.xpath("//span[contains(text(),'" + selectcustomer + "')][1]"));
 				el1.click();
 				Log.info("=== customer selected===");
-				DriverTestcase.logger.log(LogStatus.PASS, "Customer name has been selected from the dropdown");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Customer name has been selected from the dropdown");
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, "Select Customer name dropdown is not available");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Select Customer name dropdown is not available");
 			} */
 
 		String CustomerNamevalue= GetText(application, "Customer Name", "customerpanel_customernamevalue");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Customer Name is displaying as: '"+CustomerNamevalue+"'");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer Name is displaying as: '"+CustomerNamevalue+"'");
 		String CustomerName_viewpage= CustomerNamevalue.replace("(New)", "").trim();
 		System.out.println("Customer name is :"+CustomerName_viewpage);
 		EnterTextValue(application, resellername, "Reseller Name", "resellername");
@@ -2599,11 +2609,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			{
 				System.out.println("Default checkbox is checked");
 				Thread.sleep(1000);
-				DriverTestcase.logger.log(LogStatus.PASS, "Default checkbox is checked");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Default checkbox is checked");
 				Log.info("Default checkbox is checked");
 			}
 			else
-				DriverTestcase.logger.log(LogStatus.FAIL, "Default checkbox is not checked by default");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Default checkbox is not checked by default");
 		}
 
 		else if(configure.equalsIgnoreCase("YES"))
@@ -2613,12 +2623,12 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			{
 				System.out.println("Configure checkbox is checked");
 				Thread.sleep(1000);
-				DriverTestcase.logger.log(LogStatus.PASS, "Configure checkbox is checked");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Configure checkbox is checked");
 				Log.info("Configure checkbox is checked");
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Configure checkbox is not checked");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Configure checkbox is not checked");
 				click(application, "Configure checkbox", "configurecheckbox");
 			}
 		}
@@ -2656,7 +2666,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			for(int i=0;i<CustomerLinksCount;i++)
 			{
 				String Link= CustomerLinks.get(i).getText();
-				DriverTestcase.logger.log(LogStatus.PASS, ""+Link+" link is displaying under customer panel");
+				ExtentTestManager.getTest().log(LogStatus.PASS, ""+Link+" link is displaying under customer panel");
 				System.out.println("Customer link:"+ Link + " is displaying");
 				Thread.sleep(2000);
 			}
@@ -2702,23 +2712,23 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			String CountryDisabled= getwebelement(xml.getlocator("//locators/" + application + "/customercountry_disabled")).getAttribute("disabled");
 			if(CountryDisabled!=null)
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Country dropdown is disabled as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Country dropdown is disabled as expected");
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Country dropdown is enabled");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Country dropdown is enabled");
 			}
 			String CustomerOCN= getwebelement(xml.getlocator("//locators/" + application + "/customer_ocn")).getAttribute("value");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : OCN is displaying as: '"+CustomerOCN+"'");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : OCN is displaying as: '"+CustomerOCN+"'");
 
 			String CustomernameDisabled= getwebelement(xml.getlocator("//locators/" + application + "/customername_disabled")).getAttribute("disabled");
 			if(CustomernameDisabled!=null)
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Customer name dropdown is disabled as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer name dropdown is disabled as expected");
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Customer name dropdown is enabled");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Customer name dropdown is enabled");
 			}
 			EnterTextValue(application, editreseller, "Reseller name", "resellername");
 			cleartext(application, "Email", "reseller_email");
@@ -2790,7 +2800,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				click(application, "Action dropdown", "viewpage_actiondropdown");
 				click(application, "Edit", "viewpage_editcustomer");
 				compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP");
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Edit Customer in view customer page is verified");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Edit Customer in view customer page is verified");
 				Thread.sleep(1000);
 				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				click(application, "Cancel", "cancelbutton");
@@ -2813,7 +2823,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				click(application, "View", "view");
 				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
 				compareText(application, "Manage Customer in OSP header", "manageresellerheader_viewpage", "Manage Customer In OSP");
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Delete Customer in view customer page is verified");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Delete Customer in view customer page is verified");
 				Thread.sleep(1000);
 				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
 				click(application, "Action dropdown", "viewpage_actiondropdown");
@@ -2830,7 +2840,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : View link is not displaying under customer panel");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : View link is not displaying under customer panel");
 			}
 			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 			click(application, "Back", "viewpage_backbutton");
@@ -2848,12 +2858,12 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/addsan_link")).isDisplayed())
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Add SAN link is displaying under SAN/FRC panel");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Add SAN link is displaying under SAN/FRC panel");
 			Log.info("Add link is displayed");
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Add link is not displaying under SAN/FRC panel");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Add link is not displaying under SAN/FRC panel");
 		}
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/sanheader")));
 
@@ -2899,12 +2909,12 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customernamedropdown_valuesdisplay")).isDisplayed())
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Existing customer is available");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Existing customer is available");
 			click(application, "Customer Name dropdown value", "customernamedropdown_valuesdisplay");
 		}
 		else if(getwebelement(xml.getlocator("//locators/" + application + "/customernamedropdown_nomatchesfound")).isDisplayed())
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Existing customer is not available");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Existing customer is not available");
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/addsan_header")));
 
 			//Manage new customer link
@@ -2918,9 +2928,9 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			//Select Country from dropdown
 			addDropdownValues(application, "Country", "customer_country", country);
 			String CustomerOCN= getwebelement(xml.getlocator("//locators/" + application + "/customer_ocn")).getAttribute("value");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : OCN is displaying as: '"+CustomerOCN+"'");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : OCN is displaying as: '"+CustomerOCN+"'");
 			String CustomerNamevalue= GetText(application, "Customer Name", "customerpanel_customernamevalue");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Customer Name is displaying as: '"+CustomerNamevalue+"'");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer Name is displaying as: '"+CustomerNamevalue+"'");
 			CustomerNamevalue.replace("(New)", "").trim();
 			EnterTextValue(application, resellername, "Reseller Name", "resellername");
 			GetText(application, "Email", "reseller_email");
@@ -2939,11 +2949,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				{
 					System.out.println("Default checkbox is checked");
 					Thread.sleep(1000);
-					DriverTestcase.logger.log(LogStatus.PASS, "Default checkbox is checked");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Default checkbox is checked");
 					Log.info("Default checkbox is checked");
 				}
 				else
-					DriverTestcase.logger.log(LogStatus.FAIL, "Default checkbox is not checked by default");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Default checkbox is not checked by default");
 			}
 
 			else if(configure.equalsIgnoreCase("YES"))
@@ -2953,12 +2963,12 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				{
 					System.out.println("Configure checkbox is checked");
 					Thread.sleep(1000);
-					DriverTestcase.logger.log(LogStatus.PASS, "Configure checkbox is checked");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Configure checkbox is checked");
 					Log.info("Configure checkbox is checked");
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Configure checkbox is not checked");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Configure checkbox is not checked");
 					click(application, "Configure checkbox", "configurecheckbox");
 				}
 			}
@@ -2981,7 +2991,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		Thread.sleep(1000);
 		//SAN customer name
 		String SAN_Customernamevalue= getwebelement(xml.getlocator("//locators/" + application + "/customername_selectedtext")).getText();
-		DriverTestcase.logger.log(LogStatus.PASS, "Step :Customer name selected is : " + SAN_Customernamevalue);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step :Customer name selected is : " + SAN_Customernamevalue);
 		String SAN_Customername=SAN_Customernamevalue.substring(0, SAN_Customernamevalue.indexOf("(")).trim();
 		writetoexcel("src\\com\\saksoft\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 106, SAN_Customername);
 
@@ -2989,7 +2999,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		EnterTextValue(application, sannumber, "SAN Number", "san_number");
 		//SAN number
 		String SANNumberValue= SANNumber_CountryCode+sannumber;
-		DriverTestcase.logger.log(LogStatus.PASS, "Step :SAN Number is dsplayed as : " + SANNumberValue);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step :SAN Number is dsplayed as : " + SANNumberValue);
 		writetoexcel("src\\com\\saksoft\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 107, SANNumberValue);
 
 		//Select service profile from dropdown
@@ -3067,7 +3077,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			for(int i=0;i<SANLinksCount;i++)
 			{
 				String Link= SANLinks.get(i).getText();
-				DriverTestcase.logger.log(LogStatus.PASS, ""+Link+" link is displaying under SAN/FRC panel");
+				ExtentTestManager.getTest().log(LogStatus.PASS, ""+Link+" link is displaying under SAN/FRC panel");
 				System.out.println("Customer link:"+ Link + " is displaying");
 				Thread.sleep(2000);
 			}
@@ -3080,14 +3090,14 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			Log.info("FRC Number for Added SAN is displayed as : " + AddedSAN_FRCNumber);
 			System.out.println("FRC Number for Added SAN: "+ AddedSAN_FRCNumber);
 			sa.assertEquals(AddedSAN_FRCNumber,SANNumberValue);
-			DriverTestcase.logger.log(LogStatus.PASS, "FRC Number for Added SAN is displayed as : " + AddedSAN_FRCNumber);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "FRC Number for Added SAN is displayed as : " + AddedSAN_FRCNumber);
 
 			WebElement AddedSan1= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + SAN_Customername + "')]"));
 			String AddedSAN_Customervalue = AddedSan1.getText();
 			Log.info("Customer Name for Added SAN is displayed as : " + AddedSAN_Customervalue);
 			System.out.println("Customer Name for Added SAN: "+ AddedSAN_Customervalue);
 			sa.assertEquals(AddedSAN_Customervalue,SAN_Customername);
-			DriverTestcase.logger.log(LogStatus.PASS, "Customer Name for Added SAN is displayed as : " + AddedSAN_Customervalue);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Customer Name for Added SAN is displayed as : " + AddedSAN_Customervalue);
 		}
 
 		else
@@ -3129,32 +3139,32 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //			//verify Customer Name field
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/editsan_customername")).getAttribute("readonly")!=null)
 //			{
-//				DriverTestcase.logger.log(LogStatus.PASS, "Step : Customer Name field is disabled as expected");
+//				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer Name field is disabled as expected");
 //				String CustomerNamevalue= getwebelement(xml.getlocator("//locators/" + application + "/editsan_customername")).getAttribute("value");
-//				DriverTestcase.logger.log(LogStatus.PASS, "Step : Customer Name field value is displayed as:"+ CustomerNamevalue);
+//				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer Name field value is displayed as:"+ CustomerNamevalue);
 //			}
 //			else
 //			{
-//				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Customer Name field is enabled");
+//				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Customer Name field is enabled");
 //			}
 //			
 //			//verify SAN Number field
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/editsan_sannumber")).getAttribute("readonly")!=null)
 //			{
-//				DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN Number field is disabled as expected");
+//				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : SAN Number field is disabled as expected");
 //				String SANNumbervalue= getwebelement(xml.getlocator("//locators/" + application + "/editsan_sannumber")).getAttribute("value");
-//				DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN Number field value is displayed as:"+ SANNumbervalue);
+//				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : SAN Number field value is displayed as:"+ SANNumbervalue);
 //			}
 //			else
 //			{
-//				DriverTestcase.logger.log(LogStatus.FAIL, "Step : SAN Number field is enabled");
+//				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : SAN Number field is enabled");
 //			}
 //			
 //			//Select service profile from dropdown
 //			addDropdownValues(application, "Service Profile", "serviceprofile", serviceprofilevalue);
 //			Thread.sleep(1000);
 //			String Supervisionfield= GetText(application, "Supervision mode", "supervisionfield");
-//			DriverTestcase.logger.log(LogStatus.PASS, "Step : Supervision field value is displayed as:"+ Supervisionfield);
+//			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Supervision field value is displayed as:"+ Supervisionfield);
 //			
 //			if(internationaloutgoingcalls_checkedvalue.equalsIgnoreCase("Yes"))
 //			{
@@ -3203,7 +3213,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //			//cleartext(application, "Pre destination number", "predestinationnumber");
 //			//EnterTextValue(application, predestinationnumber, "Pre destination number", "predestinationnumber");
 //			String CPSFreeFormatValue= getwebelement(xml.getlocator("//locators/" + application + "/cpsfreeformat")).getAttribute("value");
-//			DriverTestcase.logger.log(LogStatus.PASS, "Step : CPS Free Format field value is displayed as:"+ CPSFreeFormatValue);
+//			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : CPS Free Format field value is displayed as:"+ CPSFreeFormatValue);
 //			if(RingToNumber_Checkbox.equalsIgnoreCase("YES"))
 //			{
 //				click(application, "'Ring To Number' radio", "ringtonumber_radiobutton");
@@ -3265,7 +3275,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //				}
 //				else
 //				{
-//					DriverTestcase.logger.log(LogStatus.FAIL, "Step: Didn't navigate to view service page");
+//					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: Didn't navigate to view service page");
 //				}
 //				
 //			}
@@ -3337,7 +3347,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/editsan_header")).isDisplayed())
 //			{
 //			compareText(application, "Edit SAN Header", "editsan_header", "Edit SAN");
-//			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to Edit SAN page");
+//			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to Edit SAN page");
 //			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 //			click(application, "Cancel", "cancelbutton");
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
@@ -3347,12 +3357,12 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //			}
 //			else
 //			{
-//				DriverTestcase.logger.log(LogStatus.FAIL, "Step: Didn't navigate to view service page");
+//				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: Didn't navigate to view service page");
 //			}
 //			}
 //			else
 //			{
-//				DriverTestcase.logger.log(LogStatus.FAIL, "Step: Didn't navigate to Edit SAN page");
+//				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: Didn't navigate to Edit SAN page");
 //			}
 //		}
 //		else
@@ -3392,7 +3402,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/addsan_header")).isDisplayed())
 //			{
 //				compareText(application, "Add SAN Header", "addsan_header", "Add SAN");
-//				DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to Add SAN page");
+//				ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to Add SAN page");
 //				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 //				click(application, "Cancel", "cancelbutton");
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
@@ -3402,12 +3412,12 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //			}
 //			else
 //			{
-//				DriverTestcase.logger.log(LogStatus.FAIL, "Step: Didn't navigate to view service page");
+//				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: Didn't navigate to view service page");
 //			}
 //			}
 //			else
 //			{
-//				DriverTestcase.logger.log(LogStatus.FAIL, "Step: Didn't navigate to Add SAN page");
+//				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: Didn't navigate to Add SAN page");
 //			}
 //			
 //			}
@@ -3446,13 +3456,13 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //			click(application, "Delete SAN", "deletesan_link");
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup")).isDisplayed())
 //			{
-//				DriverTestcase.logger.log(LogStatus.PASS, "Step: Delete alert popup is displayed as expected");
+//				ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Delete alert popup is displayed as expected");
 //				click(application, "Delete alert close", "deletealertclose");
 //			}
 //			else
 //			{
 //				Log.info("Delete alert popup is not displayed");
-//				DriverTestcase.logger.log(LogStatus.FAIL, "Step: Delete alert popup is not displayed");
+//				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: Delete alert popup is not displayed");
 //			}
 //		}
 //		else
@@ -3506,7 +3516,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			String PortToNumber= getwebelement(xml.getlocator("//locators/" + application + "/porttonumber")).getAttribute("value");
 			if(PortToNumber!=null)
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step: PortIN Number is displayed as:" +PortToNumber);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step: PortIN Number is displayed as:" +PortToNumber);
 			}
 			else
 			{
@@ -3517,28 +3527,28 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				WebElement WebAccessBlocked_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/webaccessblocked_checkbox"));
 				if (WebAccessBlocked_Checkbox.isEnabled())
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step: Web access blocked checkbox is checked as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Web access blocked checkbox is checked as expected");
 				}
 				else
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step: Web access blocked checkbox is not checked");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: Web access blocked checkbox is not checked");
 			}
 			catch (Exception e) {
 				// TODO: handle exception
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step: Web access blocked checkbox is not checked");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: Web access blocked checkbox is not checked");
 			}
 
 			try {
 				String PortDate= getwebelement(xml.getlocator("//locators/" + application + "/webaccessblocked_checkbox")).getAttribute("value");
 				if(PortDate!= null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Port Date value is: '"+PortDate+"'");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Port Date value is: '"+PortDate+"'");
 				}
 				else
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Port Date value is not displaying");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Port Date value is not displaying");
 			}
 			catch (Exception e) {
 				// TODO: handle exception
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Port Date value is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Port Date value is not displaying");
 			}
 
 			//Port Time
@@ -3554,20 +3564,20 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				String PortStatus= Gettext(getwebelement(xml.getlocator("//locators/" + application + "/portingstatus")));
 				if(PortStatus.equalsIgnoreCase("Ported"))
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : PortIN is successful");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : PortIN is successful");
 				}
 				else
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortIN is not successful");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : PortIN is not successful");
 			}
 			catch (Exception e) {
 				// TODO: handle exception
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortIN is unsuccessful");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : PortIN is unsuccessful");
 			}
 
 			click(application, "OK", "port_okbutton");
 		}
 		else
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortIN page is not opened");	
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : PortIN page is not opened");	
 		//Cancel porting not done
 		
 		}
@@ -3611,7 +3621,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			String PortToNumber= getwebelement(xml.getlocator("//locators/" + application + "/porttonumber")).getAttribute("value");
 			if(PortToNumber!=null)
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step: PortIN Number is displayed as:" +PortToNumber);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step: PortIN Number is displayed as:" +PortToNumber);
 			}
 			else
 			{
@@ -3622,28 +3632,28 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				WebElement WebAccessBlocked_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/webaccessblocked_checkbox"));
 				if (WebAccessBlocked_Checkbox.isEnabled())
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step: Web access blocked checkbox is checked as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Web access blocked checkbox is checked as expected");
 				}
 				else
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step: Web access blocked checkbox is not checked");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: Web access blocked checkbox is not checked");
 			}
 			catch (Exception e) {
 				// TODO: handle exception
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step: Web access blocked checkbox is not checked");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: Web access blocked checkbox is not checked");
 			}
 
 			try {
 				String PortDate= getwebelement(xml.getlocator("//locators/" + application + "/webaccessblocked_checkbox")).getAttribute("value");
 				if(PortDate!= null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Port Date value is: '"+PortDate+"'");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Port Date value is: '"+PortDate+"'");
 				}
 				else
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Port Date value is not displaying");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Port Date value is not displaying");
 			}
 			catch (Exception e) {
 				// TODO: handle exception
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Port Date value is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Port Date value is not displaying");
 			}
 
 			//Port Time
@@ -3659,14 +3669,14 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				String PortStatus= Gettext(getwebelement(xml.getlocator("//locators/" + application + "/portingstatus")));
 				if(PortStatus.equalsIgnoreCase("Ported"))
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : PortOUT is successful");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : PortOUT is successful");
 				}
 				else
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortOUT is not successful");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : PortOUT is not successful");
 			}
 			catch (Exception e) {
 				// TODO: handle exception
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortOUT is unsuccessful");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : PortOUT is unsuccessful");
 			}
 			
 			click(application, "OK", "port_okbutton");
@@ -3674,7 +3684,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			//Cancel porting not done
 		}
 		else
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : PortOut page is not opened");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : PortOut page is not opened");
 
 		}
 		else
@@ -3713,7 +3723,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		Thread.sleep(2000);
 		compareText(application, "SAN Move Header", "sanmoveheader", "SAN Move");
 		click(application, "Cancel", "cancelbutton");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN Move is cancelled");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : SAN Move is cancelled");
 		}
 		else
 		{
@@ -3755,7 +3765,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		addDropdownValues(application, "Order/Service", "orderservice_dropdown", sanmove_orderno);
 		click(application, "Move", "movebutton_sanmove");
 		Thread.sleep(2000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN Move is successful");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : SAN Move is successful");
 		}
 		else
 		{
@@ -3789,7 +3799,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		Thread.sleep(2000);
 		compareText(application, "Bulk Move Header", "bulkmoveheader", "Bulk Move");
 		click(application, "Cancel", "cancelbutton");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Bulk Move is cancelled");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Bulk Move is cancelled");
 		}
 		else
 		{
@@ -3834,7 +3844,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		addDropdownValues(application, "Service", "bulkmove_servicedropdown", bulkmove_service);
 		GetText(application, "Remarks", "remarktextarea");
 		click(application, "Move", "movebutton_sanmove");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Bulk Move is successful");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Bulk Move is successful");
 		}
 		else
 		{
@@ -3903,7 +3913,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/CustomerpanelActionDropdown")));
 			Thread.sleep(1000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Action dropdown button");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Action dropdown button");
 
 			delete(application, "delete", "Customer", "Data deleted successfully. ");
 		}
@@ -3974,7 +3984,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 		Thread.sleep(5000);
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/choosecustomerdropdown")));
+		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/chooseCustomerdropdown")));
 		Thread.sleep(5000);
 		System.out.println("clicked on customer dropdown");
 
@@ -3997,8 +4007,8 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/nametextfield")));
 			SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/nametextfield")), name);
 			Thread.sleep(10000);
-			getwebelement(xml.getlocator("//locators/" + application + "/choosecustomerdropdown")).clear();
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/choosecustomerdropdown")));
+			getwebelement(xml.getlocator("//locators/" + application + "/chooseCustomerdropdown")).clear();
+			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/chooseCustomerdropdown")));
 			Thread.sleep(5000);
 			// System.out.println("clicked on customer dropdown")
 			try {
@@ -4030,21 +4040,21 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			boolean ordercontractnumbertextfield = getwebelement(
 					xml.getlocator("//locators/" + application + "/ordercontractnumber")).isDisplayed();
 			sa.assertTrue(ordercontractnumbertextfield, "order contract number textfield is displayed");
-			// DriverTestcase.logger.log(LogStatus.PASS, "order contract number textfield is
+			// ExtentTestManager.getTest().log(LogStatus.PASS, "order contract number textfield is
 			// displayed");
 			System.out.println("order contract number textfield is displayed");
 
 			boolean selectorderswitch = getwebelement(
 					xml.getlocator("//locators/" + application + "/selectorderswitch")).isDisplayed();
 			sa.assertTrue(selectorderswitch, "c");
-			// DriverTestcase.logger.log(LogStatus.PASS, "select order switch is
+			// ExtentTestManager.getTest().log(LogStatus.PASS, "select order switch is
 			// displayed");
 			System.out.println("select order switch is displayed");
 
 			boolean rfireqiptextfield = getwebelement(
 					xml.getlocator("//locators/" + application + "/rfireqiptextfield")).isDisplayed();
 			sa.assertTrue(rfireqiptextfield, "RFI / RFQ /IP Voice Line number text field is displayed ");
-			// DriverTestcase.logger.log(LogStatus.PASS, "RFI / RFQ /IP Voice Line number
+			// ExtentTestManager.getTest().log(LogStatus.PASS, "RFI / RFQ /IP Voice Line number
 			// text field is displayed ");
 			System.out.println("RFI / RFQ /IP Voice Line number text field is displayed ");
 
@@ -4052,7 +4062,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			Thread.sleep(5000);
 
 			System.out.println("clicked on the switch to verify the presence of create order button");
-			// DriverTestcase.logger.log(LogStatus.PASS, "clicked on the switch to verify
+			// ExtentTestManager.getTest().log(LogStatus.PASS, "clicked on the switch to verify
 			// the presence of create order button ");
 
 			boolean createorderbutton1 = getwebelement(
@@ -4068,7 +4078,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/createorderswitch")));
 			Thread.sleep(5000);
-			// DriverTestcase.logger.log(LogStatus.PASS, "clicked on the switch to verify
+			// ExtentTestManager.getTest().log(LogStatus.PASS, "clicked on the switch to verify
 			// the presence of create order button ");
 
 			System.out.println("clicked on switch to verify the presence of create order button");
@@ -4110,13 +4120,12 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		} else {
 
 			System.out.println("existing order not selected");
-			DriverTestcase.logger.log(LogStatus.INFO, "Step :existing order not selected");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step :existing order not selected");
 		}
 
 	}
 
 	public static String newordernumber, newVoiceLineNumber;
-
 	public void createneworderservice(String application, String neworder, String neworderno, String newrfireqno)
 			throws InterruptedException, IOException, DocumentException {
 
@@ -4139,18 +4148,77 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		} else {
 
 			System.out.println("new order not selected");
-			DriverTestcase.logger.log(LogStatus.INFO, "Step : clicked on button to create new order");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : clicked on button to create new order");
 		}
 
 	}
 
+	
+	public void addDropdownValues_commonMethod4(String application, String labelname, String xpath, String expectedValueToAdd , XMLReader xml) throws InterruptedException, DocumentException {
+		  boolean availability=false;
+		try {  
+		  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
+		  if(availability) {
+			  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
+			  System.out.println(labelname + " dropdown is displaying");
+			  
+			  if(expectedValueToAdd.equalsIgnoreCase("null")) {
+				  
+				  ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under "+labelname+ " dropdown");
+				  System.out.println(" No values selected under "+labelname+ " dropdown");
+			  }else {
+				  
+				  Clickon(getwebelement("//div[label[text()='"+labelname+"']]//div[text()='×']"));
+				  Thread.sleep(3000);
+				  
+				  //verify list of values inside dropdown
+				  List<WebElement> listofvalues = driver
+							.findElements(By.xpath("//div[@class='sc-bxivhb kqVrwh']"));
+				  
+				  ExtentTestManager.getTest().log(LogStatus.PASS, " List of values inside "+labelname+ " dropdown is:  ");
+				  System.out.println( " List of values inside "+ labelname + "dropdown is:  ");
+				  
+					for (WebElement valuetypes : listofvalues) {
+								Log.info("service sub types : " + valuetypes.getText());
+								ExtentTestManager.getTest().log(LogStatus.PASS," " + valuetypes.getText());
+								System.out.println(" " + valuetypes.getText());
+					}
+					
+					Thread.sleep(2000);
+				SendKeys(getwebelement("//div[label[text()='"+ labelname +"']]//input"), expectedValueToAdd);	
+				Thread.sleep(2000);
+				 Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//input"));
+					
+				  Clickon(getwebelement("(//div[contains(text(),'"+expectedValueToAdd+"')])[1]"));
+				  Thread.sleep(3000);
+				  
+				  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
+				  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
+				  System.out.println( labelname + " dropdown value selected as: "+ actualValue);
+				  
+			  }
+		  }else {
+			  ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
+			  System.out.println(labelname + " is not displaying");
+		  }
+		}catch(NoSuchElementException e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
+			  System.out.println(labelname + " is not displaying");
+		}catch(Exception ee) {
+			ee.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
+			System.out.println(" NO value selected under "+ labelname + " dropdown");
+		}
+		
+	}
+	
 	public void verifyselectservicetype(String application, String servicetype)
 			throws InterruptedException, IOException, DocumentException {
 
 		// select service type
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		
-		addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
+		addDropdownValues_commonMethod4(application, "Service Type", "servicetypetextfield", servicetype, xml);
 		// click on next button
 		click(application, "Next", "nextbutton");
 		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service");
@@ -4184,12 +4252,12 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			if (!(serviceidentificationtextfieldvalue.isEmpty())) {
 
 				sa.fail("service identification textfield is not empty");
-				DriverTestcase.logger.log(LogStatus.FAIL,
+				ExtentTestManager.getTest().log(LogStatus.FAIL,
 						"Step : service identification textfield is not empty, value displayed is : "
 								+ serviceidentificationtextfieldvalue);
 			} else {
 
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : service identification textfield is empty ");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : service identification textfield is empty ");
 			}
 
 			// service type
@@ -4199,7 +4267,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			String servicetypevalue = getwebelement(xml.getlocator("//locators/" + application + "/servicetypevalue")).getText();
 			if (servicetypevalue != null && servicetypevalue.equalsIgnoreCase("NGIN")) {
 
-				DriverTestcase.logger.log(LogStatus.PASS,
+				ExtentTestManager.getTest().log(LogStatus.PASS,
 						"Step : Service Type value is not empty  and displayed service type is : " + servicetypevalue);
 			}
 
@@ -4213,11 +4281,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			if (!(remarktextareavalue).isEmpty()) {
 
 				sa.fail("remarks textarea is not empty");
-				DriverTestcase.logger.log(LogStatus.FAIL,
+				ExtentTestManager.getTest().log(LogStatus.FAIL,
 						"Step : remarks textarea is not empty, value displayed is : " + remarktextareavalue);
 			} else {
 
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : remarks textarea is empty ");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : remarks textarea is empty ");
 			}
 
 			// management options- customer administration
@@ -4228,13 +4296,13 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 			if (customeradministrationcheckbox == true && customeradministrationcheckbox2 == false) {
 
-				DriverTestcase.logger.log(LogStatus.PASS,
+				ExtentTestManager.getTest().log(LogStatus.PASS,
 						"Step : customer administration checkbox is unselected by default ");
 
 			} else {
 
 				sa.fail("customer administration checkbox is disabled or selected by default");
-				DriverTestcase.logger.log(LogStatus.FAIL,
+				ExtentTestManager.getTest().log(LogStatus.FAIL,
 						"Step : customer administration checkbox is disabled or selected by default ");
 			}
 
@@ -4246,13 +4314,13 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 			if (SANadministrationcheckbox1 == true && SANadministrationcheckbox2 == false) {
 
-				DriverTestcase.logger.log(LogStatus.PASS,
+				ExtentTestManager.getTest().log(LogStatus.PASS,
 						"Step : SAN administration checkbox is unselected by default ");
 
 			} else {
 
 				sa.fail("SAN administration checkbox is disabled or selected by default");
-				DriverTestcase.logger.log(LogStatus.FAIL,
+				ExtentTestManager.getTest().log(LogStatus.FAIL,
 						"Step : SAN administration checkbox is disabled or selected by default ");
 			}
 
@@ -4264,13 +4332,13 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 			if (Reselleradministrationcheckbox1 == true && Reselleradministrationcheckbox2 == false) {
 
-				DriverTestcase.logger.log(LogStatus.PASS,
+				ExtentTestManager.getTest().log(LogStatus.PASS,
 						"Step : Reseller Administration checkbox is unselected by default ");
 
 			} else {
 
 				sa.fail("Reseller Administration checkbox is disabled or selected by default");
-				DriverTestcase.logger.log(LogStatus.FAIL,
+				ExtentTestManager.getTest().log(LogStatus.FAIL,
 						"Step : Reseller Administration checkbox is disabled or selected by default ");
 			}
 
@@ -4294,7 +4362,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			String NotificationManagementTeam, String DialUserAdministration, String orderno, String rfireqno, String servicetype) throws InterruptedException, IOException, DocumentException {
  
 		if(getwebelement(xml.getlocator("//locators/" + application + "/createorderservice_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Servce Creation' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Servce Creation' page navigated as expected");
 			System.out.println("'Servce Creation' page navigated as expected");
 		
 		try {
@@ -4325,10 +4393,10 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		//Package
 		if(getwebelement(xml.getlocator("//locators/" + application + "/PackageDropdownDisabled")).isEnabled()){
-			DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Package' Dropdown is Enabled");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Package' Dropdown is Enabled");
 			System.out.println("Step : 'Package' Dropdown is Enabled");
 		}else {
-			DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Package' Dropdown is Disabled, So can't make any changes in Dropdown status");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Package' Dropdown is Disabled, So can't make any changes in Dropdown status");
 			System.out.println("Step : 'Package' Dropdown is Disabled, So can't make any changes in Dropdown status");
 		}
 
@@ -4337,15 +4405,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/ManageServicecheckbox")).isEnabled()){
 			if (ManageService.equalsIgnoreCase("YES")) {
 				click(application, "'Manage Service' checkbox", "ManageServicecheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Manage Service' checkbox is Enabled and 'Manage Service' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Manage Service' checkbox is Enabled and 'Manage Service' checkbox Selected");
 				System.out.println("Step : 'Manage Service' checkbox is Enabled and 'Manage Service' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Manage Service' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Manage Service' checkbox is not Selected");
 				System.out.println("Step : 'Manage Service' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Manage Service' checkbox is Disabled, So can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Manage Service' checkbox is Disabled, So can't make any changes in Checkbox status");
 				System.out.println("Step : 'Manage Service' checkbox is Disabled, So can't make any changes in Checkbox status");
 			}
 		
@@ -4356,15 +4424,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/SyslogEventViewcheckbox")).isEnabled()){
 			if (SyslogEventView.equalsIgnoreCase("YES")) {
 				click(application, "'Syslog Event View' checkbox", "SyslogEventViewcheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is Enabled and 'Syslog Event View' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is Enabled and 'Syslog Event View' checkbox Selected");
 				System.out.println("Step : 'Syslog Event View' checkbox is Enabled and 'Syslog Event View' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is not Selected");
 				System.out.println("Step : 'Syslog Event View' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is Disabled, So can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is Disabled, So can't make any changes in Checkbox status");
 				System.out.println("Step : 'Syslog Event View' checkbox is Disabled, So can't make any changes in Checkbox status");
 			}
 		
@@ -4372,15 +4440,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/ServiceStatusViewcheckbox")).isEnabled()){
 			if (ServiceStatusView.equalsIgnoreCase("YES")) {
 				click(application, "'Service Status View' checkbox", "ServiceStatusViewcheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Service Status View' checkbox is Enabled and 'Service Status View' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Service Status View' checkbox is Enabled and 'Service Status View' checkbox Selected");
 				System.out.println("Step : 'Service Status View' checkbox is Enabled and 'Service Status View' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Service Status View' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Service Status View' checkbox is not Selected");
 				System.out.println("Step : 'Service Status View' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Service Status View' checkbox is Disabled, So can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Service Status View' checkbox is Disabled, So can't make any changes in Checkbox status");
 				System.out.println("Step : 'Service Status View' checkbox is Disabled, So can't make any changes in Checkbox status");
 			}
 		
@@ -4389,15 +4457,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/RouterConfigurationViewcheckbox")).isEnabled()){
 			if (RouterConfigurationView.equalsIgnoreCase("YES")) {
 				click(application, "'Router Configuration View' checkbox", "RouterConfigurationViewcheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is Enabled and 'Router Configuration View' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is Enabled and 'Router Configuration View' checkbox Selected");
 				System.out.println("Step : 'Router Configuration View' checkbox is Enabled and 'Router Configuration View' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is not Selected");
 				System.out.println("Step : 'Router Configuration View' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is Disabled, So can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is Disabled, So can't make any changes in Checkbox status");
 				System.out.println("Step : 'Router Configuration View' checkbox is Disabled, So can't make any changes in Checkbox status");
 			}
 	
@@ -4406,15 +4474,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				if(getwebelement(xml.getlocator("//locators/" + application + "/PerformanceReportingcheckbox")).isEnabled()){
 					if (PerformanceReporting.equalsIgnoreCase("YES")) {
 						click(application, "'Performance Reporting' checkbox", "PerformanceReportingcheckbox");
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is Enabled and 'Performance Reporting' checkbox Selected");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is Enabled and 'Performance Reporting' checkbox Selected");
 						System.out.println("Step : 'Performance Reporting' checkbox is Enabled and 'Performance Reporting' checkbox Selected");
 					} else {
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is not Selected");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is not Selected");
 						System.out.println("Step : 'Performance Reporting' checkbox is not Selected");
 					}
 				
 					}else {
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is Disabled, So can't make any changes in Checkbox status");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is Disabled, So can't make any changes in Checkbox status");
 						System.out.println("Step : 'Performance Reporting' checkbox is Disabled, So can't make any changes in Checkbox status");
 					}
 				
@@ -4426,11 +4494,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //			click(application, "Proactive Notification checkbox", "ProactiveNotificationcheckbox");
 //		} else {
 //			System.out.println("Proactive Notification checkbox is not selected");
-//			DriverTestcase.logger.log(LogStatus.INFO, "Step : Proactive Notification checkbox is not selected");
+//			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Proactive Notification checkbox is not selected");
 //		}
 //		if (ProactiveNotification.equalsIgnoreCase("NO")) {
 //			System.out.println("Proactive Notification checkbox is already selected");
-//			DriverTestcase.logger.log(LogStatus.INFO, "Step : Proactive Notification checkbox is already selected");
+//			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Proactive Notification checkbox is already selected");
 //		} else {
 //			click(application, "Proactive Notification checkbox", "ProactiveNotificationcheckbox");
 //		}
@@ -4440,15 +4508,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/DialUserAdministrationcheckbox")).isEnabled()){
 			if (DialUserAdministration.equalsIgnoreCase("YES")) {
 				click(application, "'Dial User Administration' checkbox", "DialUserAdministrationcheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is Enabled and 'Dial User Administration' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is Enabled and 'Dial User Administration' checkbox Selected");
 				System.out.println("Step : 'Dial User Administration' checkbox is Enabled and 'Dial User Administration' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is not Selected");
 				System.out.println("Step : 'Dial User Administration' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is Disabled, SO can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is Disabled, SO can't make any changes in Checkbox status");
 				System.out.println("Step : 'Dial User Administration' checkbox is Disabled, SO can't make any changes in Checkbox status");
 			}
 
@@ -4456,11 +4524,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Service Creation page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Service Creation page");
 			System.out.println(  e+ " : Field is not displayed in Service Creation page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Service Creation page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Service Creation page ");
 			System.out.println(  e+" : Field is not displayed in Service Creation page");
 		}
 
@@ -4469,7 +4537,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				compareText(application, "Service creation success msg", "servicecreationmessage", "Service successfully created");
 				
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Servce Creation' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Servce Creation' page not navigated");
 			System.out.println("'Servce Creation' page navigated");
 		}
 				//sa.assertAll();//Temp
@@ -4483,7 +4551,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			String NotificationManagementTeam, String DialUserAdministration,String servicetype) throws InterruptedException, IOException, DocumentException {
  
 		if(getwebelement(xml.getlocator("//locators/" + application + "/createorderservice_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Servce Creation' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Servce Creation' page navigated as expected");
 			System.out.println("'Servce Creation' page navigated as expected");
 		
 		try {
@@ -4508,10 +4576,10 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		//Package
 		if(getwebelement(xml.getlocator("//locators/" + application + "/PackageDropdownDisabled")).isEnabled()){
-			DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Package' Dropdown is Enabled");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Package' Dropdown is Enabled");
 			System.out.println("Step : 'Package' Dropdown is Enabled");
 		}else {
-			DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Package' Dropdown is Disabled, So can't make any changes in Dropdown status");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Package' Dropdown is Disabled, So can't make any changes in Dropdown status");
 			System.out.println("Step : 'Package' Dropdown is Disabled, So can't make any changes in Dropdown status");
 		}
 
@@ -4520,15 +4588,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/ManageServicecheckbox")).isEnabled()){
 			if (ManageService.equalsIgnoreCase("YES")) {
 				click(application, "'Manage Service' checkbox", "ManageServicecheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Manage Service' checkbox is Enabled and 'Manage Service' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Manage Service' checkbox is Enabled and 'Manage Service' checkbox Selected");
 				System.out.println("Step : 'Manage Service' checkbox is Enabled and 'Manage Service' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Manage Service' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Manage Service' checkbox is not Selected");
 				System.out.println("Step : 'Manage Service' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Manage Service' checkbox is Disabled, So can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Manage Service' checkbox is Disabled, So can't make any changes in Checkbox status");
 				System.out.println("Step : 'Manage Service' checkbox is Disabled, So can't make any changes in Checkbox status");
 			}
 		
@@ -4539,15 +4607,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/SyslogEventViewcheckbox")).isEnabled()){
 			if (SyslogEventView.equalsIgnoreCase("YES")) {
 				click(application, "'Syslog Event View' checkbox", "SyslogEventViewcheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is Enabled and 'Syslog Event View' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is Enabled and 'Syslog Event View' checkbox Selected");
 				System.out.println("Step : 'Syslog Event View' checkbox is Enabled and 'Syslog Event View' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is not Selected");
 				System.out.println("Step : 'Syslog Event View' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is Disabled, So can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is Disabled, So can't make any changes in Checkbox status");
 				System.out.println("Step : 'Syslog Event View' checkbox is Disabled, So can't make any changes in Checkbox status");
 			}
 		
@@ -4555,15 +4623,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/ServiceStatusViewcheckbox")).isEnabled()){
 			if (ServiceStatusView.equalsIgnoreCase("YES")) {
 				click(application, "'Service Status View' checkbox", "ServiceStatusViewcheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Service Status View' checkbox is Enabled and 'Service Status View' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Service Status View' checkbox is Enabled and 'Service Status View' checkbox Selected");
 				System.out.println("Step : 'Service Status View' checkbox is Enabled and 'Service Status View' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Service Status View' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Service Status View' checkbox is not Selected");
 				System.out.println("Step : 'Service Status View' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Service Status View' checkbox is Disabled, So can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Service Status View' checkbox is Disabled, So can't make any changes in Checkbox status");
 				System.out.println("Step : 'Service Status View' checkbox is Disabled, So can't make any changes in Checkbox status");
 			}
 		
@@ -4572,15 +4640,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/RouterConfigurationViewcheckbox")).isEnabled()){
 			if (RouterConfigurationView.equalsIgnoreCase("YES")) {
 				click(application, "'Router Configuration View' checkbox", "RouterConfigurationViewcheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is Enabled and 'Router Configuration View' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is Enabled and 'Router Configuration View' checkbox Selected");
 				System.out.println("Step : 'Router Configuration View' checkbox is Enabled and 'Router Configuration View' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is not Selected");
 				System.out.println("Step : 'Router Configuration View' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is Disabled, So can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is Disabled, So can't make any changes in Checkbox status");
 				System.out.println("Step : 'Router Configuration View' checkbox is Disabled, So can't make any changes in Checkbox status");
 			}
 	
@@ -4589,15 +4657,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				if(getwebelement(xml.getlocator("//locators/" + application + "/PerformanceReportingcheckbox")).isEnabled()){
 					if (PerformanceReporting.equalsIgnoreCase("YES")) {
 						click(application, "'Performance Reporting' checkbox", "PerformanceReportingcheckbox");
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is Enabled and 'Performance Reporting' checkbox Selected");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is Enabled and 'Performance Reporting' checkbox Selected");
 						System.out.println("Step : 'Performance Reporting' checkbox is Enabled and 'Performance Reporting' checkbox Selected");
 					} else {
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is not Selected");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is not Selected");
 						System.out.println("Step : 'Performance Reporting' checkbox is not Selected");
 					}
 				
 					}else {
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is Disabled, So can't make any changes in Checkbox status");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is Disabled, So can't make any changes in Checkbox status");
 						System.out.println("Step : 'Performance Reporting' checkbox is Disabled, So can't make any changes in Checkbox status");
 					}
 				
@@ -4609,11 +4677,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //			click(application, "Proactive Notification checkbox", "ProactiveNotificationcheckbox");
 //		} else {
 //			System.out.println("Proactive Notification checkbox is not selected");
-//			DriverTestcase.logger.log(LogStatus.INFO, "Step : Proactive Notification checkbox is not selected");
+//			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Proactive Notification checkbox is not selected");
 //		}
 //		if (ProactiveNotification.equalsIgnoreCase("NO")) {
 //			System.out.println("Proactive Notification checkbox is already selected");
-//			DriverTestcase.logger.log(LogStatus.INFO, "Step : Proactive Notification checkbox is already selected");
+//			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Proactive Notification checkbox is already selected");
 //		} else {
 //			click(application, "Proactive Notification checkbox", "ProactiveNotificationcheckbox");
 //		}
@@ -4623,15 +4691,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/DialUserAdministrationcheckbox")).isEnabled()){
 			if (DialUserAdministration.equalsIgnoreCase("YES")) {
 				click(application, "'Dial User Administration' checkbox", "DialUserAdministrationcheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is Enabled and 'Dial User Administration' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is Enabled and 'Dial User Administration' checkbox Selected");
 				System.out.println("Step : 'Dial User Administration' checkbox is Enabled and 'Dial User Administration' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is not Selected");
 				System.out.println("Step : 'Dial User Administration' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is Disabled, SO can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is Disabled, SO can't make any changes in Checkbox status");
 				System.out.println("Step : 'Dial User Administration' checkbox is Disabled, SO can't make any changes in Checkbox status");
 			}
 		
@@ -4641,16 +4709,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Service Creation page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Service Creation page");
 			System.out.println(  e+ " : Field is not displayed in Service Creation page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Service Creation page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Service Creation page ");
 			System.out.println(  e+" : Field is not displayed in Service Creation page");
 		}
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Servce Creation' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Servce Creation' page not navigated");
 			System.out.println("'Servce Creation' page navigated");
 		}
 				sa.assertAll();//Temp
@@ -4668,7 +4736,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));//orderpanelheader//userspanel_header
 
 		if (getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Order Panel' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order Panel' page navigated as expected");
 			System.out.println("'Order Panel' page navigated as expected");
 			
 			
@@ -4684,33 +4752,33 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 					&& expectedvoicelineno.equalsIgnoreCase(actualvoicelineno)) {
 
 				System.out.println("order information is matched");
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : order information is matched");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : order information is matched");
 			} else {
 				sa.fail("order information is not matched");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : order information is not matched");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : order information is not matched");
 				System.out.println("order information is not matched");
 			}
 
 			
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Service Creation page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Service Creation page");
 				System.out.println(  e+ " : Field is not displayed in Service Creation page");
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Service Creation page ");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Service Creation page ");
 				System.out.println(  e+" : Field is not displayed in Service Creation page");
 			}
 			
 		} else {
 
 			System.out.println("existing order is not selected");
-			DriverTestcase.logger.log(LogStatus.INFO, "Step : existing order is not selected");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : existing order is not selected");
 		}
 
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "Order panel header is not displayed");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Order panel header is not displayed");
 			System.out.println("Order panel header is not displayed");
 		}
 		
@@ -4740,25 +4808,25 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 					&& expectednewvoicelineno.equalsIgnoreCase(actualvoicelineno)) {
 
 				System.out.println("order information is matched");
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : order information is matched");				
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : order information is matched");				
 			} else {
 				sa.fail("order information is not matched");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : order information is not matched");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : order information is not matched");
 				System.out.println("order information is not matched");
 			}
 
 		} else {
 
 			System.out.println("new order is not selected");
-			DriverTestcase.logger.log(LogStatus.INFO, "Step : new order is not selected");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : new order is not selected");
 		}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in View Order page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in View Order page");
 			System.out.println(  e+ " : Field is not displayed in  View Order page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in View Order page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in View Order page ");
 			System.out.println(  e+" : Field is not displayed in View Order page");
 		}
 
@@ -4776,7 +4844,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Order' panel navigated as expected in view service page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order' panel navigated as expected in view service page");
 			System.out.println("'Order' panel navigated as expected in view service page");
 		
 			try {
@@ -4784,53 +4852,54 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		click(application, "Action dropdown", "orderactionbutton");
 		click(application, "Edit Order", "editorderlink");
 		if(getwebelement(xml.getlocator("//locators/" + application + "/editorderheader")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Edit Order' Page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit Order' Page navigated as expected");
 			System.out.println("'Edit Order' Page navigated as expected");
 			ClearAndEnterTextValue(application, "Order/Contract Number (Parent SID)", "editorderno", editorderno, xml);
 			ClearAndEnterTextValue(application, "RFI/RFQ/IP Voice Line Number", "editvoicelineno", editvoicelineno, xml);
 			click(application, "Cancel", "cancelbutton");
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Edit Order' Page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Edit Order' Page not navigated");
 			System.out.println("'Edit Order' Page not navigated");
 		}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Edit Order page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit Order page");
 			System.out.println(  e+ " : Field is not displayed in  Edit Order page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Edit Order page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Edit Order page ");
 			System.out.println(  e+" : Field is not displayed in Edit Order page");
 		}
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Order' panel not navigated in view service page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Order' panel not navigated in view service page");
 			System.out.println("'Order' panel not navigated in view service page");
 		}
 		
 			
-		implicitlyWait10S("Service screen");
+		implicitlyWait("Service screen");
+		Thread.sleep(4000);
 		webdriverWait(application, "userspanel_header", xml);
 		
 		Thread.sleep(5000);
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Order' panel navigated as expected in view service page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order' panel navigated as expected in view service page");
 			System.out.println("'Order' panel navigated as expected in view service page");
 		//Cancel Edit order in Order panel
+			try {
 		click(application, "Action dropdown", "orderactionbutton");
 		click(application, "Edit Order", "editorderlink");
 		if(getwebelement(xml.getlocator("//locators/" + application + "/editorderheader")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Edit Order' Page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit Order' Page navigated as expected");
 			System.out.println("'Edit Order' Page navigated as expected");
 			
-			try {
 			ClearAndEnterTextValue(application, "Order/Contract Number (Parent SID)", "editorderno", editorderno, xml);
 			ClearAndEnterTextValue(application, "RFI/RFQ/IP Voice Line Number", "editvoicelineno", editvoicelineno, xml);
 			click(application, "OK", "editorder_okbutton");
+			
 			compareText(application, "Order Edited/Updated message", "orderupdate_successmsg", "Order successfully updated");
 			
-			System.out.println("Step1 Edit33");
 			implicitlyWait("Service screen");
 			webdriverWait(application, "userspanel_header", xml);
 			Thread.sleep(5000);
@@ -4840,22 +4909,23 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			
 			Log.info("------ Edit Order is successful ------");
 			
-		}catch(NoSuchElementException e) {
-			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Edit Order page");
-			System.out.println(  e+ " : Field is not displayed in  Edit Order page");
-		}catch(Exception e) {
-			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Edit Order page ");
-			System.out.println(  e+" : Field is not displayed in Edit Order page");
-		}
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Edit Order' Page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Edit Order' Page not navigated");
 			System.out.println("'Edit Order' Page not navigated");
 		}
 		
+			}catch(NoSuchElementException e) {
+				e.printStackTrace();
+				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit Order page");
+				System.out.println(  e+ " : Field is not displayed in  Edit Order page");
+			}catch(Exception e) {
+				e.printStackTrace();
+				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Edit Order page ");
+				System.out.println(  e+" : Field is not displayed in Edit Order page");
+			}
+		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Order' panel not navigated in view service page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Order' panel not navigated in view service page");
 			System.out.println("'Order' panel not navigated in view service page");
 		}
 	}
@@ -4864,11 +4934,8 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	
 	public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
 		
-		System.out.println("Step1 Change");
 		implicitlyWait("Service screen");
-		System.out.println("Step2");
 		webdriverWait(application, "userspanel_header", xml);
-		System.out.println("Step3");
 		
 		Thread.sleep(3000);
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
@@ -4878,7 +4945,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		click(application, "Change Order", "changeorderlink");
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/changeorderheader")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Change Order' Page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Change Order' Page navigated as expected");
 			System.out.println("'Change Order' Page navigated as expected");
 
 			try {
@@ -4899,7 +4966,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			Boolean OrderHeader = getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed();
 			sa.assertTrue(OrderHeader,"Order");
 			Log.info("Navigated to order panel in view service page");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 			//Change order
 			click(application, "Action dropdown", "orderactionbutton");
@@ -4907,13 +4974,13 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			
 			
 			if(getwebelement(xml.getlocator("//locators/" + application + "/changeorderheader")).isDisplayed()) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Change Order' Page navigated as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Change Order' Page navigated as expected");
 				System.out.println("'Change Order' Page navigated as expected");
 			try {	
 			click(application, "Choose order dropdown", "changeorder_chooseorderdropdown");
 			Clickon(getwebelement("(//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//div/div/div/div)[1]"));
 			Thread.sleep(3000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected order from dropdown");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected order from dropdown");
 
 			click(application, "OK", "changeorder_okbutton");
 			Thread.sleep(1000);
@@ -4922,7 +4989,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			Boolean OrderHeader1 = getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed();
 			sa.assertTrue(OrderHeader1,"Order");
 			Log.info("Navigated to order panel in view service page");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 			compareText(application, "Order Number", "ordernumbervalue", changeorderno);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno);
@@ -4930,16 +4997,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Change Order page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Change Order page");
 				System.out.println(  e+ " : Field is not displayed in  Change Order page");
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Change Order page ");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Change Order page ");
 				System.out.println(  e+" : Field is not displayed in Change Order page");
 			}
 			
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'Change Order' Page not navigated");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Change Order' Page not navigated");
 				System.out.println("'Change Order' Page not navigated");
 			}
 		
@@ -4972,7 +5039,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			click(application, "Change Order", "changeorderlink");
 
 			if(getwebelement(xml.getlocator("//locators/" + application + "/changeorderheader")).isDisplayed()) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Change Order' Page navigated as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Change Order' Page navigated as expected");
 				System.out.println("'Change Order' Page navigated as expected");
 			
 				Thread.sleep(3000);
@@ -4991,7 +5058,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			Boolean OrderHeader1 = getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed();
 			sa.assertTrue(OrderHeader1,"Order");
 			Log.info("Navigated to order panel in view service page");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
 
 			compareText(application, "Order Number", "ordernumbervalue", changeorderno);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno);
@@ -4999,32 +5066,32 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			
 				}catch(NoSuchElementException e) {
 					e.printStackTrace();
-					DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Change Order page");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Change Order page");
 					System.out.println(  e+ " : Field is not displayed in  Change Order page");
 				}catch(Exception e) {
 					e.printStackTrace();
-					DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Change Order page ");
+					ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Change Order page ");
 					System.out.println(  e+" : Field is not displayed in Change Order page");
 				}
 				
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, "'Change Order' Page not navigated");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "'Change Order' Page not navigated");
 					System.out.println("'Change Order' Page not navigated");
 				}
 		}
 		
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Change Order page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Change Order page");
 				System.out.println(  e+ " : Field is not displayed in  Change Order page");
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Change Order page ");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Change Order page ");
 				System.out.println(  e+" : Field is not displayed in Change Order page");
 			}
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Change Order' Page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Change Order' Page not navigated");
 			System.out.println("'Change Order' Page not navigated");
 		}
 	}
@@ -5039,14 +5106,14 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		Thread.sleep(5000);
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
 		if(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Order' panel navigated as expected in view service page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order' panel navigated as expected in view service page");
 			System.out.println("'Order' panel navigated as expected in view service page");
 			
 		//Cancel Edit order in Order panel
 		click(application, "Action dropdown", "orderactionbutton");
 		click(application, "Edit Order", "editorderlink");
 		if(getwebelement(xml.getlocator("//locators/" + application + "/editorderheader")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Edit Order' Page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit Order' Page navigated as expected");
 			System.out.println("'Edit Order' Page navigated as expected");
 			isDisplayed(application, "editorderno", "Order/Contract Number (Parent SID)", xml);
 			isDisplayed(application, "editvoicelineno", "RFI/RFQ/IP Voice Line Number", xml);
@@ -5057,12 +5124,12 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			isDisplayed(application, "cancelbutton", "Cancel", xml);
 			click(application, "Cancel", "cancelbutton");
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Edit Order' Page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Edit Order' Page not navigated");
 			System.out.println("'Edit Order' Page not navigated");
 		}
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Order' panel not navigated in view service page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Order' panel not navigated in view service page");
 			System.out.println("'Order' panel not navigated in view service page");
 		}
 
@@ -5072,18 +5139,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	
 	public void verifyorderpanel_changeorder_UI(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
 		
-		System.out.println("Step1 Change");
 		implicitlyWait("Service screen");
-		System.out.println("Step2");
 		webdriverWait(application, "userspanel_header", xml);
-		System.out.println("Step3");
 		
 		Thread.sleep(3000);
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
 		Thread.sleep(1000);
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Order' panel navigated as expected in view service page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order' panel navigated as expected in view service page");
 			System.out.println("'Order' panel navigated as expected in view service page");
 			
 		//Cancel Change order in Order panel
@@ -5091,7 +5155,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		click(application, "Change Order", "changeorderlink");	
 		try {
 		if(getwebelement(xml.getlocator("//locators/" + application + "/changeorderheader")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Change Order' Page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Change Order' Page navigated as expected");
 			System.out.println("'Change Order' Page navigated as expected");
 			
 			isDisplayed(application, "RFIRFQIPVoiceLineNumberText", "RFI/RFQ/IP Voice Line Number", xml);
@@ -5106,21 +5170,21 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			click(application, "Cancel","cancelbutton");//"changeorder_cancelbutton");////body//button[span[contains(text(),'Cancel')]]
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Change Order' Page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Change Order' Page not navigated");
 			System.out.println("'Change Order' Page not navigated");
 		}
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in View Service page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in View Service page");
 			System.out.println(  e+ " : Field is not displayed in View Service page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in View Service page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in View Service page ");
 			System.out.println(  e+" : Field is not displayed in View Service page");
 			}
 		}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "'Order' Panel not navigated in view service page");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'Order' Panel not navigated in view service page");
 		System.out.println("'Order' Panel not navigated in view service page");
 		}
 	}
@@ -5144,11 +5208,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in View Service page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in View Service page");
 			System.out.println(  e+ " : Field is not displayed in View Service page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in View Service page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in View Service page ");
 			System.out.println(  e+" : Field is not displayed in View Service page");
 		}
 		
@@ -5156,11 +5220,18 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	
 	
 	
-	
+//	 map.get("EditRemarks"), map.get("Remarks"), map.get("ChangeOrder_OrderNumber"),
+//		map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired")
 
-	public void editService(String application, String EditRemarks, String Remarks, 
-			String changeorderno, String sid, String servicetype, String servicestatus, String syncstatus, 
-			String servicestatuschangerequired) throws InterruptedException, DocumentException, IOException {
+	public void editService(String application, String ServiceIdentification, String ResellerCode,  String Remarks, String EmailService, String PhoneService, 
+			String ManageService, String SyslogEventView, String ServiceStatusView, String RouterConfigurationView, String PerformanceReporting,
+			String ProactiveNotification,
+			String NotificationManagementTeam, String DialUserAdministration,String ServiceType,
+			String EditServiceIdentification, String EditResellerCode,
+			String EditRemarks, String EditEmailService, String EditPhoneService, 
+			String EditManageService, String EditSyslogEventView, String EditServiceStatusView, String EditRouterConfigurationView, String EditPerformanceReporting,
+			String EditProactiveNotification,
+			String EditNotificationManagementTeam, String EditDialUserAdministration) throws InterruptedException, DocumentException, IOException {
 
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
@@ -5182,14 +5253,37 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			compareText(application, "Remarks", "servicepanel_remarksvalue", Remarks);	
 		}
 		else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
 		}
 		
 		//Edit service
 		click(application, "Action dropdown", "serviceactiondropdown");
 		click(application, "Edit", "edit");
-		cleartext(application, "Remarks", "remarktextarea");
-		EnterTextValue(application, EditRemarks, "Remarks", "remarktextarea");
+//		cleartext(application, "Remarks", "remarktextarea");
+//		EnterTextValue(application, EditRemarks, "Remarks", "remarktextarea");
+		
+		
+		
+		//service identification
+		edittextFields_commonMethod(application,"Service Identification" , "serviceidentificationtextfield", ServiceIdentification, xml);
+	
+		//Service Type
+		compareText_InViewPage(application, "Service Type", ServiceType, xml);
+		
+		//Remark	
+		edittextFields_commonMethod(application, "Remark", "remarktextarea", Remarks, xml);
+		
+	
+scrolltoend();
+Thread.sleep(2000);
+
+	//Performance Reporting
+		editcheckbox_commonMethod(application, PerformanceReporting, "PerformanceReportingcheckbox", "Performance Reporting", xml);
+		
+		
+		
+		
+		
 		
 		scrolltoend();
 		click(application, "OK", "OKbutton_ServiceCreation");
@@ -5210,7 +5304,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		
 		
-		searchorder(application, sid);//ByMe
+		searchorder(application, ServiceIdentification);//ByMe
 		//Verify all the links available in service actions list
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
@@ -5227,11 +5321,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in View Service page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in View Service page");
 			System.out.println(  e+ " : Field is not displayed in View Service page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in View Service page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in View Service page ");
 			System.out.println(  e+" : Field is not displayed in View Service page");
 		}
 		
@@ -5250,7 +5344,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		click(application, "Edit", "edit");
 			
 		if(getwebelement(xml.getlocator("//locators/" + application + "/EditService_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Edit Service' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit Service' page navigated as expected");
 			System.out.println("'Edit Service' page navigated as expected");
 		
 		try {
@@ -5267,10 +5361,10 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		//Package
 		if(getwebelement(xml.getlocator("//locators/" + application + "/PackageDropdownDisabled")).isEnabled()){
-			DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Package' Dropdown is Enabled");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Package' Dropdown is Enabled");
 			System.out.println("Step : 'Package' Dropdown is Enabled");
 		}else {
-			DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Package' Dropdown is Disabled, So can't make any changes in Dropdown status");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Package' Dropdown is Disabled, So can't make any changes in Dropdown status");
 			System.out.println("Step : 'Package' Dropdown is Disabled, So can't make any changes in Dropdown status");
 		}
 
@@ -5278,15 +5372,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/ManageServicecheckbox")).isEnabled()){
 			if (ManageService.equalsIgnoreCase("YES")) {
 				click(application, "'Manage Service' checkbox", "ManageServicecheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Manage Service' checkbox is Enabled and 'Manage Service' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Manage Service' checkbox is Enabled and 'Manage Service' checkbox Selected");
 				System.out.println("Step : 'Manage Service' checkbox is Enabled and 'Manage Service' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Manage Service' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Manage Service' checkbox is not Selected");
 				System.out.println("Step : 'Manage Service' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Manage Service' checkbox is Disabled, So can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Manage Service' checkbox is Disabled, So can't make any changes in Checkbox status");
 				System.out.println("Step : 'Manage Service' checkbox is Disabled, So can't make any changes in Checkbox status");
 			}
 		
@@ -5294,15 +5388,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/SyslogEventViewcheckbox")).isEnabled()){
 			if (SyslogEventView.equalsIgnoreCase("YES")) {
 				click(application, "'Syslog Event View' checkbox", "SyslogEventViewcheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is Enabled and 'Syslog Event View' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is Enabled and 'Syslog Event View' checkbox Selected");
 				System.out.println("Step : 'Syslog Event View' checkbox is Enabled and 'Syslog Event View' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is not Selected");
 				System.out.println("Step : 'Syslog Event View' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is Disabled, So can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Syslog Event View' checkbox is Disabled, So can't make any changes in Checkbox status");
 				System.out.println("Step : 'Syslog Event View' checkbox is Disabled, So can't make any changes in Checkbox status");
 			}
 		
@@ -5310,15 +5404,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/ServiceStatusViewcheckbox")).isEnabled()){
 			if (ServiceStatusView.equalsIgnoreCase("YES")) {
 				click(application, "'Service Status View' checkbox", "ServiceStatusViewcheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Service Status View' checkbox is Enabled and 'Service Status View' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Service Status View' checkbox is Enabled and 'Service Status View' checkbox Selected");
 				System.out.println("Step : 'Service Status View' checkbox is Enabled and 'Service Status View' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Service Status View' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Service Status View' checkbox is not Selected");
 				System.out.println("Step : 'Service Status View' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Service Status View' checkbox is Disabled, So can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Service Status View' checkbox is Disabled, So can't make any changes in Checkbox status");
 				System.out.println("Step : 'Service Status View' checkbox is Disabled, So can't make any changes in Checkbox status");
 			}
 		
@@ -5327,15 +5421,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/RouterConfigurationViewcheckbox")).isEnabled()){
 			if (RouterConfigurationView.equalsIgnoreCase("YES")) {
 				click(application, "'Router Configuration View' checkbox", "RouterConfigurationViewcheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is Enabled and 'Router Configuration View' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is Enabled and 'Router Configuration View' checkbox Selected");
 				System.out.println("Step : 'Router Configuration View' checkbox is Enabled and 'Router Configuration View' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is not Selected");
 				System.out.println("Step : 'Router Configuration View' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is Disabled, So can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Router Configuration View' checkbox is Disabled, So can't make any changes in Checkbox status");
 				System.out.println("Step : 'Router Configuration View' checkbox is Disabled, So can't make any changes in Checkbox status");
 			}
 	
@@ -5344,15 +5438,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				if(getwebelement(xml.getlocator("//locators/" + application + "/PerformanceReportingcheckbox")).isEnabled()){
 					if (PerformanceReporting.equalsIgnoreCase("YES")) {
 						click(application, "'Performance Reporting' checkbox", "PerformanceReportingcheckbox");
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is Enabled and 'Performance Reporting' checkbox Selected");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is Enabled and 'Performance Reporting' checkbox Selected");
 						System.out.println("Step : 'Performance Reporting' checkbox is Enabled and 'Performance Reporting' checkbox Selected");
 					} else {
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is not Selected");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is not Selected");
 						System.out.println("Step : 'Performance Reporting' checkbox is not Selected");
 					}
 				
 					}else {
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is Disabled, So can't make any changes in Checkbox status");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Performance Reporting' checkbox is Disabled, So can't make any changes in Checkbox status");
 						System.out.println("Step : 'Performance Reporting' checkbox is Disabled, So can't make any changes in Checkbox status");
 					}
 				
@@ -5364,11 +5458,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //			click(application, "Proactive Notification checkbox", "ProactiveNotificationcheckbox");
 //		} else {
 //			System.out.println("Proactive Notification checkbox is not selected");
-//			DriverTestcase.logger.log(LogStatus.INFO, "Step : Proactive Notification checkbox is not selected");
+//			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Proactive Notification checkbox is not selected");
 //		}
 //		if (ProactiveNotification.equalsIgnoreCase("NO")) {
 //			System.out.println("Proactive Notification checkbox is already selected");
-//			DriverTestcase.logger.log(LogStatus.INFO, "Step : Proactive Notification checkbox is already selected");
+//			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Proactive Notification checkbox is already selected");
 //		} else {
 //			click(application, "Proactive Notification checkbox", "ProactiveNotificationcheckbox");
 //		}
@@ -5378,15 +5472,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		if(getwebelement(xml.getlocator("//locators/" + application + "/DialUserAdministrationcheckbox")).isEnabled()){
 			if (DialUserAdministration.equalsIgnoreCase("YES")) {
 				click(application, "'Dial User Administration' checkbox", "DialUserAdministrationcheckbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is Enabled and 'Dial User Administration' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is Enabled and 'Dial User Administration' checkbox Selected");
 				System.out.println("Step : 'Dial User Administration' checkbox is Enabled and 'Dial User Administration' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is not Selected");
 				System.out.println("Step : 'Dial User Administration' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is Disabled, SO can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Dial User Administration' checkbox is Disabled, SO can't make any changes in Checkbox status");
 				System.out.println("Step : 'Dial User Administration' checkbox is Disabled, SO can't make any changes in Checkbox status");
 			}
 		
@@ -5396,16 +5490,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Service Creation page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Service Creation page");
 			System.out.println(  e+ " : Field is not displayed in Service Creation page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Service Creation page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Service Creation page ");
 			System.out.println(  e+" : Field is not displayed in Service Creation page");
 		}
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Edit Service' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Edit Service' page not navigated");
 			System.out.println("'Edit Service' page navigated");
 		}
 		
@@ -5469,22 +5563,22 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 						{
 							if(ServiceStatusHistory.isDisplayed())
 							{
-								DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request logged");
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request logged");
 							}
 							else
-								DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request is not logged");
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request is not logged");
 						}
 						catch(StaleElementReferenceException e)
 						{
-							DriverTestcase.logger.log(LogStatus.FAIL, "No service history to display");
+							ExtentTestManager.getTest().log(LogStatus.FAIL, "No service history to display");
 						}
 					}
 					else
-						DriverTestcase.logger.log(LogStatus.FAIL, "Status link is not working");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "Status link is not working");
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change not reqired");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change not reqired");
 					click(application, "Close", "servicestatus_popupclose");
 				}
 
@@ -5518,11 +5612,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Manage Service page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Manage Service page");
 			System.out.println(  e+ " : Field is not displayed in Manage Service page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Manage Service page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Manage Service page ");
 			System.out.println(  e+" : Field is not displayed in Manage Service page");
 		}
 		
@@ -5588,22 +5682,22 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 						{
 							if(ServiceStatusHistory.isDisplayed())
 							{
-								DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request logged");
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request logged");
 							}
 							else
-								DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request is not logged");
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request is not logged");
 						}
 						catch(StaleElementReferenceException e)
 						{
-							DriverTestcase.logger.log(LogStatus.FAIL, "No service history to display");
+							ExtentTestManager.getTest().log(LogStatus.FAIL, "No service history to display");
 						}
 					}
 					else
-						DriverTestcase.logger.log(LogStatus.FAIL, "Status link is not working");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "Status link is not working");
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change not reqired");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change not reqired");
 					click(application, "Close", "servicestatus_popupclose");
 				}
 
@@ -5637,11 +5731,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Manage Service page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Manage Service page");
 			System.out.println(  e+ " : Field is not displayed in Manage Service page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Manage Service page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Manage Service page ");
 			System.out.println(  e+" : Field is not displayed in Manage Service page");
 		}
 		
@@ -5653,26 +5747,26 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/createorderlink")));
 		Thread.sleep(2000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on Create Order/Service Link");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Create Order/Service Link");
 
 		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/createordernametextfield")), name);
 		Thread.sleep(2000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Name is entered in name textfield");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Name is entered in name textfield");
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/choosecustomerdropdown")));
+		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/chooseCustomerdropdown")));
 		Thread.sleep(2000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Clicked on Customer Dropdown");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Clicked on Customer Dropdown");
 
 		WebElement el = driver
 				.findElement(By.xpath("//div[@role='list']//span[contains(text(),'" + selectCustomer + "')]"));
 		String selectedcustomer = el.getText();
 		el.click();
 		Thread.sleep(2000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Customer is selected from dropdown" + selectedcustomer);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer is selected from dropdown" + selectedcustomer);
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/nextbutton")));
 		Thread.sleep(2000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Clicked on Next button");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Clicked on Next button");
 
 	}
 
@@ -5708,28 +5802,28 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			//View link displayed verify
 			if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : View link is displaying in Search SAN page");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : View link is displaying in Search SAN page");
 				Log.info("View link is displayed");
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : View link is not displaying in Search SAN page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : View link is not displaying in Search SAN page");
 			}
 
 			//Delete link displayed verify
 			if(getwebelement(xml.getlocator("//locators/" + application + "/delete")).isDisplayed())
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Delete link is displaying in Search SAN page");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Delete link is displaying in Search SAN page");
 				Log.info("Add link is displayed");
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete link is not displaying in Search SAN page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete link is not displaying in Search SAN page");
 			}
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : No existing SAN to display");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
 		}
 		if(SelectSAN.isDisplayed())
 		{
@@ -5762,16 +5856,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : No existing SAN to display");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
 		}
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/sansearchheader")).isDisplayed())
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to SAN Search page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to SAN Search page");
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Didn't navigate to SAN Search page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Didn't navigate to SAN Search page");
 		}
 
 		//Verify Search order/service page
@@ -5799,22 +5893,22 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				{
 					Log.info("Navigated to view service page");
 					System.out.println("Navigated to view service page");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to view service page");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to view service page");
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
 				}
 
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Existing order is not available");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Existing order is not available");
 			}
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : No existing SAN to display");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
 		}
 
 		driver.navigate().back();
@@ -5826,11 +5920,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		{
 			Log.info("Navigated to view service page");
 			System.out.println("Navigated to view service page");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to 'SAN Search' page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to 'SAN Search' page");
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Didn't navigate to 'SAN Search' page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Didn't navigate to 'SAN Search' page");
 		}
 
 		EnterTextValue(application, search_sannumber, "SAN", "santextfield");
@@ -5857,22 +5951,22 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				{
 					Log.info("Navigated to view service page");
 					System.out.println("Navigated to view service page");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to view service page");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to view service page");
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
 				}
 
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Existing order is not available");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Existing order is not available");
 			}
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : No existing SAN to display");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
 		}
 
 		driver.navigate().back();
@@ -5895,7 +5989,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : No existing SAN to display");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
 		}
 
 	}
@@ -5930,7 +6024,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			//View link displayed verify
 			if(getwebelement(xml.getlocator("//locators/" + application + "/edit")).isDisplayed())
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Edit link is displaying in Manage Messages page");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Edit link is displaying in Manage Messages page");
 				Log.info("Edit link is displayed");
 
 				click(application, "Edit", "edit");
@@ -5940,131 +6034,131 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				//verify customer name field
 				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_customername")).getAttribute("readonly")!=null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Customer Name field is disabled as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer Name field is disabled as expected");
 					String Customernamevalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_customername")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Customer Name field value is displayed as:"+ Customernamevalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer Name field value is displayed as:"+ Customernamevalue);
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Customer Name field is enabled");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Customer Name field is enabled");
 				}
 
 				//verify country code field
 				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_countrycode")).getAttribute("readonly")!=null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Country code field is disabled as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Country code field is disabled as expected");
 					String CountryCodevalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_countrycode")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Country code field value is displayed as:"+ CountryCodevalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Country code field value is displayed as:"+ CountryCodevalue);
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Country code field is enabled");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Country code field is enabled");
 				}
 
 				//verify san reference field
 				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_sanreference")).getAttribute("readonly")!=null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN Reference field is disabled as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : SAN Reference field is disabled as expected");
 					String SANReferencevalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_sanreference")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : SAN Reference field value is displayed as:"+ SANReferencevalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : SAN Reference field value is displayed as:"+ SANReferencevalue);
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : SAN Reference field is enabled");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : SAN Reference field is enabled");
 				}
 
 				//verify name field
 				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_name")).getAttribute("readonly")!=null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Name field is disabled as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Name field is disabled as expected");
 					String Namevalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_name")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Name field value is displayed as:"+ Namevalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Name field value is displayed as:"+ Namevalue);
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Name field is enabled");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Name field is enabled");
 				}
 
 				//verify description field
 				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_description")).getAttribute("readonly")!=null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Description field is disabled as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Description field is disabled as expected");
 					String Descriptionvalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_description")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Description field value is displayed as:"+ Descriptionvalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Description field value is displayed as:"+ Descriptionvalue);
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Description field is enabled");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Description field is enabled");
 				}
 
 				//verify body field
 				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_bodyfield")).getAttribute("readonly")!=null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Body field is disabled as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Body field is disabled as expected");
 					String Bodyvalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_bodyfield")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Body field value is displayed as:"+ Bodyvalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Body field value is displayed as:"+ Bodyvalue);
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Body field is enabled");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Body field is enabled");
 				}
 
 				//verify prefix field
 				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_prefixfield")).getAttribute("readonly")!=null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Prefix field is disabled as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Prefix field is disabled as expected");
 					String Prefixvalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_prefixfield")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Prefix field value is displayed as:"+ Prefixvalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Prefix field value is displayed as:"+ Prefixvalue);
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Prefix field is enabled");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Prefix field is enabled");
 				}
 
 				//verify repetitions field
 				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_repetitionsfield")).getAttribute("readonly")!=null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Repetitions field is disabled as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Repetitions field is disabled as expected");
 					String Repetitionsvalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_repetitionsfield")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Repetitions field value is displayed as:"+ Repetitionsvalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Repetitions field value is displayed as:"+ Repetitionsvalue);
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Repetitions field is enabled");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Repetitions field is enabled");
 				}
 
 				//verify duration field
 				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_durationfield")).getAttribute("readonly")!=null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Duration field is disabled as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Duration field is disabled as expected");
 					String Durationvalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_durationfield")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Duration field value is displayed as:"+ Durationvalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Duration field value is displayed as:"+ Durationvalue);
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Duration field is enabled");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Duration field is enabled");
 				}
 
 				//verify suffix field
 				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_suffixfield")).getAttribute("readonly")!=null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Suffix field is disabled as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Suffix field is disabled as expected");
 					String Suffixvalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_suffixfield")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Suffix field value is displayed as:"+ Suffixvalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Suffix field value is displayed as:"+ Suffixvalue);
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Suffix field is enabled");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Suffix field is enabled");
 				}
 
 				//verify start network charge checkbox field
 				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_startnetworkcharge")).getAttribute("checked")!=null)
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : 'Start Network Charge' checkbox is checked by default as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : 'Start Network Charge' checkbox is checked by default as expected");
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : 'Start Network Charge' checkbox is not checked by default");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : 'Start Network Charge' checkbox is not checked by default");
 				}
 
 				click(application, "Cancel", "cancelbutton");
@@ -6072,12 +6166,12 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Edit link is not displaying in Manage Messages page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Edit link is not displaying in Manage Messages page");
 			}
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : No existing NGIN Messages to display");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing NGIN Messages to display");
 		}
 
 		WebElement SelectExistingSAN1= driver.findElement(By.xpath("//div[text()='"+nginmessage_sannumber+"']/preceding-sibling::div//div//input[@type='radio']"));
@@ -6089,7 +6183,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			//View link displayed verify
 			if(getwebelement(xml.getlocator("//locators/" + application + "/edit")).isDisplayed())
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Edit link is displaying in Manage Messages page");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Edit link is displaying in Manage Messages page");
 				Log.info("Edit link is displayed");
 
 				click(application, "Edit", "edit");
@@ -6102,22 +6196,22 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				Thread.sleep(2000);
 				if(getwebelement(xml.getlocator("//locators/" + application + "/nginmessageheader")).isDisplayed())
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to Manage Messages page");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to Manage Messages page");
 					compareText(application, "Edit Message page success message", "editmessage_successmessage", "Message successfully updated.");
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Not navigated to Manage Messages page");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Not navigated to Manage Messages page");
 				}
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Edit link is not displaying in Manage Messages page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Edit link is not displaying in Manage Messages page");
 			}
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : No existing NGIN Messages to display");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing NGIN Messages to display");
 		}
 
 	}
@@ -6144,7 +6238,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		click(application, "Add MAS Switch Link", "MAS_AddMASSwitchLink");
 		
 		if (getwebelement(xml.getlocator("//locators/" + application + "/MAS_AddMASSwitch_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Add MAS Switch' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Add MAS Switch' page navigated as expected");
 			System.out.println("'Add MAS Switch' page navigated as expected");
 			
 		try {
@@ -6156,20 +6250,20 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		addDropdownValues_commonMethod(application, "IMS POP Location", "MAS_IMSPOPLocationDropdown", MAS_IMSPOPLocation, xml);
 		click(application, "OK button", "MAS_OKbutton");
 		compareText(application, "Add Switch Successful Message for MAS Switch", "MAS_AddSwitchSuccessfulMessage", "MAS switch added successfully");
-		DriverTestcase.logger.log(LogStatus.PASS, "MAS switch added successfully");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "MAS switch added successfully");
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Add MAS Switch page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Add MAS Switch page");
 			System.out.println(  e+ " : Field is not displayed in Add MAS Switch page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Add MAS Switch page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Add MAS Switch page ");
 			System.out.println(  e+" : Field is not displayed in Add MAS Switch page");
 		}
 
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Add MAS Switch' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Add MAS Switch' page not navigated");
 			System.out.println("'Add MAS Switch' page not navigated");
 		}
 		
@@ -6185,7 +6279,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		click(application, "Add MAS Switch Link", "MAS_AddMASSwitchLink");
 		
 		if (getwebelement(xml.getlocator("//locators/" + application + "/MAS_AddMASSwitch_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Add MAS Switch' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Add MAS Switch' page navigated as expected");
 			System.out.println("'Add MAS Switch' page navigated as expected");
 			
 		try {
@@ -6197,16 +6291,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Add MAS Switch page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Add MAS Switch page");
 			System.out.println(  e+ " : Field is not displayed in Add MAS Switch page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Add MAS Switch page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Add MAS Switch page ");
 			System.out.println(  e+" : Field is not displayed in Add MAS Switch page");
 		}
 
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Add MAS Switch' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Add MAS Switch' page not navigated");
 			System.out.println("'Add MAS Switch' page not navigated");
 		}
 		
@@ -6220,7 +6314,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		//**click(application, "MAS View Link", "MAS_viewdevice1");
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_ViewDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'View MAS Switch' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'View MAS Switch' page navigated as expected");
 			System.out.println("'View MAS Switch' page navigated as expected");
 			
 		try {
@@ -6239,17 +6333,17 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in View MAS Switch page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in View MAS Switch page");
 			System.out.println(  e+ " : Field is not displayed in View MAS Switch page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in View MAS Switch page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in View MAS Switch page ");
 			System.out.println(  e+" : Field is not displayed in View MAS Switch page");
 		}
 
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'View MAS Switch' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View MAS Switch' page not navigated");
 			System.out.println("'View MAS Switch' page not navigated");
 		}
 		
@@ -6266,7 +6360,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		//**click(application, "MAS View Link", "MAS_viewdevice1");
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_ViewDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'View MAS Switch' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'View MAS Switch' page navigated as expected");
 			System.out.println("'View MAS Switch' page navigated as expected");
 			
 		try {
@@ -6285,17 +6379,17 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in View MAS Switch page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in View MAS Switch page");
 			System.out.println(  e+ " : Field is not displayed in View MAS Switch page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in View MAS Switch page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in View MAS Switch page ");
 			System.out.println(  e+" : Field is not displayed in View MAS Switch page");
 		}
 
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'View MAS Switch' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View MAS Switch' page not navigated");
 			System.out.println("'View MAS Switch' page not navigated");
 		}
 		
@@ -6306,14 +6400,14 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	public void verifyEditMASswitchFunction(String application, String ServiceIdentification,  String MAS_DeviceName_Edit, String MAS_VendorModelEdit, String MAS_ManagementAddressEdit, String MAS_SnmproEdit, String MAS_CountryEdit, String MAS_CityEdit, String MAS_SiteEdit, String MAS_PremiseEdit) throws InterruptedException, DocumentException, IOException {
 
 		if (getwebelement(xml.getlocator("//locators/" + application + "/MAS_ViewDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'View MAS Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'View MAS Device' page navigated as expected");
 			System.out.println("'View MAS Device' page navigated as expected");
 			
 			click(application, "ACTION link", "MAS_View_ActionLink");
 			click(application, "Edit Link", "MAS_View_Action_EditLink");
 		
 		if (getwebelement(xml.getlocator("//locators/" + application + "/Edit_MASSwitch_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Edit MAS Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit MAS Device' page navigated as expected");
 			System.out.println("'Edit MAS Device' page navigated as expected");
 			
 			try { 	
@@ -6326,16 +6420,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Edit MAS Device page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit MAS Device page");
 			System.out.println(  e+ " : Field is not displayed in Edit MAS Device page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Edit MAS Device page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Edit MAS Device page ");
 			System.out.println(  e+" : Field is not displayed in Edit MAS Device page");
 		}
 
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Edit MAS Switch' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Edit MAS Switch' page not navigated");
 			System.out.println("'Edit MAS Switch' page not navigated");	
 		}
 		
@@ -6343,7 +6437,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'View MAS Device' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View MAS Device' page not navigated");
 			System.out.println("'View MAS Device' page navigated");
 		}
 		
@@ -6355,14 +6449,14 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	
 	public void verifyEditMASswitch_UI(String application, String ServiceIdentification,  String MAS_DeviceName_Edit, String MAS_VendorModelEdit, String MAS_ManagementAddressEdit, String MAS_SnmproEdit, String MAS_CountryEdit, String MAS_CityEdit, String MAS_SiteEdit, String MAS_PremiseEdit) throws InterruptedException, DocumentException, IOException {
 		if (getwebelement(xml.getlocator("//locators/" + application + "/MAS_ViewDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'View MAS Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'View MAS Device' page navigated as expected");
 			System.out.println("'View MAS Device' page navigated as expected");
 			
 			click(application, "ACTION link", "MAS_View_ActionLink");
 			click(application, "Edit Link", "MAS_View_Action_EditLink");
 		
 		if (getwebelement(xml.getlocator("//locators/" + application + "/Edit_MASSwitch_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Edit MAS Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit MAS Device' page navigated as expected");
 			System.out.println("'Edit MAS Device' page navigated as expected");
 			
 			try { 	
@@ -6374,21 +6468,21 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Edit MAS Device page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit MAS Device page");
 			System.out.println(  e+ " : Field is not displayed in Edit MAS Device page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Edit MAS Device page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Edit MAS Device page ");
 			System.out.println(  e+" : Field is not displayed in Edit MAS Device page");
 		}
 
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Edit MAS Switch' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Edit MAS Switch' page not navigated");
 			System.out.println("'Edit MAS Switch' page not navigated");	
 		}
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'View MAS Device' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View MAS Device' page not navigated");
 			System.out.println("'View MAS Device' page navigated");
 		}
 	}
@@ -6398,17 +6492,17 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	public void veriyFetchDeviceInterfacesFunction_MAS(String application,String ServiceIdentification, String MAS_ServiceStatusChangeRequired) throws InterruptedException, DocumentException, IOException {
 		scrollToTop();
 		if (getwebelement(xml.getlocator("//locators/" + application + "/MAS_ViewDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'View MAS Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'View MAS Device' page navigated as expected");
 			System.out.println("'View MAS Device' page navigated as expected");
 		
 		click(application, "ACTION link", "MAS_View_ActionLink");
 		click(application, "Fetch Device Interfaces Link", "MAS_View_Action_FetchDeviceInterfacesLink");
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_FetchDeviceInterfacesSuccessMessage")).isDisplayed()){
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Device fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' displayed ");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Device fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' displayed ");
 			System.out.println("Step : Device fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' displayed ");
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
 			System.out.println("Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
 		}
 		
@@ -6417,7 +6511,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		//Manage COLT's Network - Manage Network
 		if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_ManageCOLTsNetworkManageNetwork_header")).isDisplayed()) {
-		DriverTestcase.logger.log(LogStatus.PASS, "'Manage COLT's Network - Manage Network' page navigated as expected");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'Manage COLT's Network - Manage Network' page navigated as expected");
 		System.out.println("'Manage COLT's Network - Manage Network' page navigated as expected");
 					
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_Manage_Synchronization_SynchronizeLink")));
@@ -6468,22 +6562,22 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 				{
 					if(MAS_servicestatushistoryValue.isDisplayed())
 					{
-						DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request logged");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request logged");
 					}
 					else
-						DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request is not logged");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request is not logged");
 				}
 				catch(StaleElementReferenceException e)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "No service history to display");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "No service history to display");
 				}
 			}
 			else
-				DriverTestcase.logger.log(LogStatus.FAIL, "Status link is not working");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Status link is not working");
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change not reqired");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change not reqired");
 			click(application, "Close", "MAS_servicestatus_popupclose");
 		}
 
@@ -6499,21 +6593,21 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Manage Colt Network page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Manage Colt Network page");
 			System.out.println(  e+ " : Field is not displayed in Manage Colt Network page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Manage Colt Network page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Manage Colt Network page ");
 			System.out.println(  e+" : Field is not displayed in Manage Colt Network page");
 		}
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Manage COLT's Network - Manage Network' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Manage COLT's Network - Manage Network' page not navigated");
 			System.out.println("'Manage COLT's Network - Manage Network' page not navigated");
 		}
 	
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'View MAS Device' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View MAS Device' page not navigated");
 			System.out.println("'View MAS Device' page not navigated");
 			}
 		
@@ -6568,7 +6662,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		scrollToTop();
 		if (getwebelement(xml.getlocator("//locators/" + application + "/MAS_ViewDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'View MAS Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'View MAS Device' page navigated as expected");
 			System.out.println("'View MAS Device' page navigated as expected");
 			
 		click(application, "ACTION link", "MAS_View_ActionLink");
@@ -6588,7 +6682,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		compareText(application, "Delete MAS Device Successfull Message", "MAS_DeleteSwitchSuccessfulMessage", "MAS switch deleted successfully");
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'View MAS Device' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View MAS Device' page not navigated");
 			System.out.println("'View MAS Device' page not navigated");
 		}
 		
@@ -6610,7 +6704,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		click(application, "Add Interface Link", "MAS_PE_AddInterfaceLink");
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_AddInterface_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'MAS Add Interface' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'MAS Add Interface' page navigated as expected");
 			System.out.println("'MAS Add Interface' page navigated as expected");
 		
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_Configuration_label")));
@@ -6625,7 +6719,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		
 		if(MAS_AccessMedia.equalsIgnoreCase("VPN")) {
-			DriverTestcase.logger.log(LogStatus.PASS,  " Selected Access Media is : "+MAS_AccessMedia);
+			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+MAS_AccessMedia);
 			
 			EnterTextValue(application, MAS_Interface, "Interface textfield", "MAS_PE_InterfaceTextfield");
 			EnterTextValue(application, MAS_InterfaceAddressRange, "Interface Address Range Textfield", "MAS_PE_InterfaceAddressRangeTextfield");
@@ -6646,15 +6740,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_IVManagementCheckbox")).isEnabled()){
 //				if (MAS_IVManagement.equalsIgnoreCase("YES")) {
 //					click(application, "'IV Management' checkbox", "MAS_PE_IVManagementCheckbox");
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 //					System.out.println("Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 //				} else {
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
 //					System.out.println("Step : 'IV Management' checkbox is not Selected");
 //				}
 //			
 //				}else {
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 //					System.out.println("Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 //				}
 
@@ -6678,10 +6772,10 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			click(application, "OK Button", "MAS_PE_OKButton");
 			
 			compareText(application, "Interface Added Successfully Message", "MAS_PE_AddInterfaceSuccessfullMessage", "Interface added successfully");
-			DriverTestcase.logger.log(LogStatus.PASS, "Interfaces sucessfully added by selecting VPN as Access Media");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces sucessfully added by selecting VPN as Access Media");
 			
 		}else if(MAS_AccessMedia.equalsIgnoreCase("EPN")) {
-			DriverTestcase.logger.log(LogStatus.PASS,  " Selected Access Media is : "+MAS_AccessMedia);
+			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+MAS_AccessMedia);
 
 			click(application, "Access Media Dropdown", "MAS_PE_AccessMediaDropdown");
 			WebElement SelectMAS_AccessMediaDropdownValue=getwebelement("//div[text()='"+ MAS_AccessMedia +"']");
@@ -6708,15 +6802,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_IVManagementCheckbox")).isEnabled()){
 //				if (MAS_IVManagement.equalsIgnoreCase("YES")) {
 //					click(application, "'IV Management' checkbox", "MAS_PE_IVManagementCheckbox");
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 //					System.out.println("Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 //				} else {
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
 //					System.out.println("Step : 'IV Management' checkbox is not Selected");
 //				}
 //			
 //				}else {
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 //					System.out.println("Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 //				}
 
@@ -6738,28 +6832,28 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			click(application, "OK Button", "MAS_PE_OKButton");
 			
 			compareText(application, "Interface Added Successfully Message", "MAS_PE_AddInterfaceSuccessfullMessage", "Interface added successfully");
-			DriverTestcase.logger.log(LogStatus.PASS, "Interfaces sucessfully added by selecting EPN as Access Media");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces sucessfully added by selecting EPN as Access Media");
 			Log.info("------ Interface Added successfully ------");
 			
 		}else {
 			System.out.println("Access Media Dropdown is not selected as VPN or EPN");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Access Media Dropdown is not selected as VPN or EPN");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Access Media Dropdown is not selected as VPN or EPN");
 		}
 		
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Add Interface page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Add Interface page");
 			System.out.println(  e+ " : Field is not displayed in  Add Interface page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in  Add Interface page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in  Add Interface page ");
 			System.out.println(  e+" : Field is not displayed in  Add Interface page");
 		}
 
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'MAS Add Interface' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'MAS Add Interface' page not navigated");
 			System.out.println("'MAS Add Interface' page not navigated");
 		}
 		sa.assertAll();
@@ -6787,12 +6881,12 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		click(application, "ACTION MAS Switch", "MAS_PE_ACTION_EditLink_Device1"); 
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_EditInterface_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'MAS Edit Interface' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'MAS Edit Interface' page navigated as expected");
 			System.out.println("'MAS Edit Interface' page navigated as expected");
 			
 		try {
 		if(MAS_AccessMediaEdit.equalsIgnoreCase("VPN")) {
-			DriverTestcase.logger.log(LogStatus.PASS,  " Selected Access Media is : "+MAS_AccessMediaEdit);
+			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+MAS_AccessMediaEdit);
 
 			ClearAndEnterTextValue(application, "Interface textfield", "MAS_PE_InterfaceTextfield", MAS_InterfaceEdit);
 //			ClearAndEnterTextValue(application, "Interface Address Range Textfield", "MAS_PE_InterfaceAddressRangeTextfield", MAS_InterfaceAddressRangeEdit);
@@ -6812,15 +6906,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_IVManagementCheckbox")).isEnabled()){
 //				if (MAS_IVManagementEdit.equalsIgnoreCase("YES")) {
 //					click(application, "'IV Management' checkbox", "MAS_PE_IVManagementCheckbox");
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 //					System.out.println("Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 //				} else {
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
 //					System.out.println("Step : 'IV Management' checkbox is not Selected");
 //				}
 //			
 //				}else {
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 //					System.out.println("Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 //				}
 
@@ -6841,11 +6935,11 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			click(application, "OK Button", "MAS_PE_OKButton");
 			
 			compareText(application, "Interface Updated Successfully Message", "MAS_PE_UpdateInterfaceSuccessfullMessage", "Interface updated successfully");
-			DriverTestcase.logger.log(LogStatus.PASS, "Interfaces sucessfully updated by selecting VPN as Access Media");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces sucessfully updated by selecting VPN as Access Media");
 			
 		
 		}else if(MAS_AccessMediaEdit.equalsIgnoreCase("EPN")) {
-			DriverTestcase.logger.log(LogStatus.PASS,  " Selected Access Media is : "+MAS_AccessMediaEdit);
+			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+MAS_AccessMediaEdit);
 			
 			click(application, "Access Media Dropdown", "MAS_PE_AccessMediaDropdown");
 			WebElement SelectMAS_AccessMediaDropdownValue=getwebelement("//div[text()='"+ MAS_AccessMediaEdit +"']");
@@ -6885,28 +6979,28 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			click(application, "OK Button", "MAS_PE_OKButton");
 			
 			compareText(application, "Interface Updated Successfully Message", "MAS_PE_UpdateInterfaceSuccessfullMessage", "Interface updated successfully");
-			DriverTestcase.logger.log(LogStatus.PASS, "Interfaces sucessfully updated by selecting EPN as Access Media");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces sucessfully updated by selecting EPN as Access Media");
 			Log.info("------ Interface Updated successfully ------");
 			
 		}else {
 			System.out.println("Access Media Dropdown is not selected as VPN or EPN");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Access Media Dropdown is not selected as VPN or EPN");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Access Media Dropdown is not selected as VPN or EPN");
 		}
 	
 		
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Edit Interface page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit Interface page");
 			System.out.println(  e+ " : Field is not displayed in  Edit Interface page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in  Edit Interface page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in  Edit Interface page ");
 			System.out.println(  e+" : Field is not displayed in  Edit Interface page");
 		}
 
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'MAS Edit Interface' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'MAS Edit Interface' page not navigated");
 			System.out.println("'MAS Edit Interface' page not navigated");
 		}
 		
@@ -6930,7 +7024,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		click(application, "Add Interface Link", "MAS_PE_AddInterfaceLink");
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_AddInterface_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'MAS Add Interface' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'MAS Add Interface' page navigated as expected");
 			System.out.println("'MAS Add Interface' page navigated as expected");
 		
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_Configuration_label")));
@@ -6945,7 +7039,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		
 		if(MAS_AccessMedia.equalsIgnoreCase("VPN")) {
-			DriverTestcase.logger.log(LogStatus.PASS,  " Selected Access Media is : "+MAS_AccessMedia);
+			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+MAS_AccessMedia);
 			
 			isDisplayed(application, "MAS_PE_InterfaceTextfield", "Interface", xml);
 			isDisplayed(application, "MAS_PE_InterfaceAddressRangeTextfield", "Interface Address Range", xml);
@@ -6970,7 +7064,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			click(application, "Cancel", "cancelbutton");
 			
 		}else if(MAS_AccessMedia.equalsIgnoreCase("EPN")) {
-			DriverTestcase.logger.log(LogStatus.PASS,  " Selected Access Media is : "+MAS_AccessMedia);
+			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+MAS_AccessMedia);
 
 			click(application, "Access Media Dropdown", "MAS_PE_AccessMediaDropdown");
 			WebElement SelectMAS_AccessMediaDropdownValue=getwebelement("//div[text()='"+ MAS_AccessMedia +"']");
@@ -7007,21 +7101,21 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			//////////////////////////////////////////
 		}else {
 			System.out.println("Access Media Dropdown is not selected as VPN or EPN");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Access Media Dropdown is not selected as VPN or EPN");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Access Media Dropdown is not selected as VPN or EPN");
 		}
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Add Interface page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Add Interface page");
 			System.out.println(  e+ " : Field is not displayed in  Add Interface page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in  Add Interface page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in  Add Interface page ");
 			System.out.println(  e+" : Field is not displayed in  Add Interface page");
 		}
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'MAS Add Interface' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'MAS Add Interface' page not navigated");
 			System.out.println("'MAS Add Interface' page not navigated");
 		}
 		sa.assertAll();
@@ -7043,7 +7137,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		click(application, "Configure interface", "MAS_PE_ACTION_ConfigureLink_Device1"); 
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_Configure_ConfigureInterface_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'MAS Select Interface' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'MAS Select Interface' page navigated as expected");
 			System.out.println("'MAS Select Interface' page navigated as expected");
 			
 		
@@ -7079,15 +7173,15 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Select Interface page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Select Interface page");
 				System.out.println(  e+ " : Field is not displayed in  Select Interface page");
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in  Select Interface page ");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in  Select Interface page ");
 				System.out.println(  e+" : Field is not displayed in  Select Interface page");
 			}
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'MAS Select Interface' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'MAS Select Interface' page not navigated");
 			System.out.println("'MAS Select Interface' page not navigated");
 		}
 	}
@@ -7176,7 +7270,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		click(application, "Add PE Device Link", "PE_AddPEDeviceLink");
 		
 		if (getwebelement(xml.getlocator("//locators/" + application + "/PE_AddPEDevice_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Add PE Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Add PE Device' page navigated as expected");
 			System.out.println("'Add PE Device' page navigated as expected");
 			
 		try {
@@ -7193,16 +7287,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Add PE Device page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Add PE Device page");
 			System.out.println(  e+ " : Field is not displayed in Add PE Device page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Add PE Device page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Add PE Device page ");
 			System.out.println(  e+" : Field is not displayed in Add PE Device page");
 		}
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Add PE Device' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Add PE Device' page not navigated");
 			System.out.println("'Add PE Device' page not navigated");
 		}
 		
@@ -7219,7 +7313,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		click(application, "Add PE Device Link", "PE_AddPEDeviceLink");
 		
 		if (getwebelement(xml.getlocator("//locators/" + application + "/PE_AddPEDevice_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Add PE Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Add PE Device' page navigated as expected");
 			System.out.println("'Add PE Device' page navigated as expected");
 			
 		try {
@@ -7234,16 +7328,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Add PE Device page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Add PE Device page");
 			System.out.println(  e+ " : Field is not displayed in Add PE Device page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Add PE Device page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Add PE Device page ");
 			System.out.println(  e+" : Field is not displayed in Add PE Device page");
 		}
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Add PE Device' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Add PE Device' page not navigated");
 			System.out.println("'Add PE Device' page not navigated");
 		}
 		
@@ -7256,23 +7350,28 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		ScrolltoElement(application, "MAS_AddMASSwitchLink", xml);//TrunkGroupSiteOrders_header //ProviderEquipment_header //MASswitch_header//PE_AddPEDeviceLink
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingPEdevicegrid")).isDisplayed())
 		{
-			//**WebElement AddedDevice_ViewLink=getwebelement("//div[div[b[text()='"+PE_DeviceName+"']]]//span[text()='View']");
-			//**Clickon(AddedDevice_ViewLink);
 			click_commonMethod(application, "View Link", "PE_viewdevice1", xml);
-			compareText(application, "View device header", "PE_ViewDevice_Header", "Device", xml);
-				
+
+			if(getwebelement(xml.getlocator("//locators/" + application + "/PE_ViewDevice_Header")).isDisplayed()) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
+				System.out.println("'View PE Device' page navigated as expected");
+			}else {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'View PE Device' page not navigated");
+				System.out.println("'View PE Device' page not navigated");
+			}
+			
 		}else{
-			DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 		}
 		
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
 			System.out.println(  e+ " : Field is not displayed");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
 			System.out.println(  e+" : Field is not displayed");
 		}
 	}
@@ -7291,17 +7390,17 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			compareText(application, "View device header", "PE_ViewDevice_Header", "Device", xml);
 				
 		}else{
-			DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 		}
 		
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
 			System.out.println(  e+ " : Field is not displayed");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
 			System.out.println(  e+" : Field is not displayed");
 		}
 
@@ -7316,7 +7415,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			//		click(application, "PE View Link", "PE_viewdevice1");
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/PE_ViewDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'View PE Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
 			System.out.println("'View PE Device' page navigated as expected");
 			
 		try {
@@ -7337,16 +7436,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in View PE Device page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in View PE Device page");
 			System.out.println(  e+ " : Field is not displayed in View PE Device page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in View PE Device page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in View PE Device page ");
 			System.out.println(  e+" : Field is not displayed in View PE Device page");
 		}
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'View PE Device' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View PE Device' page not navigated");
 			System.out.println("'View PE Device' page not navigated");
 		}
 		
@@ -7362,7 +7461,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		//		click(application, "PE View Link", "PE_viewdevice1");
 
 	if(getwebelement(xml.getlocator("//locators/" + application + "/PE_ViewDevice_Header")).isDisplayed()) {
-		DriverTestcase.logger.log(LogStatus.PASS, "'View PE Device' page navigated as expected");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
 		System.out.println("'View PE Device' page navigated as expected");
 		
 	try {
@@ -7383,16 +7482,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in View PE Device page");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in View PE Device page");
 		System.out.println(  e+ " : Field is not displayed in View PE Device page");
 	}catch(Exception e) {
 		e.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in View PE Device page ");
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in View PE Device page ");
 		System.out.println(  e+" : Field is not displayed in View PE Device page");
 	}
 	
 	}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "'View PE Device' page not navigated");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'View PE Device' page not navigated");
 		System.out.println("'View PE Device' page not navigated");
 	}
 	
@@ -7403,14 +7502,14 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	public void verifyEditPEDeviceFunction(String application, String ServiceIdentification,  String PE_DeviceName_Edit, String PE_VendorModelEdit, String PE_ManagementAddressEdit, String PE_SnmproEdit, String PE_CountryEdit, String PE_CityEdit, String PE_SiteEdit, String PE_PremiseEdit) throws InterruptedException, DocumentException, IOException {
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/PE_ViewDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'View PE Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
 			System.out.println("'View PE Device' page navigated as expected");
 			
 			click(application, "ACTION link", "PE_View_ActionLink");
 			click(application, "Edit Link", "PE_View_Action_EditLink");
 		
 		if (getwebelement(xml.getlocator("//locators/" + application + "/Edit_PEDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Edit PE Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit PE Device' page navigated as expected");
 			System.out.println("'Edit PE Device' page navigated as expected");
 			
 			try { 	
@@ -7425,16 +7524,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Edit PE Device page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit PE Device page");
 			System.out.println(  e+ " : Field is not displayed in Edit PE Device page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Edit PE Device page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Edit PE Device page ");
 			System.out.println(  e+" : Field is not displayed in Edit PE Device page");
 		}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'Edit PE Device' page not navigated");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Edit PE Device' page not navigated");
 				System.out.println("'Edit PE Device' page not navigated");	
 			}
 			
@@ -7442,7 +7541,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'View PE Device' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View PE Device' page not navigated");
 			System.out.println("'View PE Device' page navigated");
 		}
 	}
@@ -7453,14 +7552,14 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 public void verifyEditPEDeviceFunction_UI(String application, String ServiceIdentification,  String PE_DeviceName_Edit, String PE_VendorModelEdit, String PE_ManagementAddressEdit, String PE_SnmproEdit, String PE_CountryEdit, String PE_CityEdit, String PE_SiteEdit, String PE_PremiseEdit) throws InterruptedException, DocumentException, IOException {
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/PE_ViewDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'View PE Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
 			System.out.println("'View PE Device' page navigated as expected");
 			
 			click(application, "ACTION link", "PE_View_ActionLink");
 			click(application, "Edit Link", "PE_View_Action_EditLink");
 		
 		if (getwebelement(xml.getlocator("//locators/" + application + "/Edit_PEDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Edit PE Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit PE Device' page navigated as expected");
 			System.out.println("'Edit PE Device' page navigated as expected");
 			
 			try { 	
@@ -7474,19 +7573,19 @@ public void verifyEditPEDeviceFunction_UI(String application, String ServiceIden
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Edit PE Device page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit PE Device page");
 			System.out.println(  e+ " : Field is not displayed in Edit PE Device page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Edit PE Device page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Edit PE Device page ");
 			System.out.println(  e+" : Field is not displayed in Edit PE Device page");
 		}
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'Edit PE Device' page not navigated");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Edit PE Device' page not navigated");
 				System.out.println("'Edit PE Device' page not navigated");	
 			}
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'View PE Device' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View PE Device' page not navigated");
 			System.out.println("'View PE Device' page navigated");
 		}
 	}
@@ -7498,7 +7597,7 @@ public void verifFetchDeviceInterfacesFunction_PE(String application,String Serv
 	
 	scrollToTop();
 	if(getwebelement(xml.getlocator("//locators/" + application + "/PE_ViewDevice_Header")).isDisplayed()) {
-		DriverTestcase.logger.log(LogStatus.PASS, "'View PE Device' page navigated as expected");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
 		System.out.println("'View PE Device' page navigated as expected");
 	
 		click(application, "ACTION link", "PE_View_ActionLink");
@@ -7506,10 +7605,10 @@ public void verifFetchDeviceInterfacesFunction_PE(String application,String Serv
 	
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/PE_FetchDeviceInterfacesSuccessMessage")).isDisplayed()){
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Device fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' displayed ");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Device fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' displayed ");
 			System.out.println("Step : Device fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' displayed ");
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
 			System.out.println("Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
 		}
 		
@@ -7520,7 +7619,7 @@ public void verifFetchDeviceInterfacesFunction_PE(String application,String Serv
 		
 		//Manage COLT's Network - Manage Network
 		if(getwebelement(xml.getlocator("//locators/" + application + "/PE_ManageCOLTsNetworkManageNetwork_header")).isDisplayed()) {
-		DriverTestcase.logger.log(LogStatus.PASS, "'Manage COLT's Network - Manage Network' page navigated as expected");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'Manage COLT's Network - Manage Network' page navigated as expected");
 		System.out.println("'Manage COLT's Network - Manage Network' page navigated as expected");
 					
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/PE_Manage_Synchronization_SynchronizeLink")));
@@ -7573,22 +7672,22 @@ public void verifFetchDeviceInterfacesFunction_PE(String application,String Serv
 				{
 					if(PE_servicestatushistoryValue.isDisplayed())
 					{
-						DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request logged");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request logged");
 					}
 					else
-						DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request is not logged");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request is not logged");
 				}
 				catch(StaleElementReferenceException e)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "No service history to display");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "No service history to display");
 				}
 			}
 			else
-				DriverTestcase.logger.log(LogStatus.FAIL, "Status link is not working");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Status link is not working");
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change not reqired");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change not reqired");
 			click(application, "Close", "PE_servicestatus_popupclose");
 		}
 
@@ -7603,21 +7702,21 @@ public void verifFetchDeviceInterfacesFunction_PE(String application,String Serv
 
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Manage Colt Network page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Manage Colt Network page");
 			System.out.println(  e+ " : Field is not displayed in Manage Colt Network page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Manage Colt Network page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Manage Colt Network page ");
 			System.out.println(  e+" : Field is not displayed in Manage Colt Network page");
 		}
 		
 }else {
-	DriverTestcase.logger.log(LogStatus.FAIL, "'Manage COLT's Network - Manage Network' page not navigated");
+	ExtentTestManager.getTest().log(LogStatus.FAIL, "'Manage COLT's Network - Manage Network' page not navigated");
 	System.out.println("'Manage COLT's Network - Manage Network' page not navigated");
 }	
 		
 }else {
-	DriverTestcase.logger.log(LogStatus.FAIL, "'View PE Device' page not navigated");
+	ExtentTestManager.getTest().log(LogStatus.FAIL, "'View PE Device' page not navigated");
 	System.out.println("'View PE Device' page navigated");
 }
 
@@ -7676,7 +7775,7 @@ public void routerPanel_PE(String application, String commandIPv4, String comman
 		
 	}
 	else {
-		DriverTestcase.logger.log(LogStatus.INFO, "Router Panel will not display for the selected vendorModel: "+vendorModel);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Router Panel will not display for the selected vendorModel: "+vendorModel);
 		System.out.println("Router Panel will not display for the selected vendorModel: "+vendorModel);
 	}
 	
@@ -7692,20 +7791,20 @@ boolean resultField=false;
 try {	
 resultField=getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_result_textArea")).isDisplayed();
 if(resultField) {
-	DriverTestcase.logger.log(LogStatus.PASS, "'Result' text field is displaying");
+	ExtentTestManager.getTest().log(LogStatus.PASS, "'Result' text field is displaying");
 	System.out.println( "'Result' text field is displaying");
 	
 	String remarkvalue=getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_result_textArea")).getText();
-	DriverTestcase.logger.log(LogStatus.PASS, "value under 'Result' field displaying as "+ remarkvalue);
+	ExtentTestManager.getTest().log(LogStatus.PASS, "value under 'Result' field displaying as "+ remarkvalue);
 	System.out.println("value under 'Result' field displaying as "+ remarkvalue);
 
 }else {
-	DriverTestcase.logger.log(LogStatus.FAIL, "'Result' text field is not displaying");
+	ExtentTestManager.getTest().log(LogStatus.FAIL, "'Result' text field is not displaying");
 	System.out.println( "'Result' text field is not displaying");
 }
 }catch(Exception e) {
 e.printStackTrace();
-DriverTestcase.logger.log(LogStatus.FAIL, "'Result' text field is not displaying");
+ExtentTestManager.getTest().log(LogStatus.FAIL, "'Result' text field is not displaying");
 System.out.println("'Result' text field is not displaying");
 }
 	
@@ -7722,13 +7821,13 @@ public void hostnametextField_IPV6_PE(String application, String commandIPv6, St
 		  addtextFields_commonMethod(application, "IP Address or Hostname", "MAS_PE_commandIPv6_hostnameTextfield", ipv6Address, xml);
 		  
 	  }else {
-		  DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
+		  ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 			System.out.println("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 	  }
 	}catch(Exception e) {
 		e.printStackTrace();
 		
-		DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 		System.out.println("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 	}
 }
@@ -7744,17 +7843,17 @@ public void vrfNametextField_IPV6_PE(String application, String commandIPV6, Str
 			if(IPV6availability) {
 				addtextFields_commonMethod(application, "Router Vrf Name", "MAS_PE_commandIPv6_vrfnameTextField", vrfname_IPV6, xml);
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
+				ExtentTestManager.getTest().log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 				System.out.println("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
+			ExtentTestManager.getTest().log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 			System.out.println("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 		}
 	}
 	else {
-		DriverTestcase.logger.log(LogStatus.PASS, "'VRF Name IPv6' text field is not displaying for "+ commandIPV6);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'VRF Name IPv6' text field is not displaying for "+ commandIPV6);
 		System.out.println("'VRF Name IPv6' text field is not displaying for "+ commandIPV6 +" command");
 	}
 	
@@ -7771,13 +7870,13 @@ public void hostnametextField_IPV4_PE(String application, String command_ipv4, S
 		  addtextFields_commonMethod(application, "IP Address or Hostname", "MAS_PE_commandIPv4_hostnameTextfield", ipAddress, xml);
 		  
 	  }else {
-		  DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
+		  ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 			System.out.println("'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 	  }
 	}catch(Exception e) {
 		e.printStackTrace();
 		
-		DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 		System.out.println("'Hostname or IpAddress' for 'Ipv4' text field is not displaying for "+ command_ipv4);
 	}
 }
@@ -7794,17 +7893,17 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			if(IPV4availability) {
 				addtextFields_commonMethod(application, "Router Vrf Name", "MAS_PE_commandIPv4_vrfnameTextField", vrfname_ipv4, xml);
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 				System.out.println("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 			System.out.println("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 		}
 		
 	}else {
-		DriverTestcase.logger.log(LogStatus.PASS, "'VRF Name IPv4' text field is not displaying for "+ command_ipv4);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'VRF Name IPv4' text field is not displaying for "+ command_ipv4);
 		System.out.println("'VRF Name IPv4' text field is not displaying for "+ command_ipv4 +" command");
 	}
 }	
@@ -7859,7 +7958,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			click(application, "Add Interface Link", "MAS_PE_AddInterfaceLink");
 			
 			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_AddInterface_header")).isDisplayed()) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'PE Add Interface' page navigated as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'PE Add Interface' page navigated as expected");
 				System.out.println("'PE Add Interface' page navigated as expected");
 				
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_Configuration_label")));
@@ -7873,7 +7972,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		
 		
 		if(PE_AccessMedia.equalsIgnoreCase("VPN")) {
-			DriverTestcase.logger.log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMedia);
+			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMedia);
 			
 			EnterTextValue(application, PE_InterfaceAddressRange, "Interface Address Range Textfield", "MAS_PE_InterfaceAddressRangeTextfield");
 			EnterTextValue(application, PE_InterfaceAddressMask, "Interface Address Mask textfield", "MAS_PE_InterfaceAddressMaskTextfield");
@@ -7895,15 +7994,15 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_IVManagementCheckbox")).isEnabled()){
 //				if (PE_IVManagement.equalsIgnoreCase("YES")) {
 //					click(application, "'IV Management' checkbox", "MAS_PE_IVManagementCheckbox");
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 //					System.out.println("Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 //				} else {
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
 //					System.out.println("Step : 'IV Management' checkbox is not Selected");
 //				}
 //			
 //				}else {
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 //					System.out.println("Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 //				}
 
@@ -7929,10 +8028,10 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			click(application, "OK Button", "MAS_PE_OKButton");
 			
 			compareText(application, "Interface Added Successfully Message", "MAS_PE_AddInterfaceSuccessfullMessage", "Interface added successfully");
-			DriverTestcase.logger.log(LogStatus.PASS, "Interfaces sucessfully added by selecting VPN as Access Media");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces sucessfully added by selecting VPN as Access Media");
 			
 		}else if(PE_AccessMedia.equalsIgnoreCase("EPN")) {
-			DriverTestcase.logger.log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMedia);
+			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMedia);
 			
 			click(application, "Access Media Dropdown", "MAS_PE_AccessMediaDropdown");
 			WebElement SelectMAS_AccessMediaDropdownValue=getwebelement("//div[text()='"+ PE_AccessMedia +"']");
@@ -7958,15 +8057,15 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_IVManagementCheckbox")).isEnabled()){
 //				if (PE_IVManagement.equalsIgnoreCase("YES")) {
 //					click(application, "'IV Management' checkbox", "MAS_PE_IVManagementCheckbox");
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 //					System.out.println("Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 //				} else {
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
 //					System.out.println("Step : 'IV Management' checkbox is not Selected");
 //				}
 //			
 //				}else {
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 //					System.out.println("Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 //				}
 
@@ -7992,27 +8091,27 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			click(application, "OK Button", "MAS_PE_OKButton");
 			
 			compareText(application, "Interface Added Successfully Message", "MAS_PE_AddInterfaceSuccessfullMessage", "Interface added successfully");
-			DriverTestcase.logger.log(LogStatus.PASS, "Interfaces sucessfully added by selecting EPN as Access Media");			
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces sucessfully added by selecting EPN as Access Media");			
 			Log.info("------ Interface Added successfully ------");
 			
 		}else {
 			System.out.println("Access Media Dropdown is not selected as VPN or EPN");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Access Media Dropdown is not selected as VPN or EPN");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Access Media Dropdown is not selected as VPN or EPN");
 		}
 		
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Add Interface page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Add Interface page");
 			System.out.println(  e+ " : Field is not displayed in  Add Interface page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in  Add Interface page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in  Add Interface page ");
 			System.out.println(  e+" : Field is not displayed in  Add Interface page");
 		}
 
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'PE Add Interface' page not navigated");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'PE Add Interface' page not navigated");
 				System.out.println("'PE Add Interface' page not navigated");
 			}
 			sa.assertAll();
@@ -8035,7 +8134,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			click(application, "Add Interface Link", "MAS_PE_AddInterfaceLink");
 			
 			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_AddInterface_header")).isDisplayed()) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'PE Add Interface' page navigated as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'PE Add Interface' page navigated as expected");
 				System.out.println("'PE Add Interface' page navigated as expected");
 				
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_Configuration_label")));
@@ -8049,7 +8148,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		
 		
 		if(PE_AccessMedia.equalsIgnoreCase("VPN")) {
-			DriverTestcase.logger.log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMedia);
+			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMedia);
 			
 			isDisplayed(application, "MAS_PE_InterfaceAddressRangeTextfield", "Interface Address Range", xml);
 			isDisplayed(application, "MAS_PE_InterfaceAddressMaskTextfield", "Interface Address/Mask", xml);
@@ -8076,7 +8175,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			click(application, "Cancel", "cancelbutton");
 			
 		}else if(PE_AccessMedia.equalsIgnoreCase("EPN")) {
-			DriverTestcase.logger.log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMedia);
+			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMedia);
 			
 			click(application, "Access Media Dropdown", "MAS_PE_AccessMediaDropdown");
 			WebElement SelectMAS_AccessMediaDropdownValue=getwebelement("//div[text()='"+ PE_AccessMedia +"']");
@@ -8108,22 +8207,22 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			click(application, "Cancel", "cancelbutton");			
 		}else {
 			System.out.println("Access Media Dropdown is not selected as VPN or EPN");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Access Media Dropdown is not selected as VPN or EPN");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Access Media Dropdown is not selected as VPN or EPN");
 		}
 		
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Add Interface page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Add Interface page");
 			System.out.println(  e+ " : Field is not displayed in  Add Interface page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in  Add Interface page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in  Add Interface page ");
 			System.out.println(  e+" : Field is not displayed in  Add Interface page");
 		}
 
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'PE Add Interface' page not navigated");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'PE Add Interface' page not navigated");
 				System.out.println("'PE Add Interface' page not navigated");
 			}
 			sa.assertAll();
@@ -8147,13 +8246,13 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			click(application, "Edit Link", "PE_ACTION_EditLink_Device1"); 
 		
 			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_EditInterface_header")).isDisplayed()) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'PE Edit Interface' page navigated as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'PE Edit Interface' page navigated as expected");
 				System.out.println("'PE Edit Interface' page navigated as expected");
 				
 			try {
 				
 		if(PE_AccessMediaEdit.equalsIgnoreCase("VPN")) {
-			DriverTestcase.logger.log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMediaEdit);
+			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMediaEdit);
 			click(application, "Access Media Dropdown", "MAS_PE_AccessMediaDropdown");
 			WebElement SelectPE_AccessMediaDropdownValue=getwebelement("//div[text()='"+ PE_AccessMediaEdit +"']");
 			Clickon(SelectPE_AccessMediaDropdownValue);
@@ -8179,15 +8278,15 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_IVManagementCheckbox")).isEnabled()){
 				if (PE_IVManagementEdit.equalsIgnoreCase("YES")) {
 					click(application, "'IV Management' checkbox", "MAS_PE_IVManagementCheckbox");
-					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 					System.out.println("Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 				} else {
-					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
 					System.out.println("Step : 'IV Management' checkbox is not Selected");
 				}
 			
 				}else {
-					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 					System.out.println("Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 				}
 			
@@ -8208,10 +8307,10 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			click(application, "OK Button", "MAS_PE_OKButton");
 				
 			compareText(application, "Interface Updated Successfully Message", "MAS_PE_UpdateInterfaceSuccessfullMessage", "Interface updated successfully");
-			DriverTestcase.logger.log(LogStatus.PASS, "Interfaces sucessfully updated by selecting VPN as Access Media");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces sucessfully updated by selecting VPN as Access Media");
 			
 		}else if(PE_AccessMediaEdit.equalsIgnoreCase("EPN")) {
-			DriverTestcase.logger.log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMediaEdit);
+			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMediaEdit);
 			click(application, "Access Media Dropdown", "MAS_PE_AccessMediaDropdown");
 			WebElement SelectPE_AccessMediaDropdownValue=getwebelement("//div[text()='"+ PE_AccessMediaEdit +"']");
 			Clickon(SelectPE_AccessMediaDropdownValue);
@@ -8236,15 +8335,15 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_IVManagementCheckbox")).isEnabled()){
 				if (PE_IVManagementEdit.equalsIgnoreCase("YES")) {
 					click(application, "'IV Management' checkbox", "MAS_PE_IVManagementCheckbox");
-					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 					System.out.println("Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
 				} else {
-					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
 					System.out.println("Step : 'IV Management' checkbox is not Selected");
 				}
 			
 				}else {
-					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 					System.out.println("Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
 				}
 
@@ -8270,28 +8369,28 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			click(application, "OK Button", "MAS_PE_OKButton");
 			
 			compareText(application, "Interface Updated Successfully Message", "MAS_PE_UpdateInterfaceSuccessfullMessage", "Interface updated successfully");
-			DriverTestcase.logger.log(LogStatus.PASS, "Interfaces sucessfully updated by selecting EPN as Access Media");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces sucessfully updated by selecting EPN as Access Media");
 			Log.info("------ Interface Updated successfully ------");
 		
 	}else {
 		System.out.println("Access Media Dropdown is not selected as VPN or EPN");
-		DriverTestcase.logger.log(LogStatus.FAIL, "Access Media Dropdown is not selected as VPN or EPN");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "Access Media Dropdown is not selected as VPN or EPN");
 	}
 
 	
 	
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Edit Interface page");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit Interface page");
 		System.out.println(  e+ " : Field is not displayed in  Edit Interface page");
 	}catch(Exception e) {
 		e.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in  Edit Interface page ");
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in  Edit Interface page ");
 		System.out.println(  e+" : Field is not displayed in  Edit Interface page");
 	}
 
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'PE Edit Interface' page not navigated");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'PE Edit Interface' page not navigated");
 				System.out.println("'PE Edit Interface' page not navigated");
 			}
 			
@@ -8322,7 +8421,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		GetText(application, "Select Interfaces header", "MAS_PE_Configure_ConfigureInterface_header");
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_Configure_ConfigureInterface_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Configure Interface' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Configure Interface' page navigated as expected");
 			System.out.println("'Configure Interface' page navigated as expected");
 		
 			try {
@@ -8354,16 +8453,16 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, "Field is not displayed in 'Configure Interface' page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Field is not displayed in 'Configure Interface' page");
 				System.out.println( "Field is not displayed in 'Configure Interface' page");
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, "Field is not displayed in 'Configure Interface' page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Field is not displayed in 'Configure Interface' page");
 				System.out.println( "Field is not displayed in 'Configure Interface' page");
 			}
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Configure Interface' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Configure Interface' page not navigated");
 			System.out.println("'Configure Interface' page navigated");
 		}
 		
@@ -8405,7 +8504,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		
 		scrollToTop();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/PE_ViewDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'View PE Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
 			System.out.println("'View PE Device' page navigated as expected");
 
 			
@@ -8427,7 +8526,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		compareText(application, "Delete PE Device Successfull Message", "PE_DeletePEDeviceSuccessfulMessage", "PE Device deleted successfully");
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'View PE Device' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View PE Device' page not navigated");
 			System.out.println("'View PE Device' page navigated");
 		}
 
@@ -8514,7 +8613,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/PE_AddPEDeviceLink")));
 		TrunkGroupSiteOrderPanel_header= getwebelement(xml.getlocator("//locators/" + application + "/TrunkGroupSiteOrderPanel_header")).isDisplayed();
 		if(TrunkGroupSiteOrderPanel_header) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Trunk Group/Site Orders' panel is displaying as expected in 'view Service' page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Trunk Group/Site Orders' panel is displaying as expected in 'view Service' page");
 			System.out.println("'Trunk Group/Site Orders' panel is displaying as expected in 'view Service' page");
 			
 			
@@ -8524,7 +8623,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			addtrunkSiteorderPage_panelheader= getwebelement(xml.getlocator("//locators/" + application + "/addtrunkSiteorderPage_panelheader")).isDisplayed();
 			if(addtrunkSiteorderPage_panelheader) {
 				
-				DriverTestcase.logger.log(LogStatus.PASS, "'Add Trunk Group/Site Order' page is displaying as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Add Trunk Group/Site Order' page is displaying as expected");
 				System.out.println("'Add Trunk Group/Site Order' page is displaying as expected");
 				
 			//verify mandatory Warning Message
@@ -8539,7 +8638,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 					
 					addCheckbox_commonMethod(application, "trunkGroupOrder_checkbox", "Trunk Group Order", TrunkGroupOrderCheckboxStatus, "No", xml);
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, " ' Trunk Group order' checkbox is a mandatory field. No values passed");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " ' Trunk Group order' checkbox is a mandatory field. No values passed");
 					System.out.println(" ' Trunk Group order' checkbox is a mandatory field. No values passed");
 
 				}
@@ -8558,12 +8657,12 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 				if(trunkgrupOrderErrMsg) {
 					if(actualMsg.contains("1.trunkgroup number already exists")) {
 						
-						DriverTestcase.logger.log(LogStatus.FAIL, " Error message we are getting as: "+ actualMsg);
+						ExtentTestManager.getTest().log(LogStatus.FAIL, " Error message we are getting as: "+ actualMsg);
 						System.out.println(" Error message we are getting as: "+ actualMsg);
 					}
 					else if(actualMsg.equalsIgnoreCase("Trunk Group created successfully")) {
 						
-						DriverTestcase.logger.log(LogStatus.PASS, " Success Message displays as 'Trunk Group created successfully'");
+						ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message displays as 'Trunk Group created successfully'");
 						System.out.println(" Success Message displays as 'Trunk Group created successfully'");
 					}
 					
@@ -8575,12 +8674,12 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 				
 				
 			}else {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Add Trunk Group/Site Order' page is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Add Trunk Group/Site Order' page is not displaying");
 				System.out.println("'Add Trunk Group/Site Order' page is not displaying");
 			}
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Trunk Group/Site Orders' panel is not displaying in 'view Service' page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Trunk Group/Site Orders' panel is not displaying in 'view Service' page");
 			System.out.println("'Trunk Group/Site Orders' panel is not displaying in 'view Service' page");
 		}
 	}
@@ -8608,12 +8707,12 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 		
 		addtrunkSiteorderPage_panelheader= getwebelement(xml.getlocator("//locators/" + application + "/addtrunkSiteorderPage_panelheader")).isDisplayed();
 		if(addtrunkSiteorderPage_panelheader) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Edit Trunk Group/Site Order' page is displaying as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit Trunk Group/Site Order' page is displaying as expected");
 			System.out.println("'Edit Trunk Group/Site Order' page is displaying as expected");
 			
 		//Trunk group Order
 			if(TrunkGroupOrderCheckboxStatusEdit.equalsIgnoreCase("no")) {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'Trunk Group Order' is a mandatory field. It cannot be unselected");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Trunk Group Order' is a mandatory field. It cannot be unselected");
 				System.out.println("'Trunk Group Order' is a mandatory field. It cannot be unselected");
 			}else {
 				editcheckbox_commonMethod(application, TrunkGroupOrderCheckboxStatusEdit, "trunkGroupOrder_checkbox", "Trunk Group Order", xml);
@@ -8634,12 +8733,12 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 			if(trunkgrupOrderErrMsg) {
 				if(actualMsg.contains("1.trunkgroup number already exists")) {
 					
-					DriverTestcase.logger.log(LogStatus.FAIL, " Error message we are getting as: "+ actualMsg);
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " Error message we are getting as: "+ actualMsg);
 					System.out.println(" Error message we are getting as: "+ actualMsg);
 				}
 				else if(actualMsg.contains("Trunk Group successfully updated")) {
 					
-					DriverTestcase.logger.log(LogStatus.PASS, " Success Message displays as 'Trunk Group successfully updated.'");
+					ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message displays as 'Trunk Group successfully updated.'");
 					System.out.println(" Success Message displays as 'Trunk Group successfully updated.'");
 				}
 				
@@ -8652,7 +8751,7 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 			
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Edit Trunk Group/Site Order' page is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit Trunk Group/Site Order' page is not displaying");
 			System.out.println("'Edit Trunk Group/Site Order' page is displaying");
 		}
 	}
@@ -8683,12 +8782,12 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 		
 		siteOrderpage= getwebelement(xml.getlocator("//locators/" + application + "/addtrunkSiteorderPage_panelheader")).isDisplayed();
 		if(siteOrderpage) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Edit Trunk Group/Site Order' page is displaying as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit Trunk Group/Site Order' page is displaying as expected");
 			System.out.println("'Edit Trunk Group/Site Order' page is displaying as expected");
 			
 		//Trunk group Order
 			if(trunkGroupOrder.equalsIgnoreCase("no")) {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'Trunk Group Order' is a mandatory field. It cannot be unselected");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Trunk Group Order' is a mandatory field. It cannot be unselected");
 				System.out.println("'Trunk Group Order' is a mandatory field. It cannot be unselected");
 			}else {
 				editcheckbox_commonMethod(application, trunkGroupOrder, "trunkGroupOrder_checkbox", "Trunk Group Order", xml);
@@ -8709,12 +8808,12 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 			if(trunkgrupOrderErrMsg) {
 				if(actualMsg.contains("1.trunkgroup number already exists")) {
 					
-					DriverTestcase.logger.log(LogStatus.FAIL, " Error message we are getting as: "+ actualMsg);
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " Error message we are getting as: "+ actualMsg);
 					System.out.println(" Error message we are getting as: "+ actualMsg);
 				}
 				else if(actualMsg.contains("Trunk Group successfully updated")) {
 					
-					DriverTestcase.logger.log(LogStatus.PASS, " Success Message displays as 'Trunk Group successfully updated.'");
+					ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message displays as 'Trunk Group successfully updated.'");
 					System.out.println(" Success Message displays as 'Trunk Group successfully updated.'");
 				}
 				
@@ -8727,7 +8826,7 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 			
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Edit Trunk Group/Site Order' page is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit Trunk Group/Site Order' page is not displaying");
 			System.out.println("'Edit Trunk Group/Site Order' page is displaying");
 		}
 	}
@@ -8752,14 +8851,14 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 	
    if(TrunkGroupSiteOrderNumberText){
 			
-			DriverTestcase.logger.log(LogStatus.PASS, TrunkGroupSiteOrderNumber + " 'Site Order' is displaying under 'Trunk' panel");
+			ExtentTestManager.getTest().log(LogStatus.PASS, TrunkGroupSiteOrderNumber + " 'Site Order' is displaying under 'Trunk' panel");
 			System.out.println(TrunkGroupSiteOrderNumber + " 'Site Order' is displaying under 'Trunk' panel");
 			
 			
 			
 			
 			if(deletelink.isDisplayed()) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Delete Link in Trunk Group/Site Order' page is displaying as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Delete Link in Trunk Group/Site Order' page is displaying as expected");
 				System.out.println("'Delete Link Trunk Group/Site Order' page is displaying as expected");
 				
 			//Trunk group Order
@@ -8769,21 +8868,21 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 				
 				
 				if(ViewService_Trunk_DeleteSiteOrderSuccessMessage.isDisplayed()) {
-					DriverTestcase.logger.log(LogStatus.PASS, "'Trunk Group Site Order' Deleted Successfully");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "'Trunk Group Site Order' Deleted Successfully");
 					System.out.println("'Trunk Group Site Order' Deleted Successfully");
 																					}else {
-					DriverTestcase.logger.log(LogStatus.PASS, "'Trunk Group Site Order' not Deleted");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "'Trunk Group Site Order' not Deleted");
 					System.out.println("'Trunk Group Site Order' not Deleted");
 																						   } 
 		    							}else {
-		    		DriverTestcase.logger.log(LogStatus.PASS, "'Delete Link in Trunk Group/Site Order' page is not displaying as expected");
+		    		ExtentTestManager.getTest().log(LogStatus.PASS, "'Delete Link in Trunk Group/Site Order' page is not displaying as expected");
 		    		System.out.println("'Delete Link Trunk Group/Site Order' page is not  displaying as expected");
 		    							}
 			
 			
 			
 							}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, TrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, TrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
 			System.out.println(TrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
 								  }
 }
@@ -8813,12 +8912,12 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 		
 	if(TrunkGroupSiteOrderNumberUpdatedText){
 			
-			DriverTestcase.logger.log(LogStatus.PASS, TrunkGroupSiteOrderNumberEdit + " 'Site Order' is displaying under 'Trunk Group/Site Orders' panel");
+			ExtentTestManager.getTest().log(LogStatus.PASS, TrunkGroupSiteOrderNumberEdit + " 'Site Order' is displaying under 'Trunk Group/Site Orders' panel");
 			System.out.println(TrunkGroupSiteOrderNumberEdit + " 'Site Order' is displaying under 'Trunk Group/Site Orders' panel");
 			
 			
 			if(deleteLink.isDisplayed()) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Delete Link in Trunk Group/Site Order' page is displaying as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Delete Link in Trunk Group/Site Order' page is displaying as expected");
 				System.out.println("'Delete Link Trunk Group/Site Order' page is displaying as expected");
 				
 			//Trunk group Order
@@ -8828,21 +8927,21 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 				
 				
 				if(ViewService_Trunk_DeleteSiteOrderSuccessMessage.isDisplayed()) {
-					DriverTestcase.logger.log(LogStatus.PASS, "'Trunk Group Site Order' Deleted Successfully");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "'Trunk Group Site Order' Deleted Successfully");
 					System.out.println("'Trunk Group Site Order' Deleted Successfully");
 																					}else {
-					DriverTestcase.logger.log(LogStatus.PASS, "'Trunk Group Site Order' not Deleted");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "'Trunk Group Site Order' not Deleted");
 					System.out.println("'Trunk Group Site Order' not Deleted");
 																						   } 
 		    							}else {
-		    		DriverTestcase.logger.log(LogStatus.PASS, "'Delete Link in 'Trunk Group/Site Order' panel is not displaying as expected");
+		    		ExtentTestManager.getTest().log(LogStatus.PASS, "'Delete Link in 'Trunk Group/Site Order' panel is not displaying as expected");
 		    		System.out.println("'Delete Link in Trunk Group/Site Order' panel is not  displaying as expected");
 		    							}
 			 
 			
 			
 							}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, TrunkGroupSiteOrderNumberEdit + " 'Site Order' is not displaying under 'Trunk' panel");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, TrunkGroupSiteOrderNumberEdit + " 'Site Order' is not displaying under 'Trunk' panel");
 			System.out.println(TrunkGroupSiteOrderNumberEdit + " 'Site Order' is not displaying under 'Trunk' panel");
 								  }
 	}
@@ -8875,7 +8974,7 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 		
 		if(siteOrderUnderTrunkPanel) {
 			
-			DriverTestcase.logger.log(LogStatus.PASS, TrunkGroupSiteOrderNumber + " 'Site Order' is displaying under 'Trunk' panel");
+			ExtentTestManager.getTest().log(LogStatus.PASS, TrunkGroupSiteOrderNumber + " 'Site Order' is displaying under 'Trunk' panel");
 			System.out.println(TrunkGroupSiteOrderNumber + " 'Site Order' is displaying under 'Trunk' panel");
 			
 		//Click on Add trunk link	
@@ -8886,7 +8985,7 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 			Thread.sleep(1000);
 			
 									}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, TrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, TrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
 			System.out.println(TrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
 										 }
 									}
@@ -8910,7 +9009,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		
 		if(siteOrderUnderTrunkPanel) {
 			
-			DriverTestcase.logger.log(LogStatus.PASS, ExistingTrunkGroupSiteOrderNumber + " 'Site Order' is displaying under 'Trunk' panel");
+			ExtentTestManager.getTest().log(LogStatus.PASS, ExistingTrunkGroupSiteOrderNumber + " 'Site Order' is displaying under 'Trunk' panel");
 			System.out.println(ExistingTrunkGroupSiteOrderNumber + " 'Site Order' is displaying under 'Trunk' panel");
 			
 		//Click on Add trunk link	
@@ -8919,7 +9018,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			Thread.sleep(1000);
 			
 									}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, ExistingTrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, ExistingTrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
 			System.out.println(ExistingTrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
 										 }
 									}
@@ -8984,7 +9083,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 	
 	
 	if(getwebelement(xml.getlocator("//locators/" + application + "/AddTrunk_Header")).isDisplayed()) {
-		DriverTestcase.logger.log(LogStatus.PASS, "'Add Trunk' Page navigated as expected");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'Add Trunk' Page navigated as expected");
 		System.out.println("'Add Trunk' Page navigated as expected");
 		
 		
@@ -9068,7 +9167,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 	  //message displaying under "SIP Signalling Port" text field	
 		methodToFindMessagesUnderTextField(application, "SIPsignallingPOrt_defaultValue_textvalue", "SIP Signalling Port", "Default Port:5060");
   }else {
-	  DriverTestcase.logger.log(LogStatus.PASS, "'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-1'");
+	  ExtentTestManager.getTest().log(LogStatus.PASS, "'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-1'");
 	  System.out.println("'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-I'");
   }
 	
@@ -9081,7 +9180,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 	
 	  if(internetBasedCustomer.equalsIgnoreCase("Yes")) {  //case A with Interface Based Customer selection
 		  
-		  DriverTestcase.logger.log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
+		  ExtentTestManager.getTest().log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
 		  
 		//Internet Based Customer
 		  isDisplayed(application, "internetBasedCustomer_checkbox", "Internet Based Customer", xml);
@@ -9090,10 +9189,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		  
 		  String vlanDefaultvalue=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).getAttribute("value");
 		  if(vlanDefaultvalue.isEmpty()) {
-			  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
+			  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
 		  }else {
 			 
-			  DriverTestcase.logger.log(LogStatus.PASS, "When 'Internet Based Customer' is selected, 'VLAN tag' field value is displaying as "+vlanDefaultvalue);
+			  ExtentTestManager.getTest().log(LogStatus.PASS, "When 'Internet Based Customer' is selected, 'VLAN tag' field value is displaying as "+vlanDefaultvalue);
 			  if(vlanTag.equalsIgnoreCase("null")) {
 					
 					//Sub Interface slot
@@ -9175,7 +9274,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		  
 	  } else {       // case B without Interface Based Customer selection
 		if(vlanTag.equalsIgnoreCase("null")) {
-			DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' field is  a mandatory field and not values are passed as an input");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' field is  a mandatory field and not values are passed as an input");
 			
 			//Sub Interface slot
 			isDisplayed(application, "subInterfaceSlot_Dropdown", "Sub Interface Slot", xml);
@@ -9271,16 +9370,16 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  
 			  if(vlanTag.equalsIgnoreCase("null")) {
 				 
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is a mandatory field. No values has been passed as an input");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' text field is a mandatory field. No values has been passed as an input");
 			 
 				//IP Interface
 				  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 				  if(ipInterface_Enabled) {
 					  System.out.println("'Ip Interface' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 				  }else {
 					  System.out.println("'Ip Interface' text fieldis disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 				  }
 				  isDisplayed(application, "ipInterface_textField", "IP Interface", xml);
 				  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField", ipInterfaceDEfaultValue, xml);  //verify default values
@@ -9289,10 +9388,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 				  if(addressContext_Enabled) {
 					  System.out.println("'Address Context' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 				  }else {
 					  System.out.println("'Address Context' text fieldis disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 				  }
 				  
 				  isDisplayed(application, "AddressContext_textField", "Address Context", xml);
@@ -9303,10 +9402,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 				  if(ipInterfaceGroup_Enabled) {
 					  System.out.println("'IP Inteface Group' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 				  }else {
 					  System.out.println("'IP Inteface Group' text field is disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 				  }
 				  isDisplayed(application, "ipInterfaceGroup_textField", "IP Interface Group", xml);
 				  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField", ipInterfaceGroupDefaultvalue, xml);    //verify default values
@@ -9327,10 +9426,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 					  if(ipInterface_Enabled) {
 						  System.out.println("'Ip Interface' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 					  }else {
 						  System.out.println("'Ip Interface' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 					  }
 					  
 					  ipInterface = ipInterfaceDEfaultValue +vlanTag;
@@ -9341,10 +9440,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 					  if(addressContext_Enabled) {
 						  System.out.println("'Address Context' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 					  }else {
 						  System.out.println("'Address Context' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 					  }
 					  
 					  addressContext=addressContextDefaultValue+vlanTag;
@@ -9356,10 +9455,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 					  if(ipInterfaceGroup_Enabled) {
 						  System.out.println("'IP Inteface Group' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 					  }else {
 						  System.out.println("'IP Inteface Group' text field is disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 					  }
 					  
 					  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanTag;
@@ -9371,7 +9470,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  
 			  
 		  }else if(internetBasedCustomer.equalsIgnoreCase("Yes")) {
-			  DriverTestcase.logger.log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
+			  ExtentTestManager.getTest().log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
 			  
 				//Internet Based Customer
 			  isDisplayed(application, "internetBasedCustomer_checkbox", "lnternet Based Customer", xml);
@@ -9379,16 +9478,16 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					
 			  String vlanDefaultvalue=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).getAttribute("value");
 			  if(vlanDefaultvalue.isEmpty()) {
-					  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
 			  }else {
 				//VLAN tag  
 				  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
 				  if(VlanEnability) {
 					  System.out.println("VLAN Tag is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
 				  }else {
 					  System.out.println("VLAN Tag is disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
 				  } 
 			  }
 			  
@@ -9396,10 +9495,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 			  if(ipInterface_Enabled) {
 				  System.out.println("'Ip Interface' text field is enabled");
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 			  }else {
 				  System.out.println("'Ip Interface' text fieldis disabled");
-				  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 			  }
 			  
 			  ipInterface = ipInterfaceDEfaultValue +vlanDefaultvalue;
@@ -9410,10 +9509,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 			  if(addressContext_Enabled) {
 				  System.out.println("'Address Context' text field is enabled");
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 			  }else {
 				  System.out.println("'Address Context' text fieldis disabled");
-				  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 			  }
 			  
 			  addressContext=addressContextDefaultValue+vlanDefaultvalue;
@@ -9425,10 +9524,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 			  if(ipInterfaceGroup_Enabled) {
 				  System.out.println("'IP Inteface Group' text field is enabled");
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 			  }else {
 				  System.out.println("'IP Inteface Group' text field is disabled");
-				  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 			  }
 			  
 			  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanDefaultvalue;
@@ -9451,20 +9550,20 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
 				  if(VlanEnability) {
 					  System.out.println("VLAN Tag is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
 				  }else {
 					  System.out.println("VLAN Tag is disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
 				  }
 				  
 			//IP Interface
 				  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 				  if(ipInterface_Enabled) {
 					  System.out.println("'Ip Interface' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 				  }else {
 					  System.out.println("'Ip Interface' text fieldis disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 				  }
 				  isDisplayed(application, "ipInterface_textField", "IP Interface", xml);
 				  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField", ipInterfaceDEfaultValue, xml);  //verify default values
@@ -9473,10 +9572,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 				  if(addressContext_Enabled) {
 					  System.out.println("'Address Context' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 				  }else {
 					  System.out.println("'Address Context' text fieldis disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 				  }
 				  isDisplayed(application, "AddressContext_textField", "Address Context", xml);
 				  compareText_fromtextFields(application, "Address Context", "AddressContext_textField", addressContextDefaultValue, xml);  //verify default values
@@ -9486,10 +9585,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 				  if(ipInterfaceGroup_Enabled) {
 					  System.out.println("'IP Inteface Group' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 				  }else {
 					  System.out.println("'IP Inteface Group' text field is disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 				  }
 				  isDisplayed(application, "ipInterfaceGroup_textField", "IP Interface Group", xml);
 				  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField", ipInterfaceGroupDefaultvalue, xml);    //verify default values
@@ -9502,7 +9601,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		 
 		 if(internetBasedCustomer.equalsIgnoreCase("Yes")) {
 			  
-			  DriverTestcase.logger.log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
+			  ExtentTestManager.getTest().log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
 			  
 			//Internet Based Customer
 			  isDisplayed(application, "internetBasedCustomer_checkbox", "Internet Based Customer", xml);
@@ -9510,16 +9609,16 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				
 		  String vlanDefaultvalue=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).getAttribute("value");
 		  if(vlanDefaultvalue.isEmpty()) {
-				  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
 		  }else {
 			//VLAN tag  
 			  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
 			  if(VlanEnability) {
 				  System.out.println("VLAN Tag is enabled");
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
 			  }else {
 				  System.out.println("VLAN Tag is disabled");
-				  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
 			  } 
 		  }
 		  
@@ -9527,10 +9626,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 		  if(ipInterface_Enabled) {
 			  System.out.println("'Ip Interface' text field is enabled");
-			  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+			  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 		  }else {
 			  System.out.println("'Ip Interface' text fieldis disabled");
-			  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+			  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 		  }
 		  
 		  ipInterface = ipInterfaceDEfaultValue +vlanDefaultvalue;
@@ -9541,10 +9640,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 		  if(addressContext_Enabled) {
 			  System.out.println("'Address Context' text field is enabled");
-			  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+			  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 		  }else {
 			  System.out.println("'Address Context' text fieldis disabled");
-			  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+			  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 		  }
 		  
 		  addressContext=addressContextDefaultValue+vlanDefaultvalue;
@@ -9556,10 +9655,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 		  if(ipInterfaceGroup_Enabled) {
 			  System.out.println("'IP Inteface Group' text field is enabled");
-			  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+			  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 		  }else {
 			  System.out.println("'IP Inteface Group' text field is disabled");
-			  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+			  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 		  }
 		  
 		  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanDefaultvalue;
@@ -9639,15 +9738,15 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			if (ReuseNetworkSelectorTable.equalsIgnoreCase("YES")) {
 				isDisplayed(application, "ReuseNetworkSelectorTable_checkbox", "Reuse Network Selector Table", xml);
 				click(application, "'Reuse Network Selector Table' checkbox", "ReuseNetworkSelectorTable_checkbox");
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
 				System.out.println("Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
 			} else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is not Selected");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is not Selected");
 				System.out.println("Step : 'Reuse Network Selector Table' checkbox is not Selected");
 			}
 		
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
 				System.out.println("Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
 			}
 	  
@@ -9661,15 +9760,15 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					if (ReuseNetworkSelectorTable.equalsIgnoreCase("YES")) {
 						isDisplayed(application, "reuseNIFgroup_checkbox", "Reuse Network Selector Table", xml);
 						click(application, "'Reuse Network Selector Table' checkbox", "reuseNIFgroup_checkbox");
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
 						System.out.println("Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
 					} else {
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is not Selected");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is not Selected");
 						System.out.println("Step : 'Reuse Network Selector Table' checkbox is not Selected");
 					}
 				
 					}else {
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
 						System.out.println("Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
 					}
 				
@@ -9682,15 +9781,15 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					if (ReuseNetworkSelectorTable.equalsIgnoreCase("YES")) {
 						isDisplayed(application, "reuseNIFgroup_checkbox", "Reuse Network Selector Table", xml);
 						click(application, "'Reuse Network Selector Table' checkbox", "reuseNIFgroup_checkbox");
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
 						System.out.println("Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
 					} else {
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is not Selected");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is not Selected");
 						System.out.println("Step : 'Reuse Network Selector Table' checkbox is not Selected");
 					}
 				
 					}else {
-						DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
 						System.out.println("Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
 					}
 				
@@ -9762,19 +9861,19 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		
 		String callratelimitactualvalue=getwebelement(xml.getlocator("//locators/" + application + "/callRateLimitt_textField")).getAttribute("value");
 		System.out.println(" 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
-		DriverTestcase.logger.log(LogStatus.PASS, " 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
+		ExtentTestManager.getTest().log(LogStatus.PASS, " 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
 	
 		if(!callrateLimiteValue.equalsIgnoreCase("null")) {
 			int i=Integer.parseInt(callrateLimiteValue);
 				
 			if(i>100) {
-				DriverTestcase.logger.log(LogStatus.FAIL, "The CallRateLimit should be less 100 for all Trunks");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "The CallRateLimit should be less 100 for all Trunks");
 			}
 			else if(i<=100){
 				edittextFields_commonMethod(application, "Call rate Limit", "callRateLimitt_textField", callrateLimiteValue, xml);
 			}
 		}else {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Call rate Limit' value is not edited");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Call rate Limit' value is not edited");
 			System.out.println("'Call rate Limit' value is not edited");
 		}
 	}
@@ -9837,7 +9936,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 	isDisplayed(application, "cancelbutton", "Cancel", xml);
 	
 	}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "'Add Trunk' Page is not navigated");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'Add Trunk' Page is not navigated");
 		System.out.println("'Add Trunk' Page is not navigated");
 	}
 	
@@ -9891,7 +9990,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/AddTrunk_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Add Trunk' Page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Add Trunk' Page navigated as expected");
 			System.out.println("'Add Trunk' Page navigated as expected");
 			
 			
@@ -9976,7 +10075,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		  //message displaying under "SIP Signalling Port" text field	
 			methodToFindMessagesUnderTextField(application, "SIPsignallingPOrt_defaultValue_textvalue", "SIP Signalling Port", "Default Port:5060");
 	  }else {
-		  DriverTestcase.logger.log(LogStatus.PASS, "'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-1'");
+		  ExtentTestManager.getTest().log(LogStatus.PASS, "'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-1'");
 		  System.out.println("'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-I'");
 	  }
 		
@@ -9989,7 +10088,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		
 		  if(internetBasedCustomer.equalsIgnoreCase("Yes")) {  //case A with Interface Based Customer selection
 			  
-			  DriverTestcase.logger.log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
+			  ExtentTestManager.getTest().log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
 			  
 			//Internet Based Customer
 				addCheckbox_commonMethod(application, "internetBasedCustomer_checkbox", "Internet Based Customer", internetBasedCustomer, "No", xml);
@@ -9997,10 +10096,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  
 			  String vlanDefaultvalue=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).getAttribute("value");
 			  if(vlanDefaultvalue.isEmpty()) {
-				  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
 			  }else {
 				 
-				  DriverTestcase.logger.log(LogStatus.PASS, "When 'Internet Based Customer' is selected, 'VLAN tag' field value is displaying as "+vlanDefaultvalue);
+				  ExtentTestManager.getTest().log(LogStatus.PASS, "When 'Internet Based Customer' is selected, 'VLAN tag' field value is displaying as "+vlanDefaultvalue);
 				  if(vlanTag.equalsIgnoreCase("null")) {
 						
 						//Sub Interface slot
@@ -10071,7 +10170,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  
 		  } else {       // case B without Interface Based Customer selection
 			if(vlanTag.equalsIgnoreCase("null")) {
-				DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' field is  a mandatory field and not values are passed as an input");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' field is  a mandatory field and not values are passed as an input");
 				
 				//Sub Interface slot
 				selectValueInsideDropdown(application, "subInterfaceSlot_Dropdown", "Sub Interface Slot", subInterfaceSlot, xml);
@@ -10156,16 +10255,16 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  
 				  if(vlanTag.equalsIgnoreCase("null")) {
 					 
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is a mandatory field. No values has been passed as an input");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' text field is a mandatory field. No values has been passed as an input");
 				 
 					//IP Interface
 					  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 					  if(ipInterface_Enabled) {
 						  System.out.println("'Ip Interface' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 					  }else {
 						  System.out.println("'Ip Interface' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 					  }
 					  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField", ipInterfaceDEfaultValue, xml);  //verify default values
 					  
@@ -10173,10 +10272,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 					  if(addressContext_Enabled) {
 						  System.out.println("'Address Context' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 					  }else {
 						  System.out.println("'Address Context' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 					  }
 					  
 					  compareText_fromtextFields(application, "Address Context", "AddressContext_textField", addressContextDefaultValue, xml);  //verify default values
@@ -10186,10 +10285,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 					  if(ipInterfaceGroup_Enabled) {
 						  System.out.println("'IP Inteface Group' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 					  }else {
 						  System.out.println("'IP Inteface Group' text field is disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 					  }
 					  
 					  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField", ipInterfaceGroupDefaultvalue, xml);    //verify default values
@@ -10209,10 +10308,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 						  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 						  if(ipInterface_Enabled) {
 							  System.out.println("'Ip Interface' text field is enabled");
-							  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+							  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 						  }else {
 							  System.out.println("'Ip Interface' text fieldis disabled");
-							  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+							  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 						  }
 						  
 						  ipInterface = ipInterfaceDEfaultValue +vlanTag;
@@ -10222,10 +10321,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 						  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 						  if(addressContext_Enabled) {
 							  System.out.println("'Address Context' text field is enabled");
-							  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+							  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 						  }else {
 							  System.out.println("'Address Context' text fieldis disabled");
-							  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+							  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 						  }
 						  
 						  addressContext=addressContextDefaultValue+vlanTag;
@@ -10236,10 +10335,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 						  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 						  if(ipInterfaceGroup_Enabled) {
 							  System.out.println("'IP Inteface Group' text field is enabled");
-							  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+							  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 						  }else {
 							  System.out.println("'IP Inteface Group' text field is disabled");
-							  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+							  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 						  }
 						  
 						  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanTag;
@@ -10251,23 +10350,23 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  
 				  
 			  }else if(internetBasedCustomer.equalsIgnoreCase("Yes")) {
-				  DriverTestcase.logger.log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
+				  ExtentTestManager.getTest().log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
 				  
 					//Internet Based Customer
 						addCheckbox_commonMethod(application, "internetBasedCustomer_checkbox", "Internet Based Customer", internetBasedCustomer, "No", xml);
 						
 				  String vlanDefaultvalue=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).getAttribute("value");
 				  if(vlanDefaultvalue.isEmpty()) {
-						  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
 				  }else {
 					//VLAN tag  
 					  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
 					  if(VlanEnability) {
 						  System.out.println("VLAN Tag is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
 					  }else {
 						  System.out.println("VLAN Tag is disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
 					  } 
 				  }
 				  
@@ -10275,10 +10374,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 				  if(ipInterface_Enabled) {
 					  System.out.println("'Ip Interface' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 				  }else {
 					  System.out.println("'Ip Interface' text fieldis disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 				  }
 				  
 				  ipInterface = ipInterfaceDEfaultValue +vlanDefaultvalue;
@@ -10288,10 +10387,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 				  if(addressContext_Enabled) {
 					  System.out.println("'Address Context' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 				  }else {
 					  System.out.println("'Address Context' text fieldis disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 				  }
 				  
 				  addressContext=addressContextDefaultValue+vlanDefaultvalue;
@@ -10302,10 +10401,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 				  if(ipInterfaceGroup_Enabled) {
 					  System.out.println("'IP Inteface Group' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 				  }else {
 					  System.out.println("'IP Inteface Group' text field is disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 				  }
 				  
 				  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanDefaultvalue;
@@ -10327,20 +10426,20 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
 					  if(VlanEnability) {
 						  System.out.println("VLAN Tag is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
 					  }else {
 						  System.out.println("VLAN Tag is disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
 					  }
 					  
 				//IP Interface
 					  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 					  if(ipInterface_Enabled) {
 						  System.out.println("'Ip Interface' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 					  }else {
 						  System.out.println("'Ip Interface' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 					  }
 					  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField", ipInterfaceDEfaultValue, xml);  //verify default values
 					  
@@ -10348,10 +10447,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 					  if(addressContext_Enabled) {
 						  System.out.println("'Address Context' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 					  }else {
 						  System.out.println("'Address Context' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 					  }
 					  
 					  compareText_fromtextFields(application, "Address Context", "AddressContext_textField", addressContextDefaultValue, xml);  //verify default values
@@ -10361,10 +10460,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 					  if(ipInterfaceGroup_Enabled) {
 						  System.out.println("'IP Inteface Group' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 					  }else {
 						  System.out.println("'IP Inteface Group' text field is disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 					  }
 					  
 					  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField", ipInterfaceGroupDefaultvalue, xml);    //verify default values
@@ -10377,23 +10476,23 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			 
 			 if(internetBasedCustomer.equalsIgnoreCase("Yes")) {
 				  
-				  DriverTestcase.logger.log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
+				  ExtentTestManager.getTest().log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
 				  
 				//Internet Based Customer
 					addCheckbox_commonMethod(application, "internetBasedCustomer_checkbox", "Internet Based Customer", internetBasedCustomer, "No", xml);
 					
 			  String vlanDefaultvalue=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).getAttribute("value");
 			  if(vlanDefaultvalue.isEmpty()) {
-					  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
 			  }else {
 				//VLAN tag  
 				  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
 				  if(VlanEnability) {
 					  System.out.println("VLAN Tag is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
 				  }else {
 					  System.out.println("VLAN Tag is disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
 				  } 
 			  }
 			  
@@ -10401,10 +10500,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 			  if(ipInterface_Enabled) {
 				  System.out.println("'Ip Interface' text field is enabled");
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 			  }else {
 				  System.out.println("'Ip Interface' text fieldis disabled");
-				  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 			  }
 			  
 			  ipInterface = ipInterfaceDEfaultValue +vlanDefaultvalue;
@@ -10414,10 +10513,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 			  if(addressContext_Enabled) {
 				  System.out.println("'Address Context' text field is enabled");
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 			  }else {
 				  System.out.println("'Address Context' text fieldis disabled");
-				  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 			  }
 			  
 			  addressContext=addressContextDefaultValue+vlanDefaultvalue;
@@ -10428,10 +10527,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 			  if(ipInterfaceGroup_Enabled) {
 				  System.out.println("'IP Inteface Group' text field is enabled");
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 			  }else {
 				  System.out.println("'IP Inteface Group' text field is disabled");
-				  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 			  }
 			  
 			  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanDefaultvalue;
@@ -10504,15 +10603,15 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/ReuseNetworkSelectorTable_checkbox")).isEnabled()){
 //				if (ReuseNetworkSelectorTable.equalsIgnoreCase("YES")) {
 //					click(application, "'Reuse Network Selector Table' checkbox", "ReuseNetworkSelectorTable_checkbox");
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
 //					System.out.println("Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
 //				} else {
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is not Selected");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is not Selected");
 //					System.out.println("Step : 'Reuse Network Selector Table' checkbox is not Selected");
 //				}
 //			
 //				}else {
-//					DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
+//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
 //					System.out.println("Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
 //				}
 		  
@@ -10524,15 +10623,15 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 //					if(getwebelement(xml.getlocator("//locators/" + application + "/reuseNIFgroup_checkbox")).isEnabled()){
 //						if (ReuseNetworkSelectorTable.equalsIgnoreCase("YES")) {
 //							click(application, "'Reuse Network Selector Table' checkbox", "reuseNIFgroup_checkbox");
-//							DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
+//							ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
 //							System.out.println("Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
 //						} else {
-//							DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is not Selected");
+//							ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is not Selected");
 //							System.out.println("Step : 'Reuse Network Selector Table' checkbox is not Selected");
 //						}
 //					
 //						}else {
-//							DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
+//							ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
 //							System.out.println("Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
 //						}
 			//Reuse NIF Group
@@ -10542,15 +10641,15 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 //					if(getwebelement(xml.getlocator("//locators/" + application + "/reuseNIFgroup_checkbox")).isEnabled()){
 //						if (ReuseNetworkSelectorTable.equalsIgnoreCase("YES")) {
 //							click(application, "'Reuse Network Selector Table' checkbox", "reuseNIFgroup_checkbox");
-//							DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
+//							ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
 //							System.out.println("Step : 'Reuse Network Selector Table' checkbox is Enabled and 'Reuse Network Selector Table' checkbox Selected");
 //						} else {
-//							DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is not Selected");
+//							ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is not Selected");
 //							System.out.println("Step : 'Reuse Network Selector Table' checkbox is not Selected");
 //						}
 //					
 //						}else {
-//							DriverTestcase.logger.log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
+//							ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
 //							System.out.println("Step : 'Reuse Network Selector Table' checkbox is Disabled, So can't make any changes in Checkbox status");
 //						}
 					
@@ -10610,19 +10709,19 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			
 			String callratelimitactualvalue=getwebelement(xml.getlocator("//locators/" + application + "/callRateLimitt_textField")).getAttribute("value");
 			System.out.println(" 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
-			DriverTestcase.logger.log(LogStatus.PASS, " 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
+			ExtentTestManager.getTest().log(LogStatus.PASS, " 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
 		
 			if(!callrateLimiteValue.equalsIgnoreCase("null")) {
 				int i=Integer.parseInt(callrateLimiteValue);
 					
 				if(i>100) {
-					DriverTestcase.logger.log(LogStatus.FAIL, "The CallRateLimit should be less 100 for all Trunks");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "The CallRateLimit should be less 100 for all Trunks");
 				}
 				else if(i<=100){
 					edittextFields_commonMethod(application, "Call rate Limit", "callRateLimitt_textField", callrateLimiteValue, xml);
 				}
 			}else {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Call rate Limit' value is not edited");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Call rate Limit' value is not edited");
 				System.out.println("'Call rate Limit' value is not edited");
 			}
 		}
@@ -10702,7 +10801,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Add Trunk' Page is not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Add Trunk' Page is not navigated");
 			System.out.println("'Add Trunk' Page is not navigated");
 		}
 		
@@ -10803,7 +10902,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			 addtextFields_commonMethod(application, "Prefix", "prefix_textField", prefix, xml);
 			 
 		 }else {
-			 DriverTestcase.logger.log(LogStatus.PASS, "When we click on 'Allocate Prefix' button, Under 'Prefix' value is displaying as: "+prefix_actualvalue);
+			 ExtentTestManager.getTest().log(LogStatus.PASS, "When we click on 'Allocate Prefix' button, Under 'Prefix' value is displaying as: "+prefix_actualvalue);
 			 System.out.println("When we click on 'Allocate Prefix' button, Under 'Prefix' value is displaying as: "+prefix_actualvalue);
 		 }
 
@@ -10817,10 +10916,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			prefix_code=preifxValueInsidetextField.substring(1);
 		}else if(prefixSize<3) {
 			System.out.println("Prefix value cannot be less than 3");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be less than 4. Value is displaying as "+preifxValueInsidetextField);
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Prefix value cannot be less than 4. Value is displaying as "+preifxValueInsidetextField);
 		}else if(prefixSize>4) {
 			System.out.println("Prefix value cannot be greater than 4");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be greater than 4. Value is displaying as "+preifxValueInsidetextField);
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Prefix value cannot be greater than 4. Value is displaying as "+preifxValueInsidetextField);
 		}
 		 
 		
@@ -10846,7 +10945,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			compareText_fromtextFields(application, "Trunk Group Name", "trunkGroupName_TextField", trunGroup, xml);
 			primarytrunkGroupname=trunGroup;
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, " 'Trunk Group NAme' length is: "+totalLen);
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Trunk Group NAme' length is: "+totalLen);
 			compareText_fromtextFields(application, "Trunk Group Name", "trunkGroupName_TextField", trunGroup, xml);
 		}
 		
@@ -10885,7 +10984,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			methodToFindMessagesUnderTextField(application, "SIPsignallingPOrt_defaultValue_textvalue", "SIP Signalling Port", "Default Port:5060");
 			
 	  }else {
-		  DriverTestcase.logger.log(LogStatus.PASS, "'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-1'");
+		  ExtentTestManager.getTest().log(LogStatus.PASS, "'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-1'");
 		  System.out.println("'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-I'");
 	  }
 		
@@ -10895,7 +10994,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		
 		  if(internetBasedCustomer.equalsIgnoreCase("Yes")) {
 			  
-			  DriverTestcase.logger.log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
+			  ExtentTestManager.getTest().log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
 			  
 			//Internet Based Customer
 				addCheckbox_commonMethod(application, "internetBasedCustomer_checkbox", "Internet Based Customer", internetBasedCustomer, "No", xml);
@@ -10903,10 +11002,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  
 			  String vlanDefaultvalue=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).getAttribute("value");
 			  if(vlanDefaultvalue.isEmpty()) {
-				  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
 			  }else {
 				 
-				  DriverTestcase.logger.log(LogStatus.PASS, "When 'Internet Based Customer' is selected, 'VLAN tag' field value is displaying as "+vlanDefaultvalue);
+				  ExtentTestManager.getTest().log(LogStatus.PASS, "When 'Internet Based Customer' is selected, 'VLAN tag' field value is displaying as "+vlanDefaultvalue);
 				  if(vlanTag.equalsIgnoreCase("null")) {
 						
 						//Sub Interface slot
@@ -10969,7 +11068,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		 //Internet Based Customer checkbox not selected 
 		  else {
 			if(vlanTag.equalsIgnoreCase("null")) {
-				DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' field is  a mandatory field and not values are passed as an input");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' field is  a mandatory field and not values are passed as an input");
 				
 				//Sub Interface slot
 				selectValueInsideDropdown(application, "subInterfaceSlot_Dropdown", "Sub Interface Slot", subInterfaceSlot, xml);
@@ -11037,16 +11136,16 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  if(!internetBasedCustomer.equalsIgnoreCase("Yes")) {
 				  if(vlanTag.equalsIgnoreCase("null")) {
 					 
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is a mandatory field. No values has been passed as an input");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' text field is a mandatory field. No values has been passed as an input");
 				 
 					//IP Interface
 					  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 					  if(ipInterface_Enabled) {
 						  System.out.println("'Ip Interface' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 					  }else {
 						  System.out.println("'Ip Interface' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 					  }
 					  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField", ipInterfaceDEfaultValue, xml);  //verify default values
 					  
@@ -11054,10 +11153,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 					  if(addressContext_Enabled) {
 						  System.out.println("'Address Context' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 					  }else {
 						  System.out.println("'Address Context' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 					  }
 					  
 					  compareText_fromtextFields(application, "Address Context", "AddressContext_textField", addressContextDefaultValue, xml);  //verify default values
@@ -11067,10 +11166,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 					  if(ipInterfaceGroup_Enabled) {
 						  System.out.println("'IP Inteface Group' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 					  }else {
 						  System.out.println("'IP Inteface Group' text field is disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 					  }
 					  
 					  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField", ipInterfaceGroupDefaultvalue, xml);    //verify default values
@@ -11089,10 +11188,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 						  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 						  if(ipInterface_Enabled) {
 							  System.out.println("'Ip Interface' text field is enabled");
-							  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+							  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 						  }else {
 							  System.out.println("'Ip Interface' text fieldis disabled");
-							  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+							  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 						  }
 						  
 						  ipInterface = ipInterfaceDEfaultValue +vlanTag;
@@ -11102,10 +11201,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 						  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 						  if(addressContext_Enabled) {
 							  System.out.println("'Address Context' text field is enabled");
-							  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+							  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 						  }else {
 							  System.out.println("'Address Context' text fieldis disabled");
-							  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+							  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 						  }
 						  
 						  addressContext=addressContextDefaultValue+vlanTag;
@@ -11116,10 +11215,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 						  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 						  if(ipInterfaceGroup_Enabled) {
 							  System.out.println("'IP Inteface Group' text field is enabled");
-							  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+							  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 						  }else {
 							  System.out.println("'IP Inteface Group' text field is disabled");
-							  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+							  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 						  }
 						  
 						  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanTag;
@@ -11129,23 +11228,23 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  
 			  }
 			  else if(internetBasedCustomer.equalsIgnoreCase("Yes")) {
-				  DriverTestcase.logger.log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
+				  ExtentTestManager.getTest().log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
 				  
 					//Internet Based Customer
 						addCheckbox_commonMethod(application, "internetBasedCustomer_checkbox", "Internet Based Customer", internetBasedCustomer, "No", xml);
 						
 				  String vlanDefaultvalue=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).getAttribute("value");
 				  if(vlanDefaultvalue.isEmpty()) {
-						  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
 				  }else {
 					//VLAN tag  
 					  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
 					  if(VlanEnability) {
 						  System.out.println("VLAN Tag is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
 					  }else {
 						  System.out.println("VLAN Tag is disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
 					  } 
 				  }
 				  
@@ -11153,10 +11252,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 				  if(ipInterface_Enabled) {
 					  System.out.println("'Ip Interface' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 				  }else {
 					  System.out.println("'Ip Interface' text fieldis disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 				  }
 				  
 				  ipInterface = ipInterfaceDEfaultValue +vlanDefaultvalue;
@@ -11166,10 +11265,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 				  if(addressContext_Enabled) {
 					  System.out.println("'Address Context' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 				  }else {
 					  System.out.println("'Address Context' text fieldis disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 				  }
 				  
 				  addressContext=addressContextDefaultValue+vlanDefaultvalue;
@@ -11180,10 +11279,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 				  if(ipInterfaceGroup_Enabled) {
 					  System.out.println("'IP Inteface Group' text field is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 				  }else {
 					  System.out.println("'IP Inteface Group' text field is disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 				  }
 				  
 				  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanDefaultvalue;
@@ -11197,20 +11296,20 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
 					  if(VlanEnability) {
 						  System.out.println("VLAN Tag is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
 					  }else {
 						  System.out.println("VLAN Tag is disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
 					  }
 					  
 				//IP Interface
 					  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 					  if(ipInterface_Enabled) {
 						  System.out.println("'Ip Interface' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 					  }else {
 						  System.out.println("'Ip Interface' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 					  }
 					  compareText_fromtextFields(application, "IP Interface", "ipInterface_textField", ipInterfaceDEfaultValue, xml);  //verify default values
 					  
@@ -11218,10 +11317,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 					  if(addressContext_Enabled) {
 						  System.out.println("'Address Context' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 					  }else {
 						  System.out.println("'Address Context' text fieldis disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 					  }
 					  
 					  compareText_fromtextFields(application, "Address Context", "AddressContext_textField", addressContextDefaultValue, xml);  //verify default values
@@ -11231,10 +11330,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 					  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 					  if(ipInterfaceGroup_Enabled) {
 						  System.out.println("'IP Inteface Group' text field is enabled");
-						  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 					  }else {
 						  System.out.println("'IP Inteface Group' text field is disabled");
-						  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 					  }
 					  
 					  compareText_fromtextFields(application, "IP Interface Group", "ipInterfaceGroup_textField", ipInterfaceGroupDefaultvalue, xml);    //verify default values
@@ -11247,23 +11346,23 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			 
 			 if(internetBasedCustomer.equalsIgnoreCase("Yes")) {
 				  
-				  DriverTestcase.logger.log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
+				  ExtentTestManager.getTest().log(LogStatus.INFO, " 'Signalling Port' text field will not display, if 'Internet Based Custoer' is selected");
 				  
 				//Internet Based Customer
 					addCheckbox_commonMethod(application, "internetBasedCustomer_checkbox", "Internet Based Customer", internetBasedCustomer, "No", xml);
 					
 			  String vlanDefaultvalue=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).getAttribute("value");
 			  if(vlanDefaultvalue.isEmpty()) {
-					  DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'VLAN tag' field by default, when 'Internet Based Customer' is selected");
 			  }else {
 				//VLAN tag  
 				  boolean VlanEnability=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).isEnabled();
 				  if(VlanEnability) {
 					  System.out.println("VLAN Tag is enabled");
-					  DriverTestcase.logger.log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Tag' text field is enabled");
 				  }else {
 					  System.out.println("VLAN Tag is disabled");
-					  DriverTestcase.logger.log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Tag' text field is disabled");
 				  } 
 			  }
 			  
@@ -11271,10 +11370,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  boolean ipInterface_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterface_textField")).isEnabled();
 			  if(ipInterface_Enabled) {
 				  System.out.println("'Ip Interface' text field is enabled");
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Ip Interface' text field is enabled");
 			  }else {
 				  System.out.println("'Ip Interface' text fieldis disabled");
-				  DriverTestcase.logger.log(LogStatus.PASS, "'Ip Interface' text field is disabled");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, "'Ip Interface' text field is disabled");
 			  }
 			  
 			  ipInterface = ipInterfaceDEfaultValue +vlanDefaultvalue;
@@ -11284,10 +11383,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  boolean addressContext_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/AddressContext_textField")).isEnabled();
 			  if(addressContext_Enabled) {
 				  System.out.println("'Address Context' text field is enabled");
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'Address Context' text field is enabled");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Address Context' text field is enabled");
 			  }else {
 				  System.out.println("'Address Context' text fieldis disabled");
-				  DriverTestcase.logger.log(LogStatus.PASS, "'Address Context' text field is disabled");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, "'Address Context' text field is disabled");
 			  }
 			  
 			  addressContext=addressContextDefaultValue+vlanDefaultvalue;
@@ -11298,10 +11397,10 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			  boolean ipInterfaceGroup_Enabled=getwebelement(xml.getlocator("//locators/" + application + "/ipInterfaceGroup_textField")).isEnabled();
 			  if(ipInterfaceGroup_Enabled) {
 				  System.out.println("'IP Inteface Group' text field is enabled");
-				  DriverTestcase.logger.log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IP Inteface Group' text field is enabled");
 			  }else {
 				  System.out.println("'IP Inteface Group' text field is disabled");
-				  DriverTestcase.logger.log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, "'IP Inteface Group' text field is disabled");
 			  }
 			  
 			  ipInterfaceGroup=ipInterfaceGroupDefaultvalue+vlanDefaultvalue;
@@ -11371,19 +11470,19 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			
 			String callratelimitactualvalue=getwebelement(xml.getlocator("//locators/" + application + "/callRateLimitt_textField")).getAttribute("value");
 			System.out.println(" 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
-			DriverTestcase.logger.log(LogStatus.PASS, " 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
+			ExtentTestManager.getTest().log(LogStatus.PASS, " 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
 		
 			if(!callrateLimiteValue.equalsIgnoreCase("null")) {
 				int i=Integer.parseInt(callrateLimiteValue);
 					
 				if(i>100) {
-					DriverTestcase.logger.log(LogStatus.FAIL, "The CallRateLimit should be less 100 for all Trunks");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "The CallRateLimit should be less 100 for all Trunks");
 				}
 				else if(i<=100){
 					edittextFields_commonMethod(application, "Call rate Limit", "callRateLimitt_textField", callrateLimiteValue, xml);
 				}
 			}else {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Call rate Limit' value is not edited");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Call rate Limit' value is not edited");
 				System.out.println("'Call rate Limit' value is not edited");
 			}
 		}
@@ -11540,19 +11639,19 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 				
 				WebElement defaultValue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 				if(defaultValue.getText().contains(expectedmsg)) {
-					DriverTestcase.logger.log(LogStatus.PASS, "Under '"+ labelname +"' text field', text message displays as "+ defaultValue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Under '"+ labelname +"' text field', text message displays as "+ defaultValue);
 					System.out.println("Under '"+ labelname +"' text field', text message displays as "+ defaultValue);
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, "Under '"+ labelname +"' text field', text message displays as "+ defaultValue);
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Under '"+ labelname +"' text field', text message displays as "+ defaultValue);
 					System.out.println("Under '"+ labelname +"' text field', text message displays as "+ defaultValue);
 				}
 			}else {
-				DriverTestcase.logger.log(LogStatus.PASS, "No text message displays under '"+ labelname +"' text field. It should display as '"+ expectedmsg +"'");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "No text message displays under '"+ labelname +"' text field. It should display as '"+ expectedmsg +"'");
 				System.out.println("No text message displays under '"+ labelname +"' text field. It should display as '"+ expectedmsg +"'");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.PASS, "No text message displays under '"+ labelname +"' text field. It should display as '"+ expectedmsg +"'");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "No text message displays under '"+ labelname +"' text field. It should display as '"+ expectedmsg +"'");
 			System.out.println("No text message displays under '"+ labelname +"' text field. It should display as '"+ expectedmsg +"'");
 		}
 	}
@@ -11698,7 +11797,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		}
 				
 		else if(gateway.equals("LONNBS1")) {
-			code="789";
+			code="792";
 		}
 				
 		else if(gateway.equals("FRANBS1")) {
@@ -11877,7 +11976,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
 			System.out.println(labelname + " field is not displaying");
 			
 		}
@@ -11907,7 +12006,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 	}catch(Exception e) {
 		e.printStackTrace();
 		
-		DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
 		System.out.println(labelname + " field is not displaying");
 	}
 	}
@@ -11964,7 +12063,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/ViewTrunk_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'View Trunk' Page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'View Trunk' Page navigated as expected");
 			System.out.println("'View Trunk' Page navigated as expected");
 			
 			scrollToTop();
@@ -12242,7 +12341,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 			
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'View Trunk' Page is not navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View Trunk' Page is not navigated as expected");
 			System.out.println("'View Trunk' Page is not navigated as expected");
 		}
 		
@@ -12266,7 +12365,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		scrolltoend();
 		TrunkNameToAddCPEDeviceText= getwebelement("//div[text()='"+ExistingTrunkName+"']").isDisplayed();
 		if(TrunkNameToAddCPEDeviceText) {
-			DriverTestcase.logger.log(LogStatus.PASS, "Expected 'Trunk Name' is displaying as expected under Trunk Panel in 'view Service' page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Expected 'Trunk Name' is displaying as expected under Trunk Panel in 'view Service' page");
 			System.out.println("Expected 'Trunk Name'' is displaying as expected under Trunk Panel in 'view Service' page");
 		
 			scrolltoend();
@@ -12275,7 +12374,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		WebElement CheckboxForExpectedTrunk = driver.findElement(By.xpath("//div[text()='"+ExistingTrunkName+"']"));
 		String TrunkName = CheckboxForExpectedTrunk.getText().toString();
 		CheckboxForExpectedTrunk.click();
-		DriverTestcase.logger.log(LogStatus.PASS,"Step : Checkbox Selection is done for Expected trunk, Selected Trunk is " + TrunkName);
+		ExtentTestManager.getTest().log(LogStatus.PASS,"Step : Checkbox Selection is done for Expected trunk, Selected Trunk is " + TrunkName);
 		Log.info("Selected Trunk is  : " + TrunkName);
 		
 		Thread.sleep(2000);
@@ -12290,7 +12389,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		click(application, "View Trunk Link", "ViewService_Trunk_ViewTrunkLink");
 		
 		}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "Expected 'Trunk Name' is not displaying as expected under Trunk Panel in 'view Service' page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Expected 'Trunk Name' is not displaying as expected under Trunk Panel in 'view Service' page");
 				System.out.println("Expected 'Trunk Name'' is not displaying as expected under Trunk Panel in 'view Service' page");
 			  }
 		
@@ -12736,10 +12835,10 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 					prefix_code=preifxValueInsidetextField.substring(1);
 				}else if(prefixSize<3) {
 					System.out.println("Prefix value cannot be less than 3");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be less than 4. Value is displaying as "+preifxValueInsidetextField);
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Prefix value cannot be less than 4. Value is displaying as "+preifxValueInsidetextField);
 				}else if(prefixSize>4) {
 					System.out.println("Prefix value cannot be greater than 4");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Prefix value cannot be greater than 4. Value is displaying as "+preifxValueInsidetextField);
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Prefix value cannot be greater than 4. Value is displaying as "+preifxValueInsidetextField);
 				}
 				 
 			//Gateway
@@ -12765,7 +12864,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 					compareText_fromtextFields(application, "Trunk Group Name", "trunkGroupName_TextField", trunGroup, xml);
 					primarytrunkGroupname=trunGroup;
 				}else {
-					DriverTestcase.logger.log(LogStatus.FAIL, " 'Trunk Group NAme' length is: "+totalLen);
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Trunk Group NAme' length is: "+totalLen);
 					compareText_fromtextFields(application, "Trunk Group Name", "trunkGroupName_TextField", trunGroup, xml);
 				}
 				
@@ -12795,7 +12894,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 				  edittextFields_commonMethod(application, "SIP Signaling Port", "SIPsignallingport_textField", editSIPsignallingPort, xml);
 						
 			  }else {
-				  DriverTestcase.logger.log(LogStatus.PASS, "'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-1'");
+				  ExtentTestManager.getTest().log(LogStatus.PASS, "'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-1'");
 				  System.out.println("'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-I'");
 			  }
 			  
@@ -12916,19 +13015,19 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 					
 					String callratelimitactualvalue=getwebelement(xml.getlocator("//locators/" + application + "/callRateLimitt_textField")).getAttribute("value");
 					System.out.println(" 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
-					DriverTestcase.logger.log(LogStatus.PASS, " 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, " 'Call rate Limit' value is displaying as "+callratelimitactualvalue);
 				
 					if(!edit_callrateLimitvalue.equalsIgnoreCase("null")) {
 						int i=Integer.parseInt(edit_callrateLimitvalue);
 							
 						if(i>100) {
-							DriverTestcase.logger.log(LogStatus.FAIL, "The CallRateLimit should be less 100 for all Trunks");
+							ExtentTestManager.getTest().log(LogStatus.FAIL, "The CallRateLimit should be less 100 for all Trunks");
 						}
 						else if(i<=100){
 							edittextFields_commonMethod(application, "Call rate Limit", "callRateLimitt_textField", edit_callrateLimitvalue, xml);
 						}
 					}else {
-						DriverTestcase.logger.log(LogStatus.PASS, "'Call rate Limit' value is not edited");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "'Call rate Limit' value is not edited");
 						System.out.println("'Call rate Limit' value is not edited");
 					}
 				}
@@ -13056,14 +13155,14 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		boolean elementEnabled=ele.isEnabled();
 		
 		if(elementEnabled) {
-			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " is disabled");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is disabled");
 			System.out.println(labelname + " is disabled");
 		}else {
-			DriverTestcase.logger.log(LogStatus.PASS, labelname + "is disabled as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, labelname + "is disabled as expected");
 			System.out.println(labelname + "is disabled as expected");
 			
 //			actualvalue=ele.getAttribute("value");
-//			DriverTestcase.logger.log(LogStatus.PASS, "Value for "+ labelname+ " field is displaying as:"+actualvalue);
+//			ExtentTestManager.getTest().log(LogStatus.PASS, "Value for "+ labelname+ " field is displaying as:"+actualvalue);
 //			System.out.println("Value for "+ labelname+ " field is displaying as:"+actualvalue);
 		}
 	}
@@ -13107,13 +13206,13 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		//Trunk Type
 		fetchDisabledFieldValue(application, "Trunk Type", "trunkType_Dropdown");
 		String trunktypeSelected=GetTheSelectedValueInsideDropdown_trunk(application, "trunkType_Dropdown", "Trunk Type");
-		DriverTestcase.logger.log(LogStatus.PASS, "Value for 'Trunk Type' field is displaying as:"+trunktypeSelected);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Value for 'Trunk Type' field is displaying as:"+trunktypeSelected);
 		System.out.println("Value for 'Trunk Type' field is displaying as:"+trunktypeSelected);
 		
 		//VOIP Protocol
 		fetchDisabledFieldValue(application, "VOIP Protocol", "voipProtocol_Dropdown");
 		String voipProtocolSelected=GetTheSelectedValueInsideDropdown_trunk(application, "voipProtocol_Dropdown", "VOIP Protocol");
-		DriverTestcase.logger.log(LogStatus.PASS, "Value for 'VOIP Protocol' field is displaying as:"+voipProtocolSelected);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Value for 'VOIP Protocol' field is displaying as:"+voipProtocolSelected);
 		System.out.println("Value for 'VOIP Protocol' field is displaying as:"+voipProtocolSelected);
 		
 		selectValueInsideDropdown(application, "voipProtocol_Dropdown", "VOIP Protocol", voip_resilientTrunk, xml);
@@ -13123,19 +13222,19 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		//Billing Country
 		fetchDisabledFieldValue(application, "Billing Country", "billingCoutry_Dropdown");
 		String coutrySelected=GetTheSelectedValueInsideDropdown_trunk(application, "billingCoutry_Dropdown", "Billing Country");
-		DriverTestcase.logger.log(LogStatus.PASS, "Value for 'Billing Country' field is displaying as:"+coutrySelected);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Value for 'Billing Country' field is displaying as:"+coutrySelected);
 		System.out.println("Value for 'Billing Country' field is displaying as:"+coutrySelected);
 		
 		//CDR Delivery
 		fetchDisabledFieldValue(application, "CDR Delivery", "CDRdelivery_Dropdown");
 		String cdrSelected=GetTheSelectedValueInsideDropdown_trunk(application, "CDRdelivery_Dropdown", "CDR Delivery");
-		DriverTestcase.logger.log(LogStatus.PASS, "Value for 'CDR Delivery' field is displaying as:"+cdrSelected);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Value for 'CDR Delivery' field is displaying as:"+cdrSelected);
 		System.out.println("Value for 'CDR Delivery' field is displaying as:"+cdrSelected);
 		
 		//Prefix
 		fetchDisabledFieldValue(application, "Prefix", "prefix_textField");
 		String prefixSelected=GetTheSelectedValueInsideDropdown_trunk(application, "prefix_textField", "Prefix");
-		DriverTestcase.logger.log(LogStatus.PASS, "Value for 'Prefix' field is displaying as:"+prefixSelected);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Value for 'Prefix' field is displaying as:"+prefixSelected);
 		System.out.println("Value for 'Prefix' field is displaying as:"+prefixSelected);
 		
 		
@@ -13147,7 +13246,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		//Quality
 		fetchDisabledFieldValue(application, "Quality", "quality_Dropdown");
 		String qualitySelected=GetTheSelectedValueInsideDropdown_trunk(application, "quality_Dropdown", "Quality");
-		DriverTestcase.logger.log(LogStatus.PASS, "Value for 'Prefix' field is displaying as:"+qualitySelected);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Value for 'Prefix' field is displaying as:"+qualitySelected);
 		System.out.println("Value for 'Prefix' field is displaying as:"+qualitySelected);
 		
 		
@@ -13182,7 +13281,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 					  //message displaying under "SIP Signalling Port" text field	
 						methodToFindMessagesUnderTextField(application, "SIPsignallingPOrt_defaultValue_textvalue", "SIP Signalling Port", "Default Port:5060");
 				  }else {
-					  DriverTestcase.logger.log(LogStatus.PASS, "'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-1'");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-1'");
 					  System.out.println("'SIP Signalling Port' text field will not display, if 'VOIP Protocol' selected as 'SIP-I'");
 				  }
 			
@@ -13208,7 +13307,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		
 	}catch(Exception e) {
 		e.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
 		System.out.println(labelname + " field is not displaying");
 	}
 		
@@ -13232,7 +13331,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		    }
 		
 		System.out.println("Value displaying under "+labelname+" is: "+ ls);
-		DriverTestcase.logger.log(LogStatus.PASS, "Value displaying under "+labelname+" is: "+ ls);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Value displaying under "+labelname+" is: "+ ls);
 	
 	}	
 	
@@ -13398,7 +13497,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		scrolltoend();
 		TrunkNameToAddCPEDeviceText= getwebelement("//div[text()='"+ ExistingTrunkName +"']").isDisplayed();
 		if(TrunkNameToAddCPEDeviceText) {
-			DriverTestcase.logger.log(LogStatus.PASS, "Expected 'Trunk Name' is displaying as expected under Trunk Panel in 'view Service' page");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Expected 'Trunk Name' is displaying as expected under Trunk Panel in 'view Service' page");
 			System.out.println("Expected 'Trunk Name'' is displaying as expected under Trunk Panel in 'view Service' page");
 			
 			
@@ -13407,7 +13506,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		String TrunkName = CheckboxForExpectedTrunk.getText().toString();
 		CheckboxForExpectedTrunk.click();
 		Thread.sleep(5000);
-		DriverTestcase.logger.log(LogStatus.PASS,"Step : Checkbox Selection is done for Expected trunk, Selected Trunk is " + TrunkName);
+		ExtentTestManager.getTest().log(LogStatus.PASS,"Step : Checkbox Selection is done for Expected trunk, Selected Trunk is " + TrunkName);
 		Log.info("Selected Trunk is  : " + TrunkName);
 		
 		
@@ -13415,7 +13514,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		click(application, "Add CPE Device Link", "ViewService_Trunk_AddCPEDeviceLink1");
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEDevice_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Add CPE Device' navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Add CPE Device' navigated as expected");
 			System.out.println("'Add CPE Device' navigated as expected");
 			
 		if(AddNewCPEDevice.equalsIgnoreCase("Yes")) {
@@ -13469,22 +13568,22 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 			
 			}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in Add CPE Device page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Add CPE Device page");
 			System.out.println(  e+ " : Field is not displayed in Add CPE Device page");
 			}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in Add CPE Device page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Add CPE Device page ");
 			System.out.println(  e+" : Field is not displayed in Add CPE Device page");
 			}
 
 			
 				}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'Add CPE Device' page not navigated");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Add CPE Device' page not navigated");
 				System.out.println("'Add CPE Device' page not navigated");
 					  }
 			
 				}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "Expected 'Trunk Name' is not displaying as expected under Trunk Panel in 'view Service' page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Expected 'Trunk Name' is not displaying as expected under Trunk Panel in 'view Service' page");
 				System.out.println("Expected 'Trunk Name'' is not displaying as expected under Trunk Panel in 'view Service' page");
 						}
 				}
@@ -13517,7 +13616,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		click(application, "View Link For CPE Device under Trunk panel", "ViewService_Trunk_ViewCPEDeviceLink");
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/CPE_ViewDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'View CPE Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'View CPE Device' page navigated as expected");
 			System.out.println("'View CPE Device' page navigated as expected");
 		
 		try {
@@ -13558,20 +13657,20 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in View CPE Device page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in View CPE Device page");
 			System.out.println(  e+ " : Field is not displayed in View CPE Device page");
 			}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in View CPE Device page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in View CPE Device page ");
 			System.out.println(  e+" : Field is not displayed in View CPE Device page");
 			}
 		
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'View CPE Device' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View CPE Device' page not navigated");
 			System.out.println("'View CPE Device' page not navigated");
 			 }
 		
-		DriverTestcase.logger.log(LogStatus.PASS, "All Fields values verified in View CPE Device Page");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "All Fields values verified in View CPE Device Page");
 		Log.info("------ Verified Added CPE Device Information successfully ------");
 		
 		
@@ -13594,7 +13693,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/CPE_ViewDevice_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'View CPE Device' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'View CPE Device' page navigated as expected");
 			System.out.println("'View CPE Device' page navigated as expected");
 			
 			click(application, "ACTION Link", "CPE_View_ActionLink");
@@ -13602,7 +13701,7 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 			click(application, "Edit Link", "CPE_View_Action_EditLink");
 			
 			if(getwebelement(xml.getlocator("//locators/" + application + "/CPE_EditDevice_Header")).isDisplayed()) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'Edit CPE Device' page navigated as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit CPE Device' page navigated as expected");
 				System.out.println("'Edit CPE Device' page navigated as expected");
 		
 		
@@ -13649,21 +13748,21 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 			
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "Field is not displayed in Edit CPE Device page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Field is not displayed in Edit CPE Device page");
 			System.out.println( "Field is not displayed in Edit CPE Device page");
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "Field is not displayed in Edit CPE Device page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Field is not displayed in Edit CPE Device page ");
 			System.out.println( "Field is not displayed in Edit CPE Device page");
 		}
 			
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'Edit CPE Device' page not  navigated");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Edit CPE Device' page not  navigated");
 				System.out.println("'Edit CPE Device' page not navigated");
 			}
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'View CPE Device' page not navigated");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View CPE Device' page not navigated");
 			System.out.println("'View CPE Device' page not navigated");
 		}
 		
@@ -13684,17 +13783,17 @@ public void veriyFetchDeviceInterfacesFunction_CPE(String application,String Ser
 	
 	scrollToTop();
 	if(getwebelement(xml.getlocator("//locators/" + application + "/CPE_ViewDevice_Header")).isDisplayed()) {
-		DriverTestcase.logger.log(LogStatus.PASS, "'View CPE Device' page navigated as expected");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'View CPE Device' page navigated as expected");
 		System.out.println("'View CPE Device' page navigated as expected");
 		
 		click(application, "ACTION link", "CPE_View_ActionLink");
 		click(application, "Fetch Device Interfaces Link", "CPE_View_Action_FetchDeviceInterfacesLink");
 		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/CPE_FetchDeviceInterfacesSuccessMessage")).isDisplayed()){
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Device fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' displayed ");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Device fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' displayed ");
 			System.out.println("Step : Device fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' displayed ");
 		}else {
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
 			System.out.println("Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
 		}
 		
@@ -13703,7 +13802,7 @@ public void veriyFetchDeviceInterfacesFunction_CPE(String application,String Ser
 		
 		//Manage COLT's Network - Manage Network
 		if(getwebelement(xml.getlocator("//locators/" + application + "/CPE_ManageCOLTsNetworkManageNetwork_header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Manage COLT's Network - Manage Network' page navigated as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Manage COLT's Network - Manage Network' page navigated as expected");
 			System.out.println("'Manage COLT's Network - Manage Network' page navigated as expected");
 			
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/CPE_Manage_Synchronization_SynchronizeLink")));
@@ -13752,22 +13851,22 @@ public void veriyFetchDeviceInterfacesFunction_CPE(String application,String Ser
 				{
 					if(PE_servicestatushistoryValue.isDisplayed())
 					{
-						DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request logged");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request logged");
 					}
 					else
-						DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change request is not logged");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request is not logged");
 				}
 				catch(StaleElementReferenceException e)
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "No service history to display");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "No service history to display");
 				}
 			}
 			else
-				DriverTestcase.logger.log(LogStatus.FAIL, "Status link is not working");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Status link is not working");
 		}
 		else
 		{
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Service status change not reqired");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change not reqired");
 			//**click(application, "Close", "CPE_servicestatus_popupclose");
 		}
 
@@ -13780,21 +13879,21 @@ public void veriyFetchDeviceInterfacesFunction_CPE(String application,String Ser
 			
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, "Field is not displayed in 'Manage COLT's Network - Manage Network' page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Field is not displayed in 'Manage COLT's Network - Manage Network' page");
 				System.out.println( "Field is not displayed in 'Manage COLT's Network - Manage Network' page");
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, "Field is not displayed in 'Manage COLT's Network - Manage Network' page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Field is not displayed in 'Manage COLT's Network - Manage Network' page");
 				System.out.println( "Field is not displayed in 'Manage COLT's Network - Manage Network' page");
 			}
 			
 	}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "'Manage COLT's Network - Manage Network' page not navigated");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'Manage COLT's Network - Manage Network' page not navigated");
 		System.out.println("'Manage COLT's Network - Manage Network' page not navigated");
 	}
 	
 }else {
-	DriverTestcase.logger.log(LogStatus.FAIL, "'View CPE Device' page not navigated");
+	ExtentTestManager.getTest().log(LogStatus.FAIL, "'View CPE Device' page not navigated");
 	System.out.println("'View CPE Device' page not navigated");
 }
 
@@ -13852,7 +13951,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 			
 			scrollToTop();
 			if(getwebelement(xml.getlocator("//locators/" + application + "/CPE_ViewDevice_Header")).isDisplayed()) {
-				DriverTestcase.logger.log(LogStatus.PASS, "'View CPE Device' page navigated as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'View CPE Device' page navigated as expected");
 				System.out.println("'View CPE Device' page navigated as expected");
 				
 			//Delete MAS Device from View Device Page
@@ -13874,7 +13973,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 			//compareText(application, "Delete CPE Device Successfull Message", "CPE_DeleteCPEDeviceSuccessMessage", "CPE Device deleted successfully");
 			
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'View CPE Device' page not navigated");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'View CPE Device' page not navigated");
 				System.out.println("'View CPE Device' page not navigated");
 			}
 			}
@@ -13890,11 +13989,11 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, e+ " : VOIP ACCESS Service ID Link is not displayed");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : VOIP ACCESS Service ID Link is not displayed");
 				System.out.println(  e+ " : VOIP ACCESS Service ID Link is not displayed");
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL,  e+" : VOIP ACCESS Service ID Link is not displayed");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : VOIP ACCESS Service ID Link is not displayed");
 				System.out.println(  e+" : VOIP ACCESS Service ID Link is not displayed");
 			}
 
@@ -13912,7 +14011,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 				   Thread.sleep(3000);
 				   
 		}else{
-			DriverTestcase.logger.log(LogStatus.FAIL,  "VOIP ACCESS Device Link is not displayed under Manage Colt Network page");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  "VOIP ACCESS Device Link is not displayed under Manage Colt Network page");
 			System.out.println("VOIP ACCESS Device Link is not displayed under Manage Colt Network page");
 		}
 				
@@ -13931,20 +14030,27 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 				//**WebElement AddedDevice_ViewLink=getwebelement("//div[div[b[text()='"+MAS_DeviceName+"']]]//span[text()='View']");
 				//**Clickon(AddedDevice_ViewLink);
 				click_commonMethod(application, "View Link", "MAS_viewdevice1", xml);
-				compareText(application, "View device header", "MAS_ViewDevice_Header", "Device", xml);
+				
+				if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_ViewDevice_Header")).isDisplayed()) {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "'View MAS Switch' page navigated as expected");
+					System.out.println("'View MAS Switch' page navigated as expected");
+				}else {
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "'View MAS Switch' page not navigated");
+					System.out.println("'View MAS Switch' page not navigated");
+				}
 					
 			}else{
-				DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 			}
 			
 			
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
 				System.out.println(  e+ " : Field is not displayed");
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
 				System.out.println(  e+" : Field is not displayed");
 			}
 		}
@@ -13963,17 +14069,17 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 				compareText(application, "View device header", "MAS_ViewDevice_Header", "Device", xml);
 					
 			}else{
-				DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 			}
 			
 			
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
 				System.out.println(  e+ " : Field is not displayed");
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
 				System.out.println(  e+" : Field is not displayed");
 			}
 
@@ -13997,13 +14103,13 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 						Thread.sleep(5000);
 						compareText(application, "View device header", "MAS_ViewDevice_Header", "Device", xml);
 					}else{
-                          DriverTestcase.logger.log(LogStatus.FAIL, "Invalid device name");
+                          ExtentTestManager.getTest().log(LogStatus.FAIL, "Invalid device name");
                     }
                     break;
 				}
 				
 			}else{
-				DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 			}
 			
 		}
@@ -14032,7 +14138,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 			}
 			else
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "No Device added in grid");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 			}
 			
 		}
@@ -14103,7 +14209,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 				
 			}
 			else {
-				DriverTestcase.logger.log(LogStatus.INFO, "Router Panel will not display for the selected vendorModel: "+vendorModel);
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Router Panel will not display for the selected vendorModel: "+vendorModel);
 				System.out.println("Router Panel will not display for the selected vendorModel: "+vendorModel);
 			}
 			
@@ -14119,20 +14225,20 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 		try {	
 		resultField=getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_result_textArea")).isDisplayed();
 		if(resultField) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'Result' text field is displaying");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Result' text field is displaying");
 			System.out.println( "'Result' text field is displaying");
 			
 			String remarkvalue=getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_result_textArea")).getText();
-			DriverTestcase.logger.log(LogStatus.PASS, "value under 'Result' field displaying as "+ remarkvalue);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "value under 'Result' field displaying as "+ remarkvalue);
 			System.out.println("value under 'Result' field displaying as "+ remarkvalue);
 
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, "'Result' text field is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Result' text field is not displaying");
 			System.out.println( "'Result' text field is not displaying");
 		}
 		}catch(Exception e) {
 		e.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL, "'Result' text field is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'Result' text field is not displaying");
 		System.out.println("'Result' text field is not displaying");
 		}
 			
@@ -14149,13 +14255,13 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 				  addtextFields_commonMethod(application, "IP Address or Hostname", "MAS_PE_commandIPv6_hostnameTextfield", ipv6Address, xml);
 				  
 			  }else {
-				  DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
+				  ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 					System.out.println("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 			  }
 			}catch(Exception e) {
 				e.printStackTrace();
 				
-				DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
+				ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 				System.out.println("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 			}
 		}
@@ -14171,17 +14277,17 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 					if(IPV6availability) {
 						addtextFields_commonMethod(application, "Router Vrf Name", "MAS_PE_commandIPv6_vrfnameTextField", vrfname_IPV6, xml);
 					}else {
-						DriverTestcase.logger.log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
+						ExtentTestManager.getTest().log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 						System.out.println("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 					}
 				}catch(Exception e) {
 					e.printStackTrace();
-					DriverTestcase.logger.log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
+					ExtentTestManager.getTest().log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 					System.out.println("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 				}
 			}
 			else {
-				DriverTestcase.logger.log(LogStatus.PASS, "'VRF Name IPv6' text field is not displaying for "+ commandIPV6);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'VRF Name IPv6' text field is not displaying for "+ commandIPV6);
 				System.out.println("'VRF Name IPv6' text field is not displaying for "+ commandIPV6 +" command");
 			}
 			
@@ -14198,13 +14304,13 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 				  addtextFields_commonMethod(application, "IP Address or Hostname", "MAS_PE_commandIPv4_hostnameTextfield", ipAddress, xml);
 				  
 			  }else {
-				  DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
+				  ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 					System.out.println("'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 			  }
 			}catch(Exception e) {
 				e.printStackTrace();
 				
-				DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
+				ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 				System.out.println("'Hostname or IpAddress' for 'Ipv4' text field is not displaying for "+ command_ipv4);
 			}
 		}
@@ -14221,17 +14327,17 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 					if(IPV4availability) {
 						addtextFields_commonMethod(application, "Router Vrf Name", "MAS_PE_commandIPv4_vrfnameTextField", vrfname_ipv4, xml);
 					}else {
-						DriverTestcase.logger.log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 						System.out.println("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 					}
 				}catch(Exception e) {
 					e.printStackTrace();
-					DriverTestcase.logger.log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 					System.out.println("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 				}
 				
 			}else {
-				DriverTestcase.logger.log(LogStatus.PASS, "'VRF Name IPv4' text field is not displaying for "+ command_ipv4);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'VRF Name IPv4' text field is not displaying for "+ command_ipv4);
 				System.out.println("'VRF Name IPv4' text field is not displaying for "+ command_ipv4 +" command");
 			}
 		}	
@@ -14305,7 +14411,7 @@ public void clickOnViewLink(String application, String trunkGroupName, String si
 	
 	//Add CPE link
 		Clickon(getwebelement("//a[contains(text(),'View')]"));
-		DriverTestcase.logger.log(LogStatus.PASS, "clicked on view link");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "clicked on view link");
 	
 }
 
@@ -14342,10 +14448,10 @@ public void viewTrunk_PSX_executeConfiguration(String application, String expect
      // Capturing alert message.    
        String alertMessage= driver.switchTo().alert().getText();
        if(alertMessage.isEmpty()) {
-    	   DriverTestcase.logger.log(LogStatus.FAIL, "No mEssage displays");
+    	   ExtentTestManager.getTest().log(LogStatus.FAIL, "No mEssage displays");
 	       System.out.println("No Message displays"); 
        }else {
-    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+    	   ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
 	       System.out.println("text message for alert displays as: "+alertMessage);
        }
      
@@ -14366,10 +14472,10 @@ public void viewTrunk_PSX_executeConfiguration(String application, String expect
      }else if(expectedConfiguration.equalsIgnoreCase("Add Destination IP Address")) {
     	 String alertMessage1=alert.getText();
     	 if(alertMessage1.isEmpty()) {
-	    	   DriverTestcase.logger.log(LogStatus.FAIL, "After clicking on OK, No Message displays");
+	    	   ExtentTestManager.getTest().log(LogStatus.FAIL, "After clicking on OK, No Message displays");
 		       System.out.println("No Message displays"); 
 	       }else {
-	    	   DriverTestcase.logger.log(LogStatus.PASS, "After clicking on OK button, Alert message displays as: "+alertMessage);
+	    	   ExtentTestManager.getTest().log(LogStatus.PASS, "After clicking on OK button, Alert message displays as: "+alertMessage);
 		       System.out.println("text message for alert displays as: "+alertMessage);
 	       }
     	 
@@ -14393,10 +14499,10 @@ public void viewTrunk_SBC_executeConfiguration(String application, String expect
      // Capturing alert message.    
        String alertMessage= driver.switchTo().alert().getText();
        if(alertMessage.isEmpty()) {
-    	   DriverTestcase.logger.log(LogStatus.FAIL, "No mEssage displays");
+    	   ExtentTestManager.getTest().log(LogStatus.FAIL, "No mEssage displays");
 	       System.out.println("No Message displays"); 
        }else {
-    	   DriverTestcase.logger.log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+    	   ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
 	       System.out.println("text message for alert displays as: "+alertMessage);
        }
        
@@ -14450,9 +14556,9 @@ public void viewTrunk_GSX_executeConfiguration(String application, String expect
                 
               String gsxConfiguredValue = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/GSXcongig_textArea")));
               if(gsxConfiguredValue.isEmpty()) {
-            	  DriverTestcase.logger.log(LogStatus.PASS, "No values displaying under GSX Configuration");
+            	  ExtentTestManager.getTest().log(LogStatus.PASS, "No values displaying under GSX Configuration");
               }else {
-            	  DriverTestcase.logger.log(LogStatus.PASS, "'Under GSX Configuration' value is displaying as: "+ gsxConfiguredValue);
+            	  ExtentTestManager.getTest().log(LogStatus.PASS, "'Under GSX Configuration' value is displaying as: "+ gsxConfiguredValue);
               }
 //               Write here  whatever you want to do and perform
                 System.out.println("came inside child window");
@@ -14473,10 +14579,10 @@ public void viewTrunk_GSX_executeConfiguration(String application, String expect
     scrollToTop();
    String gsxSuccessMesage= Gettext(getwebelement(xml.getlocator("//locators/" + application + "/GSXconfig_sucessMessage")));
    if(gsxSuccessMesage.isEmpty()) {
-	   DriverTestcase.logger.log(LogStatus.FAIL, "NO message displays after clicking on 'Execute' button");
+	   ExtentTestManager.getTest().log(LogStatus.FAIL, "NO message displays after clicking on 'Execute' button");
    }
    else {
-	   DriverTestcase.logger.log(LogStatus.PASS, "After clicking on 'Execute' button, success Message displays as: "+gsxSuccessMesage);
+	   ExtentTestManager.getTest().log(LogStatus.PASS, "After clicking on 'Execute' button, success Message displays as: "+gsxSuccessMesage);
    }
  
     
@@ -14499,7 +14605,7 @@ public void addSBC_manualExecutionConfig(String application, String manualConfig
 	
 	boolean SBCHeder=getwebelement(xml.getlocator("//locators/" + application + "/SBCmanualConfig_PanelHeader")).isDisplayed();
 	if(SBCHeder) {
-		DriverTestcase.logger.log(LogStatus.PASS, "'SBC Manully Executed Configuration' panel is displaying");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'SBC Manully Executed Configuration' panel is displaying");
 		System.out.println("'SBC Manully Executed Configuration' panel is displaying");
 		
 		
@@ -14522,9 +14628,9 @@ public void addSBC_manualExecutionConfig(String application, String manualConfig
 	                
 	              String psxConfiguredValue = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/manualConfiguration_textArea")));
 	              if(psxConfiguredValue.isEmpty()) {
-	            	  DriverTestcase.logger.log(LogStatus.PASS, "No values displaying under SBC Manually Executed Configurations");
+	            	  ExtentTestManager.getTest().log(LogStatus.PASS, "No values displaying under SBC Manually Executed Configurations");
 	              }else {
-	            	  DriverTestcase.logger.log(LogStatus.PASS, "'Under SBC Manually Executed Configurations' value is displaying as: "+ psxConfiguredValue);
+	            	  ExtentTestManager.getTest().log(LogStatus.PASS, "'Under SBC Manually Executed Configurations' value is displaying as: "+ psxConfiguredValue);
 	              }
 //	               Write here  whatever you want to do and perform
 	                System.out.println("came inside child window");
@@ -14546,7 +14652,7 @@ public void addSBC_manualExecutionConfig(String application, String manualConfig
 	    compareText(application, "SBC Manual Configuration added Successfully", "AddManualConfiguration_SuccessMessage", "Manual Configuration added Successfully", xml);
 	    
 	}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "'SBC Manully Executed Configuration' panel is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'SBC Manully Executed Configuration' panel is not displaying");
 		System.out.println("'SBC Manully Executed Configuration' panel is not displaying");
 	}
 }
@@ -14564,7 +14670,7 @@ public void verifySBCfileAdded(String application) throws InterruptedException, 
 	String SBCfilenameCreated=Gettext(filename);
 	
 	if(SBCfilenameCreated.isEmpty()) {
-		DriverTestcase.logger.log(LogStatus.FAIL, "SBC Manually Executed configuration file name is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "SBC Manually Executed configuration file name is not displaying");
 		System.out.println("SBC Manually Executed configuration file name is not displaying");
 	}else {
 		
@@ -14581,7 +14687,7 @@ public void verifySBCfileAdded(String application) throws InterruptedException, 
 			k++;
 		}
 		
-		DriverTestcase.logger.log(LogStatus.INFO, "column names display as: "+ columnName[1] + "  " + columnName[2]);  //printing column Names
+		ExtentTestManager.getTest().log(LogStatus.INFO, "column names display as: "+ columnName[1] + "  " + columnName[2]);  //printing column Names
 		
 		
 	//Fetching value under File Column	
@@ -14610,10 +14716,10 @@ public void verifySBCfileAdded(String application) throws InterruptedException, 
 		}
 	
 	
-		DriverTestcase.logger.log(LogStatus.INFO, "Values under 'SBC Manually Executed Configuration' value displays as: ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Values under 'SBC Manually Executed Configuration' value displays as: ");
 		
 	for(int y=0; y<fileNameValues.length; y++) {
-	DriverTestcase.logger.log(LogStatus.PASS,  fileNameValues[y] +"      "+ dateValues[y]);
+	ExtentTestManager.getTest().log(LogStatus.PASS,  fileNameValues[y] +"      "+ dateValues[y]);
 	}
 	
 	}
@@ -14780,7 +14886,7 @@ public void deleteSBC_manualExecutionConfig(String application) throws Interrupt
      if(DeleteAlertPopup.isDisplayed())
      {
    	 String deletPopUpMessage= Gettext(getwebelement(xml.getlocator("//locators/" + application + "/DeleteMessae_PSX_GSX_SBC")));
-   	 DriverTestcase.logger.log(LogStatus.PASS, "Delete Pop up message displays as: "+ deletPopUpMessage);
+   	 ExtentTestManager.getTest().log(LogStatus.PASS, "Delete Pop up message displays as: "+ deletPopUpMessage);
    	 
      click_commonMethod(application, "Delete", "DeleteButton_PSX_GSX_SBC", xml);
      Thread.sleep(3000);
@@ -14791,7 +14897,7 @@ public void deleteSBC_manualExecutionConfig(String application) throws Interrupt
      else
      {
            Log.info("Delete alert popup is not displayed");
-           DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+           ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
      }
 
 }
@@ -14820,7 +14926,7 @@ public void deletePSX_manualExecutionConfig(String application) throws Interrupt
      if(DeleteAlertPopup.isDisplayed())
      {
    	 String deletPopUpMessage= Gettext(getwebelement(xml.getlocator("//locators/" + application + "/DeleteMessae_PSX_GSX_SBC")));
-   	 DriverTestcase.logger.log(LogStatus.PASS, "Delete Pop up message displays as: "+ deletPopUpMessage);
+   	 ExtentTestManager.getTest().log(LogStatus.PASS, "Delete Pop up message displays as: "+ deletPopUpMessage);
    	 
         click_commonMethod(application, "Delete", "DeleteButton_PSX_GSX_SBC", xml);
         Thread.sleep(3000);
@@ -14833,7 +14939,7 @@ public void deletePSX_manualExecutionConfig(String application) throws Interrupt
      else
      {
            Log.info("Delete alert popup is not displayed");
-           DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+           ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
      }
 
 }
@@ -14860,7 +14966,7 @@ public void deletePSX_manualExecutionConfig(String application) throws Interrupt
 	     if(DeleteAlertPopup.isDisplayed())
 	     {
 	   	 String deletPopUpMessage= Gettext(getwebelement(xml.getlocator("//locators/" + application + "/DeleteMessae_PSX_GSX_SBC")));
-	   	 DriverTestcase.logger.log(LogStatus.PASS, "Delete Pop up message displays as: "+ deletPopUpMessage);
+	   	 ExtentTestManager.getTest().log(LogStatus.PASS, "Delete Pop up message displays as: "+ deletPopUpMessage);
 	   	 
 	        click_commonMethod(application, "Delete", "DeleteButton_PSX_GSX_SBC", xml);
 	        Thread.sleep(3000);
@@ -14871,7 +14977,7 @@ public void deletePSX_manualExecutionConfig(String application) throws Interrupt
 	     else
 	     {
 	           Log.info("Delete alert popup is not displayed");
-	           DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+	           ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
 	     }
 
 	}
@@ -14893,7 +14999,7 @@ public void addPSX_manualExecutionConfig(String application, String PSXmanualCon
 	
 	boolean PSXHeader=getwebelement(xml.getlocator("//locators/" + application + "/PSXmanualConfig_PanelHeader")).isDisplayed();
 	if(PSXHeader) {
-		DriverTestcase.logger.log(LogStatus.PASS, "'PSX Manully Executed Configuration' panel is displaying");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'PSX Manully Executed Configuration' panel is displaying");
 		System.out.println("'PSX Manully Executed Configuration' panel is displaying");
 		
 		
@@ -14917,9 +15023,9 @@ public void addPSX_manualExecutionConfig(String application, String PSXmanualCon
 	                
 	              String psxConfiguredValue = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/manualConfiguration_textArea")));
 	              if(psxConfiguredValue.isEmpty()) {
-	            	  DriverTestcase.logger.log(LogStatus.PASS, "No values displaying under PSX Manually Executed Configurations");
+	            	  ExtentTestManager.getTest().log(LogStatus.PASS, "No values displaying under PSX Manually Executed Configurations");
 	              }else {
-	            	  DriverTestcase.logger.log(LogStatus.PASS, "'Under PSX Manually Executed Configurations' value is displaying as: "+ psxConfiguredValue);
+	            	  ExtentTestManager.getTest().log(LogStatus.PASS, "'Under PSX Manually Executed Configurations' value is displaying as: "+ psxConfiguredValue);
 	              }
 //	               Write here  whatever you want to do and perform
 	                System.out.println("came inside child window");
@@ -14942,7 +15048,7 @@ public void addPSX_manualExecutionConfig(String application, String PSXmanualCon
 	    compareText(application, "PSX Manual Configuration added Successfully", "AddManualConfiguration_SuccessMessage", "Manual Configuration added Successfully", xml);
 	    
 	}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "'PSX Manully Executed Configuration' panel is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'PSX Manully Executed Configuration' panel is not displaying");
 		System.out.println("'PSX Manully Executed Configuration' panel is not displaying");
 	}
 }
@@ -14962,7 +15068,7 @@ public void addGSX_manualExecutionConfig(String application, String GSXmanualCon
 	
 	boolean PSXHeader=getwebelement(xml.getlocator("//locators/" + application + "/GSXmanualConfig_PanelHeader")).isDisplayed();
 	if(PSXHeader) {
-		DriverTestcase.logger.log(LogStatus.PASS, "'GSX Manully Executed Configuration' panel is displaying");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'GSX Manully Executed Configuration' panel is displaying");
 		System.out.println("'GSX Manully Executed Configuration' panel is displaying");
 		
 		
@@ -14985,9 +15091,9 @@ public void addGSX_manualExecutionConfig(String application, String GSXmanualCon
 	                
 	              String psxConfiguredValue = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/manualConfiguration_textArea")));
 	              if(psxConfiguredValue.isEmpty()) {
-	            	  DriverTestcase.logger.log(LogStatus.PASS, "No values displaying under GSX Manually Executed Configurations");
+	            	  ExtentTestManager.getTest().log(LogStatus.PASS, "No values displaying under GSX Manually Executed Configurations");
 	              }else {
-	            	  DriverTestcase.logger.log(LogStatus.PASS, "'Under GSX Manually Executed Configurations' value is displaying as: "+ psxConfiguredValue);
+	            	  ExtentTestManager.getTest().log(LogStatus.PASS, "'Under GSX Manually Executed Configurations' value is displaying as: "+ psxConfiguredValue);
 	              }
 //	               Write here  whatever you want to do and perform
 	                System.out.println("came inside child window");
@@ -15011,7 +15117,7 @@ public void addGSX_manualExecutionConfig(String application, String GSXmanualCon
 	    compareText(application, "GSX Manual Configuration added Successfully", "GSXManualConfiguration_SuccessMessage", "Manual Configuration added Successfully", xml);
 	    
 	}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "'GSX Manully Executed Configuration' panel is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'GSX Manully Executed Configuration' panel is not displaying");
 		System.out.println("'GSX Manully Executed Configuration' panel is not displaying");
 	}
 }
@@ -15034,7 +15140,7 @@ public void verifyPSXfileAdded(String application) throws InterruptedException, 
 	String PSXfilenameCreated=Gettext(filename);
 	
 	if(PSXfilenameCreated.isEmpty()) {
-		DriverTestcase.logger.log(LogStatus.FAIL, "PSX Manually Executed configuration file name is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "PSX Manually Executed configuration file name is not displaying");
 		System.out.println("PSX Manually Executed configuration file name is not displaying");
 	}else {
 		
@@ -15051,7 +15157,7 @@ public void verifyPSXfileAdded(String application) throws InterruptedException, 
 			k++;
 		}
 		
-		DriverTestcase.logger.log(LogStatus.INFO, "column names display as: "+ columnName[1] + "  " + columnName[2]);  //printing column Names
+		ExtentTestManager.getTest().log(LogStatus.INFO, "column names display as: "+ columnName[1] + "  " + columnName[2]);  //printing column Names
 		
 		
 	//Fetching value under File Column	
@@ -15080,10 +15186,10 @@ public void verifyPSXfileAdded(String application) throws InterruptedException, 
 		}
 	
 		
-		DriverTestcase.logger.log(LogStatus.INFO, "Values under 'PSX Manually Executed Configuration' value displays as: ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Values under 'PSX Manually Executed Configuration' value displays as: ");
 	
 	for(int y=0; y<fileNameValues.length; y++) {
-	DriverTestcase.logger.log(LogStatus.PASS, fileNameValues[y] +"      "+ dateValues[y]);
+	ExtentTestManager.getTest().log(LogStatus.PASS, fileNameValues[y] +"      "+ dateValues[y]);
 	}
 		
 	}
@@ -15107,7 +15213,7 @@ public void verifyGSXfileAdded(String application) throws InterruptedException, 
 	String GSXfilenameCreated=Gettext(filename);
 	
 	if(GSXfilenameCreated.isEmpty()) {
-		DriverTestcase.logger.log(LogStatus.FAIL, "GSX Manually Executed configuration file name is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "GSX Manually Executed configuration file name is not displaying");
 		System.out.println("GSX Manually Executed configuration file name is not displaying");
 	}else {
 		
@@ -15124,8 +15230,8 @@ public void verifyGSXfileAdded(String application) throws InterruptedException, 
 			k++;
 		}
 		
-		DriverTestcase.logger.log(LogStatus.INFO, "column names display as: ");  //printing column Names
-		DriverTestcase.logger.log(LogStatus.PASS,  columnName[1] + "     	     " + columnName[2]);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "column names display as: ");  //printing column Names
+		ExtentTestManager.getTest().log(LogStatus.PASS,  columnName[1] + "     	     " + columnName[2]);
 		
 	//Fetching value under File Column	
 		List<WebElement> files=getwebelements(xml.getlocator("//locators/" + application + "/GSX_fileName"));
@@ -15153,10 +15259,10 @@ public void verifyGSXfileAdded(String application) throws InterruptedException, 
 		}
 	
 		
-		DriverTestcase.logger.log(LogStatus.INFO, "Values under 'GSX Manually Executed Configuration' value displays as: ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Values under 'GSX Manually Executed Configuration' value displays as: ");
 	
 	for(int y=0; y<fileNameValues.length; y++) {
-	DriverTestcase.logger.log(LogStatus.PASS, fileNameValues[y] +"      "+ dateValues[y]);
+	ExtentTestManager.getTest().log(LogStatus.PASS, fileNameValues[y] +"      "+ dateValues[y]);
 	}
 	
 	}
@@ -15172,7 +15278,7 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 	waitForpageload();
 	
 	if(getwebelement(xml.getlocator("//locators/" + application + "/ViewTrunk_Header")).isDisplayed()) {
-		DriverTestcase.logger.log(LogStatus.PASS, "'View Trunk' Page displayed as expected");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'View Trunk' Page displayed as expected");
 		System.out.println("'View Trunk' Page displayed as expected");
 		
 		//Action button	
@@ -15181,7 +15287,7 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 		click_commonMethod(application, "History", "ViewTrunkPage_HistoryLink", xml);
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/HistoryPage_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'History Trunk' Page displayed as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'History Trunk' Page displayed as expected");
 			System.out.println("'History Trunk' Page displayed as expected");
 		
 			try {
@@ -15199,21 +15305,21 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in History page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in History page");
 				System.out.println(  e+ " : Field is not displayed in History page");
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in History page ");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in History page ");
 				System.out.println(  e+" : Field is not displayed in History page");
 			}
 
 		}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "'History Trunk' Page is not navigated as expected");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'History Trunk' Page is not navigated as expected");
 		System.out.println("'History Trunk' Page is not navigated as expected");
 		  }
 	
 	}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "'View Trunk' Page is not navigated as expected");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'View Trunk' Page is not navigated as expected");
 		System.out.println("'View Trunk' Page is not navigated as expected");
 	}
 	
@@ -15231,7 +15337,7 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 	waitForpageload();
 	
 	if(getwebelement(xml.getlocator("//locators/" + application + "/ViewTrunk_Header")).isDisplayed()) {
-		DriverTestcase.logger.log(LogStatus.PASS, "'View Trunk' Page displayed as expected");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'View Trunk' Page displayed as expected");
 		System.out.println("'View Trunk' Page displayed as expected");
 		
 		//Action button	
@@ -15240,7 +15346,7 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 		click_commonMethod(application, "PSX Queue Link", "ViewTrunkPage_PSXQueueLink", xml);
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/PSXQueuePage_Header")).isDisplayed()) {
-			DriverTestcase.logger.log(LogStatus.PASS, "'PSX Queue Trunk' Page displayed as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'PSX Queue Trunk' Page displayed as expected");
 			System.out.println("'PSX Queue Trunk' Page displayed as expected");
 		
 			try {
@@ -15251,21 +15357,21 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, e+ " : Field is not displayed in PSX Queue page");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in PSX Queue page");
 				System.out.println(  e+ " : Field is not displayed in PSX Queue page");
 			}catch(Exception e) {
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL,  e+" : Field is not displayed in PSX Queue page ");
+				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in PSX Queue page ");
 				System.out.println(  e+" : Field is not displayed in PSX Queue page");
 			}
 
 		}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "'PSX Queue' Page is not navigated as expected");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'PSX Queue' Page is not navigated as expected");
 		System.out.println("'PSX Queue' Page is not navigated as expected");
 		  }
 	
 	}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "'View Trunk' Page is not navigated as expected");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'View Trunk' Page is not navigated as expected");
 		System.out.println("'View Trunk' Page is not navigated as expected");
 	}
 	
@@ -15316,7 +15422,7 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
 		click_commonMethod(application, "Archive", "bulkinterface_refreshlink", xml);
 		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Bulk Interface page refresh successful");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Bulk Interface page refresh successful");
 		Log.info("Bulk Interface page refresh successful");
 		Thread.sleep(1000);
 		scrolltoend();
@@ -15333,16 +15439,16 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 			availability= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 			System.out.println(availability);
 			if (availability) {
-				DriverTestcase.logger.log(LogStatus.PASS, "Step: '"+labelname+"' is displayed as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step: '"+labelname+"' is displayed as expected");
 				System.out.println("Step: '"+labelname+"' is displayed as expected");
 			}
 			else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step: '"+labelname+"' is not displayed");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: '"+labelname+"' is not displayed");
 				System.out.println("Step: '"+labelname+"' is not displayed");
 				}
 
 		} catch (Exception e) {
-			DriverTestcase.logger.log(LogStatus.FAIL,"Step: '"+labelname+"' is not available to display");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: '"+labelname+"' is not available to display");
 			e.printStackTrace();
 		}
 	}
@@ -15375,13 +15481,13 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 				File[] files = dir.listFiles();
 				if (files.length == 0 || files == null) {
 					System.out.println("The directory is empty");
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Downloads folder is empty");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Downloads folder is empty");
 					flag = false;
 				} else {
 					for (File listFile : files) {
 						if (listFile.getName().contains(fileName)) {
 							System.out.println(fileName + " is present");
-							DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+fileName+"' excel file is downloaded successfully");
+							ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+fileName+"' excel file is downloaded successfully");
 							break;
 						}
 						flag = true;
@@ -15389,14 +15495,6 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 				}
 				return flag;
 			}
-				
-				
-				public void scrolltoview (String application, String labelname, String xpath, XMLReader xml) throws InterruptedException, DocumentException {
-					WebElement element = null;
-					element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
-
-					((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-				}
 				
 	
 	

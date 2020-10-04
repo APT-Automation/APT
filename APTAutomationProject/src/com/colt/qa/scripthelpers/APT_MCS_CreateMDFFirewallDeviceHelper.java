@@ -13,6 +13,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
@@ -20,6 +21,7 @@ import com.colt.qa.driverlibrary.DriverHelper;
 import com.colt.qa.driverlibrary.DriverTestcase;
 import com.colt.qa.driverlibrary.Log;
 import com.colt.qa.driverlibrary.XMLReader;
+import com.colt.qa.reporter.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;
 
 public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
@@ -45,16 +47,16 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 		if (flag) {
 
 			Log.info("webElement is present " + ele.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, "Step: expected field is displayed " , fieldname);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: expected field is displayed " , fieldname);
 		} else {
 
 			Log.info("webElement is not  present" + ele.getText());
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step: expected field is not displayed ", fieldname);
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: expected field is not displayed ", fieldname);
 		}
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		Log.info("webElement is not  present" + ele.getText());
-		DriverTestcase.logger.log(LogStatus.FAIL, "Step: expected field is not displayed ", fieldname);
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: expected field is not displayed ", fieldname);
 	}
 
 	}
@@ -64,14 +66,14 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 	
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/mcnlink")));
 		Thread.sleep(2000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on manage colt's Network link");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on manage colt's Network link");
 	}
 	
 	public void navigatetocreateaccesscoredevicepage(String application) throws InterruptedException, DocumentException {
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/createaccesscoredevicelink")));
 		Thread.sleep(2000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : clicked on manage colt's Network link");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on manage colt's Network link");
 	}
 	
 	public void verifycreatedevicefields(String application) throws InterruptedException, DocumentException {
@@ -100,11 +102,11 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 		
 		} catch (NoSuchElementException e) {
 			Log.info("webElement is not  present");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step: expected field is not displayed in page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: expected field is not displayed in page ");
 			e.printStackTrace();
 		}catch (TimeoutException e) {
 			Log.info("webElement is not  present" );
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step: expected field is not displayed in page ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: expected field is not displayed in page ");
 			e.printStackTrace();
 			
 		}
@@ -131,7 +133,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     	try {
     		scrolltoend();
     //Verify Mandatory fields
-    		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+    		click_commonMethod(application, "OK", "okbutton", xml);
         	Thread.sleep(3000);
         	
         	warningMessage_commonMethod(application, "warningMessage_Country", "Country", xml);
@@ -152,7 +154,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 			
 		
 			//devicetype
-			addDropdownValues_commonMethod(application, "Device Type", "devicetypeinput", devicetype, xml);
+			selectValueInsideDropdown(application, "devicetypeinput", "Device Type", devicetype, xml);
 			
 
 			//vendormodel
@@ -309,7 +311,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 		}
     	scrolltoend();
     	Thread.sleep(2000);
-    	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+    	click_commonMethod(application, "OK", "okbutton", xml);
     	Thread.sleep(3000);
     
     
@@ -456,22 +458,22 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 	try {
 		alertmsg1=getwebelement(xml.getlocator("//locators/" + application + "/succesMsg_alertDisplay")).isDisplayed();
 		if(alertmsg1) {
-			DriverTestcase.logger.log(LogStatus.PASS, " 'Success Message is displaying for device creation");
+			ExtentTestManager.getTest().log(LogStatus.PASS, " 'Success Message is displaying for device creation");
 			Log.info(" 'Success Message is displaying for device creation");
 			
 			String actualmsg=getwebelement(xml.getlocator("//locators/" + application + "/successMessage_Alert")).getText();
-//			assertEquals(actualmsg, "Device created successfully");
-			DriverTestcase.logger.log(LogStatus.PASS, "Success Message is displaying as: "+ actualmsg);
+			assertEquals(actualmsg, "Device created successfully");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Success Message is displaying as: "+ actualmsg);
 			
 			successScreenshot(application);
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, " 'Success Message is not displaying for device creation");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Success Message is not displaying for device creation");
 			Log.info(" 'Success Message is not displaying for device creation");
 		}
 	}catch(Exception e) {
 		e.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL, " 'Success Message is not displaying for device creation");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Success Message is not displaying for device creation");
 		Log.info(" 'Success Message is not displaying for device creation");
 	}
 	
@@ -492,22 +494,22 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 	try {
 		alertmsg1=getwebelement(xml.getlocator("//locators/" + application + "/succesMsg_alertDisplay")).isDisplayed();
 		if(alertmsg1) {
-			DriverTestcase.logger.log(LogStatus.PASS, " 'Success Message is displaying for device Updation");
+			ExtentTestManager.getTest().log(LogStatus.PASS, " 'Success Message is displaying for device Updation");
 			Log.info(" 'Success Message is displaying for device Updation");
 			String actualmsg=getwebelement(xml.getlocator("//locators/" + application + "/successMessage_Alert")).getText();
 //			assertEquals(actualmsg, "Device updated successfully");
-			DriverTestcase.logger.log(LogStatus.PASS, "Success Message is displaying as: "+ actualmsg);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Success Message is displaying as: "+ actualmsg);
 			
 			successScreenshot(application);
 			
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, " 'Success Message is not displaying for device Updation");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Success Message is not displaying for device Updation");
 			Log.info(" 'Success Message is not displaying for device Updation");
 		}
 	}catch(Exception e) {
 		e.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL, " 'Success Message is not displaying for device Updation");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Success Message is not displaying for device Updation");
 		Log.info(" 'Success Message is not displaying for device Updation");
 	}
 	   
@@ -521,12 +523,12 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     	
     	String ele = getwebelement(xpath).getAttribute("value");
     	if (ele.isEmpty()) {
-    		DriverTestcase.logger.log(LogStatus.PASS, "Step : selected field is empty " + fieldname);
+    		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : selected field is empty " + fieldname);
     		
     	}else {
     		
     		sa.fail();
-    		DriverTestcase.logger.log(LogStatus.FAIL, "Step : selected field is not empty " + fieldname);
+    		ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : selected field is not empty " + fieldname);
     	}
     	
     	sa.assertAll();
@@ -541,22 +543,22 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		availability=getwebelement(xml.getlocator("//locators/" + application + "/" + ele)).isDisplayed();
     		
     		if(availability) {
-    			DriverTestcase.logger.log(LogStatus.PASS, fieldname + " is displaying as expected");
+    			ExtentTestManager.getTest().log(LogStatus.PASS, fieldname + " is displaying as expected");
     			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/" + ele)));
     			Thread.sleep(3000);
-    			DriverTestcase.logger.log(LogStatus.PASS, fieldname+ " is selected as expected");
+    			ExtentTestManager.getTest().log(LogStatus.PASS, fieldname+ " is selected as expected");
     		}else {
-    			DriverTestcase.logger.log(LogStatus.FAIL, fieldname + " is not displaying");
+    			ExtentTestManager.getTest().log(LogStatus.FAIL, fieldname + " is not displaying");
     			Log.info(fieldname + " is not displaying");
     		}
     	}catch(Exception e) {
     		e.printStackTrace();
-    		DriverTestcase.logger.log(LogStatus.FAIL, fieldname + " is not displaying");
+    		ExtentTestManager.getTest().log(LogStatus.FAIL, fieldname + " is not displaying");
 			Log.info(fieldname + " is not displaying");
     	}
 		}else {
 			
-			DriverTestcase.logger.log(LogStatus.PASS, "Step :  " + fieldname + " checkbox is not selected ");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step :  " + fieldname + " checkbox is not selected ");
 		}
     }
     
@@ -568,31 +570,31 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     	conectivityProtocolssh_availability=getwebelement(xml.getlocator("//locators/" + application + "/sshradiobutton")).isDisplayed();
     	if(conectivityProtocolssh_availability) {
 
-    		DriverTestcase.logger.log(LogStatus.PASS, " 'SSH' is displaying under 'Connectivity protocol' as expected");
+    		ExtentTestManager.getTest().log(LogStatus.PASS, " 'SSH' is displaying under 'Connectivity protocol' as expected");
     		Log.info(" 'SSH' is displaying under 'Connectivity protocol' as expected");
     		
     		conectivityProtocolssh_Selection=getwebelement(xml.getlocator("//locators/" + application + "/sshradiobutton")).isSelected();
     		if(conectivityProtocolssh_Selection) {
-    			DriverTestcase.logger.log(LogStatus.PASS, " 'SSH' is selected under 'Connectivity protocol' by default as expected");
+    			ExtentTestManager.getTest().log(LogStatus.PASS, " 'SSH' is selected under 'Connectivity protocol' by default as expected");
     			Log.info(" 'SSH' is selected under 'Connectivity protocol' as expected");
     			
     		}else {
-    			DriverTestcase.logger.log(LogStatus.FAIL, " 'SSH' is not selected by default under 'Connectivity protocol'");
+    			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'SSH' is not selected by default under 'Connectivity protocol'");
     			Log.info(" 'SSH' is not selected under 'Connectivity protocol'");
     		}
     	}else {
-    		DriverTestcase.logger.log(LogStatus.FAIL, " 'SSH' is not displaying under 'Connectivity protocol'");
+    		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'SSH' is not displaying under 'Connectivity protocol'");
     		Log.info(" 'SSH' is not displaying under 'Connectivity protocol'");
     	}
     	
     }catch(NoSuchElementException e) {
     	e.printStackTrace();
-    	DriverTestcase.logger.log(LogStatus.FAIL, " 'SSH' is not displaying under 'Connectivity protocol'");
+    	ExtentTestManager.getTest().log(LogStatus.FAIL, " 'SSH' is not displaying under 'Connectivity protocol'");
 		Log.info(" 'SSH' is not displaying under 'Connectivity protocol'");
 		
     }catch(Exception ee) {
     	ee.printStackTrace();
-    	DriverTestcase.logger.log(LogStatus.FAIL, " 'SSH' is not selected under 'Connectivity protocol'");
+    	ExtentTestManager.getTest().log(LogStatus.FAIL, " 'SSH' is not selected under 'Connectivity protocol'");
 		Log.info(" 'SSH' is not selected under 'Connectivity protocol'");
     	
     }
@@ -606,27 +608,27 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     	conectivityProtocoltelnet_availability=getwebelement(xml.getlocator("//locators/" + application + "/telnetradiobutton")).isDisplayed();
     	if(conectivityProtocoltelnet_availability) {
 
-    		DriverTestcase.logger.log(LogStatus.PASS, " 'Telnet' is displaying under 'Connectivity protocol' as expected");
+    		ExtentTestManager.getTest().log(LogStatus.PASS, " 'Telnet' is displaying under 'Connectivity protocol' as expected");
     		Log.info(" 'Telnet' is displaying under 'Connectivity protocol' as expected");
     		
     		conectivityProtocoltelnet_Selection=getwebelement(xml.getlocator("//locators/" + application + "/telnetradiobutton")).isSelected();
     		if(conectivityProtocoltelnet_Selection) {
-    			DriverTestcase.logger.log(LogStatus.FAIL, " 'Telnet' is selected under 'Connectivity protocol' by default");
+    			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Telnet' is selected under 'Connectivity protocol' by default");
     			Log.info(" 'Telnet' is selected under 'Connectivity protocol'");
     			
     		}else {
-    			DriverTestcase.logger.log(LogStatus.PASS, " 'Telnet' is not selected under 'Connectivity protocol' by default as expected");
+    			ExtentTestManager.getTest().log(LogStatus.PASS, " 'Telnet' is not selected under 'Connectivity protocol' by default as expected");
     			Log.info(" 'Telnet' is not selected under 'Connectivity protocol'");
     		}
     	}else {
-    		DriverTestcase.logger.log(LogStatus.FAIL, " 'Telnet' is not displaying under 'Connectivity protocol'");
+    		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Telnet' is not displaying under 'Connectivity protocol'");
     		Log.info(" 'Telnet' is not displaying under 'Connectivity protocol'");
     	}
     	
    	
     }catch(Exception ee) {
     	ee.printStackTrace();
-    	DriverTestcase.logger.log(LogStatus.FAIL, " 'Telnet' is not displaying under 'Connectivity protocol'");
+    	ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Telnet' is not displaying under 'Connectivity protocol'");
 		Log.info(" 'Telnet' is not displaying under 'Connectivity protocol'");
     	
     }
@@ -640,7 +642,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		
     		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/c2cradiobutton")));
     		Thread.sleep(3000);
-    		DriverTestcase.logger.log(LogStatus.PASS, "Step : selected field is : " + fieldname);
+    		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : selected field is : " + fieldname);
     		
     		//clear and enter new value for snmpro and snpprw
     		Clear(getwebelement(xml.getlocator("//locators/" + application + "/snmprotextfield")));
@@ -648,14 +650,14 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/snmprotextfield")), snmpro2cvalue);
     		Thread.sleep(3000);
     		String snmprovalue = getwebelement(xml.getlocator("//locators/" + application + "/snmprotextfield")).getAttribute("value");
-    		DriverTestcase.logger.log(LogStatus.PASS, "Step : enterted snmpro value is : " + snmprovalue);
+    		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : enterted snmpro value is : " + snmprovalue);
     		Thread.sleep(3000);
     		
     		Clear(getwebelement(xml.getlocator("//locators/" + application + "/snmprwtextfield")));
     		Thread.sleep(3000);
     		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/snmprwtextfield")), snmprw2cvalue);
     		String snmprwvalue = getwebelement(xml.getlocator("//locators/" + application + "/snmprwtextfield")).getAttribute("value");
-    		DriverTestcase.logger.log(LogStatus.PASS, "Step : enterted snmpro value is : " + snmprwvalue);
+    		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : enterted snmpro value is : " + snmprwvalue);
     		Thread.sleep(3000);
     		
     		
@@ -663,26 +665,26 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		
     		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/c2cradiobutton")));
     		Thread.sleep(3000);
-    		DriverTestcase.logger.log(LogStatus.PASS, "Step : selected field is : " + fieldname);
+    		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : selected field is : " + fieldname);
     		
     		//verify snmpro & snmprw fileds
     		String snmprovalue = getwebelement(xml.getlocator("//locators/" + application + "/snmprotextfield")).getAttribute("value");
     		String snmprwvalue = getwebelement(xml.getlocator("//locators/" + application + "/snmprwtextfield")).getAttribute("value");
     		
     		if(!(snmprovalue.isEmpty())&&!(snmprwvalue.isEmpty())) {
-    			DriverTestcase.logger.log(LogStatus.PASS, "Step : snmpro and snmprw fields are not empty");
-    			DriverTestcase.logger.log(LogStatus.INFO, "Step : snmpro field value displayed is : " + snmprovalue);
-    			DriverTestcase.logger.log(LogStatus.INFO, "Step : snmprw field value displayed is : " + snmprwvalue);
+    			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : snmpro and snmprw fields are not empty");
+    			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : snmpro field value displayed is : " + snmprovalue);
+    			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : snmprw field value displayed is : " + snmprwvalue);
     		}else {
     			
     			sa.fail("snmpro and snmprw fields are empty, it has to be prefilled");
-    			DriverTestcase.logger.log(LogStatus.FAIL, "Step : snmpro and snmprw fields are empty, it has to be prefilled");
+    			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : snmpro and snmprw fields are empty, it has to be prefilled");
     		}
     			
     		
     	}else if(snmp2c.equalsIgnoreCase("no")){
     		
-    		DriverTestcase.logger.log(LogStatus.INFO, "Step :  " + fieldname + " field is not selected ");
+    		ExtentTestManager.getTest().log(LogStatus.INFO, "Step :  " + fieldname + " field is not selected ");
     	}
     	
     	sa.assertAll();
@@ -695,7 +697,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		
     		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/c3radiobutton")));
     		Thread.sleep(3000);
-    		DriverTestcase.logger.log(LogStatus.PASS, "Step : selected field is : " + fieldname);
+    		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : selected field is : " + fieldname);
     		
     		//clear and enter new value for snmpv3username
     		Clear(getwebelement(xml.getlocator("//locators/" + application + "/snmpv3username")));
@@ -703,7 +705,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/snmpv3username")), Snmpv3Usernamevalue);
     		Thread.sleep(3000);
     		String Snmpv3Usernamevalue1 = getwebelement(xml.getlocator("//locators/" + application + "/snmpv3username")).getAttribute("value");
-    		DriverTestcase.logger.log(LogStatus.INFO, "Step : enterted Snmpv3Username value is : " + Snmpv3Usernamevalue1);
+    		ExtentTestManager.getTest().log(LogStatus.INFO, "Step : enterted Snmpv3Username value is : " + Snmpv3Usernamevalue1);
     		Thread.sleep(3000);
     		
     		//clear and enter new value for Snmpv3Authpassword
@@ -712,7 +714,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/snmpv3authpassword")), Snmpv3Authpasswordvalue);
     		Thread.sleep(3000);
     		String snmpv3authpasswordvalue1 = getwebelement(xml.getlocator("//locators/" + application + "/snmpv3authpassword")).getAttribute("value");
-    		DriverTestcase.logger.log(LogStatus.INFO, "Step : enterted snmpv3authpassword value is : " + snmpv3authpasswordvalue1);
+    		ExtentTestManager.getTest().log(LogStatus.INFO, "Step : enterted snmpv3authpassword value is : " + snmpv3authpasswordvalue1);
     		Thread.sleep(3000);
     		
     		//clear and enter new value for Snmpv3Privpassword
@@ -721,7 +723,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/snmpv3privpassword")), Snmpv3Privpasswordvalue);
     		Thread.sleep(3000);
     		String Snmpv3Privpasswordvalue1 = getwebelement(xml.getlocator("//locators/" + application + "/snmpv3privpassword")).getAttribute("value");
-    		DriverTestcase.logger.log(LogStatus.INFO, "Step : enterted Snmpv3Privpassword value is : " + Snmpv3Privpasswordvalue1);
+    		ExtentTestManager.getTest().log(LogStatus.INFO, "Step : enterted Snmpv3Privpassword value is : " + Snmpv3Privpasswordvalue1);
     		Thread.sleep(3000);
     		
     		
@@ -729,7 +731,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		
     		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/c3radiobutton")));
     		Thread.sleep(3000);
-    		DriverTestcase.logger.log(LogStatus.PASS, "Step : selected field is : " + fieldname);
+    		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : selected field is : " + fieldname);
     		
     		//verify Snmpv3Username,Snmpv3Authpassword,Snmpv3Privpassword fileds
     		String Snmpv3Usernamevalue2 = getwebelement(xml.getlocator("//locators/" + application + "/snmpv3username")).getAttribute("value");
@@ -737,20 +739,20 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		String Snmpv3Privpasswordvalue2 = getwebelement(xml.getlocator("//locators/" + application + "/snmpv3privpassword")).getAttribute("value");
     		
     		if(!(Snmpv3Usernamevalue2.isEmpty())&&!(Snmpv3Authpasswordvalue2.isEmpty()) && !(Snmpv3Privpasswordvalue2.isEmpty())) {
-    			DriverTestcase.logger.log(LogStatus.PASS, "Step : Snmpv3Username,Snmpv3Authpassword,Snmpv3Privpassword fields are not empty");
-    			DriverTestcase.logger.log(LogStatus.INFO, "Step : snmpro field value displayed is : " + Snmpv3Usernamevalue2);
-    			DriverTestcase.logger.log(LogStatus.INFO, "Step : snmprw field value displayed is : " + Snmpv3Authpasswordvalue2);
-    			DriverTestcase.logger.log(LogStatus.INFO, "Step : snmprw field value displayed is : " + Snmpv3Privpasswordvalue2);
+    			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Snmpv3Username,Snmpv3Authpassword,Snmpv3Privpassword fields are not empty");
+    			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : snmpro field value displayed is : " + Snmpv3Usernamevalue2);
+    			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : snmprw field value displayed is : " + Snmpv3Authpasswordvalue2);
+    			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : snmprw field value displayed is : " + Snmpv3Privpasswordvalue2);
     		}else {
     			
     			sa.fail("Snmpv3Username,Snmpv3Authpassword,Snmpv3Privpassword fields are empty, it has to be prefilled");
-    			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Snmpv3Username,Snmpv3Authpassword,Snmpv3Privpassword fields are empty, it has to be prefilled");
+    			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Snmpv3Username,Snmpv3Authpassword,Snmpv3Privpassword fields are empty, it has to be prefilled");
     		}
     			
     		
     	}else if(snmp3.equalsIgnoreCase("no")){
     		
-    		DriverTestcase.logger.log(LogStatus.INFO, "Step :  " + fieldname + " field is not selected ");
+    		ExtentTestManager.getTest().log(LogStatus.INFO, "Step :  " + fieldname + " field is not selected ");
     	}
          
        sa.assertAll();
@@ -764,7 +766,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		//select city
     		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/citydropdowninput")), existingcityvalue);
     		Thread.sleep(3000);
-    		DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected Existing City Name is : " + existingcityvalue );
+    		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected Existing City Name is : " + existingcityvalue );
     		
     		WebElement Cityele = getwebelement("//span[text()='"+existingcityvalue+"']");
     		Cityele.click();
@@ -773,7 +775,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		//Select site
     		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/sitedropdowninput")), existingsitevalue);
     		Thread.sleep(3000);
-    		DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected Existing Site Name is : " + existingsitevalue );
+    		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected Existing Site Name is : " + existingsitevalue );
     		
     		WebElement siteele = getwebelement("//span[text()='"+existingsitevalue+"']");
     		siteele.click();
@@ -782,14 +784,14 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		//Select Premise
     		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/premisedropdowninput")), existingpremisevalue);
     		Thread.sleep(3000);
-    		DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected Existing Premise Name is : " + existingpremisevalue );
+    		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected Existing Premise Name is : " + existingpremisevalue );
     		
     		WebElement premiseele = getwebelement("//span[text()='"+existingpremisevalue+"']");
     		premiseele.click();
     		Thread.sleep(3000);
     	}else {
     		
-    		DriverTestcase.logger.log(LogStatus.INFO, "Step : Existing City, Site and Premise Name is not selected ! "  );
+    		ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Existing City, Site and Premise Name is not selected ! "  );
     	}
     	
     }
@@ -817,7 +819,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		
     	}else {
     		
-    		DriverTestcase.logger.log(LogStatus.INFO, "Step : Add City is not selected ! "  );
+    		ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Add City is not selected ! "  );
     	}
     	
     	
@@ -842,7 +844,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
     		
     	}else {
     		
-    		DriverTestcase.logger.log(LogStatus.INFO, "Step : Add Site is not selected ! "  );
+    		ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Add Site is not selected ! "  );
     	}
     	
     }
@@ -869,7 +871,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 		WebElement EditButton = getwebelement(xml.getlocator("//locators/" + application + "/Edit"));
 		String EditButtonClick = EditButton.getText();
 		EditButton.click();
-		DriverTestcase.logger.log(LogStatus.PASS, "Clicked on edit link");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on edit link");
 		Thread.sleep(2000);
 		
 	//Device Name
@@ -877,17 +879,19 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 		
 		
 	//Device Type
-		 String devicetype=getwebelement("//label[text()='Device Type']/following-sibling::div//span").getText();
- 		Log.info("device type is displaying as: "+devicetype);
- 		assertEquals(devicetype, DeviceType);
- 		if(devicetype.equalsIgnoreCase("MDF Firewall")) {
- 			DriverTestcase.logger.log(LogStatus.PASS, "Device type is displaying as expected. It is displaying as: "+ devicetype);
- 			Log.info("Device type is displaying as expected. It is displaying as: "+ devicetype);
- 		}
- 		else {
- 			DriverTestcase.logger.log(LogStatus.FAIL, "Device type is not displaying as expected. It is displaying as: "+ devicetype);
- 			Log.info("Device type is not displaying as expected. It is displaying as: "+ devicetype);
- 		}
+ 		Select sel = new Select(getwebelement(xml.getlocator("//locators/" + application + "/devicetypeinput")));
+ 		WebElement devicetype = sel.getFirstSelectedOption();
+		 
+		Log.info("device type is displaying as: "+devicetype.getText());
+		assertEquals(devicetype.getText(), DeviceType);
+		if(devicetype.getText().equalsIgnoreCase("MDF Firewall")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Device type is displaying as expected. It is displaying as: "+ devicetype.getText());
+			Log.info("Device type is displaying as expected. It is displaying as: "+ devicetype.getText());
+		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Device type is not displaying as expected. It is displaying as: "+ devicetype.getText());
+			Log.info("Device type is not displaying as expected. It is displaying as: "+ devicetype.getText());
+		}
 		 
 		
 	//Vendor Model
@@ -899,7 +903,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 	//connection protocol selection
 	if((editTelnet.equalsIgnoreCase("null")) && (editSSH.equalsIgnoreCase("null"))) {
 		
-		DriverTestcase.logger.log(LogStatus.PASS, " No changes made for 'Connectivity Protocol' as expected");
+		ExtentTestManager.getTest().log(LogStatus.PASS, " No changes made for 'Connectivity Protocol' as expected");
 		Log.info(" No changes made for 'Connectivity Protocol' as expected");
 			
 	}
@@ -924,7 +928,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 		
 	//SNMP version	
 	if((editSnmp2C.equalsIgnoreCase("null"))  && (editSnmp3.equalsIgnoreCase("null"))) {
-		DriverTestcase.logger.log(LogStatus.PASS, "No changes made for 'SNMP Version' as expected");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made for 'SNMP Version' as expected");
 		Log.info("No changes made for 'SNMP Version' as expected");
 		
 	}
@@ -1037,7 +1041,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 	}
 	else if(editCountry.equalsIgnoreCase("Null")) {
 		
-		DriverTestcase.logger.log(LogStatus.PASS, " No changes made for 'Country' dropdown");
+		ExtentTestManager.getTest().log(LogStatus.PASS, " No changes made for 'Country' dropdown");
 	
 	//City	
 		editCity(application, editExistingCity, editNewCity, "citydropdowninput", "selectcityswitch", "addcityswitch",
@@ -1054,9 +1058,10 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 		
 	}
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/okbutton")));
+	scrolltoend();
+		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(3000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Device is edited successfully");	
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Device is edited successfully");	
 		
 
     	
@@ -1072,14 +1077,14 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 		WebElement ActionButton = getwebelement(xml.getlocator("//locators/" + application + "/Action"));
 		String ActionButtonClick = ActionButton.getText();
 		ActionButton.click();
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Action button is clicked : " + ActionButtonClick);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Action button is clicked : " + ActionButtonClick);
 		Thread.sleep(2000);
 		
 		//Delete Button Click
 		WebElement DeleteButton = getwebelement(xml.getlocator("//locators/" + application + "/Delete"));
 		String DeleteButtonClick = DeleteButton.getText();
 		DeleteButton.click();
-		DriverTestcase.logger.log(LogStatus.PASS, "Delete button is clicked : " + DeleteButtonClick);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Delete button is clicked : " + DeleteButtonClick);
 		Thread.sleep(2000);
 		
 	//Handling Delete Device Alert
@@ -1087,7 +1092,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
         if(DeleteAlertPopup.isDisplayed())
         {
       	 String deletPopUpMessage= Gettext(getwebelement(xml.getlocator("//locators/" + application + "/deleteMessages_textMessage")));
-      	 DriverTestcase.logger.log(LogStatus.PASS, "Delete Pop up message displays as: "+ deletPopUpMessage);
+      	 ExtentTestManager.getTest().log(LogStatus.PASS, "Delete Pop up message displays as: "+ deletPopUpMessage);
       	 
            click_commonMethod(application, "Delete", "deletebutton", xml);
            
@@ -1099,7 +1104,7 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
         else
         {
               Log.info("Delete alert popup is not displayed");
-              DriverTestcase.logger.log(LogStatus.FAIL, "Delete alert popup is not displayed");
+              ExtentTestManager.getTest().log(LogStatus.FAIL, "Delete alert popup is not displayed");
         }    
     
     }
@@ -1110,18 +1115,18 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 	try {	
 		availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
 		if(availability) {
-			DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is displaying as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is displaying as expected");
 			Log.info(labelname + " text field is displaying as expected");
 			
 			String actualvalueInsidetextfield=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
 			
 			if(actualvalueInsidetextfield.isEmpty()) {
 				
-				DriverTestcase.logger.log(LogStatus.FAIL, "No values displaying under "+labelname+" text field");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under "+labelname+" text field");
 				Log.info("No values displaying under "+labelname+" text field");
 				
 				if(expectedValueToEdit.equalsIgnoreCase("null")) {
-					//DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is not edited as expected");
+					//ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is not edited as expected");
 					Log.info(labelname + " text field is not edited as expected");
 				}else {
 					
@@ -1132,16 +1137,16 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 					Thread.sleep(3000);
 					
 					String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field value is edited as: "+ actualvalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field value is edited as: "+ actualvalue);
 				}
 				
 			}else {
 				
-				DriverTestcase.logger.log(LogStatus.PASS, "Value displaying under "+labelname + " field is: "+actualvalueInsidetextfield);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Value displaying under "+labelname + " field is: "+actualvalueInsidetextfield);
 				Log.info("Value displaying under "+labelname + " field is: "+actualvalueInsidetextfield);
 				
 				if(expectedValueToEdit.equalsIgnoreCase("null")) {
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field is not edited as expected");
+					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is not edited as expected");
 					Log.info(labelname + " text field is not edited as expected");
 				}else {
 					
@@ -1152,20 +1157,20 @@ public class APT_MCS_CreateMDFFirewallDeviceHelper extends DriverHelper{
 					Thread.sleep(3000);
 					
 					String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
-					DriverTestcase.logger.log(LogStatus.PASS, labelname + " text field value is edited as: "+ actualvalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field value is edited as: "+ actualvalue);
 				}
 			}
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
 			Log.info(labelname + " text field is not displaying");
 		}
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL, labelname + " text field is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
 		Log.info(labelname + " text field is not displaying");
 	}catch(Exception ee) {
 		ee.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL, " Not able to enter value under "+ labelname + " text field");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under "+ labelname + " text field");
 		Log.info(" Not able to enter value under "+ labelname + " text field");
 	}
 }
@@ -1184,14 +1189,13 @@ public void fetchDeviceInterface_viewdevicepage(String application) throws Inter
 	
 	scrollToTop();
 	 Thread.sleep(3000);
-	//Action Button Click  			
-		WebElement ActionButton = getwebelement(xml.getlocator("//locators/" + application + "/Action"));
-		ActionButton.click();
-		Thread.sleep(3000);
+	//Action Button Click  
+	 	click_commonMethod(application, "Action", "Action", xml);
+		Thread.sleep(1000);
 		
 	//click on 'fetch device interface	
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/fetchDeviceinterfacelink_viewDevicePage")));
-		Thread.sleep(3000);
+		click_commonMethod(application, "fetch device interfaces", "fetchDeviceinterfacelink_viewDevicePage", xml);
+		Thread.sleep(2000);
 		
 		
 	//verify success Message
@@ -1203,51 +1207,49 @@ public void fetchDeviceInterface_viewdevicepage(String application) throws Inter
 			
 			if(actualMessage.isEmpty()) {
 				Log.info("No messages displays");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Success message is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Success message is not displaying");
 			}
 			if(actualMessage.contains(expectedValue)) {
 				
-			DriverTestcase.logger.log(LogStatus.PASS, " After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, " After clicking on 'Fetch Device Interface' link, success Message is displaying");
 			Log.info(" After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
 			
-			DriverTestcase.logger.log(LogStatus.PASS, " Success Message displays as: "+actualMessage);
+			ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message displays as: "+actualMessage);
 			Log.info(" Success Message displays as: "+actualMessage);
 			
 			//click on the 'click here' link
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ClickhereLink_fetchInterface")));
+			click_commonMethod(application, "click here Link", "ClickhereLink_fetchInterface", xml);
 			Thread.sleep(3000);
 			
 			}
 			else if (actualMessage.equalsIgnoreCase(expectedValue)) {
 				
-				DriverTestcase.logger.log(LogStatus.PASS, " After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " After clicking on 'Fetch Device Interface' link, success Message is displaying as expected");
 				Log.info(" After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
 				
-				DriverTestcase.logger.log(LogStatus.PASS, " Success Message displays as: "+actualMessage);
+				ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message displays as: "+actualMessage);
 				Log.info(" Success Message displays as: "+actualMessage);
 				
 				//click on the 'click here' link
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ClickhereLink_fetchInterface")));
+				click_commonMethod(application, "click here Link", "ClickhereLink_fetchInterface", xml);
 				Thread.sleep(3000);
 			}
 			else {
-				DriverTestcase.logger.log(LogStatus.PASS, "After clicking on 'Fetch Device Interface' link, message displays as "+actualMessage);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "After clicking on 'Fetch Device Interface' link, message displays as "+actualMessage);
 				Log.info("After clicking on 'Fetch Device Interface' link, message displays as "+actualMessage);
 				
-			//Action Button Click  			
-				ActionButton.click();
-				Thread.sleep(2000);
+			//Action Button Click 
+				click_commonMethod(application, "Action", "Action", xml);
+				Thread.sleep(1000);
 				
 			//click on 'Manage' link
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/manageLink_viewDevicepage")));
-				Thread.sleep(3000);
+				click_commonMethod(application, "Manage", "manageLink_viewDevicepage", xml);
+				Thread.sleep(2000);
 			}
 				
 			
-//			manageNetwork(application);
-			
 		}else {
-			DriverTestcase.logger.log(LogStatus.PASS, " After clicking on 'Fetch Device Interface' link, success Message is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.PASS, " After clicking on 'Fetch Device Interface' link, success Message is not displaying");
 			Log.info(" After clicking on 'Fetch Device Interface' link, success Message is not displaying");
 		}
 
@@ -1266,12 +1268,12 @@ public void alertMessage_IQNet(String application) throws InterruptedException, 
 try {	
 	alertHeader=getwebelement(xml.getlocator("//locators/" + application + "/IQNet_alertHeader")).isDisplayed();
 	if(alertHeader) {
-		DriverTestcase.logger.log(LogStatus.PASS, "Alert popup Message displays");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Alert popup Message displays");
 		Log.info("Alert popup Message displays");
 		String alertMsg=getwebelement(xml.getlocator("//locators/" + application + "/IQNet_alertBody")).getText();
 		
 		if(alertMsg.isEmpty()) {
-			DriverTestcase.logger.log(LogStatus.FAIL, "No alert message displays inside the popup, after clicking on 'IQNet' checkbox. It should display as"
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No alert message displays inside the popup, after clicking on 'IQNet' checkbox. It should display as"
 					+ " 'Please make sure this is IQNET device'");
 			
 			Log.info("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
@@ -1281,13 +1283,13 @@ try {
 			Thread.sleep(1000);
 		}
 		else {
-			DriverTestcase.logger.log(LogStatus.PASS, "When we click on 'IQNet' checkbox, an alert message displays as "+alertMsg);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "When we click on 'IQNet' checkbox, an alert message displays as "+alertMsg);
 			Log.info("When we click on 'IQNet' checkbox, an alert message displays as "+alertMsg);
 			
 			click_commonMethod(application, "x button", "IONet_xButton", xml);
 		}
 	}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
 				+ " 'Please make sure this is IQNET device'");
 		
 		Log.info("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
@@ -1295,7 +1297,7 @@ try {
 	}
 }catch(Exception e) {
 	e.printStackTrace();
-	DriverTestcase.logger.log(LogStatus.FAIL, "No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
+	ExtentTestManager.getTest().log(LogStatus.FAIL, "No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
 			+ " 'Please make sure this is IQNET device'");
 	
 	Log.info("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
@@ -1333,7 +1335,7 @@ public void editPremise(String application, String editExistingPremise, String e
 	
 	else if(editExistingPremise.equalsIgnoreCase("null") & editNewPremise.equalsIgnoreCase("null")) {
 		
-		DriverTestcase.logger.log(LogStatus.PASS, "No changes made under 'Premise' field");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made under 'Premise' field");
 		Log.info("No changes made under 'Premise' field");
 		
 	}
@@ -1439,7 +1441,7 @@ public void editSite(String application, String editExistingCity, String editNew
 	
 	else if(editExistingCity.equalsIgnoreCase("null") & editNewCity.equalsIgnoreCase("null")) {
 		
-		DriverTestcase.logger.log(LogStatus.PASS, "No changes made under 'Site' field");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made under 'Site' field");
 		Log.info("No changes made under 'Site' field");
 		
 	}
@@ -1545,7 +1547,7 @@ public void editCity(String application, String editExistingCity, String editNew
 	
 	else if(editExistingCity.equalsIgnoreCase("null") & editNewCity.equalsIgnoreCase("null")) {
 		
-		DriverTestcase.logger.log(LogStatus.PASS, "No chnges made under 'City' field");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "No chnges made under 'City' field");
 		Log.info("No chnges made under 'City' field");
 	}
 	
@@ -1680,7 +1682,8 @@ public void verifEditedValue_AccessRouter(String application, String editDevicen
 	
 //Full IQNET
 	if(editFullIQNET.equalsIgnoreCase("Null")) {
-		   compareText_InViewPage_ForNonEditedFields(application, "Full IQNET", xml);
+//		   compareText_InViewPage_ForNonEditedFields(application, "Full IQNET", xml);
+		Log.info("No changes made");
 	   }
 	else if(editFullIQNET.equalsIgnoreCase("yes")) {
 		
@@ -1804,6 +1807,7 @@ public void verifEditedValue_AccessRouter(String application, String editDevicen
 
 
 public void testStatus(String application) throws InterruptedException, DocumentException {
+
 	
 	String element=null;
 	String status=null;
@@ -1811,42 +1815,41 @@ public void testStatus(String application) throws InterruptedException, Document
 	List<WebElement> testlist=getwebelements("//tbody/tr");
 	int listSize=testlist.size();
 	
-	
-	
-	for(int i=1; i<=listSize; i++) {
-	  try {	
-		element=getwebelement("(//tbody/tr["+ i +"]/td)[1]").getText();
+	if(listSize>=1) {
 		
-		if(element.isEmpty()) {
-			
-		}else {
-			DriverTestcase.logger.log(LogStatus.PASS, "Test Name is displaying as: "+element);
-			Log.info("Test Name is displaying as: "+element);
-			
-			status=getwebelement("(//tbody/tr["+ i +"]/td)[2]/div").getAttribute("class");
-			Log.info("status displays as: "+status);
-			
-			if(status.contains("red")) {
-				DriverTestcase.logger.log(LogStatus.PASS, element + " status colour dipslays as: red");
-				Log.info(element + " status colour dipslays as: red");
-			}
-			else if(status.contains("green")) {
-				DriverTestcase.logger.log(LogStatus.PASS, element + " status colour dipslays as: green");
-				Log.info(element + " status colour dipslays as: green");
-			}
-			
+		for(int i=1; i<=listSize; i++) {
+				element=getwebelement("(//tbody/tr["+ i +"]/td)[1]").getText();
+				
+				if(element.isEmpty()) {
+					
+					Log.info("No value displays inside the table");
+					
+				}else {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Test Name is displaying as: "+element);
+					Log.info("Test Name is displaying as: "+element);
+					
+					status=getwebelement("(//tbody/tr["+ i +"]/td)[2]/div").getAttribute("class");
+					Log.info("status displays as: "+status);
+					
+					if(status.contains("red")) {
+						ExtentTestManager.getTest().log(LogStatus.PASS, element + " status colour dipslays as: red");
+						Log.info(element + " status colour dipslays as: red");
+					}
+					else if(status.contains("green")) {
+						ExtentTestManager.getTest().log(LogStatus.PASS, element + " status colour dipslays as: green");
+						Log.info(element + " status colour dipslays as: green");
+					}
+				}
 		}
-	  }catch(Exception e) {
-		  e.printStackTrace();
-		  if(getwebelement(xml.getlocator("//locators/" + application + "/testCommandTable")).isDisplayed()) {
-				DriverTestcase.logger.log(LogStatus.PASS, "Command/Status table is not dipslaying in view device page. Instead Message displays as: ");
-				DriverTestcase.logger.log(LogStatus.INFO, "* Device reachability tests require the device to have an IP address.");
-			}else {
-				 DriverTestcase.logger.log(LogStatus.FAIL, "Command/Status table is not displaying in 'view device' page");
-			}
-	  }
+	}else {
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Command/Status table is not displaying in view device page. Instead Message displays as: ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "* Device reachability tests require the device to have an IP address.");
 		
+		Log.info("Command/Status table is not displaying in view device page. Instead Message displays as: ");
+		Log.info("* Device reachability tests require the device to have an IP address.");
 	}
+	
+
 }
 
 
@@ -1890,20 +1893,20 @@ boolean resultField=false;
 try {	
 resultField=getwebelement(xml.getlocator("//locators/" + application + "/result_textArea")).isDisplayed();
 if(resultField) {
-	DriverTestcase.logger.log(LogStatus.PASS, "'Result' text field is displaying");
+	ExtentTestManager.getTest().log(LogStatus.PASS, "'Result' text field is displaying");
 	Log.info( "'Result' text field is displaying");
 	
 	String remarkvalue=getwebelement(xml.getlocator("//locators/" + application + "/result_textArea")).getText();
-	DriverTestcase.logger.log(LogStatus.PASS, "value under 'Result' field displaying as "+ remarkvalue);
+	ExtentTestManager.getTest().log(LogStatus.PASS, "value under 'Result' field displaying as "+ remarkvalue);
 	Log.info("value under 'Result' field displaying as "+ remarkvalue);
 
 }else {
-	DriverTestcase.logger.log(LogStatus.FAIL, "'Result' text field is not displaying");
+	ExtentTestManager.getTest().log(LogStatus.FAIL, "'Result' text field is not displaying");
 	Log.info( "'Result' text field is not displaying");
 }
 }catch(Exception e) {
 e.printStackTrace();
-DriverTestcase.logger.log(LogStatus.FAIL, "'Result' text field is not displaying");
+ExtentTestManager.getTest().log(LogStatus.FAIL, "'Result' text field is not displaying");
 Log.info("'Result' text field is not displaying");
 }
 	
@@ -1920,13 +1923,13 @@ public void hostnametextField_IPV6(String application, String commandIPv6, Strin
 		  addtextFields_commonMethod(application, "IP Address or Hostname", "commandIPv6_hostnameTextfield", ipv6Address, xml);
 		  
 	  }else {
-		  	DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
+		  	ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 			Log.info("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 	  }
 	}catch(Exception e) {
 		e.printStackTrace();
 		
-		DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 		Log.info("'Hostname or IpAddress' for 'IPV6' text field is not displaying for "+ commandIPv6);
 	}
 }
@@ -1942,17 +1945,17 @@ public void vrfNametextField_IPV6(String application, String commandIPV6, String
 			if(IPV6availability) {
 				addtextFields_commonMethod(application, "Router Vrf Name", "commandIPv6_vrfnameTextField", vrfname_IPV6, xml);
 			}else {
-				DriverTestcase.logger.log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
+				ExtentTestManager.getTest().log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 				Log.info("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
+			ExtentTestManager.getTest().log(LogStatus.INFO, "'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 			Log.info("'VRF Name' for 'IPv6' text field is not displaying for "+ commandIPV6);
 		}
 	}
 	else {
-		DriverTestcase.logger.log(LogStatus.PASS, "'VRF Name IPv6' text field is not displaying for "+ commandIPV6);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'VRF Name IPv6' text field is not displaying for "+ commandIPV6);
 		Log.info("'VRF Name IPv6' text field is not displaying for "+ commandIPV6 +" command");
 	}
 	
@@ -1969,13 +1972,13 @@ public void hostnametextField_IPV4(String application, String command_ipv4, Stri
 		  addtextFields_commonMethod(application, "IP Address or Hostname", "commandIPv4_hostnameTextfield", ipAddress, xml);
 		  
 	  }else {
-		  	DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
+		  	ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 			Log.info("'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 	  }
 	}catch(Exception e) {
 		e.printStackTrace();
 		
-		DriverTestcase.logger.log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 		Log.info("'Hostname or IpAddress' for 'Ipv4' text field is not displaying for "+ command_ipv4);
 	}
 }
@@ -1992,17 +1995,17 @@ public void vrfNametextField_IPV4(String application, String command_ipv4, Strin
 			if(IPV4availability) {
 				addtextFields_commonMethod(application, "Router Vrf Name", "commandIPv4_vrfnameTextField", vrfname_ipv4, xml);
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 				Log.info("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 			Log.info("'VRF Name' for 'IPv4' text field is not displaying for "+ command_ipv4);
 		}
 		
 	}else {
-		DriverTestcase.logger.log(LogStatus.PASS, "'VRF Name IPv4' text field is not displaying for "+ command_ipv4);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'VRF Name IPv4' text field is not displaying for "+ command_ipv4);
 		Log.info("'VRF Name IPv4' text field is not displaying for "+ command_ipv4 +" command");
 	}
 }	
@@ -2025,13 +2028,13 @@ public String compareText_InViewPage_ForNonEditedFields(String application, Stri
 		element = getwebelement("//div[div[label[contains(text(),'"+ labelname + "')]]]/div[2]");
 		emptyele = element.getText().toString();
 
-				DriverTestcase.logger.log(LogStatus.PASS,labelname +" field is not edited. It is displaying as '"+emptyele+"'");
+				ExtentTestManager.getTest().log(LogStatus.PASS,labelname +" field is not edited. It is displaying as '"+emptyele+"'");
 				Log.info(labelname +" field is not edited. It is displaying as '"+emptyele+"'");
 				
 				
 	}catch (Exception e) {
 		e.printStackTrace();
-		DriverTestcase.logger.log(LogStatus.FAIL, labelname + " field is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
 		Log.info(labelname + " field is not displaying");
 	}
 	return emptyele;
@@ -2055,25 +2058,25 @@ public void verifysuccessmessage(String application, String expected) throws Int
 			
 			if(expected.contains(alrtmsg)) {
 				
-				DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+				ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 				Log.info("Message is verified. It is displaying as: "+alrtmsg);
 				
 				successScreenshot(application);
 				
 			}else {
 				
-				DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 				Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
 			}
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
 			Log.info(" Success Message is not displaying");
 		}
 		
 	}catch(Exception e) {
 		Log.info("failure in fetching success message - 'Service created Successfully'  ");
-		DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 		Log.info(expected+ " message is not getting dislpayed");
 	}
 
@@ -2092,13 +2095,13 @@ public void alertMessage_editIQNet(String application) throws InterruptedExcepti
 try {	
 	alertHeader=getwebelement(xml.getlocator("//locators/" + application + "/IQNet_alertHeader")).isDisplayed();
 	if(alertHeader) {
-		DriverTestcase.logger.log(LogStatus.PASS, "Alert popup Message displays");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Alert popup Message displays");
 		Log.info("Alert popup Message displays");
 		
 		String alertMsg=getwebelement(xml.getlocator("//locators/" + application + "/IQNet_alertBody")).getText();
 		
 		if(alertMsg.isEmpty()) {
-			DriverTestcase.logger.log(LogStatus.FAIL, "No alert message displays inside the popup, after clicking on 'IQNet' checkbox. It should display as"
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No alert message displays inside the popup, after clicking on 'IQNet' checkbox. It should display as"
 					+ " 'Please make sure this is IQNET device'");
 			
 			Log.info("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
@@ -2108,13 +2111,13 @@ try {
 			Thread.sleep(1000);
 		}
 		else {
-			DriverTestcase.logger.log(LogStatus.PASS, "When we click on 'IQNet' checkbox, an alert message displays as "+alertMsg);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "When we click on 'IQNet' checkbox, an alert message displays as "+alertMsg);
 			Log.info("When we click on 'IQNet' checkbox, an alert message displays as "+alertMsg);
 			
 			click_commonMethod(application, "x button", "IONet_xButton", xml);
 		}
 	}else {
-		DriverTestcase.logger.log(LogStatus.FAIL, "No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "No alert message displays, after clicking on 'IQNet' checkbox. It should display as"
 				+ " 'Please make sure this is IQNET device'");
 		
 		Log.info("No alert message displays, after clicking on 'IQNet' checkbox. It should display as"

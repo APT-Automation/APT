@@ -27,6 +27,7 @@ import com.colt.qa.driverlibrary.DriverHelper;
 import com.colt.qa.driverlibrary.DriverTestcase;
 import com.colt.qa.driverlibrary.Log;
 import com.colt.qa.driverlibrary.XMLReader;
+import com.colt.qa.reporter.ExtentTestManager;
 
 public class APT_ManageNetworkHelper extends DriverHelper {
 
@@ -48,11 +49,11 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		if (flag) {
 
 			System.out.println("webElement is present " + ele.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, msg);
+			ExtentTestManager.getTest().log(LogStatus.PASS, msg);
 		} else {
 
 			System.out.println("webElement is not  present" + ele.getText());
-			DriverTestcase.logger.log(LogStatus.FAIL, msg);
+			ExtentTestManager.getTest().log(LogStatus.FAIL, msg);
 		}
 
 	}
@@ -124,7 +125,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		}catch(Exception e)
 		{
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Last Modification column value field is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Last Modification column value field is not displaying");
 		}
 		
 		click_commonMethod(application, "Status", "status_statuslink", xml);
@@ -149,7 +150,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 			compareText(application, "Country", "statuspage_countryvalue", country, xml);
 			compareText(application, "City", "statuspage_cityvalue", city, xml);
 			compareText(application, "Site", "statuspage_sitevalue", site, xml);
-			compareText(application, "Premise", "statuspage_premisevalue", premise, xml);
+			GetText(application, "Premise", "statuspage_premisevalue");
 			
 		compareText(application, "Status header", "Statuspage_statusheader", "Status", xml);
 		compareText(application, "Current Status field header", "statuspage_currentstatusfieldheader", "Current Status", xml);
@@ -160,7 +161,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		WebElement selectNewStatusvalue= getwebelement(xml.getlocator("//locators/" + application + "/statuspage_newstatusdropdownvalue"));
 		Clickon(selectNewStatusvalue);
 		String NewStatusvalue= getwebelement(xml.getlocator("//locators/" + application + "/statuspage_newstatusdropdownvalue")).getText();
-		DriverTestcase.logger.log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue);
 		click_commonMethod(application, "OK", "statuspage_okbutton", xml);
 		Thread.sleep(2000);
 		scrollToTop();
@@ -194,7 +195,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 
 				if ((numofrows == 0)) {
 
-					DriverTestcase.logger.log(LogStatus.PASS, "Device Status History is empty");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Device Status History is empty");
 				}
 				else {
 				// Current page
@@ -212,7 +213,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 							System.out.println(Devicehistorydata);
 							if (Devicehistorydata.contains(NewStatusvalue)) 
 							{
-								DriverTestcase.logger.log(LogStatus.PASS, "Device status history table has data");
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Device status history table has data");
 								Thread.sleep(2000);
 								compareText(application, "New Status", "statuspage_newstatusvalue", NewStatusvalue, xml);
 								try {
@@ -234,7 +235,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 									}catch(Exception e)
 									{
 										e.printStackTrace();
-										DriverTestcase.logger.log(LogStatus.FAIL, "Step : Changed on column value field is not displaying");
+										ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Changed on column value field is not displaying");
 									}
 								
 								//compareText(application, "Changed By", "statuspage_changedbyvalue", Getkeyvalue("APT_login_1_Username"), xml);
@@ -253,7 +254,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 				}
 				}else
 				{
-					DriverTestcase.logger.log(LogStatus.INFO, "No interfaces added");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "No interfaces added");
 
 				}
 			}
@@ -262,7 +263,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 
 			System.out.println("No data available in table");
 			Log.info("No data available in table");
-			DriverTestcase.logger.log(LogStatus.FAIL, "No data available in table");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No data available in table");
 		}
 		
 		//verify view interfaces page
@@ -315,7 +316,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 
 				if ((numofrows == 0)) {
 
-					DriverTestcase.logger.log(LogStatus.PASS, "Interface table is empty");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Interface table is empty");
 				}
 				else {
 				// Current page
@@ -338,32 +339,32 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 								
 								//verify interface values in table
 								String DeviceNamevalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='deviceName']").getText();
-								DriverTestcase.logger.log(LogStatus.PASS, "Step: Interface Device Name value is displayed as : "+DeviceNamevalue);
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Device Name value is displayed as : "+DeviceNamevalue);
 								String InterfaceNamevalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='name']").getText();
-								DriverTestcase.logger.log(LogStatus.PASS, "Step: Interface Name value is displayed as : "+InterfaceNamevalue);
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Name value is displayed as : "+InterfaceNamevalue);
 								String InterfaceAddressvalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='address']").getText();
-								DriverTestcase.logger.log(LogStatus.PASS, "Step: Interface Address value is displayed as : "+InterfaceAddressvalue);
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Address value is displayed as : "+InterfaceAddressvalue);
 								WebElement InterfaceAddressRowValue1= driver.findElement(By.xpath("(//div[@role='gridcell'][@col-id='address'])[1]"));
 								Clickon(InterfaceAddressRowValue1);
 								InterfaceAddressRowValue1.sendKeys(Keys.TAB);
 								String InterfaceTypevalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='type.desc']").getText();
-								DriverTestcase.logger.log(LogStatus.PASS, "Step: Interface Type value is displayed as : "+InterfaceTypevalue);
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Type value is displayed as : "+InterfaceTypevalue);
 								WebElement InterfaceTypeRowValue1= getwebelement(xml.getlocator("//locators/" + application + "/interfacetype_rowvalue"));
 								Clickon(InterfaceTypeRowValue1);
 								InterfaceTypeRowValue1.sendKeys(Keys.TAB);
 								String Statusvalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='currentStatus.desc']").getText();
-								DriverTestcase.logger.log(LogStatus.PASS, "Step: Status value is displayed as : "+Statusvalue);
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Status value is displayed as : "+Statusvalue);
 								WebElement StatusRowValue1= getwebelement(xml.getlocator("//locators/" + application + "/viewinterface_status_rowvalue"));
 								Clickon(StatusRowValue1);
 								StatusRowValue1.sendKeys(Keys.TAB);
 								String LastModificationvalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='m_time']").getText();
-								DriverTestcase.logger.log(LogStatus.PASS, "Step: Last Modification value is displayed as : "+LastModificationvalue);
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Last Modification value is displayed as : "+LastModificationvalue);
 								WebElement LastModificationRowValue= getwebelement(xml.getlocator("//locators/" + application + "/viewinterface_lastmod_rowvalue"));
 								Clickon(LastModificationRowValue);
 								LastModificationRowValue.sendKeys(Keys.TAB);
 								WebElement StatusLink= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='Status']/div/a");
 								Clickon(StatusLink);
-								DriverTestcase.logger.log(LogStatus.PASS, "Step: Clicked on Status link in interface table");
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked on Status link in interface table");
 								
 								InterfaceAddress= InterfaceAddressvalue;
 								break outerloop;
@@ -397,7 +398,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		WebElement selectNewStatusvalue1= getwebelement(xml.getlocator("//locators/" + application + "/interface_statuspage_newstatusdropdownvalue"));
 		Clickon(selectNewStatusvalue1);
 		String NewStatusvalue1= getwebelement(xml.getlocator("//locators/" + application + "/interface_statuspage_newstatusdropdownvalue")).getText();
-		DriverTestcase.logger.log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue1);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue1);
 		click_commonMethod(application, "OK", "interface_statuspage_okbutton", xml);
 		Thread.sleep(2000);
 		scrollToTop();
@@ -429,7 +430,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 
 				if ((numofrows == 0)) {
 
-					DriverTestcase.logger.log(LogStatus.PASS, "Interface Status History is empty");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Status History is empty");
 				}
 				else {
 				// Current page
@@ -446,7 +447,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 							System.out.println(Interfacehistorydata);
 							if (Interfacehistorydata.contains(NewStatusvalue1)) 
 							{
-								DriverTestcase.logger.log(LogStatus.PASS, "Interface status history table has data");
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Interface status history table has data");
 								Thread.sleep(2000);
 								compareText(application, "New Status", "interface_statuspage_newstatusvalue", NewStatusvalue1, xml);
 								try {
@@ -468,7 +469,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 									}catch(Exception e)
 									{
 										e.printStackTrace();
-										DriverTestcase.logger.log(LogStatus.FAIL, "Step : Changed On column value field is not displaying");
+										ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Changed On column value field is not displaying");
 									}
 								
 								//compareText(application, "Changed By", "interface_statuspage_changedbyvalue", Getkeyvalue("APT_login_1_Username"), xml);
@@ -491,17 +492,17 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 
 			System.out.println("No data available in status history table");
 			Log.info("No data available in status history table");
-			DriverTestcase.logger.log(LogStatus.FAIL, "No data available in status history table");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No data available in status history table");
 		}
 		}else {
 
 			System.out.println("No data available in Interface table");
 			Log.info("No data available in Interface table");
-			DriverTestcase.logger.log(LogStatus.FAIL, "No data available in Interface table");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No data available in Interface table");
 		}
 		}else
 		{
-			DriverTestcase.logger.log(LogStatus.FAIL, "No Interface added in table");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Interface added in table");
 		}
 		
 		click_commonMethod(application, "Close", "viewinterface_closebutton", xml);
@@ -531,7 +532,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 						FMCDateTimevalue = FMCvalue;
 					}
 
-					DriverTestcase.logger.log(LogStatus.PASS, "FMC date value is displayed as: "+FMCDateTimevalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "FMC date value is displayed as: "+FMCDateTimevalue);
 					SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
 					if (FMCDateTimevalue.length() > 3) 
 					{
@@ -546,7 +547,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 					}catch(Exception e)
 					{
 						e.printStackTrace();
-						DriverTestcase.logger.log(LogStatus.FAIL, "Step : FMC date value field is not displaying");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : FMC date value field is not displaying");
 					}
 		}
 		else if(SMARTS_column.equalsIgnoreCase("Yes"))
@@ -568,7 +569,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 				SmartsDateTimevalue = Smartsvalue;
 			}
 
-			DriverTestcase.logger.log(LogStatus.PASS, "Smarts date value is displayed as: "+SmartsDateTimevalue);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Smarts date value is displayed as: "+SmartsDateTimevalue);
 			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
 			if (SmartsDateTimevalue.length() > 3) 
 			{
@@ -604,7 +605,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 						DCS_DateTimevalue = DCSvalue;
 					}
 					
-					DriverTestcase.logger.log(LogStatus.PASS, "DCS date value is displayed as: "+DCS_DateTimevalue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "DCS date value is displayed as: "+DCS_DateTimevalue);
 					SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
 					if (DCS_DateTimevalue.length() > 3) 
 					{
@@ -619,7 +620,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 					}catch(Exception e)
 					{
 						e.printStackTrace();
-						DriverTestcase.logger.log(LogStatus.FAIL, "Step : DCS date value field is not displaying");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : DCS date value field is not displaying");
 					}
 		}
 		else if(FetchInterfaces_column.equalsIgnoreCase("Yes"))
@@ -641,7 +642,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 				FetchInterfaces_DateTimevalue = FetchInterfacesvalue;
 			}
 
-			DriverTestcase.logger.log(LogStatus.PASS, "Fetch Interfaces date value is displayed as: "+FetchInterfaces_DateTimevalue);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Fetch Interfaces date value is displayed as: "+FetchInterfaces_DateTimevalue);
 			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
 			if (FetchInterfaces_DateTimevalue.length() > 3) 
 			{
@@ -656,7 +657,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 			}catch(Exception e)
 			{
 				e.printStackTrace();
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Fetch Interfaces date value field is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Fetch Interfaces date value field is not displaying");
 			}
 		}
 		else if(Vistamart_column.equalsIgnoreCase("Yes")) {
@@ -677,7 +678,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 					VistaMartDevice_DateTimevalue = VistaMartDevicevalue;
 				}
 				
-				DriverTestcase.logger.log(LogStatus.PASS, "Vistamart Device date value is displayed as: "+VistaMartDevice_DateTimevalue);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Vistamart Device date value is displayed as: "+VistaMartDevice_DateTimevalue);
 				SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
 				if (VistaMartDevice_DateTimevalue.length() > 3) 
 				{
@@ -713,7 +714,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 					PGW_DateTimevalue = PGWvalue;
 				}
 				
-				DriverTestcase.logger.log(LogStatus.PASS, "PGW date value is displayed as: "+PGW_DateTimevalue);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "PGW date value is displayed as: "+PGW_DateTimevalue);
 				SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
 				if (PGW_DateTimevalue.length() > 3) 
 				{
@@ -744,14 +745,14 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		//verify device name link in status panel
 		click(application, "Device", "status_devicevalue", xml);
 		Thread.sleep(2000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to 'View Device' page");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to 'View Device' page");
 		driver.navigate().back();
 		Thread.sleep(1000);
 		
 		//verify device name link in synchronization panel
 		click(application, "Device", "synchronization_devicevalue", xml);
 		Thread.sleep(2000);
-		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to 'View Device' page");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to 'View Device' page");
 		Thread.sleep(2000);
 	}
 	
@@ -767,9 +768,10 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		Thread.sleep(1000);
 		scrolltoend();
 		WebElement searchbutton= getwebelement(xml.getlocator("//locators/" + application + "/searchbutton"));
-		ScrolltoElement(application, "searchbutton", xml);
 		Clickon(searchbutton);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
+		scrolltoend();
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/deviceradiobutton")));
 		Thread.sleep(3000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchdevice_actiondropdown")));
@@ -789,7 +791,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 			String value= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 			if(element==null)
 			{
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 			}
 			else if(value!=null) {
 				Thread.sleep(1000);
@@ -797,7 +799,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 			}			
 		} catch (Exception e) {
 			e.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 		}
 	}
 
@@ -810,14 +812,14 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 			System.out.println(availability);
 			if (availability) {
 				Thread.sleep(2000);
-				DriverTestcase.logger.log(LogStatus.PASS, "Step: '"+labelname+"' is displayed as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step: '"+labelname+"' is displayed as expected");
 			}
 			else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step: '"+labelname+"' is not displaying as expected");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: '"+labelname+"' is not displaying as expected");
 			}
 
 		} catch (Exception e) {
-			DriverTestcase.logger.log(LogStatus.FAIL,"Step: '"+labelname+"' is not available to display");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: '"+labelname+"' is not available to display");
 			e.printStackTrace();
 		}
 	}
@@ -833,19 +835,19 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 			String ele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 			if(element==null)
 			{
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' is not found");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' is not found");
 			}
 			else if (ele!=null && ele.isEmpty()) {
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
 			}
 			else {   
 
 				text = element.getText();
-				DriverTestcase.logger.log(LogStatus.PASS,"Step: '"+ labelname +"' value is displayed as : '"+text+"'");
+				ExtentTestManager.getTest().log(LogStatus.PASS,"Step: '"+ labelname +"' value is displayed as : '"+text+"'");
 
 			}
 		}catch (Exception e) {
-			DriverTestcase.logger.log(LogStatus.FAIL,"Step: '"+ labelname +"' value is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: '"+ labelname +"' value is not displaying");
 			e.printStackTrace();
 		}
 		return text;

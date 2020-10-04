@@ -6,7 +6,8 @@ import java.util.Map;
 import org.dom4j.DocumentException;
 import org.testng.annotations.Test;
 
-import com.colt.qa.driverlibrary.DataReader_PK;
+import com.colt.qa.excellibrary.DataReader;
+import com.colt.qa.reporter.ExtentTestManager;
 import com.colt.qa.driverlibrary.DriverTestcase;
 import com.colt.qa.scripthelpers.APT_LoginHelper;
 import com.relevantcodes.extentreports.LogStatus;
@@ -21,7 +22,7 @@ public class APT_DomainManagementTest extends DriverTestcase{
 	
 	APT_Login Login=new APT_Login();
 	
-	@Test(description = "TC-01",dataProviderClass = DataReader_PK.class, dataProvider = "Finaldatareader_Domain", priority=0)
+	@Test(description = "TC-01",dataProviderClass = DataReader.class, dataProvider = "Finaldatareader_Domain", priority=0)
 	public void DomainManagementService(Map<String, String> map) throws Exception {
 		
 		setup();	
@@ -32,40 +33,55 @@ public class APT_DomainManagementTest extends DriverTestcase{
         
         if(newCustomerName.equalsIgnoreCase("yes") && existingCustomer.equalsIgnoreCase("no")) {
               
-              DriverTestcase.logger = DriverTestcase.extent.startTest("CreateCustomer");
+              logger= ExtentTestManager.startTest ("CreateCustomer");
               APT_DomainManageHelper.get().createcustomer("DomainManagementservice", map.get("newCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), 
                           map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), 
                           map.get("Fax"));
               CustomerName=map.get("newCustomer");
               
-              DriverTestcase.logger = DriverTestcase.extent.startTest("selectNewCustomer");
+              logger= ExtentTestManager.startTest ("selectNewCustomer");
               APT_DomainManageHelper.get().selectCustomertocreateOrder("DomainManagementservice",map.get("newCustomer"));
+              ExtentTestManager.endTest();
               
         }
         else if(newCustomerName.equalsIgnoreCase("no") && existingCustomer.equalsIgnoreCase("Yes")) {
               
-              DriverTestcase.logger = DriverTestcase.extent.startTest("selectExistingCustomer"); 
+              logger= ExtentTestManager.startTest ("selectExistingCustomer"); 
               APT_DomainManageHelper.get().selectCustomertocreateOrder("DomainManagementservice",map.get("existingCustomer"));
               CustomerName=map.get("existingCustomer");
+              ExtentTestManager.endTest();
         }
         
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifycreateorder");
+		logger= ExtentTestManager.startTest ("verifycreateorder");
 		APT_DomainManageHelper.get().createorderservice("DomainManagementservice", map.get("NewOrderService"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ExistingOrderService"), map.get("ExistingOrderNumber"));
-	
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyservicetypeselection");
+		ExtentTestManager.endTest();
+		
+		logger= ExtentTestManager.startTest ("verifyservicetypeselection");
 		APT_DomainManageHelper.get().verifyselectservicetype("DomainManagementservice", map.get("ServiceType"));
-	
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyservicecreation");
-		APT_DomainManageHelper.get().verifyservicecreation("DomainManagementservice", map.get("ServiceIdentification"), map.get("Remarks"), map.get("ServiceEmail"), map.get("ServicePhoneContact"), map.get("ServiceCountry"), map.get("Passwordvalue"), map.get("ServiceDefaultEmail"), map.get("ServiceUser"), map.get("ServiceFirstName"), map.get("ServiceLastName"), map.get("OrganizationName"), map.get("ServiceAddress"), map.get("ServiceComplement"), map.get("ServicePostalCode"), map.get("ServiceCity"), map.get("ServiceState"), map.get("ServicePhone"), map.get("ServiceFax"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ServiceType"));
-	
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyorderpanelinviewservicepage");
+		ExtentTestManager.endTest();
+		
+		logger= ExtentTestManager.startTest ("verifyservicecreation");
+		APT_DomainManageHelper.get().verifyservicecreation("DomainManagementservice", map.get("ServiceIdentification")
+				, map.get("Remarks"), map.get("ServiceEmail"), map.get("ServicePhoneContact"), map.get("ServiceCountry")
+				, map.get("Passwordvalue"), map.get("ServiceDefaultEmail"), map.get("ServiceUser")
+				, map.get("ServiceFirstName"), map.get("ServiceLastName"), map.get("OrganizationName")
+				, map.get("ServiceAddress"), map.get("ServiceComplement"), map.get("ServicePostalCode")
+				, map.get("ServiceCity"), map.get("ServiceState"), map.get("ServicePhone"), map.get("ServiceFax")
+				, map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ServiceType"));
+		ExtentTestManager.endTest();
+		
+		
+		logger= ExtentTestManager.startTest ("verifyorderpanelinviewservicepage");
 		APT_DomainManageHelper.get().verifyorderpanel_editorder("DomainManagementservice", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
 		APT_DomainManageHelper.get().verifyorderpanel_changeorder("DomainManagementservice", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"));
-	
-		DriverTestcase.logger = DriverTestcase.extent.startTest("verifyservicepanelInformation");
+		ExtentTestManager.endTest();
+		
+		
+		logger= ExtentTestManager.startTest ("verifyservicepanelInformation");
 		APT_DomainManageHelper.get().verifyservicepanelInformationinviewservicepage("DomainManagementservice", map.get("ServiceIdentification"), map.get("ServiceType"), map.get("Remarks"), map.get("ServiceEmail"), map.get("ServicePhoneContact"), map.get("ServiceCountry"), map.get("ServiceDefaultEmail"), map.get("ServiceFirstName"), map.get("ServiceLastName"), map.get("OrganizationName"), map.get("ServiceAddress"), map.get("ServiceComplement"), map.get("ServicePostalCode"), map.get("ServiceCity"), map.get("ServiceState"), map.get("ServicePhone"), map.get("ServiceFax"), map.get("ServiceUser"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"));
 		APT_DomainManageHelper.get().verifyEditService("DomainManagementservice", map.get("Edit_Remarks"), map.get("Remarks"), map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("Edit_ServiceIdentification"), map.get("ServiceType"), map.get("Edit_ServiceEmail"), map.get("Edit_ServicePhoneContact"), map.get("Edit_ServiceUser"), map.get("Edit_ServiceDefaultEmail"), map.get("Edit_ServiceFirstName"), map.get("Edit_ServiceLastName"), map.get("Edit_OrganizationName"), map.get("Edit_ServiceAddress"), map.get("Edit_ServiceComplement"), map.get("Edit_ServicePostalCode"), map.get("Edit_ServiceCity"), map.get("Edit_ServiceState"), map.get("Edit_ServiceCountry"), map.get("Edit_ServicePhone"), map.get("Edit_ServiceFax"));
 		APT_DomainManageHelper.get().verifySynchronize("DomainManagementservice");
 		APT_DomainManageHelper.get().verifyDeleteService("DomainManagementservice");
+		ExtentTestManager.endTest();
 	}
 }

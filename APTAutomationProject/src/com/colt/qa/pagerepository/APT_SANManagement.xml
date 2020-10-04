@@ -19,7 +19,7 @@
 <searchsan_viewpageheader>//div//p[text()='View San']</searchsan_viewpageheader>
 <ordername_link>//div[@col-id='orderNumber']//a</ordername_link>
 <searchfororder_header>//div[@class='row']//h5//p</searchfororder_header>
-<searchfororder_viewlink>//div[@class='dropdown-menu show']//a[text()='View ']</searchfororder_viewlink>
+<searchfororder_viewlink>//div[@class='dropdown-menu show']//a[text()='View']</searchfororder_viewlink>
 <searchfororder_managelink>//div[@class='dropdown-menu show']//a[text()='Manage']</searchfororder_managelink>
 <searchsan_announcementtoplayvalue>//label[text()='Announcement To Play']/parent::div/following-sibling::div</searchsan_announcementtoplayvalue>
 <searchsan_predestinationnumbervalue>//label[text()='Pre destination Number']/parent::div/following-sibling::div</searchsan_predestinationnumbervalue>

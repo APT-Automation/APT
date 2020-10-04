@@ -22,6 +22,7 @@ import com.colt.qa.driverlibrary.DriverHelper;
 import com.colt.qa.driverlibrary.DriverTestcase;
 import com.colt.qa.driverlibrary.Log;
 import com.colt.qa.driverlibrary.XMLReader;
+import com.colt.qa.reporter.ExtentTestManager;
 
 public class APT_DomainManagementHelper extends DriverHelper {
 
@@ -43,11 +44,11 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		if (flag) {
 
 			System.out.println("webElement is present " + ele.getText());
-			DriverTestcase.logger.log(LogStatus.PASS, msg);
+			ExtentTestManager.getTest().log(LogStatus.PASS, msg);
 		} else {
 
 			System.out.println("webElement is not  present" + ele.getText());
-			DriverTestcase.logger.log(LogStatus.FAIL, msg);
+			ExtentTestManager.getTest().log(LogStatus.FAIL, msg);
 		}
 
 	}
@@ -60,7 +61,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(2000);
 		System.out.println("Mouse hovered on Manage Customer's Service");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
@@ -81,8 +82,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "Main Domain", "maindomaintextfield", maindomain, xml);
 		Thread.sleep(1000);
 		scrolltoend();
-		click_commonMethod(application, "Clear", "clearbutton", xml);
-		DriverTestcase.logger.log(LogStatus.PASS, "All text field values are cleared");
+		click_commonMethod(application, "Reset", "resetbutton", xml);
+		ExtentTestManager.getTest().log(LogStatus.PASS, "All text field values are cleared");
 		Log.info("All text field values are cleared");
 
 		//Create customer by providing all info
@@ -99,7 +100,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		scrolltoend();
 		Thread.sleep(1000);
 		click_commonMethod(application, "Ok", "okbutton", xml);
-		//compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.", xml);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Customer successfully created.");
 		sa.assertAll();
 	}
@@ -111,7 +112,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(3000);
 		System.out.println("Mouse hovered on Manage Customer's Service");
-		DriverTestcase.logger.log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "Create Order/Service", "CreateOrderServiceLink", xml);
@@ -133,7 +134,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
         addDropdownValues_commonMethod(application, "Choose a customer", "chooseCustomerdropdown", ChooseCustomerToBeSelected, xml);
 
 		click_commonMethod(application, "Next", "nextbutton", xml);
-
+		waitforPagetobeenable();
 	}
 
 	
@@ -148,17 +149,15 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		Thread.sleep(1000);
 
 		//Warning messages verify
-		warningMessage_commonMethod(application, "order_contractnumber_warngmsg", "Order/Contract Number(Parent SID)", xml);
 		warningMessage_commonMethod(application, "servicetype_warngmsg", "Service Type", xml);
 
 		if (neworder.equalsIgnoreCase("YES")) {
 
 			Thread.sleep(2000);
-			click_commonMethod(application, "select order switch", "selectorderswitch", xml);
 			addtextFields_commonMethod(application, "Order/Contract Number", "newordertextfield", neworderno, xml);
 			addtextFields_commonMethod(application, "RFI Voice line Number", "newrfireqtextfield", newrfireqno, xml);
 			click_commonMethod(application, "create order", "createorderbutton", xml);
-			//compareText(application, "create order success message", "OrderCreatedSuccessMsg", "Order created successfully", xml);			
+			waitforPagetobeenable();
 			verifysuccessmessage(application, "Order created successfully");
 			ScrolltoElement(application, "CreateOrderHeader", xml);
 
@@ -167,6 +166,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		} 
 
 		else if (existingorderservice.equalsIgnoreCase("YES")) {
+			click_commonMethod(application, "select order switch", "selectorderswitch", xml);
 			addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber, xml);
 			Log.info("=== Order Contract Number selected===");
 
@@ -175,7 +175,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			SelectOrderNumber = existingordernumber;
 		} else {
 			System.out.println("Order not selected");
-			DriverTestcase.logger.log(LogStatus.INFO, "Step :Order not selected");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step :Order not selected");
 			Log.info("Order not selected");
 		}
 	}
@@ -190,13 +190,13 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		try {  
 			availability=getwebelement(xml.getlocator("//locators/" + application + "/servicetypetextfield")).isDisplayed();
 			if(availability) {
-				DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown is displaying");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Service Type dropdown is displaying");
 				System.out.println("Service Type dropdown is displaying");
 				Log.info("Service Type dropdown is displaying");
 
 				if(servicetype.equalsIgnoreCase("null")) {
 
-					DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Service Type dropdown");
+					ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under Service Type dropdown");
 					System.out.println("No values selected under Service Type dropdown");
 					Log.info("No values selected under Service Type dropdown");
 				}else {
@@ -207,13 +207,13 @@ public class APT_DomainManagementHelper extends DriverHelper {
 					//verify list of values inside dropdown
 					List<WebElement> listofvalues = getwebelements("//div[@class='sc-ifAKCX oLlzc']");
 
-					DriverTestcase.logger.log(LogStatus.PASS, "List of values inside Service Type dropdown is:  ");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "List of values inside Service Type dropdown is:  ");
 					System.out.println( "List of values inside Service Type dropdown is:  ");
 					Log.info("List of values inside Service Type dropdown is:  ");
 
 					for (WebElement valuetypes : listofvalues) {
 						Log.info("service sub types : " + valuetypes.getText());
-						DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+						ExtentTestManager.getTest().log(LogStatus.PASS," " + valuetypes.getText());
 						System.out.println(" " + valuetypes.getText());
 					}
 
@@ -228,40 +228,45 @@ public class APT_DomainManagementHelper extends DriverHelper {
 					Thread.sleep(3000);
 
 					String actualValue=getwebelement("//label[text()='Service Type']/following-sibling::div//span").getText();
-					DriverTestcase.logger.log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Service Type dropdown value selected as: "+ actualValue );
 					System.out.println("Service Type dropdown value selected as: "+ actualValue);
 					Log.info("Service Type dropdown value selected as: "+ actualValue);
 
 				}
 			}else {
-				DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Service Type is not displaying");
 				System.out.println("Service Type is not displaying");
 				Log.info("Service Type is not displaying");
 			}
 		}catch(NoSuchElementException e) {
-			DriverTestcase.logger.log(LogStatus.FAIL, "Service Type is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Service Type is not displaying");
 			System.out.println("Service Type is not displaying");
 			Log.info("Service Type is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
-			DriverTestcase.logger.log(LogStatus.FAIL, "Not able to perform selection under Service Type dropdown");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Not able to perform selection under Service Type dropdown");
 			System.out.println("NO value selected under Service Type dropdown");
 			Log.info("NO value selected under Service Type dropdown");
 		}
 		// click on next button
 		click_commonMethod(application, "Next", "nextbutton", xml);
+		waitforPagetobeenable();
 		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
 
 	}
 
 
-	public void verifyservicecreation(String application, String sid, String Remarks, String email, String phonecontact, String servicecountry, String passwordvalue, String defaultemail, String user, String servicefirstname, String servicelastname, String organizationname, String serviceaddress, String servicecomplement, String servicepostalcode, String servicecity, String servicestate, String servicephone, String servicefax, String orderno, String rfireqno, String servicetype) throws InterruptedException, IOException, DocumentException {
+	public void verifyservicecreation(String application, String sid, String Remarks, String email, String phonecontact
+			, String servicecountry, String passwordvalue, String defaultemail, String user, String servicefirstname
+			, String servicelastname, String organizationname, String serviceaddress, String servicecomplement
+			, String servicepostalcode, String servicecity, String servicestate, String servicephone, String servicefax
+			, String orderno, String rfireqno, String servicetype) throws InterruptedException, IOException, DocumentException {
 		
 		//Cancel service creation
 		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
 		scrolltoend();
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-			
+		waitforPagetobeenable();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 		Log.info("Navigated to create order page");
@@ -273,65 +278,12 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		ScrolltoElement(application, "createorderservice_header", xml);
 		
 		addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", orderno, xml);
-		
-//		//Existing order no select
-//		boolean availability=false;
-//		try {  
-//		  availability=getwebelement(xml.getlocator("//locators/" + application + "/existingorderdropdown")).isDisplayed();
-//		  if(availability) {
-//			  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown is displaying");
-//			  System.out.println("Order/Contract Number(Parent SID) dropdown is displaying");
-//			  
-//			  if(orderno.equalsIgnoreCase("null")) {
-//				  
-//				  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Order/Contract Number(Parent SID) dropdown");
-//				  System.out.println(" No values selected under Order/Contract Number(Parent SID) dropdown");
-//			  }else {
-//				  
-//				  Clickon(getwebelement("//div[label[text()='Order/Contract Number(Parent SID)']]//div[text()='×']"));
-//				  Thread.sleep(3000);
-//				  
-//				  //verify list of values inside dropdown
-//				  List<WebElement> listofvalues = driver
-//							.findElements(By.xpath("(//div[@role='list']//div)[3]"));
-//				  
-//				  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
-//				  System.out.println( " List of values inside Order/Contract Number(Parent SID) dropdown is:  ");
-//				  
-//					for (WebElement valuetypes : listofvalues) {
-//								Log.info("service sub types : " + valuetypes.getText());
-//								DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
-//								System.out.println(" " + valuetypes.getText());
-//					}
-//					
-//					Thread.sleep(2000);
-//				SendKeys(getwebelement("//div[label[text()='Order/Contract Number(Parent SID)']]//input"), orderno);	
-//				Thread.sleep(2000);
-//					
-//				  Clickon(getwebelement("(//div[contains(text(),'"+ orderno +"')])[2]"));
-//				  Thread.sleep(3000);
-//				  
-//				  String actualValue=getwebelement("//label[text()='Order/Contract Number(Parent SID)']/following-sibling::div//div/span").getText();
-//				  DriverTestcase.logger.log(LogStatus.PASS, "Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue );
-//				  System.out.println("Order/Contract Number(Parent SID) dropdown value selected as: "+ actualValue);
-//				  
-//			  }
-//		  }else {
-//			  DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
-//			  System.out.println("Order/Contract Number(Parent SID) is not displaying");
-//		  }
-//		}catch(NoSuchElementException e) {
-//			DriverTestcase.logger.log(LogStatus.FAIL, "Order/Contract Number(Parent SID) is not displaying");
-//			  System.out.println("Order/Contract Number(Parent SID) is not displaying");
-//		}catch(Exception ee) {
-//			ee.printStackTrace();
-//			DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Order/Contract Number(Parent SID) dropdown");
-//			System.out.println(" NO value selected under Order/Contract Number(Parent SID) dropdown");
-//		}
-		
+		Thread.sleep(2000);
 		addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
 		// click on next button
+		scrolltoend();
 		click_commonMethod(application, "Next", "nextbutton", xml);
+		waitforPagetobeenable();
 		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
 					
 		// verify warning messages
@@ -376,19 +328,17 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "State", "servicestate", servicestate, xml);
 		scrolltoend();
 		
-		//addDropdown(application, "Country", "service_country", country);
-		
 		//select country from dropdown
 				boolean availability1=false;
 				try {  
 				  availability1=getwebelement(xml.getlocator("//locators/" + application + "/service_country")).isDisplayed();
 				  if(availability1) {
-					  DriverTestcase.logger.log(LogStatus.PASS, "Country dropdown is displaying");
+					  ExtentTestManager.getTest().log(LogStatus.PASS, "Country dropdown is displaying");
 					  System.out.println("Country dropdown is displaying");
 					  
 					  if(servicecountry.equalsIgnoreCase("null")) {
 						  
-						  DriverTestcase.logger.log(LogStatus.PASS, " No values selected under Country dropdown");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under Country dropdown");
 						  System.out.println(" No values selected under Country dropdown");
 					  }else {
 						  
@@ -399,12 +349,12 @@ public class APT_DomainManagementHelper extends DriverHelper {
 						  List<WebElement> listofvalues = driver
 									.findElements(By.xpath("(//div[@role='list']//div)[3]"));
 						  
-						  DriverTestcase.logger.log(LogStatus.PASS, " List of values inside Country dropdown is:  ");
+						  ExtentTestManager.getTest().log(LogStatus.PASS, " List of values inside Country dropdown is:  ");
 						  System.out.println( " List of values inside Country dropdown is:  ");
 						  
 							for (WebElement valuetypes : listofvalues) {
 										Log.info("service sub types : " + valuetypes.getText());
-										DriverTestcase.logger.log(LogStatus.PASS," " + valuetypes.getText());
+										ExtentTestManager.getTest().log(LogStatus.PASS," " + valuetypes.getText());
 										System.out.println(" " + valuetypes.getText());
 							}
 							
@@ -416,30 +366,31 @@ public class APT_DomainManagementHelper extends DriverHelper {
 						  Thread.sleep(3000);
 						  
 						  String actualValue=getwebelement("//label[text()='Country']/following-sibling::div//div/span").getText();
-						  DriverTestcase.logger.log(LogStatus.PASS, "Country dropdown value selected as: "+ actualValue );
+						  ExtentTestManager.getTest().log(LogStatus.PASS, "Country dropdown value selected as: "+ actualValue );
 						  System.out.println("Country) dropdown value selected as: "+ actualValue);
 						  
 					  }
 				  }else {
-					  DriverTestcase.logger.log(LogStatus.FAIL, "Country is not displaying");
+					  ExtentTestManager.getTest().log(LogStatus.FAIL, "Country is not displaying");
 					  System.out.println("Country is not displaying");
 				  }
 				}catch(NoSuchElementException e) {
-					DriverTestcase.logger.log(LogStatus.FAIL, "Country is not displaying");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Country is not displaying");
 					  System.out.println("Country is not displaying");
 				}catch(Exception ee) {
 					ee.printStackTrace();
-					DriverTestcase.logger.log(LogStatus.FAIL, " NOt able to perform selection under Country dropdown");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under Country dropdown");
 					System.out.println(" NO value selected under Country dropdown");
 				}
 				
 		addtextFields_commonMethod(application, "Phone", "servicephone", servicephone, xml);
 		addtextFields_commonMethod(application, "Fax", "servicefax", servicefax, xml);
 		addtextFields_commonMethod(application, "Email", "serviceemail", email, xml);
+		scrolltoend();
 		Thread.sleep(1000);
 		click_commonMethod(application, "Next", "nextbutton", xml);
 		Thread.sleep(3000);
-		//compareText(application, "Service creation success msg", "servicecreationmessage", "Service successfully created.", xml);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Service successfully created.");
 		sa.assertAll();
 	
@@ -449,7 +400,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	public void verifyorderpanelinformation_Neworder(String application, String neworder, String expectedneworderno,
 			String expectednewvoicelineno) throws InterruptedException, DocumentException {
 
-		ScrolltoElement(application, "userspanel_header", xml);
+		ScrolltoElement(application, "orderpanelheader", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 
 		if (neworder.equalsIgnoreCase("YES")) {
 
@@ -462,11 +414,11 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			if (expectedneworderno.equalsIgnoreCase(actualorderno)&& expectednewvoicelineno.equalsIgnoreCase(actualvoicelineno)) {
 
 				System.out.println("order information is matched");
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : order information is matched");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : order information is matched");
 				Log.info("order information is matched");
 			} else {
 				sa.fail("order information is not matched");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : order information is not matched");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : order information is not matched");
 				System.out.println("order information is not matched");
 				Log.info("order information is not matched");
 			}
@@ -474,7 +426,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		} else {
 
 			System.out.println("new order is not selected");
-			DriverTestcase.logger.log(LogStatus.INFO, "Step : new order is not selected");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : new order is not selected");
 			Log.info("new order is not selected");
 		}
 
@@ -483,38 +435,36 @@ public class APT_DomainManagementHelper extends DriverHelper {
 
 	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
 
-		ScrolltoElement(application, "userspanel_header", xml);
+		ScrolltoElement(application, "orderpanelheader", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 
 		//Cancel Edit order in Order panel
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
+		waitforPagetobeenable();
 		compareText(application, "Edit Order", "editorderheader", "Edit Order", xml);
 		Thread.sleep(1000);
 
-		WebElement EditOrderNo= getwebelement(xml.getlocator("//locators/" + application + "/editorderno"));
+		//WebElement EditOrderNo= getwebelement(xml.getlocator("//locators/" + application + "/editorderno"));
 		click_commonMethod(application, "Order Number", "editorderno", xml);
 		Thread.sleep(2000);
-		Clear(EditOrderNo);
-		Thread.sleep(2000);
-		addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
+		edittextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
 
-		WebElement EditVoiceLineNo= getwebelement(xml.getlocator("//locators/" + application + "/editvoicelineno"));
+		//WebElement EditVoiceLineNo= getwebelement(xml.getlocator("//locators/" + application + "/editvoicelineno"));
 		click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
 		Thread.sleep(2000);
-		Clear(EditVoiceLineNo);
-		Thread.sleep(2000);
-		addtextFields_commonMethod(application, "RFI Voiceline Number", "editvoicelineno", editvoicelineno, xml);
+		edittextFields_commonMethod(application, "RFI Voiceline Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-//		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-//		Log.info("Navigated to order panel in view service page");
-//		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-
+		waitforPagetobeenable();
+		
 		//Edit Order
 		Thread.sleep(1000);
-		ScrolltoElement(application, "userspanel_header", xml);
+		ScrolltoElement(application, "orderpanelheader", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
+		waitforPagetobeenable();
 		compareText(application, "Edit Order Header", "editorderheader", "Edit Order", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Order Number", "editorderno", xml);
@@ -529,11 +479,10 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "OK", "editorder_okbutton", xml);
 		Thread.sleep(1000);
-		ScrolltoElement(application, "userspanel_header", xml);
+		waitforPagetobeenable();
+		ScrolltoElement(application, "orderpanelheader", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		Thread.sleep(1000);
-//		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-//		Log.info("Navigated to order panel in view service page");
-//		DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 		compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
 		compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
@@ -547,6 +496,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Change Order", "changeorderlink", xml);
+		waitforPagetobeenable();
 		compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
@@ -560,29 +510,28 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			//Cancel change order
 			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
 			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
+			waitforPagetobeenable();
+			ScrolltoElement(application, "orderpanelheader", xml);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			Thread.sleep(1000);
-//			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-//			Log.info("Navigated to order panel in view service page");
-//			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 			//Change order
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			waitforPagetobeenable();
 			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
 			Clickon(getwebelement("//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false'][1]"));
 			Thread.sleep(3000);
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Selected order from dropdown");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected order from dropdown");
 			Log.info("Selected order from dropdown");
 			click_commonMethod(application, "OK", "changeorder_okbutton", xml);
 			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
+			waitforPagetobeenable();
+			ScrolltoElement(application, "orderpanelheader", xml);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			Thread.sleep(1000);
-//			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-//			Log.info("Navigated to order panel in view service page");
-//			DriverTestcase.logger.log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
@@ -598,14 +547,15 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			Thread.sleep(3000);
 			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			ScrolltoElement(application, "userspanel_header", xml);
+			waitforPagetobeenable();
+			ScrolltoElement(application, "orderpanelheader", xml);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			Thread.sleep(1000);
-//			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-//			Log.info("Navigated to order panel in view service page");
 
 			//Change Order
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			waitforPagetobeenable();
 			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
@@ -617,11 +567,10 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 			click_commonMethod(application, "Create Order", "createorder_button", xml);
 			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
+			waitforPagetobeenable();
+			ScrolltoElement(application, "orderpanelheader", xml);
+			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			Thread.sleep(1000);
-//			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-//			Log.info("Navigated to order panel in view service page");
-//			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
 			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
@@ -630,7 +579,8 @@ public class APT_DomainManagementHelper extends DriverHelper {
 
 	public void verifyservicepanelInformationinviewservicepage(String application, String sid, String servicetype, String Remarks, String email, String phonecontact, String country, String defaultemail, String servicefirstname, String servicelastname, String organizationname, String serviceaddress, String servicecomplement, String servicepostalcode, String servicecity, String servicestate, String servicephone, String servicefax, String user, String orderno, String rfireqno) throws InterruptedException, DocumentException, IOException {
 		
-		ScrolltoElement(application, "orderpanelheader", xml);
+		ScrolltoElement(application, "servicepanel_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		compareText(application, "Service panel header", "servicepanel_header", "Service", xml);
 		Thread.sleep(1000);
 		ScrolltoElement(application, "servicecityvalue", xml);
@@ -659,36 +609,39 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	public void verifyEditService(String application, String EditRemarks, String Remarks, String changeorderno, String sid, String editsid, String servicetype, String editemail, String editphonecontact, String edituser, String editdefaultemail, String editservicefirstname, String editservicelastname, String editorganizationname, String editserviceaddress, String editservicecomplement, String editservicepostalcode, String editservicecity, String editservicestate, String editcountry, String editservicephone, String editservicefax) throws InterruptedException, DocumentException, IOException {
 		
 		//Cancel edit service
-				ScrolltoElement(application, "orderpanelheader", xml);
+				ScrolltoElement(application, "servicepanel_header", xml);
+				((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 				click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 				click_commonMethod(application, "Edit", "edit", xml);
-				isDisplayed(application, "editservice", "Edit Service Header");
+				waitforPagetobeenable();
 				ScrolltoElement(application, "editservice", xml);
 				String ServiceIDValue= getwebelement(xml.getlocator("//locators/" + application + "/serviceidentificationtextfield")).getAttribute("value");
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Service Identification value is displayed as: " +ServiceIDValue);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service Identification value is displayed as: " +ServiceIDValue);
 				edittextFields_commonMethod(application, "Remarks", "remarktextarea", EditRemarks, xml);
 				scrolltoend();
 				click_commonMethod(application, "Cancel", "cancelbutton", xml);
-				
+				waitforPagetobeenable();
 				if(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")).isDisplayed())
 				{
-					ScrolltoElement(application, "orderpanelheader", xml);
+					ScrolltoElement(application, "servicepanel_header", xml);
+					((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 					compareText(application, "Service Identification", "sidvalue", sid, xml);
 					compareText(application, "Remarks", "remarksvalue", Remarks, xml);
 				}
 				else
 				{
-					DriverTestcase.logger.log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
 				}
 			
 				//Edit service
-				ScrolltoElement(application, "orderpanelheader", xml);
+				ScrolltoElement(application, "servicepanel_header", xml);
+				((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 				click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 				click_commonMethod(application, "Edit", "edit", xml);
-				isDisplayed(application, "editservice", "Edit Service Header");
+				waitforPagetobeenable();
 				ScrolltoElement(application, "editservice", xml);
 				String ServiceIDValue1= getwebelement(xml.getlocator("//locators/" + application + "/serviceidentificationtextfield")).getAttribute("value");
-				DriverTestcase.logger.log(LogStatus.PASS, "Step : Service Identification value is displayed as: " +ServiceIDValue1);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service Identification value is displayed as: " +ServiceIDValue1);
 				compareText(application, "Service Type", "servicetype_value", servicetype, xml);
 				edittextFields_commonMethod(application, "Remarks", "remarktextarea", EditRemarks, xml);
 				//Edit email
@@ -721,13 +674,13 @@ public class APT_DomainManagementHelper extends DriverHelper {
 				Thread.sleep(2000);
 				scrolltoend();
 				click_commonMethod(application, "Next", "editservice_next", xml);
+				waitforPagetobeenable();
 									
 					if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 					{
 					Log.info("Navigated to view service page");
 					System.out.println("Navigated to view service page");
-					DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to view service page");
-					//compareText(application, "Service updated success msg", "serviceupdate_successmsg", "Service successfully updated.", xml);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to view service page");
 					verifysuccessmessage(application, "Service successfully updated.");
 					sa.assertAll();
 					}
@@ -741,19 +694,21 @@ public class APT_DomainManagementHelper extends DriverHelper {
 
 	public void verifySynchronize(String application) throws InterruptedException, DocumentException {
 		
-		ScrolltoElement(application, "orderpanelheader", xml);
+		ScrolltoElement(application, "servicepanel_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Synchronize", "synchronizelink_servicepanel", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		ScrolltoElement(application, "Sync_successmsg", xml);
-		//compareText(application, "Syncronize success message", "Sync_successmsg", "Sync started successfully. Please check the sync status of this service.", xml);
 		verifysuccessmessage(application, "Sync started successfully. Please check the sync status of this service.");
 	}
 	
 	public void verifyDeleteService(String application) throws InterruptedException, DocumentException {
 
-		ScrolltoElement(application, "orderpanelheader", xml);
+		ScrolltoElement(application, "servicepanel_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Delete", "delete", xml);
 		Thread.sleep(2000);
@@ -767,140 +722,11 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		else
 		{
 			Log.info("Delete alert popup is not displayed");
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
 		}
 		
 	}
 	
-	public void verifyservicepanel_links(String application, String EditRemarks, String Remarks, String changeorderno, String sid, String editsid, String servicetype, String editemail, String editphonecontact, String edituser, String editdefaultemail, String editservicefirstname, String editservicelastname, String editorganizationname, String editserviceaddress, String editservicecomplement, String editservicepostalcode, String editservicecity, String editservicestate, String editcountry, String editservicephone, String editservicefax ) throws InterruptedException, DocumentException, IOException {
-
-		//Cancel edit service
-		ScrolltoElement(application, "orderpanelheader", xml);
-		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
-		click_commonMethod(application, "Edit", "edit", xml);
-		isDisplayed(application, "editservice", "Edit Service Header");
-		ScrolltoElement(application, "editservice", xml);
-		String ServiceIDValue= getwebelement(xml.getlocator("//locators/" + application + "/serviceidentificationtextfield")).getAttribute("value");
-		DriverTestcase.logger.log(LogStatus.FAIL, "Step : Service Identification value is displayed as: " +ServiceIDValue);
-		edittextFields_commonMethod(application, "Remarks", "remarktextarea", EditRemarks, xml);
-		scrolltoend();
-		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		
-		if(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")).isDisplayed())
-		{
-			ScrolltoElement(application, "orderpanelheader", xml);
-			compareText(application, "Service Identification", "sidvalue", sid, xml);
-			compareText(application, "Remarks", "remarksvalue", Remarks, xml);
-		}
-		else
-			DriverTestcase.logger.log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
-	
-		//Edit service
-		ScrolltoElement(application, "orderpanelheader", xml);
-		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
-		click_commonMethod(application, "Edit", "edit", xml);
-		isDisplayed(application, "editservice", "Edit Service Header");
-		ScrolltoElement(application, "editservice", xml);
-		String ServiceIDValue1= getwebelement(xml.getlocator("//locators/" + application + "/serviceidentificationtextfield")).getAttribute("value");
-		DriverTestcase.logger.log(LogStatus.FAIL, "Step : Service Identification value is displayed as: " +ServiceIDValue1);
-		compareText(application, "Service Type", "servicetype_value", servicetype, xml);
-		edittextFields_commonMethod(application, "Remarks", "remarktextarea", EditRemarks, xml);
-		//Edit email
-		click_commonMethod(application, "Selected Email", "selectedemail", xml);
-		click_commonMethod(application, "Email remove arrow", "emailremovearrow", xml);
-		edittextFields_commonMethod(application, "Email", "emailtextfieldvalue", editemail, xml);
-		click_commonMethod(application, "Email adding arrow", "emailaddarrow", xml);
-		//Edit phone contact
-		click_commonMethod(application, "Selected phone contact", "selectedphone", xml);
-		click_commonMethod(application, "Phonecontact remove arrow", "phoneremovearrow", xml);
-		edittextFields_commonMethod(application, "Phone Contact", "phonecontacttextfieldvalue", editphonecontact, xml);
-		click_commonMethod(application, "phonecontact adding Arrow", "phoneaddarrow", xml);
-		ScrolltoElement(application, "phonecontacttextfieldvalue", xml);
-		edittextFields_commonMethod(application, "User", "userfield", edituser, xml);
-		cleartext(application, "Password", "Password");
-		click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
-		edittextFields_commonMethod(application, "Default Email", "defaultemail", editdefaultemail, xml);
-		edittextFields_commonMethod(application, "First Name", "servicefirstname", editservicefirstname, xml);
-		edittextFields_commonMethod(application, "Last Name", "servicelastname", editservicelastname, xml);
-		edittextFields_commonMethod(application, "Organization Name", "organizationname", editorganizationname, xml);
-		edittextFields_commonMethod(application, "Address", "serviceaddress", editserviceaddress, xml);
-		edittextFields_commonMethod(application, "Complement", "servicecomplement", editservicecomplement, xml);
-		edittextFields_commonMethod(application, "Postal Code", "servicepostalcode", editservicepostalcode, xml);
-		edittextFields_commonMethod(application, "City", "servicecity", editservicecity, xml);
-		edittextFields_commonMethod(application, "State", "servicestate", editservicestate, xml);
-		edittextFields_commonMethod(application, "Country", "country", editcountry, xml);
-		edittextFields_commonMethod(application, "Phone", "servicephone", editservicephone, xml);
-		edittextFields_commonMethod(application, "Fax", "servicefax", editservicefax, xml);
-		edittextFields_commonMethod(application, "Email", "serviceemail", editemail, xml);
-		Thread.sleep(2000);
-		scrolltoend();
-		click_commonMethod(application, "Next", "editservice_next", xml);
-							
-			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-			{
-			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
-			DriverTestcase.logger.log(LogStatus.PASS, "Step : Navigated to view service page");
-			//compareText(application, "Service updated success msg", "serviceupdate_successmsg", "Service successfully updated.", xml);
-			verifysuccessmessage(application, "Service successfully updated.");
-			sa.assertAll();
-			}
-			else
-				Log.info("Service not updated");
-				System.out.println("Service not updated");
-			
-			//verify edit service details in view service page
-				
-				ScrolltoElement(application, "servicecityvalue", xml);
-				compareText(application, "Service Identification", "sidvalue", sid, xml);
-				compareText(application, "Service Type", "servicepanel_servicetypevalue", servicetype, xml);
-				//compareText(application, "Email", "emailvalue", editemail, xml);
-				GetText(application, "Email", "emailvalue");
-				compareText(application, "Phone Contact", "phonecontactvalue", editphonecontact, xml);
-				compareText(application, "Remarks", "remarksvalue", EditRemarks, xml);
-				compareText(application, "User", "userfieldvalue", edituser, xml);
-				compareText(application, "Default Email", "defaultemailvalue", editdefaultemail, xml);
-				compareText(application, "First Name", "servicefirstnamevalue", editservicefirstname, xml);
-				compareText(application, "Last Name", "servicelastnamevalue", editservicelastname, xml);
-				compareText(application, "Organisation Name", "organizationnamevalue", editorganizationname, xml);
-				compareText(application, "Address", "serviceaddressvalue", editserviceaddress, xml);
-				compareText(application, "Complement", "servicecomplementvalue", editservicecomplement, xml);
-				compareText(application, "Postal Code", "servicepostalcodevalue", editservicepostalcode, xml);
-				compareText(application, "City", "servicecityvalue", editservicecity, xml);
-				compareText(application, "State", "servicestatevalue", editservicestate, xml);
-				compareText(application, "Country", "servicecountryvalue", editcountry, xml);
-				compareText(application, "Phone", "servicephonevalue", editservicephone, xml);
-				compareText(application, "Fax", "servicefaxvalue", editservicefax, xml);
-				compareText(application, "Email", "serviceemailvalue", editemail, xml);
-				
-			//synchronize link in view service page
-				ScrolltoElement(application, "orderpanelheader", xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
-			click_commonMethod(application, "Synchronize", "synchronizelink_servicepanel", xml);
-			Thread.sleep(2000);
-			ScrolltoElement(application, "Sync_successmsg", xml);
-			//compareText(application, "Syncronize success message", "Sync_successmsg", "Sync started successfully. Please check the sync status of this service.", xml);
-			verifysuccessmessage(application, "Sync started successfully. Please check the sync status of this service.");
-			//Delete Service
-			ScrolltoElement(application, "orderpanelheader", xml);
-			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
-			click_commonMethod(application, "Delete", "delete", xml);
-			Thread.sleep(2000);
-			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
-			if(DeleteAlertPopup.isDisplayed())
-			{
-				click_commonMethod(application, "Delete", "deletebutton", xml);
-				compareText(application, "Service Delete success msg", "deletesuccessmsg", "Service successfully deleted.", xml);
-				verifysuccessmessage(application, "Service successfully deleted.");
-			}
-			else
-			{
-				Log.info("Delete alert popup is not displayed");
-				DriverTestcase.logger.log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
-			}
-			
-		}
 		
 //====================================================================================================
 	
@@ -917,6 +743,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		WebElement searchbutton= getwebelement(xml.getlocator("//locators/" + application + "/searchbutton"));
 		ScrolltoElement(application, "searchbutton", xml);
 		Clickon(searchbutton);
+		waitforPagetobeenable();
 		Thread.sleep(2000);
 		scrolltoend();
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/serviceradiobutton")));
@@ -936,7 +763,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	 			 String value= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 	 			 if(element==null)
 	 			 {
-	 				DriverTestcase.logger.log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+	 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 	 			 }
 	 			 else if(value!=null) {
 	 				 Thread.sleep(1000);
@@ -956,14 +783,14 @@ public class APT_DomainManagementHelper extends DriverHelper {
 					System.out.println(availability);
 					if (availability) {
 						Thread.sleep(2000);
-						DriverTestcase.logger.log(LogStatus.PASS, "Step: '"+labelname+"' is displayed as expected");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step: '"+labelname+"' is displayed as expected");
 					}
 					else {
-						DriverTestcase.logger.log(LogStatus.FAIL, "Step: '"+labelname+"' is not displaying as expected");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: '"+labelname+"' is not displaying as expected");
 					}
 					
 				} catch (Exception e) {
-					DriverTestcase.logger.log(LogStatus.FAIL,"Step: '"+labelname+"' is not available to display");
+					ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: '"+labelname+"' is not available to display");
 					e.printStackTrace();
 				}
 	 	}
@@ -991,19 +818,19 @@ public String GetText(String application, String labelname, String xpath) throws
 			 String ele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 			 if(element==null)
 			 {
-				 DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' is not found");
+				 ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' is not found");
 			 }
 			 else if (ele!=null && ele.isEmpty()) {
-				 DriverTestcase.logger.log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+				 ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
 			 }
 			 else {   
 
 				 text = element.getText();
-				 DriverTestcase.logger.log(LogStatus.PASS,"Step: '"+ labelname +"' value is displayed as : '"+text+"'");
+				 ExtentTestManager.getTest().log(LogStatus.PASS,"Step: '"+ labelname +"' value is displayed as : '"+text+"'");
 
 			 }
 		 }catch (Exception e) {
-			 DriverTestcase.logger.log(LogStatus.FAIL,"Step: '"+ labelname +"' value is not displaying");
+			 ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: '"+ labelname +"' value is not displaying");
 			 e.printStackTrace();
 		 }
 		 return text;
@@ -1024,23 +851,23 @@ public void verifysuccessmessage(String application, String expected) throws Int
 			
 			if(expected.contains(alrtmsg)) {
 				
-				DriverTestcase.logger.log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+				ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 				System.out.println("Message is verified. It is displaying as: "+alrtmsg);
 				
 			}else {
 				
-				DriverTestcase.logger.log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 				System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
 			}
 			
 		}else {
-			DriverTestcase.logger.log(LogStatus.FAIL, " Success Message is not displaying");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
 			System.out.println(" Success Message is not displaying");
 		}
 		
 	}catch(Exception e) {
 		Log.info("failure in fetching success message");
-		DriverTestcase.logger.log(LogStatus.FAIL, expected+ " Message is not displaying");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 		System.out.println(expected+ " message is not getting dislpayed");
 	}
 

@@ -44,7 +44,7 @@ public class APT_LoginHelper extends DriverHelper {
 			
 			com.colt.qa.driverlibrary.Log.info("=== APT logged in successfully ===");
 			System.out.println("APT logged in successfully");
-			//DriverTestcase.logger.log(LogStatus.PASS, "Step :  APT logged in successfully ");
+//			ExtentTestManager.getTest().log(LogStatus.PASS, "Step :  APT logged in successfully ");
 
 		}
 

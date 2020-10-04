@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<locators>
+
+<LANLINK>
+
+<cicuit1G_OverturePanel>//div[div[text()='Circuits (Overture/Accedian-1G)']]</cicuit1G_OverturePanel>
+<circuit1G_AtricaPanel>//div[div[text()='Circuits (Atrica)']]</circuit1G_AtricaPanel>
+<circuit1G_addOvertureLink>//div[div[text()='Circuits (Overture/Accedian-1G)']]//following-sibling::div//span[text()='Add Overture']</circuit1G_addOvertureLink>
+<circuit1G_OverturePanelInsideAddOverturePage>//div[div[text()='Overture Circuit']]</circuit1G_OverturePanelInsideAddOverturePage>
+<serviceName_TextField>//div[label[text()='Service Name']]//input</serviceName_TextField>
+
+
+<columnHeader_customerColumn>(//span[@role='columnheader'])[2]</columnHeader_customerColumn>
+<columnHeader_orderColumn>(//span[@role='columnheader'])[3]</columnHeader_orderColumn>
+<columnHeader_serviceNameColumn>(//span[@role='columnheader'])[4]</columnHeader_serviceNameColumn>
+<columnHeader_serviceSubTypeColumn>(//span[@role='columnheader'])[5]</columnHeader_serviceSubTypeColumn>
+<columnHeader_vpnTopology>(//span[@role='columnheader'])[6]</columnHeader_vpnTopology>
+
+
+<CustomercolumnVaue>//div[@col-id='customerName'][@role='gridcell']</CustomercolumnVaue>
+
+<filterIcon_customerName>(//span[@class='ag-icon ag-icon-menu'])[2]</filterIcon_customerName>
+<filterTextField>//input[@id='filterText']</filterTextField>
+<circuit1G_addAccedian1GLink>//div[div[text()='Circuits (Overture/Accedian-1G)']]//following-sibling::div//span[text()='Add Accedian-1G']</circuit1G_addAccedian1GLink>
+<circuit1G_addAtricaLink>//div[div[text()='Circuits (Atrica)']]//following-sibling::div//span[text()='Add Circuit']</circuit1G_addAtricaLink>
+
+
+
+
+
+
+
+</LANLINK>
+
+
+</locators>

@@ -663,7 +663,7 @@
       
       
       
-      
+      <AddSiteOrder_sitePreferenceType_Dropodwn>//label[text()='Site Preference Type']/parent::div//input</AddSiteOrder_sitePreferenceType_Dropodwn>
       <Addsiteorder_Devicenamefield>//div[label[text()='Device Name']]//input</Addsiteorder_Devicenamefield>
       <Addsiteorder_nonterminationpoint>//div[label[text()='Non Termination Point']]//input</Addsiteorder_nonterminationpoint>
       <Addsiteorder_protected>//div[label[text()='Protected']]//input</Addsiteorder_protected>
@@ -1362,16 +1362,16 @@
       <addCircuit_AtricaLink>//span[contains(text(),'Add Circuit')]</addCircuit_AtricaLink>
       
       <addOverture_OKbutton>//span[contains(text(),'OK')]</addOverture_OKbutton>
-      <addOverture_overturePanel>//body//p[1]</addOverture_overturePanel>
-      <addCircuit_Accedian1Gpage_panel>//p[contains(text(),'Select Accedian-1G Circuit')]</addCircuit_Accedian1Gpage_panel>
-      <addCircuit_Atricapage_Panel>//p[text()='Select Atrica Circuit']</addCircuit_Atricapage_Panel>
+      <addOverture_overturePanel>//div[contains(text(),'Select Overture Circuit')]</addOverture_overturePanel>
+      <addCircuit_Accedian1Gpage_panel>//div[contains(text(),'Select Accedian-1G Circuit')]</addCircuit_Accedian1Gpage_panel>
+      <addCircuit_Atricapage_Panel>//div[text()='Select Atrica Circuit']</addCircuit_Atricapage_Panel>
       
       <addOverture_serviceNameTextField>//label[text()='Service Name']/parent::div//input</addOverture_serviceNameTextField>
       <addOverture_searchButton>//span[text()='Search']</addOverture_searchButton>
       <selectValueUnderAddOverturePage>(//div[text()='value'])[1]</selectValueUnderAddOverturePage>
       <addOverture_cancelButton>//span[text()='Cancel']</addOverture_cancelButton>
       
-      <addOverture_interfaceInServicePanel>//div[text()='Interfaces in Service']</addOverture_interfaceInServicePanel>
+      <addOverture_interfaceInServicePanel>//div[label[text()='Interfaces In Service']]</addOverture_interfaceInServicePanel>
       <interfaceFilterButton>//div[span[text()='Interface']]/preceding-sibling::span</interfaceFilterButton>
       <interfacePage_filterText>//input[@id='filterText']</interfacePage_filterText>
       <interfaceInService_selectValueUnderTable>(//div[text()='value']/parent::div//input)[1]</interfaceInService_selectValueUnderTable>
@@ -1382,8 +1382,9 @@
        <PAMTest_siteValue>//div[div[div[text()='PAM Test']]]//div[label[text()='Site']]//following-sibling::div</PAMTest_siteValue>
        <PAMTest_deleteButton>//div[div[@class='col-12 col-sm-12 col-md-5']]//following-sibling::div//span[text()='Delete']</PAMTest_deleteButton>
       <deleteCircuit_deleteButton>//button[@class='btn btn-danger']</deleteCircuit_deleteButton>
-      
-      
+      <addSiteOrderpanelHeader>//p[text()='Add Site Order']</addSiteOrderpanelHeader>
+      <fetchProActiveMonitoringValue>//div[label[text()='Proactive Monitoring']]//following-sibling::div</fetchProActiveMonitoringValue>
+      <configure_alertPopup_xbutton>//span[text()='×']</configure_alertPopup_xbutton>
      </LANLINK>  
      
      

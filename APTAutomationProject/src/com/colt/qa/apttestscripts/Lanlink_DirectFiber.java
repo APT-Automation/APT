@@ -131,6 +131,8 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 			 DirectFiber.get().verifysuccessmessage("LANLINK", "Service successfully updated.");
 			 ExtentTestManager.endTest();	
 			
+			String proactiveMonitorvalue = DirectFiber.get().fetchProActiveMonitoringValue("LANLINK");
+			 
 		logger= ExtentTestManager.startTest ("synchronizeServiceSubtypeforLANLINKserviceunderviewservicepage");
 			DirectFiber.get().syncservices("LANLINK");
 			ExtentTestManager.endTest();
@@ -313,7 +315,7 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.INFO, "Actelis panel will display only for 'Actelis' Technology");
 			}
-			
+			ExtentTestManager.endTest();
 			
 		logger= ExtentTestManager.startTest ("Adddevice_Equipment");
 			String devicename=null;  String vendorModel=null;
@@ -522,14 +524,18 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 						DirectFiber.get().hideInterfaceLink_Equipment("LANLINK");
 						ExtentTestManager.endTest();
 						
-			 logger= ExtentTestManager.startTest ("AMNvalidator_Equipment");
-			 			DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderNumber);
-						String csrName=DirectFiber.get().fetchCSRsiteName("LANLINK");
-						String cityName=DirectFiber.get().fetchDeviceCityName("LANLINK");
-						String countryName=DirectFiber.get().fetchSiteOrderCountryName("LANLINK");
-						DirectFiber.get().clickOnAMNvalidatorLink("LANLINK");
-						DirectFiber.get().AMNvalidator("LANLINK",siteOrderNumber , deviceName_Equip, csrName, cityName, countryName);
-						ExtentTestManager.endTest();
+			
+			 if(proactiveMonitorvalue.equalsIgnoreCase("Yes")) {
+				 logger= ExtentTestManager.startTest ("AMNvalidator_Equipment");
+				 DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderNumber);
+					String csrName=DirectFiber.get().fetchCSRsiteName("LANLINK");
+					String cityName=DirectFiber.get().fetchDeviceCityName("LANLINK");
+					String countryName=DirectFiber.get().fetchSiteOrderCountryName("LANLINK");
+					DirectFiber.get().clickOnAMNvalidatorLink("LANLINK");
+					DirectFiber.get().AMNvalidator("LANLINK",siteOrderNumber , deviceName_Equip, csrName, cityName, countryName);
+					ExtentTestManager.endTest();
+			 }
+			 			
 						
 			 logger= ExtentTestManager.startTest ("deleteDevice_Equipment");
 						DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderNumber);

@@ -574,7 +574,7 @@
      <AlertForServiceCreationSuccessMessage>//div[@role='alert']/span</AlertForServiceCreationSuccessMessage>
      <serivceAlert>//div[@role='alert']</serivceAlert>
      
-      
+      <Addsiteorder_sitePreferenceErrmsg>//div[text()='Site Preference Type']</Addsiteorder_sitePreferenceErrmsg>
       <Actiondropdown_siteorder>//div[div[text()='Site Orders']]//button[text()='Action']</Actiondropdown_siteorder>
       <ActiondropdownforshowInterfaceunderEquipment>(//button[@id='dropdown-basic-button'])[2]</ActiondropdownforshowInterfaceunderEquipment>
       
@@ -710,7 +710,7 @@
       <verifysiteordertablevalue_currentpge></verifysiteordertablevalue_currentpge>
       <verifysiteordertablevalue_nextpage></verifysiteordertablevalue_nextpage>
       <verifysiteordertablevalue_previouspage></verifysiteordertablevalue_previouspage>
-      
+      <AddSiteOrder_sitePreferenceType_Dropodwn>//label[text()='Site Preference Type']/parent::div//input</AddSiteOrder_sitePreferenceType_Dropodwn>
       <Deletesiteorderrbutton>//button[@class='btn btn-danger']</Deletesiteorderrbutton>
       
       <totalpage_intermeiateshowinterfacelink>(//div[@class='ag-root-wrapper ag-layout-auto-height ag-ltr'])[8]//span[@ref='lbTotal']</totalpage_intermeiateshowinterfacelink>
@@ -1372,16 +1372,16 @@
       <addCircuit_AtricaLink>//span[contains(text(),'Add Circuit')]</addCircuit_AtricaLink>
       
       <addOverture_OKbutton>//span[contains(text(),'OK')]</addOverture_OKbutton>
-      <addOverture_overturePanel>//body//p[1]</addOverture_overturePanel>
-      <addCircuit_Accedian1Gpage_panel>//p[contains(text(),'Select Accedian-1G Circuit')]</addCircuit_Accedian1Gpage_panel>
-      <addCircuit_Atricapage_Panel>//p[text()='Select Atrica Circuit']</addCircuit_Atricapage_Panel>
+      <addOverture_overturePanel>//div[contains(text(),'Select Overture Circuit')]</addOverture_overturePanel>
+      <addCircuit_Accedian1Gpage_panel>//div[contains(text(),'Select Accedian-1G Circuit')]</addCircuit_Accedian1Gpage_panel>
+      <addCircuit_Atricapage_Panel>//div[text()='Select Atrica Circuit']</addCircuit_Atricapage_Panel>
       
       <addOverture_serviceNameTextField>//label[text()='Service Name']/parent::div//input</addOverture_serviceNameTextField>
       <addOverture_searchButton>//span[text()='Search']</addOverture_searchButton>
       <selectValueUnderAddOverturePage>(//div[text()='value'])[1]</selectValueUnderAddOverturePage>
       <addOverture_cancelButton>//span[text()='Cancel']</addOverture_cancelButton>
       
-      <addOverture_interfaceInServicePanel>//div[text()='Interfaces in Service']</addOverture_interfaceInServicePanel>
+      <addOverture_interfaceInServicePanel>//div[label[text()='Interfaces In Service']]</addOverture_interfaceInServicePanel>
       <interfaceFilterButton>//div[span[text()='Interface']]/preceding-sibling::span</interfaceFilterButton>
       <interfacePage_filterText>//input[@id='filterText']</interfacePage_filterText>
       <interfaceInService_selectValueUnderTable>(//div[text()='value']/parent::div//input)[1]</interfaceInService_selectValueUnderTable>
@@ -1394,7 +1394,9 @@
       <deleteCircuit_deleteButton>//button[@class='btn btn-danger']</deleteCircuit_deleteButton>
       
 	<addSiteOrderpanelHeader>//p[text()='Add Site Order']</addSiteOrderpanelHeader>
+	<configure_alertPopup_xbutton>//span[text()='×']</configure_alertPopup_xbutton>
 
+<fetchProActiveMonitoringValue>//div[label[text()='Proactive Monitoring']]//following-sibling::div</fetchProActiveMonitoringValue>
        
      </LANLINK>   
  

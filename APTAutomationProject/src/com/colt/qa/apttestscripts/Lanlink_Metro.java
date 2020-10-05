@@ -302,6 +302,7 @@ public class Lanlink_Metro extends DriverTestcase{
 				Metro.get().successMessage_deleteInterfaceFromDevice_ActelisConfiguration("LANLINK");
 				ExtentTestManager.endTest();
 				}
+				ExtentTestManager.endTest();
 				
 				
 		 logger= ExtentTestManager.startTest ("AdddeviceforEquipment_LANLINKmetro");

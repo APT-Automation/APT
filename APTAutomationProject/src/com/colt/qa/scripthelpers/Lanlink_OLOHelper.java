@@ -1797,7 +1797,11 @@ Thread.sleep(3000);
 		verifyEnteredvalues("Interface Speed", Interfacespeed);
 		
 		//Single Endpoint CPE
-		compareText_InViewPage(application, "Single Endpoint CPE", EndpointCPE, xml);
+		if(vpnTopology.equals("Point-to-Point")){
+			verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+		}else {
+			verifyEnteredvalues("Single Endpoint CPE", "No");
+		}
 		
 		//Email
 		verifyEnteredvalueForEmail_serviceCreationpage("Email", email);
@@ -1921,7 +1925,11 @@ Thread.sleep(3000);
 			verifyEnteredvalues("Interface Speed", Interfacespeed);
 			
 			//Single Endpoint CPE
-			verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+			if(vpnTopology.equals("Point-to-Point")){
+				verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+			}else {
+				verifyEnteredvalues("Single Endpoint CPE", "No");
+			}
 			
 			//Email
 			verifyEnteredvalueForEmail_serviceCreationpage("Email", Email);
@@ -6168,7 +6176,7 @@ try {
 		boolean techValue=false;
 		
 		try {
-		techValue=getwebelement("//div[text()='"+technology +"']").isDisplayed();
+		techValue=getwebelement("//div[contains(text(),'"+ technology + "')]").isDisplayed();
 		
 		if(techValue) {
 			
@@ -7124,6 +7132,11 @@ try {
 			verifySiteOrderForPoint_to_point(application, interfaceSpeed, modularMSP);
 			
 		}
+		else if(VPNtopology.equals("Point-to-Point") &&  (circuitType.equals("Extended Circuit"))) {
+			 
+			verifySiteOrderForPoint_to_point_extendedCircuit(application, interfaceSpeed, modularMSP);
+			
+		 }
 		else if(VPNtopology.equals("Hub&Spoke")) {
 			
 			if(offnetSelection.equalsIgnoreCase("No")) {
@@ -19394,16 +19407,7 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
      public void Countyr_AddSiteOrder(String application, String country) throws InterruptedException, DocumentException {
     	 
     	//Select Existing Country
-				if(country.equalsIgnoreCase("null")) {
-					
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Country is a mandatory field and the value is not provided ");
-				}else {
-				  Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Country")));
-				  Thread.sleep(3000);
-				  Clickon(getwebelement("//div[text()='"+ country +"']"));
-				  Thread.sleep(3000);
-				  ExtentTestManager.getTest().log(LogStatus.PASS,country+ " has been selected under 'Country' dropdown");
-				}
+    	 addDropdownValues_commonMethod(application, "Device Country", "Addsiteorder_Country", country, xml);
      }
 
 	
@@ -26795,7 +26799,7 @@ Thread.sleep(3000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/CPEdevice_adddevicelink")));
 		Thread.sleep(6000);
 		
-		  
+		  waitForpageload();   waitforPagetobeenable();
 		click_commonMethod(application, "Select Device", "existingDevice_SelectDeviceToggleButton", xml);
 		Thread.sleep(7000);
 		waitForpageload();
@@ -28115,7 +28119,7 @@ Thread.sleep(3000);
 					
 					if(selectEdgePointForInterface2.equalsIgnoreCase("Yes")) {
 						WebElement selectEdgePoint2 = getwebelement(xml.getlocator("//locators/" + application + "/interfaceinService_selectEdgePointforInterface").replace("value", interface2));
-						Clickon(selectInterface2);
+						Clickon(selectEdgePoint2);
 						ExtentTestManager.getTest().log(LogStatus.PASS, interface2 + " is selected under 'Interface In Service' page");
 						Log.info(interface2 + " is selected under 'Interface In Service' page");
 						
@@ -28335,6 +28339,137 @@ Thread.sleep(3000);
 					Log.info("'Overture' page is not displaying");
 				}
 			}
+			
+			
+			public void verifySiteOrderForPoint_to_point_extendedCircuit(String application, String interfaceSpeed, String modularMSP) throws InterruptedException, DocumentException, IOException{
+				
+				ExtentTestManager.getTest().log(LogStatus.INFO, " Site order functions will be performed for 'VPN Topology' --> Point to Point");
+				
+				try {
+					scrolltoend();
+					Thread.sleep(1000);
+						
+					click_commonMethod(application, "OK", "okbutton", xml);
+					Thread.sleep(3000);
+					
+					
+					scrollToTop();
+					Thread.sleep(1000);
+						
+					//Country Error message	
+						warningMessage_commonMethod(application, "Addsiteorder_countryerrmsg" , "Country", xml);
+						
+					//City Error message	
+						warningMessage_commonMethod(application, "Addsiteorder_devciexngCityErrmsg", "City", xml);
+						
+						
+					//CSR name Error message	
+						warningMessage_commonMethod(application, "Addsiteorder_csrnameErrmsg" , "CSR Name", xml);
+						
+					//Technology Error message	
+						warningMessage_commonMethod(application, "Addsitieorder_technologyErrmsg ", "Technology", xml);
+							
+						
+			scrollToTop();
+			Thread.sleep(3000);
+							
+				//Validate Country dropdown
+						System.out.println("validate Country dropdown");
+						validateCountry_AddSiteorder(application);
+						
+							
+				//Validate City Fields
+						System.out.println("Validate city fields");
+						validateCity_AddSiteOrder(application);
+						
+				//Validate Site/CSR field
+						System.out.println("validate Site Fields");
+						validateSite_AddSiteOrder(application);
+			
+						scrolltoend();
+						Thread.sleep(3000);
+						
+				// Validate performance reporting dropdown
+						System.out.println("validate performance reporting checkbox");
+						validatePerformancereporting_AddSiteOrder(application);
+						
+						
+				//validate proactive Monitoring dropdown
+						System.out.println("validate proactive monitoring checkbox");
+						validateProactiveMonitoring_AddSiteOrder(application);
+						
+						
+				//Validate Smarts monitoring dropdown
+						System.out.println("validate Smarts monitoring checkbox");
+						validateSmartsMOnitoring_AddSiteOrder(application);
+						
+						
+						scrolltoend();
+						Thread.sleep(1000);
+						
+				//Validate Site Alias field
+						System.out.println("validate Site Alias fields");
+						validateSiteAlias_AddSiteOrder(application);
+						
+				
+				//Validate VLAN Id field
+						System.out.println("validate VLAn Id fields");
+						validateVlanID_AddSiteOrder(application);
+						
+						
+				//Validate DCA Enabled Site and Cloud Service Provider dropdown
+						System.out.println("validate DCA enabled site checkbox");
+						valiadateDCAEnabledsite_AddSieOrder(application);
+						
+				
+				//Verify Remark field
+						System.out.println("validate Remark fields");
+						validateRemark_AddSiteOrder(application);
+						
+						
+				if(interfaceSpeed.equals("1GigE"))	{
+				
+					technologyDropdownFor1GigE(application);
+				}	
+					
+				else if(interfaceSpeed.equals("10GigE"))	{
+				
+					technologyDropdownFor10GigE(application);
+				}
+					
+			//Validate OK button
+				OKbutton_AddSiteOrder(application);
+						
+			//Validate Cancel button
+				cancelbutton_AddSiteOrder(application);
+
+									Thread.sleep(1000);
+									scrolltoend();
+									Thread.sleep(1000);
+									
+									
+				click_commonMethod(application, "Cancel", "Addsiteorder_cancel", xml);					
+//				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_cancel")));
+				Thread.sleep(3000);
+				
+				sa.assertAll();
+				
+				}catch(AssertionError e) {
+				   e.printStackTrace();
+					}
+			}
+			
+			public String fetchProActiveMonitoringValue(String application) throws InterruptedException, DocumentException {
+				
+				String proactiveMonitor = "No";
+				
+				WebElement servicePanel= getwebelement(xml.getlocator("//locators/" + application + "/viewServicepage_Servicepanel"));
+				ScrolltoElement(servicePanel);
+				Thread.sleep(3000);
+				
+				return proactiveMonitor;
+			}
+
 
 	
 }

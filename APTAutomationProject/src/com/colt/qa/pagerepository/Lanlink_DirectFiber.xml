@@ -1864,11 +1864,11 @@
 
 <addOverture_OKbutton>//span[contains(text(),'OK')]</addOverture_OKbutton>
 
-<addOverture_overturePanel>//body//p[1]</addOverture_overturePanel>
+<addOverture_overturePanel>//div[contains(text(),'Select Overture Circuit')]</addOverture_overturePanel>
 
-<addCircuit_Accedian1Gpage_panel>//p[contains(text(),'Select Accedian-1G Circuit')]</addCircuit_Accedian1Gpage_panel>
+<addCircuit_Accedian1Gpage_panel>//div[contains(text(),'Select Accedian-1G Circuit')]</addCircuit_Accedian1Gpage_panel>
 
-<addCircuit_Atricapage_Panel>//p[text()='Select Atrica Circuit']</addCircuit_Atricapage_Panel>
+<addCircuit_Atricapage_Panel>//div[text()='Select Atrica Circuit']</addCircuit_Atricapage_Panel>
 
 <addOverture_serviceNameTextField>//label[text()='Service Name']/parent::div//input</addOverture_serviceNameTextField>
 
@@ -1878,7 +1878,7 @@
 
 <addOverture_cancelButton>//span[text()='Cancel']</addOverture_cancelButton>
 
-<addOverture_interfaceInServicePanel>//div[text()='Interfaces in Service']</addOverture_interfaceInServicePanel>
+<addOverture_interfaceInServicePanel>//div[label[text()='Interfaces In Service']]</addOverture_interfaceInServicePanel>
 
 <interfaceFilterButton>//div[span[text()='Interface']]/preceding-sibling::span</interfaceFilterButton>
 
@@ -1898,6 +1898,8 @@
 
 <deleteCircuit_deleteButton>//button[@class='btn btn-danger']</deleteCircuit_deleteButton>
 
+<fetchProActiveMonitoringValue>//div[label[text()='Proactive Monitoring']]//following-sibling::div</fetchProActiveMonitoringValue>
+<addSiteOrderpanelHeader>//p[text()='Add Site Order']</addSiteOrderpanelHeader>
 <!-- Manage User Portal -->
 
 
@@ -1912,6 +1914,8 @@
 <portalAccess_addUser_passwordField>//div[div[div[text()='Add User']]]//div[label[text()='Password']]//input</portalAccess_addUser_passwordField>
 
 <portalAccess_addUser_generatePasswordLink>//div[div[div[text()='Add User']]]//span[text()='Generate Password']</portalAccess_addUser_generatePasswordLink>
+
+
 
 </LANLINK>
 

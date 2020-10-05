@@ -2116,7 +2116,11 @@ Thread.sleep(3000);
 		verifyEnteredvalues("Interface Speed", Interfacespeed);
 		
 		//Single Endpoint CPE
-		verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+		if(vpnTopology.equals("Point-to-Point")){
+			verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+		}else {
+			verifyEnteredvalues("Single Endpoint CPE", "No");
+		}
 		
 		//Email
 		verifyEnteredvalueForEmail_serviceCreationpage("Email", email);
@@ -2140,8 +2144,6 @@ Thread.sleep(3000);
 		WebElement servicePanel= getwebelement(xml.getlocator("//locators/" + application + "/viewServicepage_Servicepanel"));
 		ScrolltoElement(servicePanel);
 		Thread.sleep(3000);
-		
-		
 		
 	/**
 	 * Management Options panel	
@@ -2233,7 +2235,11 @@ Thread.sleep(3000);
 			verifyEnteredvalues("Interface Speed", Interfacespeed);
 			
 			//Single Endpoint CPE
-			verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+			if(vpnTopology.equals("Point-to-Point")){
+				verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+			}else {
+				verifyEnteredvalues("Single Endpoint CPE", "No");
+			}
 			
 			//Email
 			verifyEnteredvalueForEmail_serviceCreationpage("Email", Email);
@@ -3606,7 +3612,7 @@ try {
 	Thread.sleep(3000);
 
 	click_commonMethod(application, "Edit link", "Editservice_Editlink", xml);
-	Thread.sleep(8000);
+	Thread.sleep(3000);
 	
 
 if(modularmsp.equalsIgnoreCase("no")) {	
@@ -5298,7 +5304,7 @@ try {
 		boolean techValue=false;
 		
 		try {
-		techValue=getwebelement("//div[text()='"+technology +"']").isDisplayed();
+		techValue=getwebelement("//div[contains(text(),'"+ technology + "')]").isDisplayed();
 		
 		if(techValue) {
 			
@@ -6558,12 +6564,13 @@ else if(interfaceSpeed.equals("10GigE"))	{
 //Validate Cancel button
 	cancelbutton_AddSiteOrder(application);
 
-						Thread.sleep(3000);
+						Thread.sleep(1000);
 						scrolltoend();
-						Thread.sleep(3000);
+						Thread.sleep(1000);
 	click_commonMethod(application, "Cancel", "Addsiteorder_cancel", xml);
 	
-	Thread.sleep(3000);
+	Thread.sleep(1000);
+	waitForpageload();   waitforPagetobeenable();
 	
 	sa.assertAll();
 	}catch(AssertionError e) {
@@ -12386,7 +12393,7 @@ public void deleteDeviceFromServiceForIntermediateequipment(String application, 
 								System.out.println(results.get(i).getText());
 								results.get(i).click();
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacenumber + " is selected under 'Interface to select' table");
-								Thread.sleep(8000);
+								Thread.sleep(3000);
 								Clickon(getwebelement(xml.getlocator(
 										"//locators/" + Application + "/InterfaceToselect_Actiondropdown")));
 
@@ -12855,7 +12862,7 @@ public void selectRowForEditingInterface_showInterface(String Application, Strin
 						System.out.println(results.get(i).getText());
 						results.get(i).click();
 						ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected under 'show Interface' ");
-						Thread.sleep(8000);
+						Thread.sleep(3000);
 						Clickon(getwebelement("(//div[div[div[contains(@title,'"+ devicename +"')]]]/following-sibling::div)[1]//button[text()='Action']"));
 
 					}
@@ -12944,7 +12951,7 @@ public void selectRowForshowInterfaceunderProviderEquipment(String Application, 
 					if (resultflag) {
 						System.out.println(results.get(i).getText());
 						results.get(i).click();
-						Thread.sleep(8000);									
+						Thread.sleep(3000);									
 
 					}
 
@@ -13029,7 +13036,7 @@ public void selectRowForshowInterfaceunderCustomerPremiseEquipment(String Applic
 					if (resultflag) {
 						System.out.println(results.get(i).getText());
 						results.get(i).click();
-						Thread.sleep(8000);									
+						Thread.sleep(3000);									
 
 					}
 
@@ -13116,7 +13123,7 @@ public void selectRowForconfiglinkunderEquipmentconfig(String Application, Strin
 						System.out.println(results.get(i).getText());
 						results.get(i).click();
 						ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected");
-						Thread.sleep(8000);										
+						Thread.sleep(3000);										
 
 					}
 
@@ -13203,7 +13210,7 @@ if (TotalPages != 0) {
 						System.out.println(results.get(i).getText());
 						results.get(i).click();
 						ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected");
-						Thread.sleep(8000);
+						Thread.sleep(3000);
 					}
 
 				} catch (StaleElementReferenceException e) {
@@ -13285,7 +13292,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 						System.out.println(results.get(i).getText());
 						results.get(i).click();
 						ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected after clicking on 'show Interface' ");
-						Thread.sleep(8000);
+						Thread.sleep(3000);
 
 					}
 
@@ -14433,7 +14440,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 							if (resultflag) {
 								System.out.println(results.get(i).getText());
 								results.get(i).click();
-								Thread.sleep(8000);
+								Thread.sleep(3000);
 								Clickon(getwebelement(xml.getlocator(
 										"//locators/" + Application + "/providerEquipment_InterfaceToselectActiondropdown")));
 
@@ -14534,7 +14541,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 							if (resultflag) {
 								System.out.println(results.get(i).getText());
 								results.get(i).click();
-								Thread.sleep(8000);
+								Thread.sleep(3000);
 								Clickon(getwebelement(xml.getlocator(
 										"//locators/" + Application + "/InterfaceInselect_Actiondropdown")));
 
@@ -14900,7 +14907,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 								if (resultflag) {
 									System.out.println(results.get(i).getText());
 									results.get(i).click();
-									Thread.sleep(8000);
+									Thread.sleep(3000);
 									Clickon(getwebelement(xml.getlocator(
 											"//locators/" + Application + "/Actionbutton_PE2CPE")));
 
@@ -15000,7 +15007,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 								if (resultflag) {
 									System.out.println(results.get(i).getText());
 									results.get(i).click();
-									Thread.sleep(8000);
+									Thread.sleep(3000);
 									Clickon(getwebelement(xml.getlocator(
 											"//locators/" + Application + "/providerEquipment_InterfaceToselectActiondropdown")));
 
@@ -16518,7 +16525,7 @@ DocumentException, IOException {
 				 Thread.sleep(3000);
 				 ExtentTestManager.getTest().log(LogStatus.PASS, xngcitycode+" is entered in City Code field" );
 				 }
-				 Thread.sleep(8000);
+				 Thread.sleep(3000);
 				 
 			//Add New Site	 
 				 
@@ -16704,16 +16711,8 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
      public void Countyr_AddSiteOrder(String application, String country) throws InterruptedException, DocumentException {
     	 
     	//Select Existing Country
-				if(country.equalsIgnoreCase("null")) {
-					
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Country is a mandatory field and the value is not provided ");
-				}else {
-				  Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Country")));
-				  Thread.sleep(3000);
-				  Clickon(getwebelement("//div[text()='"+ country +"']"));
-				  Thread.sleep(3000);
-				  ExtentTestManager.getTest().log(LogStatus.PASS,country+ " has been selected under 'Country' dropdown");
-				}
+    	 addDropdownValues_commonMethod(application, "Device Country", "Addsiteorder_Country", country, xml);
+    	 
      }
 
 	
@@ -23532,7 +23531,7 @@ Thread.sleep(3000);
 			WebElement selectValueInTable = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderAddOverturePage").replace("value", serviceName));
 			try {
 				selectValueInTable.isDisplayed();
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Records displays for the Service " + serviceName);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Records displays for the Service " + serviceName);
 				Log.info("Records displays for the Service " + serviceName);
 				
 				Clickon(selectValueInTable);
@@ -23602,7 +23601,7 @@ Thread.sleep(3000);
 			
 			if(selectEdgePointForInterface2.equalsIgnoreCase("Yes")) {
 				WebElement selectEdgePoint2 = getwebelement(xml.getlocator("//locators/" + application + "/interfaceinService_selectEdgePointforInterface").replace("value", interface2));
-				Clickon(selectInterface2);
+				Clickon(selectEdgePoint2);
 				ExtentTestManager.getTest().log(LogStatus.PASS, interface2 + " is selected under 'Interface In Service' page");
 				Log.info(interface2 + " is selected under 'Interface In Service' page");
 				
@@ -23748,7 +23747,7 @@ Thread.sleep(3000);
 			WebElement selectValueInTable = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderAddOverturePage").replace("value", serviceName));
 			try {
 				selectValueInTable.isDisplayed();
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Records displays for the Service " + serviceName);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Records displays for the Service " + serviceName);
 				Log.info("Records displays for the Service " + serviceName);
 				
 				Clickon(selectValueInTable);
@@ -23801,7 +23800,7 @@ Thread.sleep(3000);
 			WebElement selectValueInTable = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderAddOverturePage").replace("value", serviceName));
 			try {
 				selectValueInTable.isDisplayed();
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Records displays for the Service " + serviceName);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Records displays for the Service " + serviceName);
 				Log.info("Records displays for the Service " + serviceName);
 				
 				Clickon(selectValueInTable);
@@ -23900,7 +23899,18 @@ Thread.sleep(3000);
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
 				System.out.println(" NO value selected under "+ labelname + " dropdown");
 			}
+		}
+		
+		
+		public String fetchProActiveMonitoringValue(String application) throws InterruptedException, DocumentException {
 			
+			String proactiveMonitor = "No";
+			
+			WebElement servicePanel= getwebelement(xml.getlocator("//locators/" + application + "/viewServicepage_Servicepanel"));
+			ScrolltoElement(servicePanel);
+			Thread.sleep(3000);
+			
+			return proactiveMonitor;
 		}
 
 

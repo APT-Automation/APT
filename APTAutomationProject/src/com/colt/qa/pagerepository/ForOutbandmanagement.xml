@@ -658,9 +658,7 @@
       <Addsiteorder_EPNEOSDHCheckbox>//div[label[contains(text(),'EPN EOSDH')]]//input</Addsiteorder_EPNEOSDHCheckbox>
       <Addsiteorder_IVreference_Primary>//div[contains(text(),'Primary')]</Addsiteorder_IVreference_Primary>
       <Addsiteorder_IVreference_Access>//div[contains(text(),'Access')]</Addsiteorder_IVreference_Access>
-      
-      
-      
+      <AddSiteOrder_sitePreferenceType_Dropodwn>//label[text()='Site Preference Type']/parent::div//input</AddSiteOrder_sitePreferenceType_Dropodwn>
       
       <Addsiteorder_Devicenamefield>//div[label[text()='Device Name']]//input</Addsiteorder_Devicenamefield>
       <Addsiteorder_nonterminationpoint>//div[label[text()='Non Termination Point']]//input</Addsiteorder_nonterminationpoint>
@@ -669,8 +667,6 @@
       <Addsiteorder_mappingModedropdown_xbutton>//div[label[text()='Mapping Mode']]//div[text()='×']</Addsiteorder_mappingModedropdown_xbutton>
       <portname_textField>//div[label[text()='Port Name']]//input</portname_textField>
       <vlanid_textfield>//div[label[text()='VLAN Id']]//input</vlanid_textfield>
-      
-      
       
       <Backbutton>//span[contains(text(),'Back')]</Backbutton>
       
@@ -1883,7 +1879,7 @@
       <selectValueUnderAddOverturePage>(//div[text()='value'])[1]</selectValueUnderAddOverturePage>
       <addOverture_cancelButton>//span[text()='Cancel']</addOverture_cancelButton>
       
-      <addOverture_interfaceInServicePanel>//div[text()='Interfaces in Service']</addOverture_interfaceInServicePanel>
+      <addOverture_interfaceInServicePanel>//div[label[text()='Interfaces In Service']]</addOverture_interfaceInServicePanel>
       <interfaceFilterButton>//div[span[text()='Interface']]/preceding-sibling::span</interfaceFilterButton>
       <interfacePage_filterText>//input[@id='filterText']</interfacePage_filterText>
       <interfaceInService_selectValueUnderTable>(//div[text()='value']/parent::div//input)[1]</interfaceInService_selectValueUnderTable>
@@ -1894,6 +1890,8 @@
        <PAMTest_siteValue>//div[div[div[text()='PAM Test']]]//div[label[text()='Site']]//following-sibling::div</PAMTest_siteValue>
        <PAMTest_deleteButton>//div[div[@class='col-12 col-sm-12 col-md-5']]//following-sibling::div//span[text()='Delete']</PAMTest_deleteButton>
       <deleteCircuit_deleteButton>//button[@class='btn btn-danger']</deleteCircuit_deleteButton>
+      <configure_alertPopup_xbutton>//span[text()='×']</configure_alertPopup_xbutton>
+      
       
      </LANLINK>   
  

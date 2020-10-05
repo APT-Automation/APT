@@ -1573,19 +1573,6 @@ scrolltoend();
 
 	}
 
-	// scroll to end
-	public void scrolltoend() {
-
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-	}
-
-	public void scrollToTop() {
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0)");
-	}
-
-	public void clickOnBankPage() {
-		driver.findElement(By.xpath("//body")).click();
-	}
 
 //Scroll to particular webelement
 	public void ScrolltoElement(WebElement Element) {
@@ -2322,7 +2309,11 @@ scrolltoend();
 		verifyEnteredvalues("Interface Speed", Interfacespeed);
 
 		// Single Endpoint CPE
-		verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+		if(vpnTopology.equals("Point-to-Point")){
+			verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+		}else {
+			verifyEnteredvalues("Single Endpoint CPE", "No");
+		}
 
 		// Email
 		verifyEnteredvalueForEmail_serviceCreationpage("Email", email);
@@ -2396,7 +2387,11 @@ scrolltoend();
 		verifyEnteredvalues("Interface Speed", Interfacespeed);
 
 		// Single Endpoint CPE
-		verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+		if(vpnTopology.equals("Point-to-Point")){
+			verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+		}else {
+			verifyEnteredvalues("Single Endpoint CPE", "No");
+		}
 
 		// Email
 		verifyEnteredvalueForEmail_serviceCreationpage("Email", Email);
@@ -2738,7 +2733,7 @@ scrolltoend();
 								if (deliverychanneltypes.getText().equals(deliverychannel[i])) {
 									match = true;
 									Log.info("list of delivery channel are : " + deliverychanneltypes.getText());
-									ExtentTestManager.getTest().log(LogStatus.INFO,
+									ExtentTestManager.getTest().log(LogStatus.PASS,
 											" List of Delivery channel dropdown values under Direct Fiber service subtype are: "
 													+ deliverychanneltypes.getText());
 
@@ -2812,8 +2807,8 @@ scrolltoend();
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Fields are verified");
 		} catch (AssertionError e) {
 			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL,
-					"validation failure for Lanlink Outband management service subtype");
+//			ExtentTestManager.getTest().log(LogStatus.FAIL,
+//					"validation failure for Lanlink Outband management service subtype");
 		}
 
 	}
@@ -3043,7 +3038,7 @@ scrolltoend();
 								if (deliverychanneltypes.getText().equals(deliverychannel[i])) {
 									match = true;
 									Log.info("list of delivery channel are : " + deliverychanneltypes.getText());
-									ExtentTestManager.getTest().log(LogStatus.INFO,
+									ExtentTestManager.getTest().log(LogStatus.PASS,
 											" List of Delivery channel dropdown values under Direct Fiber service subtype are: "
 													+ deliverychanneltypes.getText());
 
@@ -3228,8 +3223,8 @@ scrolltoend();
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Fields are verified");
 		} catch (AssertionError e) {
 			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL,
-					"validation failure for Lanlink Outband management service subtype");
+//			ExtentTestManager.getTest().log(LogStatus.FAIL,
+//					"validation failure for Lanlink Outband management service subtype");
 		}
 
 	}
@@ -3364,14 +3359,14 @@ scrolltoend();
 
 				if (expected.contains(alrtmsg)) {
 
-//					ExtentTestManager.getTest().log(LogStatus.PASS, "Message is verified. It is displaying as: " + alrtmsg);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Message is verified. It is displaying as: " + alrtmsg);
 					System.out.println("Message is verified. It is displaying as: " + alrtmsg);
 
 				} else {
 
-//					ExtentTestManager.getTest().log(LogStatus.FAIL,
-//							"Message is displaying and it gets mismatches. It is displaying as: " + alrtmsg
-//									+ " .The Expected value is: " + expected);
+					ExtentTestManager.getTest().log(LogStatus.FAIL,
+							"Message is displaying and it gets mismatches. It is displaying as: " + alrtmsg
+									+ " .The Expected value is: " + expected);
 					System.out.println("Message is displaying and it gets mismatches. It is displaying as: " + alrtmsg);
 				}
 
@@ -3426,7 +3421,7 @@ scrolltoend();
 				}
 			} else {
 				ExtentTestManager.getTest().log(LogStatus.FAIL,
-						" 'Direct Fiber' service will not occur when 'modular MSP' is selected");
+						" 'Lanlink OutbandManagement' service will not occur when 'modular MSP' is selected");
 			}
 
 			sa.assertAll();
@@ -4308,7 +4303,7 @@ scrolltoend();
 		boolean techValue = false;
 
 		try {
-			techValue = getwebelement("//div[text()='" + technology + "']").isDisplayed();
+			techValue=getwebelement("//div[contains(text(),'"+ technology + "')]").isDisplayed();
 
 			if (techValue) {
 
@@ -5412,7 +5407,7 @@ scrolltoend();
 			String portBased, String vlanBased) throws InterruptedException, DocumentException, IOException {
 
 		scrollToTop();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 
 		ExtentTestManager.getTest().log(LogStatus.INFO, "addSiteOrder");
 
@@ -13532,11 +13527,11 @@ scrolltoend();
 			WebElement selectValueInTable = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderAddOverturePage").replace("value", serviceName));
 			try {
 				selectValueInTable.isDisplayed();
-//				ExtentTestManager.getTest().log(LogStatus.FAIL, "Records displays for the Service " + serviceName);
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Records displays for the Service " + serviceName);
 				Log.info("Records displays for the Service " + serviceName);
 				
 				Clickon(selectValueInTable);
-//				ExtentTestManager.getTest().log(LogStatus.PASS, "Service selected under the table");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Service selected under the table");
 				Thread.sleep(1000);
 				
 				click_commonMethod(application, "OK", "addOverture_OKbutton", xml);
@@ -13545,7 +13540,7 @@ scrolltoend();
 				
 			}catch(Exception e) {
 				e.printStackTrace();
-//				ExtentTestManager.getTest().log(LogStatus.FAIL, "No record displays for the Service " + serviceName);
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "No record displays for the Service " + serviceName);
 				Log.info("No record displays for the Service " + serviceName);
 				
 				click_commonMethod(application, "cancel", "addOverture_cancelButton" , xml);
@@ -13585,7 +13580,7 @@ scrolltoend();
 						
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_sitedropdown")));
 						Thread.sleep(3000);	
-						Clickon(getwebelement("//div[text()='" + sitevalue + "']"));
+						Clickon(getwebelement("//span[text()='" + sitevalue + "']"));
 						Thread.sleep(3000);
 						ExtentTestManager.getTest().log(LogStatus.PASS, sitevalue+  " is selected under Physical Site dropdown");
 		    		}
@@ -13934,17 +13929,8 @@ scrolltoend();
 	public void Countyr_AddSiteOrder(String application, String country)
 			throws InterruptedException, DocumentException {
 
-		// Select Existing Country
-		if (country.equalsIgnoreCase("null")) {
-
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Country is a mandatory field and the value is not provided ");
-		} else {
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Country")));
-			Thread.sleep(3000);
-			Clickon(getwebelement("//div[text()='" + country + "']"));
-			Thread.sleep(3000);
-			ExtentTestManager.getTest().log(LogStatus.PASS, country + " has been selected under 'Country' dropdown");
-		}
+		addDropdownValues_commonMethod(application, "Device Country", "Addsiteorder_Country", country, xml);
+		
 	}
 	
 	
@@ -14775,6 +14761,8 @@ scrolltoend();
 			String existingsiteselection, String newsiteselection)
 			throws InterruptedException, DocumentException, IOException {
 
+		scrollToTop();
+		
 		Countyr_AddSiteOrder(application, country);
 
 		City_AddSiteorder(application, existingcityselection, city, newcityselection, xngcityname, xngcitycode,
@@ -14889,8 +14877,6 @@ scrolltoend();
 		}
 
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered for add site order");
-
-		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -15110,8 +15096,6 @@ scrolltoend();
 
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered for add site order");
 
-		click_commonMethod(application, "OK", "okbutton", xml);
-
 	}
 
 	public void technologyHubAndSpoke1G_IVRefrenceAccess_offnetSelected_AddSiteOrder(String application,
@@ -15175,8 +15159,6 @@ scrolltoend();
 		}
 
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered for add site order");
-
-		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -15284,8 +15266,6 @@ scrolltoend();
 		}
 
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered for add site order");
-
-		click_commonMethod(application, "OK", "okbutton", xml);
 
 	}
 
@@ -21464,6 +21444,23 @@ scrolltoend();
 		safeJavaScriptClick(pppconfigLink);
 
 	}
+	
+	
+	public void clickOnViewButton_CPEdevice(String application, String devicename) throws Exception {
+
+		Thread.sleep(12000);
+
+		scrolltoend();
+		Thread.sleep(2000);
+
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying PPP Configuration");
+
+		WebElement viewLink = getwebelement(
+				xml.getlocator("//locators/" + application + "/clickOnViewLink_CPEdevice_out").replace("value",
+						devicename));
+		safeJavaScriptClick(viewLink);
+
+	}
 
 	public String fetchdeviceNameFromviewDevicePage(String application)
 			throws InterruptedException, DocumentException, IOException {
@@ -23873,7 +23870,7 @@ public void click(String application, String labelname, String xpath) throws Int
 			
 			
 			if(getwebelement(xml.getlocator("//locators/" + application + "/addOverture_interfaceInServicePanel")).isDisplayed()){
-//				ExtentTestManager.getTest().log(LogStatus.PASS, "'Interface in Service' page displays");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Interface in Service' page displays");
 				Log.info("'Interface in Service' page displays");
 				
 				
@@ -23884,18 +23881,18 @@ public void click(String application, String labelname, String xpath) throws Int
 				
 				WebElement selectInterface	= getwebelement(xml.getlocator("//locators/" + application + "/interfaceInService_selectValueUnderTable").replace("value", interface1));
 				Clickon(selectInterface);
-//				ExtentTestManager.getTest().log(LogStatus.PASS, interface1 + " is selected under 'Interface In Service' page");
+				ExtentTestManager.getTest().log(LogStatus.PASS, interface1 + " is selected under 'Interface In Service' page");
 				Log.info(interface1 + " is selected under 'Interface In Service' page");
 				
 				if(selectEdgePointForInterface1.equalsIgnoreCase("Yes")) {
 					WebElement selectEdgePoint = getwebelement(xml.getlocator("//locators/" + application + "/interfaceinService_selectEdgePointforInterface").replace("value", interface1));
 					Clickon(selectEdgePoint);
-//					ExtentTestManager.getTest().log(LogStatus.PASS, interface1 + " is selected under 'Interface In Service' page");
+					ExtentTestManager.getTest().log(LogStatus.PASS, interface1 + " is selected under 'Interface In Service' page");
 					Log.info(interface1 + " is selected under 'Interface In Service' page");
 					
 				}else {
 					
-//					ExtentTestManager.getTest().log(LogStatus.PASS, "'Edge End Point' radio button is not selected for " +  interface1);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "'Edge End Point' radio button is not selected for " +  interface1);
 					Log.info("'Edge End Point' radio button is not selected for "+ interface1);
 				}
 				
@@ -23908,13 +23905,13 @@ public void click(String application, String labelname, String xpath) throws Int
 				
 				WebElement selectInterface2	= getwebelement(xml.getlocator("//locators/" + application + "/interfaceInService_selectValueUnderTable").replace("value", interface2));
 				Clickon(selectInterface2);
-//				ExtentTestManager.getTest().log(LogStatus.PASS, interface2 + " is selected under 'Interface In Service' page");
+				ExtentTestManager.getTest().log(LogStatus.PASS, interface2 + " is selected under 'Interface In Service' page");
 				Log.info(interface2 + " is selected under 'Interface In Service' page");
 				
 				if(selectEdgePointForInterface2.equalsIgnoreCase("Yes")) {
 					WebElement selectEdgePoint2 = getwebelement(xml.getlocator("//locators/" + application + "/interfaceinService_selectEdgePointforInterface").replace("value", interface2));
-					Clickon(selectInterface2);
-//					ExtentTestManager.getTest().log(LogStatus.PASS, interface2 + " is selected under 'Interface In Service' page");
+					Clickon(selectEdgePoint2);
+					ExtentTestManager.getTest().log(LogStatus.PASS, interface2 + " is selected under 'Interface In Service' page");
 					Log.info(interface2 + " is selected under 'Interface In Service' page");
 					
 				}else {
@@ -23941,7 +23938,7 @@ public void click(String application, String labelname, String xpath) throws Int
 			
 			WebElement selectInterface	= getwebelement(xml.getlocator("//locators/" + application + "/PAMtest_selectinterface").replace("value", interface1));
 			Clickon(selectInterface);
-//			ExtentTestManager.getTest().log(LogStatus.PASS, interface1 + " is selected for performing 'PAM Test'");
+			ExtentTestManager.getTest().log(LogStatus.PASS, interface1 + " is selected for performing 'PAM Test'");
 			Log.info(interface1 + " is selected for performing 'PAM Test'");
 			
 			
@@ -23966,17 +23963,17 @@ public void click(String application, String labelname, String xpath) throws Int
 			//Type Value	
 				String typeValue=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/PAMTest_TypeFieldValue")));
 				if(typeValue.isEmpty()) {
-//					ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Type' field");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Type' field");
 					System.out.println("No values displaying under 'Type' field");
 				}else {
-//					ExtentTestManager.getTest().log(LogStatus.PASS, "Under 'Type' field, value is dispaying as: "+typeValue);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Under 'Type' field, value is dispaying as: "+typeValue);
 					System.out.println("Under 'Type' field, value is dispaying as: "+typeValue);
 				}
 				
 			//Service
 				String serviceValue=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/PAMTest_ServiceValue")));
 				if(serviceValue.isEmpty()) {
-//					ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Service' field");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Service' field");
 					System.out.println("No values displaying under 'Service' field");
 				}else {
 					compareText(application, "Service", "PAMTest_ServiceValue" , serviceName, xml);
@@ -23986,7 +23983,7 @@ public void click(String application, String labelname, String xpath) throws Int
 			//site
 				String siteValue=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/PAMTest_siteValue")));
 				if(siteValue.isEmpty()) {
-//					ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Site' field");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Site' field");
 					System.out.println("No values displaying under 'Site' field");
 				}else {
 					compareText(application, "Site", "PAMTest_siteValue" , siteName, xml);
@@ -23995,10 +23992,10 @@ public void click(String application, String labelname, String xpath) throws Int
 			//Tool Response
 				String toolResponse=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/PAMTest_ToolResponse")));
 				if(toolResponse.isEmpty()) {
-//					ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Tool Response' field");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Tool Response' field");
 					System.out.println("No values displaying under 'Tool Response' field");
 				}else {
-//					ExtentTestManager.getTest().log(LogStatus.PASS, "Under 'Tool Response' field, value is dispaying as: "+toolResponse);
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Under 'Tool Response' field, value is dispaying as: "+toolResponse);
 					System.out.println("Under 'Tool Response' field, value is dispaying as: "+toolResponse);
 				}
 				
@@ -24006,7 +24003,7 @@ public void click(String application, String labelname, String xpath) throws Int
 				click_commonMethod(application, "X", "configure_alertPopup_xbutton" , xml);
 				
 			}else {
-//				ExtentTestManager.getTest().log(LogStatus.FAIL, "'PAM Test' popup page is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "'PAM Test' popup page is not displaying");
 				System.out.println("'PAM Test' popup page is not displaying");
 			}
 		}catch(Exception e) {

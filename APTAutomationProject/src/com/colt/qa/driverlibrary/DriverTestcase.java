@@ -128,13 +128,6 @@ public class DriverTestcase {
 	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_InternationalHelper> International = new InheritableThreadLocal<>();
 	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_NationalHelper> National= new InheritableThreadLocal<>();
 
-
-
-	
-	
-	
-	
-	
 	
 	public static com.colt.qa.listeners.TestListener Testlistener;
 	public ThreadLocal<String> TestName = new ThreadLocal();

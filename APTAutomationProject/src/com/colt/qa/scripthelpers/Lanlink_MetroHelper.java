@@ -1780,7 +1780,11 @@ Thread.sleep(3000);
 		verifyEnteredvalues("Interface Speed", Interfacespeed);
 		
 		//Single Endpoint CPE
-		verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+		if(vpnTopology.equals("Point-to-Point")){
+			verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+		}else {
+			verifyEnteredvalues("Single Endpoint CPE", "No");
+		}
 		
 		//Email
 		verifyEnteredvalueForEmail_serviceCreationpage("Email", email);
@@ -1894,7 +1898,11 @@ Thread.sleep(3000);
 			verifyEnteredvalues("Interface Speed", Interfacespeed);
 			
 			//Single Endpoint CPE
-			verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+			if(vpnTopology.equals("Point-to-Point")){
+				verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+			}else {
+				verifyEnteredvalues("Single Endpoint CPE", "No");
+			}
 			
 			//Email
 			verifyEnteredvalueForEmail_serviceCreationpage("Email", Email);
@@ -6167,7 +6175,7 @@ try {
 		boolean techValue=false;
 		
 		try {
-		techValue=getwebelement("//div[text()='"+technology +"']").isDisplayed();
+		techValue=getwebelement("//div[contains(text(),'"+ technology + "')]").isDisplayed();
 		
 		if(techValue) {
 			
@@ -7469,12 +7477,6 @@ public void verifySiteOrderForPoint_to_point_extendedCircuit(String application,
 				validateRemark_AddSiteOrder(application);
 				
 				
-	if(modularMSP.equalsIgnoreCase("yes")) {
-		
-		technologyDropdown_p2p_mspselected(application);
-		
-	}else {
-		
 		if(interfaceSpeed.equals("1GigE"))	{
 		
 			technologyDropdownFor1GigE(application);
@@ -7484,8 +7486,6 @@ public void verifySiteOrderForPoint_to_point_extendedCircuit(String application,
 		
 			technologyDropdownFor10GigE(application);
 		}
-	}	
-			
 			
 	//Validate OK button
 		OKbutton_AddSiteOrder(application);
@@ -7493,9 +7493,9 @@ public void verifySiteOrderForPoint_to_point_extendedCircuit(String application,
 	//Validate Cancel button
 		cancelbutton_AddSiteOrder(application);
 
-							Thread.sleep(3000);
+							Thread.sleep(1000);
 							scrolltoend();
-							Thread.sleep(3000);
+							Thread.sleep(1000);
 							
 							
 		click_commonMethod(application, "Cancel", "Addsiteorder_cancel", xml);					
@@ -11535,7 +11535,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/CPEdevice_adddevicelink")));
 		Thread.sleep(6000);
 		
-		  
+		waitForpageload();   waitforPagetobeenable();  
 		click_commonMethod(application, "Select Device", "existingDevice_SelectDeviceToggleButton", xml);
 		Thread.sleep(7000);
 		waitForpageload();
@@ -19847,16 +19847,8 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
      public void Countyr_AddSiteOrder(String application, String country) throws InterruptedException, DocumentException {
     	 
     	//Select Existing Country
-				if(country.equalsIgnoreCase("null")) {
-					
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Country is a mandatory field and the value is not provided ");
-				}else {
-				  Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Country")));
-				  Thread.sleep(3000);
-				  Clickon(getwebelement("//div[text()='"+ country +"']"));
-				  Thread.sleep(3000);
-				  ExtentTestManager.getTest().log(LogStatus.PASS,country+ " has been selected under 'Country' dropdown");
-				}
+    	 addDropdownValues_commonMethod(application, "Device Country", "Addsiteorder_Country", country, xml);
+     
      }
 
 	
@@ -28198,7 +28190,7 @@ public void executeCommandAndFetchTheValue(String application, String executeBut
 				
 				if(selectEdgePointForInterface2.equalsIgnoreCase("Yes")) {
 					WebElement selectEdgePoint2 = getwebelement(xml.getlocator("//locators/" + application + "/interfaceinService_selectEdgePointforInterface").replace("value", interface2));
-					Clickon(selectInterface2);
+					Clickon(selectEdgePoint2);
 					ExtentTestManager.getTest().log(LogStatus.PASS, interface2 + " is selected under 'Interface In Service' page");
 					Log.info(interface2 + " is selected under 'Interface In Service' page");
 					
@@ -28417,6 +28409,17 @@ public void executeCommandAndFetchTheValue(String application, String executeBut
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Overture' page is not displaying");
 				Log.info("'Overture' page is not displaying");
 			}
+		}
+		
+	public String fetchProActiveMonitoringValue(String application) throws InterruptedException, DocumentException {
+			
+			String proactiveMonitor = "No";
+			
+			WebElement servicePanel= getwebelement(xml.getlocator("//locators/" + application + "/viewServicepage_Servicepanel"));
+			ScrolltoElement(servicePanel);
+			Thread.sleep(3000);
+			
+			return proactiveMonitor;
 		}
 
 }

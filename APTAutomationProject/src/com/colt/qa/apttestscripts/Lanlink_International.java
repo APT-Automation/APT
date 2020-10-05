@@ -123,25 +123,25 @@ public class Lanlink_International extends DriverTestcase{
 								map.get("CircuitType"), map.get("EditService_EVPNtechnology"), map.get("EditService_HCoSPerformanceReporting"));
 					 ExtentTestManager.endTest();
 					 
-			logger= ExtentTestManager.startTest ("successmessageforServiceUpdation");
-					 International.get().verifysuccessmessage("LANLINK", "Service successfully updated.");
-					 ExtentTestManager.endTest();
-			
-			logger= ExtentTestManager.startTest ("synchronizeService");
-					International.get().syncservices("LANLINK");
-					ExtentTestManager.endTest();
-					
-			logger= ExtentTestManager.startTest ("showNewInfovistaReport");
-					International.get().shownewInfovista("LANLINK");
-					ExtentTestManager.endTest();
-					
-			logger= ExtentTestManager.startTest ("ManageSubnets");
-					International.get().manageSubnets("LANLINK");
-					ExtentTestManager.endTest();
-		
-			logger= ExtentTestManager.startTest ("Dump");
-					International.get().dump_viewServicepage("LANLINK");		
-					ExtentTestManager.endTest();
+//			logger= ExtentTestManager.startTest ("successmessageforServiceUpdation");
+//					 International.get().verifysuccessmessage("LANLINK", "Service successfully updated.");
+//					 ExtentTestManager.endTest();
+//			
+//			logger= ExtentTestManager.startTest ("synchronizeService");
+//					International.get().syncservices("LANLINK");
+//					ExtentTestManager.endTest();
+//					
+//			logger= ExtentTestManager.startTest ("showNewInfovistaReport");
+//					International.get().shownewInfovista("LANLINK");
+//					ExtentTestManager.endTest();
+//					
+//			logger= ExtentTestManager.startTest ("ManageSubnets");
+//					International.get().manageSubnets("LANLINK");
+//					ExtentTestManager.endTest();
+//		
+//			logger= ExtentTestManager.startTest ("Dump");
+//					International.get().dump_viewServicepage("LANLINK");		
+//					ExtentTestManager.endTest();
 					
 			logger= ExtentTestManager.startTest ("verifyAddSiteOrderFields_LANLINK");
 					String vpnTopology = map.get("vpnTopology");
@@ -151,6 +151,7 @@ public class Lanlink_International extends DriverTestcase{
 						
 					ExtentTestManager.getTest().log(LogStatus.INFO, "Site order' Page will not display, if we select 'VPN TOpology' as 'Point-to-Point' "
 							+ "and 'Circuit Type' as 'Composite Circuit' ");
+					ExtentTestManager.endTest();
 						
 			}
 			else {
@@ -158,7 +159,8 @@ public class Lanlink_International extends DriverTestcase{
 				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Add Site Order' fields");
 						International.get().Enteraddsiteorder("LANLINK");
 						International.get().verifyAddsiteorderFields("LANLINK", map.get("Interfacespeed"), map.get("vpnTopology"), map.get("CircuitType"),
-								 map.get("SiteOrder_Offnet"),map.get("SiteOrder_EPNoffnet"), map.get("SiteOrder_EPNEOSDH"), map.get("Modularmsp"), map.get("AggregateTraffic"));
+								 map.get("SiteOrder_Offnet"),map.get("SiteOrder_EPNoffnet"), map.get("SiteOrder_EPNEOSDH"), map.get("Modularmsp"),
+								 map.get("AggregateTraffic"), map.get("EditService_AggregateTraffic"));
 						
 				ExtentTestManager.getTest().log(LogStatus.INFO,"create Site Order'");		
 					logger= ExtentTestManager.startTest ("EnterValueInAddSiteOrderFields_LANLINK");	
@@ -171,7 +173,8 @@ public class Lanlink_International extends DriverTestcase{
 								   map.get("nonterminationpoint"), map.get("protectforaddsiteorder"), map.get("newcity"), map.get("existingcity"), map.get("existingsite"), map.get("newsite"),
 								   map.get("Siteordernumber"), map.get("siteOrder_CircuitReference"), map.get("SiteOrder_Offnet"), map.get("SiteOrder_Ivrefrence"),map.get("SiteOrer_GCROloType"),
 						  		   map.get("SiteOrder_Vlan"), map.get("SiteOrder_Vlanethertype"),map.get("siteOrder_PrimaryVlan"), map.get("SiteOrder_PrimaryVlanEtherType"), map.get("SiteOrder_EPNoffnet"), 
-						  		   map.get("SiteOrder_EPNEOSDH"), map.get("SiteOrder_mappingMode"), map.get("SiteOrder_portBased"), map.get("SiteOrder_vlanBased"), map.get("Modularmsp"), map.get("AggregateTraffic"), map.get("siteOrder_sitePreferenceType"));
+						  		   map.get("SiteOrder_EPNEOSDH"), map.get("SiteOrder_mappingMode"), map.get("SiteOrder_portBased"), map.get("SiteOrder_vlanBased"), map.get("Modularmsp"), map.get("AggregateTraffic"),
+						  		   map.get("siteOrder_sitePreferenceType"), map.get("EditService_AggregateTraffic"));
 						ExtentTestManager.endTest();
 						
 				logger= ExtentTestManager.startTest ("Successmessage_siteOrderCreation");
@@ -299,7 +302,7 @@ public class Lanlink_International extends DriverTestcase{
 					International.get().successMessage_deleteInterfaceFromDevice_ActelisConfiguration("LANLINK");
 					ExtentTestManager.endTest();
 					}
-					
+				ExtentTestManager.endTest();	
 					
 			logger= ExtentTestManager.startTest ("AdddeviceforEquipment");
 					//verify whether Equipment panel is available	

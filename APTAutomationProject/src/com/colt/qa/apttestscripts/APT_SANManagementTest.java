@@ -20,7 +20,7 @@ public class APT_SANManagementTest extends DriverTestcase{
 		Login.APT_Login_1(map.get("url"));
 		logger= ExtentTestManager.startTest ("verifySearchforSAN");
 		APT_SANMgmtHelper.get().verifySearchSAN("sanmgmt", map.get("Search_SANNumber"), map.get("SearchSANfilename"), map.get("Browserfiles_Downloadspath"));
-		
+		ExtentTestManager.endTest();
 	
 	}
 }

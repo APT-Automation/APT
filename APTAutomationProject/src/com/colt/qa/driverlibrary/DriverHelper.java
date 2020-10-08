@@ -1012,11 +1012,15 @@ public void Moveon(WebElement el) {
 
 	public void scrollToTop() throws InterruptedException {
 		
-		clickOnBankPage();
+		WebElement element = getwebelement("//ol[@class='breadcrumb']//a[text()='Home']");
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);",element); 
 		
-		Thread.sleep(1000);
-		Actions action=new Actions(driver);
-		action.keyDown(Keys.CONTROL).sendKeys(Keys.HOME).keyUp(Keys.CONTROL).perform();
+//		clickOnBankPage();
+//		
+//		Thread.sleep(1000);
+//		Actions action=new Actions(driver);
+//		action.keyDown(Keys.CONTROL).sendKeys(Keys.HOME).keyUp(Keys.CONTROL).perform();
+//		action.keyDown(Keys.CONTROL).sendKeys(Keys.HOME).keyUp(Keys.CONTROL).perform();
 		
 	}
 
@@ -1630,7 +1634,8 @@ public void Moveon(WebElement el) {
 		 * @throws DocumentException
 		 */
 		@SuppressWarnings("unused")
-		public void compareText_InViewPage(String application, String labelname,  String ExpectedText, XMLReader xml) throws InterruptedException, DocumentException {
+		public void compareText_InViewPage(String application, String labelname,  String ExpectedText, XMLReader xml) 
+				throws InterruptedException, DocumentException {
 
 			String text = null;
 			WebElement element = null;

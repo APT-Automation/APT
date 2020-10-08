@@ -74,7 +74,7 @@
 <!-- <PostcodeCheckbox>(//span[@class='ag-selection-checkbox'])</PostcodeCheckbox> -->
 <PostcodeCheckbox>//div[text()='value']/parent::div//span//span[@class='ag-icon ag-icon-checkbox-unchecked']</PostcodeCheckbox>
 <!--  <ImsntCheckbox>(//span[@class='ag-icon ag-icon-checkbox-unchecked'])[1]</ImsntCheckbox>	-->
-<ImsntCheckbox>//div[text()='value']/parent::div//span//span[@class='ag-icon ag-icon-checkbox-unchecked']</ImsntCheckbox>
+<ImsntCheckbox>(//div[text()='value']/parent::div//span//span[@class='ag-icon ag-icon-checkbox-unchecked'])[1]</ImsntCheckbox>
 <PostcodeAction>//button[text()='Action']</PostcodeAction>
 <PostcodeActionView>(//a[contains(text(),'View')])[2]</PostcodeActionView>
 <PostcodeActionEdit>//a[contains(text(),'Edit')]</PostcodeActionEdit>
@@ -119,6 +119,7 @@
 <BackwardArrow>(//button[contains(@class,'btn btnSquar btnWitdh undefined btn-secondary')])[2]</BackwardArrow>
 <OKbtn>//span[contains(text(),'Ok')]</OKbtn>  <!--for defect Ok button  -->
 <Cancelbtn>//span[contains(text(),'Cancel')]</Cancelbtn>
+<xbutton>//span[text()='×']</xbutton>
 <OkbtnPostcode>//span[contains(text(),'OK')]</OkbtnPostcode>
 <FileNamefield>(//label[contains(text(),'File Name')])</FileNamefield>
 <Datefield>(//label[contains(text(),'Date')])</Datefield>
@@ -287,8 +288,8 @@
 <OperationText_2>//div[@class='react-dropdown-select-content react-dropdown-select-type-single css-v1jrxw-ContentComponent e1gn6jc30']</OperationText_2>
 
 <OperationTextClick>//div[contains(text(),'×')]</OperationTextClick>
-
-
+<numberToTranslateColumn_filter>(//span[@class='ag-icon ag-icon-menu'])[2]</numberToTranslateColumn_filter>
+<numberToTranslate_textField>//input[@id='filterText']</numberToTranslate_textField>
 
 
 

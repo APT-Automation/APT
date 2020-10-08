@@ -147,7 +147,7 @@ WebElement ChooseCustomer_Select, Next_Button, CreateOrderService_Text;
 		//Entering Customer name
 			addtextFields_commonMethod(application, "Customer Name", "entercustomernamefield", ChooseCustomerToBeSelected, xml);
 		
-		waitForpageload();
+		 
 		waitforPagetobeenable();
 		Thread.sleep(3000);
 		EnterTextValue(application, "*", "Customer Name", "entercustomernamefield");	
@@ -378,7 +378,7 @@ WebElement ChooseCustomer_Select, Next_Button, CreateOrderService_Text;
 				click_commonMethod(application, "OK", "OK_button", xml);
 				Thread.sleep(2000);
 				
-				waitForpageload();
+				 
 				waitforPagetobeenable();
 				
 				clickOnBankPage();
@@ -729,12 +729,12 @@ WebElement ChooseCustomer_Select, Next_Button, CreateOrderService_Text;
 		//Entering Customer name
 			addtextFields_commonMethod(application, "Customer Name", "entercustomernamefield", ChooseCustomerToBeSelected, xml);
 		
-		waitForpageload();
+		 
 		waitforPagetobeenable();
 		Thread.sleep(3000);
 		EnterTextValue(application, "*", "Customer Name", "entercustomernamefield");
 		
-		waitForpageload();
+		 
 		waitforPagetobeenable();
 		Thread.sleep(2000);
 
@@ -857,33 +857,7 @@ WebElement ChooseCustomer_Select, Next_Button, CreateOrderService_Text;
 	}
 
 
-	public void select_OrderContractNumberAndServiceType(String application, String OrderContractNumberToBeSelected,
-			String ServiceTypeToBeSelected) throws IOException, InterruptedException, DocumentException {
-
-//		int OrderContractNumberToBeSelected=Integer.parseInt(OrderContractNumberToBeSelected1);
-
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/OrderContractNumber_Select_build3")));
-		Thread.sleep(1000);
-		WebElement el1 = driver
-				.findElement(By.xpath("(//div[contains(text(),'" + OrderContractNumberToBeSelected + "')])[1]"));
-		el1.click();
-		Log.info("=== Order Contract Number selected===");
-
-		Thread.sleep(3000);
-
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ServiceType_Select1_build3")));
-		Thread.sleep(1000);
-		System.out.println("cluicked on srvice type");
-
-		System.out.println("-----has clicked service type------------");
-
-		WebElement el2 = driver.findElement(By.xpath("//div[contains(text(),'" + ServiceTypeToBeSelected + "')]"));
-		el2.click();
-		Log.info("=== Service Type selected===");
-
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Next_Button")));
-
-	}  
+	
 
 
 public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
@@ -930,7 +904,7 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 			String existingordernumber)
 			throws InterruptedException, IOException, DocumentException {
 
-		waitForpageload();
+		 
 		waitforPagetobeenable();
 		
 	//Create New order or select Existing Order	
@@ -1290,7 +1264,7 @@ scrolltoend();
 	
 	ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying list of fields under 'Create Order/ Service' Page");
 	
-	waitForpageload();
+	 
 	waitforPagetobeenable();
 	
 	clickOnBankPage();
@@ -2424,10 +2398,8 @@ Thread.sleep(3000);
   
 		try {	
 		
-		Clickon(getwebelement("//span[contains(text(),'OK')]"));
-		Thread.sleep(5000);
-		
-		
+		click_commonMethod(application, "OK", "obutton_spanTag", xml);
+		Thread.sleep(2000);
 			
 		//Circuit Reference Error message	
 			warningMessage_commonMethod(application, "circuitreferenceErrmsg", "Circuit Reference", xml);
@@ -2944,7 +2916,7 @@ Thread.sleep(3000);
   
 		try {	
 		
-		Clickon(getwebelement("//span[contains(text(),'OK')]"));
+		click_commonMethod(application, "OK", "obutton_spanTag", xml);
 		Thread.sleep(3000);
 		
 		
@@ -3655,7 +3627,6 @@ if(modularmsp.equalsIgnoreCase("no")) {
 	 */
 	public void verifysuccessmessage(String application, String expected) throws InterruptedException {
 		
-		waitForpageload();
 		waitforPagetobeenable();
 		
 		scrollToTop();
@@ -6057,7 +6028,7 @@ try {
 
 	public void Enteraddsiteorder(String application) throws InterruptedException, DocumentException {
 
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		
 		scrolltoend();
 		Thread.sleep(3000);
@@ -6570,7 +6541,7 @@ else if(interfaceSpeed.equals("10GigE"))	{
 	click_commonMethod(application, "Cancel", "Addsiteorder_cancel", xml);
 	
 	Thread.sleep(1000);
-	waitForpageload();   waitforPagetobeenable();
+	    waitforPagetobeenable();
 	
 	sa.assertAll();
 	}catch(AssertionError e) {
@@ -6591,7 +6562,7 @@ public void verifySiteOrderForHubAndSpoke(String application, String interfaceSp
 				scrolltoend();
 				Thread.sleep(2000);
 
-				Clickon(getwebelement("//span[contains(text(),'OK')]"));
+				click_commonMethod(application, "OK", "obutton_spanTag", xml);
 				Thread.sleep(2000);
 				
 				//Circuit Reference Error Message
@@ -6774,7 +6745,7 @@ public void verifySiteOrderForHubAndSpoke_offnetSelected(String application, Str
 				scrolltoend();
 				Thread.sleep(2000);
 				
-				Clickon(getwebelement("//span[contains(text(),'OK')]"));
+				click_commonMethod(application, "OK", "obutton_spanTag", xml);
 				Thread.sleep(2000);
 				
 				//Circuit Reference Error Message
@@ -6939,7 +6910,7 @@ public void verifySiteOrderForE_PN(String application, String interfaceSpeed) th
 			scrolltoend();
 			Thread.sleep(2000);
 
-			Clickon(getwebelement("//span[contains(text(),'OK')]"));
+			click_commonMethod(application, "OK", "obutton_spanTag", xml);
 			Thread.sleep(2000);
 			
 			
@@ -7124,7 +7095,7 @@ public void verifySiteOrderForEPN_EOSDHselected(String application, String inter
 			scrolltoend();
 			Thread.sleep(2000);
 			
-			Clickon(getwebelement("//span[contains(text(),'OK')]"));
+			click_commonMethod(application, "OK", "obutton_spanTag", xml);
 			Thread.sleep(2000);
 			
 			//Circuit Reference Error Message
@@ -7335,7 +7306,7 @@ scrolltoend();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Device Name' field is not displaying under 'Add Site Order' page");
 	
 		}
-	}catch(NoSuchElementException e) {
+	}catch(Exception e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Device Name' field is not displaying under 'Add Site Order' page");
 		System.out.println(" 'Device Name' field is not displaying under 'Add Site Order' page");
@@ -7418,7 +7389,7 @@ scrolltoend();
 							ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Id' text field is not displaying");
 							System.out.println(" 'VLAN Id' text field is not displaying");
 						}
-					}catch(NoSuchElementException e) {
+					}catch(Exception e) {
 						e.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Id' text field is not displaying");
 						System.out.println(" 'VLAN Id' text field is not displaying");
@@ -7430,7 +7401,7 @@ scrolltoend();
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'mapping mode' dropdown is not displaying in 'Add Site Order' page");
 				System.out.println(" 'mapping mode' dropdown is not displaying in 'Add Site Order' page");
 			}
-		}catch(NoSuchElementException e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'mapping mode' dropdown is not displaying in 'Add Site Order' page");
 			System.out.println(" 'mapping mode' dropdown is not displaying in 'Add Site Order' page");
@@ -7759,7 +7730,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 						}else {
 							ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN' field is not displaying, when 'Technology' is selected as 'Overture' and 'IV Reference' selected as 'Access'");
 						}
-					}catch(NoSuchElementException e) {
+					}catch(Exception e) {
 						e.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN' text field is not Available under 'Add Site order' page");
 						System.out.println(" 'VLAN' text field is not Available under 'Add Site order' page");
@@ -7814,7 +7785,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 						}else {
 							ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Primary VLAN' field is not displaying, when 'Technology' is selected as 'Overture' and 'IV Reference' selected as 'Access'");
 						}
-					}catch(NoSuchElementException e) {
+					}catch(Exception e) {
 						e.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Primary VLAN' text field is not Available under 'Add Site order' page");
 						System.out.println(" 'Primary VLAN' text field is not Available under 'Add Site order' page");
@@ -9293,7 +9264,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 							
 
 						//Device Name	
-								verifySiteOrderField_deviceName(application);
+//								verifySiteOrderField_deviceName(application);
 						}	
 						
 				
@@ -9411,7 +9382,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 	public void selectRowForsiteorder(String Application, String siteordernumber, String interfaceSpeed)
 			throws InterruptedException, DocumentException, IOException {
 
-		waitForpageload();
+		 
 		waitforPagetobeenable();
 		
 		System.out.println("-----------------------------" + siteordernumber + "---------------------");
@@ -9654,7 +9625,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 	public void verifyFieldsandAddCPEdevicefortheserviceselected_1G(String application,String interfaceSpeed,  String cpename, String vender, String snmpro,
 			String managementAddress, String Mepid, String poweralarm, String mediaSelection, String Macaddress,String serialNumber, 
 			String hexaSerialnumber, String linkLostForwarding, String newmanagementAddress, String existingmanagementAddress,
-			String manageaddressdropdownvalue, String technologySelected)
+			String manageaddressdropdownvalue, String technologySelected, String vpntopology)
 			throws InterruptedException, DocumentException, IOException {
 		
 		scrolltoend();
@@ -9672,6 +9643,10 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 			
 		}else {
 			
+			if(technologySelected.equalsIgnoreCase("Atrica") && vpntopology.equals("Hub&Spoke")) {
+				selectTechnology_HubAndSpoke(application);
+			}
+			
 		equip_addDevice_1G(application, interfaceSpeed, cpename, vender, snmpro, managementAddress, Mepid, poweralarm, mediaSelection, 
 				Macaddress, serialNumber, hexaSerialnumber, linkLostForwarding, newmanagementAddress, existingmanagementAddress,
 				manageaddressdropdownvalue);
@@ -9686,7 +9661,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 			String manageaddressdropdownvalue) throws InterruptedException, DocumentException, IOException {
 		
 		
-		Clickon(getwebelement("//span[contains(text(),'OK')]"));
+		click_commonMethod(application, "OK", "obutton_spanTag", xml);
 		Thread.sleep(3000);
 		
 		try {
@@ -9796,7 +9771,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 		String mepValue="null";
 		
 		
-		Clickon(getwebelement("//span[contains(text(),'OK')]"));
+		click_commonMethod(application, "OK", "obutton_spanTag", xml);
 		Thread.sleep(5000);
 		
 			// Vendor/Model Error Message
@@ -9896,7 +9871,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 		Thread.sleep(9000);
 		
 		
-		Clickon(getwebelement("//span[contains(text(),'OK')]"));
+		click_commonMethod(application, "OK", "obutton_spanTag", xml);
 		Thread.sleep(3000);
 		
 		try {
@@ -10300,10 +10275,10 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 	  
 	  
 		//Management Address  
-		  	if((existingmanagementAddress.equalsIgnoreCase("Yes")) || (newmanagementAddress.equalsIgnoreCase("no"))) {
+		  	if((existingmanagementAddress.equalsIgnoreCase("Yes")) && (newmanagementAddress.equalsIgnoreCase("no"))) {
 			  verifyEnteredvalues("Management Address", manageaddressdropdownvalue);
 			 }
-			 else if((existingmanagementAddress.equalsIgnoreCase("no")) || (newmanagementAddress.equalsIgnoreCase("Yes"))) {
+			 else if((existingmanagementAddress.equalsIgnoreCase("no")) && (newmanagementAddress.equalsIgnoreCase("Yes"))) {
 				 verifyEnteredvalues("Management Address", managementAddress);
 			 } 
 	  
@@ -10367,7 +10342,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 	  verifyEnteredvalues("Snmpro", snmpro);
 	  
 	//Management Address  
-	  	if((existingmanagementAddress.equalsIgnoreCase("Yes")) || (newmanagementAddress.equalsIgnoreCase("no"))) {
+	  	if((existingmanagementAddress.equalsIgnoreCase("Yes")) && (newmanagementAddress.equalsIgnoreCase("no"))) {
 		  verifyEnteredvalues("Management Address", manageaddressdropdownvalue);
 		 }
 		 else if((existingmanagementAddress.equalsIgnoreCase("no")) || (newmanagementAddress.equalsIgnoreCase("Yes"))) {
@@ -11191,7 +11166,6 @@ Thread.sleep(3000);
 
 	public void selectTechnology(String application, String technologyToBeSelected) throws InterruptedException, DocumentException {
 		
-				
 			//verify Technology popup
 				boolean technologypopup=false;
 				technologypopup=getwebelement(xml.getlocator("//locators/" + application + "/technologyPopup")).isDisplayed();
@@ -11242,6 +11216,59 @@ Thread.sleep(3000);
 				Thread.sleep(3000);
 				
 	}
+	
+	
+	public void selectTechnology_HubAndSpoke(String application) throws InterruptedException, DocumentException {
+		
+		//verify Technology popup
+			boolean technologypopup=false;
+			technologypopup=getwebelement(xml.getlocator("//locators/" + application + "/technologyPopup")).isDisplayed();
+			if(technologypopup) {
+				System.out.println("Technology popup is displaying as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " Technology popup is displaying as expected");
+			}else {
+				System.out.println("Technology popup is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " Technology popup is notdisplaying");
+			}
+			
+		//Dropdown values inside popup
+			boolean technologyDropdown=false;
+			technologyDropdown=getwebelement(xml.getlocator("//locators/" + application + "/technologypopup_dropdown")).isDisplayed();
+			if(technologyDropdown) {
+				System.out.println("Technology dropdown is displaying as expected");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " Technology dropdown is displaying as expected");
+				
+				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/technologypopup_dropdown")));
+				Thread.sleep(3000);
+				
+				//verify list of values inside technology dropdown
+				 List<WebElement> listofTechnololgy = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+					
+					if(listofTechnololgy.size()>0) {
+			
+					for (WebElement technoloyTypes : listofTechnololgy) {
+						ExtentTestManager.getTest().log(LogStatus.PASS, "List of values available under 'Technology' dropdown are: "+technoloyTypes.getText());
+						System.out.println("List of values available under 'Technology' dropdown are: "+technoloyTypes.getText());
+					}
+				}
+					
+			  //Select the Technology
+					Clickon(getwebelement("//div[@class='modal-body']//div[contains(text(),'Overture')]"));
+					Thread.sleep(3000);
+					String actualValue=getwebelement(xml.getlocator("//locators/" + application + "/tchnologyPopup_dropdownValues")).getText();
+					ExtentTestManager.getTest().log(LogStatus.PASS, " 'Technology' selected is: "+actualValue);
+					System.out.println( " 'Technology' selected is: "+actualValue);
+					
+			}else {
+				System.out.println("Technology dropdown is not displaying");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " Technology dropdown is notdisplaying");
+			}
+			
+			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/IntermediateEquipment_OKbuttonforpopup")));
+			Thread.sleep(3000);
+			
+}
+	
 	public void verifyFieldsandAddCPEdevicefortheserviceselected_IntEquip_1G(String application, String cpename, String vender_Overture, String vender_Accedian, String snmpro,
 			String managementAddress, String Mepid, String poweralarm_Overture, String powerAlarm_Accedian, String MediaselectionActualValue, String Macaddress,
 			String serialNumber, String hexaSerialnumber, String linkLostForwarding, String country, String City,
@@ -11299,7 +11326,7 @@ Thread.sleep(3000);
 		scrolltoend();
 		Thread.sleep(3000);
 		
-			Clickon(getwebelement("//span[contains(text(),'OK')]"));
+			click_commonMethod(application, "OK", "obutton_spanTag", xml);
 			Thread.sleep(3000);
 		
 		//Country Error Message
@@ -11530,10 +11557,10 @@ Thread.sleep(3000);
 	  verifyEnteredvalues("Snmpro", snmpro);
 	  
 	//Management Address  
-	  	if((existingmanagementAddress.equalsIgnoreCase("Yes")) || (newmanagementAddress.equalsIgnoreCase("no"))) {
+	  	if((existingmanagementAddress.equalsIgnoreCase("Yes")) && (newmanagementAddress.equalsIgnoreCase("no"))) {
 		  verifyEnteredvalues("Management Address", manageaddressdropdownvalue);
 		 }
-		 else if((existingmanagementAddress.equalsIgnoreCase("no")) || (newmanagementAddress.equalsIgnoreCase("Yes"))) {
+		 else if((existingmanagementAddress.equalsIgnoreCase("no")) && (newmanagementAddress.equalsIgnoreCase("Yes"))) {
 			 verifyEnteredvalues("Management Address", managementAddress);
 		 } 
 	  
@@ -11549,28 +11576,28 @@ Thread.sleep(3000);
 	  verifyEnteredvalues("Country", existingcountry);
 	  
 	//City  
-		 if((existingcityselectionmode.equalsIgnoreCase("Yes")) || (newcityselectionmode.equalsIgnoreCase("no"))) {
+		 if((existingcityselectionmode.equalsIgnoreCase("Yes")) && (newcityselectionmode.equalsIgnoreCase("no"))) {
 			 verifyEnteredvalues("City", existingCity);
 		 }
-		 else if((existingcityselectionmode.equalsIgnoreCase("no")) || (newcityselectionmode.equalsIgnoreCase("Yes"))) {
+		 else if((existingcityselectionmode.equalsIgnoreCase("no")) && (newcityselectionmode.equalsIgnoreCase("Yes"))) {
 			 verifyEnteredvalues("City", cityname);
 		 } 
 		 
 		 
 		//Site
-		 if((existingsiteselectionmode.equalsIgnoreCase("Yes")) || (newsiteselectionmode.equalsIgnoreCase("no"))) {
+		 if((existingsiteselectionmode.equalsIgnoreCase("Yes")) && (newsiteselectionmode.equalsIgnoreCase("no"))) {
 			 verifyEnteredvalues("Site", existingSite);
 		 }
-		 else if((existingsiteselectionmode.equalsIgnoreCase("no")) || (newsiteselectionmode.equalsIgnoreCase("Yes"))) {
+		 else if((existingsiteselectionmode.equalsIgnoreCase("no")) && (newsiteselectionmode.equalsIgnoreCase("Yes"))) {
 			 verifyEnteredvalues("Site", sitename);
 		 } 
 		 
 		 
 		//Premise
-		 if((existingpremiseselectionmode.equalsIgnoreCase("Yes")) || (newpremiseselectionmode.equalsIgnoreCase("no"))) {
+		 if((existingpremiseselectionmode.equalsIgnoreCase("Yes")) && (newpremiseselectionmode.equalsIgnoreCase("no"))) {
 			 verifyEnteredvalues("Premise", existingPremise);
 		 }
-		 else if((existingpremiseselectionmode.equalsIgnoreCase("no")) || (newpremiseselectionmode.equalsIgnoreCase("Yes"))) {
+		 else if((existingpremiseselectionmode.equalsIgnoreCase("no")) && (newpremiseselectionmode.equalsIgnoreCase("Yes"))) {
 			 verifyEnteredvalues("Premise", premisename);
 		 } 
 
@@ -11821,7 +11848,7 @@ Thread.sleep(3000);
 	
 	public void deleteDeviceFromServiceForequipment(String application, String devicename) throws InterruptedException, DocumentException {
 		
-		waitForpageload();
+		 
 		waitforPagetobeenable();
 		
 		clickOnBankPage();
@@ -11859,7 +11886,7 @@ Thread.sleep(3000);
 public void deleteDeviceFromService_EquipmentConfig_Actelis(String application,String devicename) throws InterruptedException, DocumentException {
 	
 	
- waitForpageload();
+  
  waitforPagetobeenable();
  
  scrolltoend();
@@ -12192,7 +12219,7 @@ public void deleteDeviceFromServiceForIntermediateequipment(String application, 
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Add DSLAM and HSL'");
 		
-		waitForpageload();
+		 
 		waitforPagetobeenable();
 		
 		scrolltoend();
@@ -12260,7 +12287,7 @@ public void deleteDeviceFromServiceForIntermediateequipment(String application, 
 
 		try {
 			Thread.sleep(2000);
-			waitForpageload();
+			 
 			waitforPagetobeenable();
 			scrolltoend();
 		safeJavaScriptClick(getwebelement("//div[div[div[text()='Intermediate Equipment']]]//div[div[div[contains(@title,'"+ devicename +"')]]]//span[text()='Select Interfaces']"));
@@ -12403,7 +12430,7 @@ public void deleteDeviceFromServiceForIntermediateequipment(String application, 
 //								Clickon(getwebelement(xml.getlocator("//locators/" + Application + "/InterfaceToselect_addbuton")));
 								Thread.sleep(3000);
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacenumber + " is added to service");
-
+								break ab;
 
 							}
 
@@ -12493,7 +12520,7 @@ public void deleteDeviceFromServiceForIntermediateequipment(String application, 
 								click_commonMethod(Application, "Remove", "InterfaceInselect_removebuton", xml);
 
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacenumber + " has been removed from service");
-
+								break ab;
 							}
 
 						} catch (StaleElementReferenceException e) {
@@ -12603,7 +12630,7 @@ public void deleteDeviceFromServiceForIntermediateequipment(String application, 
 	
 public void selectconfigurelinkAndverifyEditInterfacefield__Equipment(String application, String devicename) throws InterruptedException, DocumentException, IOException {
 	
-	waitForpageload();
+	 
 	waitforPagetobeenable();
 	
 	Thread.sleep(2000);
@@ -12683,7 +12710,7 @@ public void selectconfigurelinkAndverifyEditInterfacefield__Equipment(String app
 	
 	public void SelectShowInterfacelinkAndVerifyEditInterfacePage(String application, String interfacename, String devicename) throws InterruptedException, DocumentException, IOException {
 		
-		waitForpageload();  waitforPagetobeenable();
+		   waitforPagetobeenable();
 		
 		scrolltoend();
 		Thread.sleep(3000);
@@ -12864,7 +12891,7 @@ public void selectRowForEditingInterface_showInterface(String Application, Strin
 						ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected under 'show Interface' ");
 						Thread.sleep(3000);
 						Clickon(getwebelement("(//div[div[div[contains(@title,'"+ devicename +"')]]]/following-sibling::div)[1]//button[text()='Action']"));
-
+						break ab;
 					}
 
 				} catch (StaleElementReferenceException e) {
@@ -12936,7 +12963,6 @@ public void selectRowForshowInterfaceunderProviderEquipment(String Application, 
 		if (numofrows == 0) {
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + Application + "/providerEquipment_showinterfaceNextpage")));
-			
 
 		}
 
@@ -12952,7 +12978,7 @@ public void selectRowForshowInterfaceunderProviderEquipment(String Application, 
 						System.out.println(results.get(i).getText());
 						results.get(i).click();
 						Thread.sleep(3000);									
-
+						break ab;
 					}
 
 				} catch (StaleElementReferenceException e) {
@@ -12965,14 +12991,9 @@ public void selectRowForshowInterfaceunderProviderEquipment(String Application, 
 					Log.info("selected row is : " + i);
 
 				}
-
 			}
-
-
 		}
-
 	}
-
 }
 
 
@@ -13021,7 +13042,6 @@ public void selectRowForshowInterfaceunderCustomerPremiseEquipment(String Applic
 		if (numofrows == 0) {
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + Application + "/providerEquipment_showinterfaceNextpage")));
-			
 
 		}
 
@@ -13037,7 +13057,7 @@ public void selectRowForshowInterfaceunderCustomerPremiseEquipment(String Applic
 						System.out.println(results.get(i).getText());
 						results.get(i).click();
 						Thread.sleep(3000);									
-
+						break ab;
 					}
 
 				} catch (StaleElementReferenceException e) {
@@ -13107,8 +13127,6 @@ public void selectRowForconfiglinkunderEquipmentconfig(String Application, Strin
 
             Clickon(getwebelement(xml.getlocator("//locators/" + Application + "/Equipmentconfig_nextpage")));		
             Thread.sleep(3000);
-			
-
 		}
 
 		else {
@@ -13124,7 +13142,7 @@ public void selectRowForconfiglinkunderEquipmentconfig(String Application, Strin
 						results.get(i).click();
 						ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected");
 						Thread.sleep(3000);										
-
+						break ab;
 					}
 
 				} catch (StaleElementReferenceException e) {
@@ -13211,6 +13229,7 @@ if (TotalPages != 0) {
 						results.get(i).click();
 						ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected");
 						Thread.sleep(3000);
+						break ab;
 					}
 
 				} catch (StaleElementReferenceException e) {
@@ -13240,11 +13259,8 @@ if (TotalPages != 0) {
 
 public void selectRowUnderIntermediateEquipment(String Application, String interfacename) throws InterruptedException, DocumentException, IOException {
 
-
-
 	int TotalPages;
 		
-
 	String TextKeyword = Gettext(
 			getwebelement(xml.getlocator("//locators/" + Application + "/totalpage_intermeiateshowinterfacelink")));
 
@@ -13293,7 +13309,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 						results.get(i).click();
 						ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected after clicking on 'show Interface' ");
 						Thread.sleep(3000);
-
+						break ab;
 					}
 
 				} catch (StaleElementReferenceException e) {
@@ -14100,7 +14116,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     
     public void returnbacktoviewsiteorderpage(String application) throws InterruptedException, DocumentException {
     	
-//    	waitForpageload();
+//    	 
     	waitforPagetobeenable();
     	
     	scrolltoend();
@@ -14148,7 +14164,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 								
 					
 					}
-					}catch(NoSuchElementException e) {
+					}catch(Exception e) {
 					e.printStackTrace();
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Edit interface' popup is not displaying");
 					System.out.println(" 'Edit interface' popup is not displaying");
@@ -14243,7 +14259,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 								
 					
 					}
-					}catch(NoSuchElementException e) {
+					}catch(Exception e) {
 					e.printStackTrace();
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Edit interface' popup is not displaying");
 					System.out.println(" 'Edit interface' popup is not displaying");
@@ -15453,8 +15469,6 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
    
    	public void shownewInfovista(String application) throws Exception {
 	  
-   		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifyig 'Show infovista report'");
-   		
    		WebElement orderPanel= getwebelement(xml.getlocator("//locators/" + application + "/viewServicepage_OrderPanel"));
 		ScrolltoElement(orderPanel);
 		Thread.sleep(3000);
@@ -15480,15 +15494,14 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 	   Thread.sleep(3000);
 	   driver.switchTo().window(browserTabs.get(0)); 
 	   
-//	   assertEquals(pageTitle, expectedPageName, " on clicking 'Show Infovista link', it got naviagted to "+pageTitle);
+	   sa.assertEquals(pageTitle, expectedPageName, " on clicking 'Show Infovista link', it got naviagted to "+pageTitle);
 	   
-	  ExtentTestManager.getTest().log(LogStatus.PASS, "on clicking 'Show Infovista link', it got naviagted to "+ pageTitle + " as expected");
+	   sa.assertAll();
+	   
+	   ExtentTestManager.getTest().log(LogStatus.PASS, "on clicking 'Show Infovista link', it got naviagted to "+ pageTitle + " as expected");
 	   Thread.sleep(3000);
 	   
-	   ExtentTestManager.getTest().log(LogStatus.PASS, "show info vista page actual title: "+pageTitle );
-	   ExtentTestManager.getTest().log(LogStatus.PASS, "show info vista page expected title: "+ expectedPageName);
-	   
-	  }catch(Exception e) {
+	  }catch(AssertionError e) {
 		  
 		  e.printStackTrace();
 		  
@@ -15496,13 +15509,8 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		  driver.switchTo().window(browserTabs.get(0));
 		  
 		  ExtentTestManager.getTest().log(LogStatus.FAIL, expectedPageName + " page is not displaying");
-		   
+		  
 	  }
-	   //Get back to prevoius tab
-//	   driver.close();
-	  
-	   
-//	   sa.assertAll();
    		
    }
    	
@@ -15694,34 +15702,6 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		  click_commonMethod(application, "Cancel", "cancelButton", xml); 
 		  Thread.sleep(1000);
 	   }
-	   	
-	public void verifysuccessmessageforDeviceCreation() throws InterruptedException {
-		
-		boolean devicecreationmsg=getwebelement("//span[contains(text(),'Site device created successfully')]").isDisplayed();
-		sa.assertTrue(devicecreationmsg, " 'Site device created successfully' message is not getting displayed in viewdevice page after creating device");
-		if(devicecreationmsg) {
-			ExtentTestManager.getTest().log(LogStatus.PASS, " ' Site device created successfully' ,message is displaying as expected");
-		}else {
-			ExtentTestManager.getTest().log(LogStatus.FAIL," 'Site device created successfully' message is not getting displayed in viewdevice page after creating device' ");
-		}
-		
-		
-	}
-	
-	
-	
-public void verifysuccessmessageforDeviceUpdation() throws InterruptedException {
-		
-		boolean devicecreationmsg=getwebelement("//span[contains(text(),'Site device updated successfully')]").isDisplayed();
-		sa.assertTrue(devicecreationmsg, " 'Site device updated successfully' message is not getting displayed in viewdevice page after creating device");
-		if(devicecreationmsg) {
-			ExtentTestManager.getTest().log(LogStatus.PASS, " ' Site device updated successfully' ,message is displaying as expected");
-		}else {
-			ExtentTestManager.getTest().log(LogStatus.FAIL," 'Site device updated successfully' message is not getting displayed in viewdevice page after creating device' ");
-		}
-		
-		
-	}
 	
 	public void verifyAddcpedevicepageforIntermediatEquipmetn(String application) throws InterruptedException, DocumentException {
 		
@@ -15741,12 +15721,8 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 		String[] Mediaselection= {"Type A","Type B","Type C"};	
 		
 		
-		Clickon(getwebelement("//span[contains(text(),'OK')]"));
+		click_commonMethod(application, "OK", "obutton_spanTag", xml);
 		Thread.sleep(3000);
-		
-		
-	
-			
 			
 		//Snmpro Error Message
 			boolean snmproErr = getwebelement(
@@ -16019,7 +15995,7 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 			try {
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_citytogglebutton")));
 			ExtentTestManager.getTest().log(LogStatus.PASS, "cliked on 'Select City' toggle button");
-			}catch(NoSuchElementException e) {
+			}catch(Exception e) {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Select City' toggle button is not available");
 			}
 			
@@ -16053,7 +16029,7 @@ public void verifysuccessmessageforDeviceUpdation() throws InterruptedException 
 				try {
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_disabledCityToggleButton")));
 //				ExtentTestManager.getTest().log(LogStatus.PASS, "cliked on 'Select City' toggle button");
-				}catch(NoSuchElementException e) {
+				}catch(Exception e) {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Select City' toggle button is not available");
 				}	
 			
@@ -16595,7 +16571,7 @@ ExtentTestManager.getTest().log(LogStatus.FAIL, " 'City' mandatory dropdown is n
 	
 	System.out.println("Scrolling down to validate error messgae for City name and city code");
 	//Click on Next button to get warning message for XNG City name and XNG City Code text fields
-	Clickon(getwebelement("//span[contains(text(),'OK')]"));
+	click_commonMethod(application, "OK", "obutton_spanTag", xml);
 	Thread.sleep(5000);
 	
 	WebElement deviceCountry=getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Country"));
@@ -16750,7 +16726,7 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 			scrolltoend();
 			Thread.sleep(3000);
 			System.out.println("scrolling down to click n OK button to find eror message for site Dropdown");
-			Clickon(getwebelement("//span[contains(text(),'OK')]"));
+			click_commonMethod(application, "OK", "obutton_spanTag", xml);
 			Thread.sleep(5000);
 			
 			WebElement deviceCountry=getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Country"));
@@ -19357,7 +19333,7 @@ public void device_MAcaddress(String application, String macAdressInput) {
 	scrolltoend();
 	Thread.sleep(3000);
 	
-		Clickon(getwebelement("//span[contains(text(),'OK')]"));
+		click_commonMethod(application, "OK", "obutton_spanTag", xml);
 		Thread.sleep(3000);
 		
 		//Country Error Message
@@ -19519,7 +19495,7 @@ public void device_MAcaddress(String application, String macAdressInput) {
 	scrolltoend();
 	Thread.sleep(3000);
 	
-		Clickon(getwebelement("//span[contains(text(),'OK')]"));
+		click_commonMethod(application, "OK", "obutton_spanTag", xml);
 		Thread.sleep(3000);
 		
 		//Country Error Message
@@ -19688,10 +19664,10 @@ public void device_MAcaddress(String application, String macAdressInput) {
 	  verifyEnteredvalues("Snmpro", snmpro);
 	  
 	//Management Address  
-	  	if((existingmanagementAddress.equalsIgnoreCase("Yes")) || (newmanagementAddress.equalsIgnoreCase("no"))) {
+	  	if((existingmanagementAddress.equalsIgnoreCase("Yes")) && (newmanagementAddress.equalsIgnoreCase("no"))) {
 		  verifyEnteredvalues("Management Address", manageaddressdropdownvalue);
 		 }
-		 else if((existingmanagementAddress.equalsIgnoreCase("no")) || (newmanagementAddress.equalsIgnoreCase("Yes"))) {
+		 else if((existingmanagementAddress.equalsIgnoreCase("no")) && (newmanagementAddress.equalsIgnoreCase("Yes"))) {
 			 verifyEnteredvalues("Management Address", managementAddress);
 		 } 
 	  
@@ -19709,28 +19685,28 @@ public void device_MAcaddress(String application, String macAdressInput) {
 	  verifyEnteredvalues("Country", existingcountry);
 	
 	//City  
-	 if((existingcityselectionmode.equalsIgnoreCase("Yes")) || (newcityselectionmode.equalsIgnoreCase("no"))) {
+	 if((existingcityselectionmode.equalsIgnoreCase("Yes")) && (newcityselectionmode.equalsIgnoreCase("no"))) {
 		 verifyEnteredvalues("City", existingCity);
 	 }
-	 else if((existingcityselectionmode.equalsIgnoreCase("no")) || (newcityselectionmode.equalsIgnoreCase("Yes"))) {
+	 else if((existingcityselectionmode.equalsIgnoreCase("no")) && (newcityselectionmode.equalsIgnoreCase("Yes"))) {
 		 verifyEnteredvalues("City", newCity);
 	 } 
 	 
 	 
 	//Site
-	 if((existingsiteselectionmode.equalsIgnoreCase("Yes")) || (newsiteselectionmode.equalsIgnoreCase("no"))) {
+	 if((existingsiteselectionmode.equalsIgnoreCase("Yes")) && (newsiteselectionmode.equalsIgnoreCase("no"))) {
 		 verifyEnteredvalues("Site", existingSite);
 	 }
-	 else if((existingsiteselectionmode.equalsIgnoreCase("no")) || (newsiteselectionmode.equalsIgnoreCase("Yes"))) {
+	 else if((existingsiteselectionmode.equalsIgnoreCase("no")) && (newsiteselectionmode.equalsIgnoreCase("Yes"))) {
 		 verifyEnteredvalues("Site", newSite);
 	 } 
 	 
 	 
 	//Premise
-	 if((existingpremiseselectionmode.equalsIgnoreCase("Yes")) || (newpremiseselectionmode.equalsIgnoreCase("no"))) {
+	 if((existingpremiseselectionmode.equalsIgnoreCase("Yes")) && (newpremiseselectionmode.equalsIgnoreCase("no"))) {
 		 verifyEnteredvalues("Premise", existingPremise);
 	 }
-	 else if((existingpremiseselectionmode.equalsIgnoreCase("no")) || (newpremiseselectionmode.equalsIgnoreCase("Yes"))) {
+	 else if((existingpremiseselectionmode.equalsIgnoreCase("no")) && (newpremiseselectionmode.equalsIgnoreCase("Yes"))) {
 		 verifyEnteredvalues("Premise", newPremise);
 	 } 
 	  
@@ -19772,10 +19748,10 @@ public void device_MAcaddress(String application, String macAdressInput) {
 		  verifyEnteredvalues("Snmpro", snmpro);
 		  
 		//Management Address  
-		  	if((existingmanagementAddress.equalsIgnoreCase("Yes")) || (newmanagementAddress.equalsIgnoreCase("no"))) {
+		  	if((existingmanagementAddress.equalsIgnoreCase("Yes")) && (newmanagementAddress.equalsIgnoreCase("no"))) {
 			  verifyEnteredvalues("Management Address", manageaddressdropdownvalue);
 			 }
-			 else if((existingmanagementAddress.equalsIgnoreCase("no")) || (newmanagementAddress.equalsIgnoreCase("Yes"))) {
+			 else if((existingmanagementAddress.equalsIgnoreCase("no")) && (newmanagementAddress.equalsIgnoreCase("Yes"))) {
 				 verifyEnteredvalues("Management Address", managementAddress);
 			 } 
 		  
@@ -19790,28 +19766,28 @@ public void device_MAcaddress(String application, String macAdressInput) {
 //		  verifyEnteredvalues("Link Lost Forwarding", linkLostForwarding);
 
 		//City  
-			 if((existingcityselectionmode.equalsIgnoreCase("Yes")) || (newcityselectionmode.equalsIgnoreCase("no"))) {
+			 if((existingcityselectionmode.equalsIgnoreCase("Yes")) && (newcityselectionmode.equalsIgnoreCase("no"))) {
 				 verifyEnteredvalues("City", existingCity);
 			 }
-			 else if((existingcityselectionmode.equalsIgnoreCase("no")) || (newcityselectionmode.equalsIgnoreCase("Yes"))) {
+			 else if((existingcityselectionmode.equalsIgnoreCase("no")) && (newcityselectionmode.equalsIgnoreCase("Yes"))) {
 				 verifyEnteredvalues("City", newCity);
 			 } 
 			 
 			 
 			//Site
-			 if((existingsiteselectionmode.equalsIgnoreCase("Yes")) || (newsiteselectionmode.equalsIgnoreCase("no"))) {
+			 if((existingsiteselectionmode.equalsIgnoreCase("Yes")) && (newsiteselectionmode.equalsIgnoreCase("no"))) {
 				 verifyEnteredvalues("Site", existingSite);
 			 }
-			 else if((existingsiteselectionmode.equalsIgnoreCase("no")) || (newsiteselectionmode.equalsIgnoreCase("Yes"))) {
+			 else if((existingsiteselectionmode.equalsIgnoreCase("no")) && (newsiteselectionmode.equalsIgnoreCase("Yes"))) {
 				 verifyEnteredvalues("Site", newSite);
 			 } 
 			 
 			 
 			//Premise
-			 if((existingpremiseselectionmode.equalsIgnoreCase("Yes")) || (newpremiseselectionmode.equalsIgnoreCase("no"))) {
+			 if((existingpremiseselectionmode.equalsIgnoreCase("Yes")) && (newpremiseselectionmode.equalsIgnoreCase("no"))) {
 				 verifyEnteredvalues("Premise", existingPremise);
 			 }
-			 else if((existingpremiseselectionmode.equalsIgnoreCase("no")) || (newpremiseselectionmode.equalsIgnoreCase("Yes"))) {
+			 else if((existingpremiseselectionmode.equalsIgnoreCase("no")) && (newpremiseselectionmode.equalsIgnoreCase("Yes"))) {
 				 verifyEnteredvalues("Premise", newPremise);
 			 } 
 	}
@@ -19997,6 +19973,8 @@ public void device_MAcaddress(String application, String macAdressInput) {
 		
 		boolean powerAlarm=false;
 		try {
+			
+			
 			
 			powerAlarm=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_poweralarm")).isDisplayed();
 			
@@ -21763,25 +21741,11 @@ public void device_MAcaddress(String application, String macAdressInput) {
 	 }
 	 
 	 
-	 public void verifysuccessmessageforDeviceCreation_Actellis() throws InterruptedException {
-			
-			boolean devicecreationmsg=getwebelement("//span[contains(text(),'Device successfully created')]").isDisplayed();
-			sa.assertTrue(devicecreationmsg, " 'Site device created successfully' message is not getting displayed in viewdevice page after creating device");
-			if(devicecreationmsg) {
-				ExtentTestManager.getTest().log(LogStatus.PASS, " 'Device successfully created ' ,message is displaying as expected");
-			System.out.println(" 'Device successfully created ' ,message is displaying as expected");
-			}else {
-				ExtentTestManager.getTest().log(LogStatus.FAIL," 'Device successfullycreated' message is not getting displayed after creating device' ");
-				System.out.println(" 'Device successfullycreated' message is not getting displayed after creating device' ");
-			}
-			
-			
-		}
 	 
 	 public void verifyDataEnteredFordeviceCreation_Actelis(String application, String devicename, String vendorModel, String RouterID,
 			 String manageAddress, String mepID, String ETH_Port) throws InterruptedException, DocumentException {
 		
-		 waitForpageload();
+		  
 		 waitforPagetobeenable();
 		 
 		 scrolltoend();
@@ -21808,7 +21772,7 @@ public void device_MAcaddress(String application, String macAdressInput) {
 	 
 	 public void AddDSLAMandHSL(String application, String DSLMdevice, String HSlname) throws InterruptedException, DocumentException, IOException {
 		 
-		 waitForpageload();
+		  
 		 waitforPagetobeenable();
 		 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/addDSLAMandHSL_xButton")));
@@ -21830,7 +21794,7 @@ public void device_MAcaddress(String application, String macAdressInput) {
 					Log.info(DSLMdevice + " is selected under 'DSLAM device' dropdown");
 					
 					
-					waitForpageload();
+					 
 					waitforPagetobeenable();
 					
 					click_commonMethod(application, "List_HSL", "List_HSL_Link", xml);		//click on "List HSL" button
@@ -21908,6 +21872,7 @@ Thread.sleep(3000);
 									
 									Clickon(getwebelement("//span[text()='Next']"));
 									Thread.sleep(3000);
+									break ab;
 								}
 
 							} catch (StaleElementReferenceException e) {
@@ -21996,7 +21961,7 @@ Thread.sleep(3000);
 	 * @throws InterruptedException
 	 */
 		@SuppressWarnings("unused")
-		public void verifyEnteredvalues(String labelname, String ExpectedText) throws InterruptedException { 
+		public void verifyEnteredvalues(String labelname, String ExpectedText) throws InterruptedException {
 
 			String text = null;
 			WebElement element = null;
@@ -22009,7 +21974,7 @@ Thread.sleep(3000);
 				if(element==null)
 				{
 					ExtentTestManager.getTest().log(LogStatus.FAIL, labelname+" not found");
-					System.out.println(labelname+" not found");
+					Log.info(labelname+" not found");
 				}
 				else if (emptyele!=null && emptyele.isEmpty()) {
 //					ExtentTestManager.getTest().log(LogStatus.PASS,  labelname + "' value is empty");
@@ -22020,39 +21985,61 @@ Thread.sleep(3000);
 					
 					if(emptyele.equalsIgnoreCase(ExpectedText)) {
 						
-						ExtentTestManager.getTest().log(LogStatus.PASS, " The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
-						System.out.println(" The Expected Text for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal Text '"+text+"'");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "The Expected value for '"+ labelname +"' field  is same as the Acutal value. It is id displaying blank");
+						Log.info("The Expected value for '\"+ labelname +\"' field  is same as the Acutal value. It is displaying blank");
 						
-					}
-					
-					else {
+					}else {
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
-						System.out.println(" The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+						Log.info(" The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
 					}
 					
 
 				}else 
 				{   
 					text = element.getText();
-					if(text.equals(ExpectedText)) {
-						ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
-						System.out.println(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					if((text.contains(" ")) ||  text.contains("-")) {
+						
+						String[] actualTextValue=text.split(" ");
+						String[] expectedValue =ExpectedText.split(" ");
+						
+						if(expectedValue[0].equalsIgnoreCase(actualTextValue[0])) {
+							ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						}
+						else if(expectedValue[0].contains(actualTextValue[0])) {
+							ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						
+						}
+						else
+						{
+							ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+						}
+						
+					}else {
+						if(ExpectedText.equalsIgnoreCase(text)) {
+							ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						}
+						else if(ExpectedText.contains(text)) {
+							ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						
+						}
+						else
+						{
+							ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+						}
 					}
-					else if(ExpectedText.contains(text)) {
-						ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
-						System.out.println("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
 					
-					}
-					else
-					{
-						ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
-						System.out.println("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
-					}
+					
 				}
 			}catch (Exception e) {
 				e.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
-				System.out.println(labelname + " field is not displaying");
+				Log.info(labelname + " field is not displaying");
 			}
 
 		}
@@ -22191,7 +22178,7 @@ Thread.sleep(3000);
 			   click_commonMethod(application, "Dump", "Editservice_Dumplink", xml);
 			   Thread.sleep(2000);
 		
-			   waitForpageload();
+			    
 			   
 			   waitforPagetobeenable();
 			   
@@ -22225,7 +22212,7 @@ Thread.sleep(3000);
 		
 		public void IntEquip_clickonviewButton(String application , String devicename) throws InterruptedException, DocumentException {
 				
-			waitForpageload();
+			 
 			waitforPagetobeenable();
 			
 				clickOnBankPage();
@@ -22436,8 +22423,7 @@ Thread.sleep(3000);
 		 */
 			public void clickOnBreadCrump(String application, String breadCrumpLink) throws InterruptedException, DocumentException {
 				
-				
-				waitForpageload();
+				 
 				waitforPagetobeenable();
 				
 				scrollToTop();
@@ -22604,7 +22590,7 @@ Thread.sleep(3000);
 				
 				Thread.sleep(10000);
 				
-				waitForpageload();
+				 
 				waitforPagetobeenable();
 				
 				ExtentTestManager.getTest().log(LogStatus.INFO, "Checking Test Status");
@@ -22647,7 +22633,8 @@ Thread.sleep(3000);
 			}
 
 			
-			public void verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice(String application, String existingDeviceName)
+			public void verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice(String application, String existingDeviceName,
+					String technologySelected, String vpntopology)
 					throws InterruptedException, DocumentException, IOException {
 				
 				scrolltoend();
@@ -22656,16 +22643,23 @@ Thread.sleep(3000);
 				ExtentTestManager.getTest().log(LogStatus.INFO,"Select existing CPE device");
 				
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/CPEdevice_adddevicelink")));
-				Thread.sleep(6000);
+				Thread.sleep(4000);
+				waitforPagetobeenable();
+				 
+				if(technologySelected.equalsIgnoreCase("Atrica") && vpntopology.equals("Hub&Spoke")) {
+					selectTechnology_HubAndSpoke(application);
+				}
+				waitforPagetobeenable();
 				
-				  
 				click_commonMethod(application, "Select Device", "existingDevice_SelectDeviceToggleButton", xml);
-				Thread.sleep(7000);
-				waitForpageload();
+				Thread.sleep(3000);
 				waitforPagetobeenable();
 				
 				addDropdownValues_forExistingDevice(application, "Choose a Device", "chooseAdeviceDropdown", existingDeviceName, xml);
+				waitforPagetobeenable();
 				
+				scrolltoend();
+				click_commonMethod(application, "OK", "obutton_spanTag", xml);
 				}
 			
 			
@@ -22683,7 +22677,7 @@ Thread.sleep(3000);
 				  boolean availability=false;
 				try {  
 					
-					waitForpageload();
+					 
 					waitforPagetobeenable();
 					
 				  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
@@ -22700,7 +22694,7 @@ Thread.sleep(3000);
 						  Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
 						  Thread.sleep(2000);
 						  
-						  waitForpageload();
+						   
 						  waitforPagetobeenable();
 						  
 							Thread.sleep(2000);
@@ -22735,18 +22729,20 @@ Thread.sleep(3000);
 				
 				ExtentTestManager.getTest().log(LogStatus.INFO,"Select existing CPE device");
 				  
-				waitForpageload();
+				 
 				waitforPagetobeenable();
 				
 				scrollToTop();
 				
 				click_commonMethod(application, "Select Device", "existingDevice_SelectDeviceToggleButton", xml);
 				Thread.sleep(7000);
-				waitForpageload();
+				 
 				waitforPagetobeenable();
 				
 				addDropdownValues_forExistingDevice(application, "Choose a Device", "chooseAdeviceDropdown", existingDeviceName, xml);
-				
+				waitforPagetobeenable();
+				scrolltoend();
+				click_commonMethod(application, "OK", "obutton_spanTag", xml);
 				}
 			
 			
@@ -22763,7 +22759,7 @@ Thread.sleep(3000);
 		    	   fetchValueFromViewPage(application, "Media Selection");
 		    	   fetchValueFromViewPage(application, "Link Lost Forwarding");
 		    	   fetchValueFromViewPage(application, "MAC Address");
-		    	   fetchValueFromViewPage(application, "Serial Number");
+//		    	   fetchValueFromViewPage(application, "Serial Number");
 		       }
 			 
 			 
@@ -23051,7 +23047,7 @@ Thread.sleep(3000);
 		
 		Thread.sleep(3000);
 		
-		waitForpageload();
+		 
 		waitforPagetobeenable();
 		
 		Thread.sleep(4000);
@@ -23113,8 +23109,6 @@ Thread.sleep(3000);
 						ls1.add(devicepanels.getText());
 						
 					}else {
-//						ExtentTestManager.getTest().log(LogStatus.PASS, "Under 'Devices For Services' column, Column name for " + devicepanels + " is not displaying");
-//						System.out.println("Under 'Devices For Services' column, Column name for " + devicepanels + " is not displaying");
 						Log.info("Under 'Devices For Services' panel, Column name for " + devicepanels + " is not displaying");
 					}
 				}
@@ -23124,7 +23118,7 @@ Thread.sleep(3000);
 			System.out.println("Under 'Devices For Service' Panel, List Of column Names dispaying are: " + ls1);
 			
 		//verify vales under 'device' panel
-			compareText(application, "DeviceValue", "AMNvalidator_devicePanel_deviceName" , deviceName, xml);
+			compareText_fromtextFields(application, "DeviceValue", "AMNvalidator_devicePanel_deviceName" , deviceName, xml);
 			
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'AMN Validator' panel is not displaying");
@@ -23151,10 +23145,7 @@ Thread.sleep(3000);
 	
 	public String fetchCSRsiteName(String application) throws InterruptedException, DocumentException, IOException {
 		
-		clickOnBankPage();
-		
 		scrollToTop();
-		Thread.sleep(1000);
 		
 		WebElement CSrname=getwebelement(xml.getlocator("//locators/" + application + "/physicalSiteCSRName_viewSiteOrder"));
 		String CSRname=Gettext(CSrname);
@@ -23177,9 +23168,6 @@ Thread.sleep(3000);
 	}
 	
 	public String fetchSiteOrderCountryName(String application) throws InterruptedException, DocumentException, IOException {
-		
-		scrollToTop();
-		Thread.sleep(1000);
 		
 		WebElement countryName=getwebelement(xml.getlocator("//locators/" + application + "/countryName_viewSiteOrder"));
 		String siteOrder_countryName=Gettext(countryName);
@@ -23237,7 +23225,7 @@ Thread.sleep(3000);
 		            scrollToTop();
 		            Thread.sleep(1000);
 		            
-		            verifysuccessmessage(application, "Device successfully deleted");
+		            verifysuccessmessage(application, "Service successfully deleted");
 		         }
 		         else
 		         {
@@ -23465,7 +23453,7 @@ Thread.sleep(3000);
 			String interfaceSpeed, String siteOrderNumber_10G_p2p)
 			throws InterruptedException, DocumentException, IOException {
 
-		waitForpageload();
+		 
 		waitforPagetobeenable();
 		
 		System.out.println("-----------------------------" + siteordernumber + "---------------------");
@@ -23513,7 +23501,7 @@ Thread.sleep(3000);
 		// Click on Add Overture Link
 		click_commonMethod(application, "Add Overture", "addOvertureLink", xml);
 		Thread.sleep(1000);
-		waitForpageload();  waitforPagetobeenable();
+		   waitforPagetobeenable();
 
 
 		boolean overturePanelHeader = getwebelement(xml.getlocator("//locators/" + application + "/addOverture_overturePanel")).isDisplayed();
@@ -23525,7 +23513,7 @@ Thread.sleep(3000);
 			
 			click_commonMethod(application, "Search", "addOverture_searchButton" , xml);   //Search Button
 			Thread.sleep(2000);
-			waitForpageload();  waitforPagetobeenable();
+			   waitforPagetobeenable();
 			
 			
 			WebElement selectValueInTable = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderAddOverturePage").replace("value", serviceName));
@@ -23540,7 +23528,7 @@ Thread.sleep(3000);
 				
 				click_commonMethod(application, "OK", "addOverture_OKbutton", xml);
 				Thread.sleep(1000);
-				waitForpageload();   waitforPagetobeenable();
+				    waitforPagetobeenable();
 				
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -23625,7 +23613,7 @@ Thread.sleep(3000);
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Performing 'PAM Test'");
 		
-		waitForpageload();  waitforPagetobeenable();
+		   waitforPagetobeenable();
 		
 		scrolltoend();
 		
@@ -23639,7 +23627,7 @@ Thread.sleep(3000);
 		click_commonMethod(application, "PAMTest", "PAMtest_Link", xml);
 		
 		Thread.sleep(2000);
-		waitForpageload();  waitforPagetobeenable();
+		   waitforPagetobeenable();
 		
 	}
 	
@@ -23717,7 +23705,7 @@ Thread.sleep(3000);
 		click_commonMethod(application, "deleteCircuitpopup_deleteLink", "deleteCircuit_deleteButton", xml);
 		Thread.sleep(1000);
 		
-		waitForpageload();   waitforPagetobeenable();
+		    waitforPagetobeenable();
 		
 		verifysuccessmessage(application, "Circuit deleted successfully");
 		
@@ -23729,7 +23717,7 @@ Thread.sleep(3000);
 		// Click on Add Accedian-1G Link
 		click_commonMethod(application, "Add Accedian-1G", "addCircuit_AccedianLink", xml);
 		Thread.sleep(1000);
-		waitForpageload();  waitforPagetobeenable();
+		   waitforPagetobeenable();
 
 
 		boolean overturePanelHeader = getwebelement(xml.getlocator("//locators/" + application + "/addCircuit_Accedian1Gpage_panel")).isDisplayed();
@@ -23741,7 +23729,7 @@ Thread.sleep(3000);
 			
 			click_commonMethod(application, "Search", "addOverture_searchButton" , xml);   //Search Button
 			Thread.sleep(2000);
-			waitForpageload();  waitforPagetobeenable();
+			   waitforPagetobeenable();
 			
 			
 			WebElement selectValueInTable = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderAddOverturePage").replace("value", serviceName));
@@ -23756,7 +23744,7 @@ Thread.sleep(3000);
 				
 				click_commonMethod(application, "OK", "addOverture_OKbutton", xml);
 				Thread.sleep(1000);
-				waitForpageload();   waitforPagetobeenable();
+				    waitforPagetobeenable();
 				
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -23782,7 +23770,7 @@ Thread.sleep(3000);
 		// Click on Add Circuit Link
 		click_commonMethod(application, "Add Circuit", "addCircuit_AtricaLink", xml);
 		Thread.sleep(1000);
-		waitForpageload();  waitforPagetobeenable();
+		   waitforPagetobeenable();
 
 
 		boolean overturePanelHeader = getwebelement(xml.getlocator("//locators/" + application + "/addCircuit_Atricapage_Panel")).isDisplayed();
@@ -23794,7 +23782,7 @@ Thread.sleep(3000);
 			
 			click_commonMethod(application, "Search", "addOverture_searchButton" , xml);   //Search Button
 			Thread.sleep(2000);
-			waitForpageload();  waitforPagetobeenable();
+			   waitforPagetobeenable();
 			
 			
 			WebElement selectValueInTable = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderAddOverturePage").replace("value", serviceName));
@@ -23809,7 +23797,7 @@ Thread.sleep(3000);
 				
 				click_commonMethod(application, "OK", "addOverture_OKbutton", xml);
 				Thread.sleep(1000);
-				waitForpageload();   waitforPagetobeenable();
+				    waitforPagetobeenable();
 				
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -23902,13 +23890,15 @@ Thread.sleep(3000);
 		}
 		
 		
-		public String fetchProActiveMonitoringValue(String application) throws InterruptedException, DocumentException {
+		public String fetchProActiveMonitoringValue(String application) throws InterruptedException, DocumentException, IOException {
 			
 			String proactiveMonitor = "No";
 			
 			WebElement servicePanel= getwebelement(xml.getlocator("//locators/" + application + "/viewServicepage_Servicepanel"));
 			ScrolltoElement(servicePanel);
-			Thread.sleep(3000);
+			Thread.sleep(2000);
+			
+			proactiveMonitor = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/fetchProActiveMonitoringValue")));
 			
 			return proactiveMonitor;
 		}

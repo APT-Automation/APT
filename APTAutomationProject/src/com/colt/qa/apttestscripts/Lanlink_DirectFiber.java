@@ -40,7 +40,7 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 					CustomerName1=map.get("newCustomer");
 					ExtentTestManager.endTest();
 					
-					logger= ExtentTestManager.startTest ("selectExistingCustomer_wholesaleSIPTrunking"); 
+					logger= ExtentTestManager.startTest ("selectExistingCustomer_DirectFiber"); 
 					DirectFiber.get().selectCustomertocreateOrder("apt",map.get("newCustomer"));
 					ExtentTestManager.endTest();
 					
@@ -133,7 +133,7 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 			
 			String proactiveMonitorvalue = DirectFiber.get().fetchProActiveMonitoringValue("LANLINK");
 			 
-		logger= ExtentTestManager.startTest ("synchronizeServiceSubtypeforLANLINKserviceunderviewservicepage");
+		logger= ExtentTestManager.startTest ("synchronizeService_LANLINK");
 			DirectFiber.get().syncservices("LANLINK");
 			ExtentTestManager.endTest();
 			
@@ -198,7 +198,7 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 			  		map.get("SiteOrder_Vlan"), map.get("SiteOrder_Vlanethertype"),map.get("siteOrder_PrimaryVlan"), map.get("SiteOrder_PrimaryVlanEtherType"), map.get("SiteOrder_EPNoffnet"), map.get("SiteOrder_EPNEOSDH"));
 			ExtentTestManager.endTest();
 			
-		logger= ExtentTestManager.startTest ("EditSiteOrderfortheServiceSubtypeSelectedunderLANLINK");
+		logger= ExtentTestManager.startTest ("EditSiteOrder_LANLINK");
 			DirectFiber.get().returnbacktoviewsiteorderpage("LANLINK");
 			DirectFiber.get().selectRowForsiteorder("LANLINK", map.get("Siteordernumber"), map.get("siteOrderNumber_PointToPoint"), 
 					map.get("vpnTopology"), map.get("Interfacespeed"), map.get("siteOrderNumber_10G_PointToPoint"));
@@ -282,7 +282,7 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 				}
 		}
 		else {	
-		logger= ExtentTestManager.startTest ("Actelis_equipment configuratio");
+		logger= ExtentTestManager.startTest ("Actelis_equipment configuration");
 			String Technologyname=map.get("technology");
 			if(Technologyname.equalsIgnoreCase("Actelis")) {
 			boolean equipConfigurationPanel=DirectFiber.get().EquipmentCOnfigurationPanel("LANLINK");
@@ -363,7 +363,8 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 				if(speed.equals("1GigE")) {
 					if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
 						ExtentTestManager.getTest().log(LogStatus.INFO, "AddExistingDevice_1G_Eqiupment");
-						DirectFiber.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
+						DirectFiber.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"),
+								map.get("technology"), map.get("vpnTopology"));
 						DirectFiber.get().verifysuccessmessage("LANLINK", "Device successfully created");
 						ExtentTestManager.endTest();
 						
@@ -382,7 +383,8 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 						ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_1G_Equipment");
 						DirectFiber.get().verifyFieldsandAddCPEdevicefortheserviceselected_1G("LANLINK",map.get("Interfacespeed"), map.get("devicename_equip"), map.get("cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
 								 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
-								 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"));
+								 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"),
+								 map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"), map.get("vpnTopology"));
 						DirectFiber.get().verifysuccessmessage("LANLINK", "Device successfully created");
 						ExtentTestManager.endTest();
 						
@@ -404,7 +406,8 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 					
 					if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
 						ExtentTestManager.getTest().log(LogStatus.INFO, "addExistingDevice_10G_Eqiupment");
-						DirectFiber.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
+						DirectFiber.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"),
+								map.get("technology"), map.get("vpnTopology"));
 						DirectFiber.get().verifysuccessmessage("LANLINK", "Device successfully created");
 						ExtentTestManager.endTest();
 						
@@ -524,9 +527,8 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 						DirectFiber.get().hideInterfaceLink_Equipment("LANLINK");
 						ExtentTestManager.endTest();
 						
-			
+			logger= ExtentTestManager.startTest ("AMNvalidator_Equipment");
 			 if(proactiveMonitorvalue.equalsIgnoreCase("Yes")) {
-				 logger= ExtentTestManager.startTest ("AMNvalidator_Equipment");
 				 DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderNumber);
 					String csrName=DirectFiber.get().fetchCSRsiteName("LANLINK");
 					String cityName=DirectFiber.get().fetchDeviceCityName("LANLINK");
@@ -534,6 +536,9 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 					DirectFiber.get().clickOnAMNvalidatorLink("LANLINK");
 					DirectFiber.get().AMNvalidator("LANLINK",siteOrderNumber , deviceName_Equip, csrName, cityName, countryName);
 					ExtentTestManager.endTest();
+			 }else {
+				 ExtentTestManager.getTest().log(LogStatus.INFO, "'AMN Validator' link do not display, as 'proactive Monitoring' checkbox is not selected ");
+				 ExtentTestManager.endTest();
 			 }
 			 			
 						
@@ -555,7 +560,7 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 				}
 			
 			
-		 logger= ExtentTestManager.startTest ("IntermediateEquipment");
+		 logger= ExtentTestManager.startTest ("addDevice_IntermediateEquipment");
 					String devicename_intEquip=null;  String country_intEquip="";
 					String manageAdres_intEqiup=null; String vendorModel_intEqiup=null;
 					
@@ -729,12 +734,14 @@ public class Lanlink_DirectFiber extends DriverTestcase {
 					//Check Test Status	
 						DirectFiber.get().testStatus("LANLINK");
 					//Perform fetch from Interface
+						logger = ExtentTestManager.startTest("fetchDeviceInterface_IntermediateEquipment");
 						boolean link=DirectFiber.get().fetchDeviceInterface_viewdevicepage("LANLINK", devicename_intEquip);
 						Thread.sleep(1000);
 				//		if(link) {
 				//			manageNetwork.get().verifyFetchInterface("LANLINK", devicename_intEquip, map.get("InServiceStatus"),
 				//					map.get("InMaintenanceStatus"), vendorModel, manageAdres, "JdhquA5", country, map.get("interfacename"));
 				//		}
+						ExtentTestManager.endTest();
 						
 						logger= ExtentTestManager.startTest ("routerTools_IntermediateEquipment");
 						DirectFiber.get().routerPanel("LANLINK", map.get("CommandIPv4_Routertool"), manageAdres_intEqiup);

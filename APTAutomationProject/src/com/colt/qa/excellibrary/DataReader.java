@@ -2849,6 +2849,79 @@ public class DataReader {
 					return obj;
 				}
 
+				
+				 /**
+				 * For Lanlink National
+				 * @return
+				 * @throws IOException
+				 */
+				@DataProvider(name = "DataReader_LANLINK_National",parallel=false) 
+				public synchronized static Object[][] DataReader_LANLINK_National() throws IOException {
+					
+					int count=0;
+					
+					String filename = "APT_LANLINK.xlsx";
+
+					File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_LANLINK.xlsx");
+					
+					FileInputStream inputStream = new FileInputStream(file);
+
+					Workbook workbook = null;
+
+					String fileExtensionName = filename.substring(filename.indexOf("."));
+
+					if (fileExtensionName.equals(".xlsx")) {
+
+						workbook = new XSSFWorkbook(inputStream);
+
+					}
+
+					else if (fileExtensionName.equals(".xls")) {
+
+						workbook = new HSSFWorkbook(inputStream);
+
+					}
+
+					Sheet sheet = workbook.getSheet("National");
+					
+					int rowCountForMap = 0;
+
+			        for(int k=1;k<=sheet.getLastRowNum();k++){
+			                        XSSFRow counter=(XSSFRow) sheet.getRow(k);
+			                        if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+			                        {
+			                        	rowCountForMap=rowCountForMap+1;
+			                        }
+			        }
+
+					int rowCount = sheet.getLastRowNum();
+
+					int colCount = sheet.getRow(0).getLastCellNum();
+					
+					Object[][] obj = new Object[rowCountForMap][1];
+
+					for (int i = 0; i < rowCount; i++) {
+
+						Map<Object, Object> datamap = new HashMap<Object, Object>();
+						
+						if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+							
+							for (int j = 0; j < colCount; j++) {
+								datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+							}
+							
+							obj[count][0] = datamap;
+							count++;
+						}
+						else {
+							//System.out.println("No changes");
+						}
+					}
+					return obj;
+				}
+
+				
+				
 
 				 /**
 				 * For Lanlink Metro
@@ -3133,13 +3206,684 @@ public class DataReader {
 							else {
 								//System.out.println("No changes");
 							}
-							
 						}
-
 						return obj;
 					}
 
 
-	
+				 
+				 /**
+					 * Search For Device
+					 * @return
+					 * @throws IOException
+					 */
+					 @DataProvider(name = "Finaldatareader_searchDevice",parallel=false) 
+						public synchronized static Object[][] Finaldatareader_searchDevice() throws IOException {
+							
+							int count=0;
+							
+							String filename = "APT_searchForDevice.xlsx";
+
+							File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_searchForDevice.xlsx");
+							
+							FileInputStream inputStream = new FileInputStream(file);
+
+							Workbook workbook = null;
+
+							String fileExtensionName = filename.substring(filename.indexOf("."));
+
+							if (fileExtensionName.equals(".xlsx")) {
+
+								workbook = new XSSFWorkbook(inputStream);
+
+							}
+
+							else if (fileExtensionName.equals(".xls")) {
+
+								workbook = new HSSFWorkbook(inputStream);
+
+							}
+
+							Sheet sheet = workbook.getSheet("searchDevice");
+							
+							int rowCountForMap = 0;
+
+					        for(int k=1;k<=sheet.getLastRowNum();k++){
+					                        XSSFRow counter=(XSSFRow) sheet.getRow(k);
+					                        if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+					                        {
+					                        	rowCountForMap=rowCountForMap+1;
+					                        }
+					        }
+
+
+							int rowCount = sheet.getLastRowNum();
+							
+							int colCount = sheet.getRow(0).getLastCellNum();
+
+							Object[][] obj = new Object[rowCountForMap][1];
+
+							
+							for (int i = 0; i < rowCount; i++) {
+
+								Map<Object, Object> datamap = new HashMap<Object, Object>();
+								
+								if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+									
+									for (int j = 0; j < colCount; j++) {
+
+										datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+									
+									}
+									
+									obj[count][0] = datamap;
+									count++;
+								}
+								else {
+									//System.out.println("No changes");
+								}
+							}
+							return obj;
+						}
+
+					 
+					 
+					 @DataProvider(name = "Finaldatareader_IPVPNPlus",parallel=false) 
+						public synchronized static Object[][] Finaldatareader_IPVPNPlus() throws IOException {
+							int count=0;
+							String filename = "APT_CreateOrder_IPVPN.xlsx";
+
+							File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPVPN.xlsx");
+							
+							FileInputStream inputStream = new FileInputStream(file);
+
+							Workbook workbook = null;
+
+							String fileExtensionName = filename.substring(filename.indexOf("."));
+
+							if (fileExtensionName.equals(".xlsx")) {
+
+								workbook = new XSSFWorkbook(inputStream);
+
+							}
+
+							else if (fileExtensionName.equals(".xls")) {
+
+								workbook = new HSSFWorkbook(inputStream);
+
+							}
+
+							Sheet sheet = workbook.getSheet("IPVPN Plus");
+							
+							 int rowCountForMap = 0;
+
+					         for(int k=1;k<=sheet.getLastRowNum();k++){
+					                         XSSFRow counter=(XSSFRow) sheet.getRow(k);
+					                         if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+					                         {
+					                               rowCountForMap=rowCountForMap+1;
+					                         }
+					         }
+
+
+					             int rowCount = sheet.getLastRowNum();
+					             
+					             System.out.println("total row count: "+rowCount);
+
+					             int colCount = sheet.getRow(0).getLastCellNum();
+
+					             
+					             System.out.println("Column count: "+colCount);
+					             Object[][] obj = new Object[rowCountForMap][1];
+
+					             
+					             for (int i = 0; i < rowCount; i++) {
+
+					                   Map<Object, Object> datamap = new HashMap<Object, Object>();
+					                   
+					                   if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+					                         
+					                         for (int j = 0; j < colCount; j++) {
+
+					                               datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+					                         
+					                         }
+					                         
+					                         obj[count][0] = datamap;
+					                         count++;
+					                   }
+					                   else {
+					                         System.out.println("No changes");
+					                   }
+					                   
+					             }
+
+					             return obj;
+					       }
+
+					 @DataProvider(name = "Finaldatareader_IPVPNAccess",parallel=false) 
+						public synchronized static Object[][] Finaldatareader_IPVPNAccess() throws IOException {
+							int count=0;
+							String filename = "APT_CreateOrder_IPVPN.xlsx";
+
+							File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPVPN.xlsx");
+							
+							FileInputStream inputStream = new FileInputStream(file);
+
+							Workbook workbook = null;
+
+							String fileExtensionName = filename.substring(filename.indexOf("."));
+
+							if (fileExtensionName.equals(".xlsx")) {
+
+								workbook = new XSSFWorkbook(inputStream);
+
+							}
+
+							else if (fileExtensionName.equals(".xls")) {
+
+								workbook = new HSSFWorkbook(inputStream);
+
+							}
+
+							Sheet sheet = workbook.getSheet("IPVPN Access");
+							
+							 int rowCountForMap = 0;
+
+					         for(int k=1;k<=sheet.getLastRowNum();k++){
+					                         XSSFRow counter=(XSSFRow) sheet.getRow(k);
+					                         if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+					                         {
+					                               rowCountForMap=rowCountForMap+1;
+					                         }
+					         }
+
+
+					             int rowCount = sheet.getLastRowNum();
+					             
+					             System.out.println("total row count: "+rowCount);
+
+					             int colCount = sheet.getRow(0).getLastCellNum();
+
+					             
+					             System.out.println("Column count: "+colCount);
+					             Object[][] obj = new Object[rowCountForMap][1];
+
+					             
+					             for (int i = 0; i < rowCount; i++) {
+
+					                   Map<Object, Object> datamap = new HashMap<Object, Object>();
+					                   
+					                   if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+					                         
+					                         for (int j = 0; j < colCount; j++) {
+
+					                               datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+					                         
+					                         }
+					                         
+					                         obj[count][0] = datamap;
+					                         count++;
+					                   }
+					                   else {
+					                         System.out.println("No changes");
+					                   }
+					                   
+					             }
+
+					             return obj;
+					       }
+
+					 @DataProvider(name = "Finaldatareader_IPVPNConnect",parallel=false) 
+						public synchronized static Object[][] Finaldatareader_IPVPNConnect() throws IOException {
+							int count=0;
+							String filename = "APT_CreateOrder_IPVPN.xlsx";
+
+							File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPVPN.xlsx");
+							
+							FileInputStream inputStream = new FileInputStream(file);
+
+							Workbook workbook = null;
+
+							String fileExtensionName = filename.substring(filename.indexOf("."));
+
+							if (fileExtensionName.equals(".xlsx")) {
+
+								workbook = new XSSFWorkbook(inputStream);
+
+							}
+
+							else if (fileExtensionName.equals(".xls")) {
+
+								workbook = new HSSFWorkbook(inputStream);
+
+							}
+
+							Sheet sheet = workbook.getSheet("IPVPN Connect");
+							
+							 int rowCountForMap = 0;
+
+					         for(int k=1;k<=sheet.getLastRowNum();k++){
+					                         XSSFRow counter=(XSSFRow) sheet.getRow(k);
+					                         if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+					                         {
+					                               rowCountForMap=rowCountForMap+1;
+					                         }
+					         }
+
+
+					             int rowCount = sheet.getLastRowNum();
+					             
+					             System.out.println("total row count: "+rowCount);
+
+					             int colCount = sheet.getRow(0).getLastCellNum();
+
+					             
+					             System.out.println("Column count: "+colCount);
+					             Object[][] obj = new Object[rowCountForMap][1];
+
+					             
+					             for (int i = 0; i < rowCount; i++) {
+
+					                   Map<Object, Object> datamap = new HashMap<Object, Object>();
+					                   
+					                   if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+					                         
+					                         for (int j = 0; j < colCount; j++) {
+
+					                               datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+					                         
+					                         }
+					                         
+					                         obj[count][0] = datamap;
+					                         count++;
+					                   }
+					                   else {
+					                         System.out.println("No changes");
+					                   }
+					                   
+					             }
+
+					             return obj;
+					       }
+
+
+					 
+					 
+					 @DataProvider(name = "Finaldatareader_IPVPNIPSec",parallel=false) 
+						public synchronized static Object[][] Finaldatareader_IPVPNIPSec() throws IOException {
+							int count=0;
+							String filename = "APT_CreateOrder_IPVPN.xlsx";
+
+							File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPVPN.xlsx");
+							
+							FileInputStream inputStream = new FileInputStream(file);
+
+							Workbook workbook = null;
+
+							String fileExtensionName = filename.substring(filename.indexOf("."));
+
+							if (fileExtensionName.equals(".xlsx")) {
+
+								workbook = new XSSFWorkbook(inputStream);
+
+							}
+
+							else if (fileExtensionName.equals(".xls")) {
+
+								workbook = new HSSFWorkbook(inputStream);
+
+							}
+
+							Sheet sheet = workbook.getSheet("IPVPN IPSec");
+							
+							 int rowCountForMap = 0;
+
+					         for(int k=1;k<=sheet.getLastRowNum();k++){
+					                         XSSFRow counter=(XSSFRow) sheet.getRow(k);
+					                         if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+					                         {
+					                               rowCountForMap=rowCountForMap+1;
+					                         }
+					         }
+
+
+					             int rowCount = sheet.getLastRowNum();
+					             
+					             System.out.println("total row count: "+rowCount);
+
+					             int colCount = sheet.getRow(0).getLastCellNum();
+
+					             
+					             System.out.println("Column count: "+colCount);
+					             Object[][] obj = new Object[rowCountForMap][1];
+
+					             
+					             for (int i = 0; i < rowCount; i++) {
+
+					                   Map<Object, Object> datamap = new HashMap<Object, Object>();
+					                   
+					                   if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+					                         
+					                         for (int j = 0; j < colCount; j++) {
+
+					                               datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+					                         
+					                         }
+					                         
+					                         obj[count][0] = datamap;
+					                         count++;
+					                   }
+					                   else {
+					                         System.out.println("No changes");
+					                   }
+					                   
+					             }
+
+					             return obj;
+					       }
+					 
+					 
+					 
+
+					 @DataProvider(name = "Finaldatareader_IPVPNCPESolutionL2",parallel=false) 
+						public synchronized static Object[][] Finaldatareader_IPVPNCPESolutionL2() throws IOException {
+							int count=0;
+							String filename = "APT_CreateOrder_IPVPN.xlsx";
+
+							File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPVPN.xlsx");
+							
+							FileInputStream inputStream = new FileInputStream(file);
+
+							Workbook workbook = null;
+
+							String fileExtensionName = filename.substring(filename.indexOf("."));
+
+							if (fileExtensionName.equals(".xlsx")) {
+
+								workbook = new XSSFWorkbook(inputStream);
+
+							}
+
+							else if (fileExtensionName.equals(".xls")) {
+
+								workbook = new HSSFWorkbook(inputStream);
+
+							}
+
+							Sheet sheet = workbook.getSheet("CPE Solution L2");
+							
+							 int rowCountForMap = 0;
+
+					         for(int k=1;k<=sheet.getLastRowNum();k++){
+					                         XSSFRow counter=(XSSFRow) sheet.getRow(k);
+					                         if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+					                         {
+					                               rowCountForMap=rowCountForMap+1;
+					                         }
+					         }
+
+
+					             int rowCount = sheet.getLastRowNum();
+					             
+					             System.out.println("total row count: "+rowCount);
+
+					             int colCount = sheet.getRow(0).getLastCellNum();
+
+					             
+					             System.out.println("Column count: "+colCount);
+					             Object[][] obj = new Object[rowCountForMap][1];
+
+					             
+					             for (int i = 0; i < rowCount; i++) {
+
+					                   Map<Object, Object> datamap = new HashMap<Object, Object>();
+					                   
+					                   if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+					                         
+					                         for (int j = 0; j < colCount; j++) {
+
+					                               datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+					                         
+					                         }
+					                         
+					                         obj[count][0] = datamap;
+					                         count++;
+					                   }
+					                   else {
+					                         System.out.println("No changes");
+					                   }
+					                   
+					             }
+
+					             return obj;
+					       }
+
+					 
+					 
+					 @DataProvider(name = "Finaldatareader_IPVPNCPESolutionL3",parallel=false) 
+						public synchronized static Object[][] Finaldatareader_IPVPNCPESolutionL3() throws IOException {
+							int count=0;
+							String filename = "APT_CreateOrder_IPVPN.xlsx";
+
+							File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPVPN.xlsx");
+							
+							FileInputStream inputStream = new FileInputStream(file);
+
+							Workbook workbook = null;
+
+							String fileExtensionName = filename.substring(filename.indexOf("."));
+
+							if (fileExtensionName.equals(".xlsx")) {
+
+								workbook = new XSSFWorkbook(inputStream);
+
+							}
+
+							else if (fileExtensionName.equals(".xls")) {
+
+								workbook = new HSSFWorkbook(inputStream);
+
+							}
+
+							Sheet sheet = workbook.getSheet("CPE Solution L3");
+							
+							 int rowCountForMap = 0;
+
+					         for(int k=1;k<=sheet.getLastRowNum();k++){
+					                         XSSFRow counter=(XSSFRow) sheet.getRow(k);
+					                         if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+					                         {
+					                               rowCountForMap=rowCountForMap+1;
+					                         }
+					         }
+
+
+					             int rowCount = sheet.getLastRowNum();
+					             
+					             System.out.println("total row count: "+rowCount);
+
+					             int colCount = sheet.getRow(0).getLastCellNum();
+
+					             
+					             System.out.println("Column count: "+colCount);
+					             Object[][] obj = new Object[rowCountForMap][1];
+
+					             
+					             for (int i = 0; i < rowCount; i++) {
+
+					                   Map<Object, Object> datamap = new HashMap<Object, Object>();
+					                   
+					                   if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+					                         
+					                         for (int j = 0; j < colCount; j++) {
+
+					                               datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+					                         
+					                         }
+					                         
+					                         obj[count][0] = datamap;
+					                         count++;
+					                   }
+					                   else {
+					                         System.out.println("No changes");
+					                   }
+					                   
+					             }
+
+					             return obj;
+					       }
+					 
+					 
+					 @DataProvider(name = "Finaldatareader_IPVPNIPVoice",parallel=false) 
+						public synchronized static Object[][] Finaldatareader_IPVPNIPVoice() throws IOException {
+							int count=0;
+							String filename = "APT_CreateOrder_IPVPN.xlsx";
+
+							File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPVPN.xlsx");
+							
+							FileInputStream inputStream = new FileInputStream(file);
+
+							Workbook workbook = null;
+
+							String fileExtensionName = filename.substring(filename.indexOf("."));
+
+							if (fileExtensionName.equals(".xlsx")) {
+
+								workbook = new XSSFWorkbook(inputStream);
+
+							}
+
+							else if (fileExtensionName.equals(".xls")) {
+
+								workbook = new HSSFWorkbook(inputStream);
+
+							}
+
+							Sheet sheet = workbook.getSheet("IP Voice");
+							
+							 int rowCountForMap = 0;
+
+					         for(int k=1;k<=sheet.getLastRowNum();k++){
+					                         XSSFRow counter=(XSSFRow) sheet.getRow(k);
+					                         if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+					                         {
+					                               rowCountForMap=rowCountForMap+1;
+					                         }
+					         }
+
+
+					             int rowCount = sheet.getLastRowNum();
+					             
+					             System.out.println("total row count: "+rowCount);
+
+					             int colCount = sheet.getRow(0).getLastCellNum();
+
+					             
+					             System.out.println("Column count: "+colCount);
+					             Object[][] obj = new Object[rowCountForMap][1];
+
+					             
+					             for (int i = 0; i < rowCount; i++) {
+
+					                   Map<Object, Object> datamap = new HashMap<Object, Object>();
+					                   
+					                   if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+					                         
+					                         for (int j = 0; j < colCount; j++) {
+
+					                               datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+					                         
+					                         }
+					                         
+					                         obj[count][0] = datamap;
+					                         count++;
+					                   }
+					                   else {
+					                         System.out.println("No changes");
+					                   }
+					                   
+					             }
+
+					             return obj;
+					       }
+
+					 
+					 
+					 @DataProvider(name = "Finaldatareader_IPVPNSwiftNet",parallel=false) 
+						public synchronized static Object[][] Finaldatareader_IPVPNSwiftNet() throws IOException {
+							int count=0;
+							String filename = "APT_CreateOrder_IPVPN.xlsx";
+
+							File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPVPN.xlsx");
+							
+							FileInputStream inputStream = new FileInputStream(file);
+
+							Workbook workbook = null;
+
+							String fileExtensionName = filename.substring(filename.indexOf("."));
+
+							if (fileExtensionName.equals(".xlsx")) {
+
+								workbook = new XSSFWorkbook(inputStream);
+
+							}
+
+							else if (fileExtensionName.equals(".xls")) {
+
+								workbook = new HSSFWorkbook(inputStream);
+
+							}
+
+							Sheet sheet = workbook.getSheet("SwiftNet");
+							
+							 int rowCountForMap = 0;
+
+					         for(int k=1;k<=sheet.getLastRowNum();k++){
+					                         XSSFRow counter=(XSSFRow) sheet.getRow(k);
+					                         if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+					                         {
+					                               rowCountForMap=rowCountForMap+1;
+					                         }
+					         }
+
+
+					             int rowCount = sheet.getLastRowNum();
+					             
+					             System.out.println("total row count: "+rowCount);
+
+					             int colCount = sheet.getRow(0).getLastCellNum();
+
+					             
+					             System.out.println("Column count: "+colCount);
+					             Object[][] obj = new Object[rowCountForMap][1];
+
+					             
+					             for (int i = 0; i < rowCount; i++) {
+
+					                   Map<Object, Object> datamap = new HashMap<Object, Object>();
+					                   
+					                   if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+					                         
+					                         for (int j = 0; j < colCount; j++) {
+
+					                               datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+					                         
+					                         }
+					                         
+					                         obj[count][0] = datamap;
+					                         count++;
+					                   }
+					                   else {
+					                         System.out.println("No changes");
+					                   }
+					                   
+					             }
+
+					             return obj;
+					       }
+
+
+				 
 	
 }

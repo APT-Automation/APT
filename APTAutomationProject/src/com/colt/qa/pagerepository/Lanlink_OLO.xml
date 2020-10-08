@@ -4,6 +4,9 @@
 
 <apt>
 
+
+<obutton_spanTag>//span[contains(text(),'OK')]</obutton_spanTag>
+
  <okbutton>//span[contains(text(),'OK')]</okbutton>
 
 <ManageCustomerServiceLink>(//div[@class='ant-menu-submenu-title'])[2]</ManageCustomerServiceLink>
@@ -367,6 +370,8 @@
 
 <CreateOrderService>
 
+<obutton_spanTag>//span[contains(text(),'OK')]</obutton_spanTag>
+
  <okbutton>//span[contains(text(),'OK')]</okbutton>
  
 <ManageCustomerServiceLink>//span/b[contains(text(),"MANAGE CUSTOMER'S SERVICE")]</ManageCustomerServiceLink>
@@ -427,6 +432,8 @@
 
 
 <serviceSelected>
+
+<obutton_spanTag>//span[contains(text(),'OK')]</obutton_spanTag>
  <okbutton>//span[contains(text(),'OK')]</okbutton>
      <ServiceIdentification>//input[@id='serviceIdentification']</ServiceIdentification>
      <ServiceType>//div[@class='customLabelValue form-label']</ServiceType>
@@ -482,7 +489,7 @@
 
 
 <LANLINK>
-
+<obutton_spanTag>//span[contains(text(),'OK')]</obutton_spanTag>
  
 <chooseCustomerdropdown>//div[@class='react-dropdown-select-content react-dropdown-select-type-single css-jznujr-ContentComponent e1gn6jc30']</chooseCustomerdropdown>
 
@@ -1326,7 +1333,7 @@
     <AMNvalidator_statusPanel_CSRsiteNameColumnValue>//div[@col-id='siteName'][@role='gridcell']</AMNvalidator_statusPanel_CSRsiteNameColumnValue>
     <AMNvalidator_statusPanel_deviceXngCityName>//div[@col-id='cityName'][@role='gridcell']</AMNvalidator_statusPanel_deviceXngCityName>
     <AMNvalidator_statusPanel_countryName>//div[@col-id='countryName'][@role='gridcell']</AMNvalidator_statusPanel_countryName>
-    <AMNvalidator_devicePanel_deviceName>//a[@class='customLink heading-green-1']</AMNvalidator_devicePanel_deviceName>
+    <AMNvalidator_devicePanel_deviceName>//div[div[text()='Devices For Service']]//following-sibling::div//div[@class='ag-react-container']/a</AMNvalidator_devicePanel_deviceName>
     <physicalSiteCSRName_viewSiteOrder>//div[label[text()='Physical Site: CSR Name']]//following-sibling::div[@class='customLabelValue form-label']</physicalSiteCSRName_viewSiteOrder>
     <deviceCityName_viewSiteOrder>//div[label[text()='Device Xng City']]//following-sibling::div[@class='customLabelValue form-label']</deviceCityName_viewSiteOrder>
     <countryName_viewSiteOrder>//div[label[text()='Device Country']]//following-sibling::div[@class='customLabelValue form-label']</countryName_viewSiteOrder>

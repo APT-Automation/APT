@@ -927,6 +927,7 @@ public class APT_MCS_CreatePrizmnetDeviceHelper extends DriverHelper{
 		}
 	}
 		
+	scrollToTop();
 		
 	//SNMP version	
 	if((editSnmp2C.equalsIgnoreCase("null"))  && (editSnmp3.equalsIgnoreCase("null"))) {
@@ -961,7 +962,8 @@ public class APT_MCS_CreatePrizmnetDeviceHelper extends DriverHelper{
 			edittextFields_SNMPversion(application, "Snmp v3 Priv password", "snmpv3privpassword", editSnmpv3PrivpasswordNewValue);
 		}	
 	}
-				
+		
+	scrolltoend();
 		
 	//Modular msp
 		editcheckbox_commonMethod(application, editModularMSP, "modularmspcheckbox" , "Modular MSP", xml);
@@ -1684,20 +1686,20 @@ public void verifEditedValue_AccessRouter(String application, String editDevicen
 	
 	
 //Full IQNET
-	if(editFullIQNET.equalsIgnoreCase("Null")) {
-//		   compareText_InViewPage_ForNonEditedFields(application, "Full IQNET", xml);
-		Log.info("No changes made");
-	   }
-	else if(editFullIQNET.equalsIgnoreCase("yes")) {
-		
-		compareText_InViewPage(application, "Full IQNET" , "Null", xml);
-			   
-		}
-	else if(editFullIQNET.equalsIgnoreCase("no")) {
-		
-		compareText_InViewPage(application, "Full IQNET" , "Null", xml);
-			   
-	   }
+//	if(editFullIQNET.equalsIgnoreCase("Null")) {
+////		   compareText_InViewPage_ForNonEditedFields(application, "Full IQNET", xml);
+//		Log.info("No changes made");
+//	   }
+//	else if(editFullIQNET.equalsIgnoreCase("yes")) {
+//		
+//		compareText_InViewPage(application, "Full IQNET" , "Null", xml);
+//			   
+//		}
+//	else if(editFullIQNET.equalsIgnoreCase("no")) {
+//		
+//		compareText_InViewPage(application, "Full IQNET" , "Null", xml);
+//			   
+//	   }
 	
 //SNMP Version
 	String snmpValue=null;

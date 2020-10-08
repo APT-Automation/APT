@@ -13,33 +13,39 @@ import com.colt.qa.reporter.ExtentTestManager;
 
 public class Lanlink_Metro extends DriverTestcase{
 	
+	APT_Login Login=new APT_Login();
+	
 	public String deviceName_Equip=null;
 	public String devicename_IntEquipment=null;
 	
 	@Test(dataProviderClass = DataReader.class, dataProvider = "DataReader_LANLINK_Metro", priority=0)
 	public void chooseCustomer(Map<String, String> map) throws Exception {
 			
+		setup();	
+		
+		Login.APT_Login_1(map.get("url"));
+		
 			String CustomerName1=null;
 			String newCustomerName=map.get("newCustomerSelection");
 			String existingCustomer=map.get("existingCustomerSelection");
 				
 				if(newCustomerName.equalsIgnoreCase("yes") && existingCustomer.equalsIgnoreCase("no")) {
 						
-						logger= ExtentTestManager.startTest ("CreateNewCustomer_Lanlink_DirectFiber");
+						logger= ExtentTestManager.startTest ("CreateNewCustomer_Lanlink_Metro");
 						Metro.get().CreateCustomer("apt", map.get("newCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), 
 								map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), 
 								map.get("Fax"));
 						CustomerName1=map.get("newCustomer");
 						ExtentTestManager.endTest();
 						
-						logger= ExtentTestManager.startTest ("selectExistingCustomer_wholesaleSIPTrunking"); 
+						logger= ExtentTestManager.startTest ("selectExistingCustomer_Metro"); 
 						Metro.get().selectCustomertocreateOrder("apt",map.get("newCustomer"));
 						ExtentTestManager.endTest();
 						
 				}
 				else if(newCustomerName.equalsIgnoreCase("no") && existingCustomer.equalsIgnoreCase("Yes")) {
 						
-						logger= ExtentTestManager.startTest ("selectExistingCustomer_Lanlink_DirectFiber"); 
+						logger= ExtentTestManager.startTest ("selectExistingCustomer_Lanlink_Metro"); 
 						Metro.get().selectCustomertocreateOrder("apt",map.get("existingCustomer"));
 						CustomerName1 = map.get("existingCustomer");
 						ExtentTestManager.endTest();
@@ -124,6 +130,8 @@ public class Lanlink_Metro extends DriverTestcase{
 				Metro.get().verifysuccessmessage("LANLINK", "Service successfully updated.");	
 				ExtentTestManager.endTest();
 			
+				String proactiveMonitorvalue = Metro.get().fetchProActiveMonitoringValue("LANLINK");
+				
 			logger= ExtentTestManager.startTest ("Synchronize_LANLINKmetro");
 				Metro.get().syncservices("LANLINK");
 				ExtentTestManager.endTest();
@@ -148,7 +156,7 @@ public class Lanlink_Metro extends DriverTestcase{
 				
 				ExtentTestManager.getTest().log(LogStatus.INFO, "Site order' Page will not display, if we select 'VPN TOpology' as 'Point-to-Point' "
 						+ "and 'Circuit Type' as 'Composite Circuit' ");
-				
+				ExtentTestManager.getTest();
 			}
 			else {
 				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Add Site Order' fields");
@@ -278,7 +286,7 @@ public class Lanlink_Metro extends DriverTestcase{
 					ExtentTestManager.getTest().log(LogStatus.INFO, "Add Actelis CPE device");
 					Metro.get().equipConfiguration_Actelis_AddDevice("LANLINK", map.get("ActelisTech_addCPE_name"), map.get("ActelisTech_addCPE_vendor"), 
 							map.get("ActelisTech_addCPE_routerID"), map.get("ActelisTech_addCPE_manageAddress"), map.get("ActelisTech_addCPE_MepID"), map.get("ActelisTech_addCPE_ETH_Port"));
-					Metro.get().verifysuccessmessageforDeviceCreation_Actellis();
+					Metro.get().verifysuccessmessage("LANLINK", "Device successfully created");
 					
 					logger= ExtentTestManager.startTest ("verifyEnteredValues");
 					Metro.get().verifyDataEnteredFordeviceCreation_Actelis("LANLINK",  map.get("ActelisTech_addCPE_name"), map.get("ActelisTech_addCPE_vendor"), 
@@ -395,7 +403,8 @@ public class Lanlink_Metro extends DriverTestcase{
 							    ExtentTestManager.getTest().log(LogStatus.INFO,"addNewDevice_1G_Eqiupment");
 								Metro.get().verifyFieldsandAddCPEdevicefortheserviceselected_1G("LANLINK",map.get("Interfacespeed"), map.get("devicename_equip"), map.get("cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
 										 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
-										 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"));
+										 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"),
+										 map.get("technology"), map.get("vpnTopology"));
 								Metro.get().verifysuccessmessage("LANLINK", "Device successfully created");
 								ExtentTestManager.endTest();
 								
@@ -565,12 +574,18 @@ public class Lanlink_Metro extends DriverTestcase{
 						ExtentTestManager.endTest();
 						
 				 logger= ExtentTestManager.startTest ("AMNvalidator_Equipment");
-						String csrName=DirectFiber.get().fetchCSRsiteName("LANLINK");
+				 if(proactiveMonitorvalue.equalsIgnoreCase("Yes")) {
+					 String csrName=DirectFiber.get().fetchCSRsiteName("LANLINK");
 						String cityName=DirectFiber.get().fetchDeviceCityName("LANLINK");
 						String countryName=DirectFiber.get().fetchSiteOrderCountryName("LANLINK");
 						DirectFiber.get().clickOnAMNvalidatorLink("LANLINK");
 						DirectFiber.get().AMNvalidator("LANLINK",siteOrderNumber , deviceName_Equip, csrName, cityName, countryName);
 						ExtentTestManager.endTest();
+				 }else {
+					 ExtentTestManager.getTest().log(LogStatus.INFO, "'AMN Validator' link do not display, as 'proactive Monitoring' checkbox is not selected ");
+					 ExtentTestManager.endTest();
+				 }
+						
 						
 				logger= ExtentTestManager.startTest ("deleteDevice_Equipment");
 						DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderNumber);

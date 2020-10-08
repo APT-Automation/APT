@@ -9,16 +9,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.Test;
 
+import com.colt.qa.driverlibrary.DriverTestcase;
 import com.colt.qa.excellibrary.DataReader;
 import com.colt.qa.reporter.ExtentTestManager;
-import com.colt.qa.driverlibrary.DriverTestcase;
 import com.colt.qa.scripthelpers.APT_LoginHelper;
 
 public class APT_IPTransitTest extends DriverTestcase{
 	
 public String CustomerName=null;
-public static String DeviceNameValue="Deviceedit474";
-public static String VendorModelValue="Juniper";
+public static String DeviceNameValue=null;
+public static String VendorModelValue=null;
 
 	APT_Login Login=new APT_Login();
 	
@@ -33,66 +33,79 @@ public static String VendorModelValue="Juniper";
         
         if(newCustomerName.equalsIgnoreCase("yes") && existingCustomer.equalsIgnoreCase("no")) {
               
-              logger= ExtentTestManager.startTest ("CreateCustomer");
+              logger= ExtentTestManager.startTest("CreateCustomer");
               APT_IPTransitHelper.get().createcustomer("iptransit", map.get("newCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), 
                           map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), 
                           map.get("Fax"));
               CustomerName=map.get("newCustomer");
+              ExtentTestManager.endTest();
               
-              logger= ExtentTestManager.startTest ("selectExistingCustomer"); 
+              logger= ExtentTestManager.startTest("selectExistingCustomer"); 
               APT_IPTransitHelper.get().selectCustomertocreateOrder("iptransit",map.get("newCustomer"));
-              
+              ExtentTestManager.endTest();
         }
         else if(newCustomerName.equalsIgnoreCase("no") && existingCustomer.equalsIgnoreCase("Yes")) {
               
-              logger= ExtentTestManager.startTest ("selectExistingCustomer"); 
+              logger= ExtentTestManager.startTest("selectExistingCustomer"); 
               APT_IPTransitHelper.get().selectCustomertocreateOrder("iptransit",map.get("existingCustomer"));
               CustomerName=map.get("existingCustomer");
+              ExtentTestManager.endTest();
         }
         
-		logger= ExtentTestManager.startTest ("verifyCreateorder");
+		logger= ExtentTestManager.startTest("verifyCreateorder");
 		APT_IPTransitHelper.get().createorderservice("iptransit", map.get("NewOrderService"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ExistingOrderService"), map.get("ExistingOrderNumber"));
-	
-		logger= ExtentTestManager.startTest ("verifyservicetypeselection");
+		ExtentTestManager.endTest();
+		
+		logger= ExtentTestManager.startTest("verifyservicetypeselection");
 		APT_IPTransitHelper.get().verifyselectservicetype("iptransit", map.get("ServiceType"));
-	
-		logger= ExtentTestManager.startTest ("verifyservicecreation");
+		ExtentTestManager.endTest();
+		
+		logger= ExtentTestManager.startTest("verifyservicecreation");
 		APT_IPTransitHelper.get().verifyservicecreation("iptransit", map.get("ServiceIdentification"), map.get("Remarks"),  map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ServiceType"), map.get("TerminationDate"), map.get("BillingTypevalue"), map.get("Email"), map.get("PhoneContact"), map.get("PerformanceReporting_Checkbox"), map.get("IPGuardian_Checkbox"));
-	
-		logger= ExtentTestManager.startTest ("verifyCustomerDetailsInformation");
+		ExtentTestManager.endTest();
+		
+		logger= ExtentTestManager.startTest("verifyCustomerDetailsInformation");
 		APT_IPTransitHelper.get().verifyCustomerDetailsInformation("iptransit", map.get("Name"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
 		APT_IPTransitHelper.get().verifyUserDetailsInformation("iptransit", map.get("LoginColumn"), map.get("NameColumn"), map.get("EmailColumn"), map.get("RolesColumn"), map.get("AddressColumn"), map.get("ResourceColumn"));
-	
-//		logger= ExtentTestManager.startTest ("verifyUserDetailsInformation");
+		ExtentTestManager.endTest();
+		
+//		logger= ExtentTestManager.startTest("verifyUserDetailsInformation");
 //		APT_IPTransitHelper.get().VerifyUsersPanel("iptransit", map.get("UserName"), map.get("FirstName"), map.get("SurName"), map.get("PostalAddress"), map.get("UserEmail"), map.get("Phone"), map.get("EditUserName"), map.get("EditFirstName"), map.get("EditSurName"), map.get("EditPostalAddress"), 
 //				map.get("EditEmail"), map.get("EditPhone"),map.get("IPGuardianAccountGroup"),map.get("ColtOnlineUser"),map.get("GeneratePassword"),map.get("RolesToBeSelected"),map.get("HideRouterToolsIPv6CommandsCisco_ToBeSelected"),map.get("HideRouterToolsIPv4CommandsHuiwai_ToBeSelected"), 
 //				map.get("HideRouterToolsIPv4CommandsCisco_ToBeSelected"), map.get("HideServicesToBeSelected"),map.get("HideSiteOrderToBeSelected"), map.get("editRolesToBeSelected"), map.get("edit_RoleToBeHidden"), map.get("RouterToolsIPv6CommandsCisco_ToBeAvailable"), map.get("RouterToolsIPv6CommandsCisco_ToBeHidden"), 
 //				map.get("RouterToolsIPv4CommandsHuiwai_ToBeAvailable"), map.get("HideRouterToolsIPv4CommandsHuiwai_ToBeHidden"), map.get("HideRouterToolsIPv4CommandsCisco_ToBeAvailable"), map.get("HideRouterToolsIPv4CommandsCisco_ToBeHidden"), map.get("Services_ToBeAvailable"), map.get("Services_ToBeHidden"), 
 //				map.get("SiteOrders_ToBeAvailable"), map.get("SiteOrders_ToBeHidden"), map.get("editIPGuardianAccountGroup"), map.get("editColtOnlineUser"));
+//		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("verifyOrderDetailsInformation");
+		logger= ExtentTestManager.startTest("verifyOrderDetailsInformation");
 		APT_IPTransitHelper.get().verifyorderpanel_editorder("iptransit", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
 		APT_IPTransitHelper.get().verifyorderpanel_changeorder("iptransit", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"));
-	
-		logger= ExtentTestManager.startTest ("verifyServicepanelinviewservicepage");
-	  	APT_IPTransitHelper.get().verifyservicepanelInformationinviewservicepage("iptransit", map.get("ServiceIdentification"), map.get("ServiceType"), map.get("Remarks"), map.get("TerminationDate"), map.get("BillingTypevalue"), map.get("Email"), map.get("PhoneContact"));
+		ExtentTestManager.endTest();
 		
-	  	logger= ExtentTestManager.startTest ("verifyManagementOptionspanel");
+		logger= ExtentTestManager.startTest("verifyServicepanelinviewservicepage");
+	  	APT_IPTransitHelper.get().verifyservicepanelInformationinviewservicepage("iptransit", map.get("ServiceIdentification"), map.get("ServiceType"), map.get("Remarks"), map.get("TerminationDate"), map.get("BillingTypevalue"), map.get("Email"), map.get("PhoneContact"));
+	  	ExtentTestManager.endTest();
+	  	
+	  	logger= ExtentTestManager.startTest("verifyManagementOptionspanel");
 		APT_IPTransitHelper.get().verifyManagementOptionspanel("iptransit", map.get("PerformanceReporting_Checkbox"), map.get("IPGuardian_Checkbox"));
-	
-		logger= ExtentTestManager.startTest ("verifyServicepanelLinks");
+		ExtentTestManager.endTest();
+		
+		logger= ExtentTestManager.startTest("verifyServicepanelLinks");
 	  	APT_IPTransitHelper.get().verifyEditservice("iptransit", map.get("EditRemarks"), map.get("Remarks"), map.get("ServiceIdentification"), map.get("Edit_TerminationDate"), map.get("Edit_BillingTypevalue"), map.get("Edit_Email"), map.get("Edit_PhoneContact"), map.get("Edit_PerformanceReporting_Checkbox"), map.get("Edit_IPGuardian_Checkbox"));
 		APT_IPTransitHelper.get().verifyManageSubnets("iptransit");
 		APT_IPTransitHelper.get().verifyManageSubnetsIPv6("iptransit");
 		APT_IPTransitHelper.get().verifyDump("iptransit");
 		APT_IPTransitHelper.get().verifyShowNewInfovistaReport("iptransit");
+		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("addExistingPEDevice");
+		logger= ExtentTestManager.startTest("addExistingPEDevice");
+		APT_IPTransitHelper.get().searchorder("iptransit", map.get("ServiceIdentification"));
 		APT_IPTransitHelper.get().addExistingPEDevice("iptransit", map.get("ExistingDeviceName"));
 		APT_IPTransitHelper.get().verifyExistingDevice_ViewDevicedetails("iptransit", map.get("ExistingDeviceName"));
 		APT_IPTransitHelper.get().deleteExistingDevice("iptransit", map.get("ExistingDeviceName"));
-	
-		logger= ExtentTestManager.startTest ("addNewPEDevice");
+		ExtentTestManager.endTest();
+		
+		logger= ExtentTestManager.startTest("addNewPEDevice");
 		APT_IPTransitHelper.get().navigateToAddNewDevicepage("iptransit");
 		APT_IPTransitHelper.get().verifyadddevicefields("iptransit");
 		APT_IPTransitHelper.get().addNewPEDevice("iptransit", map.get("DeviceName"), map.get("DeviceType"), map.get("VendorModel"), map.get("Telnet"), map.get("SSH"), map.get("Snmp2C"), map.get("SnmPro"), map.get("Snmprw"), 
@@ -114,13 +127,10 @@ public static String VendorModelValue="Juniper";
 													map.get("editExistingCityValue"), map.get("editExistingSite"), map.get("editExistingSiteValue"), map.get("editExistingPremise"), map.get("editExistingPremiseValue"),
 													map.get("editNewCity"), map.get("editNewSite"), map.get("editNewPremise"), map.get("editNewCityName"), map.get("editNewCityCode"), map.get("editNewSiteName"),
 													map.get("editNewSiteCode"), map.get("editNewPremiseName"), map.get("editNewPremiseCode"));
-		
-		APT_IPTransitHelper.get().verifyViewpage_UpdatedDevicedetails("iptransit", map.get("editdeviceName"), map.get("editVendorModel"), map.get("editTelnet"), map.get("editSSH"), map.get("editSnmp2C"), map.get("editSnmp3"), map.get("editSnmProNewValue"), map.get("editSnmprwNewValue"), map.get("editSnmpv3UsernameNewValue"),
-													map.get("editSnmpv3AuthpasswordNewValue"), map.get("editSnmpv3PrivpasswordNewValue"),map.get("editManagementAddress"), map.get("DeviceName"), map.get("VendorModel"), map.get("Telnet"), map.get("SSH"), map.get("Snmp2C"), map.get("SnmPro"), map.get("Snmprw"), 
-													map.get("SnmProNewValue"), map.get("SnmprwNewValue"), map.get("Snmp3"), map.get("Snmpv3Username"), map.get("Snmpv3Authpassword"), map.get("Snmpv3Privpassword"), map.get("Snmpv3UsernameNewValue"), 
-													map.get("Snmpv3AuthpasswordNewValue"), map.get("Snmpv3PrivpasswordNewValue"), map.get("ManagementAddress"));
+		ExtentTestManager.endTest();
 
-		logger= ExtentTestManager.startTest ("verifyRouterTools");
+		logger= ExtentTestManager.startTest("verifyRouterTools");
+		APT_IPTransitHelper.get().navigatetoViewDevicepage("iptransit");
 		DeviceNameValue= APT_IPTransitHelper.get().DeviceName("iptransit");
 		VendorModelValue= APT_IPTransitHelper.get().VendorModel("iptransit");
 		String managementAddressEdit=map.get("editManagementAddress");
@@ -151,16 +161,14 @@ public static String VendorModelValue="Juniper";
 				
 			}
 		}
+		ExtentTestManager.endTest();
 		
-			logger= ExtentTestManager.startTest ("verifyRoutesPanel");
-			
-			DeviceNameValue= APT_IPTransitHelper.get().DeviceName("iptransit");
-			VendorModelValue= APT_IPTransitHelper.get().VendorModel("iptransit");
+			logger= ExtentTestManager.startTest("verifyRoutesPanel");
 			
 			if(VendorModelValue.contains("Cisco"))
 			{
 			APT_IPTransitHelper.get().verify_CiscoVendor_AddInterface("iptransit", map.get("ConfigureInterface_Checkbox")
-					, map.get("InterfaceAddressRange_Value")
+					, map.get("Cisco_InterfaceName"), map.get("InterfaceAddressRange_Value")
 					, map.get("EIPAllocation_City"), map.get("ExistingAddressRangeIPv4selection")
 					, map.get("ExistingAddressIPv4DropdownValue"), map.get("NewAddressRangeIpv4selection")
 					, map.get("NewInterfaceAddressRangeIPv4"), map.get("EIPAllocation_SubnetSize")
@@ -172,7 +180,7 @@ public static String VendorModelValue="Juniper";
 					, map.get("CPEWAN_Value"), map.get("CPEWANIPv6_Value"), map.get("Description_Value"), map.get("AsCustomer_Value")
 					, map.get("BGPPassword_Value"));
 			APT_IPTransitHelper.get().verify_CiscoVendor_EditInterface("iptransit", DeviceNameValue, map.get("Edit_ConfigureInterface_Checkbox")
-					, map.get("Edit_Network")
+					, map.get("Edit_CiscoInterfaceName"), map.get("Edit_Network")
 					, map.get("InterfaceAddressRange_value"), map.get("EIPAllocation_City")
 					, map.get("ExistingAddressRangeIPv4selection")
 					, map.get("ExistingAddressIPv4DropdownValue"), map.get("NewAddressRangeIpv4selection")
@@ -188,13 +196,13 @@ public static String VendorModelValue="Juniper";
 					, map.get("Edit_EIPAllocation_Subnetsize"), map.get("Edit_EIPAllocation_IPv6_Subnetsize"));
 			
 			APT_IPTransitHelper.get().verify_CiscoVendor_AddMultilink("iptransit", DeviceNameValue
-					, map.get("Multilink_InterfaceName"), VendorModelValue, map.get("InterfaceAddressRange_Value")
-					, map.get("EIPAllocation_City"), map.get("ExistingAddressRangeIPv4selection")
-					, map.get("ExistingAddressIPv4DropdownValue"), map.get("NewAddressRangeIpv4selection")
-					, map.get("NewInterfaceAddressRangeIPv4"), map.get("EIPAllocation_SubnetSize")
-					, map.get("ExistingAddressRangeIPv6selection"), map.get("ExistingAddressIPv6Value")
-					, map.get("NewAddressRangeIpv6selection"), map.get("NewInterfaceAddressRangeIPv6")
-					, map.get("EIPAllocation_IPv6_SubnetSize"), map.get("EIPAllocation_AvailableBlocksValue")
+					, map.get("Multilink_InterfaceName"), VendorModelValue, map.get("Multilink_InterfaceAddressRange_Value")
+					, map.get("Multilink_EIPAllocation_City"), map.get("Multilink_ExistingAddressRangeIPv4selection")
+					, map.get("Multilink_ExistingAddressIPv4DropdownValue"), map.get("Multilink_NewAddressRangeIpv4selection")
+					, map.get("Multilink_NewInterfaceAddressRangeIPv4"), map.get("Multilink_EIPAllocation_SubnetSize")
+					, map.get("Multilink_ExistingAddressRangeIPv6selection"), map.get("Multilink_ExistingAddressIPv6Value")
+					, map.get("Multilink_NewAddressRangeIpv6selection"), map.get("Multilink_NewInterfaceAddressRangeIPv6")
+					, map.get("Multilink_EIPAllocation_IPv6_SubnetSize"), map.get("Multilink_EIPAllocation_AvailableBlocksValue")
 					, map.get("LinkValue"), map.get("Multilink_Bandwidth_Value"), map.get("Encapsulation_Value")
 					, map.get("BGP_Checkbox"), map.get("BGPTemplate_Value"), map.get("CPEWAN_Value"), map.get("CPEWANIPv6_Value")
 					, map.get("Description_Value"), map.get("AsCustomer_Value"), map.get("BGPPassword_Value")
@@ -238,24 +246,28 @@ public static String VendorModelValue="Juniper";
 						, map.get("Edit_IPSubnetIPv6_Value"), map.get("Edit_IPSubnetIPv4_value"));
 				
 				APT_IPTransitHelper.get().verify_JuniperVendor_AddMultilink("iptransit", DeviceNameValue
-						, map.get("Multilink_InterfaceName"), VendorModelValue, map.get("InterfaceAddressRange_Value"), map.get("EIPAllocation_City")
-						, map.get("ExistingAddressRangeIPv4selection"), map.get("ExistingAddressIPv4DropdownValue")
-						, map.get("NewAddressRangeIpv4selection"), map.get("NewInterfaceAddressRangeIPv4")
-						, map.get("EIPAllocation_SubnetSize"), map.get("ExistingAddressRangeIPv6selection")
-						, map.get("ExistingAddressIPv6Value"), map.get("NewAddressRangeIpv6selection")
-						, map.get("NewInterfaceAddressRangeIPv6"), map.get("EIPAllocation_IPv6_SubnetSize")
-						, map.get("EIPAllocation_AvailableBlocksValue"), map.get("LinkValue"), map.get("Bandwidth_Value")
+						, map.get("Multilink_InterfaceName"), VendorModelValue, map.get("Multilink_InterfaceAddressRange_Value"), map.get("Multilink_EIPAllocation_City")
+						, map.get("Multilink_ExistingAddressRangeIPv4selection"), map.get("Multilink_ExistingAddressIPv4DropdownValue")
+						, map.get("Multilink_NewAddressRangeIpv4selection"), map.get("Multilink_NewInterfaceAddressRangeIPv4")
+						, map.get("Multilink_EIPAllocation_SubnetSize"), map.get("Multilink_ExistingAddressRangeIPv6selection")
+						, map.get("Multilink_ExistingAddressIPv6Value"), map.get("Multilink_NewAddressRangeIpv6selection")
+						, map.get("Multilink_NewInterfaceAddressRangeIPv6"), map.get("Multilink_EIPAllocation_IPv6_SubnetSize")
+						, map.get("Multilink_EIPAllocation_AvailableBlocksValue"), map.get("LinkValue"), map.get("Bandwidth_Value")
 						, map.get("Encapsulation_Value"), map.get("Multilink_BGPCheckbox"), map.get("BGPTemplate_Value")
 						, map.get("CPEWAN_Value"), map.get("CPEWANIPv6_Value"), map.get("Description_Value")
 						, map.get("AsCustomer_Value"), map.get("BGPPassword_Value"), map.get("Multilink_ConfigInterface_checkbox")
 						, map.get("CheckToAddInterface_Checkbox"), map.get("UnitIDValue"), map.get("SlotValue")
 						, map.get("PicValue"), map.get("PortValue"));
 			}
+			ExtentTestManager.endTest();
 			
-		logger= ExtentTestManager.startTest ("verifyInterfaceConfigHistory");
-		APT_IPTransitHelper.get().verifyInterfaceConfigHistory("iptransit", VendorModelValue);
+		if(VendorModelValue.contains("Juniper")) {
+		logger= ExtentTestManager.startTest("verifyInterfaceConfigHistory");
+		APT_IPTransitHelper.get().verifyInterfaceConfigHistory("iptransit");
+		ExtentTestManager.endTest();
+		}
 		
-		logger= ExtentTestManager.startTest ("verifySelectInterfaces");
+		logger= ExtentTestManager.startTest("verifySelectInterfaces");
 		APT_IPTransitHelper.get().selectInterfacelinkforDevice("iptransit", DeviceNameValue);
 		
 		if(map.get("RemoveInterface_Selection").equalsIgnoreCase("yes")) {
@@ -269,16 +281,19 @@ public static String VendorModelValue="Juniper";
 		}else {
 			System.out.println("Interfaces are not added");
 		}
+		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("VerifyManageService");
+		logger= ExtentTestManager.startTest("VerifyManageService");
 		APT_IPTransitHelper.get().verifyManageService("iptransit", map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
+		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("Delete Device");
+		logger= ExtentTestManager.startTest("Delete Device");
 		APT_IPTransitHelper.get().deleteDevice("iptransit", DeviceNameValue);
+		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("Delete Service");
+		logger= ExtentTestManager.startTest("Delete Service");
 		APT_IPTransitHelper.get().deleteService("iptransit");
-	
+		ExtentTestManager.endTest();
 	}
 	
 	

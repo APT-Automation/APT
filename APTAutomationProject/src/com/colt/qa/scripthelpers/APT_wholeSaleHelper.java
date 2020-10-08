@@ -2653,13 +2653,15 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				
 			//Carrier IP originating
 				edittextFields_commonMethod(application, "Carrier IP Originating (Address/Mask)", "carrierIPoriginating_textField", editCarrierIPoriginating, xml);
-				click_commonMethod(application, ">>", "carrierIPoriginating_addButtton", xml);
+//				click_commonMethod(application, ">>", "carrierIPoriginating_addButtton", xml);
+				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/carrierIPoriginating_addButtton")));
 				GetTheValuesInsideDropdown(getwebelement(xml.getlocator("//locators/" + application + "/carrierIPOriginating_addedValue_selectDropdownField")), "Carrier IP Originating (Address/Mask)");
 				
 				
 			//Carrier IP Terminating
 				edittextFields_commonMethod(application, "Carrier IP Terminating(Address)", "carrierIPterminating_textField", editCarrierIPterminating, xml);
-				click_commonMethod(application, ">>", "carrierIPterminating_addButton", xml);
+//				click_commonMethod(application, ">>", "carrierIPterminating_addButton", xml);
+				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/carrierIPterminating_addButton")));
 				GetTheValuesInsideDropdown(getwebelement(xml.getlocator("//locators/" + application + "/carrierIPterminating_addedValue_selectDropdownField")), "Carrier IP Terminating (Address)");
 			
 			//SIP Signalling Port

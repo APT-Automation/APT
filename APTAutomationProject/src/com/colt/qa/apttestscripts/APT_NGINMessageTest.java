@@ -19,5 +19,6 @@ public class APT_NGINMessageTest extends DriverTestcase{
 		Login.APT_Login_1(map.get("url"));
 		logger= ExtentTestManager.startTest ("NGINMessage");
 		APT_NGINMessageHelper.get().verifyNGINMessage("nginmessage", map.get("NGINMessage_SANNumber"), map.get("StartNetwork_Checkbox"));
+		ExtentTestManager.endTest();
 	}
 }

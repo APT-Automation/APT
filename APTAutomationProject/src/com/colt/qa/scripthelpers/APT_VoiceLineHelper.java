@@ -954,9 +954,8 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		//Cancel edit service
 		waitForpageload();
 		waitforPagetobeenable();
-		ScrolltoElement(application, "servicepanel_header", xml);
+		ScrolltoElement(application, "orderpanelheader", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Edit", "edit", xml);
 		waitforPagetobeenable();
@@ -1095,9 +1094,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 	public void verifyManageSubnetsIPv6(String application) throws InterruptedException, DocumentException {
 
 		//manage subnets IPv6
-		ScrolltoElement(application, "servicepanel_header", xml);
-		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "orderpanelheader", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Manage Subnets Ipv6", "managesubnetsipv6_link", xml);
@@ -1124,9 +1121,8 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 	public void verifyDump(String application) throws InterruptedException, DocumentException {
 		//dump
-		ScrolltoElement(application, "servicepanel_header", xml);
+		ScrolltoElement(application, "orderpanelheader", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Dump", "dump_link", xml);
 		Thread.sleep(3000);
@@ -1145,9 +1141,8 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		Thread.sleep(3000);
 		waitForpageload();
 		waitforPagetobeenable();
-		ScrolltoElement(application, "servicepanel_header", xml);
+		ScrolltoElement(application, "orderpanelheader", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Synchronize", "synchronizelink_servicepanel", xml);
 		Thread.sleep(2000);
@@ -1160,9 +1155,8 @@ public class APT_VoiceLineHelper extends DriverHelper {
 	public void verifyManageService(String application, String changeorderno, String sid, String servicetype, String servicestatus, String syncstatus, String servicestatuschangerequired) throws InterruptedException, DocumentException, IOException {
 
 		//Manage service
-		ScrolltoElement(application, "servicepanel_header", xml);
+		ScrolltoElement(application, "orderpanelheader", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Manage", "manageLink", xml);
 		Thread.sleep(2000);
@@ -1265,7 +1259,6 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		ScrolltoElement(application, "managementoptions_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		compareText(application, "Management options header", "managementoptions_header", "Management Options", xml);
 		compareText(application, "Managed Service", "viewservice_managedservicevalue", "Yes", xml);
 		compareText(application, "Syslog Event View", "viewservice_syslogeventview", "No", xml);
@@ -1298,7 +1291,6 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		waitforPagetobeenable();
 		ScrolltoElement(application, "asrdevice_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		compareText(application, "ASR Device header", "asrdevice_header", "ASR Device", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Add ASR Device link", "adddevice_link", xml);
@@ -1317,7 +1309,6 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		Thread.sleep(2000);
 		ScrolltoElement(application, "asrdevice_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
 			List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/addeddevicename"));
@@ -10165,9 +10156,8 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		waitForpageload();
 		waitforPagetobeenable();
-		ScrolltoElement(application, "servicepanel_header", xml);
+		ScrolltoElement(application, "orderpanelheader", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Delete Service", "delete", xml);
 		Thread.sleep(1000);
@@ -10284,9 +10274,8 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 	public void shownewInfovista(String application) throws Exception {
 
-		ScrolltoElement(application, "servicepanel_header", xml);
+		ScrolltoElement(application, "orderpanelheader", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		Thread.sleep(2000);
 		click_commonMethod(application, "Show New Infovista Report", "shownewinfovistareport_link", xml);

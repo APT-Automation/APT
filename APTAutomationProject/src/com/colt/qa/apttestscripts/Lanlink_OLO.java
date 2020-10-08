@@ -9,9 +9,6 @@ import com.colt.qa.driverlibrary.DriverTestcase;
 import com.colt.qa.excellibrary.DataReader;
 import com.colt.qa.reporter.ExtentTestManager;
 
-//
-
-
 public class Lanlink_OLO extends DriverTestcase{
 	
 	
@@ -42,7 +39,7 @@ public class Lanlink_OLO extends DriverTestcase{
 						CustomerName1=map.get("newCustomer");
 						ExtentTestManager.endTest();
 						
-						logger= ExtentTestManager.startTest ("selectExistingCustomer_wholesaleSIPTrunking"); 
+						logger= ExtentTestManager.startTest ("selectExistingCustomer_OLO"); 
 						OLO.get().selectCustomertocreateOrder("apt",map.get("newCustomer"));
 						ExtentTestManager.endTest();
 				}
@@ -129,29 +126,30 @@ public class Lanlink_OLO extends DriverTestcase{
 						map.get("CircuitType"), map.get("EditService_EVPNtechnology"), map.get("EditService_HCoSPerformanceReporting"));
 				ExtentTestManager.endTest();
 				
-//			logger= ExtentTestManager.startTest ("successmessageforServiceUpdation");
-//				 OLO.get().verifysuccessmessage("LANLINK", "Service successfully updated.");
-//				 ExtentTestManager.endTest();
-//				 
-//				 
-//			logger= ExtentTestManager.startTest ("synchronize");
-//			     OLO.get().syncservices("LANLINK");
-//			     ExtentTestManager.endTest();
-//					
-//			     
-//			logger= ExtentTestManager.startTest ("showNewInfovistaReport");
-//				 OLO.get().shownewInfovista("LANLINK");
-//				 ExtentTestManager.endTest();
-//					
-//					
-//			logger= ExtentTestManager.startTest ("ManageSubnets");
-//				 OLO.get().manageSubnets("LANLINK");
-//				 ExtentTestManager.endTest();
-//				 
-//				 
-//			logger= ExtentTestManager.startTest ("Dump");
-//				 OLO.get().dump_viewServicepage("LANLINK");
-//				 ExtentTestManager.endTest();
+			logger= ExtentTestManager.startTest ("successmessageforServiceUpdation");
+				 OLO.get().verifysuccessmessage("LANLINK", "Service successfully updated.");
+				 ExtentTestManager.endTest();
+				 
+				 String proactiveMonitorvalue = OLO.get().fetchProActiveMonitoringValue("LANLINK");
+				 
+			logger= ExtentTestManager.startTest ("synchronize");
+			     OLO.get().syncservices("LANLINK");
+			     ExtentTestManager.endTest();
+					
+			     
+			logger= ExtentTestManager.startTest ("showNewInfovistaReport");
+				 OLO.get().shownewInfovista("LANLINK");
+				 ExtentTestManager.endTest();
+					
+					
+			logger= ExtentTestManager.startTest ("ManageSubnets");
+				 OLO.get().manageSubnets("LANLINK");
+				 ExtentTestManager.endTest();
+				 
+				 
+			logger= ExtentTestManager.startTest ("Dump");
+				 OLO.get().dump_viewServicepage("LANLINK");
+				 ExtentTestManager.endTest();
 				 
 			logger= ExtentTestManager.startTest ("AddSiteOrder_LANLINKolo");
 					String vpnTopology = map.get("vpnTopology");
@@ -214,705 +212,712 @@ public class Lanlink_OLO extends DriverTestcase{
 				}
 				
 				
-//		//For Device, Circuit creation	
-//				String sitePreferenceType = "Null";
-//				if(map.get("editSiteOrder_sitePreferenceType").equalsIgnoreCase("Null")) {
-//					sitePreferenceType = map.get("siteOrder_sitePreferenceType");
-//				}
-//				else {
-//					sitePreferenceType = map.get("editSiteOrder_sitePreferenceType");
-//				}
-//				
-//			if(((vpnTopology.equals("Point-to-Point")) && (circuitType.equals("Composite Circuit")))  ||  ((vpnTopology.equals("Point-to-Point")) &&  (circuitType.equals("Extended Circuit"))  &&  (sitePreferenceType.equalsIgnoreCase("Circuit")))){
-//					
-//					String ServiceID = null;
-//					if(map.get("Edit_serviceNumber").equalsIgnoreCase("null")) {
-//						ServiceID=map.get("serviceNumber");
-//					}else {
-//						ServiceID=map.get("Edit_serviceNumber");
-//					}
-//					
-//					if(map.get("Interfacespeed").equals("1GigE")) {
-//						logger = ExtentTestManager.startTest("create Circuit for 1G");
-//						//Overture	
-//							OLO.get().addOvertureCircuit("LANLINK", map.get("addOverture_serviceNameForCreatingCircuit"));
-//							OLO.get().selectInterfaceForCircuits("LANLINK", map.get("addOverture_interfaceName1"), map.get("addOverture_interfaceName2"),
-//										map.get("addOverture_edgePointSelectForInterface1"), map.get("addOverture_edgePointSelectForInterface2"));
-//							OLO.get().verifysuccessmessage("LANLINK", "Circuit successfully created");
-//							OLO.get().addOveture_PAMtest_selectRow("LANLINK", map.get("addOverture_interfaceName1"));
-//							OLO.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addOverture_serviceNameForCreatingCircuit"));
-//							OLO.get().deleteCircuit("LANLINK");
-//							
-//						//Accedian-1G
-//							OLO.get().addAccedianCircuit("LANLINK", map.get("addAccedian1G_serviceNameForCreatingCircuit"));
-//							OLO.get().selectInterfaceForCircuits("LANLINK", map.get("addAccedian1G_interfaceName1"), map.get("addAccedian1G_interfaceName2"),
-//										map.get("addAccedian1G_edgePointSelectForInterface1"), map.get("addAccedian1G_edgePointSelectForInterface2"));
-//							OLO.get().verifysuccessmessage("LANLINK", "Circuit successfully created");
-//							OLO.get().addOveture_PAMtest_selectRow("LANLINK",  map.get("addAccedian1G_interfaceName1"));
-//							OLO.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addAccedian1G_serviceNameForCreatingCircuit"));
-//							OLO.get().deleteCircuit("LANLINK");
-//							
-//						//Atrica
-//							OLO.get().addAtricaCircuit("LANLINK", map.get("addAtrica_serviceNameForCreatingCircuit"));
-//							OLO.get().selectInterfaceForCircuits("LANLINK", map.get("addAtrica_interfaceName1"), map.get("addAtrica_interfaceName2"),
-//										map.get("addAtrica_edgePointSelectForInterface1"), map.get("addAtrica_edgePointSelectForInterface2"));
-//							OLO.get().verifysuccessmessage("LANLINK", "Circuit successfully created");
-//							OLO.get().addOveture_PAMtest_selectRow("LANLINK",  map.get("addAtrica_interfaceName1"));
-//							OLO.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addAtrica_serviceNameForCreatingCircuit"));
-//							OLO.get().deleteCircuit("LANLINK");
-//							ExtentTestManager.endTest();
-//						
-//						}
-//						else if(map.get("Interfacespeed").equals("10GigE")) {
-//							logger = ExtentTestManager.startTest("create Circuit for 10G");
-//							//Overture	
-//							OLO.get().addOvertureCircuit("LANLINK", map.get("addOverture_serviceNameForCreatingCircuit"));
-//							OLO.get().selectInterfaceForCircuits("LANLINK", map.get("addOverture_interfaceName1"), map.get("addOverture_interfaceName2"),
-//									map.get("addOverture_edgePointSelectForInterface1"), map.get("addOverture_edgePointSelectForInterface2"));
-//							OLO.get().verifysuccessmessage("LANLINK", "Circuit successfully created");
-//							OLO.get().addOveture_PAMtest_selectRow("LANLINK", map.get("addOverture_interfaceName1"));
-//							OLO.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addOverture_serviceNameForCreatingCircuit"));
-//							OLO.get().deleteCircuit("LANLINK");
-//							ExtentTestManager.endTest();
-//						}
-//				}
-//				else {
-//			 logger= ExtentTestManager.startTest ("Actelis_EquipmentConfiguration_LanlinkOLO");
-//					String Technologyname=map.get("technology");
-//					if(Technologyname.equalsIgnoreCase("Actelis")) {
-//					
-//					boolean equipConfigurationPanel=OLO.get().EquipmentCOnfigurationPanel("LANLINK");
-//					if(equipConfigurationPanel) {
-//						ExtentTestManager.getTest().log(LogStatus.INFO, "verify 'add CPE Device'");
-//						OLO.get().equipConfiguration_Actelis_AddDevice("LANLINK", map.get("ActelisTech_addCPE_name"), map.get("ActelisTech_addCPE_vendor"), 
-//								map.get("ActelisTech_addCPE_routerID"), map.get("ActelisTech_addCPE_manageAddress"), map.get("ActelisTech_addCPE_MepID"), map.get("ActelisTech_addCPE_ETH_Port"));
-//						OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
-//						ExtentTestManager.endTest();
-//						
-//						logger= ExtentTestManager.startTest ("verifyDataEntered");
-//						OLO.get().verifyDataEnteredFordeviceCreation_Actelis("LANLINK",  map.get("ActelisTech_addCPE_name"), map.get("ActelisTech_addCPE_vendor"), 
-//								map.get("ActelisTech_addCPE_routerID"), map.get("ActelisTech_addCPE_manageAddress"), map.get("ActelisTech_addCPE_MepID"),  map.get("ActelisTech_addCPE_ETH_Port"));
-//						OLO.get().returnbacktoviewsiteorderpage("LANLINK");
-//						ExtentTestManager.endTest();
-//						
-//						logger= ExtentTestManager.startTest ("deleteDevice");
-//						OLO.get().deleteDeviceFromService_EquipmentConfig_Actelis("LANLINK", map.get("ActelisTech_addCPE_name"));
-//						OLO.get().verifysuccessmessage("LANLINK", "Actelis CPE Device successfully deleted and removed from service");
-//						ExtentTestManager.endTest();
-//					}else {
-//						ExtentTestManager.getTest().log(LogStatus.FAIL, "'Equipment Configuration' panel is not displaying");
-//						ExtentTestManager.endTest();
-//					}
-//					
-//				//Actelis Configuration panel	
-//					logger= ExtentTestManager.startTest ("addDSLAMandHSL");
-//					OLO.get().verifyAddDSLAMandHSLlink("LANLINK", map.get("ActelisTech_DSLAMdevice"));
-//					OLO.get().AddDSLAMandHSL("LANLINK", map.get("ActelisTech_DSLAMdevice"), map.get("ActelisTech_DSLAMInterfacename"));
-//					OLO.get().showInterface_ActelisConfiguuration("LANLINK");
-//					OLO.get().deletInterface_ActelisConfiguration("LANLINK", map.get("ActelisTech_DSLAMInterfacename"));
-//					OLO.get().successMessage_deleteInterfaceFromDevice_ActelisConfiguration("LANLINK");
-//					ExtentTestManager.endTest();
-//				}
-//				
-//					
-//			logger= ExtentTestManager.startTest ("AdddeviceforEquipment");
-//				//verify whether Equipment panel is available	
-//					boolean EquipmentPanel=OLO.get().findPanelHeader("LANLINK", "Equipment");
-//					if(EquipmentPanel) {
-//						//Verify whether Equipment device to be created
-//						if(map.get("deviceCreation_Equipment").equalsIgnoreCase("yes")){
-//							ExtentTestManager.getTest().log(LogStatus.INFO, " Device to be created for Eqiupment as per input provided");	
-//							ExtentTestManager.getTest().log(LogStatus.INFO, "Under Equipement, list of actions to be performed are: "
-//									+ "Verify fields for Add device"
-//									+ "Add device"
-//									+ "Verify entered values for device"
-//									+ "Edit device"
-//									+ "Select Interface"
-//									+ "Configure Interface -- Edit Inteface"
-//									+ "show/Hide Interface -- Edit Interface"
-//									+ "Select Interface -- Add Interface to service , Remove Interface from Service"
-//									+ "Delete device ");
-//					
-//							String speed=map.get("Interfacespeed");
-//							String ModularMSp= map.get("Modularmsp");
-//							String existingDevice=map.get("Equip_ExistingDeviceSelection");
-//							String newDevice=map.get("Equip_NewDeviceSelection");
-//						
-//						if(ModularMSp.equalsIgnoreCase("Yes")) 
-//						{
-//							if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
-//								ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_MSPselected_Equipment");
-//								OLO.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
-//								OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
-//								OLO.get().verifyValuesforCPEexistingdevice_MSPselected("LANLINK" );
-//								ExtentTestManager.endTest();
-//								
-//								logger= ExtentTestManager.startTest ("editExistingDevice_MSPselected_Equipment");
-//								OLO.get().eDITCPEdevicedetailsentered_MSPselected( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_MSPselected"),  map.get("cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
-//										 map.get("EDIT_cpe_vender_MSPselected_VLANid") );
-//								OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
-//								ExtentTestManager.endTest();
-//							}
-//							else if(existingDevice.equalsIgnoreCase("No") && newDevice.equalsIgnoreCase("yes")) {
-//								ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_MSPselected_Equipment");
-//								OLO.get().verifyFieldsandAddCPEdevicefortheserviceselected_MSPselected("LANLINK",map.get("Interfacespeed"), map.get("devicename_equip"), map.get("cpe_vender_modularMSpselected"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
-//										 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
-//										 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"),
-//										 map.get("cpe_Mspselected_VLANid"));
-//								OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
-//								ExtentTestManager.endTest();
-//								
-//								logger= ExtentTestManager.startTest ("verifyEnteredValues_MSPselected_Equipment");
-//								OLO.get().verifydetailsEnteredforCPEdevice_MSPselected( "LANLINK",  map.get("devicename_equip"), map.get("cpe_vender_modularMSpselected"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
-//									 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
-//									 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"), map.get("cpe_newmanagementAddressSelection"), 
-//									 map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"), map.get("cpe_Mspselected_VLANid"));
-//								ExtentTestManager.endTest();
-//								
-//								logger= ExtentTestManager.startTest ("editNewDevice_MSPselected_Equipmen");
-//								OLO.get().eDITCPEdevicedetailsentered_MSPselected( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_MSPselected"),  map.get("cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
-//										 map.get("EDIT_cpe_vender_MSPselected_VLANid") );
-//								OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
-//								ExtentTestManager.endTest();
-//							}
-//						}
-//						else
-//						{
-//							if(speed.equals("1GigE")) {
-//								if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
-//									ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_1G_Equipment");
-//									OLO.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
-//									OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
-//									OLO.get().verifyValuesforCPEexistingdevice_1G_Equipment("LANLINK" );
-//									ExtentTestManager.endTest();
-//									
-//									logger= ExtentTestManager.startTest ("editExistingDevice_1G_Equipment");
-//									OLO.get().eDITCPEdevicedetailsentered_1G( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
-//											 map.get("EDIT_cpe_poweralarm_1G"), map.get("EDIT_cpe_Mediaselection"),  map.get("EDIT_cpe_Macaddress"),  map.get("EDIT_cpe_serialNumber"),
-//											 map.get("EDIT_cpe_hexaSerialnumber"),  map.get("EDIT_cpe_linkLostForwarding"), map.get("devicenameforEquipment"), map.get("technology"));
-//									OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
-//									ExtentTestManager.endTest();
-//									
-//								}
-//								else if(existingDevice.equalsIgnoreCase("No") && newDevice.equalsIgnoreCase("Yes")) {
-//									ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_1G_Equipment");
-//									OLO.get().verifyFieldsandAddCPEdevicefortheserviceselected_1G("LANLINK",map.get("Interfacespeed"), map.get("devicename_equip"), map.get("cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
-//											 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
-//											 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"));
-//									OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
-//									ExtentTestManager.endTest();
-//									
-//									logger= ExtentTestManager.startTest ("verifyEnteredValues_1G_Equipment");
-//									OLO.get().verifydetailsEnteredforCPEdevice_1G( "LANLINK",  map.get("devicename_equip"), map.get("cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
-//										 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
-//										 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"), map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"));
-//									ExtentTestManager.endTest();
-//									
-//									logger= ExtentTestManager.startTest ("editDevice_1G_Equipment");
-//									OLO.get().eDITCPEdevicedetailsentered_1G( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
-//											 map.get("EDIT_cpe_poweralarm_1G"), map.get("EDIT_cpe_Mediaselection"),  map.get("EDIT_cpe_Macaddress"),  map.get("EDIT_cpe_serialNumber"),
-//											 map.get("EDIT_cpe_hexaSerialnumber"),  map.get("EDIT_cpe_linkLostForwarding"), map.get("devicenameforEquipment"), map.get("technology"));
-//									OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
-//									ExtentTestManager.endTest();
-//								}
-//							}
-//							if(speed.equals("10GigE")) {
-//								
-//								if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
-//									ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_10G_Equipment");
-//									OLO.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
-//									OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
-//									OLO.get().verifyValuesforCPEexistingdevice_10G_Equipment("LANLINK" );
-//									ExtentTestManager.endTest();
-//									
-//									
-//									logger= ExtentTestManager.startTest ("editExistingDevice_10G_Eqiupment");
-//									OLO.get().eDITCPEdevicedetailsentered_10G( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_10G"),  map.get("EDIT_cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
-//											 map.get("EDIT_cpe_poweralarm_10G"), map.get("EDIT_cpe_Mediaselection"),  map.get("EDIT_cpe_Macaddress"),  map.get("EDIT_cpe_serialNumber"),
-//											 map.get("EDIT_cpe_hexaSerialnumber"),  map.get("EDIT_cpe_linkLostForwarding"), map.get("devicenameforEquipment"));
-//									OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
-//									ExtentTestManager.endTest();
-//								}
-//								else if(existingDevice.equalsIgnoreCase("No") && newDevice.equalsIgnoreCase("Yes")) {
-//									ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_10G_Equipment");
-//									OLO.get().verifyFieldsandAddCPEdevicefortheserviceselected_10G("LANLINK",map.get("Interfacespeed"), map.get("devicename_equip"), map.get("cpe_vender_10G"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
-//											 map.get("cpe_poweralarm_10G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
-//											 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"));
-//									OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
-//									ExtentTestManager.endTest();
-//									
-//									logger= ExtentTestManager.startTest ("verifyEnteredValues_10G_Equipment");
-//									OLO.get().verifydetailsEnteredforCPEdevice_10G( "LANLINK",  map.get("devicename_equip"), map.get("cpe_vender_10G"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
-//											 map.get("cpe_poweralarm_10G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
-//											 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),  map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"));
-//									ExtentTestManager.endTest();
-//									
-//									logger= ExtentTestManager.startTest ("editDevice_10G_Equipment");
-//									OLO.get().eDITCPEdevicedetailsentered_10G( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_10G"),  map.get("EDIT_cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
-//											 map.get("EDIT_cpe_poweralarm_10G"), map.get("EDIT_cpe_Mediaselection"),  map.get("EDIT_cpe_Macaddress"),  map.get("EDIT_cpe_serialNumber"),
-//											 map.get("EDIT_cpe_hexaSerialnumber"),  map.get("EDIT_cpe_linkLostForwarding"), map.get("devicenameforEquipment"));
-//									OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
-//									ExtentTestManager.endTest();
-//								}
-//							}
-//						}
-//							String devicename=null;		
-//							//get Device name 	
-//								if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
-//									devicename=map.get("Equip_existingDevicename");
-//								}
-//								else if(existingDevice.equalsIgnoreCase("No") && newDevice.equalsIgnoreCase("yes")) {
-//									if(map.get("EDIT_cpename").equalsIgnoreCase("null")) {
-//										devicename=map.get("devicename_equip");
-//									}
-//									else if(!map.get("EDIT_cpename").equalsIgnoreCase("null")) {
-//										devicename=map.get("EDIT_cpename");
-//									}	
-//								}
-//								
-//							//Navigate to view device page 	
-//								OLO.get().Equip_clickonviewButton("LANLINK", devicename);
-//								
-//							//devicename
-//								String devicename_EquipActual=null;
-//								devicename=OLO.get().fetchdevicename_InviewPage("LANLINK");
-//								if(devicename.contains("...")) {
-//									devicename_EquipActual = devicename.substring(0, 10);
-//								}else {
-//									devicename_EquipActual=devicename;
-//								}
-//								
-//								deviceName_Equip=devicename_EquipActual;
-//						
-//						String manageAdres=OLO.get().fetchManagementAddressValue_InviewPage("LANLINK");		//Management Address
-//						String vendorModel=OLO.get().fetchVendorModelValue("LANLINK");		//vendor/Model
-//					
-//					logger = ExtentTestManager.startTest("testStatusTable");
-//						OLO.get().testStatus("LANLINK");  //fetch test status value
-//					ExtentTestManager.endTest();
-//					
-//						//Perform fetch from Interface
-//					logger = ExtentTestManager.startTest("fetchDeviceInterface");
-//							boolean link=OLO.get().fetchDeviceInterface_viewdevicepage("LANLINK", devicename);
-//							Thread.sleep(1000);
-//							ExtentTestManager.endTest();
-//							
-//						//			if(link) {
-//						//				manageNetwork.get().verifyFetchInterface("LANLINK", devicename, map.get("InServiceStatus"),
-//						//						map.get("InMaintenanceStatus"), vendorModel, manageAdres, "JdhquA5", country, map.get("interfacename"));
-//						//			}
-//							
-//							
-//					logger= ExtentTestManager.startTest ("routerTools_Equipment");
-//							OLO.get().routerPanel("LANLINK", map.get("CommandIPv4_Routertool"), manageAdres);
-//							ExtentTestManager.endTest();
-//							
-//					logger= ExtentTestManager.startTest ("configureEquipment");
-//							//Site Order Number	
-//							String siteOrderNumber = null;
-//							if (map.get("vpnTopology").equals("Point-to-Point")) {
-//								if (map.get("Modularmsp").equalsIgnoreCase("Yes")) {
-//									siteOrderNumber = map.get("siteOrderNumber_p2p_mspSelected");
-//								} else {
-//									if(map.get("Interfacespeed").equalsIgnoreCase("1GigE")) {
-//										siteOrderNumber=map.get("siteOrderNumber_PointToPoint");
-//									}
-//									else if(map.get("Interfacespeed").equalsIgnoreCase("10GigE")) {
-//										siteOrderNumber=map.get("siteOrderNumber_10G_PointToPoint");
-//									}
-//								}
-//							} else {
-//								siteOrderNumber = map.get("Siteordernumber");
-//							}
-//							
-//							siteOrderValue=siteOrderNumber;
-//							OLO.get().clickOnBreadCrump("LANLINK", siteOrderNumber);
-//							DirectFiber.get().selectconfigurelinkAndverifyEditInterfacefield__Equipment("LANLINK", deviceName_Equip);
-//							DirectFiber.get().EnterdataForEditInterfaceforConfigurelinkunderIntermediateEquipment("LANLINK",
-//									map.get("Interfacename_forEditInterface"), map.get("editInterfacepage_circuitId"),
-//									map.get("editInterfacepage_BearerType"), map.get("editInterfacepage_BearerSpeed"),
-//									map.get("editInterfacepage_bandwidth"), map.get("editInterfacepage_Vlanid"),
-//									map.get("editInterfacepage_vlantype"));
-//							DirectFiber.get().verifyeditedinterfacevalue("LANLINK", map.get("Interfacename_forEditInterface"));
-//							ExtentTestManager.endTest();
-//							
-//					 logger= ExtentTestManager.startTest ("selectInterface_Equipment");
-//							DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderValue);
-//							DirectFiber.get().selectInterfacelinkforEqipment("LANLINK", deviceName_Equip);
-//								
-//								if(map.get("RemoveInterface_Selection").equalsIgnoreCase("yes")) {
-//									DirectFiber.get().SelectInterfacetoremovefromservice("LANLINK", map.get("Interfaceinservice_Interfacenumber"));
-//								}else {
-//									ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces are not removed");
-//								}
-//								
-//								if(map.get("AddInterface_Selection").equalsIgnoreCase("yes")) {
-//									DirectFiber.get().SelectInterfacetoaddwithservcie("LANLINK", map.get("Interfacetoselect_Interfacenumber"));
-//								}else {
-//									ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces are not removed");
-//								}
-//								ExtentTestManager.endTest();	
-//								
-//					 logger= ExtentTestManager.startTest ("showInterface_Equipment");
-//								DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderValue);
-//								DirectFiber.get().SelectShowInterfacelinkAndVerifyEditInterfacePage("LANLINK", map.get("Interfacename_forEditInterface"), deviceName_Equip);
-//								DirectFiber.get().EnterdataForEditInterfaceforShowInterfacelinkunderEquipment("LANLINK",  map.get("Interfacename_forEditInterface"), map.get("editInterfacepage_circuitId"), map.get("editInterfacepage_BearerType"),
-//											map.get("editInterfacepage_BearerSpeed"), map.get("editInterfacepage_bandwidth"), map.get("editInterfacepage_Vlanid"), map.get("editInterfacepage_vlantype"));
-//								DirectFiber.get().hideInterfaceLink_Equipment("LANLINK");	
-//								ExtentTestManager.endTest();
-//								
-//					 logger= ExtentTestManager.startTest ("AMNvalidator_Equipment");
-//								String csrName=DirectFiber.get().fetchCSRsiteName("LANLINK");
-//								String cityName=DirectFiber.get().fetchDeviceCityName("LANLINK");
-//								String countryName=DirectFiber.get().fetchSiteOrderCountryName("LANLINK");
-//								DirectFiber.get().clickOnAMNvalidatorLink("LANLINK");
-//								DirectFiber.get().AMNvalidator("LANLINK",siteOrderValue , deviceName_Equip, csrName, cityName, countryName);
-//								ExtentTestManager.endTest();
-//								
-//					 logger= ExtentTestManager.startTest ("deleteDevice_Equipment");
-//								DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderValue);
-//								DirectFiber.get().deleteDeviceFromServiceForequipment("LANLINK", deviceName_Equip);
-//								DirectFiber.get().successMessage_deleteFromService("LANLINK");	
-//								ExtentTestManager.endTest();
-//							}else {
-//								ExtentTestManager.getTest().log(LogStatus.PASS, "Equipment device is not created as expected");
-//								System.out.println("Equipment device is not created as expected");
-//								ExtentTestManager.endTest();
-//							}
-//					}	else {
-//						ExtentTestManager.getTest().log(LogStatus.INFO, " 'Equipment' panel is not displaying under 'view site order' page");
-//						System.out.println(" 'Equipment' panel is not displaying under 'view site order' page");
-//						ExtentTestManager.endTest();
-//					}
-//					
-//					
-//			 logger= ExtentTestManager.startTest ("IntermediateEquipment");
-//					boolean IntermediateEquipmentPanel=OLO.get().findPanelHeader("LANLINK", "Intermediate Equipment");
-//					if(IntermediateEquipmentPanel) {
-//						if(map.get("deviceCreation_IntermediateEquipment").equalsIgnoreCase("yes")){
-//							ExtentTestManager.getTest().log(LogStatus.INFO, " Device to be created for Intermediate Eqiupment as per input provided");	
-//						ExtentTestManager.getTest().log(LogStatus.INFO, "Under Intermediate Equipement, list of actions to be performed are: "
-//								+ "Verify fields for Add device"
-//								+ "Add device"
-//								+ "Verify entered values for device"
-//								+ "Edit device"
-//								+ "Select Interface"
-//								+ "show/Hide Interface -- Edit Interface"
-//								+ "Select Interface -- Add Interface to service , Remove Interface from Service"
-//								+ "Delete device ");
-//				
-//					
-//						String speed=map.get("Interfacespeed");
-//						String ModularMSp= map.get("Modularmsp");
-//						String existingDevice=map.get("IntEquip_existingdeviceSelection");
-//						String newDevice=map.get("IntEquip_newdeviceSelection");
-//					
-//						if(ModularMSp.equalsIgnoreCase("yes")) 
-//						{
-//						if(existingDevice.equalsIgnoreCase("Yes")  && newDevice.equalsIgnoreCase("No")) {
-//							ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_MSPselected_IntermediateEquipment");
-//							OLO.get().addDevice_IntEquipment("LANLINK");
-//							OLO.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
-//							OLO.get().verifyFieldsandSelectCPEdevice_existingDevice_IntEquipment("LANLINK", map.get("intEquip_existingDeviceValue"));
-//							OLO.get().verifyValuesforCPEexistingdevice_MSPselected("LANLINK");
-//							ExtentTestManager.endTest();
-//							
-//							logger= ExtentTestManager.startTest ("editExistingDevice_MSPselected_IntermediateEquipment");
-//							OLO.get().EDITCPEdevicedforIntermediateEquipment_MSPselected("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"),map.get("EDIT_Intequip_device_vender_MSPselected"),
-//									 map.get("EDIT_Intequip_devic_snmpro"), map.get("EDIT_Intequip_device_managementAddress"), map.get("EDIT_Intequip_device_Mepid"), map.get("EDIT_Intequip_device_country"),
-//								    map.get("EDIT_Intequip_device_ExistingcitySelection"),map.get("EDIT_Intequip_device_newcitySelection"), map.get("EDIT_Intequip_device_Existingcity"), map.get("EDIT_Intequip_device_newcityName"), map.get("EDIT_Intequip_device_newcityCode")
-//									,map.get("EDIT_Intequip_device_ExistingSiteSelection"), map.get("EDIT_Intequip_device_newSiteSelection"), map.get("EDIT_Intequip_device_ExistingSite"), map.get("EDIT_Intequip_device_newSiteName"), map.get("EDIT_Intequip_device_newSiteCode"),
-//									map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"), 
-//									map.get("TechToBeselected_underTechpopup_device"), map.get("EDIT_Intequip_VLANid_MSPselected"));
-//							OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
-//							ExtentTestManager.endTest();
-//							
-//						}else if(existingDevice.equalsIgnoreCase("No")  && newDevice.equalsIgnoreCase("Yes")) {
-//							ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_MSPselected_IntermediateEquipment");
-//							OLO.get().addDevice_IntEquipment("LANLINK");
-//							OLO.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
-//							OLO.get().verifyFieldsandAddCPEdevicefortheserviceselected_IntEquip_MSPselected( "LANLINK",  map.get("device_intEquip_name"),
-//									map.get("device_intEquip_vender_MSPSelected_Accedian"), map.get("device_intequip_snmpro"), map.get("device_intequip_managementAddress_textfield"),
-//									map.get("device_intequip_Mepid"), map.get("device_intEquip_VLANid"),map.get("device_intequip_country"), map.get("device_intequip_existingcity_dropodwnvalue"),
-//									map.get("device_intequip_site_dropdownvalue"), map.get("device_intequip_premisedropdownvalue"), map.get("device_intequip_newmanagementAddress_selection"), map.get("device_intequip_existingmanagementAddress_selection"), map.get("device_intequip_manageaddress_dropdownvalue"),
-//									map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
-//									map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
-//									map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"));	
-//							OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
-//							ExtentTestManager.endTest();
-//							
-//							
-//							logger= ExtentTestManager.startTest ("verifyEnteredValues_MSPselected_IntermediateEquipment");
-//							OLO.get().verifyCPEdevicedataenteredForIntermediateEquipment_MSPselected( "LANLINK",  map.get("device_intEquip_name"), 
-//									map.get("device_intEquip_vender_MSPSelected_Accedian"), map.get("device_intequip_snmpro"), map.get("device_intequip_managementAddress_textfield"), map.get("device_intequip_Mepid"),
-//									 map.get("device_intequip_country"), map.get("device_intequip_existingcity_dropodwnvalue"),
-//									map.get("device_intequip_site_dropdownvalue"), map.get("device_intequip_premisedropdownvalue"), map.get("device_intequip_newmanagementAddress_selection"), map.get("device_intequip_existingmanagementAddress_selection"), map.get("device_intequip_manageaddress_dropdownvalue"),
-//									map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
-//									map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
-//									map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"),
-//									map.get("TechToBeselected_underTechpopup_device"), map.get("device_intEquip_VLANid"));
-//							ExtentTestManager.endTest();
-//							
-//							logger= ExtentTestManager.startTest ("editNewDevice_MSPselected_IntermediateEquipment");
-//							OLO.get().EDITCPEdevicedforIntermediateEquipment_MSPselected("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"),map.get("EDIT_Intequip_device_vender_MSPselected"),
-//									 map.get("EDIT_Intequip_devic_snmpro"), map.get("EDIT_Intequip_device_managementAddress"), map.get("EDIT_Intequip_device_Mepid"),
-//								    map.get("EDIT_Intequip_device_country"),
-//								    map.get("EDIT_Intequip_device_ExistingcitySelection"),map.get("EDIT_Intequip_device_newcitySelection"), map.get("EDIT_Intequip_device_Existingcity"), map.get("EDIT_Intequip_device_newcityName"), map.get("EDIT_Intequip_device_newcityCode")
-//									,map.get("EDIT_Intequip_device_ExistingSiteSelection"), map.get("EDIT_Intequip_device_newSiteSelection"), map.get("EDIT_Intequip_device_ExistingSite"), map.get("EDIT_Intequip_device_newSiteName"), map.get("EDIT_Intequip_device_newSiteCode"),
-//									map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"), 
-//									map.get("TechToBeselected_underTechpopup_device"), map.get("EDIT_Intequip_VLANid_MSPselected"));
-//							OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
-//							ExtentTestManager.endTest();							
-//							}
-//							}
-//						else
-//						{
-//						if(speed.equals("1GigE")) {
-//						  if(existingDevice.equalsIgnoreCase("Yes")  && newDevice.equalsIgnoreCase("No")) {
-//							  ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_1G_IntermediateEquipment");
-//							  OLO.get().addDevice_IntEquipment("LANLINK");
-//							  OLO.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
-//							  OLO.get().verifyFieldsandSelectCPEdevice_existingDevice_IntEquipment("LANLINK", map.get("intEquip_existingDeviceValue"));
-//							  OLO.get().verifyValuesforCPEexistingdevice_1G_intEquipment("LANLINK");
-//							  ExtentTestManager.endTest();
-//							  
-//							  logger= ExtentTestManager.startTest ("editExistingDevice_1G_IntermediateEquipment");
-//							  OLO.get().EDITCPEdevicedforIntermediateEquipment_1G("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"), map.get("EDIT_Intequip_device_vender_1G_Overtue"),map.get("EDIT_Intequip_device_vender_1G_Accedian"),
-//										map.get("EDIT_Intequip_device_vender_10g_Accedian"), map.get("EDIT_Intequip_devic_snmpro"), map.get("EDIT_Intequip_device_managementAddress"), map.get("EDIT_Intequip_device_Mepid"),
-//										map.get("EDIT_Intequip_device_poweralarm_1G_Overture"),map.get("EDIT_Intequip_device_poweralarm_1G_Accedian"), map.get("EDIT_Intequip_device_Mediaselection"), map.get("EDIT_Intequip_device_Macaddress"),	map.get("EDIT_Intequip_device_serialNumber"), map.get("EDIT_Intequip_device_hexaSerialnumber"),
-//										map.get("EDIT_Intequip_device_linkLostForwarding"), map.get("EDIT_Intequip_device_country"), 
-//										map.get("EDIT_Intequip_device_ExistingcitySelection"),map.get("EDIT_Intequip_device_newcitySelection"), map.get("EDIT_Intequip_device_Existingcity"), map.get("EDIT_Intequip_device_newcityName"), map.get("EDIT_Intequip_device_newcityCode")
-//										,map.get("EDIT_Intequip_device_ExistingSiteSelection"), map.get("EDIT_Intequip_device_newSiteSelection"), map.get("EDIT_Intequip_device_ExistingSite"), map.get("EDIT_Intequip_device_newSiteName"), map.get("EDIT_Intequip_device_newSiteCode"),
-//										map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"), 
-//										map.get("TechToBeselected_underTechpopup_device"), map.get("technology"));
-//							  OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
-//							  ExtentTestManager.endTest();
-//						  }else if(existingDevice.equalsIgnoreCase("No")  && newDevice.equalsIgnoreCase("Yes")) {
-//							    ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_1G_IntermediateEqiupment");
-//							    OLO.get().addDevice_IntEquipment("LANLINK");
-//								OLO.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
-//								OLO.get().verifyFieldsandAddCPEdevicefortheserviceselected_IntEquip_1G( "LANLINK",  map.get("device_intEquip_name"), map.get("device_intequip_vender_1G_Overture"),
-//										map.get("device_intequip_vender_1G_Accedian"), map.get("device_intequip_snmpro"), map.get("device_intequip_managementAddress_textfield"), map.get("device_intequip_Mepid"),
-//										map.get("device_intequip_poweralarm_1G_overture"), map.get("device_intequip_poweralarm_1G_Accedian"), map.get("device_intequip_Mediaselection_Overture"),  map.get("device_intequip_Macaddress_Overture"),  map.get("device_intequip_serialNumber_Accedian"),
-//										map.get("device_intequip_hexaSerialnumber"),  map.get("device_intequip_linkLostForwarding"), map.get("device_intequip_country"), map.get("device_intequip_existingcity_dropodwnvalue"),
-//										map.get("device_intequip_site_dropdownvalue"), map.get("device_intequip_premisedropdownvalue"), map.get("device_intequip_newmanagementAddress_selection"), map.get("device_intequip_existingmanagementAddress_selection"), map.get("device_intequip_manageaddress_dropdownvalue"),
-//										map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
-//										map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
-//										map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"),
-//										map.get("technology"));	
-//								OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
-//								ExtentTestManager.endTest();
-//								
-//								logger= ExtentTestManager.startTest ("verifyEnteredValues_1G_IntermediateEquipment");
-//								OLO.get().verifyCPEdevicedataenteredForIntermediateEquipment_1G( "LANLINK",  map.get("device_intEquip_name"), map.get("device_intequip_vender_1G_Overture"),
-//										map.get("device_intequip_vender_1G_Accedian"), map.get("device_intequip_snmpro"), map.get("device_intequip_managementAddress_textfield"), map.get("device_intequip_Mepid"),
-//										map.get("device_intequip_poweralarm_1G_overture"), map.get("device_intequip_poweralarm_1G_Accedian"), map.get("device_intequip_Mediaselection_Overture"),  map.get("device_intequip_Macaddress_Overture"),  map.get("device_intequip_serialNumber_Accedian"),
-//										map.get("device_intequip_hexaSerialnumber"),  map.get("device_intequip_linkLostForwarding"), map.get("device_intequip_country"), map.get("device_intequip_existingcity_dropodwnvalue"),
-//										map.get("device_intequip_site_dropdownvalue"), map.get("device_intequip_premisedropdownvalue"), map.get("device_intequip_newmanagementAddress_selection"), map.get("device_intequip_existingmanagementAddress_selection"), map.get("device_intequip_manageaddress_dropdownvalue"),
-//										map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
-//										map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
-//										map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"));
-//								ExtentTestManager.endTest();
-//								
-//								logger= ExtentTestManager.startTest ("editNewDevice_1G_IntermediateEquipment");
-//								OLO.get().EDITCPEdevicedforIntermediateEquipment_1G("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"), map.get("EDIT_Intequip_device_vender_1G_Overtue"),map.get("EDIT_Intequip_device_vender_1G_Accedian"),
-//										map.get("EDIT_Intequip_device_vender_10g_Accedian"), map.get("EDIT_Intequip_devic_snmpro"), map.get("EDIT_Intequip_device_managementAddress"), map.get("EDIT_Intequip_device_Mepid"),
-//										map.get("EDIT_Intequip_device_poweralarm_1G_Overture"),map.get("EDIT_Intequip_device_poweralarm_1G_Accedian"), map.get("EDIT_Intequip_device_Mediaselection"), map.get("EDIT_Intequip_device_Macaddress"),	map.get("EDIT_Intequip_device_serialNumber"), map.get("EDIT_Intequip_device_hexaSerialnumber"),
-//										map.get("EDIT_Intequip_device_linkLostForwarding"), map.get("EDIT_Intequip_device_country"), 
-//										map.get("EDIT_Intequip_device_ExistingcitySelection"),map.get("EDIT_Intequip_device_newcitySelection"), map.get("EDIT_Intequip_device_Existingcity"), map.get("EDIT_Intequip_device_newcityName"), map.get("EDIT_Intequip_device_newcityCode")
-//										,map.get("EDIT_Intequip_device_ExistingSiteSelection"), map.get("EDIT_Intequip_device_newSiteSelection"), map.get("EDIT_Intequip_device_ExistingSite"), map.get("EDIT_Intequip_device_newSiteName"), map.get("EDIT_Intequip_device_newSiteCode"),
-//										map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"), 
-//										map.get("TechToBeselected_underTechpopup_device"), map.get("technology"));
-//								OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
-//								ExtentTestManager.endTest();
-//						  		}
-//							}
-//						else if(speed.equals("10GigE")) {
-//							if(existingDevice.equalsIgnoreCase("Yes")  && newDevice.equalsIgnoreCase("No")) {
-//								ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_10G_IntermediateEquipment" );
-//								OLO.get().addDevice_IntEquipment("LANLINK");
-//								OLO.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
-//								OLO.get().verifyFieldsandSelectCPEdevice_existingDevice_IntEquipment("LANLINK", map.get("intEquip_existingDeviceValue"));
-//								OLO.get().verifyValuesforCPEexistingdevice_10G_intEquipment("LANLINK");
-//								ExtentTestManager.endTest();
-//
-//								logger= ExtentTestManager.startTest ("editExistingDevice_10G_IntermediateEquipment");
-//								OLO.get().EDITCPEdevice_IntermediateEquipment_10G("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"), map.get("EDIT_Intequip_device_vender_10g_Accedian"), map.get("EDIT_Intequip_devic_snmpro"), 
-//										   map.get("EDIT_Intequip_device_managementAddress"), map.get("EDIT_Intequip_device_Mepid"),
-//											map.get("EDIT_Intequip_device_poweralarm_10G_Accedian"), map.get("EDIT_Intequip_device_Mediaselection"), map.get("EDIT_Intequip_device_Macaddress"),	map.get("EDIT_Intequip_device_serialNumber"), map.get("EDIT_Intequip_device_hexaSerialnumber"),
-//											map.get("EDIT_Intequip_device_linkLostForwarding"), map.get("EDIT_Intequip_device_country"), 
-//											map.get("EDIT_Intequip_device_ExistingcitySelection"),map.get("EDIT_Intequip_device_newcitySelection"), map.get("EDIT_Intequip_device_Existingcity"), map.get("EDIT_Intequip_device_newcityName"), map.get("EDIT_Intequip_device_newcityCode")
-//											,map.get("EDIT_Intequip_device_ExistingSiteSelection"), map.get("EDIT_Intequip_device_newSiteSelection"), map.get("EDIT_Intequip_device_ExistingSite"), map.get("EDIT_Intequip_device_newSiteName"), map.get("EDIT_Intequip_device_newSiteCode"),
-//											map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"),
-//											map.get("TechToBeselected_underTechpopup_device"));
-//								OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
-//								ExtentTestManager.endTest();
-//								
-//							}else if(existingDevice.equalsIgnoreCase("No")  && newDevice.equalsIgnoreCase("Yes")) {
-//								ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_10G_IntermediateEquipment");
-//								OLO.get().addDevice_IntEquipment("LANLINK");
-//								OLO.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
-//								OLO.get().verifyFieldsandAddCPEdevicefortheserviceselected_IntEquip_10G( "LANLINK",  map.get("device_intEquip_name"), map.get("device_intequip_vender_10G_Accedian"),
-//										map.get("device_intequip_snmpro"), map.get("device_intequip_managementAddress_textfield"), map.get("device_intequip_Mepid"),
-//										map.get("device_intequip_poweralarm_10G_Accedian"),map.get("device_intequip_Mediaselection_Overture"),  map.get("device_intequip_Macaddress_Overture"),  map.get("device_intequip_serialNumber_Accedian"),
-//										map.get("device_intequip_hexaSerialnumber"),  map.get("device_intequip_linkLostForwarding"), map.get("device_intequip_country"), map.get("device_intequip_existingcity_dropodwnvalue"),
-//										map.get("device_intequip_site_dropdownvalue"), map.get("device_intequip_premisedropdownvalue"), map.get("device_intequip_newmanagementAddress_selection"), map.get("device_intequip_existingmanagementAddress_selection"), map.get("device_intequip_manageaddress_dropdownvalue"),
-//										map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
-//										map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
-//										map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"));	
-//								OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
-//								ExtentTestManager.endTest();
-//								
-//								logger= ExtentTestManager.startTest ("verifyEnteredValues_10G_IntermediateEquipment");
-//								OLO.get().verifyCPEdevicedataenteredForIntermediateEquipment_10G( "LANLINK",  map.get("device_intEquip_name"), map.get("device_intequip_vender_10G_Accedian"),
-//										map.get("device_intequip_snmpro"), map.get("device_intequip_managementAddress_textfield"), map.get("device_intequip_Mepid"),
-//										map.get("device_intequip_poweralarm_10G_Accedian"),map.get("device_intequip_Mediaselection_Overture"),  map.get("device_intequip_Macaddress_Overture"),  map.get("device_intequip_serialNumber_Accedian"),
-//										map.get("device_intequip_hexaSerialnumber"),  map.get("device_intequip_linkLostForwarding"), map.get("device_intequip_country"), map.get("device_intequip_existingcity_dropodwnvalue"),
-//										map.get("device_intequip_site_dropdownvalue"), map.get("device_intequip_premisedropdownvalue"), map.get("device_intequip_newmanagementAddress_selection"), map.get("device_intequip_existingmanagementAddress_selection"), map.get("device_intequip_manageaddress_dropdownvalue"),
-//										map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
-//										map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
-//										map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"));
-//								ExtentTestManager.endTest();
-//								
-//								logger= ExtentTestManager.startTest ("editNewDevice_10G_IntermediateEquipment");
-//								OLO.get().EDITCPEdevice_IntermediateEquipment_10G("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"), map.get("EDIT_Intequip_device_vender_10g_Accedian"), map.get("EDIT_Intequip_devic_snmpro"), 
-//									   map.get("EDIT_Intequip_device_managementAddress"), map.get("EDIT_Intequip_device_Mepid"),
-//										map.get("EDIT_Intequip_device_poweralarm_10G_Accedian"), map.get("EDIT_Intequip_device_Mediaselection"), map.get("EDIT_Intequip_device_Macaddress"),	map.get("EDIT_Intequip_device_serialNumber"), map.get("EDIT_Intequip_device_hexaSerialnumber"),
-//										map.get("EDIT_Intequip_device_linkLostForwarding"), map.get("EDIT_Intequip_device_country"),
-//										map.get("EDIT_Intequip_device_ExistingcitySelection"),map.get("EDIT_Intequip_device_newcitySelection"), map.get("EDIT_Intequip_device_Existingcity"), map.get("EDIT_Intequip_device_newcityName"), map.get("EDIT_Intequip_device_newcityCode")
-//										,map.get("EDIT_Intequip_device_ExistingSiteSelection"), map.get("EDIT_Intequip_device_newSiteSelection"), map.get("EDIT_Intequip_device_ExistingSite"), map.get("EDIT_Intequip_device_newSiteName"), map.get("EDIT_Intequip_device_newSiteCode"),
-//										map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"),
-//										map.get("TechToBeselected_underTechpopup_device"));
-//								OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
-//								ExtentTestManager.endTest();
-//								}
-//							}
-//						}
-//					
-//						String devicename_intEquip=null;
-//						String manageAdres_intEquip=null;
-//						//Get Device Name	
-//						if(existingDevice.equalsIgnoreCase("Yes")  && newDevice.equalsIgnoreCase("No")) {
-//							devicename_intEquip=map.get("intEquip_existingDeviceValue");
-//						}
-//						else if(existingDevice.equalsIgnoreCase("No")  && newDevice.equalsIgnoreCase("Yes")) {
-//							if(map.get("EDIT_Intequip_cpe_deviecname").equalsIgnoreCase("null")) {
-//								devicename_intEquip=map.get("device_intEquip_name");
-//							}
-//							else if(!map.get("EDIT_Intequip_cpe_deviecname").equalsIgnoreCase("null")) {
-//								devicename_intEquip=map.get("EDIT_Intequip_cpe_deviecname");
-//							}
-//						}
-//						
-//							//Navigate to view device page
-//							OLO.get().IntEquip_clickonviewButton("LANLINK", devicename_intEquip);
-//						
-//							//devicename
-//							String devicename_intEquipActual=null;
-//							devicename_intEquip=OLO.get().fetchdevicename_InviewPage("LANLINK");
-//							if(devicename_intEquip.contains("...")) {
-//								devicename_intEquipActual = devicename_intEquip.substring(0, 10);
-//							}else {
-//								devicename_intEquipActual=devicename_intEquip;
-//							}
-//							
-//							devicename_IntEquipment=devicename_intEquipActual;
-//							
-//							manageAdres_intEquip=OLO.get().fetchManagementAddressValue_InviewPage("LANLINK");	//Management Address
-//							String vendorModel_intEquip=OLO.get().fetchVendorModelValue("LANLINK");		//Vendor/model	
-//							String country_intEquip=OLO.get().fetchCountryValue_InviewPage("LANLINK");	 //Country
-//						
-//							logger = ExtentTestManager.startTest("testStatusTable_IntEquip");
-//							OLO.get().testStatus("LANLINK");
-//							ExtentTestManager.endTest();
-//							
-//							//Fetch device Interface
-//							logger = ExtentTestManager.startTest("FetchDeviceInterface");
-//							boolean link=OLO.get().fetchDeviceInterface_viewdevicepage("LANLINK", devicename_intEquip);
-//							Thread.sleep(1000);
-//							ExtentTestManager.endTest();
-//			//				if(link) {
-//			//					manageNetwork.get().verifyFetchInterface("LANLINK", devicename_intEquip, map.get("InServiceStatus"),
-//			//							map.get("InMaintenanceStatus"), vendorModel_intEquip, manageAdres, "JdhquA5", country_intEquip, map.get("interfacename"));
-//			//				}
-//							
-//							
-//						logger= ExtentTestManager.startTest ("routerTools_intermediateEquipment");
-//								OLO.get().routerPanel("LANLINK", map.get("CommandIPv4_Routertool"), manageAdres_intEquip);	
-//								ExtentTestManager.endTest();
-//								
-//								
-//						logger= ExtentTestManager.startTest ("selectinterface_IntermediateEquipment");
-//							//Site Order Number	
-//								String siteOrderNumber = null;
-//								if (map.get("vpnTopology").equals("Point-to-Point")) {
-//									if (map.get("Modularmsp").equalsIgnoreCase("Yes")) {
-//										siteOrderNumber = map.get("siteOrderNumber_p2p_mspSelected");
-//									} else {
-//										if(map.get("Interfacespeed").equalsIgnoreCase("1GigE")) {
-//											siteOrderNumber=map.get("siteOrderNumber_PointToPoint");
-//										}
-//										else if(map.get("Interfacespeed").equalsIgnoreCase("10GigE")) {
-//											siteOrderNumber=map.get("siteOrderNumber_10G_PointToPoint");
-//										}
-//									}
-//								} else {
-//									siteOrderNumber = map.get("Siteordernumber");
-//								}
-//										
-//								DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderNumber);
-//								DirectFiber.get().selectInterfacelinkforIntermediateEqipment("LANLINK", devicename_IntEquipment);
-//								if(map.get("RemoveInterface_Selection").equalsIgnoreCase("yes")) {
-//									DirectFiber.get().SelectInterfacetoremovefromservice("LANLINK", map.get("Interfaceinservice_Interfacenumber"));
-//								}else {
-//									System.out.println("interfaces are not removed");
-//								}
-//								if(map.get("AddInterface_Selection").equalsIgnoreCase("yes")) {
-//									DirectFiber.get().SelectInterfacetoaddwithservcie("LANLINK", map.get("Interfacetoselect_Interfacenumber"));
-//								}
-//								ExtentTestManager.endTest();
-//								
-//								
-//						logger= ExtentTestManager.startTest ("showInterace_IntermediateEquipment");
-//								DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderNumber);
-//								DirectFiber.get().SelectShowInterfacelink_IntermediateequipmentAndVerifyEditInterfacePage("LANLINK", map.get("Interfacename_forEditInterface"),  devicename_IntEquipment );
-//								DirectFiber.get().EnterdataForEditInterfaceforShowInterfacelinkunderIntermediateEquipment("LANLINK",  map.get("Interfacename_forEditInterface"), map.get("editInterfacepage_circuitId"), map.get("editInterfacepage_BearerType"),
-//										map.get("editInterfacepage_BearerSpeed"), map.get("editInterfacepage_bandwidth"), map.get("editInterfacepage_Vlanid"), map.get("editInterfacepage_vlantype"));
-//								DirectFiber.get().hideInterface_IntEquipment("LANLINK");
-//								ExtentTestManager.endTest();
-//							
-//								
-//						logger= ExtentTestManager.startTest ("deletDeviceFromService_IntermediateEquipment");
-//								DirectFiber.get().deleteDeviceFromServiceForIntermediateequipment("LANLINK",  devicename_IntEquipment);
-//								DirectFiber.get().successMessage_deleteFromService("LANLINK");
-//								ExtentTestManager.endTest();
-//						}
-//							}else {
-//								ExtentTestManager.getTest().log(LogStatus.PASS, " 'Intermediate Equipment' panel is not displaying under 'view site order' page");
-//							}
-//
-//
-//				logger= ExtentTestManager.startTest ("PAMTest");
-//						String ServiceID = null;
-//						if(map.get("Edit_serviceNumber").equalsIgnoreCase("null")) {
-//							ServiceID=map.get("serviceNumber");
-//						}else {
-//							ServiceID=map.get("Edit_serviceNumber");
-//						}
-//						DirectFiber.get().returnbacktoviewsiteorderpage("LANLINK");
-//						DirectFiber.get().selectRowForsiteorder("LANLINK", map.get("Siteordernumber"), map.get("siteOrderNumber_PointToPoint"), 
-//								map.get("vpnTopology"), map.get("Interfacespeed"), map.get("siteOrderNumber_10G_PointToPoint"));
-//						DirectFiber.get().pamTest("LANLINK", ServiceID);
-//						ExtentTestManager.endTest();
-//						
-//						
-//				logger= ExtentTestManager.startTest ("deleteSiteOrder");
-//						DirectFiber.get().selectRowForsiteorder("LANLINK", map.get("Siteordernumber"), map.get("siteOrderNumber_PointToPoint"), 
-//								map.get("vpnTopology"), map.get("Interfacespeed"), map.get("siteOrderNumber_10G_PointToPoint"));
-//						DirectFiber.get().deleteSiteOrder("LANLINK");
-//						ExtentTestManager.endTest();
-//				
-//				}
+		//For Device, Circuit creation	
+				String sitePreferenceType = "Null";
+				if(map.get("editSiteOrder_sitePreferenceType").equalsIgnoreCase("Null")) {
+					sitePreferenceType = map.get("siteOrder_sitePreferenceType");
+				}
+				else {
+					sitePreferenceType = map.get("editSiteOrder_sitePreferenceType");
+				}
+				
+			if(((vpnTopology.equals("Point-to-Point")) && (circuitType.equals("Composite Circuit")))  ||  ((vpnTopology.equals("Point-to-Point")) &&  (circuitType.equals("Extended Circuit"))  &&  (sitePreferenceType.equalsIgnoreCase("Circuit")))){
+					
+					String ServiceID = null;
+					if(map.get("Edit_serviceNumber").equalsIgnoreCase("null")) {
+						ServiceID=map.get("serviceNumber");
+					}else {
+						ServiceID=map.get("Edit_serviceNumber");
+					}
+					
+					if(map.get("Interfacespeed").equals("1GigE")) {
+						logger = ExtentTestManager.startTest("create Circuit for 1G");
+						//Overture	
+							OLO.get().addOvertureCircuit("LANLINK", map.get("addOverture_serviceNameForCreatingCircuit"));
+							OLO.get().selectInterfaceForCircuits("LANLINK", map.get("addOverture_interfaceName1"), map.get("addOverture_interfaceName2"),
+										map.get("addOverture_edgePointSelectForInterface1"), map.get("addOverture_edgePointSelectForInterface2"));
+							OLO.get().verifysuccessmessage("LANLINK", "Circuit successfully created");
+							OLO.get().addOveture_PAMtest_selectRow("LANLINK", map.get("addOverture_interfaceName1"));
+							OLO.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addOverture_serviceNameForCreatingCircuit"));
+							OLO.get().deleteCircuit("LANLINK");
+							
+						//Accedian-1G
+							OLO.get().addAccedianCircuit("LANLINK", map.get("addAccedian1G_serviceNameForCreatingCircuit"));
+							OLO.get().selectInterfaceForCircuits("LANLINK", map.get("addAccedian1G_interfaceName1"), map.get("addAccedian1G_interfaceName2"),
+										map.get("addAccedian1G_edgePointSelectForInterface1"), map.get("addAccedian1G_edgePointSelectForInterface2"));
+							OLO.get().verifysuccessmessage("LANLINK", "Circuit successfully created");
+							OLO.get().addOveture_PAMtest_selectRow("LANLINK",  map.get("addAccedian1G_interfaceName1"));
+							OLO.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addAccedian1G_serviceNameForCreatingCircuit"));
+							OLO.get().deleteCircuit("LANLINK");
+							
+						//Atrica
+							OLO.get().addAtricaCircuit("LANLINK", map.get("addAtrica_serviceNameForCreatingCircuit"));
+							OLO.get().selectInterfaceForCircuits("LANLINK", map.get("addAtrica_interfaceName1"), map.get("addAtrica_interfaceName2"),
+										map.get("addAtrica_edgePointSelectForInterface1"), map.get("addAtrica_edgePointSelectForInterface2"));
+							OLO.get().verifysuccessmessage("LANLINK", "Circuit successfully created");
+							OLO.get().addOveture_PAMtest_selectRow("LANLINK",  map.get("addAtrica_interfaceName1"));
+							OLO.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addAtrica_serviceNameForCreatingCircuit"));
+							OLO.get().deleteCircuit("LANLINK");
+							ExtentTestManager.endTest();
+						
+						}
+						else if(map.get("Interfacespeed").equals("10GigE")) {
+							logger = ExtentTestManager.startTest("create Circuit for 10G");
+							//Overture	
+							OLO.get().addOvertureCircuit("LANLINK", map.get("addOverture_serviceNameForCreatingCircuit"));
+							OLO.get().selectInterfaceForCircuits("LANLINK", map.get("addOverture_interfaceName1"), map.get("addOverture_interfaceName2"),
+									map.get("addOverture_edgePointSelectForInterface1"), map.get("addOverture_edgePointSelectForInterface2"));
+							OLO.get().verifysuccessmessage("LANLINK", "Circuit successfully created");
+							OLO.get().addOveture_PAMtest_selectRow("LANLINK", map.get("addOverture_interfaceName1"));
+							OLO.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addOverture_serviceNameForCreatingCircuit"));
+							OLO.get().deleteCircuit("LANLINK");
+							ExtentTestManager.endTest();
+						}
+				}
+				else {
+			 logger= ExtentTestManager.startTest ("Actelis_EquipmentConfiguration_LanlinkOLO");
+					String Technologyname=map.get("technology");
+					if(Technologyname.equalsIgnoreCase("Actelis")) {
+					
+					boolean equipConfigurationPanel=OLO.get().EquipmentCOnfigurationPanel("LANLINK");
+					if(equipConfigurationPanel) {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "verify 'add CPE Device'");
+						OLO.get().equipConfiguration_Actelis_AddDevice("LANLINK", map.get("ActelisTech_addCPE_name"), map.get("ActelisTech_addCPE_vendor"), 
+								map.get("ActelisTech_addCPE_routerID"), map.get("ActelisTech_addCPE_manageAddress"), map.get("ActelisTech_addCPE_MepID"), map.get("ActelisTech_addCPE_ETH_Port"));
+						OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
+						ExtentTestManager.endTest();
+						
+						logger= ExtentTestManager.startTest ("verifyDataEntered");
+						OLO.get().verifyDataEnteredFordeviceCreation_Actelis("LANLINK",  map.get("ActelisTech_addCPE_name"), map.get("ActelisTech_addCPE_vendor"), 
+								map.get("ActelisTech_addCPE_routerID"), map.get("ActelisTech_addCPE_manageAddress"), map.get("ActelisTech_addCPE_MepID"),  map.get("ActelisTech_addCPE_ETH_Port"));
+						OLO.get().returnbacktoviewsiteorderpage("LANLINK");
+						ExtentTestManager.endTest();
+						
+						logger= ExtentTestManager.startTest ("deleteDevice");
+						OLO.get().deleteDeviceFromService_EquipmentConfig_Actelis("LANLINK", map.get("ActelisTech_addCPE_name"));
+						OLO.get().verifysuccessmessage("LANLINK", "Actelis CPE Device successfully deleted and removed from service");
+						ExtentTestManager.endTest();
+					}else {
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "'Equipment Configuration' panel is not displaying");
+						ExtentTestManager.endTest();
+					}
+					
+				//Actelis Configuration panel	
+					logger= ExtentTestManager.startTest ("addDSLAMandHSL");
+					OLO.get().verifyAddDSLAMandHSLlink("LANLINK", map.get("ActelisTech_DSLAMdevice"));
+					OLO.get().AddDSLAMandHSL("LANLINK", map.get("ActelisTech_DSLAMdevice"), map.get("ActelisTech_DSLAMInterfacename"));
+					OLO.get().showInterface_ActelisConfiguuration("LANLINK");
+					OLO.get().deletInterface_ActelisConfiguration("LANLINK", map.get("ActelisTech_DSLAMInterfacename"));
+					OLO.get().successMessage_deleteInterfaceFromDevice_ActelisConfiguration("LANLINK");
+					ExtentTestManager.endTest();
+				}
+					ExtentTestManager.endTest();
+					
+			logger= ExtentTestManager.startTest ("AdddeviceforEquipment");
+				//verify whether Equipment panel is available	
+					boolean EquipmentPanel=OLO.get().findPanelHeader("LANLINK", "Equipment");
+					if(EquipmentPanel) {
+						//Verify whether Equipment device to be created
+						if(map.get("deviceCreation_Equipment").equalsIgnoreCase("yes")){
+							ExtentTestManager.getTest().log(LogStatus.INFO, " Device to be created for Eqiupment as per input provided");	
+							ExtentTestManager.getTest().log(LogStatus.INFO, "Under Equipement, list of actions to be performed are: "
+									+ "Verify fields for Add device"
+									+ "Add device"
+									+ "Verify entered values for device"
+									+ "Edit device"
+									+ "Select Interface"
+									+ "Configure Interface -- Edit Inteface"
+									+ "show/Hide Interface -- Edit Interface"
+									+ "Select Interface -- Add Interface to service , Remove Interface from Service"
+									+ "Delete device ");
+					
+							String speed=map.get("Interfacespeed");
+							String ModularMSp= map.get("Modularmsp");
+							String existingDevice=map.get("Equip_ExistingDeviceSelection");
+							String newDevice=map.get("Equip_NewDeviceSelection");
+						
+						if(ModularMSp.equalsIgnoreCase("Yes")) 
+						{
+							if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
+								ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_MSPselected_Equipment");
+								OLO.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
+								OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
+								OLO.get().verifyValuesforCPEexistingdevice_MSPselected("LANLINK" );
+								ExtentTestManager.endTest();
+								
+								logger= ExtentTestManager.startTest ("editExistingDevice_MSPselected_Equipment");
+								OLO.get().eDITCPEdevicedetailsentered_MSPselected( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_MSPselected"),  map.get("cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
+										 map.get("EDIT_cpe_vender_MSPselected_VLANid") );
+								OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+								ExtentTestManager.endTest();
+							}
+							else if(existingDevice.equalsIgnoreCase("No") && newDevice.equalsIgnoreCase("yes")) {
+								ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_MSPselected_Equipment");
+								OLO.get().verifyFieldsandAddCPEdevicefortheserviceselected_MSPselected("LANLINK",map.get("Interfacespeed"), map.get("devicename_equip"), map.get("cpe_vender_modularMSpselected"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
+										 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
+										 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"),
+										 map.get("cpe_Mspselected_VLANid"));
+								OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
+								ExtentTestManager.endTest();
+								
+								logger= ExtentTestManager.startTest ("verifyEnteredValues_MSPselected_Equipment");
+								OLO.get().verifydetailsEnteredforCPEdevice_MSPselected( "LANLINK",  map.get("devicename_equip"), map.get("cpe_vender_modularMSpselected"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
+									 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
+									 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"), map.get("cpe_newmanagementAddressSelection"), 
+									 map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"), map.get("cpe_Mspselected_VLANid"));
+								ExtentTestManager.endTest();
+								
+								logger= ExtentTestManager.startTest ("editNewDevice_MSPselected_Equipmen");
+								OLO.get().eDITCPEdevicedetailsentered_MSPselected( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_MSPselected"),  map.get("cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
+										 map.get("EDIT_cpe_vender_MSPselected_VLANid") );
+								OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+								ExtentTestManager.endTest();
+							}
+						}
+						else
+						{
+							if(speed.equals("1GigE")) {
+								if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
+									ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_1G_Equipment");
+									OLO.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
+									OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
+									OLO.get().verifyValuesforCPEexistingdevice_1G_Equipment("LANLINK" );
+									ExtentTestManager.endTest();
+									
+									logger= ExtentTestManager.startTest ("editExistingDevice_1G_Equipment");
+									OLO.get().eDITCPEdevicedetailsentered_1G( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
+											 map.get("EDIT_cpe_poweralarm_1G"), map.get("EDIT_cpe_Mediaselection"),  map.get("EDIT_cpe_Macaddress"),  map.get("EDIT_cpe_serialNumber"),
+											 map.get("EDIT_cpe_hexaSerialnumber"),  map.get("EDIT_cpe_linkLostForwarding"), map.get("devicenameforEquipment"), map.get("technology"));
+									OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+									ExtentTestManager.endTest();
+									
+								}
+								else if(existingDevice.equalsIgnoreCase("No") && newDevice.equalsIgnoreCase("Yes")) {
+									ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_1G_Equipment");
+									OLO.get().verifyFieldsandAddCPEdevicefortheserviceselected_1G("LANLINK",map.get("Interfacespeed"), map.get("devicename_equip"), map.get("cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
+											 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
+											 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"),
+											 map.get("cpe_manageaddressdropdownvalue"), map.get("technology"), map.get("vpnTopology"));
+									OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
+									ExtentTestManager.endTest();
+									
+									logger= ExtentTestManager.startTest ("verifyEnteredValues_1G_Equipment");
+									OLO.get().verifydetailsEnteredforCPEdevice_1G( "LANLINK",  map.get("devicename_equip"), map.get("cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
+										 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
+										 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"), map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"));
+									ExtentTestManager.endTest();
+									
+									logger= ExtentTestManager.startTest ("editDevice_1G_Equipment");
+									OLO.get().eDITCPEdevicedetailsentered_1G( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
+											 map.get("EDIT_cpe_poweralarm_1G"), map.get("EDIT_cpe_Mediaselection"),  map.get("EDIT_cpe_Macaddress"),  map.get("EDIT_cpe_serialNumber"),
+											 map.get("EDIT_cpe_hexaSerialnumber"),  map.get("EDIT_cpe_linkLostForwarding"), map.get("devicenameforEquipment"), map.get("technology"));
+									OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+									ExtentTestManager.endTest();
+								}
+							}
+							if(speed.equals("10GigE")) {
+								
+								if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
+									ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_10G_Equipment");
+									OLO.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
+									OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
+									OLO.get().verifyValuesforCPEexistingdevice_10G_Equipment("LANLINK" );
+									ExtentTestManager.endTest();
+									
+									
+									logger= ExtentTestManager.startTest ("editExistingDevice_10G_Eqiupment");
+									OLO.get().eDITCPEdevicedetailsentered_10G( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_10G"),  map.get("EDIT_cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
+											 map.get("EDIT_cpe_poweralarm_10G"), map.get("EDIT_cpe_Mediaselection"),  map.get("EDIT_cpe_Macaddress"),  map.get("EDIT_cpe_serialNumber"),
+											 map.get("EDIT_cpe_hexaSerialnumber"),  map.get("EDIT_cpe_linkLostForwarding"), map.get("devicenameforEquipment"));
+									OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+									ExtentTestManager.endTest();
+								}
+								else if(existingDevice.equalsIgnoreCase("No") && newDevice.equalsIgnoreCase("Yes")) {
+									ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_10G_Equipment");
+									OLO.get().verifyFieldsandAddCPEdevicefortheserviceselected_10G("LANLINK",map.get("Interfacespeed"), map.get("devicename_equip"), map.get("cpe_vender_10G"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
+											 map.get("cpe_poweralarm_10G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
+											 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"));
+									OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
+									ExtentTestManager.endTest();
+									
+									logger= ExtentTestManager.startTest ("verifyEnteredValues_10G_Equipment");
+									OLO.get().verifydetailsEnteredforCPEdevice_10G( "LANLINK",  map.get("devicename_equip"), map.get("cpe_vender_10G"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
+											 map.get("cpe_poweralarm_10G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
+											 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),  map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"));
+									ExtentTestManager.endTest();
+									
+									logger= ExtentTestManager.startTest ("editDevice_10G_Equipment");
+									OLO.get().eDITCPEdevicedetailsentered_10G( "LANLINK",  map.get("EDIT_cpename"), map.get("EDIT_cpe_vender_10G"),  map.get("EDIT_cpe_snmpro"),  map.get("EDIT_cpe_managementAddress"), map.get("EDIT_cpe_Mepid"),
+											 map.get("EDIT_cpe_poweralarm_10G"), map.get("EDIT_cpe_Mediaselection"),  map.get("EDIT_cpe_Macaddress"),  map.get("EDIT_cpe_serialNumber"),
+											 map.get("EDIT_cpe_hexaSerialnumber"),  map.get("EDIT_cpe_linkLostForwarding"), map.get("devicenameforEquipment"));
+									OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+									ExtentTestManager.endTest();
+								}
+							}
+						}
+							String devicename=null;		
+							//get Device name 	
+								if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
+									devicename=map.get("Equip_existingDevicename");
+								}
+								else if(existingDevice.equalsIgnoreCase("No") && newDevice.equalsIgnoreCase("yes")) {
+									if(map.get("EDIT_cpename").equalsIgnoreCase("null")) {
+										devicename=map.get("devicename_equip");
+									}
+									else if(!map.get("EDIT_cpename").equalsIgnoreCase("null")) {
+										devicename=map.get("EDIT_cpename");
+									}	
+								}
+								
+							//Navigate to view device page 	
+								OLO.get().Equip_clickonviewButton("LANLINK", devicename);
+								
+							//devicename
+								String devicename_EquipActual=null;
+								devicename=OLO.get().fetchdevicename_InviewPage("LANLINK");
+								if(devicename.contains("...")) {
+									devicename_EquipActual = devicename.substring(0, 10);
+								}else {
+									devicename_EquipActual=devicename;
+								}
+								
+								deviceName_Equip=devicename_EquipActual;
+						
+						String manageAdres=OLO.get().fetchManagementAddressValue_InviewPage("LANLINK");		//Management Address
+						String vendorModel=OLO.get().fetchVendorModelValue("LANLINK");		//vendor/Model
+					
+					logger = ExtentTestManager.startTest("testStatusTable");
+						OLO.get().testStatus("LANLINK");  //fetch test status value
+					ExtentTestManager.endTest();
+					
+						//Perform fetch from Interface
+					logger = ExtentTestManager.startTest("fetchDeviceInterface");
+							boolean link=OLO.get().fetchDeviceInterface_viewdevicepage("LANLINK", devicename);
+							Thread.sleep(1000);
+							ExtentTestManager.endTest();
+							
+						//			if(link) {
+						//				manageNetwork.get().verifyFetchInterface("LANLINK", devicename, map.get("InServiceStatus"),
+						//						map.get("InMaintenanceStatus"), vendorModel, manageAdres, "JdhquA5", country, map.get("interfacename"));
+						//			}
+							
+							
+					logger= ExtentTestManager.startTest ("routerTools_Equipment");
+							OLO.get().routerPanel("LANLINK", map.get("CommandIPv4_Routertool"), manageAdres);
+							ExtentTestManager.endTest();
+							
+					logger= ExtentTestManager.startTest ("configureEquipment");
+							//Site Order Number	
+							String siteOrderNumber = null;
+							if (map.get("vpnTopology").equals("Point-to-Point")) {
+								if (map.get("Modularmsp").equalsIgnoreCase("Yes")) {
+									siteOrderNumber = map.get("siteOrderNumber_p2p_mspSelected");
+								} else {
+									if(map.get("Interfacespeed").equalsIgnoreCase("1GigE")) {
+										siteOrderNumber=map.get("siteOrderNumber_PointToPoint");
+									}
+									else if(map.get("Interfacespeed").equalsIgnoreCase("10GigE")) {
+										siteOrderNumber=map.get("siteOrderNumber_10G_PointToPoint");
+									}
+								}
+							} else {
+								siteOrderNumber = map.get("Siteordernumber");
+							}
+							
+							siteOrderValue=siteOrderNumber;
+							OLO.get().clickOnBreadCrump("LANLINK", siteOrderNumber);
+							DirectFiber.get().selectconfigurelinkAndverifyEditInterfacefield__Equipment("LANLINK", deviceName_Equip);
+							DirectFiber.get().EnterdataForEditInterfaceforConfigurelinkunderIntermediateEquipment("LANLINK",
+									map.get("Interfacename_forEditInterface"), map.get("editInterfacepage_circuitId"),
+									map.get("editInterfacepage_BearerType"), map.get("editInterfacepage_BearerSpeed"),
+									map.get("editInterfacepage_bandwidth"), map.get("editInterfacepage_Vlanid"),
+									map.get("editInterfacepage_vlantype"));
+							DirectFiber.get().verifyeditedinterfacevalue("LANLINK", map.get("Interfacename_forEditInterface"));
+							ExtentTestManager.endTest();
+							
+					 logger= ExtentTestManager.startTest ("selectInterface_Equipment");
+							DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderValue);
+							DirectFiber.get().selectInterfacelinkforEqipment("LANLINK", deviceName_Equip);
+								
+								if(map.get("RemoveInterface_Selection").equalsIgnoreCase("yes")) {
+									DirectFiber.get().SelectInterfacetoremovefromservice("LANLINK", map.get("Interfaceinservice_Interfacenumber"));
+								}else {
+									ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces are not removed");
+								}
+								
+								if(map.get("AddInterface_Selection").equalsIgnoreCase("yes")) {
+									DirectFiber.get().SelectInterfacetoaddwithservcie("LANLINK", map.get("Interfacetoselect_Interfacenumber"));
+								}else {
+									ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces are not removed");
+								}
+								ExtentTestManager.endTest();	
+								
+					 logger= ExtentTestManager.startTest ("showInterface_Equipment");
+								DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderValue);
+								DirectFiber.get().SelectShowInterfacelinkAndVerifyEditInterfacePage("LANLINK", map.get("Interfacename_forEditInterface"), deviceName_Equip);
+								DirectFiber.get().EnterdataForEditInterfaceforShowInterfacelinkunderEquipment("LANLINK",  map.get("Interfacename_forEditInterface"), map.get("editInterfacepage_circuitId"), map.get("editInterfacepage_BearerType"),
+											map.get("editInterfacepage_BearerSpeed"), map.get("editInterfacepage_bandwidth"), map.get("editInterfacepage_Vlanid"), map.get("editInterfacepage_vlantype"));
+								DirectFiber.get().hideInterfaceLink_Equipment("LANLINK");	
+								ExtentTestManager.endTest();
+								
+					logger= ExtentTestManager.startTest ("AMNvalidator_Equipment");
+						 if(proactiveMonitorvalue.equalsIgnoreCase("Yes")) {
+							 DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderNumber);
+								String csrName=DirectFiber.get().fetchCSRsiteName("LANLINK");
+								String cityName=DirectFiber.get().fetchDeviceCityName("LANLINK");
+								String countryName=DirectFiber.get().fetchSiteOrderCountryName("LANLINK");
+								DirectFiber.get().clickOnAMNvalidatorLink("LANLINK");
+								DirectFiber.get().AMNvalidator("LANLINK",siteOrderNumber , deviceName_Equip, csrName, cityName, countryName);
+								ExtentTestManager.endTest();
+						 }else {
+							 ExtentTestManager.getTest().log(LogStatus.INFO, "'AMN Validator' link do not display, as 'proactive Monitoring' checkbox is not selected ");
+							 ExtentTestManager.endTest();
+						 }
+								
+					 logger= ExtentTestManager.startTest ("deleteDevice_Equipment");
+								DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderValue);
+								DirectFiber.get().deleteDeviceFromServiceForequipment("LANLINK", deviceName_Equip);
+								DirectFiber.get().successMessage_deleteFromService("LANLINK");	
+								ExtentTestManager.endTest();
+							}else {
+								ExtentTestManager.getTest().log(LogStatus.PASS, "Equipment device is not created as expected");
+								System.out.println("Equipment device is not created as expected");
+								ExtentTestManager.endTest();
+							}
+					}	else {
+						ExtentTestManager.getTest().log(LogStatus.INFO, " 'Equipment' panel is not displaying under 'view site order' page");
+						System.out.println(" 'Equipment' panel is not displaying under 'view site order' page");
+						ExtentTestManager.endTest();
+					}
+					
+					
+			 logger= ExtentTestManager.startTest ("IntermediateEquipment");
+					boolean IntermediateEquipmentPanel=OLO.get().findPanelHeader("LANLINK", "Intermediate Equipment");
+					if(IntermediateEquipmentPanel) {
+						if(map.get("deviceCreation_IntermediateEquipment").equalsIgnoreCase("yes")){
+							ExtentTestManager.getTest().log(LogStatus.INFO, " Device to be created for Intermediate Eqiupment as per input provided");	
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Under Intermediate Equipement, list of actions to be performed are: "
+								+ "Verify fields for Add device"
+								+ "Add device"
+								+ "Verify entered values for device"
+								+ "Edit device"
+								+ "Select Interface"
+								+ "show/Hide Interface -- Edit Interface"
+								+ "Select Interface -- Add Interface to service , Remove Interface from Service"
+								+ "Delete device ");
+				
+					
+						String speed=map.get("Interfacespeed");
+						String ModularMSp= map.get("Modularmsp");
+						String existingDevice=map.get("IntEquip_existingdeviceSelection");
+						String newDevice=map.get("IntEquip_newdeviceSelection");
+					
+						if(ModularMSp.equalsIgnoreCase("yes")) 
+						{
+						if(existingDevice.equalsIgnoreCase("Yes")  && newDevice.equalsIgnoreCase("No")) {
+							ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_MSPselected_IntermediateEquipment");
+							OLO.get().addDevice_IntEquipment("LANLINK");
+							OLO.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
+							OLO.get().verifyFieldsandSelectCPEdevice_existingDevice_IntEquipment("LANLINK", map.get("intEquip_existingDeviceValue"));
+							OLO.get().verifyValuesforCPEexistingdevice_MSPselected("LANLINK");
+							ExtentTestManager.endTest();
+							
+							logger= ExtentTestManager.startTest ("editExistingDevice_MSPselected_IntermediateEquipment");
+							OLO.get().EDITCPEdevicedforIntermediateEquipment_MSPselected("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"),map.get("EDIT_Intequip_device_vender_MSPselected"),
+									 map.get("EDIT_Intequip_devic_snmpro"), map.get("EDIT_Intequip_device_managementAddress"), map.get("EDIT_Intequip_device_Mepid"), map.get("EDIT_Intequip_device_country"),
+								    map.get("EDIT_Intequip_device_ExistingcitySelection"),map.get("EDIT_Intequip_device_newcitySelection"), map.get("EDIT_Intequip_device_Existingcity"), map.get("EDIT_Intequip_device_newcityName"), map.get("EDIT_Intequip_device_newcityCode")
+									,map.get("EDIT_Intequip_device_ExistingSiteSelection"), map.get("EDIT_Intequip_device_newSiteSelection"), map.get("EDIT_Intequip_device_ExistingSite"), map.get("EDIT_Intequip_device_newSiteName"), map.get("EDIT_Intequip_device_newSiteCode"),
+									map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"), 
+									map.get("TechToBeselected_underTechpopup_device"), map.get("EDIT_Intequip_VLANid_MSPselected"));
+							OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+							ExtentTestManager.endTest();
+							
+						}else if(existingDevice.equalsIgnoreCase("No")  && newDevice.equalsIgnoreCase("Yes")) {
+							ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_MSPselected_IntermediateEquipment");
+							OLO.get().addDevice_IntEquipment("LANLINK");
+							OLO.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
+							OLO.get().verifyFieldsandAddCPEdevicefortheserviceselected_IntEquip_MSPselected( "LANLINK",  map.get("device_intEquip_name"),
+									map.get("device_intEquip_vender_MSPSelected_Accedian"), map.get("device_intequip_snmpro"), map.get("device_intequip_managementAddress_textfield"),
+									map.get("device_intequip_Mepid"), map.get("device_intEquip_VLANid"),map.get("device_intequip_country"), map.get("device_intequip_existingcity_dropodwnvalue"),
+									map.get("device_intequip_site_dropdownvalue"), map.get("device_intequip_premisedropdownvalue"), map.get("device_intequip_newmanagementAddress_selection"), map.get("device_intequip_existingmanagementAddress_selection"), map.get("device_intequip_manageaddress_dropdownvalue"),
+									map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
+									map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
+									map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"));	
+							OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
+							ExtentTestManager.endTest();
+							
+							
+							logger= ExtentTestManager.startTest ("verifyEnteredValues_MSPselected_IntermediateEquipment");
+							OLO.get().verifyCPEdevicedataenteredForIntermediateEquipment_MSPselected( "LANLINK",  map.get("device_intEquip_name"), 
+									map.get("device_intEquip_vender_MSPSelected_Accedian"), map.get("device_intequip_snmpro"), map.get("device_intequip_managementAddress_textfield"), map.get("device_intequip_Mepid"),
+									 map.get("device_intequip_country"), map.get("device_intequip_existingcity_dropodwnvalue"),
+									map.get("device_intequip_site_dropdownvalue"), map.get("device_intequip_premisedropdownvalue"), map.get("device_intequip_newmanagementAddress_selection"), map.get("device_intequip_existingmanagementAddress_selection"), map.get("device_intequip_manageaddress_dropdownvalue"),
+									map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
+									map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
+									map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"),
+									map.get("TechToBeselected_underTechpopup_device"), map.get("device_intEquip_VLANid"));
+							ExtentTestManager.endTest();
+							
+							logger= ExtentTestManager.startTest ("editNewDevice_MSPselected_IntermediateEquipment");
+							OLO.get().EDITCPEdevicedforIntermediateEquipment_MSPselected("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"),map.get("EDIT_Intequip_device_vender_MSPselected"),
+									 map.get("EDIT_Intequip_devic_snmpro"), map.get("EDIT_Intequip_device_managementAddress"), map.get("EDIT_Intequip_device_Mepid"),
+								    map.get("EDIT_Intequip_device_country"),
+								    map.get("EDIT_Intequip_device_ExistingcitySelection"),map.get("EDIT_Intequip_device_newcitySelection"), map.get("EDIT_Intequip_device_Existingcity"), map.get("EDIT_Intequip_device_newcityName"), map.get("EDIT_Intequip_device_newcityCode")
+									,map.get("EDIT_Intequip_device_ExistingSiteSelection"), map.get("EDIT_Intequip_device_newSiteSelection"), map.get("EDIT_Intequip_device_ExistingSite"), map.get("EDIT_Intequip_device_newSiteName"), map.get("EDIT_Intequip_device_newSiteCode"),
+									map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"), 
+									map.get("TechToBeselected_underTechpopup_device"), map.get("EDIT_Intequip_VLANid_MSPselected"));
+							OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+							ExtentTestManager.endTest();							
+							}
+							}
+						else
+						{
+						if(speed.equals("1GigE")) {
+						  if(existingDevice.equalsIgnoreCase("Yes")  && newDevice.equalsIgnoreCase("No")) {
+							  ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_1G_IntermediateEquipment");
+							  OLO.get().addDevice_IntEquipment("LANLINK");
+							  OLO.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
+							  OLO.get().verifyFieldsandSelectCPEdevice_existingDevice_IntEquipment("LANLINK", map.get("intEquip_existingDeviceValue"));
+							  OLO.get().verifyValuesforCPEexistingdevice_1G_intEquipment("LANLINK");
+							  ExtentTestManager.endTest();
+							  
+							  logger= ExtentTestManager.startTest ("editExistingDevice_1G_IntermediateEquipment");
+							  OLO.get().EDITCPEdevicedforIntermediateEquipment_1G("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"), map.get("EDIT_Intequip_device_vender_1G_Overtue"),map.get("EDIT_Intequip_device_vender_1G_Accedian"),
+										map.get("EDIT_Intequip_device_vender_10g_Accedian"), map.get("EDIT_Intequip_devic_snmpro"), map.get("EDIT_Intequip_device_managementAddress"), map.get("EDIT_Intequip_device_Mepid"),
+										map.get("EDIT_Intequip_device_poweralarm_1G_Overture"),map.get("EDIT_Intequip_device_poweralarm_1G_Accedian"), map.get("EDIT_Intequip_device_Mediaselection"), map.get("EDIT_Intequip_device_Macaddress"),	map.get("EDIT_Intequip_device_serialNumber"), map.get("EDIT_Intequip_device_hexaSerialnumber"),
+										map.get("EDIT_Intequip_device_linkLostForwarding"), map.get("EDIT_Intequip_device_country"), 
+										map.get("EDIT_Intequip_device_ExistingcitySelection"),map.get("EDIT_Intequip_device_newcitySelection"), map.get("EDIT_Intequip_device_Existingcity"), map.get("EDIT_Intequip_device_newcityName"), map.get("EDIT_Intequip_device_newcityCode")
+										,map.get("EDIT_Intequip_device_ExistingSiteSelection"), map.get("EDIT_Intequip_device_newSiteSelection"), map.get("EDIT_Intequip_device_ExistingSite"), map.get("EDIT_Intequip_device_newSiteName"), map.get("EDIT_Intequip_device_newSiteCode"),
+										map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"), 
+										map.get("TechToBeselected_underTechpopup_device"), map.get("technology"));
+							  OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+							  ExtentTestManager.endTest();
+						  }else if(existingDevice.equalsIgnoreCase("No")  && newDevice.equalsIgnoreCase("Yes")) {
+							    ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_1G_IntermediateEqiupment");
+							    OLO.get().addDevice_IntEquipment("LANLINK");
+								OLO.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
+								OLO.get().verifyFieldsandAddCPEdevicefortheserviceselected_IntEquip_1G( "LANLINK",  map.get("device_intEquip_name"), map.get("device_intequip_vender_1G_Overture"),
+										map.get("device_intequip_vender_1G_Accedian"), map.get("device_intequip_snmpro"), map.get("device_intequip_managementAddress_textfield"), map.get("device_intequip_Mepid"),
+										map.get("device_intequip_poweralarm_1G_overture"), map.get("device_intequip_poweralarm_1G_Accedian"), map.get("device_intequip_Mediaselection_Overture"),  map.get("device_intequip_Macaddress_Overture"),  map.get("device_intequip_serialNumber_Accedian"),
+										map.get("device_intequip_hexaSerialnumber"),  map.get("device_intequip_linkLostForwarding"), map.get("device_intequip_country"), map.get("device_intequip_existingcity_dropodwnvalue"),
+										map.get("device_intequip_site_dropdownvalue"), map.get("device_intequip_premisedropdownvalue"), map.get("device_intequip_newmanagementAddress_selection"), map.get("device_intequip_existingmanagementAddress_selection"), map.get("device_intequip_manageaddress_dropdownvalue"),
+										map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
+										map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
+										map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"),
+										map.get("technology"));	
+								OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
+								ExtentTestManager.endTest();
+								
+								logger= ExtentTestManager.startTest ("verifyEnteredValues_1G_IntermediateEquipment");
+								OLO.get().verifyCPEdevicedataenteredForIntermediateEquipment_1G( "LANLINK",  map.get("device_intEquip_name"), map.get("device_intequip_vender_1G_Overture"),
+										map.get("device_intequip_vender_1G_Accedian"), map.get("device_intequip_snmpro"), map.get("device_intequip_managementAddress_textfield"), map.get("device_intequip_Mepid"),
+										map.get("device_intequip_poweralarm_1G_overture"), map.get("device_intequip_poweralarm_1G_Accedian"), map.get("device_intequip_Mediaselection_Overture"),  map.get("device_intequip_Macaddress_Overture"),  map.get("device_intequip_serialNumber_Accedian"),
+										map.get("device_intequip_hexaSerialnumber"),  map.get("device_intequip_linkLostForwarding"), map.get("device_intequip_country"), map.get("device_intequip_existingcity_dropodwnvalue"),
+										map.get("device_intequip_site_dropdownvalue"), map.get("device_intequip_premisedropdownvalue"), map.get("device_intequip_newmanagementAddress_selection"), map.get("device_intequip_existingmanagementAddress_selection"), map.get("device_intequip_manageaddress_dropdownvalue"),
+										map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
+										map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
+										map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"));
+								ExtentTestManager.endTest();
+								
+								logger= ExtentTestManager.startTest ("editNewDevice_1G_IntermediateEquipment");
+								OLO.get().EDITCPEdevicedforIntermediateEquipment_1G("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"), map.get("EDIT_Intequip_device_vender_1G_Overtue"),map.get("EDIT_Intequip_device_vender_1G_Accedian"),
+										map.get("EDIT_Intequip_device_vender_10g_Accedian"), map.get("EDIT_Intequip_devic_snmpro"), map.get("EDIT_Intequip_device_managementAddress"), map.get("EDIT_Intequip_device_Mepid"),
+										map.get("EDIT_Intequip_device_poweralarm_1G_Overture"),map.get("EDIT_Intequip_device_poweralarm_1G_Accedian"), map.get("EDIT_Intequip_device_Mediaselection"), map.get("EDIT_Intequip_device_Macaddress"),	map.get("EDIT_Intequip_device_serialNumber"), map.get("EDIT_Intequip_device_hexaSerialnumber"),
+										map.get("EDIT_Intequip_device_linkLostForwarding"), map.get("EDIT_Intequip_device_country"), 
+										map.get("EDIT_Intequip_device_ExistingcitySelection"),map.get("EDIT_Intequip_device_newcitySelection"), map.get("EDIT_Intequip_device_Existingcity"), map.get("EDIT_Intequip_device_newcityName"), map.get("EDIT_Intequip_device_newcityCode")
+										,map.get("EDIT_Intequip_device_ExistingSiteSelection"), map.get("EDIT_Intequip_device_newSiteSelection"), map.get("EDIT_Intequip_device_ExistingSite"), map.get("EDIT_Intequip_device_newSiteName"), map.get("EDIT_Intequip_device_newSiteCode"),
+										map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"), 
+										map.get("TechToBeselected_underTechpopup_device"), map.get("technology"));
+								OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+								ExtentTestManager.endTest();
+						  		}
+							}
+						else if(speed.equals("10GigE")) {
+							if(existingDevice.equalsIgnoreCase("Yes")  && newDevice.equalsIgnoreCase("No")) {
+								ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_10G_IntermediateEquipment" );
+								OLO.get().addDevice_IntEquipment("LANLINK");
+								OLO.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
+								OLO.get().verifyFieldsandSelectCPEdevice_existingDevice_IntEquipment("LANLINK", map.get("intEquip_existingDeviceValue"));
+								OLO.get().verifyValuesforCPEexistingdevice_10G_intEquipment("LANLINK");
+								ExtentTestManager.endTest();
+
+								logger= ExtentTestManager.startTest ("editExistingDevice_10G_IntermediateEquipment");
+								OLO.get().EDITCPEdevice_IntermediateEquipment_10G("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"), map.get("EDIT_Intequip_device_vender_10g_Accedian"), map.get("EDIT_Intequip_devic_snmpro"), 
+										   map.get("EDIT_Intequip_device_managementAddress"), map.get("EDIT_Intequip_device_Mepid"),
+											map.get("EDIT_Intequip_device_poweralarm_10G_Accedian"), map.get("EDIT_Intequip_device_Mediaselection"), map.get("EDIT_Intequip_device_Macaddress"),	map.get("EDIT_Intequip_device_serialNumber"), map.get("EDIT_Intequip_device_hexaSerialnumber"),
+											map.get("EDIT_Intequip_device_linkLostForwarding"), map.get("EDIT_Intequip_device_country"), 
+											map.get("EDIT_Intequip_device_ExistingcitySelection"),map.get("EDIT_Intequip_device_newcitySelection"), map.get("EDIT_Intequip_device_Existingcity"), map.get("EDIT_Intequip_device_newcityName"), map.get("EDIT_Intequip_device_newcityCode")
+											,map.get("EDIT_Intequip_device_ExistingSiteSelection"), map.get("EDIT_Intequip_device_newSiteSelection"), map.get("EDIT_Intequip_device_ExistingSite"), map.get("EDIT_Intequip_device_newSiteName"), map.get("EDIT_Intequip_device_newSiteCode"),
+											map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"),
+											map.get("TechToBeselected_underTechpopup_device"));
+								OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+								ExtentTestManager.endTest();
+								
+							}else if(existingDevice.equalsIgnoreCase("No")  && newDevice.equalsIgnoreCase("Yes")) {
+								ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_10G_IntermediateEquipment");
+								OLO.get().addDevice_IntEquipment("LANLINK");
+								OLO.get().selectTechnology("LANLINK", map.get("TechToBeselected_underTechpopup_device"));
+								OLO.get().verifyFieldsandAddCPEdevicefortheserviceselected_IntEquip_10G( "LANLINK",  map.get("device_intEquip_name"), map.get("device_intequip_vender_10G_Accedian"),
+										map.get("device_intequip_snmpro"), map.get("device_intequip_managementAddress_textfield"), map.get("device_intequip_Mepid"),
+										map.get("device_intequip_poweralarm_10G_Accedian"),map.get("device_intequip_Mediaselection_Overture"),  map.get("device_intequip_Macaddress_Overture"),  map.get("device_intequip_serialNumber_Accedian"),
+										map.get("device_intequip_hexaSerialnumber"),  map.get("device_intequip_linkLostForwarding"), map.get("device_intequip_country"), map.get("device_intequip_existingcity_dropodwnvalue"),
+										map.get("device_intequip_site_dropdownvalue"), map.get("device_intequip_premisedropdownvalue"), map.get("device_intequip_newmanagementAddress_selection"), map.get("device_intequip_existingmanagementAddress_selection"), map.get("device_intequip_manageaddress_dropdownvalue"),
+										map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
+										map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
+										map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"));	
+								OLO.get().verifysuccessmessage("LANLINK", "Device successfully created");
+								ExtentTestManager.endTest();
+								
+								logger= ExtentTestManager.startTest ("verifyEnteredValues_10G_IntermediateEquipment");
+								OLO.get().verifyCPEdevicedataenteredForIntermediateEquipment_10G( "LANLINK",  map.get("device_intEquip_name"), map.get("device_intequip_vender_10G_Accedian"),
+										map.get("device_intequip_snmpro"), map.get("device_intequip_managementAddress_textfield"), map.get("device_intequip_Mepid"),
+										map.get("device_intequip_poweralarm_10G_Accedian"),map.get("device_intequip_Mediaselection_Overture"),  map.get("device_intequip_Macaddress_Overture"),  map.get("device_intequip_serialNumber_Accedian"),
+										map.get("device_intequip_hexaSerialnumber"),  map.get("device_intequip_linkLostForwarding"), map.get("device_intequip_country"), map.get("device_intequip_existingcity_dropodwnvalue"),
+										map.get("device_intequip_site_dropdownvalue"), map.get("device_intequip_premisedropdownvalue"), map.get("device_intequip_newmanagementAddress_selection"), map.get("device_intequip_existingmanagementAddress_selection"), map.get("device_intequip_manageaddress_dropdownvalue"),
+										map.get("device_intequip_existingcityselectionmode"), map.get("device_intequip_newcityselectionmode"), map.get("device_intequip_cityname"), map.get("device_intequip_citycode"),
+										map.get("device_intequip_existingsiteselectionmode"), map.get("device_intequip_newsiteselectionmode"), map.get("device_intequip_sitename"), map.get("device_intequip_sitecode"),
+										map.get("device_intequip_existingpremiseselectionmode"), map.get("device_intequip_newpremiseselectionmode"), map.get("deivce_intequip_premisename"), map.get("device_intequip_premisecode"), map.get("TechToBeselected_underTechpopup_device"));
+								ExtentTestManager.endTest();
+								
+								logger= ExtentTestManager.startTest ("editNewDevice_10G_IntermediateEquipment");
+								OLO.get().EDITCPEdevice_IntermediateEquipment_10G("LANLINK", map.get("EDIT_Intequip_cpe_deviecname"), map.get("EDIT_Intequip_device_vender_10g_Accedian"), map.get("EDIT_Intequip_devic_snmpro"), 
+									   map.get("EDIT_Intequip_device_managementAddress"), map.get("EDIT_Intequip_device_Mepid"),
+										map.get("EDIT_Intequip_device_poweralarm_10G_Accedian"), map.get("EDIT_Intequip_device_Mediaselection"), map.get("EDIT_Intequip_device_Macaddress"),	map.get("EDIT_Intequip_device_serialNumber"), map.get("EDIT_Intequip_device_hexaSerialnumber"),
+										map.get("EDIT_Intequip_device_linkLostForwarding"), map.get("EDIT_Intequip_device_country"),
+										map.get("EDIT_Intequip_device_ExistingcitySelection"),map.get("EDIT_Intequip_device_newcitySelection"), map.get("EDIT_Intequip_device_Existingcity"), map.get("EDIT_Intequip_device_newcityName"), map.get("EDIT_Intequip_device_newcityCode")
+										,map.get("EDIT_Intequip_device_ExistingSiteSelection"), map.get("EDIT_Intequip_device_newSiteSelection"), map.get("EDIT_Intequip_device_ExistingSite"), map.get("EDIT_Intequip_device_newSiteName"), map.get("EDIT_Intequip_device_newSiteCode"),
+										map.get("EDIT_Intequip_device_existingPremiseSelection"), map.get("EDIT_Intequip_device_newPremiseSelection"), map.get("EDIT_Intequip_device_existingPremise"), map.get("EDIT_Intequip_device_newPremiseName"), map.get("EDIT_Intequip_device_newPremiseCode"),
+										map.get("TechToBeselected_underTechpopup_device"));
+								OLO.get().verifysuccessmessage("LANLINK", "Device successfully updated");
+								ExtentTestManager.endTest();
+								}
+							}
+						}
+					
+						String devicename_intEquip=null;
+						String manageAdres_intEquip=null;
+						//Get Device Name	
+						if(existingDevice.equalsIgnoreCase("Yes")  && newDevice.equalsIgnoreCase("No")) {
+							devicename_intEquip=map.get("intEquip_existingDeviceValue");
+						}
+						else if(existingDevice.equalsIgnoreCase("No")  && newDevice.equalsIgnoreCase("Yes")) {
+							if(map.get("EDIT_Intequip_cpe_deviecname").equalsIgnoreCase("null")) {
+								devicename_intEquip=map.get("device_intEquip_name");
+							}
+							else if(!map.get("EDIT_Intequip_cpe_deviecname").equalsIgnoreCase("null")) {
+								devicename_intEquip=map.get("EDIT_Intequip_cpe_deviecname");
+							}
+						}
+						
+							//Navigate to view device page
+							OLO.get().IntEquip_clickonviewButton("LANLINK", devicename_intEquip);
+						
+							//devicename
+							String devicename_intEquipActual=null;
+							devicename_intEquip=OLO.get().fetchdevicename_InviewPage("LANLINK");
+							if(devicename_intEquip.contains("...")) {
+								devicename_intEquipActual = devicename_intEquip.substring(0, 10);
+							}else {
+								devicename_intEquipActual=devicename_intEquip;
+							}
+							
+							devicename_IntEquipment=devicename_intEquipActual;
+							
+							manageAdres_intEquip=OLO.get().fetchManagementAddressValue_InviewPage("LANLINK");	//Management Address
+							String vendorModel_intEquip=OLO.get().fetchVendorModelValue("LANLINK");		//Vendor/model	
+							String country_intEquip=OLO.get().fetchCountryValue_InviewPage("LANLINK");	 //Country
+						
+							logger = ExtentTestManager.startTest("testStatusTable_IntEquip");
+							OLO.get().testStatus("LANLINK");
+							ExtentTestManager.endTest();
+							
+							//Fetch device Interface
+							logger = ExtentTestManager.startTest("FetchDeviceInterface");
+							boolean link=OLO.get().fetchDeviceInterface_viewdevicepage("LANLINK", devicename_intEquip);
+							Thread.sleep(1000);
+							ExtentTestManager.endTest();
+			//				if(link) {
+			//					manageNetwork.get().verifyFetchInterface("LANLINK", devicename_intEquip, map.get("InServiceStatus"),
+			//							map.get("InMaintenanceStatus"), vendorModel_intEquip, manageAdres, "JdhquA5", country_intEquip, map.get("interfacename"));
+			//				}
+							
+							
+						logger= ExtentTestManager.startTest ("routerTools_intermediateEquipment");
+								OLO.get().routerPanel("LANLINK", map.get("CommandIPv4_Routertool"), manageAdres_intEquip);	
+								ExtentTestManager.endTest();
+								
+								
+						logger= ExtentTestManager.startTest ("selectinterface_IntermediateEquipment");
+							//Site Order Number	
+								String siteOrderNumber = null;
+								if (map.get("vpnTopology").equals("Point-to-Point")) {
+									if (map.get("Modularmsp").equalsIgnoreCase("Yes")) {
+										siteOrderNumber = map.get("siteOrderNumber_p2p_mspSelected");
+									} else {
+										if(map.get("Interfacespeed").equalsIgnoreCase("1GigE")) {
+											siteOrderNumber=map.get("siteOrderNumber_PointToPoint");
+										}
+										else if(map.get("Interfacespeed").equalsIgnoreCase("10GigE")) {
+											siteOrderNumber=map.get("siteOrderNumber_10G_PointToPoint");
+										}
+									}
+								} else {
+									siteOrderNumber = map.get("Siteordernumber");
+								}
+										
+								DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderNumber);
+								DirectFiber.get().selectInterfacelinkforIntermediateEqipment("LANLINK", devicename_IntEquipment);
+								if(map.get("RemoveInterface_Selection").equalsIgnoreCase("yes")) {
+									DirectFiber.get().SelectInterfacetoremovefromservice("LANLINK", map.get("Interfaceinservice_Interfacenumber"));
+								}else {
+									System.out.println("interfaces are not removed");
+								}
+								if(map.get("AddInterface_Selection").equalsIgnoreCase("yes")) {
+									DirectFiber.get().SelectInterfacetoaddwithservcie("LANLINK", map.get("Interfacetoselect_Interfacenumber"));
+								}
+								ExtentTestManager.endTest();
+								
+								
+						logger= ExtentTestManager.startTest ("showInterace_IntermediateEquipment");
+								DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderNumber);
+								DirectFiber.get().SelectShowInterfacelink_IntermediateequipmentAndVerifyEditInterfacePage("LANLINK", map.get("Interfacename_forEditInterface"),  devicename_IntEquipment );
+								DirectFiber.get().EnterdataForEditInterfaceforShowInterfacelinkunderIntermediateEquipment("LANLINK",  map.get("Interfacename_forEditInterface"), map.get("editInterfacepage_circuitId"), map.get("editInterfacepage_BearerType"),
+										map.get("editInterfacepage_BearerSpeed"), map.get("editInterfacepage_bandwidth"), map.get("editInterfacepage_Vlanid"), map.get("editInterfacepage_vlantype"));
+								DirectFiber.get().hideInterface_IntEquipment("LANLINK");
+								ExtentTestManager.endTest();
+							
+								
+						logger= ExtentTestManager.startTest ("deletDeviceFromService_IntermediateEquipment");
+								DirectFiber.get().deleteDeviceFromServiceForIntermediateequipment("LANLINK",  devicename_IntEquipment);
+								DirectFiber.get().successMessage_deleteFromService("LANLINK");
+								ExtentTestManager.endTest();
+						}
+							}else {
+								ExtentTestManager.getTest().log(LogStatus.PASS, " 'Intermediate Equipment' panel is not displaying under 'view site order' page");
+							}
+
+
+				logger= ExtentTestManager.startTest ("PAMTest");
+						String ServiceID = null;
+						if(map.get("Edit_serviceNumber").equalsIgnoreCase("null")) {
+							ServiceID=map.get("serviceNumber");
+						}else {
+							ServiceID=map.get("Edit_serviceNumber");
+						}
+						DirectFiber.get().returnbacktoviewsiteorderpage("LANLINK");
+						DirectFiber.get().selectRowForsiteorder("LANLINK", map.get("Siteordernumber"), map.get("siteOrderNumber_PointToPoint"), 
+								map.get("vpnTopology"), map.get("Interfacespeed"), map.get("siteOrderNumber_10G_PointToPoint"));
+						DirectFiber.get().pamTest("LANLINK", ServiceID);
+						ExtentTestManager.endTest();
+						
+						
+				logger= ExtentTestManager.startTest ("deleteSiteOrder");
+						DirectFiber.get().selectRowForsiteorder("LANLINK", map.get("Siteordernumber"), map.get("siteOrderNumber_PointToPoint"), 
+								map.get("vpnTopology"), map.get("Interfacespeed"), map.get("siteOrderNumber_10G_PointToPoint"));
+						DirectFiber.get().deleteSiteOrder("LANLINK");
+						ExtentTestManager.endTest();
+				
+				}
 			
 					String ServiceID = null;
 					if(map.get("Edit_serviceNumber").equalsIgnoreCase("null")) {

@@ -79,7 +79,6 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			Log.info("Mouse hovered on Manage Colt Network ");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on Manage Colt Network");
 			
-			Thread.sleep(2000);
 			boolean isDisplayed = getwebelement(xml.getlocator("//locators/" + application + "/ManageIms")).isDisplayed();
 			sa.assertTrue(isDisplayed,"Manage IMS Number Translation is not displayed ");
 			
@@ -333,10 +332,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				
 				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Add number Translation field" );
 				
-				safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/AddnumberTranslation")));
-				Log.info("Clicked on Add Number Translation Link");
-				Log.info("Clicked on Add Number Translation Link");
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Add Number Translation Link");
+				click_commonMethod(application, "Add Number Translation", "AddnumberTranslation", xml);
 				
 			//Number to translate	
 				compareText(application, "Number to Translate", "Numbertranslate","Number to Translate", xml);
@@ -346,8 +342,6 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				
 			//Prefix	
 				compareText(application, "Prefix", "Prefix", "Prefix", xml);
-
-				
 				
 				WebElement ActCountrycode = getwebelement(xml.getlocator("//locators/" +application+ "/ActCountrycode"));
 				if (ActCountrycode.getText().equals(Countrylist))
@@ -435,12 +429,16 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			//OK button	
 				compareText(application, "OK", "OkbtnPostcode","OK", xml);
 				
+				click_commonMethod(application, "X", "xbutton", xml);
+				
 		}
 			
 			public void filladdtranslation (String application ,String Countrylist ,String TranslateNumber ,String TranslatedNumber , 
 					String PrefixNumber ,String NatureAddress, String CarrierNo, String Prefix, String range, String sequence, String countryName) throws Exception
 			
 			{
+				
+				click_commonMethod(application, "Add Number Translation", "AddnumberTranslation", xml);
 				
 			//Number to translate	
 				addtextFields_commonMethod("ManageColt", "Number to Translate", "Numbertotranslate_Text", TranslateNumber, xml);
@@ -465,7 +463,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 					
 					addDropdownValues_commonMethod(application, "Carrier", "carrierDropdown", CarrierNo, xml);
 					
-					addCheckbox_commonMethod(application, "ddiPrefix_checkbox", "DDI Prefix", Prefix, "no", xml);
+					addCheckbox_commonMethod(application, "ddiPrefix_checkbox", "DDI Prefix", Prefix, "No", xml);
 
 				}
 				else if ((Countrylist.equals("BR")))  {
@@ -474,7 +472,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 					
 					addDropdownValues_commonMethod(application, "Nature of Address", "natureOfAddressDropdown", NatureAddress, xml);
 				
-					addCheckbox_commonMethod(application, "RangeFlag", "Range", range, "no", xml);
+					addCheckbox_commonMethod(application, "RangeFlag", "Range", range, "No", xml);
 				
 					if(range.equalsIgnoreCase("yes")) {
 						
@@ -490,7 +488,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 					
 					addDropdownValues_commonMethod(application, "Nature of Address", "natureOfAddressDropdown", NatureAddress, xml);
 				
-					addCheckbox_commonMethod(application, "RangeFlag", "Range", range, "no", xml);
+					addCheckbox_commonMethod(application, "RangeFlag", "Range", range, "No", xml);
 				
 					if(range.equalsIgnoreCase("yes")) {
 						
@@ -508,14 +506,27 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 
 
 					
-			//Verifying list of values under 'Action' dropdown	
-					scrolltoend();
+			//Verifying list of values under 'Action' dropdown
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Verify links under 'Action' dropdown");
+				Log.info( "Verify lins under 'Action' dropdown");
+					
+				//Enter 'Number To Translate' value in search text box
+				scrollToTop();
+		 		addtextFields_commonMethod(application, "Search", "searchField_IMSNT", TranslateNumber, xml);
+
+		 		waitForpageload();
+		 		waitforPagetobeenable();
+			//click on Search button	
+				click_commonMethod(application, "Search", "Searchbtn", xml);
+				Thread.sleep(2000);
+				
+					WebElement addIMSNTLink=getwebelement(xml.getlocator("//locators/" + application + "/AddnumberTranslation"));
+					scrolltoview(addIMSNTLink);
+					Thread.sleep(1000);
 					String[] ExpectedActiondrop = {"View","Edit","Delete","Synchronize"};
 					Log.info("Action DropDown values " +ExpectedActiondrop);
 					
-					safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/PostcodeAction")));
-					Log.info("Clicked on Action Dropdown");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Action Dropdown" );
+					click_commonMethod(application, "Action", "PostcodeAction", xml);
 					
 					List<WebElement> ActualActionDD =getwebelements(xml.getlocator("//locators/" +application+ "/ActionDD"));
 
@@ -547,11 +558,10 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			
 			{
 				//Verifying the values in View
-				
 				waitForpageload();
 				waitforPagetobeenable();
 				
-				Thread.sleep(5000);
+				Thread.sleep(1000);
 				String prefixValue=null;
 				
 			//Country field
@@ -559,14 +569,11 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				
 			//Prefix checkbox	
 				if(prefixCheckbox.equalsIgnoreCase("yes")) {
-					
 					prefixValue="true";
-					
 				}else if(prefixCheckbox.equalsIgnoreCase("no")) {
-					
 					prefixValue="false";
-					
 				}
+				
 				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying View operation" );
 				Log.info("Verifying View operation ");
 				
@@ -800,7 +807,6 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			//Synchronize operation
 				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Synchronize operation and synchronize message" );
 				Log.info("Verifying Synchronize operation and synchronize message");
-
 
 				selectAddedNumberToTranslateInTable(application, numberToTranslate);
 				
@@ -1069,6 +1075,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			 	
 		public void selectAddedNumberToTranslateInTable(String application, String numberToTranslate) throws Exception {
 					
+			scrollToTop();
 			 	//Enter 'Number To Translate' value in search text box	
 			 		edittextFields_commonMethod(application, "Search", "searchField_IMSNT", numberToTranslate, xml);
 
@@ -1080,16 +1087,17 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				//click on Search button	
 					click_commonMethod(application, "Search", "Searchbtn", xml);
 					Thread.sleep(2000);
-					
-					
+//					
 					WebElement addIMSNTLink=getwebelement(xml.getlocator("//locators/" + application + "/AddnumberTranslation"));
 					scrolltoview(addIMSNTLink);
 					Thread.sleep(1000);
 					
+//					click_commonMethod(application, "'number To tanslate' column filter", "numberToTranslateColumn_filter", xml);
+//					addtextFields_commonMethod(application, "filter text box", "numberToTranslate_textField", numberToTranslate, xml);
+					
 					 	safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/ImsntCheckbox").replace("value", numberToTranslate)));
 						Log.info("Clicked on checkbox");
-						Log.info("Clicked on checkbox");
-						ExtentTestManager.getTest().log(LogStatus.PASS, "selected Number To Translate record in Table");
+						ExtentTestManager.getTest().log(LogStatus.PASS, numberToTranslate + " Number selected under Table record");
 						Thread.sleep(3000);
 						
 						click_commonMethod(application, "Action", "PostcodeAction", xml);

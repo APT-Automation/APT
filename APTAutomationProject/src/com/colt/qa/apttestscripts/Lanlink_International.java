@@ -34,20 +34,20 @@ public class Lanlink_International extends DriverTestcase{
 				
 				if(newCustomerName.equalsIgnoreCase("yes") && existingCustomer.equalsIgnoreCase("no")) {
 						
-						logger= ExtentTestManager.startTest ("CreateNewCustomer_Lanlink_OLO");
+						logger= ExtentTestManager.startTest ("CreateNewCustomer_Lanlink_International");
 						International.get().CreateCustomer("apt", map.get("newCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), 
 								map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), 
 								map.get("Fax"));
 						CustomerName1=map.get("newCustomer");
 						ExtentTestManager.endTest();
 						
-						logger= ExtentTestManager.startTest ("selectExistingCustomer_wholesaleSIPTrunking"); 
+						logger= ExtentTestManager.startTest ("selectExistingCustomer_International"); 
 						International.get().selectCustomertocreateOrder("apt",map.get("newCustomer"));
 						ExtentTestManager.endTest();
 						
 				}
 				else if(newCustomerName.equalsIgnoreCase("no") && existingCustomer.equalsIgnoreCase("Yes")) {
-						logger= ExtentTestManager.startTest ("selectExistingCustomer_Lanlink_OLO"); 
+						logger= ExtentTestManager.startTest ("selectExistingCustomer_Lanlink_International"); 
 						International.get().selectCustomertocreateOrder("apt",map.get("existingCustomer"));
 						CustomerName1 = map.get("existingCustomer");
 						ExtentTestManager.endTest();
@@ -123,25 +123,27 @@ public class Lanlink_International extends DriverTestcase{
 								map.get("CircuitType"), map.get("EditService_EVPNtechnology"), map.get("EditService_HCoSPerformanceReporting"));
 					 ExtentTestManager.endTest();
 					 
-//			logger= ExtentTestManager.startTest ("successmessageforServiceUpdation");
-//					 International.get().verifysuccessmessage("LANLINK", "Service successfully updated.");
-//					 ExtentTestManager.endTest();
-//			
-//			logger= ExtentTestManager.startTest ("synchronizeService");
-//					International.get().syncservices("LANLINK");
-//					ExtentTestManager.endTest();
-//					
-//			logger= ExtentTestManager.startTest ("showNewInfovistaReport");
-//					International.get().shownewInfovista("LANLINK");
-//					ExtentTestManager.endTest();
-//					
-//			logger= ExtentTestManager.startTest ("ManageSubnets");
-//					International.get().manageSubnets("LANLINK");
-//					ExtentTestManager.endTest();
-//		
-//			logger= ExtentTestManager.startTest ("Dump");
-//					International.get().dump_viewServicepage("LANLINK");		
-//					ExtentTestManager.endTest();
+			logger= ExtentTestManager.startTest ("successmessageforServiceUpdation");
+					 International.get().verifysuccessmessage("LANLINK", "Service successfully updated.");
+					 ExtentTestManager.endTest();
+			
+					 String proactiveMonitorvalue = International.get().fetchProActiveMonitoringValue("LANLINK");
+					 
+			logger= ExtentTestManager.startTest ("synchronizeService");
+					International.get().syncservices("LANLINK");
+					ExtentTestManager.endTest();
+					
+			logger= ExtentTestManager.startTest ("showNewInfovistaReport");
+					International.get().shownewInfovista("LANLINK");
+					ExtentTestManager.endTest();
+					
+			logger= ExtentTestManager.startTest ("ManageSubnets");
+					International.get().manageSubnets("LANLINK");
+					ExtentTestManager.endTest();
+		
+			logger= ExtentTestManager.startTest ("Dump");
+					International.get().dump_viewServicepage("LANLINK");		
+					ExtentTestManager.endTest();
 					
 			logger= ExtentTestManager.startTest ("verifyAddSiteOrderFields_LANLINK");
 					String vpnTopology = map.get("vpnTopology");
@@ -161,6 +163,7 @@ public class Lanlink_International extends DriverTestcase{
 						International.get().verifyAddsiteorderFields("LANLINK", map.get("Interfacespeed"), map.get("vpnTopology"), map.get("CircuitType"),
 								 map.get("SiteOrder_Offnet"),map.get("SiteOrder_EPNoffnet"), map.get("SiteOrder_EPNEOSDH"), map.get("Modularmsp"),
 								 map.get("AggregateTraffic"), map.get("EditService_AggregateTraffic"));
+						ExtentTestManager.endTest();
 						
 				ExtentTestManager.getTest().log(LogStatus.INFO,"create Site Order'");		
 					logger= ExtentTestManager.startTest ("EnterValueInAddSiteOrderFields_LANLINK");	
@@ -387,7 +390,8 @@ public class Lanlink_International extends DriverTestcase{
 								ExtentTestManager.getTest().log(LogStatus.INFO, "addNewDevice_1G_Equipment");
 								International.get().verifyFieldsandAddCPEdevicefortheserviceselected_1G("LANLINK",map.get("Interfacespeed"), map.get("devicename_equip"), map.get("cpe_vender_1G"),  map.get("cpe_snmpro"),  map.get("cpe_managementAddress"), map.get("cpe_Mepid"),
 										 map.get("cpe_poweralarm_1G"), map.get("cpe_Mediaselection"),  map.get("cpe_Macaddress"),  map.get("cpe_serialNumber"),
-										 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"));
+										 map.get("cpe_hexaSerialnumber"),  map.get("cpe_linkLostForwarding"),map.get("cpe_newmanagementAddressSelection"), 
+										 map.get("cpe_existingmanagementAddressSelection"), map.get("cpe_manageaddressdropdownvalue"), map.get("technology"), map.get("vpnTopology"));
 								International.get().verifysuccessmessage("LANLINK", "Device successfully created");
 								ExtentTestManager.endTest();
 								
@@ -547,13 +551,19 @@ public class Lanlink_International extends DriverTestcase{
 							ExtentTestManager.endTest();
 							
 
-						logger= ExtentTestManager.startTest ("AMNvalidator_Equipment");
-							String csrName=DirectFiber.get().fetchCSRsiteName("LANLINK");
-							String cityName=DirectFiber.get().fetchDeviceCityName("LANLINK");
-							String countryName=DirectFiber.get().fetchSiteOrderCountryName("LANLINK");
-							DirectFiber.get().clickOnAMNvalidatorLink("LANLINK");
-							DirectFiber.get().AMNvalidator("LANLINK",siteOrderValue , deviceName_Equip, csrName, cityName, countryName);
-							ExtentTestManager.endTest();
+							logger= ExtentTestManager.startTest ("AMNvalidator_Equipment");
+							 if(proactiveMonitorvalue.equalsIgnoreCase("Yes")) {
+								 DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderNumber);
+									String csrName=DirectFiber.get().fetchCSRsiteName("LANLINK");
+									String cityName=DirectFiber.get().fetchDeviceCityName("LANLINK");
+									String countryName=DirectFiber.get().fetchSiteOrderCountryName("LANLINK");
+									DirectFiber.get().clickOnAMNvalidatorLink("LANLINK");
+									DirectFiber.get().AMNvalidator("LANLINK",siteOrderNumber , deviceName_Equip, csrName, cityName, countryName);
+									ExtentTestManager.endTest();
+							 }else {
+								 ExtentTestManager.getTest().log(LogStatus.INFO, "'AMN Validator' link do not display, as 'proactive Monitoring' checkbox is not selected ");
+								 ExtentTestManager.endTest();
+							 }
 							
 						logger= ExtentTestManager.startTest ("deleteDevice_Equipment");
 							DirectFiber.get().clickOnBreadCrump("LANLINK", siteOrderValue);
@@ -859,6 +869,7 @@ public class Lanlink_International extends DriverTestcase{
 							DirectFiber.get().successMessage_deleteFromService("LANLINK");
 							ExtentTestManager.endTest();
 						}
+						ExtentTestManager.endTest();
 							}else {
 								ExtentTestManager.getTest().log(LogStatus.PASS, " 'Intermediate Equipment' panel is not displaying under 'view site order' page");
 								ExtentTestManager.endTest();
@@ -897,16 +908,9 @@ public class Lanlink_International extends DriverTestcase{
 						DirectFiber.get().clickOnBreadCrump("LANLINK", ServiceID);
 						DirectFiber.get().deleteService("LANLINK");
 						ExtentTestManager.endTest();
-			
-			
 		}
-	
 	}
 
-					
-	
-		
-	
 	
 		
 //		@Test(dataProviderClass = APT_DataReader_SS.class, dataProvider = "DataReader_createService_International", priority=12)

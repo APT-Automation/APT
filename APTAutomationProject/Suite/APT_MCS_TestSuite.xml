@@ -1,22 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite thread-count="1" verbose="1" name="APT_MCS Test Suite" >
-	<test name="APT_MCS" preserve-order="true">
+<suite name="APT Test Suite" thread-count="5" data-provider-thread-count="1" verbose="4"  parallel="tests" >
+
+	<listeners>
+	  <listener class-name="com.colt.qa.listeners.TestListener"/>
+	   <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+    
+    
+	<test name="APT Test1">
 		<classes>
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter" />
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessSwitch" />
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_CoreRouter" />
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DCNDevice" />
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DSLAM" />
 			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Firewall" />
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Keyserver" />
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_LoadBalancer" />
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MDFFirewall" />
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MiniDSLAM" />
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Prizmnet" />
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_TrafficAggregator" />
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VoiceGateway" />
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VOIPAccessDASSwitch" />
 		</classes>
-	</test>
-</suite>
+	</test>	<!-- Test -->
+	
+	<test name="APT Test2">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Prizmnet" />
+		</classes>
+	</test>	<!-- Test -->
+	
+	
+</suite>	 <!-- Suite -->
+

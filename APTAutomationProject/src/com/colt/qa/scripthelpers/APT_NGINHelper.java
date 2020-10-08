@@ -1208,8 +1208,7 @@ public class APT_NGINHelper extends DriverHelper {
 
 	public void verifyservicepanelInformationinviewservicepage(String application, String sid, String servicetype, String Remarks) throws InterruptedException, DocumentException, IOException {
 
-		ScrolltoElement(application, "servicepanel_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "orderpanelheader", xml);
 		//compareText(application, "Service panel Header", "servicepanel_header", "Service", xml);
 		GetText(application, "Service panel Header", "servicepanel_header");
 		compareText(application, "Service Identification", "servicepanel_serviceidentificationvalue", sid, xml);

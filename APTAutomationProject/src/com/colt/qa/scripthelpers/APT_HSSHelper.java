@@ -320,9 +320,8 @@ import com.colt.qa.reporter.ExtentTestManager;
 				, String RemarkValue, String EmailValue, String PhoneContactValue, String ServiceType
 				) throws InterruptedException, DocumentException, IOException{
 			
-			ScrolltoElement(application, "servicepanel_header", xml);
+			ScrolltoElement(application, "orderpanelheader", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 			
 			compareText_InViewPage(application ,"Service Identification",ServiceIdvalue,xml);
 			compareText_InViewPage(application ,"Service Type",ServiceType,xml);
@@ -336,9 +335,8 @@ import com.colt.qa.reporter.ExtentTestManager;
 		public void VerifyEditService(String application, String EditRemarks, String sid, String editemail, String editphonecontact) throws Exception
 		{
 
-			ScrolltoElement(application, "servicepanel_header", xml);
+			ScrolltoElement(application, "orderpanelheader", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 			//Edit service
 			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 			click_commonMethod(application, "Edit", "edit", xml);
@@ -378,9 +376,8 @@ import com.colt.qa.reporter.ExtentTestManager;
 		
 		public void verifyDump(String application) throws InterruptedException, DocumentException {
 			
-			ScrolltoElement(application, "servicepanel_header", xml);
+			ScrolltoElement(application, "orderpanelheader", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 			click_commonMethod(application, "Dump", "dump_link", xml);
 			waitforPagetobeenable();
@@ -395,9 +392,8 @@ import com.colt.qa.reporter.ExtentTestManager;
 		public void verifyManageService(String application, String changeorderno, String sid, String servicetype, String servicestatus, String syncstatus, String servicestatuschangerequired) throws InterruptedException, DocumentException, IOException {
 			
 			//Manage service
-			ScrolltoElement(application, "servicepanel_header", xml);
+			ScrolltoElement(application, "orderpanelheader", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 			click_commonMethod(application, "Manage", "manageLink", xml);
 			Thread.sleep(2000);
@@ -562,10 +558,8 @@ import com.colt.qa.reporter.ExtentTestManager;
 
 		public void shownewInfovista(String application) throws Exception {
 
-			ScrolltoElement(application, "servicepanel_header", xml);
+			ScrolltoElement(application, "orderpanelheader", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
-			Thread.sleep(3000);
 			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 			Thread.sleep(2000);
 			click_commonMethod(application, "Show New Infovista Report", "shownewinfovistareport_link", xml);
@@ -619,9 +613,8 @@ import com.colt.qa.reporter.ExtentTestManager;
 
 		public void showInfovista(String application) throws Exception {
 
-			ScrolltoElement(application, "servicepanel_header", xml);
+			ScrolltoElement(application, "orderpanelheader", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 			click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 			Thread.sleep(2000);
 			click_commonMethod(application, "Show Infovista Report", "showinfovistareport_link", xml);
@@ -747,9 +740,8 @@ import com.colt.qa.reporter.ExtentTestManager;
 
 		public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
 
-			ScrolltoElement(application, "orderpanelheader", xml);
+			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 
 			//Cancel Edit order in Order panel
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
@@ -772,6 +764,7 @@ import com.colt.qa.reporter.ExtentTestManager;
 			Thread.sleep(2000);
 			addtextFields_commonMethod(application, "RFI Voiceline Number", "editvoicelineno", editvoicelineno, xml);
 			click_commonMethod(application, "Cancel", "cancelbutton", xml);
+			waitforPagetobeenable();
 //			compareText(application, "Order Header", "orderpanelheader", "Order", xml);
 //			Log.info("Navigated to order panel in view service page");
 //			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
@@ -810,9 +803,8 @@ import com.colt.qa.reporter.ExtentTestManager;
 
 		public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
 
-			ScrolltoElement(application, "orderpanelheader", xml);
+			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 			Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Change Order", "changeorderlink", xml);
@@ -829,9 +821,8 @@ import com.colt.qa.reporter.ExtentTestManager;
 				//Cancel change order
 				click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
 				Thread.sleep(1000);
-				ScrolltoElement(application, "orderpanelheader", xml);
+				ScrolltoElement(application, "userspanel_header", xml);
 				Thread.sleep(1000);
-				((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 				
 				//Change order
 				click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
@@ -845,9 +836,8 @@ import com.colt.qa.reporter.ExtentTestManager;
 				Log.info("Selected order from dropdown");
 				click_commonMethod(application, "OK", "changeorder_okbutton", xml);
 				Thread.sleep(1000);
-				ScrolltoElement(application, "orderpanelheader", xml);
+				ScrolltoElement(application, "userspanel_header", xml);
 				Thread.sleep(1000);
-				((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 				compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
 				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 				Log.info("------ Change Order is successful ------");
@@ -863,10 +853,8 @@ import com.colt.qa.reporter.ExtentTestManager;
 				Thread.sleep(3000);
 				addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 				click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-				ScrolltoElement(application, "orderpanelheader", xml);
+				ScrolltoElement(application, "userspanel_header", xml);
 				Thread.sleep(1000);
-				((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
-
 				//Change Order
 				click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 				click_commonMethod(application, "Change Order", "changeorderlink", xml);
@@ -881,9 +869,8 @@ import com.colt.qa.reporter.ExtentTestManager;
 				addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 				click_commonMethod(application, "Create Order", "createorder_button", xml);
 				Thread.sleep(1000);
-				ScrolltoElement(application, "orderpanelheader", xml);
+				ScrolltoElement(application, "userspanel_header", xml);
 				Thread.sleep(1000);
-				((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 				compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
 				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 				Log.info("------ Change Order is successful ------");
@@ -1994,9 +1981,8 @@ public void deleteExistingDevice(String application, String existingDeviceName) 
 public void deleteService(String application) throws InterruptedException, DocumentException	{
 
 	//Delete Service
-	ScrolltoElement(application, "servicepanel_header", xml);
+	ScrolltoElement(application, "orderpanelheader", xml);
 	Thread.sleep(1000);
-	((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)"); 
 	click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 	click_commonMethod(application, "Delete", "delete", xml);
 	Thread.sleep(2000);

@@ -45,7 +45,7 @@ import com.colt.qa.reporter.ExtentTestManager;
 
 public class APT_IPTransitHelper extends DriverHelper {
 
-	public static String InterfaceName="Null";
+	public static String InterfaceName=null;
 	
 	public APT_IPTransitHelper(WebDriver dr) {
 		super(dr);
@@ -962,8 +962,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 
 	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
 
-		ScrolltoElement(application, "orderpanelheader", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "userspanel_header", xml);
 		//Cancel Edit order in Order panel
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
@@ -987,8 +986,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 		//Edit Order
-		ScrolltoElement(application, "orderpanelheader", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "userspanel_header", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
@@ -1007,8 +1005,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "OK", "editorder_okbutton", xml);
 		waitforPagetobeenable();
-		ScrolltoElement(application, "orderpanelheader", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "userspanel_header", xml);
 		Thread.sleep(1000);
 		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
 		Log.info("Navigated to order panel in view service page");
@@ -1022,8 +1019,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 
 	public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
 
-		ScrolltoElement(application, "orderpanelheader", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "userspanel_header", xml);
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Change Order", "changeorderlink", xml);
 		waitforPagetobeenable();
@@ -1046,6 +1042,8 @@ public class APT_IPTransitHelper extends DriverHelper {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 			//Change order
+			ScrolltoElement(application, "userspanel_header", xml);
+			Thread.sleep(1000);
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Change Order", "changeorderlink", xml);
 			waitforPagetobeenable();
@@ -1058,8 +1056,8 @@ public class APT_IPTransitHelper extends DriverHelper {
 			click_commonMethod(application, "OK", "changeorder_okbutton", xml);
 			Thread.sleep(1000);
 			waitforPagetobeenable();
-			ScrolltoElement(application, "orderpanelheader", xml);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+			ScrolltoElement(application, "userspanel_header", xml);
+			Thread.sleep(1000);
 			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
 			Log.info("Navigated to order panel in view service page");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
@@ -1099,8 +1097,8 @@ public class APT_IPTransitHelper extends DriverHelper {
 			click_commonMethod(application, "Create Order", "createorder_button", xml);
 			Thread.sleep(1000);
 			waitforPagetobeenable();
-			ScrolltoElement(application, "orderpanelheader", xml);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+			ScrolltoElement(application, "userspanel_header", xml);
+			Thread.sleep(1000);
 			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
 			Log.info("Navigated to order panel in view service page");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
@@ -1136,8 +1134,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
 		Thread.sleep(2000);
 		waitforPagetobeenable();
-		ScrolltoElement(application, "servicepanel_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "orderpanelheader", xml);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")).isDisplayed())
 		{
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to view service page");
@@ -1324,8 +1321,8 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 	
 	public void verifyManageService(String application, String changeorderno, String sid, String servicetype, String servicestatus, String syncstatus, String servicestatuschangerequired) throws InterruptedException, DocumentException, IOException {
 		//Manage service
-		ScrolltoElement(application, "servicepanel_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "orderpanelheader", xml);
+		Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Manage", "manageLink", xml);
 		Thread.sleep(2000);
@@ -2989,6 +2986,23 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 	}
 
+	public void navigatetoViewDevicepage(String application) throws InterruptedException, DocumentException {
+		
+		ScrolltoElement(application, "providerequipment_header", xml);
+		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
+		{
+			click_commonMethod(application, "View", "viewservicepage_viewdevicelink", xml);
+			Thread.sleep(2000);
+			waitforPagetobeenable();
+			compareText(application, "View device header", "viewdevicepage_header", "Device Details", xml);
+		}
+		else
+		{
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
+		}
+
+	}
 
 	public void verifyViewpage_UpdatedDevicedetails(String application, String editDevicename, String editVendorModel, String editTelnet, String editSSH, String editSnmp2C, String editSnmp3,
 			String editSnmProNewValue, String editSnmprwNewValue, String editSnmpv3UsernameNewValue, String editSnmpv3AuthpasswordNewValue, String editSnmpv3PrivpasswordNewValue,
@@ -3095,6 +3109,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 	public void addExistingPEDevice(String application, String existingdevicename) throws InterruptedException, DocumentException {
 		
+		waitforPagetobeenable();
 		ScrolltoElement(application, "providerequipment_header", xml);
 		Thread.sleep(1000);
 		compareText(application, "Provider Equipment (PE)", "providerequipment_header", "Provider Equipment (PE)", xml);
@@ -3411,7 +3426,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 	
 	
 	public void verify_CiscoVendor_AddInterface(String application, String configureinterface_checkbox
-			, String interfaceaddressrange_value
+			, String interfacename, String interfaceaddressrange_value
 			, String eipallocation_city, String existingAddressRangeIPv4selection, String existingAddressIPv4DropdownValue
 			, String newAddressRangeIpv4selection, String newinterfaceAddressrange, String subnetSizeValue_IPv4
 			,String existingAddressRangeIPv6selection, String existingAddressIPv6DropdownValue, String newAddressRangeIpv6selection
@@ -3442,6 +3457,8 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 
 		//Add Interface
 		addCheckbox_commonMethod(application, "configureinterface_checkbox", "Configure Interface on Device", configureinterface_checkbox, "no", xml);
+		addtextFields_commonMethod(application, "Interface", "interfacename_textfield", interfacename, xml);
+		InterfaceName= interfacename;
 		compareText(application, "Network", "network_fieldvalue", "XFER", xml);
 
 		interfaceAddressRangeIPv4(application, existingAddressRangeIPv4selection, newAddressRangeIpv4selection, subnetSizeValue_IPv4, eipallocation_city, existingAddressIPv4DropdownValue, newinterfaceAddressrange);
@@ -3467,12 +3484,11 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		
 		Thread.sleep(1000);
 		ScrolltoElement(application, "link_textfield", xml);
-		InterfaceName= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_textfield")).getAttribute("value");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Interface value is displayed as:"+InterfaceName);
 		
 		addCheckbox_commonMethod(application, "bgp_checkbox", "BGP", bgp_checkbox, "no", xml);
 		if(bgp_checkbox.equalsIgnoreCase("yes"))
 		{
+			ScrolltoElement(application, "bgp_checkbox", xml);
 			addDropdownValues_commonMethod(application, "BGP Templates Generate For", "multilink_bgptemplate_dropdown", bgptemplate_dropdownvalue, xml);
 			addtextFields_commonMethod(application, "CPE WAN", "cpewan_textfield", cpewan_value, xml);
 			addtextFields_commonMethod(application, "CPE WAN IPv6 Address", "cpewanipv6_textfield", cpewanipv6_value, xml);
@@ -3500,25 +3516,21 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			compareText(application, "Interfaces", "interfaces_header", "Interfaces", xml);
 			String Interface_RowID= getwebelement(xml.getlocator("//locators/" + application + "/interface_rowid").replace("value", InterfaceName)).getAttribute("row-id");
 
-			WebElement InterfaceName_value= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_tablevalue").replace("value", Interface_RowID));
+			String InterfaceName_value= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_tablevalue").replace("value", Interface_RowID)).getText();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Interface value is displayed as:"+InterfaceName_value);
-			WebElement Link_value= getwebelement(xml.getlocator("//locators/" + application + "/link_tablevalue").replace("value", Interface_RowID));
+			String Link_value= getwebelement(xml.getlocator("//locators/" + application + "/link_tablevalue").replace("value", Interface_RowID)).getText();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Link/Circuit Id value is displayed as:"+Link_value);
-			WebElement InterfaceAddressRange_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddressrange_tablevalue").replace("value", Interface_RowID));
+			String InterfaceAddressRange_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddressrange_tablevalue").replace("value", Interface_RowID)).getText();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Address Range value is displayed as:"+InterfaceAddressRange_value);
-			WebElement InterfaceAddress_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddress_tablevalue").replace("value", Interface_RowID));
+			String InterfaceAddress_value= getwebelement(xml.getlocator("//locators/" + application + "/interfaceaddress_tablevalue").replace("value", Interface_RowID)).getText();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Address value is displayed as:"+InterfaceAddress_value);
-			WebElement BearerType_value= getwebelement(xml.getlocator("//locators/" + application + "/bearertype_tablevalue").replace("value", Interface_RowID));
+			String BearerType_value= getwebelement(xml.getlocator("//locators/" + application + "/bearertype_tablevalue").replace("value", Interface_RowID)).getText();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Bearer Type value is displayed as:"+BearerType_value);
-			WebElement Bandwidth_value= getwebelement(xml.getlocator("//locators/" + application + "/bandwidth_tablevalue").replace("value", Interface_RowID));
+			String Bandwidth_value= getwebelement(xml.getlocator("//locators/" + application + "/bandwidth_tablevalue").replace("value", Interface_RowID)).getText();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Bandwidth value is displayed as:"+Bandwidth_value);
-			Clickon(Bandwidth_value);
-			Bandwidth_value.sendKeys(Keys.TAB);
-			WebElement vlanIDValue= getwebelement(xml.getlocator("//locators/" + application + "/vlanid_tablevalue").replace("value", Interface_RowID));
+			String vlanIDValue= getwebelement(xml.getlocator("//locators/" + application + "/vlanid_tablevalue").replace("value", Interface_RowID)).getText();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "VLAN Id value is displayed as:"+vlanIDValue);
-			Clickon(vlanIDValue);
-			vlanIDValue.sendKeys(Keys.TAB);
-			WebElement IfInOctets_Value= getwebelement(xml.getlocator("//locators/" + application + "/ifinoctets_tablevalue").replace("value", Interface_RowID));
+			String IfInOctets_Value= getwebelement(xml.getlocator("//locators/" + application + "/ifinoctets_tablevalue").replace("value", Interface_RowID)).getText();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "IfInOctets value is displayed as:"+IfInOctets_Value);
 			Thread.sleep(2000);
 
@@ -3534,7 +3546,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 	}
 
 	public void verify_CiscoVendor_EditInterface(String application, String devicename, String edit_configureinterface_checkbox
-			, String edit_network, String interfaceaddressrange_value
+			, String edit_interfacename, String edit_network, String interfaceaddressrange_value
 			, String eipallocation_city, String existingAddressRangeIPv4selection, String existingAddressIPv4DropdownValue
 			, String newAddressRangeIpv4selection, String newinterfaceAddressrange, String subnetSizeValue_IPv4
 			,String existingAddressRangeIPv6selection, String existingAddressIPv6DropdownValue, String newAddressRangeIpv6selection
@@ -3569,7 +3581,8 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			compareText(application, "Edit Interface/Link", "editinterface_header", "Edit", xml);
 			scrollToTop();
 			editcheckbox_commonMethod(application, edit_configureinterface_checkbox, "configureinterface_checkbox", "Configure Interface on Device", xml);
-			
+			edittextFields_commonMethod(application, "Interface", "interfacename_textfield", edit_interfacename, xml);
+			InterfaceName= edit_interfacename;
 			addDropdownValues_commonMethod(application, "Network", "network_fieldvalue", edit_network, xml);
 
 			interfaceAddressRangeIPv4(application, existingAddressRangeIPv4selection, newAddressRangeIpv4selection, subnetSizeValue_IPv4, eipallocation_city, existingAddressIPv4DropdownValue, newinterfaceAddressrange);
@@ -3577,27 +3590,28 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			
 			ScrolltoElement(application, "link_textfield", xml);
 			edittextFields_commonMethod(application, "Link", "link_textfield", edit_linkvalue, xml);
-			addDropdownValues_commonMethod(application, "Bearer Type", "bearertype_dropdown", edit_bearertype_value, xml);
-			addDropdownValues_commonMethod(application, "Bandwidth", "bandwidth_dropdown", edit_ciscovendor_bandwidth_value, xml);
+			selectValueInsideDropdown(application, "bearertype_dropdown", "Bearer Type", edit_bearertype_value, xml);
+			selectValueInsideDropdown(application, "bandwidth_dropdown", "Bandwidth", edit_ciscovendor_bandwidth_value, xml);
 			if(edit_bearertype_value.equalsIgnoreCase("E1")) {
-				addDropdownValues_commonMethod(application, "Framing Type", "framingtype_dropdown", edit_framingtype_value, xml);
-				addDropdownValues_commonMethod(application, "Encapsulation", "encapsulation_dropdown", edit_encapsulation_value, xml);
-			}
+				selectValueInsideDropdown(application, "framingtype_dropdown", "Framing Type", edit_framingtype_value, xml);
+				selectValueInsideDropdown(application, "encapsulation_dropdown", "Encapsulation", edit_encapsulation_value, xml);
+				}
 			else if(edit_bearertype_value.equalsIgnoreCase("Ethernet"))
 			{
 				edittextFields_commonMethod(application, "VLAN Id", "vlanid_textfield", edit_vlanID_value, xml);
 			}
 			else
 			{
-				addDropdownValues_commonMethod(application, "Encapsulation", "encapsulation_dropdown", edit_encapsulation_value, xml);
+				selectValueInsideDropdown(application, "encapsulation_dropdown", "Encapsulation", edit_encapsulation_value, xml);
 			}
 			Thread.sleep(1000);
 			
 			ScrolltoElement(application, "link_textfield", xml);
-			InterfaceName= getwebelement(xml.getlocator("//locators/" + application + "/interfacename_textfield")).getAttribute("value");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Interface value is displayed as: "+InterfaceName);
 			
 				editcheckbox_commonMethod(application, edit_bgp_checkbox, "bgp_checkbox", "BGP", xml);
+				
+				ScrolltoElement(application, "bgp_checkbox", xml);
+				Thread.sleep(1000);
 				if(edit_bgp_checkbox.equalsIgnoreCase("yes"))
 				{
 					addDropdownValues_commonMethod(application, "BGP Templates Generate For", "bgptemplate_dropdown", edit_bgptemplate_dropdownvalue, xml);
@@ -3654,7 +3668,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				click_commonMethod(application, "IP Subnet IPv6 Remove", "ipsubnetipv6_removebutton", xml);
 				//Add IP Subnet IPv6
 				click_commonMethod(application, "IP Subnet IPv6 Add", "ipsubnetipv6_addbutton", xml);
-				addtextFields_commonMethod(application, "IP Subnet IPv6", "ipsubnetipv6_textfield", ipsubnetipv6_value, xml);
+				edittextFields_commonMethod(application, "IP Subnet IPv6", "ipsubnetipv6_textfield", ipsubnetipv6_value, xml);
 				//Add IP Subnet IPv4
 				click_commonMethod(application, "IP Subnet IPv4 Add", "ipsubnetipv4_addbutton", xml);
 				edittextFields_commonMethod(application, "IP Subnet IPv4", "ipsubnetipv4_textfield", ipsubnetipv4_value, xml);
@@ -3807,8 +3821,8 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'Interface Address Range' dropdown value displays as: "+ interfaceAddressRange);
 			System.out.println("'Interface Address Range' dropdown value displays as: "+ interfaceAddressRange);
-				
-			Thread.sleep(5000);
+			
+			Thread.sleep(4000);
 			waitForpageload();   
 			waitforPagetobeenable();
 			
@@ -3821,13 +3835,23 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Address' dropdown is not displaying");
 				System.out.println("'Address' dropdown is not displaying");
 			}
+			
+			click_commonMethod(application, ">>" , "interfaceaddress_Addarrow", xml);
+			 waitforPagetobeenable();
+			  Thread.sleep(1000);
+			  String addressvalue= getwebelement(xml.getlocator("//locators/" + application + "/address_textfield")).getAttribute("value");
+			  ExtentTestManager.getTest().log(LogStatus.PASS, "Address value is displayed as: "+addressvalue);
 		}
 	}
 	else if(existingAddressRangeIPv4selection.equalsIgnoreCase("No") && newAddressRangeIpv4selection.equalsIgnoreCase("Yes")) {
 		
-		  addtextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrange_textfield" , newinterfaceAddressrange , xml);
-		  GetText(application, "Address", "address_textfield");
+		  edittextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrange_textfield" , newinterfaceAddressrange , xml);
 		  
+		  click_commonMethod(application, ">>" , "interfaceaddress_Addarrow", xml);
+		  waitforPagetobeenable();
+		  Thread.sleep(1000);
+		  String addressvalue= getwebelement(xml.getlocator("//locators/" + application + "/address_textfield")).getAttribute("value");
+		  ExtentTestManager.getTest().log(LogStatus.PASS, "Address value is displayed as: "+addressvalue);
 	}
 }
 
@@ -3875,7 +3899,8 @@ public void interfaceAddressRangeIPv6(String application, String existingAddress
 				
 				click_commonMethod(application, ">>" , "interfaceaddressIPv6_Addarrow", xml);
 				Thread.sleep(4000);
-				waitForpageload();  waitforPagetobeenable();
+				waitForpageload();
+				waitforPagetobeenable();
 				
 				String AddressValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/addressIPv6_textfield")).getAttribute("value");
 				  if(AddressValueIntextField.isEmpty()) {
@@ -3890,10 +3915,11 @@ public void interfaceAddressRangeIPv6(String application, String existingAddress
 	}
 		else if(existingAddressRangeIPv6selection.equalsIgnoreCase("No") && newAddressRangeIpv6selection.equalsIgnoreCase("Yes")) {
 			
-			  addtextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrangeIPv6_textfield" , newinterfaceAddressrangeIPv6 , xml);
+			  edittextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrangeIPv6_textfield" , newinterfaceAddressrangeIPv6 , xml);
 			
 			  click_commonMethod(application, ">>" , "interfaceaddressIPv6_Addarrow", xml);
-			  
+			  waitforPagetobeenable();
+			  Thread.sleep(1000);
 			  String interfaceValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/addressIPv6_textfield")).getAttribute("value");
 			  if(interfaceValueIntextField.isEmpty()) {
 				  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values dipslaying under 'Address_IPv6' text field");
@@ -4646,7 +4672,8 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
 			, String multilink_configureinterface_checkbox, String checktoaddinterface_checkbox, String unitid_value
 			, String slot_value, String pic_value, String port_value) throws InterruptedException, DocumentException, IOException {
 		
-		scrolltoend();
+		ScrolltoElement(application, "providerequipment_header", xml);
+		Thread.sleep(1000);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
 			List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/addeddevices_list"));
@@ -4659,7 +4686,8 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
 				{
 					WebElement AddedDevice_ViewLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_viewlink").replace("value", AddedDevice_SNo));
 					Clickon(AddedDevice_ViewLink);
-					Thread.sleep(5000);
+					Thread.sleep(3000);
+					waitforPagetobeenable();
 					compareText(application, "View device header", "viewdevicepage_header", "Device Details", xml);
 
 					ScrolltoElement(application, "interfaces_header", xml);
@@ -4800,24 +4828,17 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
 
 	}
 
-	public void verifyInterfaceConfigHistory(String application, String vendormodel) throws InterruptedException, DocumentException {
+	public void verifyInterfaceConfigHistory(String application) throws InterruptedException, DocumentException {
 		
-		if(vendormodel.contains("Juniper"))
-		{
-			ScrolltoElement(application, "interfaceconfighistory_header", xml);
-			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "viewpage_backbutton", xml);
+		Thread.sleep(1000);
 		compareText(application, "Interface Configuration History", "interfaceconfighistory_header", "Interface Configuration History", xml);
 		compareText(application, "Date column", "date_column", "Date", xml);
 		compareText(application, "File Name column", "filename_column", "File Name", xml);
 		Thread.sleep(1000);
+		ScrolltoElement(application, "viewpage_backbutton", xml);
+		Thread.sleep(1000);
 		click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-		}
-		else
-		{
-			scrolltoend();
-			click_commonMethod(application, "Back", "viewpage_backbutton", xml);	
-		}
 
 	}
 
@@ -4861,110 +4882,24 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
 //		ScrolltoElement(application, "viewpage_vendormodel", xml);
 //		Thread.sleep(2000);
 //		
-			ScrolltoElement(application, "InterfaceInService_panelHeader", xml);
+			ScrolltoElement(application, "viewpage_premise", xml);
+			Thread.sleep(1000);
 			click_commonMethod(application, "Interfaces in Service Filter", "interfacesinservice_filter", xml);
 			addtextFields_commonMethod(application, "Interface in Service search", "interfaceinservice_fitertext", InterfaceName, xml);
 			WebElement InterfaceName_GridSelect= getwebelement(xml.getlocator("//locators/" + application + "/interfaceinservice_gridselect").replace("value", InterfaceName));
 			Clickon(InterfaceName_GridSelect);
 			ExtentTestManager.getTest().log(LogStatus.PASS, InterfaceName + " is selected under 'Interface to select' table");
-			Thread.sleep(8000);
+			Thread.sleep(3000);
 
-			ScrolltoElement(application, "InterfaceInService_panelHeader", xml);
+			ScrolltoElement(application, "viewpage_premise", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 			click_commonMethod(application, "Action Dropdown", "InterfaceInselect_Actiondropdown", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Remove", "InterfaceInselect_removebuton", xml);
 			Thread.sleep(1000);
-
+			waitforPagetobeenable();
 	}
 
-	public void Juniper_selectRowforInterfaceInService(String application)
-			throws IOException, InterruptedException, DocumentException {
-
-		//String Edit_JuniperInterfaceNameValue= "e3-4468/2799/3456:4:38962.33256";
-		int TotalPages;
-
-		String TextKeyword = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceInselect_totalpage")));
-
-		TotalPages = Integer.parseInt(TextKeyword);
-
-		System.out.println("Total number of pages in table is: " + TotalPages);
-
-		ab:
-
-			if (TotalPages != 0) {
-				for (int k = 1; k <= TotalPages; k++) {
-
-					// Current page
-					String CurrentPage = Gettext(
-							getwebelement(xml.getlocator("//locators/" + application + "/InterfaceInselect_currentpage")));
-					int Current_page = Integer.parseInt(CurrentPage);
-
-					assertEquals(k, Current_page);
-
-					System.out.println("Currently we are in page number: " + Current_page);
-
-					List<WebElement> results = getwebelements(xml.getlocator("//locators/" + application + "/interfacesinservice_list").replace("value", InterfaceName));
-
-					int numofrows = results.size();
-					System.out.println("no of results: " + numofrows);
-					boolean resultflag;
-
-					if (numofrows == 0) {
-
-						PageNavigation_NextPageForInterfaceToselect(application);
-
-					}
-
-					else {
-
-						for (int i = 0; i < numofrows; i++) {
-
-							try {
-
-								resultflag = results.get(i).isDisplayed();
-								System.out.println("status of result: " + resultflag);
-								if (resultflag) {
-									System.out.println(results.get(i).getText());
-									results.get(i).click();
-									ExtentTestManager.getTest().log(LogStatus.PASS, InterfaceName + " is selected under 'Interface in Service' table");
-									Clickon(getwebelement(xml.getlocator(
-											"//locators/" + application + "/InterfaceInselect_Actiondropdown")));
-
-									Thread.sleep(3000);
-
-									Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceInselect_removebuton")));
-									ExtentTestManager.getTest().log(LogStatus.PASS, InterfaceName + " has been selected to get removed from service");
-
-								}
-
-							} catch (StaleElementReferenceException e) {
-								// TODO Auto-generated catch block
-								// e.printStackTrace();
-								results = getwebelements(xml.getlocator("//locators/" + application + "/interfacesinservice_list").replace("value", InterfaceName));
-								numofrows = results.size();
-								// results.get(i).click();
-								Log.info("selected row is : " + i);
-								ExtentTestManager.getTest().log(LogStatus.FAIL, "failure while selecting interface to remove from service");
-
-							}
-
-						}
-
-						break ab;
-
-					}
-
-				}
-
-			} else {
-
-				System.out.println("No values available in table");
-				Log.info("No values available inside the InterfaceInService table");
-			}
-
-	}
 
 	public void Cisco_selectRowforInterfaceInService(String application, String interfacename)
 			throws IOException, InterruptedException, DocumentException {
@@ -5068,9 +5003,8 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
 		scrolltoend();
 		Thread.sleep(2000);
 
-		ScrolltoElement(application, "interfacesToSelect_header", xml);
+		ScrolltoElement(application, "InterfaceInService_panelHeader", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		
 		click_commonMethod(application, "Interfaces To Select Filter", "InteraceColumn_Filter", xml);
 		addtextFields_commonMethod(application, "Interface search", "InterfacefilterTxt", InterfaceName, xml);
@@ -5079,9 +5013,8 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
 		ExtentTestManager.getTest().log(LogStatus.PASS, InterfaceName + " is selected under 'Interface to select' table");
 		Thread.sleep(8000);
 
-		ScrolltoElement(application, "interfacesToSelect_header", xml);
+		ScrolltoElement(application, "InterfaceInService_panelHeader", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		click_commonMethod(application, "Action Dropdown", "InterfaceToselect_Actiondropdown", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Add", "InterfaceToselect_addbuton", xml);
@@ -5089,99 +5022,6 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
 		scrollToTop();
 		clickOnBreadCrumb(application, sid);
 		Thread.sleep(2000);
-	}
-
-	public void Juniper_selectrowforInterfaceToselecttable(String application)
-			throws IOException, InterruptedException, DocumentException {
-
-		String Edit_JuniperInterfaceNameValue="e3-4468/2799/3456:4:38962.33256";
-		int TotalPages;
-
-		String TextKeyword = Gettext(
-				getwebelement(xml.getlocator("//locators/" + application + "/InterfaceToselect_totalpage")));
-
-		TotalPages = Integer.parseInt(TextKeyword);
-
-		System.out.println("Total number of pages in Interface to select table is: " + TotalPages);
-
-		ab:
-
-			if (TotalPages != 0) {
-				for (int k = 1; k <= TotalPages; k++) {
-
-					// Current page
-					String CurrentPage = Gettext(
-							getwebelement(xml.getlocator("//locators/" + application + "/InterfaceToselect_currentpage")));
-					int Current_page = Integer.parseInt(CurrentPage);
-
-					assertEquals(k, Current_page);
-
-					System.out.println("Currently we are in page number: " + Current_page);
-
-					List<WebElement> results = getwebelements("(//div[div[contains(text(),'Interfaces to Select')]]/following-sibling::div[1]//div[@ref='eBodyContainer']//div[@role='row']//span[@class='ag-icon ag-icon-checkbox-unchecked'])[1]");
-						//	getwebelements("//div[div[contains(text(),'Interfaces to Select')]]/following-sibling::div[1]//div[div[text()='Client']]//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-
-					int numofrows = results.size();
-					System.out.println("no of results: " + numofrows);
-					boolean resultflag;
-
-					if (numofrows == 0) {
-
-						PageNavigation_NextPageForInterfaceToselect(application);
-
-					}
-
-					else {
-
-						for (int i = 0; i < numofrows; i++) {
-
-							try {
-
-								resultflag = results.get(i).isDisplayed();
-								System.out.println("status of result: " + resultflag);
-								if (resultflag) {
-									System.out.println(results.get(i).getText());
-									results.get(i).click();
-									ExtentTestManager.getTest().log(LogStatus.PASS, Edit_JuniperInterfaceNameValue + " is selected under 'Interface to select' table");
-									Thread.sleep(8000);
-									Clickon(getwebelement(xml.getlocator(
-											"//locators/" + application + "/InterfaceToselect_Actiondropdown")));
-
-									Thread.sleep(5000);
-
-									Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceToselect_addbuton")));
-									Thread.sleep(3000);
-									ExtentTestManager.getTest().log(LogStatus.PASS, Edit_JuniperInterfaceNameValue + " is added to service");
-
-
-								}
-
-							} catch (StaleElementReferenceException e) {
-								// TODO Auto-generated catch block
-								// e.printStackTrace();
-								results = getwebelements(xml.getlocator("//locators/" + application + "/interfacesinservice_list").replace("value", Edit_JuniperInterfaceNameValue));
-								numofrows = results.size();
-								// results.get(i).click();
-								Log.info("selected row is : " + i);
-								ExtentTestManager.getTest().log(LogStatus.FAIL, " Failure on selecting an Interface to ad with service ");
-
-
-							}
-
-						}
-
-						break ab;
-
-					}
-
-				}
-
-			} else {
-
-				System.out.println("No values found inside the table");
-				Log.info("No values available inside the Interfacetoselect table");
-			}
-
 	}
 
 	
@@ -5547,8 +5387,7 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
 
 	public void deleteService(String application) throws InterruptedException, DocumentException	{
 
-		ScrolltoElement(application, "servicepanel_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "orderpanelheader", xml);
 		//Delete Service
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Delete", "delete", xml);
@@ -5573,7 +5412,7 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
 		     e.printStackTrace();
 		  } 
 		  Thread.sleep(2000);
-		  verifysuccessmessage(application, "Service successfully deleted");
+		  verifysuccessmessage(application, "Service deleted successfully");
 		
 	}
 

@@ -44,18 +44,17 @@ public class APT_wholesale extends DriverTestcase{
 				CustomerName=map.get("newCustomer");
 				ExtentTestManager.endTest();
 				
-				
 				APT_Helper.get().selectCustomertocreateOrder("apt",map.get("newCustomer"));
 				ExtentTestManager.endTest();
-				
 			}
 			else if(newCustomerName.equalsIgnoreCase("no") && existingCustomer.equalsIgnoreCase("Yes")) {
 				
 				logger= ExtentTestManager.startTest("selectExistingCustomer_wholesaleSIPTrunking"); 
 				APT_Helper.get().selectCustomertocreateOrder("apt",map.get("existingCustomer"));
 				CustomerName=map.get("existingCustomer");
+				ExtentTestManager.endTest();
 			}
-			ExtentTestManager.endTest(); 
+			 
 		
 		logger= ExtentTestManager.startTest("verifyCreateOrderFunctionality");
 			APT_Helper.get().createorderservice("apt", map.get("NewOrderService"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"),

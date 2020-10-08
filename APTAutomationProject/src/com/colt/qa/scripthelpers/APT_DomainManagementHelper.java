@@ -400,8 +400,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	public void verifyorderpanelinformation_Neworder(String application, String neworder, String expectedneworderno,
 			String expectednewvoicelineno) throws InterruptedException, DocumentException {
 
-		ScrolltoElement(application, "orderpanelheader", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "userspanel_header", xml);
 
 		if (neworder.equalsIgnoreCase("YES")) {
 
@@ -436,7 +435,6 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
 
 		ScrolltoElement(application, "orderpanelheader", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 
 		//Cancel Edit order in Order panel
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
@@ -459,8 +457,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		
 		//Edit Order
 		Thread.sleep(1000);
-		ScrolltoElement(application, "orderpanelheader", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "userspanel_header", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
@@ -480,8 +477,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 		click_commonMethod(application, "OK", "editorder_okbutton", xml);
 		Thread.sleep(1000);
 		waitforPagetobeenable();
-		ScrolltoElement(application, "orderpanelheader", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "userspanel_header", xml);
 		Thread.sleep(1000);
 
 		compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
@@ -511,8 +507,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
 			Thread.sleep(1000);
 			waitforPagetobeenable();
-			ScrolltoElement(application, "orderpanelheader", xml);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
 
 			//Change order
@@ -529,8 +524,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			click_commonMethod(application, "OK", "changeorder_okbutton", xml);
 			Thread.sleep(1000);
 			waitforPagetobeenable();
-			ScrolltoElement(application, "orderpanelheader", xml);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
 			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
@@ -548,8 +542,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
 			waitforPagetobeenable();
-			ScrolltoElement(application, "orderpanelheader", xml);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
 
 			//Change Order
@@ -568,8 +561,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 			click_commonMethod(application, "Create Order", "createorder_button", xml);
 			Thread.sleep(1000);
 			waitforPagetobeenable();
-			ScrolltoElement(application, "orderpanelheader", xml);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
 			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
@@ -579,8 +571,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 
 	public void verifyservicepanelInformationinviewservicepage(String application, String sid, String servicetype, String Remarks, String email, String phonecontact, String country, String defaultemail, String servicefirstname, String servicelastname, String organizationname, String serviceaddress, String servicecomplement, String servicepostalcode, String servicecity, String servicestate, String servicephone, String servicefax, String user, String orderno, String rfireqno) throws InterruptedException, DocumentException, IOException {
 		
-		ScrolltoElement(application, "servicepanel_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "orderpanelheader", xml);
 		compareText(application, "Service panel header", "servicepanel_header", "Service", xml);
 		Thread.sleep(1000);
 		ScrolltoElement(application, "servicecityvalue", xml);
@@ -609,8 +600,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	public void verifyEditService(String application, String EditRemarks, String Remarks, String changeorderno, String sid, String editsid, String servicetype, String editemail, String editphonecontact, String edituser, String editdefaultemail, String editservicefirstname, String editservicelastname, String editorganizationname, String editserviceaddress, String editservicecomplement, String editservicepostalcode, String editservicecity, String editservicestate, String editcountry, String editservicephone, String editservicefax) throws InterruptedException, DocumentException, IOException {
 		
 		//Cancel edit service
-				ScrolltoElement(application, "servicepanel_header", xml);
-				((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+				ScrolltoElement(application, "orderpanelheader", xml);
 				click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 				click_commonMethod(application, "Edit", "edit", xml);
 				waitforPagetobeenable();
@@ -623,8 +613,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 				waitforPagetobeenable();
 				if(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")).isDisplayed())
 				{
-					ScrolltoElement(application, "servicepanel_header", xml);
-					((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+					ScrolltoElement(application, "orderpanelheader", xml);
 					compareText(application, "Service Identification", "sidvalue", sid, xml);
 					compareText(application, "Remarks", "remarksvalue", Remarks, xml);
 				}
@@ -634,8 +623,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 				}
 			
 				//Edit service
-				ScrolltoElement(application, "servicepanel_header", xml);
-				((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+				ScrolltoElement(application, "orderpanelheader", xml);
 				click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 				click_commonMethod(application, "Edit", "edit", xml);
 				waitforPagetobeenable();
@@ -694,8 +682,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 
 	public void verifySynchronize(String application) throws InterruptedException, DocumentException {
 		
-		ScrolltoElement(application, "servicepanel_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "orderpanelheader", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Synchronize", "synchronizelink_servicepanel", xml);
@@ -707,8 +694,7 @@ public class APT_DomainManagementHelper extends DriverHelper {
 	
 	public void verifyDeleteService(String application) throws InterruptedException, DocumentException {
 
-		ScrolltoElement(application, "servicepanel_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "orderpanelheader", xml);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Delete", "delete", xml);
 		Thread.sleep(2000);

@@ -648,9 +648,11 @@
 <bandwidth_dropdown>//label[text()='Bandwidth']/parent::div//select</bandwidth_dropdown>
 <encapsulation_dropdown>//label[text()='Encapsulation']/parent::div//select</encapsulation_dropdown>
 <cardtype_dropdown>//label[text()='Card Type']/parent::div//select</cardtype_dropdown>
-<ciscovendor_interfaceaddressrange_textfield>//input[@name='interfaceAddressRange']</ciscovendor_interfaceaddressrange_textfield>
-<interfaceaddressrange_textfield>//input[@id='interfaceAddressRange']</interfaceaddressrange_textfield>
+<ciscovendor_interfaceaddressrange_textfield>//label[text()='Interface Address Range']/following-sibling::input</ciscovendor_interfaceaddressrange_textfield>
+<interfaceaddressrange_textfield>//label[text()='Interface Address Range']/following-sibling::input</interfaceaddressrange_textfield>
 <interfaceaddressrangeIPv6_textfield>//label[text()='Interface Address Range IPV6']/following-sibling::input</interfaceaddressrangeIPv6_textfield>
+<address_textfield>(//div[label[text()='Address']]//input)[1]</address_textfield>
+<addressIPv6_textfield>(//div[label[text()='Address IPv6']]//input)[1]</addressIPv6_textfield>
 <eipsubnetallocation_header>//div[text()='EIP Subnet Allocation']</eipsubnetallocation_header>
 <subnettype_value>//label[text()='Subnet Type ']/parent::div/following-sibling::div</subnettype_value>
 <eipallocation_citydropdown>//label[text()='City']/parent::div//input</eipallocation_citydropdown>

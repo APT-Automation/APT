@@ -55,6 +55,7 @@ import com.colt.qa.scripthelpers.APT_MCS_CreateKeyserverDeviceHelper;
 import com.colt.qa.scripthelpers.APT_MCS_CreateLoadBalancerDeviceHelper;
 import com.colt.qa.scripthelpers.APT_MCS_CreateMDFFirewallDeviceHelper;
 import com.colt.qa.scripthelpers.APT_MCS_CreateMiniDSLAMDeviceHelper;
+import com.colt.qa.scripthelpers.APT_MCS_CreateOrder_IPVPNHelper;
 import com.colt.qa.scripthelpers.APT_MCS_CreatePrizmnetDeviceHelper;
 import com.colt.qa.scripthelpers.APT_MCS_CreateTrafficAggregatorDeviceHelper;
 import com.colt.qa.scripthelpers.APT_MCS_CreateVOIPAccessDASSwitchDeviceHelper;
@@ -69,6 +70,7 @@ import com.colt.qa.scripthelpers.APT_VoiceLineHelper;
 import com.colt.qa.scripthelpers.APT_wholeSaleHelper;
 import com.colt.qa.scripthelpers.ImsNmbrTranslator_Helper;
 import com.colt.qa.scripthelpers.ManagePostcode_Helper;
+import com.colt.qa.scripthelpers.searchForDeviceHelper;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -79,14 +81,11 @@ import com.colt.qa.scripthelpers.Lanlink_NationalHelper;
 import com.colt.qa.scripthelpers.Lanlink_OLOHelper;
 import com.colt.qa.scripthelpers.Lanlink_Outbandmanagementhelper;
 
-
-
 public class DriverTestcase {
 
 	public static final ThreadLocal<WebDriver> WEB_DRIVER_THREAD_LOCAL = new InheritableThreadLocal<>();
 	// public static final ThreadLocal<RemoteWebDriver> WEB_DRIVER_THREAD_LOCAL = new InheritableThreadLocal<>();
 
-	
 	public static final ThreadLocal<APT_LoginHelper> APTLogin = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_MCS_CreateAccessCoreDeviceHelper> APT_CreateAccessCoreDeviceHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_MCS_CreateAccessSwitchCoreDeviceHelper> APT_CreateAccessSwitchDeviceHelper = new InheritableThreadLocal<>();
@@ -116,7 +115,7 @@ public class DriverTestcase {
 	public static final ThreadLocal<APT_SANManagementHelper> APT_SANMgmtHelper=new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_NGINMessageHelper> APT_NGINMessageHelper=new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_VoiceLineHelper> APT_VoiceLineHelper = new InheritableThreadLocal<>();
-	
+	public static final ThreadLocal<searchForDeviceHelper>  APT_searchDevice = new InheritableThreadLocal<>();
 	
 	public static final ThreadLocal<APT_VOIPAccessHelper> APT_VOIPHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<com.colt.qa.scripthelpers.DDI_Helper> DDI_Helper = new InheritableThreadLocal<>();
@@ -127,7 +126,7 @@ public class DriverTestcase {
 	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_Outbandmanagementhelper> Outband = new InheritableThreadLocal<>();
 	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_InternationalHelper> International = new InheritableThreadLocal<>();
 	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_NationalHelper> National= new InheritableThreadLocal<>();
-
+	public static final ThreadLocal<APT_MCS_CreateOrder_IPVPNHelper> APT_IPVPNHelper = new InheritableThreadLocal<>();
 	
 	public static com.colt.qa.listeners.TestListener Testlistener;
 	public ThreadLocal<String> TestName = new ThreadLocal();
@@ -291,8 +290,12 @@ public class DriverTestcase {
 		com.colt.qa.scripthelpers.Lanlink_NationalHelper natnal=new com.colt.qa.scripthelpers.Lanlink_NationalHelper(getwebdriver());
 		National.set(natnal);
 
-
-
+		searchForDeviceHelper saerchDveiec = new searchForDeviceHelper(getwebdriver());
+		 APT_searchDevice.set(saerchDveiec);
+		 
+		 APT_MCS_CreateOrder_IPVPNHelper ipvpn = new APT_MCS_CreateOrder_IPVPNHelper(getwebdriver());
+			APT_IPVPNHelper.set(ipvpn);
+		
 	}
 	
 	@org.testng.annotations.BeforeSuite

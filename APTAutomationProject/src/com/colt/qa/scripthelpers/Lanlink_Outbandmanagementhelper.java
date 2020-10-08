@@ -115,7 +115,7 @@ public class Lanlink_Outbandmanagementhelper extends DriverHelper {
 		scrolltoend();
 		click_commonMethod(application, "Ok", "okbutton", xml);
 		compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.", xml);
-		sa.assertAll();	
+			
 	}
 
 
@@ -231,7 +231,7 @@ public class Lanlink_Outbandmanagementhelper extends DriverHelper {
 		Log.info("=== Next_Button  is displayed ===");
 
 		Log.info("=== Create Order/Service all fields Verified ===");
-		sa.assertAll();
+		
 	}
 
 	public void verifyCreateOrderDetailsInformation(String application)
@@ -309,7 +309,7 @@ public class Lanlink_Outbandmanagementhelper extends DriverHelper {
 		System.out.println(Fax_Text + " : " + Fax_Value);
 
 		Log.info("=== Create Order Detail all fields Verified ===");
-		sa.assertAll();
+		
 	}
 
 	public void select_ChooseCustomer(String application, String ChooseCustomerToBeSelected)
@@ -796,51 +796,7 @@ public class Lanlink_Outbandmanagementhelper extends DriverHelper {
 
 	}
 
-	public void SelectServiceType2(String application, String OrderNumber, String ServiceTypeToBeSelected,
-			String ordertype, String valuetobeselectedinorderdropdown)
-			throws InterruptedException, DocumentException, IOException {
-
-		scrolltoend();
-		Thread.sleep(3000);
-
-		if (ordertype.equalsIgnoreCase("new")) {
-
-			Clickon(getwebelement(
-					xml.getlocator("//locators/" + application + "/ordercontractNumberdropdown_secondTime")));
-			Clickon(getwebelement("//div[text()='" + OrderNumber + "']"));
-
-		} else {
-			ExtentTestManager.getTest().log(LogStatus.INFO, "For existing order");
-			Clickon(getwebelement(
-					xml.getlocator("//locators/" + application + "/ordercontractNumberdropdown_secondTime")));
-			Clickon(getwebelement("//div[text()='" + valuetobeselectedinorderdropdown + "']"));
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Existing order has been selected");
-
-		}
-
-		scrolltoend();
-		Thread.sleep(3000);
-
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/servicetypedropdowntoclick")));
-		Thread.sleep(1000);
-		System.out.println("clicked on service type");
-
-		System.out.println("-----has clicked service type dropdown------------");
-
-		try {
-			WebElement el2 = driver.findElement(By.xpath("//div[contains(text(),'" + ServiceTypeToBeSelected + "')]"));
-			el2.click();
-			Log.info("=== Service Type selected===");
-		} catch (Exception e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL,
-					ServiceTypeToBeSelected + " is not available under Service type dropdown ");
-		}
-
-		ExtentTestManager.getTest().log(LogStatus.INFO, "The service selected is: " + ServiceTypeToBeSelected);
-
-	}
-
+	
 	public void selectsubtypeunderServiceTypeSelected(String application, String SelectSubService,
 			String Interfacespeed, String modularmsp, String autoCreateService, String A_Endtechnologydropdown,
 			String B_Endtechnologydropdown) throws InterruptedException, DocumentException, IOException {
@@ -2309,11 +2265,8 @@ scrolltoend();
 		verifyEnteredvalues("Interface Speed", Interfacespeed);
 
 		// Single Endpoint CPE
-		if(vpnTopology.equals("Point-to-Point")){
-			verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
-		}else {
-			verifyEnteredvalues("Single Endpoint CPE", "No");
-		}
+//			verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
+//			verifyEnteredvalues("Single Endpoint CPE", "No");
 
 		// Email
 		verifyEnteredvalueForEmail_serviceCreationpage("Email", email);
@@ -2387,11 +2340,7 @@ scrolltoend();
 		verifyEnteredvalues("Interface Speed", Interfacespeed);
 
 		// Single Endpoint CPE
-		if(vpnTopology.equals("Point-to-Point")){
 			verifyEnteredvalues("Single Endpoint CPE", EndpointCPE);
-		}else {
-			verifyEnteredvalues("Single Endpoint CPE", "No");
-		}
 
 		// Email
 		verifyEnteredvalueForEmail_serviceCreationpage("Email", Email);
@@ -2803,7 +2752,7 @@ scrolltoend();
 			click_commonMethod(application, "Cancel", "cancelButton", xml);
 			Thread.sleep(3000);
 
-			sa.assertAll();
+			
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Fields are verified");
 		} catch (AssertionError e) {
 			e.printStackTrace();
@@ -3219,7 +3168,7 @@ scrolltoend();
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/cancelButton")));
 			Thread.sleep(3000);
 
-			sa.assertAll();
+			
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Fields are verified");
 		} catch (AssertionError e) {
 			e.printStackTrace();
@@ -3340,7 +3289,6 @@ scrolltoend();
 	 */
 	public void verifysuccessmessage(String application, String expected) throws InterruptedException {
 
-		waitForpageload();
 		waitforPagetobeenable();
 		Thread.sleep(1000);
 
@@ -3424,7 +3372,7 @@ scrolltoend();
 						" 'Lanlink OutbandManagement' service will not occur when 'modular MSP' is selected");
 			}
 
-			sa.assertAll();
+			
 
 		} catch (AssertionError e) {
 			Log.info("validation failed for verify Direct Fiber service subtype page ");
@@ -5380,7 +5328,7 @@ scrolltoend();
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/cancelButton")));
 			Thread.sleep(3000);
 
-			sa.assertAll();
+			
 		} catch (AssertionError e) {
 			e.printStackTrace();
 		}
@@ -5588,7 +5536,7 @@ scrolltoend();
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_cancel")));
 			Thread.sleep(3000);
 
-			sa.assertAll();
+			
 
 		} catch (AssertionError e) {
 			e.printStackTrace();
@@ -6245,7 +6193,7 @@ scrolltoend();
 					verifySiteOrderFields_protected(application);
 
 					// Device Name
-					verifySiteOrderField_deviceName(application);
+//					verifySiteOrderField_deviceName(application);
 				}
 
 				// Cyan
@@ -6561,7 +6509,7 @@ scrolltoend();
 				getwebelement(xml.getlocator("//locators/" + application + "/viewCPEdevice_hexaserialnumber")));
 		sa.assertEquals(hexaSerialNumber, hexaSerialnumber, "Hexa serial number is displaying as expected");
 
-		sa.assertAll();
+		
 
 	}
 
@@ -6768,7 +6716,7 @@ scrolltoend();
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_OKbutton")));
 			Thread.sleep(3000);
 
-			sa.assertAll();
+			
 
 		} catch (AssertionError e) {
 
@@ -6863,7 +6811,7 @@ scrolltoend();
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_OKbutton")));
 			Thread.sleep(3000);
 
-			sa.assertAll();
+			
 
 		} catch (AssertionError e) {
 
@@ -6957,7 +6905,7 @@ scrolltoend();
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_OKbutton")));
 			Thread.sleep(3000);
 
-			sa.assertAll();
+			
 
 		} catch (AssertionError e) {
 
@@ -7283,10 +7231,10 @@ scrolltoend();
 		verifyEnteredvalues("Snmpro", snmpro);
 
 		// Management Address
-		if ((existingmanagementAddress.equalsIgnoreCase("Yes")) || (newmanagementAddress.equalsIgnoreCase("no"))) {
+		if ((existingmanagementAddress.equalsIgnoreCase("Yes")) && (newmanagementAddress.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("Management Address", manageaddressdropdownvalue);
 		} else if ((existingmanagementAddress.equalsIgnoreCase("no"))
-				|| (newmanagementAddress.equalsIgnoreCase("Yes"))) {
+				&& (newmanagementAddress.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("Management Address", managementAddress);
 		}
 
@@ -7332,10 +7280,10 @@ scrolltoend();
 		verifyEnteredvalues("Snmpro", snmpro);
 
 		// Management Address
-		if ((existingmanagementAddress.equalsIgnoreCase("Yes")) || (newmanagementAddress.equalsIgnoreCase("no"))) {
+		if ((existingmanagementAddress.equalsIgnoreCase("Yes")) && (newmanagementAddress.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("Management Address", manageaddressdropdownvalue);
 		} else if ((existingmanagementAddress.equalsIgnoreCase("no"))
-				|| (newmanagementAddress.equalsIgnoreCase("Yes"))) {
+				&& (newmanagementAddress.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("Management Address", managementAddress);
 		}
 
@@ -7850,7 +7798,7 @@ scrolltoend();
 			// cancel button
 			device_cancelButton(application);
 
-			sa.assertAll();
+			
 
 		} catch (AssertionError e) {
 
@@ -7932,10 +7880,10 @@ scrolltoend();
 		verifyEnteredvalues("Snmpro", snmpro);
 
 		// Management Address
-		if ((existingmanagementAddress.equalsIgnoreCase("Yes")) || (newmanagementAddress.equalsIgnoreCase("no"))) {
+		if ((existingmanagementAddress.equalsIgnoreCase("Yes")) && (newmanagementAddress.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("Management Address", manageaddressdropdownvalue);
 		} else if ((existingmanagementAddress.equalsIgnoreCase("no"))
-				|| (newmanagementAddress.equalsIgnoreCase("Yes"))) {
+				&& (newmanagementAddress.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("Management Address", managementAddress);
 		}
 
@@ -7950,27 +7898,27 @@ scrolltoend();
 		verifyEnteredvalues("Country", existingcountry);
 
 		// City
-		if ((existingcityselectionmode.equalsIgnoreCase("Yes")) || (newcityselectionmode.equalsIgnoreCase("no"))) {
+		if ((existingcityselectionmode.equalsIgnoreCase("Yes")) && (newcityselectionmode.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("City", existingCity);
 		} else if ((existingcityselectionmode.equalsIgnoreCase("no"))
-				|| (newcityselectionmode.equalsIgnoreCase("Yes"))) {
+				&& (newcityselectionmode.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("City", cityname);
 		}
 
 		// Site
-		if ((existingsiteselectionmode.equalsIgnoreCase("Yes")) || (newsiteselectionmode.equalsIgnoreCase("no"))) {
+		if ((existingsiteselectionmode.equalsIgnoreCase("Yes")) && (newsiteselectionmode.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("Site", existingSite);
 		} else if ((existingsiteselectionmode.equalsIgnoreCase("no"))
-				|| (newsiteselectionmode.equalsIgnoreCase("Yes"))) {
+				&& (newsiteselectionmode.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("Site", sitename);
 		}
 
 		// Premise
 		if ((existingpremiseselectionmode.equalsIgnoreCase("Yes"))
-				|| (newpremiseselectionmode.equalsIgnoreCase("no"))) {
+				&& (newpremiseselectionmode.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("Site", existingPremise);
 		} else if ((existingpremiseselectionmode.equalsIgnoreCase("no"))
-				|| (newpremiseselectionmode.equalsIgnoreCase("Yes"))) {
+				&& (newpremiseselectionmode.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("Site", premisename);
 		}
 
@@ -8294,7 +8242,7 @@ scrolltoend();
 					.isDisplayed();
 			sa.assertTrue(cancelbutton, "Cancel button");
 
-			sa.assertAll();
+			
 
 		} catch (AssertionError e) {
 			e.printStackTrace();
@@ -8873,7 +8821,7 @@ scrolltoend();
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/cancelButton")));
 			Thread.sleep(3000);
 
-			sa.assertAll();
+			
 
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Fields are verified for 'Edit Interface' under config link");
 		} catch (AssertionError e) {
@@ -9048,7 +8996,7 @@ scrolltoend();
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/cancelButton")));
 			Thread.sleep(3000);
 
-			sa.assertAll();
+			
 		} catch (AssertionError e) {
 			e.printStackTrace();
 		}
@@ -9363,8 +9311,8 @@ scrolltoend();
 								System.out.println(results.get(i).getText());
 								results.get(i).click();
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected");
-								Thread.sleep(8000);
-
+								Thread.sleep(3000);
+								break ab;
 							}
 
 						} catch (StaleElementReferenceException e) {
@@ -10784,7 +10732,7 @@ scrolltoend();
 							"(//div[@class='row'][2]//div[div[contains(text(),'" + interfacenumber + "')]])//input"))
 					.isDisplayed();
 			sa.assertTrue(result, "Verified: Interface got removed from the service");
-			sa.assertAll();
+			
 		} catch (Exception e) {
 			System.out.println("No values found inside the table");
 		}
@@ -10845,7 +10793,7 @@ scrolltoend();
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/cancelButton")));
 			Thread.sleep(3000);
 
-			sa.assertAll();
+			
 
 		} catch (AssertionError e) {
 			e.printStackTrace();
@@ -10907,7 +10855,7 @@ scrolltoend();
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/cancelButton")));
 			Thread.sleep(3000);
 
-			sa.assertAll();
+			
 
 		} catch (AssertionError e) {
 			e.printStackTrace();
@@ -10939,7 +10887,7 @@ scrolltoend();
 							.isDisplayed();
 			sa.assertTrue(ExecuteconfigOndevice, "Execute configuration on device link is not displayed");
 
-			sa.assertAll();
+			
 
 		} catch (AssertionError e) {
 			e.printStackTrace();
@@ -12582,15 +12530,14 @@ scrolltoend();
 	   Thread.sleep(3000);
 	   driver.switchTo().window(browserTabs.get(0)); 
 	   
-//	   assertEquals(pageTitle, expectedPageName, " on clicking 'Show Infovista link', it got naviagted to "+pageTitle);
+	   sa.assertEquals(pageTitle, expectedPageName, " on clicking 'Show Infovista link', it got naviagted to "+pageTitle);
 	   
-	  ExtentTestManager.getTest().log(LogStatus.PASS, "on clicking 'Show Infovista link', it got naviagted to "+ pageTitle + " as expected");
+	   
+	   sa.assertAll();
+	   ExtentTestManager.getTest().log(LogStatus.PASS, "on clicking 'Show Infovista link', it got naviagted to "+ pageTitle + " as expected");
 	   Thread.sleep(3000);
 	   
-	   ExtentTestManager.getTest().log(LogStatus.PASS, "show info vista page actual title: "+pageTitle );
-	   ExtentTestManager.getTest().log(LogStatus.PASS, "show info vista page expected title: "+ expectedPageName);
-	   
-	  }catch(Exception e) {
+	  }catch(AssertionError e) {
 		  
 		  e.printStackTrace();
 		  
@@ -12598,13 +12545,8 @@ scrolltoend();
 		  driver.switchTo().window(browserTabs.get(0));
 		  
 		  ExtentTestManager.getTest().log(LogStatus.FAIL, expectedPageName + " page is not displaying");
-		   
+		  
 	  }
-	   //Get back to prevoius tab
-//	   driver.close();
-	  
-	   
-//	   sa.assertAll();
    		
    }
 
@@ -12661,38 +12603,6 @@ scrolltoend();
 		  click_commonMethod(application, "Cancel", "cancelButton", xml); 
 		  Thread.sleep(1000);
 	   }
-
-	public void verifysuccessmessageforDeviceCreation() throws InterruptedException {
-
-		boolean devicecreationmsg = getwebelement("//span[contains(text(),'Site device created successfully')]")
-				.isDisplayed();
-		sa.assertTrue(devicecreationmsg,
-				" 'Site device created successfully' message is not getting displayed in viewdevice page after creating device");
-		if (devicecreationmsg) {
-			ExtentTestManager.getTest().log(LogStatus.PASS,
-					" ' Site device created successfully' ,message is displaying as expected");
-		} else {
-			ExtentTestManager.getTest().log(LogStatus.FAIL,
-					" 'Site device created successfully' message is not getting displayed in viewdevice page after creating device' ");
-		}
-
-	}
-
-	public void verifysuccessmessageforDeviceUpdation() throws InterruptedException {
-
-		boolean devicecreationmsg = getwebelement("//span[contains(text(),'Site device updated successfully')]")
-				.isDisplayed();
-		sa.assertTrue(devicecreationmsg,
-				" 'Site device updated successfully' message is not getting displayed in viewdevice page after creating device");
-		if (devicecreationmsg) {
-			ExtentTestManager.getTest().log(LogStatus.PASS,
-					" ' Site device updated successfully' ,message is displaying as expected");
-		} else {
-			ExtentTestManager.getTest().log(LogStatus.FAIL,
-					" 'Site device updated successfully' message is not getting displayed in viewdevice page after creating device' ");
-		}
-
-	}
 
 	public void verifyAddcpedevicepageforIntermediatEquipmetn(String application)
 			throws InterruptedException, DocumentException {
@@ -12933,7 +12843,7 @@ scrolltoend();
 //		try {
 //			boolean serial=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_serialnumber")).isDisplayed();
 //			sa.assertTrue(serial, "Serial number field is not available");
-//			sa.assertAll();
+//			
 //			ExtentTestManager.getTest().log(LogStatus.PASS,"serial number field is available under create device for Equipment" );
 //		}catch(AssertionError e) {
 //			e.printStackTrace();
@@ -12943,7 +12853,7 @@ scrolltoend();
 //		    try {
 //			boolean lanlink=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_linklostforowarding")).isDisplayed();
 //			sa.assertTrue(lanlink, "Lanlink forwarding chckbox under add device is not available");
-//			sa.assertAll();
+//			
 //			ExtentTestManager.getTest().log(LogStatus.PASS,"link lost forwarding checkbox is available under create device for Equipment" );
 //			}catch(AssertionError e) {
 //				e.printStackTrace();
@@ -13079,7 +12989,7 @@ scrolltoend();
 					.isDisplayed();
 			sa.assertTrue(cancel, "cancel button under add device is not available");
 
-			sa.assertAll();
+			
 
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Fields successfully verified for Add site order");
 		} catch (AssertionError e) {
@@ -17206,7 +17116,7 @@ scrolltoend();
 			click_commonMethod(application, "OK", "okbutton", xml);
 			Thread.sleep(5000);
 
-			sa.assertAll();
+			
 
 		} catch (AssertionError e) {
 
@@ -17357,7 +17267,7 @@ scrolltoend();
 			click_commonMethod(application, "OK", "okbutton", xml);
 			Thread.sleep(5000);
 
-			sa.assertAll();
+			
 
 		} catch (AssertionError e) {
 
@@ -17401,10 +17311,10 @@ scrolltoend();
 		verifyEnteredvalues("Snmpro", snmpro);
 
 		// Management Address
-		if ((existingmanagementAddress.equalsIgnoreCase("Yes")) || (newmanagementAddress.equalsIgnoreCase("no"))) {
+		if ((existingmanagementAddress.equalsIgnoreCase("Yes")) && (newmanagementAddress.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("Management Address", manageaddressdropdownvalue);
 		} else if ((existingmanagementAddress.equalsIgnoreCase("no"))
-				|| (newmanagementAddress.equalsIgnoreCase("Yes"))) {
+				&& (newmanagementAddress.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("Management Address", managementAddress);
 		}
 
@@ -17421,10 +17331,10 @@ scrolltoend();
 		verifyEnteredvalues("Country", existingcountry);
 
 		// City
-		if ((existingcityselectionmode.equalsIgnoreCase("Yes")) || (newcityselectionmode.equalsIgnoreCase("no"))) {
+		if ((existingcityselectionmode.equalsIgnoreCase("Yes")) && (newcityselectionmode.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("City", existingCity);
 		} else if ((existingcityselectionmode.equalsIgnoreCase("no"))
-				|| (newcityselectionmode.equalsIgnoreCase("Yes"))) {
+				&& (newcityselectionmode.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("City", newCity);
 		}
 
@@ -17432,16 +17342,16 @@ scrolltoend();
 		if ((existingsiteselectionmode.equalsIgnoreCase("Yes")) || (newsiteselectionmode.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("Site", existingSite);
 		} else if ((existingsiteselectionmode.equalsIgnoreCase("no"))
-				|| (newsiteselectionmode.equalsIgnoreCase("Yes"))) {
+				&& (newsiteselectionmode.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("Site", newSite);
 		}
 
 		// Premise
 		if ((existingpremiseselectionmode.equalsIgnoreCase("Yes"))
-				|| (newpremiseselectionmode.equalsIgnoreCase("no"))) {
+				&& (newpremiseselectionmode.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("Premise", existingPremise);
 		} else if ((existingpremiseselectionmode.equalsIgnoreCase("no"))
-				|| (newpremiseselectionmode.equalsIgnoreCase("Yes"))) {
+				&& (newpremiseselectionmode.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("Premise", newPremise);
 		}
 
@@ -17479,10 +17389,10 @@ scrolltoend();
 		verifyEnteredvalues("Snmpro", snmpro);
 
 		// Management Address
-		if ((existingmanagementAddress.equalsIgnoreCase("Yes")) || (newmanagementAddress.equalsIgnoreCase("no"))) {
+		if ((existingmanagementAddress.equalsIgnoreCase("Yes")) && (newmanagementAddress.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("Management Address", manageaddressdropdownvalue);
 		} else if ((existingmanagementAddress.equalsIgnoreCase("no"))
-				|| (newmanagementAddress.equalsIgnoreCase("Yes"))) {
+				&& (newmanagementAddress.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("Management Address", managementAddress);
 		}
 
@@ -17497,27 +17407,27 @@ scrolltoend();
 //		  verifyEnteredvalues("Link Lost Forwarding", linkLostForwarding);
 
 		// City
-		if ((existingcityselectionmode.equalsIgnoreCase("Yes")) || (newcityselectionmode.equalsIgnoreCase("no"))) {
+		if ((existingcityselectionmode.equalsIgnoreCase("Yes")) && (newcityselectionmode.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("City", existingCity);
 		} else if ((existingcityselectionmode.equalsIgnoreCase("no"))
-				|| (newcityselectionmode.equalsIgnoreCase("Yes"))) {
+				&& (newcityselectionmode.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("City", newCity);
 		}
 
 		// Site
-		if ((existingsiteselectionmode.equalsIgnoreCase("Yes")) || (newsiteselectionmode.equalsIgnoreCase("no"))) {
+		if ((existingsiteselectionmode.equalsIgnoreCase("Yes")) && (newsiteselectionmode.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("Site", existingSite);
 		} else if ((existingsiteselectionmode.equalsIgnoreCase("no"))
-				|| (newsiteselectionmode.equalsIgnoreCase("Yes"))) {
+				&& (newsiteselectionmode.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("Site", newSite);
 		}
 
 		// Premise
 		if ((existingpremiseselectionmode.equalsIgnoreCase("Yes"))
-				|| (newpremiseselectionmode.equalsIgnoreCase("no"))) {
+				&& (newpremiseselectionmode.equalsIgnoreCase("no"))) {
 			verifyEnteredvalues("Premise", existingPremise);
 		} else if ((existingpremiseselectionmode.equalsIgnoreCase("no"))
-				|| (newpremiseselectionmode.equalsIgnoreCase("Yes"))) {
+				&& (newpremiseselectionmode.equalsIgnoreCase("Yes"))) {
 			verifyEnteredvalues("Premise", newPremise);
 		}
 	}
@@ -19601,25 +19511,6 @@ scrolltoend();
 		}
 	}
 
-	public void verifysuccessmessageforDeviceCreation_Actellis() throws InterruptedException {
-
-		boolean devicecreationmsg = getwebelement("//span[contains(text(),'Device successfully created')]")
-				.isDisplayed();
-		sa.assertTrue(devicecreationmsg,
-				" 'Site device created successfully' message is not getting displayed in viewdevice page after creating device");
-		if (devicecreationmsg) {
-			ExtentTestManager.getTest().log(LogStatus.PASS,
-					" 'Device successfully created ' ,message is displaying as expected");
-			System.out.println(" 'Device successfully created ' ,message is displaying as expected");
-		} else {
-			ExtentTestManager.getTest().log(LogStatus.FAIL,
-					" 'Device successfullycreated' message is not getting displayed after creating device' ");
-			System.out
-					.println(" 'Device successfullycreated' message is not getting displayed after creating device' ");
-		}
-
-	}
-
 	public void verifyDataEnteredFordeviceCreation_Actelis(String application, String devicename, String vendorModel,
 			String RouterID, String manageAddress, String mepID, String ETH_Port)
 			throws InterruptedException, DocumentException {
@@ -19993,61 +19884,78 @@ scrolltoend();
 
 		try {
 			Thread.sleep(1000);
-			element = getwebelement("//div[div[label[contains(text(),'" + labelname + "')]]]/div[2]");
+			element = getwebelement("//div[div[label[contains(text(),'"+ labelname + "')]]]/div[2]");
 			String emptyele = element.getText().toString();
 
-			if (emptyele != null && emptyele.isEmpty()) {
-//						ExtentTestManager.getTest().log(LogStatus.PASS,  labelname + "' value is empty");
-
-				emptyele = "Null";
-
-				sa.assertEquals(emptyele, ExpectedText, labelname + " value is not displaying as expected");
-
-				if (emptyele.equalsIgnoreCase(ExpectedText)) {
-
-					ExtentTestManager.getTest().log(LogStatus.PASS, " The Expected value for '" + labelname + "' field '"
-							+ ExpectedText + "' is same as the Acutal value '" + text + "'");
-					System.out.println(" The Expected Text for '" + labelname + "' field '" + ExpectedText
-							+ "' is same as the Acutal Text '" + text + "'");
-
-				} else if (ExpectedText.contains(emptyele)) {
-
-					ExtentTestManager.getTest().log(LogStatus.PASS, " The Expected value for '" + labelname + "' field '"
-							+ ExpectedText + "' is same as the Acutal value '" + text + "'");
-					System.out.println(" The Expected Text for '" + labelname + "' field '" + ExpectedText
-							+ "' is same as the Acutal Text '" + text + "'");
-
-				} else {
-					ExtentTestManager.getTest().log(LogStatus.FAIL, " The Expected value for '" + labelname + "' field '"
-							+ ExpectedText + "' is not same as the Acutal value '" + text + "'");
-					System.out.println(" The Expected value '" + ExpectedText + "' is not same as the Acutal value '"
-							+ text + "'");
-				}
-
-			} else {
-				text = element.getText();
-				if (text.equalsIgnoreCase(ExpectedText)) {
-					ExtentTestManager.getTest().log(LogStatus.PASS, " The Expected value for '" + labelname + "' field '"
-							+ ExpectedText + "' is same as the Acutal value '" + text + "'");
-					System.out.println(" The Expected value for '" + labelname + "' field '" + ExpectedText
-							+ "' is same as the Acutal value '" + text + "'");
-				} else if (ExpectedText.contains(text)) {
-					ExtentTestManager.getTest().log(LogStatus.PASS, "The Expected value for '" + labelname + "' field '"
-							+ ExpectedText + "' is same as the Acutal value '" + text + "'");
-					System.out.println("The Expected value for '" + labelname + "' field '" + ExpectedText
-							+ "' is same as the Acutal value '" + text + "'");
-
-				} else {
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "The Expected value for '" + labelname + "' field '"
-							+ ExpectedText + "' is not same as the Acutal value '" + text + "'");
-					System.out.println("The Expected value for '" + labelname + "' field '" + ExpectedText
-							+ "' is not same as the Acutal value '" + text + "'");
-				}
+			if(element==null)
+			{
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname+" not found");
+				Log.info(labelname+" not found");
 			}
-		} catch (Exception e) {
+			else if (emptyele!=null && emptyele.isEmpty()) {
+//				ExtentTestManager.getTest().log(LogStatus.PASS,  labelname + "' value is empty");
+				
+				emptyele= "Null";
+				
+				sa.assertEquals(emptyele, ExpectedText, labelname + " value is not displaying as expected");
+				
+				if(emptyele.equalsIgnoreCase(ExpectedText)) {
+					
+					ExtentTestManager.getTest().log(LogStatus.PASS, "The Expected value for '"+ labelname +"' field  is same as the Acutal value. It is id displaying blank");
+					Log.info("The Expected value for '\"+ labelname +\"' field  is same as the Acutal value. It is displaying blank");
+					
+				}else {
+					ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+					Log.info(" The Expected value '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+				}
+				
+
+			}else 
+			{   
+				text = element.getText();
+				if((text.contains(" ")) ||  text.contains("-")) {
+					
+					String[] actualTextValue=text.split(" ");
+					String[] expectedValue =ExpectedText.split(" ");
+					
+					if(expectedValue[0].equalsIgnoreCase(actualTextValue[0])) {
+						ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					}
+					else if(expectedValue[0].contains(actualTextValue[0])) {
+						ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					
+					}
+					else
+					{
+						ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+					}
+					
+				}else {
+					if(ExpectedText.equalsIgnoreCase(text)) {
+						ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					}
+					else if(ExpectedText.contains(text)) {
+						ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					
+					}
+					else
+					{
+						ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+					}
+				}
+				
+				
+			}
+		}catch (Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
-			System.out.println(labelname + " field is not displaying");
+			Log.info(labelname + " field is not displaying");
 		}
 
 	}
@@ -22850,7 +22758,7 @@ public void addRouterFunction_CPE(String application, String PE_RouteCity,
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "Routes panel header is not displaying");
 	}
 
-	sa.assertAll();
+	
 }
 
 
@@ -22974,7 +22882,7 @@ public void deleteRouterFunction_CPE(String application, String ServiceIdentific
 //				System.out.println("Add Customer Readonly SNMP  panel header is not displaying");
 //			}
 
-			sa.assertAll();
+			
 		}
 }
 
@@ -23018,7 +22926,7 @@ public void addCustomerReadonlySNMPFunction_CPE(String application, String Custo
 		System.out.println("Add Customer Readonly SNMP  panel header is not displaying");
 	}
 
-	sa.assertAll();
+	
 }
 
 
@@ -23060,7 +22968,7 @@ public void addCustomerReadonlySNMPFunction_CPE(String application, String Custo
 		System.out.println("Edit Customer Readonly SNMP  panel header is not displaying");
 	}
 
-	sa.assertAll();
+	
 }
 
 }
@@ -23102,7 +23010,7 @@ public void deleteCustomerReadonlySNMPFunction_CPE(String application, String Cu
 		System.out.println("Customer Readonly SNMP  panel header is not displaying in View CPE Device page");
 	}
 
-	sa.assertAll();
+	
 }
 
 
@@ -23238,7 +23146,7 @@ ExtentTestManager.getTest().log(LogStatus.FAIL, "Extra Subnets  panel header is 
 System.out.println("Extra Subnets  panel header is not displaying In view CPE Device page");
 }
 
-sa.assertAll();
+
 }
 
 
@@ -23305,7 +23213,7 @@ ExtentTestManager.getTest().log(LogStatus.FAIL, "NAT Configuration  panel header
 System.out.println("NAT Configuration  panel header is not displaying");
 }
 
-sa.assertAll();
+
 }
 
 
@@ -23376,7 +23284,7 @@ public void click(String application, String labelname, String xpath) throws Int
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Static NAT Mapping Panel not displayed");
 			}
 		
-		sa.assertAll();
+		
 		}
 		
 		
@@ -23419,7 +23327,7 @@ public void click(String application, String labelname, String xpath) throws Int
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "Static NAT Mapping Panel not displayed");
 		}
 		
-		sa.assertAll();
+		
 		}
 		
 		
@@ -23562,7 +23470,7 @@ public void click(String application, String labelname, String xpath) throws Int
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Static NAT Mapping Panel not displayed");
 			}
 		
-		sa.assertAll();
+		
 		}
 		
 		
@@ -23600,7 +23508,7 @@ public void click(String application, String labelname, String xpath) throws Int
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "Static NAT Mapping Panel not displayed");
 		}
 		
-		sa.assertAll();
+		
 		}
 		
 		
@@ -23686,7 +23594,7 @@ public void click(String application, String labelname, String xpath) throws Int
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "DHCP Servers on CPE Panel not displayed");
 			}
 		
-		sa.assertAll();
+		
 		}
 		
 		
@@ -23737,7 +23645,7 @@ public void click(String application, String labelname, String xpath) throws Int
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "DHCP Servers on CPE Panel not displayed");
 		}
 		
-		sa.assertAll();
+		
 		}
 		
 		

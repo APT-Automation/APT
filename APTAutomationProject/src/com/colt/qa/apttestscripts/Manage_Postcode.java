@@ -52,7 +52,9 @@ public class Manage_Postcode extends DriverTestcase{
 				ManagePostcode_Helper.get().verifyPostcodevalues("ManageColt",map.get("Countrylist"),map.get("EmergencyAreaIDSub"),map.get("ImplementSwitchValue"),map.get("CityTranValue"),
 						map.get("SubProvinValue"),map.get("SubAreaValue"),map.get("SubAreaComValue"),map.get("SubAreaIDValue"),map.get("SubAreaBValue"),map.get("SubAreaZIpValue")
 						,map.get("EmergencySUbValue"));
+				ExtentTestManager.endTest();
 				
+			logger = ExtentTestManager.startTest("EditPostcode");	
 				ManagePostcode_Helper.get().editPostcode("ManageColt",map.get("Countrylist"),map.get("EmergencyAreaIDSub"), map.get("edit_ImplementSwitchValue"), map.get("edit_CityTranValue"),
 						map.get("edit_SubArea1"), map.get("edit_SubArea1_ID"), map.get("edit_SubArea2"), map.get("edit_SubArea2_ID"), map.get("edit_SubArea3"), map.get("edit_SubArea3_ID"),
 						map.get("edit_EmergencyArea"), map.get("replaceEmergencyArea"), map.get("updateEmergencyArea"), map.get("edit_EmergencyKeyValue"),

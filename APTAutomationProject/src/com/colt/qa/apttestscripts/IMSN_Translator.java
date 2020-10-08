@@ -20,13 +20,13 @@ public class IMSN_Translator extends DriverTestcase{
 		@Test(dataProviderClass = DataReader.class, dataProvider = "DataReader_ManageTranslation", priority=1)
 		public void manageColtNetwork(Map<String, String> map) throws Exception {
 
-			logger= ExtentTestManager.startTest ("manageColtNetwork");
-			
 			setup();
 			
 			Login.APT_Login_1(map.get("url"));
 		
+			logger = ExtentTestManager.startTest("Navigate to 'Manage Number Translation'");
 			ImsNmbrTranslator_Helper.get().selectImsTranslator("ManageColt");
+			ExtentTestManager.endTest();
 			
 			logger= ExtentTestManager.startTest ("verifyListofCountries");
 				ImsNmbrTranslator_Helper.get().verifyManageNumberTranslationcountrypage("ManageColt");
@@ -55,7 +55,7 @@ public class IMSN_Translator extends DriverTestcase{
 				ImsNmbrTranslator_Helper.get().verifyAddnumbertranslationfunction("ManageColt",map.get("countryCode"),
 						map.get("TranslateNumber"),map.get("TranslatedNumber"),map.get("PrefixNumbertextField"),map.get("CarrierNo"),
 						 map.get("prefixCheckbox"), map.get("Range"), map.get("sequence"), map.get("NatureOfAddress"));
-			
+				ExtentTestManager.endTest();
 				
 			logger= ExtentTestManager.startTest ("editNumberTranslationFunction");	
 				ImsNmbrTranslator_Helper.get().editIMSNT("ManageColt",map.get("countryCode"),map.get("TranslateNumber"),map.get("editTranslatedNumber"),

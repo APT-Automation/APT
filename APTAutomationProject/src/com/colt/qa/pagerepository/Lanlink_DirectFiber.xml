@@ -5,6 +5,8 @@
 
 <apt>
 
+<obutton_spanTag>//span[contains(text(),'OK')]</obutton_spanTag>
+
 <ManageCustomerServiceLink>(//div[@class='ant-menu-submenu-title'])[2]</ManageCustomerServiceLink>
 
 <managecoltnetworklink>(//div[@class='ant-menu-submenu-title'])[4]</managecoltnetworklink>
@@ -368,6 +370,8 @@
 
 <CreateOrderService>
 
+<obutton_spanTag>//span[contains(text(),'OK')]</obutton_spanTag>
+
 <ManageCustomerServiceLink>//span/b[contains(text(),"MANAGE CUSTOMER'S SERVICE")]</ManageCustomerServiceLink>
 
 <nextbutton>//span[contains(text(),'Next')]</nextbutton>
@@ -447,8 +451,9 @@
 </CreateOrderService>
 
 
--<LANLINK>
+<LANLINK>
 
+<obutton_spanTag>//span[contains(text(),'OK')]</obutton_spanTag>
 <chooseCustomerdropdown>//div[@class='react-dropdown-select-content react-dropdown-select-type-single css-jznujr-ContentComponent e1gn6jc30']</chooseCustomerdropdown>
 
 <OrderContractNumber_Select_build3>(//div[@class='react-dropdown-select-content react-dropdown-select-type-single css-jznujr-ContentComponent e1gn6jc30'])[1]</OrderContractNumber_Select_build3>
@@ -1806,7 +1811,7 @@
 
 <AMNvalidator_statusPanel_countryName>//div[@col-id='countryName'][@role='gridcell']</AMNvalidator_statusPanel_countryName>
 
-<AMNvalidator_devicePanel_deviceName>//a[@class='customLink heading-green-1']</AMNvalidator_devicePanel_deviceName>
+<AMNvalidator_devicePanel_deviceName>//div[div[text()='Devices For Service']]//following-sibling::div//div[@class='ag-react-container']/a</AMNvalidator_devicePanel_deviceName>
 
 <physicalSiteCSRName_viewSiteOrder>//div[label[text()='Physical Site: CSR Name']]//following-sibling::div[@class='customLabelValue form-label']</physicalSiteCSRName_viewSiteOrder>
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite annotations="JDK" name="APT End to End Order" verbose="1" data-provider-thread-count="2" thread-count="2">
+
+<!-- Suite -->
+
+
+<test name="APT Test" preserve-order="true" junit="false">
+
+
+<classes>
+
+<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNPlus"/>
+
+<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNAccess"/>
+
+<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNConnect"/>
+
+<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNIPSec"/>
+
+<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNCPESolutionL2"/>
+
+<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNCPESolutionL3"/>
+
+<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNIPVoice"/>
+
+<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNSwiftNet"/>
+
+</classes>
+
+</test>
+
+<!-- Test -->
+
+
+</suite>

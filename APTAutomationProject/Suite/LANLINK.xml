@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="APT Test Suite" thread-count="5" data-provider-thread-count="1" verbose="4"  parallel="tests" >
+
+	<listeners>
+	  <listener class-name="com.colt.qa.listeners.TestListener"/>
+	   <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+    
+    
+	<test name="APT Test1">
+		<classes>
+			<class name = "com.colt.qa.apttestscripts.Lanlink_Outbandmanagement" />
+		</classes>
+	</test>	<!-- Test -->
+	
+	<test name="APT Test2">
+		<classes>
+			<class name = "com.colt.qa.apttestscripts.Lanlink_OLO" />
+		</classes>
+	</test>	<!-- Test -->
+	
+</suite>	 <!-- Suite -->
+
+

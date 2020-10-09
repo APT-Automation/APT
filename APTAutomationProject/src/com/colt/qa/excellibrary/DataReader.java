@@ -84,7 +84,7 @@ public class DataReader {
 				count++;
 			}
 			else {
-				////System.out.println("No changes");
+				//////System.out.println("No changes");
 			}
 			
 		}
@@ -161,7 +161,7 @@ public class DataReader {
 				count++;
 			}
 			else {
-				//System.out.println("No changes");
+				////System.out.println("No changes");
 			}
 		}
 
@@ -238,7 +238,7 @@ public class DataReader {
 				count++;
 			}
 			else {
-				//System.out.println("No changes");
+				////System.out.println("No changes");
 			}
 		}
 
@@ -315,7 +315,7 @@ public class DataReader {
 				count++;
 			}
 			else {
-				//System.out.println("No changes");
+				////System.out.println("No changes");
 			}
 			
 		}
@@ -396,7 +396,7 @@ public class DataReader {
 				count++;
 			}
 			else {
-				//System.out.println("No changes");
+				////System.out.println("No changes");
 			}
 		}
 
@@ -535,7 +535,7 @@ public class DataReader {
 				count++;
 			}
 			else {
-				//System.out.println("No changes");
+				////System.out.println("No changes");
 			}
 			
 		}
@@ -612,7 +612,7 @@ public class DataReader {
 				count++;
 			}
 			else {
-				//System.out.println("No changes");
+				////System.out.println("No changes");
 			}
 			
 		}
@@ -690,7 +690,7 @@ public class DataReader {
 				count++;
 			}
 			else {
-				//System.out.println("No changes");
+				////System.out.println("No changes");
 			}
 			
 		}
@@ -769,7 +769,7 @@ public class DataReader {
 				count++;
 			}
 			else {
-				//System.out.println("No changes");
+				////System.out.println("No changes");
 			}
 		}
 
@@ -851,7 +851,7 @@ public class DataReader {
 				count++;
 			}
 			else {
-				//System.out.println("No changes");
+				////System.out.println("No changes");
 			}
 			
 		}
@@ -933,7 +933,7 @@ public class DataReader {
 				count++;
 			}
 			else {
-				//System.out.println("No changes");
+				////System.out.println("No changes");
 			}
 			
 		}
@@ -1068,7 +1068,7 @@ public class DataReader {
 				count++;
 			}
 			else {
-				//System.out.println("No changes");
+				////System.out.println("No changes");
 			}
 			
 		}
@@ -1148,7 +1148,7 @@ public class DataReader {
 					count++;
 				}
 				else {
-					//System.out.println("No changes");
+					////System.out.println("No changes");
 				}
 				
 			}
@@ -1519,7 +1519,7 @@ public class DataReader {
 				count++;
 			}
 			else {
-				//System.out.println("No changes");
+				////System.out.println("No changes");
 			}
 			
 		}
@@ -1656,7 +1656,7 @@ public class DataReader {
 						count++;
 					}
 					else {
-						//System.out.println("No changes");
+						////System.out.println("No changes");
 					}
 					
 				}
@@ -1739,7 +1739,7 @@ public class DataReader {
 						count++;
 					}
 					else {
-						//System.out.println("No changes");
+						////System.out.println("No changes");
 					}
 					
 					
@@ -1825,7 +1825,7 @@ public class DataReader {
 						count++;
 					}
 					else {
-						//System.out.println("No changes");
+						////System.out.println("No changes");
 					}
 					
 				}
@@ -1902,7 +1902,7 @@ public class DataReader {
 						count++;
 					}
 					else {
-						//System.out.println("No changes");
+						////System.out.println("No changes");
 					}
 				}
 				return obj;
@@ -1978,7 +1978,7 @@ public class DataReader {
 						count++;
 					}
 					else {
-						//System.out.println("No changes");
+						////System.out.println("No changes");
 					}
 				}
 				return obj;
@@ -2057,7 +2057,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 						
 					}
@@ -2139,7 +2139,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 						
 					}
@@ -2220,7 +2220,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 						
 					}
@@ -2302,7 +2302,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 						
 					}
@@ -2383,7 +2383,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 						
 					}
@@ -2465,7 +2465,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 						
 					}
@@ -2547,7 +2547,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 						
 					}
@@ -2626,7 +2626,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 					}
 
@@ -2700,7 +2700,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 					}
 					return obj;
@@ -2771,7 +2771,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 					}
 					return obj;
@@ -2843,7 +2843,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 					}
 					return obj;
@@ -2914,7 +2914,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 					}
 					return obj;
@@ -2987,7 +2987,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 					}
 					return obj;
@@ -3058,7 +3058,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 					}
 					return obj;
@@ -3129,7 +3129,7 @@ public class DataReader {
 							count++;
 						}
 						else {
-							//System.out.println("No changes");
+							////System.out.println("No changes");
 						}
 					}
 					return obj;
@@ -3204,7 +3204,7 @@ public class DataReader {
 								count++;
 							}
 							else {
-								//System.out.println("No changes");
+								////System.out.println("No changes");
 							}
 						}
 						return obj;
@@ -3280,7 +3280,7 @@ public class DataReader {
 									count++;
 								}
 								else {
-									//System.out.println("No changes");
+									////System.out.println("No changes");
 								}
 							}
 							return obj;
@@ -3353,7 +3353,7 @@ public class DataReader {
 					                         count++;
 					                   }
 					                   else {
-					                         System.out.println("No changes");
+					                         //System.out.println("No changes");
 					                   }
 					                   
 					             }
@@ -3426,7 +3426,7 @@ public class DataReader {
 					                         count++;
 					                   }
 					                   else {
-					                         System.out.println("No changes");
+					                         //System.out.println("No changes");
 					                   }
 					                   
 					             }
@@ -3499,7 +3499,7 @@ public class DataReader {
 					                         count++;
 					                   }
 					                   else {
-					                         System.out.println("No changes");
+					                         //System.out.println("No changes");
 					                   }
 					                   
 					             }
@@ -3575,7 +3575,7 @@ public class DataReader {
 					                         count++;
 					                   }
 					                   else {
-					                         System.out.println("No changes");
+					                         //System.out.println("No changes");
 					                   }
 					                   
 					             }
@@ -3651,7 +3651,7 @@ public class DataReader {
 					                         count++;
 					                   }
 					                   else {
-					                         System.out.println("No changes");
+					                         //System.out.println("No changes");
 					                   }
 					                   
 					             }
@@ -3726,7 +3726,7 @@ public class DataReader {
 					                         count++;
 					                   }
 					                   else {
-					                         System.out.println("No changes");
+					                         //System.out.println("No changes");
 					                   }
 					                   
 					             }
@@ -3800,7 +3800,7 @@ public class DataReader {
 					                         count++;
 					                   }
 					                   else {
-					                         System.out.println("No changes");
+					                         //System.out.println("No changes");
 					                   }
 					                   
 					             }
@@ -3875,13 +3875,252 @@ public class DataReader {
 					                         count++;
 					                   }
 					                   else {
-					                         System.out.println("No changes");
+					                         //System.out.println("No changes");
 					                   }
-					                   
 					             }
 
 					             return obj;
 					       }
+
+					 
+					 
+					 /**
+						 * For LANLINK _ New Tab
+						 * @return
+						 * @throws IOException
+						 */
+							@DataProvider
+							public static Object[][] DataReader_LANLINKNewTab() throws IOException {
+								
+								int count=0;
+								
+								String filename = "wholeSale_newTab.xlsx";
+
+								String file = "src\\com\\colt\\qa\\datalibrary\\LANLINK_newTab.xlsx";
+								
+								FileInputStream inputStream = new FileInputStream(file);
+
+								Workbook workbook = null;
+
+								String fileExtensionName = filename.substring(filename.indexOf("."));
+
+								if (fileExtensionName.equals(".xlsx")) {
+
+									workbook = new XSSFWorkbook(inputStream);
+
+								}
+
+								else if (fileExtensionName.equals(".xls")) {
+
+									workbook = new HSSFWorkbook(inputStream);
+
+								}
+
+								Sheet sheet = workbook.getSheet("editService");
+								
+								int rowCountForMap = 0;
+
+						        for(int k=1;k<=sheet.getLastRowNum();k++){
+						                        XSSFRow counter=(XSSFRow) sheet.getRow(k);
+						                        if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+						                        {
+						                        	rowCountForMap=rowCountForMap+1;
+						                        }
+						        }
+
+
+								int rowCount = sheet.getLastRowNum();
+								
+								System.out.println("total row count: "+rowCount);
+
+								int colCount = sheet.getRow(0).getLastCellNum();
+
+								
+								System.out.println("Column count: "+colCount);
+								Object[][] obj = new Object[rowCountForMap][1];
+
+								
+								for (int i = 0; i < rowCount; i++) {
+
+									Map<Object, Object> datamap = new HashMap<Object, Object>();
+									
+									if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+										
+										for (int j = 0; j < colCount; j++) {
+
+											datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+										
+										}
+										
+										obj[count][0] = datamap;
+										count++;
+									}
+									else {
+										//System.out.println("No changes");
+									}
+									
+								}
+
+								return obj;
+							}
+
+
+							
+							/**
+							 * For VOIP Access _ New Tab
+							 * @return
+							 * @throws IOException
+							 */
+								@DataProvider
+								public static Object[][] DataReader_voipAccessNewTab() throws IOException {
+									
+									int count=0;
+									
+									String filename = "voipAccess_newTab.xlsx";
+
+									String file = "src\\com\\colt\\qa\\datalibrary\\voipAccess_newTab.xlsx";
+									
+									FileInputStream inputStream = new FileInputStream(file);
+
+									Workbook workbook = null;
+
+									String fileExtensionName = filename.substring(filename.indexOf("."));
+
+									if (fileExtensionName.equals(".xlsx")) {
+
+										workbook = new XSSFWorkbook(inputStream);
+
+									}
+
+									else if (fileExtensionName.equals(".xls")) {
+
+										workbook = new HSSFWorkbook(inputStream);
+
+									}
+
+									Sheet sheet = workbook.getSheet("MASdevice");
+									
+									int rowCountForMap = 0;
+
+							        for(int k=1;k<=sheet.getLastRowNum();k++){
+							                        XSSFRow counter=(XSSFRow) sheet.getRow(k);
+							                        if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+							                        {
+							                        	rowCountForMap=rowCountForMap+1;
+							                        }
+							        }
+
+									int rowCount = sheet.getLastRowNum();
+									
+									int colCount = sheet.getRow(0).getLastCellNum();
+
+									Object[][] obj = new Object[rowCountForMap][1];
+
+									for (int i = 0; i < rowCount; i++) {
+
+										Map<Object, Object> datamap = new HashMap<Object, Object>();
+										
+										if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+											
+											for (int j = 0; j < colCount; j++) {
+
+												datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+											
+											}
+											
+											obj[count][0] = datamap;
+											count++;
+										}
+										else {
+											////System.out.println("No changes");
+										}
+										
+									}
+
+									return obj;
+								}
+								
+								
+									
+									/**
+									 * For IPVPN _ New Tab
+									 * @return
+									 * @throws IOException
+									 */
+										@DataProvider
+										public static Object[][] DataReader_IPVPNNewTab() throws IOException {
+											
+											int count=0;
+											
+											String filename = "IPVPN_newTab.xlsx";
+
+											String file = "src\\com\\colt\\qa\\datalibrary\\IPVPN_newTab.xlsx";
+											
+											FileInputStream inputStream = new FileInputStream(file);
+
+											Workbook workbook = null;
+
+											String fileExtensionName = filename.substring(filename.indexOf("."));
+
+											if (fileExtensionName.equals(".xlsx")) {
+
+												workbook = new XSSFWorkbook(inputStream);
+
+											}
+
+											else if (fileExtensionName.equals(".xls")) {
+
+												workbook = new HSSFWorkbook(inputStream);
+
+											}
+
+											Sheet sheet = workbook.getSheet("Interface_newTab");
+											
+											int rowCountForMap = 0;
+
+									        for(int k=1;k<=sheet.getLastRowNum();k++){
+									                        XSSFRow counter=(XSSFRow) sheet.getRow(k);
+									                        if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+									                        {
+									                        	rowCountForMap=rowCountForMap+1;
+									                        }
+									        }
+
+
+											int rowCount = sheet.getLastRowNum();
+											
+											System.out.println("total row count: "+rowCount);
+
+											int colCount = sheet.getRow(0).getLastCellNum();
+
+											
+											System.out.println("Column count: "+colCount);
+											Object[][] obj = new Object[rowCountForMap][1];
+
+											
+											for (int i = 0; i < rowCount; i++) {
+
+												Map<Object, Object> datamap = new HashMap<Object, Object>();
+												
+												if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+													
+													for (int j = 0; j < colCount; j++) {
+
+														datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+													
+													}
+													
+													obj[count][0] = datamap;
+													count++;
+												}
+												else {
+													//System.out.println("No changes");
+												}
+												
+											}
+
+											return obj;
+										}
 
 
 				 

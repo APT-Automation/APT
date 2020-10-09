@@ -339,7 +339,85 @@ public class DriverHelper{
 				return el;
 			} 
 
-	
+
+		public WebElement getwebelement_updated(final String locator) throws InterruptedException
+		{   //Log.info("Indriverhelper"+driver);
+			//WebElement el;
+			final String[] finalval;
+			if(locator.startsWith("name"))
+			{
+				finalval=locator.split("=");
+				//Log.info(finalval[1]);
+				//Log.info("Indriverhelper"+driver);
+				//wait.until();  
+//				wait.until(new Function<WebDriver, WebElement>() {       
+//					public WebElement apply(WebDriver driver) {
+					try {	
+						el=driver.findElement(By.name(finalval[1]));
+						return driver.findElement(By.name(finalval[1])); 
+					}catch(StaleElementReferenceException ee) {
+						ee.printStackTrace();
+					}
+//					}  
+//				});  
+			}
+			else if(locator.startsWith("id"))
+			{
+				finalval=locator.split("=");
+				//Log.info(finalval[1]);
+				//Log.info("Indriverhelper"+driver);
+				wait.until(new Function<WebDriver, WebElement>() {       
+					public WebElement apply(WebDriver driver) { 
+						el=driver.findElement(By.id(finalval[1]));
+						return driver.findElement(By.id(finalval[1]));     
+					}  
+				});
+				//el= driver.findElement(By.id(finalval[1]));
+			}
+			else if (locator.startsWith("//")|| locator.startsWith("(//"))
+			{
+				wait.until(new Function<WebDriver, WebElement>() {       
+					public WebElement apply(WebDriver driver) { 
+						el=driver.findElement(By.xpath(locator)); 
+						return driver.findElement(By.xpath(locator));     
+					}  
+				});
+
+			}
+			Thread.sleep(1000);
+			return el;
+		} 
+		
+		
+		public WebElement getwebelementNoWait(final String locator) throws InterruptedException
+		{   
+			final String[] finalval;
+			if(locator.startsWith("name"))
+			{
+				finalval=locator.split("=");	
+				return driver.findElement(By.name(finalval[1]));     
+				 
+			}
+			else if(locator.startsWith("id"))
+			{
+				finalval=locator.split("=");
+				return driver.findElement(By.id(finalval[1]));     
+				
+			}
+			else if(locator.startsWith("//")|| locator.startsWith("(//"))
+			{
+				return driver.findElement(By.xpath(locator));     
+			}
+			else
+			{
+				return driver.findElement(By.xpath(locator)); 
+			}
+		
+		}
+
+
+		
+		
 //	public WebElement getwebelement(final String locator) throws InterruptedException
 //	{   //Log.info("Indriverhelper"+driver);
 //	 //WebElement el;
@@ -427,8 +505,6 @@ public class DriverHelper{
 		//Thread.sleep(3000);
 		
 		try {
-			
-			
 		el.click();
 		
 		}
@@ -1012,15 +1088,14 @@ public void Moveon(WebElement el) {
 
 	public void scrollToTop() throws InterruptedException {
 		
+		
+	try {	
 		WebElement element = getwebelement("//ol[@class='breadcrumb']//a[text()='Home']");
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);",element); 
-		
-//		clickOnBankPage();
-//		
-//		Thread.sleep(1000);
-//		Actions action=new Actions(driver);
-//		action.keyDown(Keys.CONTROL).sendKeys(Keys.HOME).keyUp(Keys.CONTROL).perform();
-//		action.keyDown(Keys.CONTROL).sendKeys(Keys.HOME).keyUp(Keys.CONTROL).perform();
+	}catch(StaleElementReferenceException e) {
+		e.printStackTrace();
+	}
+				
 		
 	}
 
@@ -1071,8 +1146,6 @@ public void Moveon(WebElement el) {
 			}else {
 				
 				SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")), expectedValueToAdd);
-				Thread.sleep(3000);
-				
 				String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
 				ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field value added as: "+ actualvalue);
 			}
@@ -1123,14 +1196,12 @@ public void Moveon(WebElement el) {
 			  }else {
 				  
 				  Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
-				  Thread.sleep(3000);
+				  
 				  
 				  //verify list of values inside dropdown
 				  List<WebElement> listofvalues = driver
 							.findElements(By.xpath("//div[@class='sc-bxivhb kqVrwh']"));
 				  
-				  ExtentTestManager.getTest().log(LogStatus.PASS, " List of values inside "+ labelname + " dropdown is:  ");
-				  System.out.println( " List of values inside "+ labelname + "dropdown is:  ");
 				  
 					for (WebElement valuetypes : listofvalues) {
 								Log.info("List of values : " + valuetypes.getText());
@@ -1141,10 +1212,9 @@ public void Moveon(WebElement el) {
 			            System.out.println("list of values inside "+labelname+" dropdown is: "+ls);
 					
 				SendKeys(getwebelement("//div[label[text()='"+ labelname +"']]//input"), expectedValueToAdd);	
-				Thread.sleep(2000);
 					
 				  Clickon(getwebelement("(//div[label[text()='"+ labelname +"']]//div[contains(text(),'"+ expectedValueToAdd +"')])[1]"));
-				  Thread.sleep(3000);
+				  Thread.sleep(1000);
 				  
 				  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
 				  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
@@ -1192,7 +1262,6 @@ public void Moveon(WebElement el) {
 				System.out.println(labelname + " checkbox is displaying");
 				
 			boolean isElementSelected=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isSelected();
-			Thread.sleep(2000);
 		
 		//verify whether checkbox is selected/unselected by default		
 			if(DefaultSelection.equalsIgnoreCase("yes")) {
@@ -1274,10 +1343,6 @@ public void Moveon(WebElement el) {
 			boolean availability=false;
 		try {
 			
-			ScrolltoElement(application, xpathname , xml);
-			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)"); 
-			
 			availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
 			if(availability) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is displaying");
@@ -1291,11 +1356,9 @@ public void Moveon(WebElement el) {
 				}else {
 					
 					getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).clear();
-					Thread.sleep(3000);
+					Thread.sleep(1000);
 					
 					SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")), expectedValueToEdit);
-					Thread.sleep(3000);
-					
 					String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
 					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is edited as: "+ actualvalue);
 				}
@@ -1331,7 +1394,6 @@ public void Moveon(WebElement el) {
 		 	//Field Error Message
 		 			try {
 		 				message = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath  +"")).isDisplayed();
-		 				Thread.sleep(3000);
 
 		 		if(message) {
 		 			String ErrMsg = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath  +"")).getText();
@@ -1392,10 +1454,6 @@ public void Moveon(WebElement el) {
 			  boolean Availability=false;
 			  try {
 				  
-				  ScrolltoElement(application, xpath , xml);
-					Thread.sleep(1000);
-					((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)"); 
-					
 				  Availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 			  
 			  if(Availability) {
@@ -1405,7 +1463,6 @@ public void Moveon(WebElement el) {
 				  
 				if(!expectedResult.equalsIgnoreCase("null")) {
 					boolean isElementSelected=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isSelected();
-					Thread.sleep(2000);
 					
 					if (expectedResult.equalsIgnoreCase("yes")) {
 						
@@ -1460,7 +1517,6 @@ public void Moveon(WebElement el) {
 		public void delete(String application, String xpath, String labelname, String expectedvalue, XMLReader xml) throws InterruptedException, DocumentException{
 			Thread.sleep(1000);	
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
-			Thread.sleep(2000);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on delete link");
 
 			WebElement DeleteAlertPopup= driver.findElement(By.xpath("//div[@class='modal-content']"));
@@ -1527,7 +1583,6 @@ public void Moveon(WebElement el) {
 			WebElement element = null;
 
 			try {
-				Thread.sleep(1000);
 				element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 				String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 				if(element==null)
@@ -1592,7 +1647,6 @@ public void Moveon(WebElement el) {
 			WebElement element = null;
 
 			try {
-				Thread.sleep(1000);
 				element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 				String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 				if(element==null)
@@ -1641,7 +1695,6 @@ public void Moveon(WebElement el) {
 			WebElement element = null;
 
 			try {
-				Thread.sleep(1000);
 				element = getwebelement("//div[div[label[contains(text(),'"+ labelname + "')]]]/div[2]");
 				String emptyele = element.getText().toString();
 
@@ -1747,6 +1800,28 @@ public void Moveon(WebElement el) {
 					e.printStackTrace();
 				}
 			}
+		
+		
+		public void click_commonMethod_PassingWebelementDirectly_forBreadcrumb(String application, String labelname, WebElement webelement, XMLReader xml) throws InterruptedException, DocumentException {
+			WebElement element= null;
+
+			try {
+				Thread.sleep(1000);
+				element = webelement;
+				if(element==null)
+				{
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+				}
+				else {
+					element.click();	
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
+				}
+
+			} catch (Exception e) {
+				ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
+				e.printStackTrace();
+			}
+		}
 			
 /**
  *  It fetches all the value inside dropdown. And it selects the required value inside dropdown			
@@ -1898,7 +1973,49 @@ public void scrolltoview (String application, String labelname, String xpath, XM
 	((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
 }
 
+
+
+public void openLinkInNewTab(String application, String xpath,String linkName, XMLReader xml) throws InterruptedException, DocumentException {
+	
+	WebElement el;
+	el= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
+	Actions action=new Actions(driver);
+	
+	action.keyDown(Keys.CONTROL)
+	.click(el)
+	.keyUp(Keys.CONTROL)
+	.build()
+	.perform();
+	
+	ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on " + linkName + " link");
+	Log.info("Clicked on " + linkName + " link");
+}
 			
+
+
+public void isDisplayed(String application, WebElement el, String labelname, XMLReader xml) {
+	boolean availability = false;
+
+	try {
+		Thread.sleep(1000);
+		availability= el.isDisplayed();
+		System.out.println(availability);
+		if (availability) {
+			Thread.sleep(2000);
+			ExtentTestManager.getTest().log(LogStatus.PASS, labelname +" breadcrumb is displayed");
+			Log.info(labelname +" breadcrumb is displayed");
+		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname +" breadcrumb is displayed");
+			Log.info(labelname +" breadcrumb is not displayed");
+		}
+
+	} catch (Exception e) {
+		ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: '"+labelname+"' breadcrumb is not available");
+		e.printStackTrace();
+	}
+}
+
 			
 			
 		

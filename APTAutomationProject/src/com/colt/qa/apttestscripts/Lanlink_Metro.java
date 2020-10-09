@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.LogStatus;
 import com.colt.qa.driverlibrary.DriverTestcase;
+import com.colt.qa.driverlibrary.Log;
 import com.colt.qa.excellibrary.DataReader;
 import com.colt.qa.reporter.ExtentTestManager;
 
@@ -309,8 +310,12 @@ public class Lanlink_Metro extends DriverTestcase{
 				Metro.get().deletInterface_ActelisConfiguration("LANLINK", map.get("ActelisTech_DSLAMInterfacename"));
 				Metro.get().successMessage_deleteInterfaceFromDevice_ActelisConfiguration("LANLINK");
 				ExtentTestManager.endTest();
+				}else {
+					ExtentTestManager.getTest().log(LogStatus.INFO, "Actelis panel will display only if 'Actelis' Technology is selected under 'Site order'page");
+					Log.info("Actelis panel will display only if 'Actelis' Technology is selected under 'Site order'page");
+					ExtentTestManager.endTest();
 				}
-				ExtentTestManager.endTest();
+				
 				
 				
 		 logger= ExtentTestManager.startTest ("AdddeviceforEquipment_LANLINKmetro");
@@ -345,7 +350,8 @@ public class Lanlink_Metro extends DriverTestcase{
 						if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
 							
 							ExtentTestManager.getTest().log(LogStatus.INFO,"AddExistingDevice_MSPselected_Equipment");
-							Metro.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
+							Metro.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"),
+									map.get("technology"), map.get("vpnTopology"), speed);
 							Metro.get().verifysuccessmessage("LANLINK", "Device successfully created");
 							Metro.get().verifyValuesforCPEexistingdevice_MSPselected("LANLINK" );
 							ExtentTestManager.endTest();
@@ -386,7 +392,8 @@ public class Lanlink_Metro extends DriverTestcase{
 							if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
 								
 								ExtentTestManager.getTest().log(LogStatus.INFO,"addExistingDevice_1G_Eqiupment");
-								Metro.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
+								Metro.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"),
+										map.get("technology"), map.get("vpnTopology"), speed);
 								Metro.get().verifysuccessmessage("LANLINK", "Device successfully created");
 								Metro.get().verifyValuesforCPEexistingdevice_1G_Equipment("LANLINK" );
 								
@@ -426,7 +433,8 @@ public class Lanlink_Metro extends DriverTestcase{
 							if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
 								
 								ExtentTestManager.getTest().log(LogStatus.INFO,"addExistingDevice_10G_Equipment");
-								Metro.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
+								Metro.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"),
+										map.get("technology"), map.get("vpnTopology"), speed);
 								Metro.get().verifysuccessmessage("LANLINK", "Device successfully created");
 								Metro.get().verifyValuesforCPEexistingdevice_10G_Equipment("LANLINK" );
 								ExtentTestManager.endTest();
@@ -849,10 +857,6 @@ public class Lanlink_Metro extends DriverTestcase{
 						boolean link=Metro.get().fetchDeviceInterface_viewdevicepage("LANLINK", devicename_intEquip);
 						Thread.sleep(1000);
 						ExtentTestManager.endTest();
-		//				if(link) {
-		//					manageNetwork.get().verifyFetchInterface("LANLINK", devicename_intEquip, map.get("InServiceStatus"),
-		//							map.get("InMaintenanceStatus"), vendorModel_intEquip, manageAdres_intEquip, "JdhquA5", country_intEquip, map.get("interfacename"));
-		//				}
 						
 						
 				 logger= ExtentTestManager.startTest ("routerTools_intermediateEquipment");
@@ -916,7 +920,8 @@ public class Lanlink_Metro extends DriverTestcase{
 						ExtentTestManager.endTest();
 						}
 					}else {
-						ExtentTestManager.getTest().log(LogStatus.PASS, " 'Intermediate Equipment' panel is not displaying under 'view site order' page");
+						ExtentTestManager.getTest().log(LogStatus.PASS, " 'Intermediate Equipment' panel is displaying under 'view site order' page");
+						Log.info(" 'Intermediate Equipment' panel is displaying under 'view site order' page");
 						ExtentTestManager.endTest();
 					}
 					
@@ -942,7 +947,6 @@ public class Lanlink_Metro extends DriverTestcase{
 					ExtentTestManager.endTest();
 					
 			}
-		
 			
 				String ServiceID = null;
 				if(map.get("Edit_serviceNumber").equalsIgnoreCase("null")) {
@@ -957,30 +961,6 @@ public class Lanlink_Metro extends DriverTestcase{
 					ExtentTestManager.endTest();
 		}
 		
-//		@Test(dataProviderClass = APT_DataReader_SS.class, dataProvider = "DataReader_createService_Metro", priority=12)
-//		public void manageServiceunderviewservicepage(Map<String, String> map) throws Exception {
-//			
-//			logger= ExtentTestManager.startTest ("manageServiceunderviewservicepage");
-//			Thread.sleep(3000);
-//			
-//			String serviceIdentification=null;
-//			if(map.get("Edit_serviceNumber").equalsIgnoreCase("null")) {
-//				serviceIdentification=map.get("serviceNumber");
-//			}else {
-//				serviceIdentification=map.get("Edit_serviceNumber");
-//			}
-//			
-//			
-//			
-//			String orderNumber = Metro.get().fetchOrderNumber("apt");
-//			Metro.get().verifyManageService("manageService", serviceIdentification, map.get("ServiceType"),
-//					map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired") , orderNumber, map.get("changeStatus"));
-//			Metro.get().clickOnBreadCrump("LANLINK", serviceIdentification);
-//			
-//			
-//			
-//
-//		}
 		
 		
 	}

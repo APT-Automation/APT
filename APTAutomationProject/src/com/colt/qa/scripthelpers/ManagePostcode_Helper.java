@@ -71,7 +71,7 @@ public class ManagePostcode_Helper extends DriverHelper{
 	{
 		
 		waitforPagetobeenable();
-		waitForpageload();
+		
 		
 			Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageColtNetworkLink")));
 			Thread.sleep(3000);
@@ -1252,7 +1252,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 		 Log.info("Clicked on Add Emergency Number");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Add Emergency Number");
 
-			waitForpageload();
+			
 			waitforPagetobeenable();
 
 		Thread.sleep(2000);
@@ -1305,7 +1305,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Upload NT Service Area");
 		Thread.sleep(2000);
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 		compareText("ManageColt", "Choose file", "Chosefile", "Choose file", xml);
@@ -1367,7 +1367,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 			throws Exception 
 			{
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 		Thread.sleep(5000);
@@ -1398,7 +1398,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on OK button");
 			
 	    	
-	    	waitForpageload();
+	    	
 	    	waitforPagetobeenable();
 	    	
 			verifysuccessmessage(application, "Emergency Number successfully updated.PSX sync started successfully.");
@@ -1434,7 +1434,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 		Thread.sleep(2000);
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on View History");
 
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ViewHistoryPage").replace("value", countryName)));
@@ -1474,7 +1474,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 	 	 */
 	 	public void verifysuccessmessage(String application, String expected) throws InterruptedException {
 	 		
-	 		waitForpageload();
+	 		
 	 		waitforPagetobeenable();
 	 		
 	 		scrollToTop();
@@ -1498,7 +1498,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 	 					
 	 					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 	 					Log.info("Message is verified. It is displaying as: "+alrtmsg);
-	 					
+	 					successScreenshot(application);
 	 					
 	 				}else {
 	 					
@@ -1636,7 +1636,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 		    Log.info("Clicked on Edit button");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Edit button");
 
-			waitForpageload();
+			
 			waitforPagetobeenable();
 			
 			Thread.sleep(3000);
@@ -1693,7 +1693,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 	 		
 	 		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Delete' Functionality");
 	 		
-	 		waitForpageload();
+	 		
 	 		waitforPagetobeenable();
 	 		
 	 		scrolltoend();

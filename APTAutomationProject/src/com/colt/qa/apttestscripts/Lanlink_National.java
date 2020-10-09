@@ -5,6 +5,7 @@ import java.util.Map;
 import org.testng.annotations.Test;
 
 import com.colt.qa.driverlibrary.DriverTestcase;
+import com.colt.qa.driverlibrary.Log;
 import com.colt.qa.excellibrary.DataReader;
 import com.colt.qa.reporter.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;
@@ -160,7 +161,8 @@ public class Lanlink_National extends DriverTestcase{
 								 map.get("SiteOrder_Offnet"),map.get("SiteOrder_EPNoffnet"), map.get("SiteOrder_EPNEOSDH"), map.get("Modularmsp"),
 								 map.get("AggregateTraffic"), map.get("EditService_AggregateTraffic"));
 						ExtentTestManager.endTest();
-						
+					
+				logger = ExtentTestManager.startTest("Ädd Site Order");		
 				ExtentTestManager.getTest().log(LogStatus.INFO,"create Site Order'");		
 					logger= ExtentTestManager.startTest ("EnterValueInAddSiteOrderFields_LANLINK");	
 						National.get().Enteraddsiteorder("LANLINK");
@@ -300,8 +302,12 @@ public class Lanlink_National extends DriverTestcase{
 					National.get().deletInterface_ActelisConfiguration("LANLINK", map.get("ActelisTech_DSLAMInterfacename"));
 					National.get().successMessage_deleteInterfaceFromDevice_ActelisConfiguration("LANLINK");
 					ExtentTestManager.endTest();
+					}else {
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Actelis panel will display only if 'Actelis' Technology is selected under 'Site order'page");
+						Log.info("Actelis panel will display only if 'Actelis' Technology is selected under 'Site order'page");
+						ExtentTestManager.endTest();	
 					}
-				ExtentTestManager.endTest();	
+				
 					
 			logger= ExtentTestManager.startTest ("AdddeviceforEquipment");
 					//verify whether Equipment panel is available	
@@ -330,7 +336,8 @@ public class Lanlink_National extends DriverTestcase{
 					{
 						if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
 							ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_MSPselected_Equipment");
-							National.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
+							National.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"),
+									map.get("technology"), map.get("vpnTopology"), speed);
 							National.get().verifysuccessmessage("LANLINK", "Device successfully created");
 							National.get().verifyValuesforCPEexistingdevice_MSPselected("LANLINK" );
 							ExtentTestManager.endTest();
@@ -370,7 +377,8 @@ public class Lanlink_National extends DriverTestcase{
 						if(speed.equals("1GigE")) {
 							if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
 								ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_1G_Equipment");
-								National.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
+								National.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"),
+										map.get("technology"), map.get("vpnTopology"), speed);
 								National.get().verifysuccessmessage("LANLINK", "Device successfully created");
 								National.get().verifyValuesforCPEexistingdevice_1G_Equipment("LANLINK" );
 								ExtentTestManager.endTest();
@@ -408,7 +416,8 @@ public class Lanlink_National extends DriverTestcase{
 						if(speed.equals("10GigE")) {
 							if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
 								ExtentTestManager.getTest().log(LogStatus.INFO, "selectExistingDevice_10G_Equipment");
-								National.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"));
+								National.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"),
+										map.get("technology"), map.get("vpnTopology"), speed);
 								National.get().verifysuccessmessage("LANLINK", "Device successfully created");
 								National.get().verifyValuesforCPEexistingdevice_10G_Equipment("LANLINK" );
 								ExtentTestManager.endTest();
@@ -867,7 +876,8 @@ public class Lanlink_National extends DriverTestcase{
 						}
 						ExtentTestManager.endTest();
 							}else {
-								ExtentTestManager.getTest().log(LogStatus.PASS, " 'Intermediate Equipment' panel is not displaying under 'view site order' page");
+								ExtentTestManager.getTest().log(LogStatus.PASS, " 'Intermediate Equipment' panel is displaying under 'view site order' page");
+								Log.info(" 'Intermediate Equipment' panel is displaying under 'view site order' page");
 								ExtentTestManager.endTest();
 							}
 					

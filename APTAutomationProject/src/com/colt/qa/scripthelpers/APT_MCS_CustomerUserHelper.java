@@ -47,8 +47,8 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		
 		Moveon(getwebelement(xml.getlocator("//locators/"+application+"/ManageCustomerServiceLink")));
 		Thread.sleep(3000);
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse Hovered on 'Manage Customer Service'");
-		Log.info("=== MCS page navigated ===");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Mouse Hovered on 'Manage Customer Service'");
+		Log.info(" MCS page navigated ");
 		Thread.sleep(4000);
 	}
 	
@@ -56,8 +56,8 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 	public void navigateToCreateCustomerPage(String application) throws InterruptedException, DocumentException {
 		navigateToManageCustomerServicePage(application);
 		Clickon(getwebelement(xml.getlocator("//locators/"+application+"/CreateCustomerLink"))); 	
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Create customer navigated");
-		Log.info("=== Create customer navigated ===");	
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Navigated to Çreate Customer Page");
+		Log.info(" Create customer navigated ");	
 		Thread.sleep(5000);
 	}
 	
@@ -67,7 +67,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			String TypeToBeSelected, String OCN,String Reference, String TechnicalContactName, String Email, String Phone,
 			String Fax, String enableDedicatedPortal, String DedicatedPortalValue) throws InterruptedException, DocumentException, IOException {
 
-		Log.info("=== Create customer navigated ===");
+		Log.info(" Create customer navigated ");
 		
 		scrolltoend();
 		Thread.sleep(2000);
@@ -123,7 +123,6 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		
 		
 		scrolltoend();
-		Thread.sleep(2000);
 		click_commonMethod(application, "OK", "OkButton_CreateCustomer", xml);
 		
 }
@@ -142,8 +141,8 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		
 		
 		Clickon(getwebelement(xml.getlocator("//locators/"+application+"/DeleteButton_DeleteCustomer")));	Thread.sleep(1000);
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Clicked on Delete button");
-		Log.info("=== Clicked on Delete button ===");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Delete button");
+		Log.info(" Clicked on Delete button ");
 		Thread.sleep(2000);
 	}
 	
@@ -214,7 +213,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			Thread.sleep(2000);
 			
 		scrollToTop();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 			addtextFields_commonMethod(application, "User Name", "UserName" , UserName, xml);   //User Name Field
 
 			addtextFields_commonMethod(application, "First Name", "FirstName" , FirstName, xml);   //First Name Field
@@ -238,12 +237,12 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 			if(password.isEmpty()) {
 				
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Password Field is empty. No values displaying after clicked on 'Generate password link");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Password Field is empty. No values displaying after clicked on 'Generate password link");
 
 				SendKeys(getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")), GeneratePassword);	
 				Thread.sleep(1000);
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Password entered manually not automatically generated :  "+GeneratePassword);
-				Log.info("===Password entered manually not automatically generated ===");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Password entered manually not automatically generated :  "+GeneratePassword);
+				Log.info("Password entered manually not automatically generated ");
 
 			}else {
 				Log.info("Automatically generated Password value is : "+ password);
@@ -253,7 +252,6 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 			WebElement Email=getwebelement(xml.getlocator("//locators/"+application+"/EmailLabelname"));
 			scrolltoview(Email);
-			Thread.sleep(2000);
 			
 		//Role	
 			selectAndAddValueFromLeftDropdown(application, "Role", "roleDropdown_available" , rolestobeSelectedList, "roleDropdown_addButton");
@@ -289,7 +287,6 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 			
 		scrolltoend();
-		Thread.sleep(3000);
 
 		click_commonMethod(application, "OK" , "OkButton_AddUser" , xml);
 		
@@ -350,7 +347,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			
 			if(password.isEmpty()) {
 				
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Password Field is empty. No values displaying under'Generate password link");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Password Field is empty. No values displaying under'Generate password link");
 				
 				click_commonMethod(application, "Generate Password", "GeneratePasswordLink", xml);   //Generate Password Link
 				
@@ -592,7 +589,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 	
 	public void verifySuccessMessageFor_deleteService(String application) throws InterruptedException, DocumentException {
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 		Thread.sleep(5000);
@@ -651,11 +648,11 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		 */
 		public void verifysuccessmessage(String application, String expected) throws InterruptedException {
 			
-			waitForpageload();
+			
 			waitforPagetobeenable();
 			
 			scrollToTop();
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 			try {	
 				
 				boolean successMsg=getwebelement(xml.getlocator("//locators/" + application + "/serivceAlert")).isDisplayed();
@@ -1057,19 +1054,18 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 	public void createexistingorderservice(String application, String existingorder, String orderno, String rfireqno)
 			throws InterruptedException, IOException, DocumentException {
 	
-		Thread.sleep(2000);
-
+waitforPagetobeenable();
 		scrolltoend();
 	
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 
 		click_commonMethod(application, "Order_Service_Action", "Orders_Services_Action", xml);
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddOrder_Link")));
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on 'Add Order' link under Order/Services pannel");
-		Log.info(" === Clicked on 'Add Order' link under Orders/Services pannel ===");
-		Thread.sleep(2000);
+		Log.info("Clicked on 'Add Order' link under Orders/Services pannel");
 
+		waitforPagetobeenable();
 		
 		if (existingorder.equalsIgnoreCase("YES")) {
 			scrolltoend();
@@ -1080,8 +1076,8 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		} else {
 
 			Log.info("Existing order is not selected");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Existing order is not selected");
-			Log.info("=== Existing order is not selected ===");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Existing order is not selected");
+			Log.info(" Existing order is not selected ");
 		}
 	}
 	
@@ -1094,9 +1090,9 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			scrolltoend();
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/selectorderswitch")));
-			Thread.sleep(2000);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked to 'Select Order Switch' toggle button for creating 'new order'");
-			Log.info("=== Clicked to create new order ===");
+			waitforPagetobeenable();
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked to 'Select Order Switch' toggle button for creating 'new order'");
+			Log.info(" Clicked to create new order ");
 
 			addtextFields_commonMethod(application, "Order/Contract Number(Parent SID)", "newordertextfield", neworderno, xml);
 
@@ -1106,7 +1102,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 
 		} else {
 			Log.info("New order not selected");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: New order is not selected");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "New order is not selected");
 			Log.info("New order is not selected");
 		}
 	}
@@ -1117,11 +1113,10 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 
 		try {
 			scrolltoend();
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 
 			// select service type
 			addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield" , servicetye, xml);
-			Thread.sleep(5000);
 			
 			// select subtype
 			addDropdownValues_commonMethod(application, "Network Configuration", "networkconfigurationinputfield" , subtype, xml);
@@ -1144,21 +1139,18 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 
 		try {
 			
-			waitForpageload();
+			
 			waitforPagetobeenable();
 			
-			
-			Thread.sleep(2000);
 			scrolltoend();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			
 			click_commonMethod(application, "Next", "nextbutton", xml);
-			waitForpageload();
+			
 			waitforPagetobeenable();
-			Thread.sleep(2000);
 			
 			scrollToTop();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			
 		//check warning messages	
 			warningMessage_commonMethod(application, "serviceidentificationerror" , "Service Identification", xml);
@@ -1172,7 +1164,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 					xml.getlocator("//locators/" + application + "/servicetypevalue")).getText();
 			Log.info("Displayed service type is : " + displayedServiceTypevalue);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step : Displayed service type is : " + displayedServiceTypevalue);
+					"Displayed service type is : " + displayedServiceTypevalue);
 			Log.info("Displayed service type is : " + displayedServiceTypevalue);
 			
 			
@@ -1181,7 +1173,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 					xml.getlocator("//locators/" + application + "/networkconfigurationvalue")).getText();
 			Log.info("Displayed network configuration is : " + displayednetworkconfiguration);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step : Displayed network configuration is : " + displayednetworkconfiguration);
+					"Displayed network configuration is : " + displayednetworkconfiguration);
 			Log.info("Displayed network configuration is : " + displayednetworkconfiguration);
 
 			
@@ -1257,12 +1249,12 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 
 			Log.info(elementname + "is displayed" + "and" + "selected in Management Options");
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step :" + elementname + "is displayed" + "and" + "selected in Management Options");
+					"" + elementname + "is displayed" + "and" + "selected in Management Options");
 		} else {
 			elementname = ele.getAttribute("name");
 			Log.info(elementname + " not selected in Management Options");
 			ExtentTestManager.getTest().log(LogStatus.INFO,
-					"Step :" + elementname + " not selected in Management Options");
+					"" + elementname + " not selected in Management Options");
 		}
 
 	}
@@ -1288,7 +1280,8 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				
 			// click on next
 				click_commonMethod(application, "Next", "nextbutton" , xml);
-			Thread.sleep(8000);
+				waitforPagetobeenable();
+			Thread.sleep(1000);
 
 	}
 	
@@ -1318,7 +1311,6 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 					
 		//select the Customer		
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/SearchResultRowsRadioButton")));
-			Thread.sleep(2000);
 			ExtentTestManager.getTest().log(LogStatus.PASS, SearchName + " is selected under 'Search Customer Result");
 			Log.info(SearchName + " is selected under 'Search Customer Result");
 			
@@ -1327,26 +1319,26 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		
 			click_commonMethod(application, "View_Link", "View_Link", xml);		//click on view link
 			
-			Thread.sleep(2000);
+			waitforPagetobeenable();
 			scrolltoend();
-			Thread.sleep(2000);	
+			Thread.sleep(1000);	
 			
 		//Select an order to perform Supply
 			WebElement valueUnderOrderPanel=getwebelement(xml.getlocator("//locators/" + application + "/selectRowUnderOrderPanel").replace("value", OrderNumber));
 			safeJavaScriptClick(valueUnderOrderPanel);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "selected the Order_"+OrderNumber);
-			Log.info("=== Clicked on Radio Button in Order/Service Panel ===");
+			Log.info(" Clicked on Radio Button in Order/Service Panel ");
 			
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Order_Service_Action")));
 			Thread.sleep(1000);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Action link under Order Service panel " );
-			Log.info("=== Clicked on Action link under Order Service pannel ===");
+			Log.info(" Clicked on Action link under Order Service pannel ");
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Supply_Link")));
 			Thread.sleep(1000);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Clicked on Supply Link");
-			Log.info("=== Clicked on Supply Link ===");	
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Supply Link");
+			Log.info(" Clicked on Supply Link ");	
 			
 		//Supply _Name Field	
 			addtextFields_commonMethod(application, "Name", "SupplyServicetoCustomer_Name", SupplyServiceToCustomerName, xml);
@@ -1444,7 +1436,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				throws InterruptedException, DocumentException, IOException {
 
 			scrolltoend();
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 				// Verify Supplies pannel information
 			boolean suppliesPanel=false;
 			try {
@@ -1522,9 +1514,8 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 
 			boolean subscriberTable=false;
 			
-			waitForpageload();
+			
 			waitforPagetobeenable();
-			Thread.sleep(2000);
 			
 			scrolltoend();
 		try {	
@@ -1561,7 +1552,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			//verify whether it got navigated to View Service page
 				boolean viewServicePage=false;
 			try {
-				waitForpageload();
+				
 				waitforPagetobeenable();
 				
 				scrollToTop();
@@ -1687,8 +1678,8 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			click_commonMethod(application, "Action", "SearchCustomerResult_Actionmenu", xml); // click on Action dropdown
 	
 			click_commonMethod(application, "view_Link", "View_Link", xml); // click on view link
-			Thread.sleep(2000);
 	
+			waitforPagetobeenable();
 			scrolltoend();
 			Thread.sleep(2000);	
 			
@@ -1705,7 +1696,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			click_commonMethod(application, "Remove_Link", "suppliesTable_removeLink", xml);
 			
 			waitforPagetobeenable();
-			waitForpageload();
+			
 			
 			scrollToTop();
 			verifysuccessmessage(application, "Supplied service successfully removed");

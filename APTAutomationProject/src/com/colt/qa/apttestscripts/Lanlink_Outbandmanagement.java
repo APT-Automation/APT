@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.LogStatus;
 import com.colt.qa.driverlibrary.DriverTestcase;
+import com.colt.qa.driverlibrary.Log;
 import com.colt.qa.excellibrary.DataReader;
 import com.colt.qa.reporter.ExtentTestManager;
 
@@ -235,7 +236,8 @@ public class Lanlink_Outbandmanagement extends DriverTestcase {
 						Outband.get().successMessage_deleteInterfaceFromDevice_ActelisConfiguration("LANLINK");
 						ExtentTestManager.endTest();
 				}else {
-					ExtentTestManager.getTest().log(LogStatus.INFO, "Actelis panel will display only for 'Actelis' Technology");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "Actelis panel will display only if 'Actelis' Technology is selected under 'Site order'page");
+					Log.info("Actelis panel will display only if 'Actelis' Technology is selected under 'Site order'page");
 					ExtentTestManager.endTest();
 				}
 				
@@ -276,7 +278,7 @@ public class Lanlink_Outbandmanagement extends DriverTestcase {
 						if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
 							ExtentTestManager.getTest().log(LogStatus.INFO, "AddExistingDevice_1G_Eqiupment");
 							DirectFiber.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"),
-									 map.get("technology"), map.get("vpnTopology"));
+									 map.get("technology"), map.get("vpnTopology"), speed);
 							DirectFiber.get().verifysuccessmessage("LANLINK", "Device successfully created");
 							ExtentTestManager.endTest();
 							
@@ -320,7 +322,7 @@ public class Lanlink_Outbandmanagement extends DriverTestcase {
 						if(existingDevice.equalsIgnoreCase("Yes") && newDevice.equalsIgnoreCase("No")) {
 							ExtentTestManager.getTest().log(LogStatus.INFO, "addExistingDevice_10G_Eqiupment");
 							DirectFiber.get().verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice("LANLINK",map.get("Equip_existingDevicename"),
-									 map.get("technology"), map.get("vpnTopology"));
+									 map.get("technology"), map.get("vpnTopology"), speed);
 							DirectFiber.get().verifysuccessmessage("LANLINK", "Device successfully created");
 							ExtentTestManager.endTest();
 
@@ -834,70 +836,5 @@ public class Lanlink_Outbandmanagement extends DriverTestcase {
 //		 }	
 //				
 //			
-		
-//		@Test(dataProviderClass = DataReader.class, dataProvider = "outBandManagement", priority=20)
-//	    public void Lanlink_Circuit(Map<String, String> map) throws Exception {
-//			
-//			String ServiceID = null;
-//			if(map.get("Edit_serviceNumber").equalsIgnoreCase("null")) {
-//				ServiceID=map.get("serviceNumber");
-//			}else {
-//				ServiceID=map.get("Edit_serviceNumber");
-//			}
-//			
-////			if(map.get("CircuitType").equalsIgnoreCase("Composite Circuit")) {
-//				
-//				if(map.get("Interfacespeed").equals("1GigE")) {
-//					
-//				//Overture	
-//					Outband.get().addOvertureCircuit("LANLINK", map.get("addOverture_serviceNameForCreatingCircuit"));
-//					Outband.get().selectInterfaceForCircuits("LANLINK", map.get("addOverture_interfaceName1"), map.get("addOverture_interfaceName2"),
-//							map.get("addOverture_edgePointSelectForInterface1"), map.get("addOverture_edgePointSelectForInterface2"));
-//					Outband.get().verifysuccessmessage("LANLINK", "Circuit successfully created");
-//					Outband.get().addOveture_PAMtest_selectRow("LANLINK", map.get("addOverture_interfaceName1"));
-//					Outband.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addOverture_serviceNameForCreatingCircuit"));
-//					Outband.get().deleteCircuit("LANLINK");
-//					
-//					
-//				//Accedian-1G
-//					Outband.get().addAccedianCircuit("LANLINK", map.get("addAccedian1G_serviceNameForCreatingCircuit"));
-//					Outband.get().selectInterfaceForCircuits("LANLINK", map.get("addAccedian1G_interfaceName1"), map.get("addAccedian1G_interfaceName2"),
-//							map.get("addAccedian1G_edgePointSelectForInterface1"), map.get("addAccedian1G_edgePointSelectForInterface2"));
-//					Outband.get().verifysuccessmessage("LANLINK", "Circuit successfully created");
-//					Outband.get().addOveture_PAMtest_selectRow("LANLINK",  map.get("addAccedian1G_interfaceName1"));
-//					Outband.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addAccedian1G_serviceNameForCreatingCircuit"));
-//					Outband.get().deleteCircuit("LANLINK");
-//					
-//					
-//				//Atrica
-//					Outband.get().addAtricaCircuit("LANLINK", map.get("addAtrica_serviceNameForCreatingCircuit"));
-//					Outband.get().selectInterfaceForCircuits("LANLINK", map.get("addAtrica_interfaceName1"), map.get("addAtrica_interfaceName2"),
-//							map.get("addAtrica_edgePointSelectForInterface1"), map.get("addAtrica_edgePointSelectForInterface2"));
-//					Outband.get().verifysuccessmessage("LANLINK", "Circuit successfully created");
-//					Outband.get().addOveture_PAMtest_selectRow("LANLINK",  map.get("addAtrica_interfaceName1"));
-//					Outband.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addAtrica_serviceNameForCreatingCircuit"));
-//					Outband.get().deleteCircuit("LANLINK");
-//				
-//				}
-//				
-//				
-//				else if(map.get("Interfacespeed").equals("10GigE")) {
-//					//Overture	
-//					Outband.get().addOvertureCircuit("LANLINK", map.get("addOverture_serviceNameForCreatingCircuit"));
-//					Outband.get().selectInterfaceForCircuits("LANLINK", map.get("addOverture_interfaceName1"), map.get("addOverture_interfaceName2"),
-//							map.get("addOverture_edgePointSelectForInterface1"), map.get("addOverture_edgePointSelectForInterface2"));
-//					Outband.get().verifysuccessmessage("LANLINK", "Circuit successfully created");
-//					Outband.get().addOveture_PAMtest_selectRow("LANLINK", map.get("addOverture_interfaceName1"));
-//					Outband.get().PAMtest_ForCircuitCreation("LANLINK", ServiceID, map.get("addOverture_serviceNameForCreatingCircuit"));
-//					Outband.get().deleteCircuit("LANLINK");
-//					
-//					
-//				}
-//				
-//				
-////			}
-//			
-//			
-//		}
 
 }

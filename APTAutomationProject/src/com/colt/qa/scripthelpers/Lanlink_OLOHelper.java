@@ -69,7 +69,7 @@ public class Lanlink_OLOHelper extends DriverHelper {
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(2000);
 		Log.info("Mouser hovered on Manage Customer's Service");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouser hovered on 'Manage Customers Service' menu item");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Mouser hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
 		Thread.sleep(2000);
@@ -127,7 +127,7 @@ public class Lanlink_OLOHelper extends DriverHelper {
 			String existingordernumber)
 			throws InterruptedException, IOException, DocumentException {
 
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 	//Create New order or select Existing Order	
@@ -151,7 +151,7 @@ public class Lanlink_OLOHelper extends DriverHelper {
 
 		} else {
 			Log.info("Order not selected");
-			ExtentTestManager.getTest().log(LogStatus.INFO, "Step :Order not selected");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Order not selected");
 		}
 	}
 
@@ -159,12 +159,12 @@ public class Lanlink_OLOHelper extends DriverHelper {
 			throws InterruptedException, DocumentException, IOException {
 		
 		
-	System.out.println(" have to select Manage Customer Service");	
+	Log.info(" have to select Manage Customer Service");	
 	Thread.sleep(3000);
 	
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(3000);
-		System.out.println("Mouser hovered on Manage Customer's Service");
+		Log.info("Mouser hovered on Manage Customer's Service");
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/CreateOrderServiceLink")));
 		Thread.sleep(2000);
@@ -175,10 +175,10 @@ public class Lanlink_OLOHelper extends DriverHelper {
 //		click_commonMethod(application, "Next", xpath, xml);
 		Clickon(getwebelement("//span[contains(text(),'Next')]"));
 		Thread.sleep(5000);
-		System.out.println("clicked on next button");
+		Log.info("clicked on next button");
 		ExtentTestManager.getTest().log(LogStatus.PASS,
-				"Step : clicked on next button to verify the mandatory fields error messages");
-		Log.info("Step : clicked on next button to verify the mandatory fields error messages");
+				"clicked on next button to verify the mandatory fields error messages");
+		Log.info("clicked on next button to verify the mandatory fields error messages");
 
 		//Customer Error message
 				warningMessage_commonMethod(application, "chooseAcustomerWarningMessage", "Customer", xml);
@@ -235,7 +235,7 @@ public class Lanlink_OLOHelper extends DriverHelper {
 		String Name_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Name_Text")));
 		String Name_Value = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Name_Value")));
 		Log.info(Name_Text + " : TextField value is displayed as : " + Name_Value);
-		System.out.println(Name_Text + " : " + Name_Value);
+		Log.info(Name_Text + " : " + Name_Value);
 
 		// verify MainDomain information
 		String MainDomain_Text = Gettext(
@@ -243,32 +243,32 @@ public class Lanlink_OLOHelper extends DriverHelper {
 		String MainDomain_Value = Gettext(
 				getwebelement(xml.getlocator("//locators/" + application + "/MainDomain_Value")));
 		Log.info(MainDomain_Text + " : TextField value is displayed as : " + MainDomain_Value);
-		System.out.println(MainDomain_Text + "  " + MainDomain_Value);
+		Log.info(MainDomain_Text + "  " + MainDomain_Value);
 
 		// verify Country information
 		String Country_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Country_Text")));
 		String Country_Value = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Country_Value")));
 		Log.info(Country_Text + " : TextField value is displayed as : " + Country_Value);
-		System.out.println(Country_Text + " : " + Country_Value);
+		Log.info(Country_Text + " : " + Country_Value);
 
 		// verify OCN information
 		String OCN_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/OCN_Text")));
 		String OCN_Value = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/OCN_Value")));
 		Log.info(OCN_Text + " : TextField value is displayed as : " + OCN_Value);
-		System.out.println(OCN_Text + " : " + OCN_Value);
+		Log.info(OCN_Text + " : " + OCN_Value);
 
 		// verify Reference information
 		String Reference_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Reference_Text")));
 		String Reference_Value = Gettext(
 				getwebelement(xml.getlocator("//locators/" + application + "/Reference_Value")));
 		Log.info(Reference_Text + " : TextField value is displayed as : " + Reference_Value);
-		System.out.println(Reference_Text + " : " + Reference_Value);
+		Log.info(Reference_Text + " : " + Reference_Value);
 
 		// verify Type information
 		String Type_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Type_Text")));
 		String Type_Value = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Type_Value")));
 		Log.info(Type_Text + " : TextField value is displayed as : " + Type_Value);
-		System.out.println(Type_Text + " : " + Type_Value);
+		Log.info(Type_Text + " : " + Type_Value);
 
 		// verify Technical Contact Name information
 		String TechnicalContactName_Text = Gettext(
@@ -276,31 +276,31 @@ public class Lanlink_OLOHelper extends DriverHelper {
 		String TechnicalContactName_Value = Gettext(
 				getwebelement(xml.getlocator("//locators/" + application + "/TechnicalContactName_Value")));
 		Log.info(TechnicalContactName_Text + " : TextField value is displayed as : " + TechnicalContactName_Value);
-		System.out.println(TechnicalContactName_Text + " : " + TechnicalContactName_Value);
+		Log.info(TechnicalContactName_Text + " : " + TechnicalContactName_Value);
 
 		// verify Name2 information
 		String Name2_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Name2_Text")));
 		String Name2_Value = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Name2_Value")));
 		Log.info(Name2_Text + " : TextField value is displayed as : " + Name2_Value);
-		System.out.println(Name2_Text + " : " + Name2_Value);
+		Log.info(Name2_Text + " : " + Name2_Value);
 
 		// verify Email information
 		String Email_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Email_Text")));
 		String Email_Value = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Email_Value")));
 		Log.info(Email_Text + " : TextField value is displayed as : " + Email_Value);
-		System.out.println(Email_Text + " : " + Email_Value);
+		Log.info(Email_Text + " : " + Email_Value);
 
 		// verify Phone information
 		String Phone_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Phone_Text")));
 		String Phone_Value = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Phone_Value")));
 		Log.info(Phone_Text + " : TextField value is displayed as : " + Phone_Value);
-		System.out.println(Phone_Text + " : " + Phone_Value);
+		Log.info(Phone_Text + " : " + Phone_Value);
 
 		// verify Fax information
 		String Fax_Text = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Fax_Text")));
 		String Fax_Value = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/Fax_Value")));
 		Log.info(Fax_Text + " : TextField value is displayed as : " + Fax_Value);
-		System.out.println(Fax_Text + " : " + Fax_Value);
+		Log.info(Fax_Text + " : " + Fax_Value);
 
 		Log.info("=== Create Order Detail all fields Verified ===");
 		sa.assertAll();
@@ -342,11 +342,11 @@ public class Lanlink_OLOHelper extends DriverHelper {
 
 	if(serviceSubTypeAvailability) {
 		ExtentTestManager.getTest().log(LogStatus.PASS, " 'Service subtype mandatory dropdown is displaying as expected");
-		System.out.println(" 'Service subtype mandatory dropdown is displaying as expected");
+		Log.info(" 'Service subtype mandatory dropdown is displaying as expected");
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ServiceSubtype")));
 		Thread.sleep(3000);
-		System.out.println("clicked on srvice type");
+		Log.info("clicked on srvice type");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Service subtype dropdown has been selected");
 		
 		if((SelectSubService.equals("LANLink International")) || (SelectSubService.equals("LANLink Metro")) || SelectSubService.equals("LANLink National") ||
@@ -404,11 +404,11 @@ public class Lanlink_OLOHelper extends DriverHelper {
 	
 		if(serviceSubTypeAvailability) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'Service subtype mandatory dropdown is displaying as expected");
-			System.out.println(" 'Service subtype mandatory dropdown is displaying as expected");
+			Log.info(" 'Service subtype mandatory dropdown is displaying as expected");
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ServiceSubtype")));
 			Thread.sleep(3000);
-			System.out.println("clicked on srvice type");
+			Log.info("clicked on srvice type");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Service subtype dropdown has been selected");
 			
 			if(SelectSubService.equals("LANLink International") || SelectSubService.equals("LANLink Metro") || SelectSubService.equals("LANLink National") ||
@@ -450,7 +450,7 @@ public class Lanlink_OLOHelper extends DriverHelper {
 			
 			ExtentTestManager.getTest().log(LogStatus.INFO, " 'Service subtype' should be selected as mandatory when 'AutocreateService' is selected, 'Modular msp' not selected");
 			
-			System.out.println("Only auto creta check box is selected");
+			Log.info("Only auto creta check box is selected");
 			
 			try {
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AutocreateServicecheckbox")));
@@ -477,11 +477,11 @@ public class Lanlink_OLOHelper extends DriverHelper {
 	
 		if(serviceSubTypeAvailability) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'Service subtype mandatory dropdown is displaying as expected");
-			System.out.println(" 'Service subtype mandatory dropdown is displaying as expected");
+			Log.info(" 'Service subtype mandatory dropdown is displaying as expected");
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ServiceSubtype")));
 			Thread.sleep(1000);
-			System.out.println("clicked on srvice type");
+			Log.info("clicked on srvice type");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Service subtype dropdown has been selected");
 			
 			if((SelectSubService.equals("LANLink International")) || (SelectSubService.equals("LANLink Metro")) || SelectSubService.equals("LANLink National") ||
@@ -556,11 +556,11 @@ public class Lanlink_OLOHelper extends DriverHelper {
 		
 			if(serviceSubTypeAvailability) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'Service subtype mandatory dropdown is displaying as expected");
-				System.out.println(" 'Service subtype mandatory dropdown is displaying as expected");
+				Log.info(" 'Service subtype mandatory dropdown is displaying as expected");
 				
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ServiceSubtype")));
 				Thread.sleep(3000);
-				System.out.println("clicked on srvice type");
+				Log.info("clicked on srvice type");
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Service subtype dropdown has been selected");
 				
 				if(SelectSubService.equals("LANLink International") || SelectSubService.equals("LANLink Metro") || SelectSubService.equals("LANLink National") ||
@@ -634,7 +634,7 @@ scrolltoend();
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying list of fields under 'Create Order/ Service' Page");
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 		clickOnBankPage();
@@ -643,7 +643,7 @@ scrolltoend();
 		scrolltoend();
 		
 		click_commonMethod(application, "Next", "Next_Button", xml);
-		Log.info("Step : clicked on next button to verify the mandatory fields error messages");
+		Log.info("clicked on next button to verify the mandatory fields error messages");
 		
 		
 		//Create Order/Contract Number Error message
@@ -658,12 +658,12 @@ scrolltoend();
 						"MDF/MVF/DI", "NGIN", "Number Hosting", "Transmission Link", "Voice Line (V)", "VOIP Access",
 						"Wholesale SIP Trunking" };
 		
-				System.out.println("order dropdown");
+				Log.info("order dropdown");
 				
 			//check whether Order dropdown is displayed	
 				orderdopdown = getwebelement(xml.getlocator("//locators/" + application + "/orderdropdown")).isDisplayed();
 				sa.assertTrue(orderdopdown, "Order/Contract Number dropdown is not displayed");
-				System.out.println("order dropdown field is verified");
+				Log.info("order dropdown field is verified");
 				
 				
 			//Select value under 'Service Type' dropdown
@@ -677,8 +677,8 @@ scrolltoend();
 				click_commonMethod(application, "Next", "Next_Button", xml);
 				Thread.sleep(3000);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step : clicked on next button to verify the mandatory fields error messages");
-				Log.info("Step : clicked on next button to verify the mandatory fields error messages");
+						"clicked on next button to verify the mandatory fields error messages");
+				Log.info("clicked on next button to verify the mandatory fields error messages");
 		
 				
 			//Interface Speed Error message	
@@ -818,7 +818,7 @@ scrolltoend();
 			
         }catch(Exception e) {
 			Log.info("dropdowns values in Interface speed are mismiatching under service type");
-			System.out.println("dropdowns values in Interface speed are mismiatching under service type");
+			Log.info("dropdowns values in Interface speed are mismiatching under service type");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Interface speed dropdown values are not displaying as expected ");
 		}
 
@@ -860,7 +860,7 @@ scrolltoend();
 			
         }catch(Exception e) {
 			Log.info("Dropdown values in Service subtypes are mismatching");
-			System.out.println("Dropdown values in Service subtypes are mismatching");
+			Log.info("Dropdown values in Service subtypes are mismatching");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"Dropdown values in Service subtypes are mismatching");
 		}
 
@@ -904,7 +904,7 @@ scrolltoend();
 		}catch (Exception e) {
 
 		Log.info("Dropdown values inside service subtypes are mismatching");
-		System.out.println("Dropdown values inside service subtypes are mismatching");
+		Log.info("Dropdown values inside service subtypes are mismatching");
 		ExtentTestManager.getTest().log(LogStatus.FAIL,"Dropdown values inside service subtypes are mismatching");
 		}
 
@@ -946,7 +946,7 @@ scrolltoend();
 			
 		}catch(Exception e) {
 			Log.info("Dropdown values inside service subtypes are mismatching");
-			System.out.println("Dropdwon values inside service subtypes are mismatching");
+			Log.info("Dropdwon values inside service subtypes are mismatching");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"Dropdwon values inside service subtypes are mismatching");
 		}
 
@@ -992,7 +992,7 @@ scrolltoend();
 		  
 	}catch(Exception e){
     	 Log.info("Dropdwon values inside Service subtypes are mismatching");
-    	 System.out.println("Dropdwon values inside Service subtypes are mismatching");
+    	 Log.info("Dropdwon values inside Service subtypes are mismatching");
     	 ExtentTestManager.getTest().log(LogStatus.FAIL,"Dropdwon values inside Service subtypes are mismatching");
      }
 
@@ -1012,7 +1012,7 @@ try {
 		
 }catch(AssertionError e) {
 	Log.info("Available circuit dropdown under servicetype got failed");
-	System.out.println("Available circuit dropdown under servicetype got failed");
+	Log.info("Available circuit dropdown under servicetype got failed");
 	ExtentTestManager.getTest().log(LogStatus.FAIL, "Available circuit dropdown is not available under create order detail page");
 }
 }
@@ -1052,7 +1052,7 @@ try {
 		
 		}catch(Exception e) {
 			Log.info("Dropdwon values inside A-end technology are mismatching");
-			System.out.println("Dropdwon values inside A-end technology are mismatching");
+			Log.info("Dropdwon values inside A-end technology are mismatching");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"Dropdwon values inside A-end technology are mismatching");
 		}
 
@@ -1093,7 +1093,7 @@ try {
 			
 		}catch(Exception e) {
 			Log.info("Dropdwon values inside B-end technology are mismatching");
-			System.out.println("Dropdwon values inside B-end technology are mismatching");
+			Log.info("Dropdwon values inside B-end technology are mismatching");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"Dropdwon values inside B-end technology are mismatching");
 		}
 	}
@@ -1207,7 +1207,7 @@ try {
 					}
 				else {
 						
-						System.out.println(vpnTopology+ " is not available under VPN topoloy dropdown");
+						Log.info(vpnTopology+ " is not available under VPN topoloy dropdown");
 						Log.info(vpnTopology+ " is not available inside the VPN topoloy dropdown");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,vpnTopology+ " is not available under VPN topoloy dropdown");
 
@@ -1370,7 +1370,7 @@ Thread.sleep(3000);
 					}
 					else {
 
-						System.out.println("Performance Repoting is not selected");
+						Log.info("Performance Repoting is not selected");
 						ExtentTestManager.getTest().log(LogStatus.PASS,"performance Reporting checkbox is not selected as expected");
 						
 					}
@@ -1438,7 +1438,7 @@ Thread.sleep(3000);
 			
 			else {
 				
-				System.out.println(vpnTopology+ " is not available under VPN topoloy dropdown");
+				Log.info(vpnTopology+ " is not available under VPN topoloy dropdown");
 				Log.info(vpnTopology+ " is not available inside the VPN topoloy dropdown");
 				ExtentTestManager.getTest().log(LogStatus.FAIL,vpnTopology+ " is not available under VPN topoloy dropdown");
 			}
@@ -1457,7 +1457,7 @@ Thread.sleep(3000);
 		}
 		}else {
 			 ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VPN topology' dropdown is not available under 'Configuration Options' panel in 'Create Service' page");
-			 System.out.println("'VPN topology' dropdown is not available under 'Configuration Options' panel in 'Create Service' page");
+			 Log.info("'VPN topology' dropdown is not available under 'Configuration Options' panel in 'Create Service' page");
 		}
 	
 
@@ -1551,11 +1551,11 @@ Thread.sleep(3000);
 				}catch(NoSuchElementException e) {
 					e.printStackTrace();
 					ExtentTestManager.getTest().log(LogStatus.PASS, " 'HCoS Performance Reporting checkbox is not displaying");
-					System.out.println(" 'HCoS Performance Reporting checkbox is not displaying");
+					Log.info(" 'HCoS Performance Reporting checkbox is not displaying");
 				}catch(Exception ee){
 					ee.printStackTrace();
 					ExtentTestManager.getTest().log(LogStatus.PASS, " 'HCoS Performance Reporting checkbox is not selected");
-					System.out.println(" 'HCoS Performance Reporting checkbox is not seleted");
+					Log.info(" 'HCoS Performance Reporting checkbox is not seleted");
 				}
 				
 
@@ -1632,7 +1632,7 @@ Thread.sleep(3000);
 			}
 			else {
 
-				System.out.println("Performance Repoting is not selected");
+				Log.info("Performance Repoting is not selected");
 				ExtentTestManager.getTest().log(LogStatus.PASS,"performance Reporting checkbox is not selected as expected");
 				
 			}
@@ -1708,13 +1708,13 @@ Thread.sleep(3000);
 				
 				ExtentTestManager.getTest().log(LogStatus.PASS, vpnTopology + " is selected under 'VPN topology' dropdown");
 
-			System.out.println("NO additional fields display");
+			Log.info("NO additional fields display");
 				
 			}
 			
 			else {
 				
-				System.out.println(vpnTopology+ " is not available under VPN topoloy dropdown");
+				Log.info(vpnTopology+ " is not available under VPN topoloy dropdown");
 				Log.info(vpnTopology+ " is not available inside the VPN topoloy dropdown");
 				ExtentTestManager.getTest().log(LogStatus.FAIL,vpnTopology+ " is not available under VPN topoloy dropdown");
 			}
@@ -1733,7 +1733,7 @@ Thread.sleep(3000);
 		}
 		}else {
 			 ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VPN topology' dropdown is not available under 'Configuration Options' panel in 'Create Service' page");
-			 System.out.println("'VPN topology' dropdown is not available under 'Configuration Options' panel in 'Create Service' page");
+			 Log.info("'VPN topology' dropdown is not available under 'Configuration Options' panel in 'Create Service' page");
 		}
 	
 	click_commonMethod(application, "OK", "okbutton", xml);
@@ -1858,7 +1858,7 @@ Thread.sleep(3000);
 		
 		if(vpnTopology.equals("Hub&Spoke")) {
 			
-			System.out.println("Only vpn topology vaue displays under 'hub&Spoke'");
+			Log.info("Only vpn topology vaue displays under 'hub&Spoke'");
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Only VPN topology field displays under 'Configuration' panel, when 'Hub&Spoke' is selected");
 		}
 		
@@ -2069,7 +2069,7 @@ Thread.sleep(3000);
 			
 			if(vpnTopology.equals("Hub&Spoke")) {
 				
-			System.out.println("only vpn topology displays under view Service page");
+			Log.info("only vpn topology displays under view Service page");
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Only VPN topology field displays under 'Configuration' panel, when 'Hub&Spoke' is selected");
 				
 			}
@@ -2266,7 +2266,7 @@ Thread.sleep(3000);
 			
 			if(vpnTopology.equals("Hub&Spoke")) {
 				
-			System.out.println("only vpn topology displays under view Service page");
+			Log.info("only vpn topology displays under view Service page");
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Only VPN topology field displays under 'Configuration' panel, when 'Hub&Spoke' is selected");
 				
 			}
@@ -2564,9 +2564,9 @@ Thread.sleep(3000);
 		List<WebElement> listofmanagementOrder = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
 		for (WebElement mnaagementOrdertypes : listofmanagementOrder) {
 			
-			System.out.println("Available Management Order name is : " + mnaagementOrdertypes.getText().toString());
+			Log.info("Available Management Order name is : " + mnaagementOrdertypes.getText().toString());
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step : Available Management Order name is : " + mnaagementOrdertypes.getText().toString());
+					"Available Management Order name is : " + mnaagementOrdertypes.getText().toString());
 			Log.info("Available Management Order name is :" + mnaagementOrdertypes.getText().toString());
 			
 		}
@@ -2625,7 +2625,7 @@ Thread.sleep(3000);
 				if (vpntopologytyeps.getText().equals(VPNtopology[i])) {
 					match = true;
 					Log.info("list of vpn topologies are : " + vpntopologytyeps.getText());
-					System.out.println("list of vpn topologies: "+vpntopologytyeps.getText());
+					Log.info("list of vpn topologies: "+vpntopologytyeps.getText());
 					ExtentTestManager.getTest().log(LogStatus.PASS,"list of vpn topologies: "+vpntopologytyeps.getText());
 					
 				}
@@ -2664,7 +2664,7 @@ Thread.sleep(3000);
 			
 		    while(CircuitReferencepopupalertmsg)	{
 			String text=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/circuitreferencealertmessage")));
-			System.out.println("The alert popup when circuit reference field is clicked is: " + text);
+			Log.info("The alert popup when circuit reference field is clicked is: " + text);
 			ExtentTestManager.getTest().log(LogStatus.PASS,"on clicking circuit reference field, alert popup message displays as: "+text);
 			
 			CircuitReferencepopupalertmsg=false;
@@ -2701,7 +2701,7 @@ Thread.sleep(3000);
 			
 		    while(CircuitReferencepopupalertmsg)	{
 			String text=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/circuitreferencealertmessage")));
-			System.out.println("The alert popup when circuit reference field is clicked is: " + text);
+			Log.info("The alert popup when circuit reference field is clicked is: " + text);
 			ExtentTestManager.getTest().log(LogStatus.PASS,"on clicking circuit reference field, alert popup message displays as: "+text);
 			
 			CircuitReferencepopupalertmsg=false;
@@ -2755,7 +2755,7 @@ Thread.sleep(3000);
 			
 		    while(CircuitReferencepopupalertmsg)	{
 			String text=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/circuitreferencealertmessage")));
-			System.out.println("The alert popup on clicking circuit reference field is : " + text);
+			Log.info("The alert popup on clicking circuit reference field is : " + text);
 			ExtentTestManager.getTest().log(LogStatus.PASS," on clicking 'Circuit reference' , alert emssage popup as : "+ text);
 			
 			CircuitReferencepopupalertmsg=false;
@@ -3184,9 +3184,9 @@ try {
 		List<WebElement> listofmanagementOrder = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
 		for (WebElement mnaagementOrdertypes : listofmanagementOrder) {
 			
-			System.out.println("Available Management Order name is : " + mnaagementOrdertypes.getText().toString());
+			Log.info("Available Management Order name is : " + mnaagementOrdertypes.getText().toString());
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step : Available Management Order name is : " + mnaagementOrdertypes.getText().toString());
+					"Available Management Order name is : " + mnaagementOrdertypes.getText().toString());
 			Log.info("Available Management Order name is :" + mnaagementOrdertypes.getText().toString());
 			
 		}
@@ -3216,13 +3216,13 @@ verfyFields_ENNIcheckbox(application);
 		sa.assertTrue(vpnTopology, "vpn topology dropdown is not displayed");
 		if(vpnTopology) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " VPN Topology' dropdown is displaying under 'Configuration Options' panel in 'Create Service' page as expected");
-			System.out.println("VPN topology dropdown is displaying as expected");
+			Log.info("VPN topology dropdown is displaying as expected");
 			
 		//Check default values present inside VPN Topology dropdown		
 			boolean defaultTOpologValues=getwebelement("//span[contains(text(),'Point-to-Point')]").isDisplayed();
 			if(defaultTOpologValues) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, " Under 'VPN Topology' dropdown, 'Point-to-Point' is displaying by default as expected");
-				System.out.println("The default topology value is displaying as :"+defaultTOpologValues);
+				Log.info("The default topology value is displaying as :"+defaultTOpologValues);
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Under 'VPN Topology' dropdown, 'Point-to-Point' is not displaying by default");
 			}
@@ -3246,7 +3246,7 @@ verfyFields_ENNIcheckbox(application);
 				if (vpntopologytyeps.getText().equals(VPNtopology[i])) {
 					match = true;
 					Log.info("list of vpn topologies are : " + vpntopologytyeps.getText());
-					System.out.println("list of vpn topologies: "+vpntopologytyeps.getText());
+					Log.info("list of vpn topologies: "+vpntopologytyeps.getText());
 					ExtentTestManager.getTest().log(LogStatus.PASS,"list of vpn topologies: "+vpntopologytyeps.getText());
 					
 				}
@@ -3264,8 +3264,8 @@ verfyFields_ENNIcheckbox(application);
 		scrolltoend();
 		Thread.sleep(3000);
 	
-		System.out.println("VPN Toplogy length is: "+ VPNtopology.length);
-		System.out.println(VPNtopology[i]+ " is the values going to pass inside vpn topology dropdown");
+		Log.info("VPN Toplogy length is: "+ VPNtopology.length);
+		Log.info(VPNtopology[i]+ " is the values going to pass inside vpn topology dropdown");
 		
 		
 		if(VPNtopology[i].equals("E-PN (Any-to-Any)")) {
@@ -3292,7 +3292,7 @@ verfyFields_ENNIcheckbox(application);
 			
 		    while(CircuitReferencepopupalertmsg)	{
 			String text=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/circuitreferencealertmessage")));
-			System.out.println("The alert popup when circuit reference field is clicked is: " + text);
+			Log.info("The alert popup when circuit reference field is clicked is: " + text);
 			ExtentTestManager.getTest().log(LogStatus.PASS,"on clicking circuit reference field, alert popup message displays as: "+text);
 			
 			CircuitReferencepopupalertmsg=false;
@@ -3331,7 +3331,7 @@ verfyFields_ENNIcheckbox(application);
 			
 		    while(CircuitReferencepopupalertmsg)	{
 			String text=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/circuitreferencealertmessage")));
-			System.out.println("The alert popup when circuit reference field is clicked is: " + text);
+			Log.info("The alert popup when circuit reference field is clicked is: " + text);
 			ExtentTestManager.getTest().log(LogStatus.PASS,"on clicking circuit reference field, alert popup message displays as: "+text);
 			
 			CircuitReferencepopupalertmsg=false;
@@ -3386,7 +3386,7 @@ verfyFields_ENNIcheckbox(application);
 			
 		    while(CircuitReferencepopupalertmsg)	{
 			String text=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/circuitreferencealertmessage")));
-			System.out.println("The alert popup on clicking circuit reference field is : " + text);
+			Log.info("The alert popup on clicking circuit reference field is : " + text);
 			ExtentTestManager.getTest().log(LogStatus.PASS," on clicking 'Circuit reference' , alert emssage popup as : "+ text);
 			
 			CircuitReferencepopupalertmsg=false;
@@ -3410,7 +3410,7 @@ verfyFields_ENNIcheckbox(application);
 				Log.info("list of circuit types are : " + CircuitTypes.getText());
 				ExtentTestManager.getTest().log(LogStatus.PASS,"list of circuit types displaying are:  "+CircuitTypes.getText());
 				
-				System.out.println("list of circuit types displaying are:  "+ CircuitTypes.getText());
+				Log.info("list of circuit types displaying are:  "+ CircuitTypes.getText());
 
 		}
 		}catch(Exception e) {
@@ -3497,10 +3497,10 @@ verfyFields_ENNIcheckbox(application);
 		sa.assertTrue(ServiceType, "Service type is not displayed");
 		if(ServiceType) {
 			ExtentTestManager.getTest().log(LogStatus.PASS,  " 'LANLink' is displying under 'Service type' as expected");
-			System.out.println(" 'LANLink' is displying under 'Service type' as expected");
+			Log.info(" 'LANLink' is displying under 'Service type' as expected");
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'LANKLink' is not displying under 'Service type'");
-			System.out.println(" 'LANKLink' is not displying under 'Service type'");
+			Log.info(" 'LANKLink' is not displying under 'Service type'");
 		}
 		
 	//Service subtype
@@ -3508,7 +3508,7 @@ verfyFields_ENNIcheckbox(application);
 		sa.assertTrue(ServiceSubtype, "Service subtype is not displayed");
 		if(ServiceSubtype) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, SelectSubService + " is displying under 'Service Sub type' as expected");
-			System.out.println(SelectSubService + " is displying under 'Service Sub type' as expected");
+			Log.info(SelectSubService + " is displying under 'Service Sub type' as expected");
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, SelectSubService + " is not displying under 'Service Sub type'");
 		}
@@ -3518,7 +3518,7 @@ verfyFields_ENNIcheckbox(application);
 		boolean Evpntechnology=false;
 		try {	
 			Evpntechnology=getwebelement(xml.getlocator("//locators/" + application + "/E_VPNtechnologyDropdown")).isDisplayed();
-			System.out.println("E VPn topology  ");
+			Log.info("E VPn topology  ");
 			sa.assertTrue(Evpntechnology, " 'E-VPN Technology' dropdown is not displayed");
 			Log.info(" 'E-VPN Technology'  dropdown gets displayed when proactive monitoring is selected");
 			if(Evpntechnology) {
@@ -3532,22 +3532,22 @@ verfyFields_ENNIcheckbox(application);
 
 							Log.info("list of 'E-VPN Technology' are : " + EVPNtechnologyTypes.getText());
 							ExtentTestManager.getTest().log(LogStatus.PASS,"list of 'E-VPN Technology' are : " + EVPNtechnologyTypes.getText());
-							System.out.println("list of 'E-VPN Technology' are : " + EVPNtechnologyTypes.getText());
+							Log.info("list of 'E-VPN Technology' are : " + EVPNtechnologyTypes.getText());
 				}
 		      }catch(Exception e) {
 		    	  Log.info(" 'E-VPN' technology dropdown values are mismatching");
 		    	  e.printStackTrace();
 		    	  ExtentTestManager.getTest().log(LogStatus.FAIL,"  values in 'E-VPN Technology' dropdown under 'Metro' service subtype is not displaying");
-		    	  System.out.println("  values in 'E-VPN Technology' dropdown under 'Metro' service subtype is not displaying");
+		    	  Log.info("  values in 'E-VPN Technology' dropdown under 'Metro' service subtype is not displaying");
 		      }
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "  'E-VPN Technology'  dropdown is not displaying");
-				System.out.println("  'E-VPN Technology'  dropdown is not displaying");
+				Log.info("  'E-VPN Technology'  dropdown is not displaying");
 			}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "  'E-VPN Technology'  dropdown is not displaying");
-			System.out.println("  'E-VPN Technology'  dropdown is not displaying");
+			Log.info("  'E-VPN Technology'  dropdown is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 		}
@@ -3622,7 +3622,7 @@ Thread.sleep(3000);
 		boolean performancereoprtingselection = getwebelement(xml.getlocator("//locators/" + application + "/performanceReportingcheckbox")).isSelected();
 		if(performancereoprtingselection) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'Performance Reporting' checkbox is selected by default under 'Management Options' panel in 'Create Service page'"); 
-			System.out.println(" 'Performance Reporting' checkbox is selected by default under 'Management Options' panel in 'Create Service page'");
+			Log.info(" 'Performance Reporting' checkbox is selected by default under 'Management Options' panel in 'Create Service page'");
 		
 		
 		//HCoS Performance Rpeorting
@@ -3644,11 +3644,11 @@ Thread.sleep(3000);
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'HCoS Performance Reporting' checkbox is not displaying");
-			System.out.println(" 'HCoS Performance Reporting' checkbox is not displaying");
+			Log.info(" 'HCoS Performance Reporting' checkbox is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'HCoS Performance Reporting' checkbox is selected by default");
-			System.out.println(" 'HCoS Performance Reporting' checkbox is selected by default");
+			Log.info(" 'HCoS Performance Reporting' checkbox is selected by default");
 		}
 			
 			
@@ -3739,7 +3739,7 @@ Thread.sleep(3000);
     	 }
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "performance Reporting' checkbox is not selected by default under 'Management Options' panel in 'Create Service page as expected");
-			System.out.println("performance Reporting' checkbox is not selected by default under 'Management Options' panel in 'Create Service page as expected");
+			Log.info("performance Reporting' checkbox is not selected by default under 'Management Options' panel in 'Create Service page as expected");
 		}
 	}else {
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'performance Reporting' checkbox is not available under 'Create Service' page");		
@@ -3803,7 +3803,7 @@ try {
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Notification Management' dropdown is not available under 'Management Options' panel when 'proactive Monitoring' checkbox is selected");
-			System.out.println(" 'Notification Management' dropdown is not available under 'Management Options' panel when 'proactive Monitoring' checkbox is selected");
+			Log.info(" 'Notification Management' dropdown is not available under 'Management Options' panel when 'proactive Monitoring' checkbox is selected");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 		}
@@ -3868,13 +3868,13 @@ try {
 		sa.assertTrue(vpnTopology, "vpn topology dropdown is not displayed");
 		if(vpnTopology) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " VPN Topology' dropdown is displaying under 'Configuration Options' panel in 'Create Service' page as expected");
-			System.out.println("VPN topology dropdown is displaying as expected");
+			Log.info("VPN topology dropdown is displaying as expected");
 			
 		//Check default values present inside VPN Topology dropdown		
 			boolean defaultTOpologValues=getwebelement("//span[contains(text(),'Point-to-Point')]").isDisplayed();
 			if(defaultTOpologValues) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, " Under 'VPN Topology' dropdown, 'Point-to-Point' is displaying by default as expected");
-				System.out.println("The default topology value is displaying as :"+defaultTOpologValues);
+				Log.info("The default topology value is displaying as :"+defaultTOpologValues);
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Under 'VPN Topology' dropdown, 'Point-to-Point' is not displaying by default");
 			}
@@ -3899,7 +3899,7 @@ try {
 				if (vpntopologytyeps.getText().equals(VPNtopology[i])) {
 					match = true;
 					Log.info("list of vpn topologies are : " + vpntopologytyeps.getText());
-					System.out.println("list of vpn topologies: "+vpntopologytyeps.getText());
+					Log.info("list of vpn topologies: "+vpntopologytyeps.getText());
 					ExtentTestManager.getTest().log(LogStatus.PASS,"list of vpn topologies: "+vpntopologytyeps.getText());
 					
 				}
@@ -3917,8 +3917,8 @@ try {
 		scrolltoend();
 		Thread.sleep(3000);
 	
-		System.out.println("VPN Toplogy length is: "+ VPNtopology.length);
-		System.out.println(VPNtopology[i]+ " is the values going to pass inside vpn topology dropdown");
+		Log.info("VPN Toplogy length is: "+ VPNtopology.length);
+		Log.info(VPNtopology[i]+ " is the values going to pass inside vpn topology dropdown");
 		
 		
 		if(VPNtopology[i].equals("E-PN (Any-to-Any)")) {
@@ -3945,7 +3945,7 @@ try {
 			
 		    while(CircuitReferencepopupalertmsg)	{
 			String text=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/circuitreferencealertmessage")));
-			System.out.println("The alert popup when circuit reference field is clicked is: " + text);
+			Log.info("The alert popup when circuit reference field is clicked is: " + text);
 			ExtentTestManager.getTest().log(LogStatus.PASS,"on clicking circuit reference field, alert popup message displays as: "+text);
 			
 			CircuitReferencepopupalertmsg=false;
@@ -4016,7 +4016,7 @@ try {
 			
 		    while(CircuitReferencepopupalertmsg)	{
 			String text=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/circuitreferencealertmessage")));
-			System.out.println("The alert popup on clicking circuit reference field is : " + text);
+			Log.info("The alert popup on clicking circuit reference field is : " + text);
 			ExtentTestManager.getTest().log(LogStatus.PASS," on clicking 'Circuit reference' , alert emssage popup as : "+ text);
 			
 			CircuitReferencepopupalertmsg=false;
@@ -4033,10 +4033,10 @@ try {
 			boolean circuitTypedefaultvalue=getwebelement(xml.getlocator("//locators/" + application + "/circuitType_MSPselected_Default")).isDisplayed();
 		if(circuitTypedefaultvalue) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'Circuit type' value is displaying as 'Default' as expected");
-			System.out.println(" 'Circuit type' value is displaying as 'Default' as expected");
+			Log.info(" 'Circuit type' value is displaying as 'Default' as expected");
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'Circuit type' value is not displaying as 'Default'");
-			System.out.println(" 'Circuit type' value is not displaying as 'Default'");
+			Log.info(" 'Circuit type' value is not displaying as 'Default'");
 		}
 	}
 		}
@@ -4128,7 +4128,7 @@ try {
 		Thread.sleep(3000);
 		
 	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Editservice_actiondropdown")));
-	System.out.println("Action dropdown is working");
+	Log.info("Action dropdown is working");
 	Thread.sleep(3000);
 	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Editservice_Editlink")));
 	Thread.sleep(8000);
@@ -4436,7 +4436,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 			
 			if(technology.equals("Actelis")) {	
 				
-			     System.out.println("No additional fields displays");
+			     Log.info("No additional fields displays");
 			}
 			
 
@@ -4461,7 +4461,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 					Thread.sleep(3000);
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Non-termination point checkbox is selected");
 				}else {
-					System.out.println("Non termination point checkbox is not selected as expected");
+					Log.info("Non termination point checkbox is not selected as expected");
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Non-termination point chekbox is not selected");
 				}
 				
@@ -4473,7 +4473,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 					Thread.sleep(3000);
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Protected checkbox is selected");
 				}else {
-					System.out.println("Protected checkbox is not selecetd as expected");
+					Log.info("Protected checkbox is not selecetd as expected");
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Protected checkbox is not selected");
 				}
 
@@ -4492,7 +4492,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 					Thread.sleep(3000);
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Non-termination point checkbox is selected");
 				}else {
-					System.out.println("Non termination point checkbox is not selected as expected");
+					Log.info("Non termination point checkbox is not selected as expected");
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Non-termination point chekbox is not selected");
 				}
 				
@@ -4504,7 +4504,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 					Thread.sleep(3000);
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Protected checkbox is selected");
 				}else {
-					System.out.println("Protected checkbox is not selecetd as expected");
+					Log.info("Protected checkbox is not selecetd as expected");
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Protected checkbox is not selected");
 				}
 				
@@ -4522,7 +4522,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 					Thread.sleep(3000);
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Non-termination point checkbox is selected");
 				}else {
-					System.out.println("Non termination point checkbox is not selected as expected");
+					Log.info("Non termination point checkbox is not selected as expected");
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Non-termination point chekbox is not selected");
 				}
 				
@@ -4567,7 +4567,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 									Thread.sleep(3000);
 									ExtentTestManager.getTest().log(LogStatus.PASS, "Non-termination point checkbox is selected");
 								}else {
-									System.out.println("Non termination point checkbox is not selected as expected");
+									Log.info("Non termination point checkbox is not selected as expected");
 									ExtentTestManager.getTest().log(LogStatus.PASS, "Non-termination point chekbox is not selected");
 								}
 								
@@ -4579,7 +4579,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 									Thread.sleep(3000);
 									ExtentTestManager.getTest().log(LogStatus.PASS, "Protected checkbox is selected");
 								}else {
-									System.out.println("Protected checkbox is not selecetd as expected");
+									Log.info("Protected checkbox is not selecetd as expected");
 									ExtentTestManager.getTest().log(LogStatus.PASS, "Protected checkbox is not selected");
 								}
 						}else {
@@ -4884,7 +4884,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 
 		
 		if(technology.equalsIgnoreCase("Belgacom VDSL")) {
-			System.out.println("Site alias and VLAN id text field does not display for 'belgacom VDSL' technology");
+			Log.info("Site alias and VLAN id text field does not display for 'belgacom VDSL' technology");
 		}else {
 			
 		//Vlan id
@@ -4909,7 +4909,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		editSiteOrder_technology(application,technology);
 		 
 		if(technology.equalsIgnoreCase("Actelis")) {
-			System.out.println(" NO additional fields display for technology Actelis");
+			Log.info(" NO additional fields display for technology Actelis");
 		}
 		
 		
@@ -4947,7 +4947,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		
 		if(technology.equalsIgnoreCase("Belgacom VDSL")) {
 			
-			System.out.println("NO additonal fields display");
+			Log.info("NO additonal fields display");
 		}
 		
 		scrolltoend();
@@ -4976,7 +4976,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 
 		
 		if(technology.equalsIgnoreCase("Belgacom VDSL")) {
-			System.out.println("Site alias and VLAN id text field does not display for 'belgacom VDSL' technology");
+			Log.info("Site alias and VLAN id text field does not display for 'belgacom VDSL' technology");
 		}else {
 			
 		//Vlan id
@@ -5005,7 +5005,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		editSiteOrder_technology(application,technology);
 		 
 		if(technology.equalsIgnoreCase("Actelis")) {
-			System.out.println(" NO additional fields display for technology Actelis");
+			Log.info(" NO additional fields display for technology Actelis");
 		}
 		
 		
@@ -5043,7 +5043,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		
 		if(technology.equalsIgnoreCase("Belgacom VDSL")) {
 			
-			System.out.println("NO additonal fields display");
+			Log.info("NO additonal fields display");
 		}
 		
 		scrolltoend();
@@ -5092,7 +5092,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		editSiteOrder_technology(application,technology);
 		 
 		if(technology.equalsIgnoreCase("Actelis")) {
-			System.out.println(" NO additional fields display for technology Actelis");
+			Log.info(" NO additional fields display for technology Actelis");
 		}
 		
 		
@@ -5105,18 +5105,18 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		
 		if(technology.equalsIgnoreCase("Overture")) {
 			
-			System.out.println("NO additonal fields required");
+			Log.info("NO additonal fields required");
 		}
 		
 		
 		if(technology.equalsIgnoreCase("Accedian")) {
 			
-			System.out.println("NO additonal fields displays");
+			Log.info("NO additonal fields displays");
 		}
 		
 		if(technology.equalsIgnoreCase("Cyan")) {
 			
-			System.out.println("No additonal fields displays");
+			Log.info("No additonal fields displays");
 		}
 		
 		scrolltoend();
@@ -5156,7 +5156,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 
 		
 		if(technology.equalsIgnoreCase("Belgacom VDSL")) {
-			System.out.println("No additional fields display, when 'Belgacom VDSL' technology is selected");
+			Log.info("No additional fields display, when 'Belgacom VDSL' technology is selected");
 			
 		}else {
 			
@@ -5183,7 +5183,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		editSiteOrder_technology(application,technology);
 		 
 		if(technology.equalsIgnoreCase("Actelis")) {
-			System.out.println(" NO additional fields display for technology Actelis");
+			Log.info(" NO additional fields display for technology Actelis");
 		}
 		
 		
@@ -5219,7 +5219,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		
 		if(technology.equalsIgnoreCase("Alu")) {
 			
-			System.out.println("No additional fields display for Alu Technology");
+			Log.info("No additional fields display for Alu Technology");
 		}
 		
 		if((technology.equals("Accedian")) || (technology.equals("Accedian-1G"))) {
@@ -5231,7 +5231,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		
 		if(technology.equalsIgnoreCase("Belgacom VDSL")) {
 			
-			System.out.println("NO additonal fields display");
+			Log.info("NO additonal fields display");
 		}
 		
 		scrolltoend();
@@ -5288,13 +5288,13 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		editSiteOrder_technology(application,technology);
 		 
 		if(technology.equalsIgnoreCase("Actelis")) {
-			System.out.println(" NO additional fields display for technology Actelis");
+			Log.info(" NO additional fields display for technology Actelis");
 		}
 		
 		
 		if(technology.equalsIgnoreCase("Atrica")) {
 			 
-			System.out.println("NO additonal fields display");
+			Log.info("NO additonal fields display");
 		 }
 		
 		if(technology.equalsIgnoreCase("Overture")) {
@@ -5319,12 +5319,12 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		
 		if((technology.equals("Accedian")) ) {
 			
-			System.out.println("No additonal fields display");
+			Log.info("No additonal fields display");
 		}
 		
 		if(technology.equalsIgnoreCase("Cyan")) {
 			
-			System.out.println("No additonal fields display");
+			Log.info("No additonal fields display");
 		}
 		
 		scrolltoend();
@@ -5363,7 +5363,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 	//Site alias
 		if(technology.equalsIgnoreCase("Belgacom VDSL")) {
 			
-			System.out.println("Site alias field will not display for 'Belgacom VDSL' technology");
+			Log.info("Site alias field will not display for 'Belgacom VDSL' technology");
 		}else {
 			editsiteorder_sitealias(application, siteallias);
 		}
@@ -5382,7 +5382,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		editSiteOrder_technology(application,technology);
 		 
 		if(technology.equalsIgnoreCase("Actelis")) {
-			System.out.println(" NO additional fields display for technology Actelis");
+			Log.info(" NO additional fields display for technology Actelis");
 		}
 		
 		
@@ -5462,7 +5462,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		
 		if(technology.equalsIgnoreCase("Belgacom VDSL")) {
 			
-			System.out.println("No additonal fields displays");
+			Log.info("No additonal fields displays");
 		}
 		
 		scrolltoend();
@@ -5512,7 +5512,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		editSiteOrder_technology(application,technology);
 		 
 		if(technology.equalsIgnoreCase("Actelis")) {
-			System.out.println(" NO additional fields display for technology Actelis");
+			Log.info(" NO additional fields display for technology Actelis");
 		}
 		
 		
@@ -5553,12 +5553,12 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		
 		if(technology.equalsIgnoreCase("Accedian") ) {
 			
-			System.out.println("No additonal fields displays");
+			Log.info("No additonal fields displays");
 		}
 		
 		if(technology.equalsIgnoreCase("Cyan")) {
 			
-			System.out.println("NO additonal field display");			
+			Log.info("NO additonal field display");			
 		}
 		
 		scrolltoend();
@@ -5596,7 +5596,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 
 		 
 		if(technology.equalsIgnoreCase("Belgacom VDSL")) {
-			System.out.println("Site Alias field will not display for Belgacom technology");
+			Log.info("Site Alias field will not display for Belgacom technology");
 		}else {
 			
 			//Site alias
@@ -5620,7 +5620,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		editSiteOrder_technology(application,technology);
 		 
 		if(technology.equalsIgnoreCase("Actelis")) {
-			System.out.println(" NO additional fields display for technology Actelis");
+			Log.info(" NO additional fields display for technology Actelis");
 		}
 		
 		
@@ -5658,7 +5658,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		
 		if(technology.equalsIgnoreCase("Belgacom VDSL")) {
 			
-			System.out.println("NO additonal fields displays");
+			Log.info("NO additonal fields displays");
 		}
 		
 		scrolltoend();
@@ -5715,7 +5715,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		editSiteOrder_technology(application,technology);
 		 
 		if(technology.equalsIgnoreCase("Actelis")) {
-			System.out.println(" NO additional fields display for technology Actelis");
+			Log.info(" NO additional fields display for technology Actelis");
 		}
 		
 		
@@ -5728,18 +5728,18 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		
 		if(technology.equalsIgnoreCase("Overture")) {
 			
-			System.out.println("NO additonal fields displays");
+			Log.info("NO additonal fields displays");
 		}
 		
 		
 		if((technology.equals("Accedian"))) {
 			
-			System.out.println("no additonal fields display");
+			Log.info("no additonal fields display");
 		}
 		
 		if(technology.equalsIgnoreCase("Cyan")) {
 
-			System.out.println("No additonal fields display");
+			Log.info("No additonal fields display");
 		}
 		
 		scrolltoend();
@@ -5777,7 +5777,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		 
 	//Site alias
 		if(technology.equalsIgnoreCase("Belgacom VDSL")) {
-			System.out.println("Site alias field will not dipslay for 'belgacom VDSL' technology");
+			Log.info("Site alias field will not dipslay for 'belgacom VDSL' technology");
 		}else {
 			editsiteorder_sitealias(application, siteallias);
 		}
@@ -5796,7 +5796,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		editSiteOrder_technology(application,technology);
 		 
 		if(technology.equalsIgnoreCase("Actelis")) {
-			System.out.println(" NO additional fields display for technology Actelis");
+			Log.info(" NO additional fields display for technology Actelis");
 		}
 		
 		
@@ -5840,7 +5840,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		
 		if(technology.equalsIgnoreCase("Belgacom VDSL")) {
 			
-			System.out.println("No additonal fields displays");
+			Log.info("No additonal fields displays");
 		}
 		
 		
@@ -5899,7 +5899,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		editSiteOrder_technology(application,technology);
 		 
 		if(technology.equalsIgnoreCase("Actelis")) {
-			System.out.println(" NO additional fields display for technology Actelis");
+			Log.info(" NO additional fields display for technology Actelis");
 		}
 		
 		
@@ -5912,19 +5912,19 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		
 		if(technology.equalsIgnoreCase("Overture")) {
 			
-			System.out.println("No additonal fields display");
+			Log.info("No additonal fields display");
 		}
 		
 		
 		
 		if(technology.equals("Accedian")) {
 			
-			System.out.println("NO additonal fields display");
+			Log.info("NO additonal fields display");
 		}
 		
 		if(technology.equalsIgnoreCase("Cyan")) {
 			
-			System.out.println("NO additonal fields display");
+			Log.info("NO additonal fields display");
 		}
 		
 		
@@ -6006,7 +6006,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		if(perfrmReportAvailability) {
 		 if(performReport.equalsIgnoreCase("null")) {
 			 ExtentTestManager.getTest().log(LogStatus.PASS, "Performance reporting dropdown is not edited");
-			 System.out.println( "Performance reporting dropdown is not edited");
+			 Log.info( "Performance reporting dropdown is not edited");
 		 }else {
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_performancereporting_xbutton")));
 		Thread.sleep(3000);
@@ -6014,9 +6014,9 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		Clickon(getwebelement("//div[label[text()='Performance Reporting']]//div[text()='"+ performReport +"']"));
 		
 		Thread.sleep(3000);
-		System.out.println("perform reporting selected");
+		Log.info("perform reporting selected");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Edited value for 'Performance reporting' dropdown is: "+performReport);
-		System.out.println("Edited value for 'Performance reporting' dropdown is: "+performReport);
+		Log.info("Edited value for 'Performance reporting' dropdown is: "+performReport);
 		
 		 }
 		}else {
@@ -6025,11 +6025,11 @@ if(modularmsp.equalsIgnoreCase("no")) {
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " Performance Reporting' dropdown is not available under 'Edit Site Order' page");
-		System.out.println(" Performance Reporting' dropdown is not available under 'Edit Site Order' page");
+		Log.info(" Performance Reporting' dropdown is not available under 'Edit Site Order' page");
 	}catch(Exception err) {
 		err.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to select value under 'Performance reporting' checkbox ");
-		System.out.println(" Not able to select value under 'Performance reporting' checkbox ");
+		Log.info(" Not able to select value under 'Performance reporting' checkbox ");
 	}
 	
 	}
@@ -6049,7 +6049,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 		Thread.sleep(3000);
 		Clickon(getwebelement("//div[text()='" + GCRoloType + "']"));
 		Thread.sleep(3000);
-		System.out.println("'GCR OLO Type' dropdown selected");
+		Log.info("'GCR OLO Type' dropdown selected");
 		
 		String actualvalue=getwebelement("//div[label[text()='GCR OLO Type']]//span").getText();
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Edited value for 'GCR OLO Type' dropdown is: "+actualvalue);
@@ -6061,11 +6061,11 @@ if(modularmsp.equalsIgnoreCase("no")) {
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'GCR OLO Type' dropdown is not available under 'Edit Site Order' page");
-		System.out.println( " 'GCR OLO Type' dropdown is not available under 'Edit Site Order' page");
+		Log.info( " 'GCR OLO Type' dropdown is not available under 'Edit Site Order' page");
 	}catch(Exception ee) {
 		ee.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, GCRoloType +  " not available under 'GCR OLO type' dropdown");
-		System.out.println(GCRoloType +  " not available under 'GCR OLO type' dropdown");
+		Log.info(GCRoloType +  " not available under 'GCR OLO type' dropdown");
 	}
 	
 	}
@@ -6085,7 +6085,7 @@ public void editSiteOrder_VLANEtherType(String application, String VlanEtherType
 		Thread.sleep(3000);
 		Clickon(getwebelement("//div[label[text()='VLAN Ether Type']]//div[text()='"+ VlanEtherType +"']"));
 		Thread.sleep(3000);
-		System.out.println("'VLAN Ether Type' dropdown selected");
+		Log.info("'VLAN Ether Type' dropdown selected");
 		
 		String actualValue=getwebelement("//div[label[text()='VLAN Ether Type']]//span").getText();
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Edited value for 'VLAN Ether Type' dropdown is: "+actualValue);
@@ -6097,11 +6097,11 @@ public void editSiteOrder_VLANEtherType(String application, String VlanEtherType
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Ether Type' dropdown is not available under 'Edit Site Order' page");
-		System.out.println(" 'VLAN Ether Type' dropdown is not available under 'Edit Site Order' page");
+		Log.info(" 'VLAN Ether Type' dropdown is not available under 'Edit Site Order' page");
 	}catch(Exception ee) {
 		ee.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, VlanEtherType + " is not selected under 'VLAN Ether type' dropdown");
-		System.out.println(VlanEtherType + " is not edited under 'VLAN Ether type' dropdown");
+		Log.info(VlanEtherType + " is not edited under 'VLAN Ether type' dropdown");
 	}
 	
 	}
@@ -6122,7 +6122,7 @@ try {
 	Thread.sleep(3000);
 	Clickon(getwebelement("//div[label[text()='Primary VLAN Ether Type']]//div[text()='"+ primaryVlanEtherType +"']"));
 	Thread.sleep(3000);
-	System.out.println("'Primary VLAN Ether Type' dropdown selected");
+	Log.info("'Primary VLAN Ether Type' dropdown selected");
 	
 	String actualValue=getwebelement("//div[label[text()='Primary VLAN Ether Type']]//span").getText();
 	ExtentTestManager.getTest().log(LogStatus.PASS, "Edited value for 'Primary VLAN Ether Type' dropdown is: "+primaryVlanEtherType);
@@ -6134,11 +6134,11 @@ try {
 }catch(NoSuchElementException e) {
 	e.printStackTrace();
 	ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Primary VLAN Ether Type' dropdown is not available under 'Edit Site Order' page");
-	System.out.println(" 'Primary VLAN Ether Type' dropdown is not available under 'Edit Site Order' page");
+	Log.info(" 'Primary VLAN Ether Type' dropdown is not available under 'Edit Site Order' page");
 }catch(Exception ee) {
 	ee.printStackTrace();
 	ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit value under 'Primary Vlan Ether type' dropdown");
-	System.out.println(" Not able to edit value under 'Primary Vlan Ether type' dropdown");
+	Log.info(" Not able to edit value under 'Primary Vlan Ether type' dropdown");
 }
 }
 
@@ -6165,11 +6165,11 @@ try {
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Technology value is not displaying as expected");
-			System.out.println(" Technology value is not displaying as expected");
+			Log.info(" Technology value is not displaying as expected");
 		}catch(Exception ew) {
 			ew.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Technology value is not displaying as expected");
-			System.out.println(" Technology value is not displaying as expected");
+			Log.info(" Technology value is not displaying as expected");
 		}
 	}
 	
@@ -6183,7 +6183,7 @@ try {
 		if(siteOrderValue) {
 			
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Site Order Number (Siebel Service ID) value is displaying as: "+siteOrderNumber +" as expected");
-			System.out.println( " Site Order Number (Siebel Service ID) value is displaying as: "+siteOrderNumber +" as expected");
+			Log.info( " Site Order Number (Siebel Service ID) value is displaying as: "+siteOrderNumber +" as expected");
 		}else {
 			String actualValue=getwebelement("//div[div[label[contains(text(),'Site Order Number (Siebel Service ID)')]]]/div[2]").getText();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Site Order Number (Siebel Service ID) value is not displaying"
@@ -6191,18 +6191,18 @@ try {
 					+"  Expected value for 'Site Order Number (Siebel Service ID)' is: "+siteOrderNumber);
 			
 			
-			System.out.println(" Site Order Number (Siebel Service ID) value is not displaying"
+			Log.info(" Site Order Number (Siebel Service ID) value is not displaying"
 					+ "   Actual value displaying is: "+actualValue 
 					+"  Expected value for 'Site Order Number (Siebel Service ID)' is: "+siteOrderNumber);
 		}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Site Order NUmber' value is not displaying as expected");
-			System.out.println(" 'Site Order NUmber' value is not displaying as expected");
+			Log.info(" 'Site Order NUmber' value is not displaying as expected");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Site Order NUmber' value is not displaying as expected");
-			System.out.println(" 'Site Order NUmber' value is not displaying as expected");
+			Log.info(" 'Site Order NUmber' value is not displaying as expected");
 		}
 		
 	}
@@ -6218,7 +6218,7 @@ try {
 		if(IVrefValue) {
 			
 			ExtentTestManager.getTest().log(LogStatus.PASS, " IV reference value is displaying as: "+IVReference +" as expected");
-			System.out.println( " IV reference value is displaying as: "+IVReference +" as expected");
+			Log.info( " IV reference value is displaying as: "+IVReference +" as expected");
 			
 		}else {
 			String actualValue=getwebelement("//div[div[label[contains(text(),'IV Reference')]]]/div[2]").getText();
@@ -6226,14 +6226,14 @@ try {
 					+ "   Actual value displaying is: "+actualValue 
 					+"  Expected value for 'IV Reference' is: "+IVReference);
 			
-			System.out.println(" IV Reference) value is not displaying as expected"
+			Log.info(" IV Reference) value is not displaying as expected"
 					+ "   Actual value displaying is: "+actualValue 
 					+"  Expected value for 'IV Reference' is: "+IVReference);
 		}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'IV Reference' value is not dispaying as expected");
-			System.out.println(" 'IV Reference' value is not dispaying as expected");
+			Log.info(" 'IV Reference' value is not dispaying as expected");
 		}
 	}
 
@@ -6246,11 +6246,11 @@ try {
 		
 		if(proactiveMonitorAvilability) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Proactive Monitoring' dropdown is displaying under 'Edit Site Order' page as expected");
-			System.out.println(" Proactive Monitoring' dropdown is displaying under 'Edit Site Order' page as expected");
+			Log.info(" Proactive Monitoring' dropdown is displaying under 'Edit Site Order' page as expected");
 			
 		if(ProactiveMonitor.equalsIgnoreCase("null")) {
 			 ExtentTestManager.getTest().log(LogStatus.PASS, "Proactive monitoring' dropdown value is not edited");
-			 System.out.println( "Proactive monitoring' dropdown value is not edited");
+			 Log.info( "Proactive monitoring' dropdown value is not edited");
 		 }else {
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsitorder_proactivemonitoring_xbutton")));
 		Thread.sleep(3000);
@@ -6259,22 +6259,22 @@ try {
 		Clickon(getwebelement("//div[label[text()='Proactive Monitoring']]//div[text()='"+ ProactiveMonitor +"']"));
 		
 		Thread.sleep(3000);
-		System.out.println("proa ctive monitorin selected");
+		Log.info("proa ctive monitorin selected");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Edited value for 'Pro active Monitoring' dropdown is: "+ProactiveMonitor);
-		System.out.println("Edited value for 'Pro active Monitoring' dropdown is: "+ProactiveMonitor);
+		Log.info("Edited value for 'Pro active Monitoring' dropdown is: "+ProactiveMonitor);
 	 }
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Pro active Monitoring' dropdown is not available under 'Edit Site Order' page");
-			System.out.println(" Pro active Monitoring' dropdown is not available under 'Edit Site Order' page");
+			Log.info(" Pro active Monitoring' dropdown is not available under 'Edit Site Order' page");
 		}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Pro active Monitoring' dropdown is not available under 'Edit Site Order' page");
-			System.out.println(" Pro active Monitoring' dropdown is not available under 'Edit Site Order' page");
+			Log.info(" Pro active Monitoring' dropdown is not available under 'Edit Site Order' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under 'pro active monitoring' dropodwn");
-			System.out.println(" Not able to enter value under 'pro active monitoring' dropodwn");
+			Log.info(" Not able to enter value under 'pro active monitoring' dropodwn");
 		}
 	}
 	
@@ -6290,30 +6290,30 @@ try {
 		
 		 if(smartmonitor.equalsIgnoreCase("null")) {
 			 ExtentTestManager.getTest().log(LogStatus.PASS, "Smarts Monitoring dropdown value is not edited");
-			 System.out.println( "Smarts Monitoring dropdown value is not edited");
+			 Log.info( "Smarts Monitoring dropdown value is not edited");
 		 }else {
 	    Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_smartmonitoring_xbutton")));
 	    Thread.sleep(3000);
 	    Clickon(getwebelement("//div[label[text()='Smarts Monitoring']]//div[text()='"+ smartmonitor +"']"));
 		Thread.sleep(3000);
 	  
-		System.out.println("smarts monitoring is selected");
+		Log.info("smarts monitoring is selected");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Edited value for 'Smarts Monitoring' dropdown is: "+smartmonitor);
-		System.out.println("Edited value for 'Smarts Monitoring' dropdown is: "+smartmonitor);
+		Log.info("Edited value for 'Smarts Monitoring' dropdown is: "+smartmonitor);
 		 }
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Smart Monitoring dropdown is not available under 'Edit Site Order' page");
-			System.out.println("Smart Monitoring dropdown is not available under 'Edit Site Order' page");
+			Log.info("Smart Monitoring dropdown is not available under 'Edit Site Order' page");
 		}
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Smart Monitoring dropdown is not available under 'Edit Site Order' page");
-			System.out.println("Smart Monitoring dropdown is not available under 'Edit Site Order' page");
+			Log.info("Smart Monitoring dropdown is not available under 'Edit Site Order' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to select value under 'Smart Montoring' checkbox");
-			System.out.println(" NOt able to select value under 'Smart Montoring' checkbox");
+			Log.info(" NOt able to select value under 'Smart Montoring' checkbox");
 		}
 		 
 	}
@@ -6347,11 +6347,11 @@ try {
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Device name text field is not displaying under 'Edit Site Order' page");
-			System.out.println(" Device name text field is not displaying under 'Edit Site Order' page");
+			Log.info(" Device name text field is not displaying under 'Edit Site Order' page");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit 'device name' field");
-			System.out.println( " Not able to edit 'device name' field");
+			Log.info( " Not able to edit 'device name' field");
 		}
 	}
 			
@@ -6363,11 +6363,11 @@ try {
 		mappingModeAvailability=getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_mappingModedropdown")).isDisplayed();
 		if(mappingModeAvailability) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'Mapping Mode' dropdown is displaying in 'Edit Site Order' page as expected");
-			System.out.println(" 'Mapping Mode' dropdown is displaying in 'Edit Site Order' page as expected");
+			Log.info(" 'Mapping Mode' dropdown is displaying in 'Edit Site Order' page as expected");
 			
 			if(mappingmode.equalsIgnoreCase("null")) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'mapping Mode' dropdown is not edited");
-				System.out.println(" 'mapping Mode' dropdown is not edited");
+				Log.info(" 'mapping Mode' dropdown is not edited");
 				
 				
 			}else {
@@ -6395,11 +6395,11 @@ try {
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Mapping mode' dropdown is not displaying under 'Edit Site order' page");
-		System.out.println(" 'Mapping mode' dropdown is not displaying under 'Edit Site order' page");
+		Log.info(" 'Mapping mode' dropdown is not displaying under 'Edit Site order' page");
 	}catch(Exception ee) {
 		ee.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit value under 'Mapping Mode' dropdown");
-		System.out.println(" Not able to edit value under 'Mapping Mode' dropdown");
+		Log.info(" Not able to edit value under 'Mapping Mode' dropdown");
 	}
 	}
 	
@@ -6415,7 +6415,7 @@ try {
 		if(vlanAvailability) {
 		 if(VLANid.equalsIgnoreCase("null")) {
 			 ExtentTestManager.getTest().log(LogStatus.PASS, "Vlanid field value is not edited");
-			 System.out.println("Vlanid field value is not edited");
+			 Log.info("Vlanid field value is not edited");
 		 }else {
 			 getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Vlanid")).clear();
 			 Thread.sleep(3000);
@@ -6425,20 +6425,20 @@ try {
 			 
 			String VLANidValue= getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Vlanid")).getAttribute("value");
 			 ExtentTestManager.getTest().log(LogStatus.PASS, "Edited value for 'Vlan id' field is: "+ VLANidValue);
-			 System.out.println( "Edited value for 'Vlan id' field is: "+ VLANidValue);
+			 Log.info( "Edited value for 'Vlan id' field is: "+ VLANidValue);
 		 }
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "VLAN Id field is not available under 'Edit Site Order' page");
-			System.out.println("VLAN Id field is not available under 'Edit Site Order' page");
+			Log.info("VLAN Id field is not available under 'Edit Site Order' page");
 		}
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "VLAN Id field is not available under 'Edit Site Order' page");
-		System.out.println("VLAN Id field is not available under 'Edit Site Order' page");
+		Log.info("VLAN Id field is not available under 'Edit Site Order' page");
 	}catch(Exception ee) {
 		ee.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit 'VLAn Id' text field");
-		System.out.println(" not able to edit 'VLAN ID' text field");
+		Log.info(" not able to edit 'VLAN ID' text field");
 	}
 	}
 	
@@ -6471,11 +6471,11 @@ public void editsiteOrder_remark(String application, String remark) throws Inter
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "Remark text field is not available under 'Edit Site Order' page");
-		System.out.println("Remark text field is not available under 'Edit Site Order' page");
+		Log.info("Remark text field is not available under 'Edit Site Order' page");
 	}catch(Exception err) {
 		err.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under 'remark' field");
-		System.out.println(" Not able to enter value under 'remark' field");
+		Log.info(" Not able to enter value under 'remark' field");
 	}
 	
 	}
@@ -6489,7 +6489,7 @@ public void editsiteOrder_remark(String application, String remark) throws Inter
 		if(siteAliasAvilability) {
 		 if(siteallias.equalsIgnoreCase("null")) {
 			 ExtentTestManager.getTest().log(LogStatus.PASS, "Site Alias field value is not edited");
-			 System.out.println("Site Alias field value is not edited");
+			 Log.info("Site Alias field value is not edited");
 		 }else {
 			 getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_sitealias")).clear();
 			 Thread.sleep(3000);
@@ -6497,7 +6497,7 @@ public void editsiteOrder_remark(String application, String remark) throws Inter
 			 Thread.sleep(3000);
 			 String siteAliasvalue=getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_sitealias")).getAttribute("value");
 			 ExtentTestManager.getTest().log(LogStatus.PASS, "Edited value for 'Site Alias' field is: "+siteAliasvalue);
-			 System.out.println("Edited value for 'Site Alias' field is: "+siteAliasvalue);
+			 Log.info("Edited value for 'Site Alias' field is: "+siteAliasvalue);
 		 }
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Site Alias field is not available under 'Edit Site Order' page");
@@ -6505,11 +6505,11 @@ public void editsiteOrder_remark(String application, String remark) throws Inter
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Site Alias field is not available under 'Edit Site Order' page");
-			System.out.println(" Site Alias field is not available under 'Edit Site Order' page");
+			Log.info(" Site Alias field is not available under 'Edit Site Order' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under 'Site Alias' field" );
-			System.out.println(" Not able to enter value under 'Site Alias' field");
+			Log.info(" Not able to enter value under 'Site Alias' field");
 		}
 		
 	
@@ -6597,11 +6597,11 @@ public void editsiteOrder_remark(String application, String remark) throws Inter
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " Circuit Reference field is not available under 'Edit Site Order' page");
-		System.out.println(" Circuit Reference field is not available under 'Edit Site Order' page");
+		Log.info(" Circuit Reference field is not available under 'Edit Site Order' page");
 	}catch(Exception err) {
 		err.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under 'Circuit reference' field");
-		System.out.println(" Not able to enter value under 'Circuit reference' field");
+		Log.info(" Not able to enter value under 'Circuit reference' field");
 	}
 	}
 	
@@ -6632,11 +6632,11 @@ public void editsiteorder_VLAN(String application, String VLAN) throws Interrupt
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " VLAN text field is not available under 'Edit Site Order' page");
-		System.out.println(" VLAN text field is not available under 'Edit Site Order' page");
+		Log.info(" VLAN text field is not available under 'Edit Site Order' page");
 	}catch(Exception ee) {
 		ee.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit value under 'VLAN' text field");
-		System.out.println(" Not able to edit value under 'VLAN' text field");
+		Log.info(" Not able to edit value under 'VLAN' text field");
 	}
 	
 	}
@@ -6668,11 +6668,11 @@ try {
 }catch(NoSuchElementException e) {
 	e.printStackTrace();
 	ExtentTestManager.getTest().log(LogStatus.FAIL, " Primary VLAN text field is not available under 'Edit Site Order' page");
-	System.out.println(" Primary VLAN text field is not available under 'Edit Site Order' page");
+	Log.info(" Primary VLAN text field is not available under 'Edit Site Order' page");
 }catch(Exception ee) {
 	ee.printStackTrace();
 	ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit 'Primary VLAn Type' text field");
-	System.out.println( " Not able to edit 'Primary VLAn Type' text field");
+	Log.info( " Not able to edit 'Primary VLAn Type' text field");
 }
 
 }
@@ -6819,11 +6819,11 @@ try {
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Non-Termination Point checkbox is not available under 'Edit Site order' page");
-			System.out.println(" Non-Termination Point checkbox is not available under 'Edit Site order' page");
+			Log.info(" Non-Termination Point checkbox is not available under 'Edit Site order' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'Non-termination point' checkbox ");
-			System.out.println(" Not able to click on 'Non-termination point' checkbox ");
+			Log.info(" Not able to click on 'Non-termination point' checkbox ");
 		}
 	}
 	
@@ -6878,11 +6878,11 @@ try {
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Protected checkbox is not displaying under 'Edit Site order' page");
-			System.out.println(" Protected checkbox is not displaying under 'Edit Site order' page");
+			Log.info(" Protected checkbox is not displaying under 'Edit Site order' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to select 'protected' checkbox");
-			System.out.println(" Not able to select 'protected' checkbox");
+			Log.info(" Not able to select 'protected' checkbox");
 		
 		}
 		
@@ -6932,7 +6932,7 @@ try {
 		Thread.sleep(2000);
 
 		String popupmessage = Gettext(getwebelement("//div[text()='Please select a row to edit']"));
-		System.out.println("Edit popup message before selecting row: " + popupmessage);
+		Log.info("Edit popup message before selecting row: " + popupmessage);
 		Log.info("Edit popup message before selecting row: \"+popupmessage");
 
 		Clickon(getwebelement("//div[@class='modal-header']//div[contains(text(),'×')]"));
@@ -6958,7 +6958,7 @@ try {
 		Thread.sleep(2000);
 
 		String popupmessage = Gettext(getwebelement("//div[text()='Please select a row to delete']"));
-		System.out.println("Delete popup message before selecting row: " + popupmessage);
+		Log.info("Delete popup message before selecting row: " + popupmessage);
 		Log.info("Delete popup message before selecting row: \"+popupmessage");
 
 		Clickon(getwebelement("//div[@class='modal-header']//div[contains(text(),'×')]"));
@@ -6972,7 +6972,7 @@ try {
 
 		String deletemessage = Gettext(
 				getwebelement("//div[text()='Are you sure that you want to delete this item?']"));
-		System.out.println("delete popup displays message as : " + deletemessage);
+		Log.info("delete popup displays message as : " + deletemessage);
 		Log.info("delete popup displays message as : \"+deletemessage");
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Deletesiteorderrbutton")));
@@ -6983,10 +6983,10 @@ try {
 	public void clickonviewewithoutselectingrow(String application)
 			throws InterruptedException, DocumentException, IOException {
 
-//		System.out.println("have to navigate back");
+//		Log.info("have to navigate back");
 //		driver.navigate().back();
 //		Thread.sleep(3000);
-//		System.out.println("got navigated back");
+//		Log.info("got navigated back");
 
 		Log.info("View site order without selecting row");
 		JavascriptExecutor js = ((JavascriptExecutor) driver);
@@ -7000,7 +7000,7 @@ try {
 		Thread.sleep(2000);
 
 		String popupmessage = Gettext(getwebelement("//div[text()='Please select a row to view']"));
-		System.out.println("popup message before selecting row for viewing occurs as: " + popupmessage);
+		Log.info("popup message before selecting row for viewing occurs as: " + popupmessage);
 		Log.info(" popup message before selecting row for viewing occcurs as: " + popupmessage);
 
 		Clickon(getwebelement("//div[@class='modal-header']//div[contains(text(),'×')]"));
@@ -7032,13 +7032,13 @@ try {
 				getwebelement(xml.getlocator("//locators/" + application + "/Editsiteorder_country")));
 		sa.assertEquals(fetchedvalue_country, country, "Country field is not displaying same Entered value while creating");
 
-		System.out.println("country value is: " + fetchedvalue_country);
+		Log.info("country value is: " + fetchedvalue_country);
 
 		String fetchedvalue_city = Gettext(
 				getwebelement(xml.getlocator("//locators/" + application + "/Editsiteorder_city")));
 		sa.assertEquals(fetchedvalue_city, city, "City field is not displaying same Entered value while creating");
 
-		System.out.println("city value is: " + fetchedvalue_city);
+		Log.info("city value is: " + fetchedvalue_city);
 
 		String fetchedvalue_csrname = Gettext(
 				getwebelement(xml.getlocator("//locators/" + application + "/Editsiteorder_CSRname")));
@@ -7052,7 +7052,7 @@ try {
 		sa.assertEquals(fetchedvalue_proactivemonitorin, ProactiveMonitor,
 				"Pro active monitoring dropdowmn is not displaying same Entered value while creating");
 
-		System.out.println("proactive monitroing value is: " + fetchedvalue_proactivemonitorin);
+		Log.info("proactive monitroing value is: " + fetchedvalue_proactivemonitorin);
 
 //		  String fetchedvalue_performreporting=Gettext(getwebelement("//div[label[contains(text(),'Performance Reporting')]]//div[contains(text(),'"+ performReport +"')]"));
 
@@ -7072,14 +7072,14 @@ try {
 				getwebelement(xml.getlocator("//locators/" + application + "/Editsiteorder_technology")));
 		sa.assertEquals(fetchedvalue_technology, technology,
 				"Technology field is not displaying same Entered value while creating");
-		System.out.println("technology is: " + fetchedvalue_technology);
+		Log.info("technology is: " + fetchedvalue_technology);
 
 		String fetchedvalue_sitealias = Getattribute(
 				getwebelement(xml.getlocator("//locators/" + application + "/Editsiteorder_sitealias")), "value");
 		sa.assertEquals(fetchedvalue_sitealias, siteallias,
 				"Site alias field is not displaying same Entered value while creating");
 
-		System.out.println("site alias value: " + fetchedvalue_sitealias);
+		Log.info("site alias value: " + fetchedvalue_sitealias);
 
 		String fetchedvalue_vlanid = Getattribute(
 				getwebelement(xml.getlocator("//locators/" + application + "/Editsiteorder_VLANid")), "value");
@@ -7088,7 +7088,7 @@ try {
 		boolean fetchedvalue_DCAenabledsite = getwebelement(
 				xml.getlocator("//locators/" + application + "/Editsiteorder_DCAenabledsite")).isSelected();
 		sa.assertFalse(fetchedvalue_DCAenabledsite, "DCA enabled is not selected as expected");
-		System.out.println("DCA enables is: " + fetchedvalue_DCAenabledsite);
+		Log.info("DCA enables is: " + fetchedvalue_DCAenabledsite);
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/cancelButton")));
 		Thread.sleep(3000);
@@ -7164,7 +7164,7 @@ try {
 		
 		
 		
-		System.out.println("Entered to add Site Order vales");
+		Log.info("Entered to add Site Order vales");
 		scrollToTop();
 		Thread.sleep(5000);
 		 
@@ -7272,53 +7272,53 @@ try {
 	Thread.sleep(3000);
 					
 		//Validate Country dropdown
-				System.out.println("validate Country dropdown");
+				Log.info("validate Country dropdown");
 				validateCountry_AddSiteorder(application);
 				
 					
 		//Validate City Fields
-				System.out.println("Validate city fields");
+				Log.info("Validate city fields");
 				validateCity_AddSiteOrder(application);
 				
 		//Validate Site/CSR field
-				System.out.println("validate Site Fields");
+				Log.info("validate Site Fields");
 				validateSite_AddSiteOrder(application);
 	
 				scrolltoend();
 				Thread.sleep(3000);
 				
 		// Validate performance reporting dropdown
-				System.out.println("validate performance reporting checkbox");
+				Log.info("validate performance reporting checkbox");
 				validatePerformancereporting_AddSiteOrder(application);
 				
 				
 		//validate proactive Monitoring dropdown
-				System.out.println("validate proactive monitoring checkbox");
+				Log.info("validate proactive monitoring checkbox");
 				validateProactiveMonitoring_AddSiteOrder(application);
 				
 				
 		//Validate Smarts monitoring dropdown
-				System.out.println("validate Smarts monitoring checkbox");
+				Log.info("validate Smarts monitoring checkbox");
 				validateSmartsMOnitoring_AddSiteOrder(application);
 				
 				
 		//Validate Site Alias field
-				System.out.println("validate Site Alias fields");
+				Log.info("validate Site Alias fields");
 				validateSiteAlias_AddSiteOrder(application);
 				
 		
 		//Validate VLAN Id field
-				System.out.println("validate VLAn Id fields");
+				Log.info("validate VLAn Id fields");
 				validateVlanID_AddSiteOrder(application);
 				
 				
 		//Validate DCA Enabled Site and Cloud Service Provider dropdown
-				System.out.println("validate DCA enabled site checkbox");
+				Log.info("validate DCA enabled site checkbox");
 				valiadateDCAEnabledsite_AddSieOrder(application);
 				
 		
 		//Verify Remark field
-				System.out.println("validate Remark fields");
+				Log.info("validate Remark fields");
 				validateRemark_AddSiteOrder(application);
 				
 				
@@ -7440,7 +7440,7 @@ public void verifySiteOrderForHubAndSpoke(String application, String interfaceSp
 							if(!modularMSP.equalsIgnoreCase("Yes")) {
 								validatespokeId_AddSiteOrder(application);
 							}else {
-								System.out.println("Spoke id is not displaying, if modular msp is selected");
+								Log.info("Spoke id is not displaying, if modular msp is selected");
 								ExtentTestManager.getTest().log(LogStatus.PASS, "'Spoke Id' will not display, if modular msp is selected");
 							}
 
@@ -7834,7 +7834,7 @@ public void verifySiteOrderForE_PN(String application, String interfaceSpeed, St
 							validateEPNEOSDH_AddSiteOrder(application);
 							
 						}else {
-							System.out.println(" 'EPN EOSDH' checkbox does not display for 10G interface speed");
+							Log.info(" 'EPN EOSDH' checkbox does not display for 10G interface speed");
 							ExtentTestManager.getTest().log(LogStatus.PASS, " 'EPN EOSDH' checkbox does not display for 10G interface speed");
 						}
 					}
@@ -8044,7 +8044,7 @@ public void verifySiteOrderForEPN_EOSDHselected(String application, String inter
 				if(interfaceSpeed.equals("1GigE")) {
 					validateEPNEOSDH_AddSiteOrder(application);
 				}else {
-					System.out.println(" 'EPN EOSDH' checkbix does not display for 10G interface speed");
+					Log.info(" 'EPN EOSDH' checkbix does not display for 10G interface speed");
 					ExtentTestManager.getTest().log(LogStatus.PASS, " 'EPN EOSDH' checkbix does not display for 10G interface speed");
 				}
 
@@ -8167,7 +8167,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 
 						Log.info("list of technology are : " + technologytypes.getText());
 						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
-						System.out.println("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
+						Log.info("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 						String technologyValue=technologytypes.getText();
 			}
 			
@@ -8253,7 +8253,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 								
 						}
 					}else {
-						System.out.println("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
+						Log.info("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 				}
 					}else {
@@ -8317,7 +8317,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 						}
 			}
 		}else {
-			System.out.println("no values are available inside technology dropdown for Add site order");
+			Log.info("no values are available inside technology dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 		}
 }
@@ -8347,7 +8347,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 
 						Log.info("list of technology are : " + technologytypes.getText());
 						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
-						System.out.println("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
+						Log.info("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 						String technologyValue=technologytypes.getText();
 				}
 			}
@@ -8434,7 +8434,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 								
 						}
 					}else {
-						System.out.println("no values are available inside 'GCR OLO Type' dropdown for Add site order");
+						Log.info("no values are available inside 'GCR OLO Type' dropdown for Add site order");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'GCR OLO Type' dropdown for Add site order");
 				}
 					}else {
@@ -8486,7 +8486,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 								
 						}
 					}else {
-						System.out.println("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
+						Log.info("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 				}
 					}else {
@@ -8578,11 +8578,11 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Non Termination Point' checkbox is not Available under 'Add Site order' page");
-			System.out.println(" 'Non Termination Point' checkbox is not Available under 'Add Site order' page");
+			Log.info(" 'Non Termination Point' checkbox is not Available under 'Add Site order' page");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Non-Termination Point' checkbox is selected by default");
-			System.out.println( " 'Non-Termination Point' checkbox is selected by default");
+			Log.info( " 'Non-Termination Point' checkbox is selected by default");
 		}
 	}
 	
@@ -8609,7 +8609,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Protected' checkbox is not Available under 'Add Site order' page");
-			System.out.println(" 'Protected' checkbox is not Available under 'Add Site order' page");
+			Log.info(" 'Protected' checkbox is not Available under 'Add Site order' page");
 		}	
 	}
 	
@@ -8628,11 +8628,11 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Device Name' field is not displaying under 'Add Site Order' page");
-		System.out.println(" 'Device Name' field is not displaying under 'Add Site Order' page");
+		Log.info(" 'Device Name' field is not displaying under 'Add Site Order' page");
 	}catch(Exception e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Device Name' field is not displaying under 'Add Site Order' page");
-		System.out.println(" 'Device Name' field is not displaying under 'Add Site Order' page");
+		Log.info(" 'Device Name' field is not displaying under 'Add Site Order' page");
 	}
 	}
 	
@@ -8647,7 +8647,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 			
 			if(MappingdropdownAvailability) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'mapping mode' dropdown is displaying in 'Add Site Order' page as expected");
-				System.out.println(" 'mapping mode' dropdown is displaying in 'Add Site Order' page as expected");
+				Log.info(" 'mapping mode' dropdown is displaying in 'Add Site Order' page as expected");
 				
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_mappingModedropdown")));
 				Thread.sleep(3000);
@@ -8659,7 +8659,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 
 								Log.info("list of Mapping modes are : " + mappingModetypes.getText());
 								ExtentTestManager.getTest().log(LogStatus.PASS,"The list of Mapping modes  inside dropdown is: "+mappingModetypes.getText());
-								System.out.println("The list of mapping Modes  inside dropdown is: "+mappingModetypes.getText());
+								Log.info("The list of mapping Modes  inside dropdown is: "+mappingModetypes.getText());
 							 mappingMode[i]=	mappingModetypes.getText();
 							 i++;
 								
@@ -8680,15 +8680,15 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 					
 					if(portname) {
 						ExtentTestManager.getTest().log(LogStatus.PASS, " 'Port name' text field is displaying as expected");
-						System.out.println(" 'Port name' text field is displayig");
+						Log.info(" 'Port name' text field is displayig");
 					}else {
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Port name' text field is not displaying");
-						System.out.println(" 'Port name' text field is not displaying");
+						Log.info(" 'Port name' text field is not displaying");
 					}
 				}catch(NoSuchElementException e) {
 					e.printStackTrace();
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Port name' text field is not displaying");
-					System.out.println(" 'Port name' text field is not displaying");
+					Log.info(" 'Port name' text field is not displaying");
 				}
 					
 					
@@ -8707,31 +8707,31 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 						
 						if(vlanName) {
 							ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Id' text field is displaying as expected");
-							System.out.println(" 'VLAN Id' text field is displayig");
+							Log.info(" 'VLAN Id' text field is displayig");
 						}else {
 							ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Id' text field is not displaying");
-							System.out.println(" 'VLAN Id' text field is not displaying");
+							Log.info(" 'VLAN Id' text field is not displaying");
 						}
 					}catch(NoSuchElementException e) {
 						e.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Id' text field is not displaying");
-						System.out.println(" 'VLAN Id' text field is not displaying");
+						Log.info(" 'VLAN Id' text field is not displaying");
 					}
 
 			}
 			}				
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'mapping mode' dropdown is not displaying in 'Add Site Order' page");
-				System.out.println(" 'mapping mode' dropdown is not displaying in 'Add Site Order' page");
+				Log.info(" 'mapping mode' dropdown is not displaying in 'Add Site Order' page");
 			}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'mapping mode' dropdown is not displaying in 'Add Site Order' page");
-			System.out.println(" 'mapping mode' dropdown is not displaying in 'Add Site Order' page");
+			Log.info(" 'mapping mode' dropdown is not displaying in 'Add Site Order' page");
 		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'mapping mode' dropdown is not displaying in 'Add Site Order' page");
-			System.out.println(" 'mapping mode' dropdown is not displaying in 'Add Site Order' page");
+			Log.info(" 'mapping mode' dropdown is not displaying in 'Add Site Order' page");
 		}
 	}
 
@@ -8755,7 +8755,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 
 							Log.info("list of technology are : " + technologytypes.getText());
 							ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
-							System.out.println("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
+							Log.info("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 							String technologyValue=technologytypes.getText();
 				}
 				
@@ -8846,7 +8846,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 				}
 			}else {
 				
-				System.out.println("no values are available inside technology dropdown for Add site order");
+				Log.info("no values are available inside technology dropdown for Add site order");
 				ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 			}
 		}
@@ -8873,7 +8873,7 @@ public void technologyDropdown_p2p_mspselected(String application) throws Interr
 
 							Log.info("list of technology are : " + technologytypes.getText());
 							ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
-							System.out.println("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
+							Log.info("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 							String technologyValue=technologytypes.getText();
 				}
 				
@@ -8938,7 +8938,7 @@ public void technologyDropdown_p2p_mspselected(String application) throws Interr
 				}
 			}else {
 				
-				System.out.println("no values are available inside technology dropdown for Add site order");
+				Log.info("no values are available inside technology dropdown for Add site order");
 				ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 			}
 		}
@@ -8963,12 +8963,12 @@ public void technologyDropdownFor10GigE(String application) throws InterruptedEx
 				for (WebElement technologytypes : listoftechnology) {
 
 							Log.info("list of technology are : " + technologytypes.getText());
-							System.out.println("list of technology are : " + technologytypes.getText());
+							Log.info("list of technology are : " + technologytypes.getText());
 							ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 				}
 			}else {
 				
-				System.out.println("no values are available inside technology dropdown for Add site order");
+				Log.info("no values are available inside technology dropdown for Add site order");
 				ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 			}
 			
@@ -9013,7 +9013,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 			for (WebElement technologytypes : listoftechnology) {
 
 						Log.info("list of technology are : " + technologytypes.getText());
-						System.out.println("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
+						Log.info("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 						String technologyValue=technologytypes.getText();
 			}
@@ -9090,7 +9090,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 								
 						}
 					}else {
-						System.out.println("no values are available inside 'GCR OLO Type' dropdown for Add site order");
+						Log.info("no values are available inside 'GCR OLO Type' dropdown for Add site order");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'GCR OLO Type' dropdown for Add site order");
 				}
 					}else {
@@ -9099,11 +9099,11 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 					}catch(NoSuchElementException e) {
 						e.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'GCR OLO Type' dropdown is not Available under 'Add Site order' page");
-						System.out.println(" 'GCR OLO Type' dropdown is not Available under 'Add Site order' page");
+						Log.info(" 'GCR OLO Type' dropdown is not Available under 'Add Site order' page");
 					}catch(Exception ee) {
 						ee.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under 'GCR OLO type' dropdown");
-						System.out.println( " Not able to enter value under 'GCR OLO type' dropdown");
+						Log.info( " Not able to enter value under 'GCR OLO type' dropdown");
 					}
 					
 							
@@ -9120,7 +9120,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 					}catch(NoSuchElementException e) {
 						e.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN' text field is not Available under 'Add Site order' page");
-						System.out.println(" 'VLAN' text field is not Available under 'Add Site order' page");
+						Log.info(" 'VLAN' text field is not Available under 'Add Site order' page");
 					}
 				
 						
@@ -9150,7 +9150,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 								
 						}
 					}else {
-						System.out.println("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
+						Log.info("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 				}
 					}else {
@@ -9175,7 +9175,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 					}catch(NoSuchElementException e) {
 						e.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Primary VLAN' text field is not Available under 'Add Site order' page");
-						System.out.println(" 'Primary VLAN' text field is not Available under 'Add Site order' page");
+						Log.info(" 'Primary VLAN' text field is not Available under 'Add Site order' page");
 					}
 				
 						
@@ -9204,7 +9204,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 								
 						}
 					}else {
-						System.out.println("no values are available inside 'Primary VLAN Ether Type' dropdown for Add site order");
+						Log.info("no values are available inside 'Primary VLAN Ether Type' dropdown for Add site order");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'Primary VLAN Ether Type' dropdown for Add site order");
 				}
 					}else {
@@ -9257,7 +9257,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 			}
 		}else {
 			
-			System.out.println("no values are available inside technology dropdown for Add site order");
+			Log.info("no values are available inside technology dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 		}
 		
@@ -9290,7 +9290,7 @@ public void technologyDropdown_MSPselected_HubAndSpoke_Access(String application
 			for (WebElement technologytypes : listoftechnology) {
 
 						Log.info("list of technology are : " + technologytypes.getText());
-						System.out.println("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
+						Log.info("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 						String technologyValue=technologytypes.getText();
 			}
@@ -9358,7 +9358,7 @@ public void technologyDropdown_MSPselected_HubAndSpoke_Access(String application
 								
 						}
 					}else {
-						System.out.println("no values are available inside 'GCR OLO Type' dropdown for Add site order");
+						Log.info("no values are available inside 'GCR OLO Type' dropdown for Add site order");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'GCR OLO Type' dropdown for Add site order");
 				}
 					}else {
@@ -9367,11 +9367,11 @@ public void technologyDropdown_MSPselected_HubAndSpoke_Access(String application
 					}catch(NoSuchElementException e) {
 						e.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'GCR OLO Type' dropdown is not Available under 'Add Site order' page");
-						System.out.println(" 'GCR OLO Type' dropdown is not Available under 'Add Site order' page");
+						Log.info(" 'GCR OLO Type' dropdown is not Available under 'Add Site order' page");
 					}catch(Exception ee) {
 						ee.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under 'GCR OLO type' dropdown");
-						System.out.println( " Not able to enter value under 'GCR OLO type' dropdown");
+						Log.info( " Not able to enter value under 'GCR OLO type' dropdown");
 					}
 					
 							
@@ -9388,11 +9388,11 @@ public void technologyDropdown_MSPselected_HubAndSpoke_Access(String application
 					}catch(NoSuchElementException e) {
 						e.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN' text field is not Available under 'Add Site order' page");
-						System.out.println(" 'VLAN' text field is not Available under 'Add Site order' page");
+						Log.info(" 'VLAN' text field is not Available under 'Add Site order' page");
 					}catch(Exception e) {
 						e.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN' text field is not Available under 'Add Site order' page");
-						System.out.println(" 'VLAN' text field is not Available under 'Add Site order' page");
+						Log.info(" 'VLAN' text field is not Available under 'Add Site order' page");
 					}
 				
 						
@@ -9422,7 +9422,7 @@ public void technologyDropdown_MSPselected_HubAndSpoke_Access(String application
 								
 						}
 					}else {
-						System.out.println("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
+						Log.info("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 				}
 					}else {
@@ -9447,7 +9447,7 @@ public void technologyDropdown_MSPselected_HubAndSpoke_Access(String application
 					}catch(NoSuchElementException e) {
 						e.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Primary VLAN' text field is not Available under 'Add Site order' page");
-						System.out.println(" 'Primary VLAN' text field is not Available under 'Add Site order' page");
+						Log.info(" 'Primary VLAN' text field is not Available under 'Add Site order' page");
 					}
 				
 						
@@ -9476,7 +9476,7 @@ public void technologyDropdown_MSPselected_HubAndSpoke_Access(String application
 								
 						}
 					}else {
-						System.out.println("no values are available inside 'Primary VLAN Ether Type' dropdown for Add site order");
+						Log.info("no values are available inside 'Primary VLAN Ether Type' dropdown for Add site order");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'Primary VLAN Ether Type' dropdown for Add site order");
 				}
 					}else {
@@ -9514,7 +9514,7 @@ public void technologyDropdown_MSPselected_HubAndSpoke_Access(String application
 			}
 		}else {
 			
-			System.out.println("no values are available inside technology dropdown for Add site order");
+			Log.info("no values are available inside technology dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 		}
 		
@@ -9567,7 +9567,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 			}
 		}else {
 			
-			System.out.println("no values are available inside technology dropdown for Add site order");
+			Log.info("no values are available inside technology dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 		}
 		
@@ -9620,7 +9620,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 					
 			}
 		}else {
-			System.out.println("no values are available inside 'GCR OLO Type' dropdown for Add site order");
+			Log.info("no values are available inside 'GCR OLO Type' dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'GCR OLO Type' dropdown for Add site order");
 	}
 		}else {
@@ -9674,7 +9674,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 					
 			}
 		}else {
-			System.out.println("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
+			Log.info("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 	}
 		}else {
@@ -9728,7 +9728,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 					
 			}
 		}else {
-			System.out.println("no values are available inside 'Primary VLAN Ether Type' dropdown for Add site order");
+			Log.info("no values are available inside 'Primary VLAN Ether Type' dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'Primary VLAN Ether Type' dropdown for Add site order");
 	}
 		}else {
@@ -9776,10 +9776,10 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
 			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
-			System.out.println("Number of technology sizes: "+listoftechnology.size());
+			Log.info("Number of technology sizes: "+listoftechnology.size());
 			
 			for (WebElement technologytypesSample : listoftechnology ) {
-				System.out.println(" list of technologies are: "+ technologytypesSample.getText());
+				Log.info(" list of technologies are: "+ technologytypesSample.getText());
 			}
 			
 	try {		
@@ -9788,9 +9788,9 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 				
 				  driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
 	
-				  System.out.println("tech value to be found: "+technologytypes.getText());
+				  Log.info("tech value to be found: "+technologytypes.getText());
 						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
-						System.out.println("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
+						Log.info("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 						String technologyValue=technologytypes.getText();
 			}
 			
@@ -9885,7 +9885,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 			}
 		}else {
 			
-			System.out.println("no values are available inside technology dropdown for Add site order");
+			Log.info("no values are available inside technology dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 		}
 	}catch(StaleElementReferenceException e){
@@ -9912,10 +9912,10 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 		
 					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
 					List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
-					System.out.println("Number of technology sizes: "+listoftechnology.size());
+					Log.info("Number of technology sizes: "+listoftechnology.size());
 					
 					for (WebElement technologytypesSample : listoftechnology ) {
-						System.out.println(" list of technologies are: "+ technologytypesSample.getText());
+						Log.info(" list of technologies are: "+ technologytypesSample.getText());
 					}
 					
 			try {		
@@ -9923,9 +9923,9 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 					for (WebElement technologytypes : listoftechnology ) {
 						
 						  driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
-						  System.out.println("tech value to be found: "+technologytypes.getText());
+						  Log.info("tech value to be found: "+technologytypes.getText());
 								ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
-								System.out.println("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
+								Log.info("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 								String technologyValue=technologytypes.getText();
 					}
 					
@@ -9992,7 +9992,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 					}
 				}else {
 					
-					System.out.println("no values are available inside technology dropdown for Add site order");
+					Log.info("no values are available inside technology dropdown for Add site order");
 					ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 				}
 			}catch(StaleElementReferenceException e){
@@ -10037,12 +10037,12 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary_offnetselected(String
 			for (WebElement technologytypes : listoftechnology) {
 
 						Log.info("list of technology are : " + technologytypes.getText());
-						System.out.println("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
+						Log.info("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 			}
 		}else {
 			
-			System.out.println("no values are available inside technology dropdown for Add site order");
+			Log.info("no values are available inside technology dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 		}
 		
@@ -10102,12 +10102,12 @@ public void technologyDropdownFor10GigE_HubAndSpoke_primary(String application) 
 			for (WebElement technologytypes : listoftechnology) {
 
 				Log.info("list of technology are : " + technologytypes.getText());
-				System.out.println("list of technology are : " + technologytypes.getText());
+				Log.info("list of technology are : " + technologytypes.getText());
 						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 					}
 		}else {
 			
-			System.out.println("no values are available inside technology dropdown for Add site order");
+			Log.info("no values are available inside technology dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 		}
 		
@@ -10117,7 +10117,7 @@ public void technologyDropdownFor10GigE_HubAndSpoke_primary(String application) 
 					);
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			System.out.println("site order to be selected is: "+Technology);
+			Log.info("site order to be selected is: "+Technology);
 			Clickon(getwebelement("//div[text()='" + Technology + "']"));
 			
 		
@@ -10144,12 +10144,12 @@ public void technologyDropdownFor10GigE_HubAndSpoke_Access(String application) t
 			for (WebElement technologytypes : listoftechnology) {
 
 				Log.info("list of technology are : " + technologytypes.getText());
-				System.out.println("list of technology are : " + technologytypes.getText());
+				Log.info("list of technology are : " + technologytypes.getText());
 						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 					}
 		}else {
 			
-			System.out.println("no values are available inside technology dropdown for Add site order");
+			Log.info("no values are available inside technology dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 		}
 		
@@ -10159,7 +10159,7 @@ public void technologyDropdownFor10GigE_HubAndSpoke_Access(String application) t
 					);
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			System.out.println("site order to be selected is: "+Technology);
+			Log.info("site order to be selected is: "+Technology);
 			Clickon(getwebelement("//div[text()='"+ Technology +"']"));
 			
 		
@@ -10192,7 +10192,7 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 
 						Log.info("list of technology are : " + technologytypes.getText());
 						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
-						System.out.println("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
+						Log.info("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 						String technologyValue=technologytypes.getText();
 			}
 			
@@ -10278,7 +10278,7 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 								
 						}
 					}else {
-						System.out.println("no values are available inside 'GCR OLO Type' dropdown for Add site order");
+						Log.info("no values are available inside 'GCR OLO Type' dropdown for Add site order");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'GCR OLO Type' dropdown for Add site order");
 				}
 					}else {
@@ -10330,7 +10330,7 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 								
 						}
 					}else {
-						System.out.println("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
+						Log.info("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 				}
 					}else {
@@ -10393,7 +10393,7 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 			}
 		}else {
 			
-			System.out.println("no values are available inside technology dropdown for Add site order");
+			Log.info("no values are available inside technology dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 		}
 }
@@ -10423,7 +10423,7 @@ public void technologyDropdown_MSPselected_EPN_Access(String application) throws
 
 						Log.info("list of technology are : " + technologytypes.getText());
 						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
-						System.out.println("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
+						Log.info("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 						String technologyValue=technologytypes.getText();
 			}
 			
@@ -10495,7 +10495,7 @@ public void technologyDropdown_MSPselected_EPN_Access(String application) throws
 								
 						}
 					}else {
-						System.out.println("no values are available inside 'GCR OLO Type' dropdown for Add site order");
+						Log.info("no values are available inside 'GCR OLO Type' dropdown for Add site order");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'GCR OLO Type' dropdown for Add site order");
 				}
 					}else {
@@ -10547,7 +10547,7 @@ public void technologyDropdown_MSPselected_EPN_Access(String application) throws
 								
 						}
 					}else {
-						System.out.println("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
+						Log.info("no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 						ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'VLAN Ether Type' dropdown for Add site order");
 				}
 					}else {
@@ -10582,7 +10582,7 @@ public void technologyDropdown_MSPselected_EPN_Access(String application) throws
 			}
 		}else {
 			
-			System.out.println("no values are available inside technology dropdown for Add site order");
+			Log.info("no values are available inside technology dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 		}
 		
@@ -10611,7 +10611,7 @@ public void technologyDropdownFor1GigE_EPN_Primary(String application) throws In
 
 						Log.info("list of technology are : " + technologytypes.getText());
 						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
-						System.out.println("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
+						Log.info("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 						String technologyValue=technologytypes.getText();
 			}
 			
@@ -10716,7 +10716,7 @@ public void technologyDropdownFor1GigE_EPN_Primary(String application) throws In
 			}
 		}else {
 			
-			System.out.println("no values are available inside technology dropdown for Add site order");
+			Log.info("no values are available inside technology dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 		}
 		
@@ -10742,7 +10742,7 @@ public void technologyDropdown_MSPselected_Primary(String application) throws In
 
 						Log.info("list of technology are : " + technologytypes.getText());
 						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
-						System.out.println("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
+						Log.info("The list of technology  inside dropdown while  adding site order is: "+technologytypes.getText());
 						String technologyValue=technologytypes.getText();
 			}
 		}	
@@ -10793,7 +10793,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 			}
 		}else {
 			
-			System.out.println("no values are available inside technology dropdown for Add site order");
+			Log.info("no values are available inside technology dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside technology dropdown for Add site order");
 		}
 		
@@ -10857,18 +10857,18 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 			throws InterruptedException, DocumentException, IOException {
 
 		
-		System.out.println("-----------------------------" + siteordernumber + "---------------------");
+		Log.info("-----------------------------" + siteordernumber + "---------------------");
 		int TotalPages;
  
 		scrolltoend();
 		Thread.sleep(3000);
 // WebElement web=getwebelement(xml.getlocator("//locators/" + Application + "/TotalPagesforsiteorder"));
-//	System.out.println(" webelement name for total page: "+ web);
+//	Log.info(" webelement name for total page: "+ web);
 //		String TextKeyword = getwebelement(xml.getlocator("//locators/" + Application + "/TotalPagesforsiteorder")).getText();
 //	
 //		TotalPages = Integer.parseInt(TextKeyword);
 //
-//		System.out.println("Total number of pages in table is: " + TotalPages);
+//		Log.info("Total number of pages in table is: " + TotalPages);
 //
 //		ab:
 //
@@ -10877,11 +10877,11 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 //			// Current page
 //			String CurrentPage = Gettext(getwebelement(xml.getlocator("//locators/" + Application + "/Currentpageforsiteorderfunc")));
 //			int Current_page = Integer.parseInt(CurrentPage);
-//			System.out.println("The current page is: " + Current_page);
+//			Log.info("The current page is: " + Current_page);
 //
 //			assertEquals(k, Current_page);
 //
-//			System.out.println("Currently we are in page number: " + Current_page);
+//			Log.info("Currently we are in page number: " + Current_page);
 			
 		//div[div[contains(text(),'" + siteOrdernumber_P2P + "')]]//span[@class='ag-icon ag-icon-checkbox-unchecked']  --> needs to be updated
 			List<WebElement> results = null;
@@ -10903,7 +10903,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 			}
 		
 			int numofrows = results.size();
-			System.out.println("no of results: " + numofrows);
+			Log.info("no of results: " + numofrows);
 			boolean resultflag;
 //
 //			if (numofrows == 0) {
@@ -10921,9 +10921,9 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 //					try {
 
 						resultflag = results.get(0).isDisplayed();
-						System.out.println("status of result: " + resultflag);
+						Log.info("status of result: " + resultflag);
 						if (resultflag) {
-							System.out.println(results.get(0).getText());
+							Log.info(results.get(0).getText());
 							results.get(0).click();
 							Thread.sleep(8000);
 							Clickon(getwebelement(
@@ -10966,7 +10966,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 //			 driver.navigate().to("http://172.30.246.170:4400/#/addLanLinkDirectFiberSiteDevice");
 		Thread.sleep(3000);
 
-		System.out.println("enter details to add CPE device");
+		Log.info("enter details to add CPE device");
 
 		Log.info("Adding details to the fields to create a CPE device");
 
@@ -11102,7 +11102,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Next_Button")));
 		Thread.sleep(2000);
 
-		System.out.println("Next buttton is not working under Add cpe device...... so gonnah select CAncel button");
+		Log.info("Next buttton is not working under Add cpe device...... so gonnah select CAncel button");
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/cancelButton")));
 
 	}
@@ -11115,7 +11115,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/CPEdevice_adddevicelink")));
 		Thread.sleep(3000);
 
-		System.out.println("enter details to add CPE device for intermediate equipment");
+		Log.info("enter details to add CPE device for intermediate equipment");
 
 		Log.info("Adding details to the fields to create a CPE device");
 
@@ -11149,7 +11149,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Next_Button")));
 
-		System.out.println("Next buttton is not working under Add cpe device...... so gonnah select CAncel button");
+		Log.info("Next buttton is not working under Add cpe device...... so gonnah select CAncel button");
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/cancelButton")));
 
 		Thread.sleep(3000);
@@ -11728,7 +11728,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 		try {
 			if(vender.equalsIgnoreCase("null")) {
 				
-				System.out.println("No values has been passed for Mandatory 'Vendor/Model' dropdown for adding device under Equipment");
+				Log.info("No values has been passed for Mandatory 'Vendor/Model' dropdown for adding device under Equipment");
 				
 			}
 		
@@ -11803,7 +11803,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 		try {
 			if(manageaddressdropdownvalue.equalsIgnoreCase("null")) {
 					
-				System.out.println("No values has been passed for Mandatory 'Management Address' dropdown for adding device under Equipment");
+				Log.info("No values has been passed for Mandatory 'Management Address' dropdown for adding device under Equipment");
 					
 			}else {	
 			Clickon(getwebelement("//div[label[text()='Management Address']]//div[text()='"+ manageaddressdropdownvalue+" ']]"));
@@ -11853,7 +11853,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 			
 			if(poweralarm.equalsIgnoreCase("null")) {
 				
-				System.out.println("power alarm dropdown selected");
+				Log.info("power alarm dropdown selected");
 			}else {
 				Clickon(getwebelement("//div[label[text()='Power Alarm']]//div[text()='"+poweralarm +"']"));
 				ExtentTestManager.getTest().log(LogStatus.PASS, poweralarm + " is the value passed for Mandatory 'Power Alarm' dropdown field for adding device under Equipment");
@@ -11881,7 +11881,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 		try {
 			
 			if(Mediaselection.equalsIgnoreCase("null")) {
-				System.out.println("Media selection dropdown selected");
+				Log.info("Media selection dropdown selected");
 				
 			}else {
 				Clickon(getwebelement("//div[label[text()='Media Selection']]//div[text()='"+Mediaselection +"']"));
@@ -11946,7 +11946,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 			
 		} else {
 			
-			System.out.println("link lost forwarding is not selected");
+			Log.info("link lost forwarding is not selected");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Link lost forwarding checkbox is not selected for adding device under Equipment");
 			
 			
@@ -12135,7 +12135,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "edit CPE device under Equipment");
 		
-		System.out.println("Entered edit functionalitty");
+		Log.info("Entered edit functionalitty");
 
 		scrollToTop();
 		Thread.sleep(3000);
@@ -12146,7 +12146,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EditCPEdevicelinkunderviewpage")));
 		Thread.sleep(3000);
-		System.out.println("edit functionality worked");
+		Log.info("edit functionality worked");
 		
 	     
 	     
@@ -12207,7 +12207,7 @@ Thread.sleep(3000);
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "edit CPE device under Equipment");
 		
-		System.out.println("Entered edit functionalitty");
+		Log.info("Entered edit functionalitty");
 
 		scrollToTop();
 		Thread.sleep(3000);
@@ -12218,7 +12218,7 @@ Thread.sleep(3000);
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EditCPEdevicelinkunderviewpage")));
 		Thread.sleep(3000);
-		System.out.println("edit functionality worked");
+		Log.info("edit functionality worked");
 		
 	     
 	     
@@ -12261,7 +12261,7 @@ Thread.sleep(3000);
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "edit CPE device under Equipment");
 		
-		System.out.println("Entered edit functionalitty");
+		Log.info("Entered edit functionalitty");
 		
 		scrollToTop();
 		Thread.sleep(1000);
@@ -12272,7 +12272,7 @@ Thread.sleep(3000);
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EditCPEdevicelinkunderviewpage")));
 		Thread.sleep(3000);
-		System.out.println("edit functionality worked");
+		Log.info("edit functionality worked");
 	     
 	     
 	//Name field
@@ -12317,7 +12317,7 @@ Thread.sleep(3000);
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "edit CPE device");
 		
-		System.out.println("Entered edit functionalitty");
+		Log.info("Entered edit functionalitty");
 
 		scrollToTop();
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewPCEdevice_Actiondropdown")));
@@ -12326,7 +12326,7 @@ Thread.sleep(3000);
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EditCPEdevicelinkunderviewpage")));
 		Thread.sleep(3000);
-		System.out.println("edit functionality worked");
+		Log.info("edit functionality worked");
 		
 	     
 	//Name field
@@ -12349,7 +12349,7 @@ Thread.sleep(3000);
 		
 	//Media Selection  
 		if(technologySelected_SiteOrder.equals("Accedian-1G")) {
-			System.out.println("Media Selection field will not display if Site Order technology selected as 'Accedian-1G'");
+			Log.info("Media Selection field will not display if Site Order technology selected as 'Accedian-1G'");
 		}else {
 			device_editMediaselection(application, Mediaselection);	
 		}
@@ -12466,7 +12466,7 @@ scrolltoend();
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "edit CPE device");
 		
-		System.out.println("Entered edit functionalitty");
+		Log.info("Entered edit functionalitty");
 
 		scrollToTop();
 		
@@ -12476,7 +12476,7 @@ scrolltoend();
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EditCPEdevicelinkunderviewpage")));
 		Thread.sleep(3000);
-		System.out.println("edit functionality worked");
+		Log.info("edit functionality worked");
 		
 	     
 	//Name field
@@ -12613,7 +12613,7 @@ scrolltoend();
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "edit CPE device");
 		
-		System.out.println("Entered edit functionalitty");
+		Log.info("Entered edit functionalitty");
 
 		scrollToTop();
 		
@@ -12623,7 +12623,7 @@ scrolltoend();
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EditCPEdevicelinkunderviewpage")));
 		Thread.sleep(3000);
-		System.out.println("edit functionality worked");
+		Log.info("edit functionality worked");
 		
 	     
 	//Name field
@@ -12812,10 +12812,10 @@ scrolltoend();
 				boolean technologypopup=false;
 				technologypopup=getwebelement(xml.getlocator("//locators/" + application + "/technologyPopup")).isDisplayed();
 				if(technologypopup) {
-					System.out.println("Technology popup is displaying as expected");
+					Log.info("Technology popup is displaying as expected");
 					ExtentTestManager.getTest().log(LogStatus.PASS, " Technology popup is displaying as expected");
 				}else {
-					System.out.println("Technology popup is not displaying");
+					Log.info("Technology popup is not displaying");
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " Technology popup is notdisplaying");
 				}
 				
@@ -12823,7 +12823,7 @@ scrolltoend();
 				boolean technologyDropdown=false;
 				technologyDropdown=getwebelement(xml.getlocator("//locators/" + application + "/technologypopup_dropdown")).isDisplayed();
 				if(technologyDropdown) {
-					System.out.println("Technology dropdown is displaying as expected");
+					Log.info("Technology dropdown is displaying as expected");
 					ExtentTestManager.getTest().log(LogStatus.PASS, " Technology dropdown is displaying as expected");
 					
 					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/technologypopup_dropdown")));
@@ -12836,7 +12836,7 @@ scrolltoend();
 				
 						for (WebElement technoloyTypes : listofTechnololgy) {
 							ExtentTestManager.getTest().log(LogStatus.PASS, "List of values available under 'Technology' dropdown are: "+technoloyTypes.getText());
-							System.out.println("List of values available under 'Technology' dropdown are: "+technoloyTypes.getText());
+							Log.info("List of values available under 'Technology' dropdown are: "+technoloyTypes.getText());
 						}
 					}
 						
@@ -12846,10 +12846,10 @@ scrolltoend();
 						Thread.sleep(3000);
 						String actualValue=getwebelement(xml.getlocator("//locators/" + application + "/tchnologyPopup_dropdownValues")).getText();
 						ExtentTestManager.getTest().log(LogStatus.PASS, " 'Technology' selected is: "+actualValue);
-						System.out.println( " 'Technology' selected is: "+actualValue);
+						Log.info( " 'Technology' selected is: "+actualValue);
 						
 				}else {
-					System.out.println("Technology dropdown is not displaying");
+					Log.info("Technology dropdown is not displaying");
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " Technology dropdown is notdisplaying");
 				}
 				
@@ -13070,7 +13070,7 @@ scrolltoend();
 			String sitename, String sitecode, String existingpremiseselectionmode, String newpremiseselectionmode, String premisename,
 			String premisecode, String technologySelectedfordevicecreation) throws InterruptedException, DocumentException, IOException {
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 		Thread.sleep(1000);
@@ -13292,7 +13292,7 @@ scrolltoend();
 		scrollToTop();
 		Thread.sleep(3000);
 		
-		System.out.println("Entered edit functionalitty");
+		Log.info("Entered edit functionalitty");
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewPCEdevice_Actiondropdown")));
 		
@@ -13300,7 +13300,7 @@ scrolltoend();
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EditCPEdevicelinkunderviewpage")));
 		Thread.sleep(3000);
-		System.out.println("edit functionality worked");
+		Log.info("edit functionality worked");
 		
 	     
 	//Name field
@@ -13434,7 +13434,7 @@ scrolltoend();
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "edit CPE device under Equipment");
 		
-		System.out.println("Entered edit functionalitty");
+		Log.info("Entered edit functionalitty");
 
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewPCEdevice_Actiondropdown")));
@@ -13443,7 +13443,7 @@ scrolltoend();
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EditCPEdevicelinkunderviewpage")));
 		Thread.sleep(3000);
-		System.out.println("edit functionality worked");
+		Log.info("edit functionality worked");
 		
 //		Clickon(getwebelement("(//div[div[div[text()='Equipment']]]//div[div[text()='"+ devicename+"']]/div/a/span[text()='Edit'])[2]"));
 
@@ -13491,7 +13491,7 @@ public void deleteDeviceFromServiceForequipment(String application,String delete
 		
 		
 		Clickon(getwebelement("//div[div[div[text()='Equipment']]]//div[div[div[contains(@title,'"+ devicename +"')]]]//span[text()='Delete from Service']"));
-		System.out.println(" 'Delete From Service' link has been clicked for cpe device under Equipment");
+		Log.info(" 'Delete From Service' link has been clicked for cpe device under Equipment");
 		Log.info(" 'Delete From Service' link has been clicked for cpe device under Equipment");
 		ExtentTestManager.getTest().log(LogStatus.PASS, " 'Delete From Service' link has been clicked for cpe device under Equipment");
 
@@ -13502,7 +13502,7 @@ public void deleteDeviceFromServiceForequipment(String application,String delete
 			Log.info("Delete popup message is getting displayed");
 			String actualMessage=getwebelement(xml.getlocator("//locators/" + application + "/deleteMessage_equipment")).getText();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Delete device popup is displaying and popup message displays as: "+ actualMessage);
-			System.out.println( "Delete device popup is displaying and popup message displays as: "+ actualMessage);
+			Log.info( "Delete device popup is displaying and popup message displays as: "+ actualMessage);
 			break;
 		} 
 		
@@ -13530,7 +13530,7 @@ public void deleteDeviceFromServiceForIntermediateequipment(String application, 
 	
 	
 	Clickon(getwebelement("//div[div[div[text()='Intermediate Equipment']]]//div[div[div[contains(@title,'"+ devicename +"')]]]//span[text()='Delete from Service']"));
-	System.out.println(" 'Delete From Service' link has been clicked for cpe device under Intermediate Equipment");
+	Log.info(" 'Delete From Service' link has been clicked for cpe device under Intermediate Equipment");
 	Log.info(" 'Delete From Service' link has been clicked for cpe device under Intermediate Equipment");
 	ExtentTestManager.getTest().log(LogStatus.PASS, " 'Delete From Service' link has been clicked for cpe device under Intermediate Equipment");
 
@@ -13541,7 +13541,7 @@ public void deleteDeviceFromServiceForIntermediateequipment(String application, 
 		Log.info("Delete popup message is getting displayed");
 		String actualMessage=getwebelement(xml.getlocator("//locators/" + application + "/deleteMessage_equipment")).getText();
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Delete device popup is displaying and popup message displays as: "+ actualMessage);
-		System.out.println("Delete device popup is displaying and popup message displays as: "+ actualMessage);
+		Log.info("Delete device popup is displaying and popup message displays as: "+ actualMessage);
 		break;
 	} 
 	
@@ -13625,7 +13625,7 @@ public void deleteDeviceFromServiceForIntermediateequipment(String application, 
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddPElink_LANlinkoutband")));
 
-		System.out.println("----- Going to perform add PE device actions------------");
+		Log.info("----- Going to perform add PE device actions------------");
 
 		if (selectOrclicktogglebutttontocreateDevice.equalsIgnoreCase("create")) {
 
@@ -13667,7 +13667,7 @@ public void deleteDeviceFromServiceForIntermediateequipment(String application, 
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPElink_LANlinkoutband")));
 
-		System.out.println("----- Going to perform add PE device actions------------");
+		Log.info("----- Going to perform add PE device actions------------");
 
 		if (selectOrclicktogglebutttontocreateDevice.equalsIgnoreCase("create")) {
 
@@ -13757,7 +13757,7 @@ public void deleteDeviceFromServiceForIntermediateequipment(String application, 
 		
 		
 
-		System.out.println("----- Going to perform Edit PE device actions------------");
+		Log.info("----- Going to perform Edit PE device actions------------");
 
 		if (selectOrclicktogglebutttontocreateDevice.equalsIgnoreCase("create")) {
 
@@ -13802,7 +13802,7 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 	
 	boolean actelisConfigurationPanel=false;
 	
-	waitForpageload();
+	
 	waitforPagetobeenable();
 	
 	scrolltoend();
@@ -13810,7 +13810,7 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 	actelisConfigurationPanel=getwebelement(xml.getlocator("//locators/" + application + "/ActelisConfigurationPanel")).isDisplayed();
 	
 	if(actelisConfigurationPanel) {
-		System.out.println(" 'Actelis Configuration' panel is displaying as expected");
+		Log.info(" 'Actelis Configuration' panel is displaying as expected");
 		ExtentTestManager.getTest().log(LogStatus.PASS, " 'Actelis Configuration' panel is displaying as expected");
 		
 		boolean actelisLink=false;
@@ -13847,7 +13847,7 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 		Thread.sleep(3000);
 		
 		Clickon(getwebelement("//div[div[div[text()='Equipment']]]//div[div[div[contains(@title,'"+ devicename +"')]]]//span[text()='Select Interfaces']"));
-		System.out.println("SelectInterface link for Equipment is selected");
+		Log.info("SelectInterface link for Equipment is selected");
 		Log.info("Select an inertface to add with the service under equipment");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Select Interface link has been clicked for cpe device under Equipment");
 		
@@ -13860,7 +13860,7 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 		Thread.sleep(5000);
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + Application + "/Providerequipment_selectinterface")));
-		System.out.println("SelectInterface link for Equipment is selected");
+		Log.info("SelectInterface link for Equipment is selected");
 		Log.info("Select an inertface to add with the service under equipment");
 
 	}
@@ -13870,7 +13870,7 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 
 		try {
 		Clickon(getwebelement("//div[div[div[text()='Intermediate Equipment']]]//div[div[div[contains(@title,'"+ devicename +"')]]]//span[text()='Select Interfaces']"));
-		System.out.println("SelectInterface link for Intermediate Equipment is selected");
+		Log.info("SelectInterface link for Intermediate Equipment is selected");
 		Log.info("Select an inertface to add with the service under Intermediate equipment");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "For " +devicename + " 'Select Interface' link has been clicked for cpe device under Intermediate Equipment");
 	}catch(Exception e) {
@@ -13942,7 +13942,7 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 		
 		}catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("Failure while verifying the removed interface from the service");
+			Log.info("Failure while verifying the removed interface from the service");
 		}
 
 	}
@@ -13958,7 +13958,7 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 
 		TotalPages = Integer.parseInt(TextKeyword);
 
-		System.out.println("Total number of pages in Interface to select table is: " + TotalPages);
+		Log.info("Total number of pages in Interface to select table is: " + TotalPages);
 
 		ab:
 
@@ -13972,12 +13972,12 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 
 				assertEquals(k, Current_page);
 
-				System.out.println("Currently we are in page number: " + Current_page);
+				Log.info("Currently we are in page number: " + Current_page);
 
 				List<WebElement> results = getwebelements("//div[div[contains(text(),'Interfaces to Select')]]/following-sibling::div[1]//div[div[text()='"+ interfacenumber  +"']]//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 						
 				int numofrows = results.size();
-				System.out.println("no of results: " + numofrows);
+				Log.info("no of results: " + numofrows);
 				boolean resultflag;
 
 				if (numofrows == 0) {
@@ -13993,9 +13993,9 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 						try {
 
 							resultflag = results.get(i).isDisplayed();
-							System.out.println("status of result: " + resultflag);
+							Log.info("status of result: " + resultflag);
 							if (resultflag) {
-								System.out.println(results.get(i).getText());
+								Log.info(results.get(i).getText());
 								results.get(i).click();
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacenumber + " is selected under 'Interface to select' table");
 								Thread.sleep(8000);
@@ -14034,7 +14034,7 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 
 		} else {
 
-			System.out.println("No values found inside the table");
+			Log.info("No values found inside the table");
 			Log.info("No values available inside the Interfacetoselect table");
 		}
 
@@ -14051,7 +14051,7 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 
 		TotalPages = Integer.parseInt(TextKeyword);
 
-		System.out.println("Total number of pages in table is: " + TotalPages);
+		Log.info("Total number of pages in table is: " + TotalPages);
 
 		ab:
 
@@ -14065,12 +14065,12 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 
 				assertEquals(k, Current_page);
 
-				System.out.println("Currently we are in page number: " + Current_page);
+				Log.info("Currently we are in page number: " + Current_page);
 
 				List<WebElement> results = driver.findElements(By.xpath("//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//div[div[text()='" + interfacenumber +"']]//span[@class='ag-icon ag-icon-checkbox-unchecked']"));
 				
 				int numofrows = results.size();
-				System.out.println("no of results: " + numofrows);
+				Log.info("no of results: " + numofrows);
 				boolean resultflag;
 
 				if (numofrows == 0) {
@@ -14086,9 +14086,9 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 						try {
 
 							resultflag = results.get(i).isDisplayed();
-							System.out.println("status of result: " + resultflag);
+							Log.info("status of result: " + resultflag);
 							if (resultflag) {
-								System.out.println(results.get(i).getText());
+								Log.info(results.get(i).getText());
 								results.get(i).click();
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacenumber + " is selected under 'Interface in Service' table");
 								Clickon(getwebelement(xml.getlocator(
@@ -14122,7 +14122,7 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 
 		} else {
 
-			System.out.println("No values available in table");
+			Log.info("No values available in table");
 			Log.info("No values available inside the InterfaceInService table");
 		}
 
@@ -14170,7 +14170,7 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 		boolean XNGcircuitID=getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureXNGCircuitID")).isDisplayed();
 		sa.assertTrue(XNGcircuitID, "Circuit id is not displaying");
 		
-		System.out.println("Entering bearer type dropdown");
+		Log.info("Entering bearer type dropdown");
 		boolean BearerTypedropdown=getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureBearerType")).isDisplayed();
 		sa.assertTrue(BearerTypedropdown, "Circuit bearer type dropdown is not displaying");
 		
@@ -14185,7 +14185,7 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 		
 		boolean vlantype=getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureVlanType")).isDisplayed();
 		sa.assertTrue(vlantype, "VLANtype dropdown is not displaying");
-		System.out.println("vlan type failed");
+		Log.info("vlan type failed");
 		
 		boolean ok=getwebelement(xml.getlocator("//locators/" + application + "/okbutton")).isDisplayed();
 		sa.assertTrue(ok, "Ok Button is not displaying");
@@ -14234,24 +14234,24 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 			alertMessage=getwebelement(xml.getlocator("//locators/" + application + "/configure_alertPopup")).isDisplayed();
 			if(alertMessage) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Alert popup displays, if we click on 'Edit' without selected the interface");
-				System.out.println("Alert popup displays, if we click on 'Edit' without selected the interface");
+				Log.info("Alert popup displays, if we click on 'Edit' without selected the interface");
 				
 				String alertMsg=getwebelement(xml.getlocator("//locators/" + application + "/configure_alertMessage")).getText();
 				ExtentTestManager.getTest().log(LogStatus.PASS, " Alert message displays as: "+alertMsg);
-				System.out.println(" Alert message displays as: "+alertMsg);
+				Log.info(" Alert message displays as: "+alertMsg);
 				
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/configure_alertPopup_xbutton")));
 				Thread.sleep(3000);
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Alert' popup is not displaying when we click on 'edit' without selecting an interface");
-				System.out.println("'Alert' popup is not displaying when we click on 'edit' without selecting an interface");
+				Log.info("'Alert' popup is not displaying when we click on 'edit' without selecting an interface");
 				
 				boolean editInterface_popuptitleName=false;
 			try {	
 				editInterface_popuptitleName=getwebelement(xml.getlocator("//locators/" + application + "/Editinterface_popupTitlename")).isDisplayed();
 				if(editInterface_popuptitleName) {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Edit interface popup is displaying without selected an interface");
-					System.out.println("Edit interface popup is displaying without selected an interface");
+					Log.info("Edit interface popup is displaying without selected an interface");
 					
 					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EditInterfacepopup_xbutton")));
 					Thread.sleep(3000);
@@ -14259,19 +14259,19 @@ public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice) thro
 				}catch(Exception e) {
 				e.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'Edit interface' popup is not displaying, without selecting an Interface");
-				System.out.println(" 'Edit interface' popup is not displaying, without selecting an Interface");
+				Log.info(" 'Edit interface' popup is not displaying, without selecting an Interface");
 				}
 			
 			
 			}}catch(NoSuchElementException e) {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Alert' popup is not displaying when we click on 'edit' without selecting an interface");
-				System.out.println("'Alert' popup is not displaying when we click on 'edit' without selecting an interface");
+				Log.info("'Alert' popup is not displaying when we click on 'edit' without selecting an interface");
 				
 				
 			}catch(Exception ee) {
 				ee.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Alert' popup is not displaying when we click on 'edit' without selecting an interface");
-				System.out.println("'Alert' popup is not displaying when we click on 'edit' without selecting an interface");
+				Log.info("'Alert' popup is not displaying when we click on 'edit' without selecting an interface");
 			}
 			
 			
@@ -14337,12 +14337,12 @@ public void SelectShowInterfacelink_CustomerPremiseeequipmentAndVerifyEditInterf
 		
 		boolean XNGcircuitID=getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureXNGCircuitID")).isDisplayed();
 		sa.assertTrue(XNGcircuitID, "Circuit id is not displaying");
-		System.out.println("circuit id is fetched");
+		Log.info("circuit id is fetched");
 		
-		System.out.println("Entering bearer type dropdown");
+		Log.info("Entering bearer type dropdown");
 		boolean BearerTypedropdown=getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureBearerType")).isDisplayed();
 		sa.assertTrue(BearerTypedropdown, "Circuit bearer type dropdown is not displaying");
-		System.out.println("bearer type dropdown is fetchecd");
+		Log.info("bearer type dropdown is fetchecd");
 		
 		boolean Bearerspeed=getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureBearerSpeed")).isDisplayed();
 		sa.assertTrue(Bearerspeed, "Circut bearer speed dropdown is not displaying");
@@ -14394,7 +14394,7 @@ public void selectRowForEditingInterface(String Application, String interfacenam
 
 	TotalPages = Integer.parseInt(TextKeyword);
 
-	System.out.println("Total number of pages in table is: " + TotalPages);
+	Log.info("Total number of pages in table is: " + TotalPages);
 
 	ab:
 	if (TotalPages != 0) {
@@ -14405,11 +14405,11 @@ public void selectRowForEditingInterface(String Application, String interfacenam
 		String CurrentPage = Gettext(
 				getwebelement(xml.getlocator("//locators/" + Application + "/Currentpageforsiteorder")));
 		int Current_page = Integer.parseInt(CurrentPage);
-		System.out.println("The current page is: " + Current_page);
+		Log.info("The current page is: " + Current_page);
 
 		assertEquals(k, Current_page);
 
-		System.out.println("Currently we are in page number: " + Current_page);
+		Log.info("Currently we are in page number: " + Current_page);
 
 		List<WebElement> results = driver
 				.findElements(By.xpath("(//div[@class='ag-root-wrapper ag-layout-auto-height ag-ltr'])[2]//div[div[text()='"+ interfacename+"']]//input"));
@@ -14417,7 +14417,7 @@ public void selectRowForEditingInterface(String Application, String interfacenam
 		
 			
 		int numofrows = results.size();
-		System.out.println("no of results: " + numofrows);
+		Log.info("no of results: " + numofrows);
 		boolean resultflag;
 
 		if (numofrows == 0) {
@@ -14434,9 +14434,9 @@ public void selectRowForEditingInterface(String Application, String interfacenam
 				try {
 
 					resultflag = results.get(i).isDisplayed();
-					System.out.println("status of result: " + resultflag);
+					Log.info("status of result: " + resultflag);
 					if (resultflag) {
-						System.out.println(results.get(i).getText());
+						Log.info(results.get(i).getText());
 						results.get(i).click();
 						ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected under 'show Interface' ");
 						Thread.sleep(3000);
@@ -14461,7 +14461,7 @@ public void selectRowForEditingInterface(String Application, String interfacenam
 	}
 	}else {
 		
-		System.out.println("No values available in table");
+		Log.info("No values available in table");
 		Log.info("No values available inside the InterfaceInService table");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "No value available inside 'show Interface' panel");
 	}
@@ -14482,7 +14482,7 @@ public void selectRowForshowInterfaceunderProviderEquipment(String Application, 
 
 	TotalPages = Integer.parseInt(TextKeyword);
 
-	System.out.println("Total number of pages in table is: " + TotalPages);
+	Log.info("Total number of pages in table is: " + TotalPages);
 
 	ab:
 
@@ -14492,11 +14492,11 @@ public void selectRowForshowInterfaceunderProviderEquipment(String Application, 
 		String CurrentPage = Gettext(
 				getwebelement(xml.getlocator("//locators/" + Application + "/providerEquipment_showinterfaceCurrentpage")));
 		int Current_page = Integer.parseInt(CurrentPage);
-		System.out.println("The current page is: " + Current_page);
+		Log.info("The current page is: " + Current_page);
 
 		assertEquals(k, Current_page);
 
-		System.out.println("Currently we are in page number: " + Current_page);
+		Log.info("Currently we are in page number: " + Current_page);
 
 		List<WebElement> results = driver
 				.findElements(By.xpath("(//div[@class='ag-body-viewport ag-layout-normal'])[1]//div[div[text()='"+interfacename +"']]//input"));
@@ -14504,7 +14504,7 @@ public void selectRowForshowInterfaceunderProviderEquipment(String Application, 
 		
 			
 		int numofrows = results.size();
-		System.out.println("no of results: " + numofrows);
+		Log.info("no of results: " + numofrows);
 		boolean resultflag;
 
 		if (numofrows == 0) {
@@ -14520,9 +14520,9 @@ public void selectRowForshowInterfaceunderProviderEquipment(String Application, 
 				try {
 
 					resultflag = results.get(i).isDisplayed();
-					System.out.println("status of result: " + resultflag);
+					Log.info("status of result: " + resultflag);
 					if (resultflag) {
-						System.out.println(results.get(i).getText());
+						Log.info(results.get(i).getText());
 						results.get(i).click();
 						Thread.sleep(3000);									
 						break ab;
@@ -14561,7 +14561,7 @@ public void selectRowForshowInterfaceunderCustomerPremiseEquipment(String Applic
 
 	TotalPages = Integer.parseInt(TextKeyword);
 
-	System.out.println("Total number of pages in table is: " + TotalPages);
+	Log.info("Total number of pages in table is: " + TotalPages);
 
 	ab:
 
@@ -14571,11 +14571,11 @@ public void selectRowForshowInterfaceunderCustomerPremiseEquipment(String Applic
 		String CurrentPage = Gettext(
 				getwebelement(xml.getlocator("//locators/" + Application + "/providerEquipment_showinterfaceCurrentpage")));
 		int Current_page = Integer.parseInt(CurrentPage);
-		System.out.println("The current page is: " + Current_page);
+		Log.info("The current page is: " + Current_page);
 
 		assertEquals(k, Current_page);
 
-		System.out.println("Currently we are in page number: " + Current_page);
+		Log.info("Currently we are in page number: " + Current_page);
 
 		List<WebElement> results = driver
 				.findElements(By.xpath("(//div[@class='ag-body-viewport ag-layout-normal'])[1]//div[div[text()='"+interfacename +"']]//input"));
@@ -14583,7 +14583,7 @@ public void selectRowForshowInterfaceunderCustomerPremiseEquipment(String Applic
 		
 			
 		int numofrows = results.size();
-		System.out.println("no of results: " + numofrows);
+		Log.info("no of results: " + numofrows);
 		boolean resultflag;
 
 		if (numofrows == 0) {
@@ -14599,9 +14599,9 @@ public void selectRowForshowInterfaceunderCustomerPremiseEquipment(String Applic
 				try {
 
 					resultflag = results.get(i).isDisplayed();
-					System.out.println("status of result: " + resultflag);
+					Log.info("status of result: " + resultflag);
 					if (resultflag) {
-						System.out.println(results.get(i).getText());
+						Log.info(results.get(i).getText());
 						results.get(i).click();
 						Thread.sleep(3000);									
 						break ab;
@@ -14644,7 +14644,7 @@ public void selectRowForconfiglinkunderEquipmentconfig(String Application, Strin
 
 	TotalPages = Integer.parseInt(TextKeyword);
 
-	System.out.println("Total number of pages in table is: " + TotalPages);
+	Log.info("Total number of pages in table is: " + TotalPages);
 
 	ab:
 
@@ -14655,11 +14655,11 @@ public void selectRowForconfiglinkunderEquipmentconfig(String Application, Strin
 		String CurrentPage = Gettext(
 				getwebelement(xml.getlocator("//locators/" + Application + "/Equipmentconfig_Currentpage")));
 		int Current_page = Integer.parseInt(CurrentPage);
-		System.out.println("The current page is: " + Current_page);
+		Log.info("The current page is: " + Current_page);
 
 		assertEquals(k, Current_page);
 
-		System.out.println("Currently we are in page number: " + Current_page);
+		Log.info("Currently we are in page number: " + Current_page);
 
 		List<WebElement> results = driver
 				.findElements(By.xpath("//div[div[text()='Interfaces']]/following-sibling::div[1]//div[text()='"+interfacename +"']"));
@@ -14667,7 +14667,7 @@ public void selectRowForconfiglinkunderEquipmentconfig(String Application, Strin
 		
 			
 		int numofrows = results.size();
-		System.out.println("no of results: " + numofrows);
+		Log.info("no of results: " + numofrows);
 		boolean resultflag;
 
 		if (numofrows == 0) {
@@ -14684,9 +14684,9 @@ public void selectRowForconfiglinkunderEquipmentconfig(String Application, Strin
 				try {
 
 					resultflag = results.get(i).isDisplayed();
-					System.out.println("status of result: " + resultflag);
+					Log.info("status of result: " + resultflag);
 					if (resultflag) {
-						System.out.println(results.get(i).getText());
+						Log.info(results.get(i).getText());
 						results.get(i).click();
 						ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected");
 						Thread.sleep(3000);										
@@ -14711,7 +14711,7 @@ public void selectRowForconfiglinkunderEquipmentconfig(String Application, Strin
 
 	 }
 	}else {
-		System.out.println("No values available in table");
+		Log.info("No values available in table");
 		Log.info("No values available inside the InterfaceInService table");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "No value available inside the table for configure ");
 	}
@@ -14733,7 +14733,7 @@ public void selectRowForconfiglinkunderIntermediateEquipment(String Application,
 
 	TotalPages = Integer.parseInt(TextKeyword);
 
-	System.out.println("Total number of pages in table is: " + TotalPages);
+	Log.info("Total number of pages in table is: " + TotalPages);
 
 	ab:
 if (TotalPages != 0) {	
@@ -14743,11 +14743,11 @@ if (TotalPages != 0) {
 		String CurrentPage = Gettext(
 				getwebelement(xml.getlocator("//locators/" + Application + "/configure_currentpage")));
 		int Current_page = Integer.parseInt(CurrentPage);
-		System.out.println("The current page is: " + Current_page);
+		Log.info("The current page is: " + Current_page);
 
 		assertEquals(k, Current_page);
 
-		System.out.println("Currently we are in page number: " + Current_page);
+		Log.info("Currently we are in page number: " + Current_page);
 
 		List<WebElement> results = driver
 				.findElements(By.xpath("//div[@role='row']//div[text()='"+ interfacename +"']"));
@@ -14755,7 +14755,7 @@ if (TotalPages != 0) {
 		
 			
 		int numofrows = results.size();
-		System.out.println("no of results: " + numofrows);
+		Log.info("no of results: " + numofrows);
 		boolean resultflag;
 
 		if (numofrows == 0) {
@@ -14771,9 +14771,9 @@ if (TotalPages != 0) {
 				try {
 
 					resultflag = results.get(i).isDisplayed();
-					System.out.println("status of result: " + resultflag);
+					Log.info("status of result: " + resultflag);
 					if (resultflag) {
-						System.out.println(results.get(i).getText());
+						Log.info(results.get(i).getText());
 						results.get(i).click();
 						ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected");
 						Thread.sleep(3000);
@@ -14794,7 +14794,7 @@ if (TotalPages != 0) {
 
 	}
 }else {
-	System.out.println("No values present inside the table");
+	Log.info("No values present inside the table");
 	ExtentTestManager.getTest().log(LogStatus.FAIL, "No values present inside the table");
 }
 }
@@ -14810,7 +14810,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 
 	TotalPages = Integer.parseInt(TextKeyword);
 
-	System.out.println("Total number of pages in table is: " + TotalPages);
+	Log.info("Total number of pages in table is: " + TotalPages);
 
 	ab:
 
@@ -14821,17 +14821,17 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 		String CurrentPage = Gettext(
 				getwebelement(xml.getlocator("//locators/" + Application + "/currentpage_intermeduateshowinterfacelink")));
 		int Current_page = Integer.parseInt(CurrentPage);
-		System.out.println("The current page is: " + Current_page);
+		Log.info("The current page is: " + Current_page);
 
 		assertEquals(k, Current_page);
 
-		System.out.println("Currently we are in page number: " + Current_page);
+		Log.info("Currently we are in page number: " + Current_page);
 
 		List<WebElement> results = driver
 				.findElements(By.xpath("(//div[@class='ag-root-wrapper ag-layout-auto-height ag-ltr'])[8]//div[div[text()='"+interfacename +"']]//input"));
 
 		int numofrows = results.size();
-		System.out.println("no of results: " + numofrows);
+		Log.info("no of results: " + numofrows);
 		boolean resultflag;
 
 		if (numofrows == 0) {
@@ -14847,9 +14847,9 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 				try {
 
 					resultflag = results.get(i).isDisplayed();
-					System.out.println("status of result: " + resultflag);
+					Log.info("status of result: " + resultflag);
 					if (resultflag) {
-						System.out.println(results.get(i).getText());
+						Log.info(results.get(i).getText());
 						results.get(i).click();
 						ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected after clicking on 'show Interface' ");
 						Thread.sleep(3000);
@@ -14874,7 +14874,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	} 
 	}else {
 		
-		System.out.println("No values available in table");
+		Log.info("No values available in table");
 		Log.info("No values available inside the InterfaceInService table");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "No value available inside 'show Interface' panel");
 	}
@@ -15047,7 +15047,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	
     	if(technology.equals("Belgacom VDSL")) {
     		
-    	System.out.println("Site alias and Vlan Id text field will not display for 'BElgacom' technology");
+    	Log.info("Site alias and Vlan Id text field will not display for 'BElgacom' technology");
     		
     	}else {
     		//Site Alias
@@ -15101,7 +15101,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	}
     	
     	if(technology.equals("Belgacom VDSL")) {
-    		System.out.println("No additonal fields displays");
+    		Log.info("No additonal fields displays");
     	}
     	}
     
@@ -15185,17 +15185,17 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	
     	
     	if(technology.equals("Overture")) {
-    		System.out.println("NO additional fields");
+    		Log.info("NO additional fields");
     	}
     	
     	
     	if(technology.equals("Accedian")) {
-    		System.out.println("NO additional fields");
+    		Log.info("NO additional fields");
     		
     	}
     	
     	if(technology.equals("Cyan")) {
-    		System.out.println("NO additional fields");
+    		Log.info("NO additional fields");
     		
     	}
     }
@@ -15260,7 +15260,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	verifyEnteredvalues("Technology", technology);
     	
     	if(technology.equals("Belgacom VDSL")) {
-    		System.out.println("Site Alias field will not display, if Belgacom VDSL technology is selected");
+    		Log.info("Site Alias field will not display, if Belgacom VDSL technology is selected");
     	}else {
     		  //Site Alias
         	verifyEnteredvalues("Site Alias", siteallias);
@@ -15304,7 +15304,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	}
     	
     	if(technology.equals("Belgacom VDSL")) {
-    		System.out.println("No additonal fields display");
+    		Log.info("No additonal fields display");
     	}
     	
     }
@@ -15380,13 +15380,13 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	
     	
     	if(technology.equals("Atrica")) {
-    		System.out.println("NO additoinal fields");
+    		Log.info("NO additoinal fields");
     		
     	}
     	
     	
     	if(technology.equals("Overture")) {
-    		System.out.println("NO additoinal fields");
+    		Log.info("NO additoinal fields");
     	}
     	
     	
@@ -15394,12 +15394,12 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	
     	if(technology.equals("Accedian")) {
     		
-    		System.out.println("NO additoinal fields");
+    		Log.info("NO additoinal fields");
 
     	}
     	
     	if(technology.equals("Cyan")) {
-    		System.out.println("NO additoinal fields");
+    		Log.info("NO additoinal fields");
     	}
     	
     }
@@ -15465,7 +15465,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	
     	if(technology.equals("Belgacom VDSL")) {
     		
-    		System.out.println("No additonal fields displays");
+    		Log.info("No additonal fields displays");
     	}else {
     		 //Site Alias
         	verifyEnteredvalues("Site Alias", siteallias);
@@ -15503,7 +15503,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     			if(EPNoffnet.equalsIgnoreCase("yes")) {
     				verifyEnteredvalues("EPN Offnet", EPNoffnet);
     			}else{
-    				System.out.println("EPN offnet will not display, if it is selected");
+    				Log.info("EPN offnet will not display, if it is selected");
     			}
     			
     			
@@ -15511,7 +15511,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     			if(EPNEOSDH.equalsIgnoreCase("Yes")) {
     				verifyEnteredvalues("EPN EOSDH", EPNEOSDH);
     			}else {
-    				System.out.println("EPN EOSDH will not display, if it is not selected");
+    				Log.info("EPN EOSDH will not display, if it is not selected");
     			}
     	}
     	
@@ -15532,7 +15532,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	
     	if(technology.equals("Belgacom VDSL")) {
 
-    		System.out.println("No additional fields displays");
+    		Log.info("No additional fields displays");
     	}
     	
     	
@@ -15628,12 +15628,12 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	
     	if(technology.equals("Accedian")) {
     		
-    		System.out.println("NO additional fields");
+    		Log.info("NO additional fields");
     	}
     	
     	if(technology.equals("Cyan")) {
 
-    		System.out.println("No additional fields");
+    		Log.info("No additional fields");
     	}
     }
 
@@ -15697,7 +15697,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	verifyEnteredvalues("Technology", technology);
     	
     	if(technology.equals("Belgacom VDSL")) {
-    		System.out.println("No additonal fields displays");
+    		Log.info("No additonal fields displays");
     	}else {
     		//Site Alias
         	verifyEnteredvalues("Site Alias", siteallias);
@@ -15752,7 +15752,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	}
     	
     	if(technology.equals("Belgacom VDSL")) {
-    		System.out.println("No additonal fields displays");
+    		Log.info("No additonal fields displays");
     	}
     }
 
@@ -15843,11 +15843,11 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	}
     	
     	if(technology.equals("Accedian")) {
-    		System.out.println("NO additional fields");
+    		Log.info("NO additional fields");
     	}
     	
     	if(technology.equals("Cyan")) {
-    		System.out.println("NO additional fields");
+    		Log.info("NO additional fields");
     	}
     	
     	
@@ -15914,7 +15914,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	verifyEnteredvalues("Technology", technology);
     	
     	if(technology.equals("Belgacom VDSL")) {
-    		System.out.println("Site Alias field will not display, if Belgacom VDSL technology is selected");
+    		Log.info("Site Alias field will not display, if Belgacom VDSL technology is selected");
     	}else {
     		//Site Alias
         	verifyEnteredvalues("Site Alias", siteallias);
@@ -15958,7 +15958,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	
     	if(technology.equals("Alu")) {
     		
-    		System.out.println("No additional Fields");
+    		Log.info("No additional Fields");
     	}
     	
     	if(technology.equals("Accedian-1G")) {
@@ -15967,7 +15967,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	}
     	
     	if(technology.equals("Belgacom VDSL")) {
-    		System.out.println("NO additonal fields displays");
+    		Log.info("NO additonal fields displays");
     	}
     }
     
@@ -16041,7 +16041,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	
     //Based on Technology	
     	if(technology.equals("Atrica")) {
-    		System.out.println("NO additional fields");
+    		Log.info("NO additional fields");
     	}
     	
     	
@@ -16065,11 +16065,11 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	
     	
     	if(technology.equals("Accedian")) {
-    		System.out.println("NO additional fields required");
+    		Log.info("NO additional fields required");
     	}
     	
     	if(technology.equals("Cyan")) {
-    		System.out.println("NO additional fields required");
+    		Log.info("NO additional fields required");
     	}
     }
     
@@ -16080,7 +16080,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     	Thread.sleep(5000);
     	
     	
-    	System.out.println("Entererd inside the table");
+    	Log.info("Entererd inside the table");
     	
 		int TotalPages;
 
@@ -16094,7 +16094,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 
 		TotalPages = Integer.parseInt(TextKeyword);
 
-		System.out.println("Total number of pages in table is: " + TotalPages);
+		Log.info("Total number of pages in table is: " + TotalPages);
 
 		ab:
 
@@ -16107,15 +16107,15 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 			int Current_page = Integer.parseInt(CurrentPage);
 
 			
-			System.out.println("Checking whether next page button is disabled or not");
+			Log.info("Checking whether next page button is disabled or not");
 	
 				
 				boolean nextpage= getwebelement(xml.getlocator("//locators/" + Application + "/Pagenavigationfornextpage")).isEnabled();
 	
-				System.out.println("Entered while loop");
+				Log.info("Entered while loop");
   while(nextpage)
   {
-	  System.out.println("its enabled");
+	  Log.info("its enabled");
 	  break;
   }
 			
@@ -16127,7 +16127,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 					.findElements(By.xpath("//div[div[contains(text(),'" + siteordernumber + "')]]"));
 
 			int numofrows = results.size();
-			System.out.println("no of results: " + numofrows);
+			Log.info("no of results: " + numofrows);
 			boolean resultflag;
 
 			if (numofrows == 0) {
@@ -16143,9 +16143,9 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 					try {
 
 						resultflag = results.get(i).isDisplayed();
-						System.out.println("status of result: " + resultflag);
+						Log.info("status of result: " + resultflag);
 						if (resultflag) {
-							System.out.println("The field values are: "+results.get(i).getText());
+							Log.info("The field values are: "+results.get(i).getText());
 							Log.info("The values stored in the table for adding site order are: "+results.get(i).getText());
 							
 						}
@@ -16171,7 +16171,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 		
       }else {
     	  Log.info("The data entered for adding site order is not getting displyed inside the site order table.");
-    	  System.out.println("No values inside the site order table");
+    	  Log.info("No values inside the site order table");
       }
 
 	}
@@ -16197,7 +16197,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 					editInterface_popuptitleName=getwebelement(xml.getlocator("//locators/" + application + "/Editinterface_popupTitlename")).isDisplayed();
 					if(editInterface_popuptitleName) {
 						ExtentTestManager.getTest().log(LogStatus.PASS, "Edit interface popup is displaying as expected");
-						System.out.println("Edit interface popup is displaying as expected");
+						Log.info("Edit interface popup is displaying as expected");
 						
 						
 					//Interface name
@@ -16230,11 +16230,11 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 					}catch(NoSuchElementException e) {
 					e.printStackTrace();
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Edit interface' popup is not displaying");
-					System.out.println(" 'Edit interface' popup is not displaying");
+					Log.info(" 'Edit interface' popup is not displaying");
 					}catch(Exception ee) {
 						ee.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Edit interface' popup is not displaying");
-						System.out.println(" 'Edit interface' popup is not displaying");
+						Log.info(" 'Edit interface' popup is not displaying");
 					}
 				
 		
@@ -16297,7 +16297,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 					editInterface_popuptitleName=getwebelement(xml.getlocator("//locators/" + application + "/Editinterface_popupTitlename")).isDisplayed();
 					if(editInterface_popuptitleName) {
 						ExtentTestManager.getTest().log(LogStatus.PASS, "Edit interface popup is displaying as expected");
-						System.out.println("Edit interface popup is displaying as expected");
+						Log.info("Edit interface popup is displaying as expected");
 						
 						
 					//Interface name
@@ -16329,11 +16329,11 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 					}catch(NoSuchElementException e) {
 					e.printStackTrace();
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Edit interface' popup is not displaying");
-					System.out.println(" 'Edit interface' popup is not displaying");
+					Log.info(" 'Edit interface' popup is not displaying");
 					}catch(Exception ee) {
 						ee.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Edit interface' popup is not displaying");
-						System.out.println(" 'Edit interface' popup is not displaying");
+						Log.info(" 'Edit interface' popup is not displaying");
 					}
 				
 		
@@ -16425,7 +16425,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 					editInterface_popuptitleName=getwebelement(xml.getlocator("//locators/" + application + "/Editinterface_popupTitlename")).isDisplayed();
 					if(editInterface_popuptitleName) {
 						ExtentTestManager.getTest().log(LogStatus.PASS, "Edit interface popup is displaying as expected");
-						System.out.println("Edit interface popup is displaying as expected");
+						Log.info("Edit interface popup is displaying as expected");
 						
 						
 					//Interface name
@@ -16456,11 +16456,11 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 					}catch(NoSuchElementException e) {
 					e.printStackTrace();
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Edit interface' popup is not displaying");
-					System.out.println(" 'Edit interface' popup is not displaying");
+					Log.info(" 'Edit interface' popup is not displaying");
 					}catch(Exception ee) {
 						ee.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Edit interface' popup is not displaying");
-						System.out.println(" 'Edit interface' popup is not displaying");
+						Log.info(" 'Edit interface' popup is not displaying");
 					}
 				
 		
@@ -16487,7 +16487,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 
 		TotalPages = Integer.parseInt(TextKeyword);
 
-		System.out.println("Total number of pages in Interface to select table is: " + TotalPages);
+		Log.info("Total number of pages in Interface to select table is: " + TotalPages);
 
 		ab:
 
@@ -16501,12 +16501,12 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 
 				assertEquals(k, Current_page);
 
-				System.out.println("Currently we are in page number: " + Current_page);
+				Log.info("Currently we are in page number: " + Current_page);
 
 				List<WebElement> results = driver.findElements(By.xpath("(//div[@class='row'][2]//div[div[contains(text(),'"+interfacenumber +"')]])//input"));
 				
 				int numofrows = results.size();
-				System.out.println("no of results: " + numofrows);
+				Log.info("no of results: " + numofrows);
 				boolean resultflag;
 
 				if (numofrows == 0) {
@@ -16524,9 +16524,9 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 						try {
 
 							resultflag = results.get(i).isDisplayed();
-							System.out.println("status of result: " + resultflag);
+							Log.info("status of result: " + resultflag);
 							if (resultflag) {
-								System.out.println(results.get(i).getText());
+								Log.info(results.get(i).getText());
 								results.get(i).click();
 								Thread.sleep(8000);
 								Clickon(getwebelement(xml.getlocator(
@@ -16559,7 +16559,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 
 		} else {
 
-			System.out.println("No values found inside the table");
+			Log.info("No values found inside the table");
 			Log.info("No values available inside the Interfacetoselect table");
 		}
 
@@ -16574,7 +16574,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 				.isDisplayed();
 		sa.assertTrue(result, "Verified: Interface got added to service");
 		} catch(Exception e) {
-			System.out.println("No values available inside the table");
+			Log.info("No values available inside the table");
 		}
 
 	}
@@ -16591,7 +16591,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 
 		TotalPages = Integer.parseInt(TextKeyword);
 
-		System.out.println("Total number of pages in table is: " + TotalPages);
+		Log.info("Total number of pages in table is: " + TotalPages);
 
 		ab:
 
@@ -16605,12 +16605,12 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 
 				assertEquals(k, Current_page);
 
-				System.out.println("Currently we are in page number: " + Current_page);
+				Log.info("Currently we are in page number: " + Current_page);
 
 				List<WebElement> results = driver.findElements(By.xpath("(//div[@class='row'][1]//div[div[contains(text(),'"+interfacenumber +"')]])//input"));
 
 				int numofrows = results.size();
-				System.out.println("no of results: " + numofrows);
+				Log.info("no of results: " + numofrows);
 				boolean resultflag;
 
 				if (numofrows == 0) {
@@ -16625,9 +16625,9 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 						try {
 
 							resultflag = results.get(i).isDisplayed();
-							System.out.println("status of result: " + resultflag);
+							Log.info("status of result: " + resultflag);
 							if (resultflag) {
-								System.out.println(results.get(i).getText());
+								Log.info(results.get(i).getText());
 								results.get(i).click();
 								Thread.sleep(8000);
 								Clickon(getwebelement(xml.getlocator(
@@ -16660,7 +16660,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 
 		} else {
 
-			System.out.println("No values available in table");
+			Log.info("No values available in table");
 			Log.info("No values available inside the InterfaceInService table");
 		}
 
@@ -16678,7 +16678,7 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 		sa.assertTrue(result, "Verified: Interface got removed from the service");
 		sa.assertAll();
 		}catch(Exception e) {
-			System.out.println("No values found inside the table");
+			Log.info("No values found inside the table");
 		}
 
 	}
@@ -16703,12 +16703,12 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     		
     		boolean XNGcircuitID=getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureXNGCircuitID")).isDisplayed();
     		sa.assertTrue(XNGcircuitID, "Circuit id is not displaying");
-    		System.out.println("circuit id is fetched");
+    		Log.info("circuit id is fetched");
     		
-    		System.out.println("Entering bearer type dropdown");
+    		Log.info("Entering bearer type dropdown");
     		boolean BearerTypedropdown=getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureBearerType")).isDisplayed();
     		sa.assertTrue(BearerTypedropdown, "Circuit bearer type dropdown is not displaying");
-    		System.out.println("bearer type dropdown is fetchecd");
+    		Log.info("bearer type dropdown is fetchecd");
     		
     		boolean Bearerspeed=getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureBearerSpeed")).isDisplayed();
     		sa.assertTrue(Bearerspeed, "Circut bearer speed dropdown is not displaying");
@@ -16761,12 +16761,12 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
     		
     		boolean XNGcircuitID=getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureXNGCircuitID")).isDisplayed();
     		sa.assertTrue(XNGcircuitID, "Circuit id is not displaying");
-    		System.out.println("circuit id is fetched");
+    		Log.info("circuit id is fetched");
     		
-    		System.out.println("Entering bearer type dropdown");
+    		Log.info("Entering bearer type dropdown");
     		boolean BearerTypedropdown=getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureBearerType")).isDisplayed();
     		sa.assertTrue(BearerTypedropdown, "Circuit bearer type dropdown is not displaying");
-    		System.out.println("bearer type dropdown is fetchecd");
+    		Log.info("bearer type dropdown is fetchecd");
     		
     		boolean Bearerspeed=getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureBearerSpeed")).isDisplayed();
     		sa.assertTrue(Bearerspeed, "Circut bearer speed dropdown is not displaying");
@@ -16954,7 +16954,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 
 			TotalPages = Integer.parseInt(TextKeyword);
 
-			System.out.println("Total number of pages in table is: " + TotalPages);
+			Log.info("Total number of pages in table is: " + TotalPages);
 
 			ab:
 
@@ -16968,12 +16968,12 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 
 					assertEquals(k, Current_page);
 
-					System.out.println("Currently we are in page number: " + Current_page);
+					Log.info("Currently we are in page number: " + Current_page);
 
 					List<WebElement> results = driver.findElements(By.xpath("(//div[@class='ag-div-margin row']//div[div[contains(text(),'"+interfacename +"')]])//input"));
 
 					int numofrows = results.size();
-					System.out.println("no of results: " + numofrows);
+					Log.info("no of results: " + numofrows);
 					boolean resultflag;
 
 					if (numofrows == 0) {
@@ -16988,9 +16988,9 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 							try {
 
 								resultflag = results.get(i).isDisplayed();
-								System.out.println("status of result: " + resultflag);
+								Log.info("status of result: " + resultflag);
 								if (resultflag) {
-									System.out.println(results.get(i).getText());
+									Log.info(results.get(i).getText());
 									results.get(i).click();
 									Thread.sleep(8000);
 									Clickon(getwebelement(xml.getlocator(
@@ -17022,7 +17022,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 
 			} else {
 
-				System.out.println("No values available in table");
+				Log.info("No values available in table");
 				Log.info("No values available inside the PEtoCPElink table");
 			}
 		 
@@ -17035,7 +17035,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 				Thread.sleep(5000);
 
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/cusomerpremiseequipment_SelectInertafeceslink")));
-				System.out.println("SelectInterface link for Customer premise Equipment is selected");
+				Log.info("SelectInterface link for Customer premise Equipment is selected");
 				Log.info("Select an inertface to add with the service under customer premise equipment");
 
 			}
@@ -17051,7 +17051,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 
 			TotalPages = Integer.parseInt(TextKeyword);
 
-			System.out.println("Total number of pages in Interface to select table is: " + TotalPages);
+			Log.info("Total number of pages in Interface to select table is: " + TotalPages);
 
 			ab:
 
@@ -17065,12 +17065,12 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 
 					assertEquals(k, Current_page);
 
-					System.out.println("Currently we are in page number: " + Current_page);
+					Log.info("Currently we are in page number: " + Current_page);
 
 					List<WebElement> results = driver.findElements(By.xpath("(//div[@class='row'][2]//div[div[contains(text(),'"+interfacenumber +"')]])//input"));
 					
 					int numofrows = results.size();
-					System.out.println("no of results: " + numofrows);
+					Log.info("no of results: " + numofrows);
 					boolean resultflag;
 
 					if (numofrows == 0) {
@@ -17088,9 +17088,9 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 							try {
 
 								resultflag = results.get(i).isDisplayed();
-								System.out.println("status of result: " + resultflag);
+								Log.info("status of result: " + resultflag);
 								if (resultflag) {
-									System.out.println(results.get(i).getText());
+									Log.info(results.get(i).getText());
 									results.get(i).click();
 									Thread.sleep(8000);
 									Clickon(getwebelement(xml.getlocator(
@@ -17123,7 +17123,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 
 			} else {
 
-				System.out.println("No values found inside the table");
+				Log.info("No values found inside the table");
 				Log.info("No values available inside the Interfacetoselect table");
 			}
 
@@ -17312,11 +17312,11 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " ' Performance Reporting' checkbox is not displaying under 'Edit service' page");
-			System.out.println(" ' Performance Reporting' checkbox is not displaying under 'Edit service' page");
+			Log.info(" ' Performance Reporting' checkbox is not displaying under 'Edit service' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'Performance Reporting' checkbox");
-			System.out.println(" Not able to click on 'erformance Reporting' checkbox");
+			Log.info(" Not able to click on 'erformance Reporting' checkbox");
 		}
 		
 	//Per CoS Performance Reporting
@@ -17369,11 +17369,11 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Per CoS Performance Reporting' checkbox is not displaying under 'Edit service' page");
-			System.out.println(" 'Per CoS Performance Reporting' checkbox is not displaying under 'Edit service' page");
+			Log.info(" 'Per CoS Performance Reporting' checkbox is not displaying under 'Edit service' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'Per CoS Performance Reporting' checkbox");
-			System.out.println(" Not able to click on 'Per CoS Performance Reporting' checkbox");
+			Log.info(" Not able to click on 'Per CoS Performance Reporting' checkbox");
 		}
 	}	
 		
@@ -17429,10 +17429,10 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 			}catch(Exception err) {
 				err.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'Acteis' checkbox");
-				System.out.println(" Not able to click on 'Acteis' checkbox");
+				Log.info(" Not able to click on 'Acteis' checkbox");
 			}
 		  }	else {
-				System.out.println(" when topology selected as 'Hub&Spoke' or 'E-PN (Any to Any)', 'Actelis' checkbox will not display");
+				Log.info(" when topology selected as 'Hub&Spoke' or 'E-PN (Any to Any)', 'Actelis' checkbox will not display");
 				ExtentTestManager.getTest().log(LogStatus.PASS, " when topology selected as 'Hub&Spoke' or 'E-PN (Any to Any)', 'Actelis' checkbox will not display");
 			}
 		}		
@@ -17454,7 +17454,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		//Premium EIR
 			editService_premiumEIR(application, premiumEIR);
 	}else {
-		System.out.println(" when topology selected as 'Hub&Spoke' or 'E-PN (Any to Any)', Standard CIR_Eir Premium CIR_EIR fields will not display");
+		Log.info(" when topology selected as 'Hub&Spoke' or 'E-PN (Any to Any)', Standard CIR_Eir Premium CIR_EIR fields will not display");
 		ExtentTestManager.getTest().log(LogStatus.PASS, " when topology selected as 'Hub&Spoke' or 'E-PN (Any to Any)', Standard CIR_Eir Premium CIR_EIR fields will not display");
 	}
 }
@@ -17510,7 +17510,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		}
 			
 	
-		System.out.println("going to click on OK buttto");
+		Log.info("going to click on OK buttto");
 		scrolltoend();
 		Thread.sleep(3000);
 		
@@ -17599,11 +17599,11 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " ' Performance Reporting' checkbox is not displaying under 'Edit service' page");
-			System.out.println(" ' Performance Reporting' checkbox is not displaying under 'Edit service' page");
+			Log.info(" ' Performance Reporting' checkbox is not displaying under 'Edit service' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'Performance Reporting' checkbox");
-			System.out.println(" Not able to click on 'erformance Reporting' checkbox");
+			Log.info(" Not able to click on 'erformance Reporting' checkbox");
 		}
 	  
 	  
@@ -17657,11 +17657,11 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'HCoS Performance Reporting (Modular MSP)' checkbox is not displaying under 'Edit service' page");
-			System.out.println(" 'HCoS Performance Reporting (Modular MSP)' checkbox is not displaying under 'Edit service' page");
+			Log.info(" 'HCoS Performance Reporting (Modular MSP)' checkbox is not displaying under 'Edit service' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'HCoS Performance Reporting (Modular MSP)' checkbox");
-			System.out.println(" Not able to click on 'HCoS Performance Reporting (Modular MSP)' checkbox");
+			Log.info(" Not able to click on 'HCoS Performance Reporting (Modular MSP)' checkbox");
 		}
 		
 	//Per CoS Performance Reporting
@@ -17714,11 +17714,11 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Per CoS Performance Reporting' checkbox is not displaying under 'Edit service' page");
-			System.out.println(" 'Per CoS Performance Reporting' checkbox is not displaying under 'Edit service' page");
+			Log.info(" 'Per CoS Performance Reporting' checkbox is not displaying under 'Edit service' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'Per CoS Performance Reporting' checkbox");
-			System.out.println(" Not able to click on 'Per CoS Performance Reporting' checkbox");
+			Log.info(" Not able to click on 'Per CoS Performance Reporting' checkbox");
 		}
 	}	
 		
@@ -17774,10 +17774,10 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 			}catch(Exception err) {
 				err.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'Acteis' checkbox");
-				System.out.println(" Not able to click on 'Acteis' checkbox");
+				Log.info(" Not able to click on 'Acteis' checkbox");
 			}
 		  }	else {
-				System.out.println(" when topology selected as 'Hub&Spoke' or 'E-PN (Any to Any)', 'Actelis' checkbox will not display");
+				Log.info(" when topology selected as 'Hub&Spoke' or 'E-PN (Any to Any)', 'Actelis' checkbox will not display");
 				ExtentTestManager.getTest().log(LogStatus.PASS, " when topology selected as 'Hub&Spoke' or 'E-PN (Any to Any)', 'Actelis' checkbox will not display");
 			}
 		}		
@@ -17799,7 +17799,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		//Premium EIR
 			editService_premiumEIR(application, premiumEIR);
 	}else {
-		System.out.println(" when topology selected as 'Hub&Spoke' or 'E-PN (Any to Any)', Standard CIR_Eir Premium CIR_EIR fields will not display");
+		Log.info(" when topology selected as 'Hub&Spoke' or 'E-PN (Any to Any)', Standard CIR_Eir Premium CIR_EIR fields will not display");
 		ExtentTestManager.getTest().log(LogStatus.PASS, " when topology selected as 'Hub&Spoke' or 'E-PN (Any to Any)', Standard CIR_Eir Premium CIR_EIR fields will not display");
 	}
 }
@@ -17847,7 +17847,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 			
 			else if(vpnTopology.equals("Hub&Spoke")) {
 
-				System.out.println("No additional fields");
+				Log.info("No additional fields");
 			}
 			
 		}else {
@@ -17857,7 +17857,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		}
 			
 	
-		System.out.println("going to click on OK buttto");
+		Log.info("going to click on OK buttto");
 		scrolltoend();
 		Thread.sleep(3000);
 		
@@ -18098,7 +18098,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 				Clickon(getwebelement("//div[contains(text(),'" + deliveryChannel + "')]"));
 				
 				ExtentTestManager.getTest().log(LogStatus.PASS,"Edited value for 'Delivery Channel' dropdown is "+deliveryChannel);
-				System.out.println("Delivery channel dropdown value is edited as expected");
+				Log.info("Delivery channel dropdown value is edited as expected");
 
 			}else {
 				
@@ -18207,11 +18207,11 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		   
 		   String actualmsg=getwebelement(xml.getlocator("//locators/" + application + "/alertMSG_synchronize")).getText();
 		   ExtentTestManager.getTest().log(LogStatus.PASS, " success message for synchronize displays as: "+actualmsg);
-		   System.out.println( " success message for synchronize displays as: "+actualmsg);
+		   Log.info( " success message for synchronize displays as: "+actualmsg);
 		   
 	   }else {
 		   ExtentTestManager.getTest().log(LogStatus.FAIL, " Success message did not display after clicking on 'Synchronize' button");
-		   System.out.println(" Success message did not display after clicking on 'Synchronize' button");
+		   Log.info(" Success message did not display after clicking on 'Synchronize' button");
 	   }
    }
    
@@ -18237,7 +18237,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 	  try { 
 	   // Get Tab name
 	   String pageTitle=driver.switchTo().window(browserTabs .get(1)).getTitle();
-	   System.out.println("page title displays as: "+pageTitle);
+	   Log.info("page title displays as: "+pageTitle);
 	  
 	   
 	   Thread.sleep(3000);
@@ -18295,26 +18295,26 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		   manageSubnetPage=getwebelement(xml.getlocator("//locators/" + application + "/manageSubnetPage_header")).isDisplayed();
 		   if(manageSubnetPage) {
 			   ExtentTestManager.getTest().log(LogStatus.PASS, "'Manage Subnet' page is displaying");
-			   System.out.println("'Manage Subnet' page is displaying");
+			   Log.info("'Manage Subnet' page is displaying");
 			   
 			   String errMsg=getwebelement(xml.getlocator("//locators/" + application + "/manageSubnet_errMsg")).getText();
 			   if(errMsg.isEmpty()) {
 				   
 				   ExtentTestManager.getTest().log(LogStatus.FAIL, "No messages displays under 'manage Subnet' page");
-				   System.out.println("No messages displays under 'manage Subnet' page");
+				   Log.info("No messages displays under 'manage Subnet' page");
 			   }else {
 				   ExtentTestManager.getTest().log(LogStatus.PASS, "Message in 'Manage Subnet' page displays as "+errMsg);
-				   System.out.println(" Message in 'Manage Subnet' page displays as "+errMsg);
+				   Log.info(" Message in 'Manage Subnet' page displays as "+errMsg);
 			   }
 			   
 		   }else {
 			   ExtentTestManager.getTest().log(LogStatus.FAIL, "'Manage Subnet' page is not displaying");
-			   System.out.println("'Manage Subnet' page is not displaying");
+			   Log.info("'Manage Subnet' page is not displaying");
 		   }
 		  }catch(Exception e) {
 			  e.printStackTrace();
 			  ExtentTestManager.getTest().log(LogStatus.FAIL, "'Manage Subnet' page is not displaying");
-			  System.out.println("'Manage Subnet' page is not displaying");
+			  Log.info("'Manage Subnet' page is not displaying");
 		  }
 		   
 		  click_commonMethod(application, "Cancel", "cancelButton", xml); 
@@ -18350,10 +18350,10 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 			sa.assertTrue(snmproErr, "Snmpro warning message is not displayed ");
 			String snmproErrMsg = getwebelement(
 					xml.getlocator("//locators/" + application + "/AddCPEdevice_snmproerrmsg")).getText();
-			System.out.println(
+			Log.info(
 					"Snmpro  message displayed as : " + snmproErrMsg);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step :  validation message for Snmpro field displayed as : " + snmproErrMsg);
+					" validation message for Snmpro field displayed as : " + snmproErrMsg);
 			Log.info("Snmpro warning message displayed as : " + snmproErrMsg);
 			
 			
@@ -18363,10 +18363,10 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 			sa.assertTrue(mangadrsErr, "Management Addres warning message is not displayed ");
 			String mngadresErrMsg = getwebelement(
 					xml.getlocator("//locators/" + application + "/AddCPEdevice_managementAddresserrmsg")).getText();
-			System.out.println(
+			Log.info(
 					"Management Addres  message displayed as : " + mngadresErrMsg);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step :  validation message for Management Addres field displayed as : " + mngadresErrMsg);
+					" validation message for Management Addres field displayed as : " + mngadresErrMsg);
 			Log.info("Management Addres warning message displayed as : " + mngadresErrMsg);
 			
 			
@@ -18376,10 +18376,10 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 			sa.assertTrue(pwralrmErr, "Power Alarm warning message is not displayed ");
 			String pwralarmErrMsg = getwebelement(
 					xml.getlocator("//locators/" + application + "/AddCPEdevice_powerAlarmerrmsg")).getText();
-			System.out.println(
+			Log.info(
 					"Power Alarm  message displayed as : " + pwralarmErrMsg);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step :  validation message for Power Alarm field displayed as : " + pwralarmErrMsg);
+					" validation message for Power Alarm field displayed as : " + pwralarmErrMsg);
 			Log.info("Power Alarm warning message displayed as : " + pwralarmErrMsg);
 			
 			
@@ -18389,10 +18389,10 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 			sa.assertTrue(mediaErr, "Media Selection warning message is not displayed ");
 			String mediaselectionErrMsg = getwebelement(
 					xml.getlocator("//locators/" + application + "/AddCPEdevice_mediaselectionerrmsg")).getText();
-			System.out.println(
+			Log.info(
 					"Media Selection  message displayed as : " + mediaselectionErrMsg);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step :  validation message for Media Selection field displayed as : " + mediaselectionErrMsg);
+					" validation message for Media Selection field displayed as : " + mediaselectionErrMsg);
 			Log.info("Media Selection warning message displayed as : " + mediaselectionErrMsg);
 			
 			
@@ -18402,10 +18402,10 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 			sa.assertTrue(macErr, "MAC Address warning message is not displayed ");
 			String macadresErrMsg = getwebelement(
 					xml.getlocator("//locators/" + application + "/AddCPEdevice_macAdressErrmsg")).getText();
-			System.out.println(
+			Log.info(
 					"MAC Address  message displayed as : " + macadresErrMsg);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step :  validation message for MAC Address field displayed as : " + macadresErrMsg);
+					" validation message for MAC Address field displayed as : " + macadresErrMsg);
 			Log.info("MAC Address warning message displayed as : " + macadresErrMsg);
 			
 			
@@ -18415,10 +18415,10 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 			sa.assertTrue(countryErr, "MAC Address warning message is not displayed ");
 			String countryErrMsg = getwebelement(
 					xml.getlocator("//locators/" + application + "/AddCPEdevice_macAdressErrmsg")).getText();
-			System.out.println(
+			Log.info(
 					"Country  message displayed as : " + countryErrMsg);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step :  validation message for Country field displayed as : " + countryErrMsg);
+					" validation message for Country field displayed as : " + countryErrMsg);
 			Log.info("Country warning message displayed as : " + countryErrMsg);	
 		
 		
@@ -18449,7 +18449,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 						match = true;
 						Log.info("list of vendor under add devices are : " + vendertypes.getText());
 						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of vender/Model under Add device are: "+vendertypes.getText());
-						System.out.println("list of vendor under add devices are : " + vendertypes.getText());
+						Log.info("list of vendor under add devices are : " + vendertypes.getText());
 						
 
 					}
@@ -18458,7 +18458,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 				}
 				
 			}else {
-				System.out.println("dropdown value inside Vender/Model is empty");
+				Log.info("dropdown value inside Vender/Model is empty");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "No values available inside Vender/Model dropdown for adding devices");
 			}
 			
@@ -18509,7 +18509,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 				}
 			   
 			}else {
-				System.out.println("dropdown value inside Vender/Model is empty");
+				Log.info("dropdown value inside Vender/Model is empty");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "No values available inside power alarm dropdown for adding devices");
 			}
 		}catch(Exception e) {
@@ -18546,7 +18546,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 				}
 				
 			}else {
-				System.out.println("dropdown value inside Vender/Model is empty");
+				Log.info("dropdown value inside Vender/Model is empty");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "No values available inside Media selection dropdown for adding devices");
 			}
 		}catch(Exception e) {
@@ -18582,32 +18582,32 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		//Country dropdown
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_countrydiv")));
 			Thread.sleep(5000);
-			System.out.println("Clicked on Country dropdown");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Clicked on Country dropdown");
+			Log.info("Clicked on Country dropdown");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Country dropdown");
 			Log.info("Clicked on Country dropdown");
 
 			List<WebElement> cntrylist = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
 			for (WebElement countrylist : cntrylist) {
 
-				System.out.println("Available Country name is : " + countrylist.getText().toString());
+				Log.info("Available Country name is : " + countrylist.getText().toString());
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step : Available Country name is : " + countrylist.getText().toString());
+						"Available Country name is : " + countrylist.getText().toString());
 				Log.info("Available Country name is :" + countrylist.getText().toString());
 			}
 
 		//City dropdown
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip__citydiv")));
 			Thread.sleep(5000);
-			System.out.println("Clicked on City dropdown");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Clicked on City dropdown");
+			Log.info("Clicked on City dropdown");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on City dropdown");
 			Log.info("Clicked on City dropdown");
 
 			List<WebElement> citylist = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
 			for (WebElement ctylist : citylist) {
 
-				System.out.println("Available City name is : " + ctylist.getText().toString());
+				Log.info("Available City name is : " + ctylist.getText().toString());
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step : Available City name is : " + ctylist.getText().toString());
+						"Available City name is : " + ctylist.getText().toString());
 				Log.info("Available City name is :" + ctylist.getText().toString());
 			}
 			
@@ -18666,16 +18666,16 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		//Site dropdown
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_sitediv")));
 				Thread.sleep(5000);
-				System.out.println("Clicked on Site dropdown");
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Clicked on Site dropdown");
+				Log.info("Clicked on Site dropdown");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Site dropdown");
 				Log.info("Clicked on Site dropdown");
 
 				List<WebElement> stelist = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
 				for (WebElement sitelist : stelist) {
 
-					System.out.println("Available site name is : " + sitelist.getText().toString());
+					Log.info("Available site name is : " + sitelist.getText().toString());
 					ExtentTestManager.getTest().log(LogStatus.PASS,
-							"Step : Available Site name is : " + sitelist.getText().toString());
+							"Available Site name is : " + sitelist.getText().toString());
 					Log.info("Available Site name is :" + sitelist.getText().toString());
 				}
 				
@@ -18684,16 +18684,16 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		//Premise dropdown
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_premisediv")));
 				Thread.sleep(5000);
-				System.out.println("Clicked on Premise dropdown");
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Clicked on Premise dropdown");
+				Log.info("Clicked on Premise dropdown");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Premise dropdown");
 				Log.info("Clicked on Premise dropdown");
 
 				List<WebElement> prmlist = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
 					for (WebElement premiselist : prmlist) {
 
-					System.out.println("Available Premise name is : " + premiselist.getText().toString());
+					Log.info("Available Premise name is : " + premiselist.getText().toString());
 					ExtentTestManager.getTest().log(LogStatus.PASS,
-							"Step : Available Premise name is : " + premiselist.getText().toString());
+							"Available Premise name is : " + premiselist.getText().toString());
 					Log.info("Available Premise name is :" + premiselist.getText().toString());
 				}		
 			
@@ -18743,9 +18743,9 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 						Thread.sleep(5000);
 						String citynme=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_citynamefield")).getAttribute("value");
 						Thread.sleep(3000);
-						System.out.println("Entered City Name is : " + citynme);
+						Log.info("Entered City Name is : " + citynme);
 						ExtentTestManager.getTest().log(LogStatus.PASS,
-								"Step : Entered City Name is : " + citynme);
+								"Entered City Name is : " + citynme);
 					}
 					
 					
@@ -18758,9 +18758,9 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 							Thread.sleep(5000);
 							String citycde=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_citycodefield")).getAttribute("value");
 							Thread.sleep(3000);
-							System.out.println("Entered City Code is : " + citycde);
+							Log.info("Entered City Code is : " + citycde);
 							ExtentTestManager.getTest().log(LogStatus.PASS,
-									"Step : Entered City Code is : " + citycde);
+									"Entered City Code is : " + citycde);
 							
 					}	
 					
@@ -18798,9 +18798,9 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 				Thread.sleep(5000);
 				String sitenme=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_sitenamefield")).getAttribute("value");
 				Thread.sleep(3000);
-				System.out.println("Entered Site Name is : " + sitenme);
+				Log.info("Entered Site Name is : " + sitenme);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step : Entered Site Name is : " + sitenme);
+						"Entered Site Name is : " + sitenme);
 			}
 			
 			if(sitecode.equalsIgnoreCase("null")) {
@@ -18812,9 +18812,9 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 				Thread.sleep(5000);
 				String sitecde=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_sitecodefield")).getAttribute("value");
 				Thread.sleep(3000);
-				System.out.println("Entered Site Code is : " + sitecde);
+				Log.info("Entered Site Code is : " + sitecde);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step : Entered Site Code is : " + sitecde);
+						"Entered Site Code is : " + sitecde);
 				
 				
 			}	
@@ -18838,9 +18838,9 @@ public void newSite_ClickOnSiteTogglebutton(String application, String newsitese
 				Thread.sleep(5000);
 				String sitenme=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_sitenamefield_sitetogglebutton")).getAttribute("value");
 				Thread.sleep(3000);
-				System.out.println("Entered Site Name is : " + sitenme);
+				Log.info("Entered Site Name is : " + sitenme);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step : Entered Site Name is : " + sitenme);
+						"Entered Site Name is : " + sitenme);
 			}
 			
 			if(sitecode.equalsIgnoreCase("null")) {
@@ -18852,9 +18852,9 @@ public void newSite_ClickOnSiteTogglebutton(String application, String newsitese
 				Thread.sleep(5000);
 				String sitecde=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_sitecodefield_sitetogglebutton")).getAttribute("value");
 				Thread.sleep(3000);
-				System.out.println("Entered Site Code is : " + sitecde);
+				Log.info("Entered Site Code is : " + sitecde);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step : Entered Site Code is : " + sitecde);
+						"Entered Site Code is : " + sitecde);
 				
 				
 			}	
@@ -18894,9 +18894,9 @@ public void newSite_ClickOnSiteTogglebutton(String application, String newsitese
 				Thread.sleep(5000);
 				String prmsenme=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_premisenamefield")).getAttribute("value");
 				Thread.sleep(3000);
-				System.out.println("Entered Premise Name is : " + prmsenme);
+				Log.info("Entered Premise Name is : " + prmsenme);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step : Entered Premise Name is : " + prmsenme);
+						"Entered Premise Name is : " + prmsenme);
 			}
 			
 			if(premisecode.equalsIgnoreCase("null")) {
@@ -18907,9 +18907,9 @@ public void newSite_ClickOnSiteTogglebutton(String application, String newsitese
 				Thread.sleep(5000);
 				String premisecde=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_premisecodefield")).getAttribute("value");
 				Thread.sleep(3000);
-				System.out.println("Entered Premise Code is : " + premisecde);
+				Log.info("Entered Premise Code is : " + premisecde);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step : Entered Premise Code is : " + premisecde);
+						"Entered Premise Code is : " + premisecde);
 			}	
 			 
 			 
@@ -18933,9 +18933,9 @@ public void newPremise_clickonSiteToggleButton(String application, String newpre
 				Thread.sleep(5000);
 				String prmsenme=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_premisenamefield_sitetogglebutton")).getAttribute("value");
 				Thread.sleep(3000);
-				System.out.println("Entered Premise Name is : " + prmsenme);
+				Log.info("Entered Premise Name is : " + prmsenme);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step : Entered Premise Name is : " + prmsenme);
+						"Entered Premise Name is : " + prmsenme);
 			}
 			
 			if(premisecode.equalsIgnoreCase("null")) {
@@ -18946,9 +18946,9 @@ public void newPremise_clickonSiteToggleButton(String application, String newpre
 				Thread.sleep(5000);
 				String premisecde=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_premisecodefield_sitetogglebutton")).getAttribute("value");
 				Thread.sleep(3000);
-				System.out.println("Entered Premise Code is : " + premisecde);
+				Log.info("Entered Premise Code is : " + premisecde);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step : Entered Premise Code is : " + premisecde);
+						"Entered Premise Code is : " + premisecde);
 			}	
 			 
 			 
@@ -18971,9 +18971,9 @@ public void newPremise_clickOnPremisetoggleButton(String application, String new
 			Thread.sleep(5000);
 			String prmsenme=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_premisenamefield_premisetogglebutton")).getAttribute("value");
 			Thread.sleep(3000);
-			System.out.println("Entered Premise Name is : " + prmsenme);
+			Log.info("Entered Premise Name is : " + prmsenme);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step : Entered Premise Name is : " + prmsenme);
+					"Entered Premise Name is : " + prmsenme);
 		}
 		
 		if(premisecode.equalsIgnoreCase("null")) {
@@ -18984,9 +18984,9 @@ public void newPremise_clickOnPremisetoggleButton(String application, String new
 			Thread.sleep(5000);
 			String premisecde=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEforIntermediateEquip_premisecodefield_premisetogglebutton")).getAttribute("value");
 			Thread.sleep(3000);
-			System.out.println("Entered Premise Code is : " + premisecde);
+			Log.info("Entered Premise Code is : " + premisecde);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step : Entered Premise Code is : " + premisecde);
+					"Entered Premise Code is : " + premisecde);
 		}	
 		 
 		 
@@ -19027,10 +19027,10 @@ public void addOverture(String application, String serviceName) throws Interrupt
 	sa.assertTrue(nameerr, "Service name mandatory warning under 'Overture Circuit'page is not displayed ");
 	String nameErrorwarning = getwebelement(
 			xml.getlocator("//locators/" + application + "/Overture_servicenameErrmsg")).getText();
-	System.out.println(
+	Log.info(
 			"Name validation message displayed as : " + nameErrorwarning);
 	ExtentTestManager.getTest().log(LogStatus.PASS,
-			"Step : Service Name validation message displayed as : " + nameErrorwarning);
+			"Service Name validation message displayed as : " + nameErrorwarning);
 	Log.info("Name validation message displayed as : " + nameErrorwarning);
 	
 	
@@ -19039,7 +19039,7 @@ public void addOverture(String application, String serviceName) throws Interrupt
 			xml.getlocator("//locators/" + application + "/Overture_ServiceNameField")).isDisplayed();
 	
 	if(nameField) {
-		System.out.println("Service Name is displaying as expected under Overture page");
+		Log.info("Service Name is displaying as expected under Overture page");
 		ExtentTestManager.getTest().log(LogStatus.PASS, " 'Service Name' is field is displaying ");
 		
 		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/Overture_ServiceNameField")), serviceName);
@@ -19049,7 +19049,7 @@ public void addOverture(String application, String serviceName) throws Interrupt
 		ExtentTestManager.getTest().log(LogStatus.PASS, "The value entered under Service name Field is: "+name.getAttribute("value"));
 	}else {
 		
-		System.out.println("Service Name is not displaying under Overture page");
+		Log.info("Service Name is not displaying under Overture page");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Service Name' is field is not displaying ");
 		
 	}
@@ -19104,7 +19104,7 @@ public void City_AddSiteorder(String application, String existingcityselection, 
 					
 					if(CSR_Name.equalsIgnoreCase("null")){
 						ExtentTestManager.getTest().log(LogStatus.FAIL, "CSR name field is mandatory and no values are provided");
-						System.out.println("No values provided for mandatory field 'CSR Name'");
+						Log.info("No values provided for mandatory field 'CSR Name'");
 						
 					}else {
 						
@@ -19129,14 +19129,14 @@ public void City_AddSiteorder(String application, String existingcityselection, 
 				 SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_xngcityname")), xngcityname);
 				 Thread.sleep(3000);
 				 ExtentTestManager.getTest().log(LogStatus.PASS, xngcityname+ " is entered in City name field");
-				 System.out.println(xngcityname+ " is entered in City name field");
+				 Log.info(xngcityname+ " is entered in City name field");
 				 Thread.sleep(3000);
 				 }
 				 
 				 //City code
 				 if(xngcitycode.equalsIgnoreCase("null")) {
 					 ExtentTestManager.getTest().log(LogStatus.FAIL, "City Code field is a mandatory field and the value is not provided");
-					 System.out.println("no values provided for city code text field");
+					 Log.info("no values provided for city code text field");
 				 }else {
 				 SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_XNGcitycode")), xngcitycode);
 				 Thread.sleep(3000);
@@ -19158,14 +19158,14 @@ public void City_AddSiteorder(String application, String existingcityselection, 
 					
 					if(CSR_Name.equalsIgnoreCase("null")){
 						ExtentTestManager.getTest().log(LogStatus.FAIL, "CSR name field is mandatory and no values are provided");
-						System.out.println(" no values provided for 'CSR Name' text field");
+						Log.info(" no values provided for 'CSR Name' text field");
 						
 					}else {
 						
 					SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_CSRname")), CSR_Name);
 					Thread.sleep(3000);
 					ExtentTestManager.getTest().log(LogStatus.PASS, CSR_Name+ " is entered under CSR Name field");
-					System.out.println(CSR_Name+ " is entered under CSR Name field");
+					Log.info(CSR_Name+ " is entered under CSR Name field");
 					}
 					
 				}catch(Exception e) {
@@ -19208,7 +19208,7 @@ ExtentTestManager.getTest().log(LogStatus.FAIL, " 'City' mandatory dropdown is n
 	scrolltoend();
 	Thread.sleep(3000);
 	
-	System.out.println("Scrolling down to validate error messgae for City name and city code");
+	Log.info("Scrolling down to validate error messgae for City name and city code");
 	//Click on Next button to get warning message for XNG City name and XNG City Code text fields
 	click_commonMethod(application, "OK", "obutton_spanTag", xml);
 	Thread.sleep(5000);
@@ -19217,7 +19217,7 @@ ExtentTestManager.getTest().log(LogStatus.FAIL, " 'City' mandatory dropdown is n
 	ScrolltoElement(deviceCountry);
 	Thread.sleep(3000);
 	
-	System.out.println("scrolling above till device country for validating error message for 'city name ' and 'city code'");
+	Log.info("scrolling above till device country for validating error message for 'city name ' and 'city code'");
 	//XNG City Name Error message	
 	boolean xngCitynameErr = getwebelement(
 			xml.getlocator("//locators/" + application + "/Addsiteorder_xngcitynameerrmsg")).isDisplayed();
@@ -19226,10 +19226,10 @@ ExtentTestManager.getTest().log(LogStatus.FAIL, " 'City' mandatory dropdown is n
 		ExtentTestManager.getTest().log(LogStatus.PASS, " Warning message for 'XNG City Name' dropdown is displying under 'Add Site order' page as expected ");
 		String citynameErrMsg = getwebelement(
 				xml.getlocator("//locators/" + application + "/Addsiteorder_xngcitynameerrmsg")).getText();
-		System.out.println(
+		Log.info(
 				"XNG City Name  message displayed as : " + citynameErrMsg);
 		ExtentTestManager.getTest().log(LogStatus.PASS,
-				"Step :  validation message for 'XNG City Name' text field displayed as : " + citynameErrMsg);
+				" validation message for 'XNG City Name' text field displayed as : " + citynameErrMsg);
 		Log.info("XNG City Name warning message displayed as : " + citynameErrMsg);
 		
 	}else {
@@ -19246,10 +19246,10 @@ ExtentTestManager.getTest().log(LogStatus.FAIL, " 'City' mandatory dropdown is n
 		ExtentTestManager.getTest().log(LogStatus.PASS, " Warning message for 'XNG City Code' dropdown is displying under 'Add Site order' page as expected ");
 		String cityCodeErrMsg = getwebelement(
 				xml.getlocator("//locators/" + application + "/Addsiteorder_xngcityCodeerrmsg")).getText();
-		System.out.println(
+		Log.info(
 				"XNG City Name  message displayed as : " + cityCodeErrMsg);
 		ExtentTestManager.getTest().log(LogStatus.PASS,
-				"Step :  validation message for 'XNG City Code' text field displayed as : " + cityCodeErrMsg);
+				" validation message for 'XNG City Code' text field displayed as : " + cityCodeErrMsg);
 		Log.info("XNG City Code warning message displayed as : " + cityCodeErrMsg);
 		
 	}else {
@@ -19287,7 +19287,7 @@ public void validateCountry_AddSiteorder(String application) throws InterruptedE
 	sa.assertTrue(COuntry, "Country dropdown is not displayed");
 	if(COuntry) {
 		ExtentTestManager.getTest().log(LogStatus.PASS, " 'Country' mandatory dropdown is displaying under 'Add Site Order' page as expected");	
-		System.out.println("Country dropdown is displaying");
+		Log.info("Country dropdown is displaying");
 		
 	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Country")));
 	List<WebElement> listofcountry = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
@@ -19299,7 +19299,7 @@ public void validateCountry_AddSiteorder(String application) throws InterruptedE
 		
 	}
 }else {
-	System.out.println("no values are available inside Country dropdown for Add site order");
+	Log.info("no values are available inside Country dropdown for Add site order");
 	ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside Country dropdown for Add site order");
 }
 
@@ -19369,7 +19369,7 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 			sa.assertTrue(csr_name, "CSR_Name field is not displayed");
 			if(csr_name) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'CSR Name' text field is displaying under 'Add Site order' page as expected");
-				System.out.println("CSR name field is dipslaying as expected");
+				Log.info("CSR name field is dipslaying as expected");
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'CSR Name' text field is not available under 'Add Site order' page");
 			}
@@ -19380,7 +19380,7 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 					.isDisplayed();
 			sa.assertTrue(sitetogglebutton, "select Site toggle button is not displayed");
 			if(sitetogglebutton) {
-				System.out.println("site order toggle button is displaying as expected");
+				Log.info("site order toggle button is displaying as expected");
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'Select Site' toggle button is displaying under 'Add Site Order' page as expected");
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Select Site' toggle button is not avilable under 'Add Site Order' page");
@@ -19393,7 +19393,7 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 	//Check for Error message for physical Site
 			scrolltoend();
 			Thread.sleep(3000);
-			System.out.println("scrolling down to click n OK button to find eror message for site Dropdown");
+			Log.info("scrolling down to click n OK button to find eror message for site Dropdown");
 			click_commonMethod(application, "OK", "obutton_spanTag", xml);
 			Thread.sleep(5000);
 			
@@ -19401,24 +19401,24 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 			ScrolltoElement(deviceCountry);
 			Thread.sleep(3000);
 			
-			System.out.println("scrolling up back till device country dropodwn to find error message validation for physical site");
+			Log.info("scrolling up back till device country dropodwn to find error message validation for physical site");
 			boolean physicalsiteErr=false;
 			physicalsiteErr = getwebelement(
 					xml.getlocator("//locators/" + application + "/Addsiteorder_physicalsiteErrmsg")).isDisplayed();
 			sa.assertTrue(physicalsiteErr, "Physical Site dropdown warning is not displayed ");
 			if(physicalsiteErr) {
-				System.out.println("Physical Site Error message is displaying as expected");
+				Log.info("Physical Site Error message is displaying as expected");
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'Physite Site' dropdown warning message is displaying under 'Add Site Order' page as expected");
 				String physicalsiteErrMsg = getwebelement(
 						xml.getlocator("//locators/" + application + "/Addsiteorder_physicalsiteErrmsg")).getText();
-				System.out.println(
+				Log.info(
 						"Physical Site  message displayed as : " + physicalsiteErrMsg);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step :  validation message for Physical Site dropdown displayed as : " + physicalsiteErrMsg);
+						" validation message for Physical Site dropdown displayed as : " + physicalsiteErrMsg);
 				Log.info("Physical Site validation message displayed as : " + physicalsiteErrMsg);	
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Physical Site' dropdown warning message is not displaying under 'Add Site Order' page");
-				System.out.println("Physical site warning message is not displaying");
+				Log.info("Physical site warning message is not displaying");
 			}
 			
 		
@@ -19428,7 +19428,7 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 			SIte = getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_sitedropdown")).isDisplayed();
 			sa.assertTrue(SIte, "PhysicalSite dropdown is not displayed");
 			if(SIte) {
-				System.out.println("Physical Site dropdown is displaying as expected");
+				Log.info("Physical Site dropdown is displaying as expected");
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'physical Site' dropdown is displaying under 'Add Site order' page as expected");
 
 			}else {
@@ -19477,7 +19477,7 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 
 			}
 		}else {
-			System.out.println("no values are available inside performance reporting dropdown for Add site order");
+			Log.info("no values are available inside performance reporting dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside performance reporting dropdown for Add site order");
 		}
 	}else {
@@ -19491,7 +19491,7 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
     	//Perfomance Reporting	
  		if(performReport.equalsIgnoreCase("Null")) {
  			
- 			System.out.println("NO changes in 'Performance Reporting' dropdown");
+ 			Log.info("NO changes in 'Performance Reporting' dropdown");
  			ExtentTestManager.getTest().log(LogStatus.PASS, "Performance reporting value is not provided. 'Follow Service' is selected by default");
  			
  		}else {
@@ -19506,11 +19506,11 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
  	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Performance reporting' dropdown is not displaying under 'Add Site order' page");
-		System.out.println( " 'Performance reporting' dropdown is not displaying under 'Add Site order' page");
+		Log.info( " 'Performance reporting' dropdown is not displaying under 'Add Site order' page");
 	}catch(Exception err) {
 		err.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " not able to select value under 'Performance reporting' checkbox");
-		System.out.println(" not able to select value under 'Performance Reporting' checkbox");
+		Log.info(" not able to select value under 'Performance Reporting' checkbox");
 	}
  		}
      }
@@ -19554,7 +19554,7 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 			}
 		}else {
 			
-			System.out.println("no values are available inside pro active monitoring dropdown for Add site order");
+			Log.info("no values are available inside pro active monitoring dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside pro active monitoring dropdown for Add site order");
 		}
 	}else {
@@ -19581,11 +19581,11 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
   		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Pro active Monitoring' dropdown is not displaying under 'Add Site order' page");
-			System.out.println( " 'pro active Monitoring' dropdown is not displaying under 'Add Site order' page");
+			Log.info( " 'pro active Monitoring' dropdown is not displaying under 'Add Site order' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " not able to select value under 'Proactive Monitoring' dropdown");
-			System.out.println(" not able to select value under 'pro active Monitoring' dropdown");
+			Log.info(" not able to select value under 'pro active Monitoring' dropdown");
 		}
   		} 
      }
@@ -19627,7 +19627,7 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 			}
 		}else {
 
-			System.out.println("no values are available inside smart monitoring dropdown for Add site order");
+			Log.info("no values are available inside smart monitoring dropdown for Add site order");
 			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside smart monitoring dropdown for Add site order");
 		}
 			}else {
@@ -19652,11 +19652,11 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
     		}catch(NoSuchElementException e) {
     			e.printStackTrace();
     			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Smart Monitoring' dropdown is not displaying under 'Add Site order' page");
-    			System.out.println( " 'Smart Monitoring' dropdown is not displaying under 'Add Site order' page");
+    			Log.info( " 'Smart Monitoring' dropdown is not displaying under 'Add Site order' page");
     		}catch(Exception err) {
     			err.printStackTrace();
     			ExtentTestManager.getTest().log(LogStatus.FAIL, " not able to select value under 'Smart Monitoring' dropdown");
-    			System.out.println(" not able to select value under 'Smart Monitoring' dropdown");
+    			Log.info(" not able to select value under 'Smart Monitoring' dropdown");
     		}
     			}
 
@@ -19697,11 +19697,11 @@ try {
  			}catch(NoSuchElementException e) {
 				e.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Site Alias' field is not displaying under 'Add Site order' page");
-				System.out.println(" 'Site Alias' field is not dispyating under 'Add Site order' page");
+				Log.info(" 'Site Alias' field is not dispyating under 'Add Site order' page");
 			}catch(Exception err) {
 				err.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under 'Site Alias' field");
-				System.out.println(" Not able to enter value under 'Site Alias' field");
+				Log.info(" Not able to enter value under 'Site Alias' field");
 			}
  		}
 
@@ -19739,11 +19739,11 @@ try {
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Vlan Id' field is not displating under 'Add Site order' page");
-				System.out.println(" 'Vlan Id' field is not displating under 'Add Site order' page");
+				Log.info(" 'Vlan Id' field is not displating under 'Add Site order' page");
 			}catch(Exception err) {
 				err.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under 'Vlan Id' field");
-				System.out.println(" Not able to enter value under 'Vlan Id' field");
+				Log.info(" Not able to enter value under 'Vlan Id' field");
 			}
 			}
 
@@ -19809,7 +19809,7 @@ try {
     					sa.assertTrue(match);
     				}
     			}else {
-    				System.out.println("no values are available inside cloudservice provider dropdown for Add site order");
+    				Log.info("no values are available inside cloudservice provider dropdown for Add site order");
     				ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside cloudservice provider dropdown for Add site order");
     				
     			}
@@ -19895,11 +19895,11 @@ try {
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Remark' field is not displating under 'Add Site order' page");
-			System.out.println(" 'Remark' field is not displating under 'Add Site order' page");
+			Log.info(" 'Remark' field is not displating under 'Add Site order' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under 'Remark' field");
-			System.out.println(" Not able to enter value under 'Remark' field");
+			Log.info(" Not able to enter value under 'Remark' field");
 		}
 			}
 
@@ -19917,24 +19917,24 @@ try {
 				boolean nonTerminationSelection=getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_nonterminationpoint")).isSelected();
 				if(nonTerminationSelection) {
 					ExtentTestManager.getTest().log(LogStatus.PASS, " 'Non-Termination point' checkbox is selected as expected");
-					System.out.println(" 'Non-Termination point' checkbox is selected as expected");
+					Log.info(" 'Non-Termination point' checkbox is selected as expected");
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Non-Termination point' checkbox is not selected");
-					System.out.println(" 'Non-Termination point' checkbox is not selected");
+					Log.info(" 'Non-Termination point' checkbox is not selected");
 				}
 				
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Non-termination point checkbox is selected");
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Non-Termination point' checkbox is not dipslaying under 'Add Site order' page");
-				System.out.println(" Non-Termination point' checkbox is not dipslaying under 'Add Site order' page");
+				Log.info(" Non-Termination point' checkbox is not dipslaying under 'Add Site order' page");
 			}catch(Exception err) {
 				err.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'non-Termination point' checkbox");
-				System.out.println(" Not able to click on 'non-Termination point' checkbox");
+				Log.info(" Not able to click on 'non-Termination point' checkbox");
 			}
 			}else {
-				System.out.println("Non termination point checkbox is not selected as expected");
+				Log.info("Non termination point checkbox is not selected as expected");
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Non-termination point chekbox is not selected");
 			}
 
@@ -19952,24 +19952,24 @@ try {
 					boolean protectedSelection=getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_protected")).isSelected();
 					if(protectedSelection) {
 						ExtentTestManager.getTest().log(LogStatus.PASS, " 'Protected' checkbox is selected as expected");
-						System.out.println(" 'Protected' checkbox is selected as expected");
+						Log.info(" 'Protected' checkbox is selected as expected");
 					}else {
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Protected' checkbox is not selected");
-						System.out.println(" 'Protected' checkbox is not selected");
+						Log.info(" 'Protected' checkbox is not selected");
 					}
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Protected checkbox is selected");
 				  }catch(NoSuchElementException e) {
 						e.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Protected' checkbox is not displaying under 'Add Site order' page");
-						System.out.println(" 'Protected' checkbox is not displaying under 'Add Site order' page");
+						Log.info(" 'Protected' checkbox is not displaying under 'Add Site order' page");
 					}catch(Exception err) {
 						err.printStackTrace();
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'protected' checkbox");
-						System.out.println(" Not able to click on 'Protected' checkbox");
+						Log.info(" Not able to click on 'Protected' checkbox");
 					}
 					
 				}else {
-					System.out.println("Protected checkbox is not selecetd as expected");
+					Log.info("Protected checkbox is not selecetd as expected");
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Protected checkbox is not selected");
 				}
 				
@@ -19992,11 +19992,11 @@ try {
 					  }catch(NoSuchElementException e) {
 						  e.printStackTrace();
 						  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Device name' field is not displaying under 'Add Site Order' page");
-						  System.out.println(" 'Device name' field is not displaying under 'Add Site Order' page");
+						  Log.info(" 'Device name' field is not displaying under 'Add Site Order' page");
 					  }catch(Exception err) {
 						  err.printStackTrace();
 						  ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value in 'Device name' field");
-						  System.out.println(" Not able to enter value in 'Device name' field");
+						  Log.info(" Not able to enter value in 'Device name' field");
 					  }
 					}
 			
@@ -20128,7 +20128,7 @@ try {
  			
  			if(technology.equals("Actelis")) {	
  				
- 			     System.out.println("No additional fields displays");
+ 			     Log.info("No additional fields displays");
  			}
  			
 
@@ -20152,7 +20152,7 @@ try {
  			}
 
  			else if(technology.equals("Belgacom VDSL")) {	
- 				System.out.println("No additonal fields display");
+ 				Log.info("No additonal fields display");
  			}
  			
  			else if(technology.equals("Alu")) {
@@ -20203,7 +20203,7 @@ try {
   			
   			if(technology.equals("Actelis")) {	
   				
-  			     System.out.println("No additional fields displays");
+  			     Log.info("No additional fields displays");
   			}
   			
 
@@ -20218,12 +20218,12 @@ try {
 
   			else if(technology.equals("Overture") || technology.equals("Accedian-1G")) {	
 
-  				System.out.println("No additional fields displays");	
+  				Log.info("No additional fields displays");	
   			}
 
   			else if(technology.equals("Cyan")) {	
 
-  				System.out.println("No additional fields displays");	nontermination_AddSiteorder(application, nonterminatepoinr);
+  				Log.info("No additional fields displays");	nontermination_AddSiteorder(application, nonterminatepoinr);
   			}
   		}
   	}
@@ -20248,7 +20248,7 @@ try {
   			ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
   			
   			if(technology.equals("Actelis")) {	
-  			     System.out.println("No additional fields displays");
+  			     Log.info("No additional fields displays");
   			}
   			
 
@@ -20268,7 +20268,7 @@ try {
   			}
   			
   			else if(technology.equals("Belgacom VDSL")) {	
-  				System.out.println("No additonal fields display");
+  				Log.info("No additonal fields display");
   			}
   			
   			else if(technology.equals("Alu")) {
@@ -20298,7 +20298,7 @@ try {
   			ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
   			
   			if(technology.equals("Actelis")) {	
-  			     System.out.println("No additional fields displays");
+  			     Log.info("No additional fields displays");
   			}
   			
 
@@ -20309,11 +20309,11 @@ try {
   			}
   			
   			else if(technology.equals("Overture") || technology.equalsIgnoreCase("Accedian-1G")) {	
-  				System.out.println("No additional fields displays");
+  				Log.info("No additional fields displays");
   			}
   			
   			else if(technology.equals("Cyan")) {	
-  				System.out.println("No additional fields displays");
+  				Log.info("No additional fields displays");
   			
   			}
   		    }
@@ -20347,7 +20347,7 @@ try {
   			}
   			
   			else if((technology.equalsIgnoreCase("Actelis"))) {
-  				System.out.println("no additional fields display");
+  				Log.info("no additional fields display");
   			}
   			
   			else if((technology.equalsIgnoreCase("Atrica"))) {
@@ -20377,7 +20377,7 @@ try {
   			
   			else if((technology.equalsIgnoreCase("Belgacom VDSL"))) {
 
-  				System.out.println("No additonl fields displays");
+  				Log.info("No additonl fields displays");
   			}
   			
   	}
@@ -20400,7 +20400,7 @@ try {
   			
   		if(technology.equals("Accedian"))	{
   		
-  				System.out.println("no additional fields display");
+  				Log.info("no additional fields display");
   			
   		}
   	}
@@ -20427,7 +20427,7 @@ try {
   			
   			if(technology.equals("Actelis")) {	
   				
-  			     System.out.println("No additional fields displays");
+  			     Log.info("No additional fields displays");
   			}
 
   			else if((technology.equals("Atrica")) || (technology.equalsIgnoreCase("Accedian-1G")) ) {
@@ -20460,12 +20460,12 @@ try {
   			}
   			
   			else if(technology.equals("Belgacom VDSL")) {	
-  				System.out.println("No additonal fields display");
+  				Log.info("No additonal fields display");
   			}
   			
   			
   			else if(technology.equals("Alu")) {
-  				System.out.println("No Additional fields display for 'Alu' technology");
+  				Log.info("No Additional fields display for 'Alu' technology");
   				
   			}
   		}
@@ -20496,12 +20496,12 @@ try {
   			
   			if(technology.equals("Actelis")) {	
   				
-  			     System.out.println("No additional fields displays");
+  			     Log.info("No additional fields displays");
   			}
 
   			else if((technology.equals("Atrica")) || (technology.equalsIgnoreCase("Accedian-1G")) ) {
   				
-  				 System.out.println("No additional fields displays");
+  				 Log.info("No additional fields displays");
   				
   			}
   			
@@ -20526,7 +20526,7 @@ try {
   			}
   			
   			else if(technology.equals("Cyan")) {	
-  				 System.out.println("No additional fields displays");
+  				 Log.info("No additional fields displays");
   			
   			}
   			
@@ -20560,7 +20560,7 @@ try {
   			
   			if(technology.equals("Actelis")) {	
   				
-  			     System.out.println("No additional fields displays");
+  			     Log.info("No additional fields displays");
   			}
   			
 
@@ -20605,7 +20605,7 @@ try {
   			}
   			
   			else if(technology.equals("Belgacom VDSL")) {	
-	  			System.out.println("No additonal fields displays");
+	  			Log.info("No additonal fields displays");
   			}
   			
   			else if(technology.equals("Accedian-1G")) {
@@ -20664,7 +20664,7 @@ try {
   			
   			if(technology.equals("Actelis")) {	
   				
-  			     System.out.println("No additional fields displays");
+  			     Log.info("No additional fields displays");
   			}
   			
 
@@ -20702,12 +20702,12 @@ try {
   			
   			else if(technology.equals("Cyan")) {	
 
-  				 System.out.println("No additional fields displays");
+  				 Log.info("No additional fields displays");
   			}
   			
   			else if(technology.equals("Accedian")) {
   				
-  				 System.out.println("No additional fields displays");
+  				 Log.info("No additional fields displays");
   			}
   			
   				
@@ -20802,13 +20802,13 @@ try {
  			for (WebElement IVreferencetypes : listofIVreference) {
 
  						Log.info("list of IV References : " + IVreferencetypes.getText());
- 						System.out.println("list of IV References for AddSite order are: "+IVreferencetypes.getText());
+ 						Log.info("list of IV References for AddSite order are: "+IVreferencetypes.getText());
  						ExtentTestManager.getTest().log(LogStatus.PASS,"list of IV References for AddSite order are: "+IVreferencetypes.getText());
  					
  			}
  					
  		}else {
- 			System.out.println("no values are available inside 'IV reference' dropdown for Add site order");
+ 			Log.info("no values are available inside 'IV reference' dropdown for Add site order");
  			ExtentTestManager.getTest().log(LogStatus.FAIL,"no values are available inside 'IV reference' dropdown for Add site order");
  		}
  		
@@ -20865,11 +20865,11 @@ try {
 					
 					String warningMessage=getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_AccessCircuitIDwarningMessage")).getText();
 					ExtentTestManager.getTest().log(LogStatus.PASS, " Warning message for 'Circuit ID' field is displaying as: "+warningMessage);
-					System.out.println(" Warning message for 'Circuit ID' field is displaying as: "+warningMessage);
+					Log.info(" Warning message for 'Circuit ID' field is displaying as: "+warningMessage);
 					
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " Warning message for 'Access Circuit ID' field is not displaying");
-					System.out.println(" Warning message for 'Access Circuit ID' field is not displaying");
+					Log.info(" Warning message for 'Access Circuit ID' field is not displaying");
 				}
 				 
 			}else {
@@ -21030,7 +21030,7 @@ try {
 			
     	}catch(Exception e) {
     		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'OK' button is not displaying");
-    		System.out.println(" 'OK' button is not displaying");
+    		Log.info(" 'OK' button is not displaying");
     	}
      }
      
@@ -21049,7 +21049,7 @@ try {
 			}
     	 }catch(Exception e) {
      		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Cancel' button is not displaying");
-     		System.out.println(" 'Cancel' button is not displaying");
+     		Log.info(" 'Cancel' button is not displaying");
      	}
      }
      
@@ -21086,11 +21086,11 @@ try {
     	}catch(NoSuchElementException e) {
     		e.printStackTrace();
     		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'GCR OLO Type' dropdown is not available under 'Add Site Order' page");
-    		System.out.println(" 'GCR OLO Type' dropdown is not available under 'Add Site Order' page");
+    		Log.info(" 'GCR OLO Type' dropdown is not available under 'Add Site Order' page");
     	}catch(Exception ee) {
     		ee.printStackTrace();
     		ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to select value under 'GCR olo Dropdown'");
-    		System.out.println( " Not able to select value under 'GCR olo Dropdown'");
+    		Log.info( " Not able to select value under 'GCR olo Dropdown'");
     	}
      }
      
@@ -21110,11 +21110,11 @@ try {
     }catch(NoSuchElementException e){
     	e.printStackTrace();
     	ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN Ether Type' dropdown is not displaying under 'Add Site Oder' page");
-    	System.out.println(" 'VLAN Ether Type' dropdown is not displaying under 'Add Site Oder' page");
+    	Log.info(" 'VLAN Ether Type' dropdown is not displaying under 'Add Site Oder' page");
     }catch(Exception ee) {
     	ee.printStackTrace();
     	ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to selected value under 'VLAN Ether Type' dropdown");
-    	System.out.println(" Not able to selected value under 'VLAN Ether Type' dropdown");
+    	Log.info(" Not able to selected value under 'VLAN Ether Type' dropdown");
     }
     	 
      }
@@ -21137,12 +21137,12 @@ try {
     	 }catch(NoSuchElementException e) {
     		 e.printStackTrace();
     		 ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Primary VLAN Ether type' dropdown is not displaying in 'Add Site Order' page");
-    		 System.out.println(" 'Primary VLA Ether type' dropdown is not displaying in 'Add Site Order' page");
+    		 Log.info(" 'Primary VLA Ether type' dropdown is not displaying in 'Add Site Order' page");
     		 
     	 }catch(Exception ee) {
     		 ee.printStackTrace();
     		 ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to select value under 'Primary VLAN Ether type' dropdown");
-    		 System.out.println(" Not able to select value under 'Primary VLAN Ether type' dropdown");
+    		 Log.info(" Not able to select value under 'Primary VLAN Ether type' dropdown");
     	 }
     	 
      }
@@ -21161,12 +21161,12 @@ try {
     	}catch(NoSuchElementException e) {
     		e.printStackTrace();
     		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN' text field is not displying under 'Add Site Order'");
-    		System.out.println(" 'VLAN' text field is not displying under 'Add Site Order'");
+    		Log.info(" 'VLAN' text field is not displying under 'Add Site Order'");
     		
     	}catch(Exception ee) {
     		ee.printStackTrace();
     		ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under 'VLAN' text field");
-    		System.out.println( " Not able to enter value under 'VLAN' text field");
+    		Log.info( " Not able to enter value under 'VLAN' text field");
     	}
      }
      
@@ -21185,11 +21185,11 @@ try {
     	}catch(NoSuchElementException e) {
     		e.printStackTrace();
     		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Primary VLAN' text field is not displaying under 'Add Site Order' page");
-    		System.out.println(" 'Primary VLAN' text field is not displaying under 'Add Site Order' page");
+    		Log.info(" 'Primary VLAN' text field is not displaying under 'Add Site Order' page");
     	}catch(Exception ee) {
     		ee.printStackTrace();
     		ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value in 'Primary VLAN type' text field");
-    		System.out.println(" Not able to enter value in 'Primary VLAN type' text field");
+    		Log.info(" Not able to enter value in 'Primary VLAN type' text field");
     	}
      }
      
@@ -21537,15 +21537,15 @@ try {
      			if(name) {
      			String nameErrMsg = getwebelement(
      					xml.getlocator("//locators/" + application + "/AddCPEdevice_nameerrmsg")).getText();
-     			System.out.println(
+     			Log.info(
      					"Name field warning  message displayed as : " + nameErrMsg);
      			ExtentTestManager.getTest().log(LogStatus.PASS,
-     					"Step :  validation message for 'Name' text field displayed as : " + nameErrMsg);
+     					" validation message for 'Name' text field displayed as : " + nameErrMsg);
      			Log.info(" Name field warning message displayed as : " + nameErrMsg);
      			}
      			}catch(NoSuchElementException e) {
      				e.printStackTrace();
-     				System.out.println(" Name field warning message is not dipslaying");
+     				Log.info(" Name field warning message is not dipslaying");
      				ExtentTestManager.getTest().log(LogStatus.FAIL, " name field warning message is not displaying");
      			}catch(Exception ed) {
      				ed.printStackTrace();
@@ -21562,15 +21562,15 @@ try {
     			if(vendorErr) {
     			String vendorErrMsg = getwebelement(
     					xml.getlocator("//locators/" + application + "/AddCPEdevice_vendorErrmsg")).getText();
-    			System.out.println(
+    			Log.info(
     					"Vendor/Model  message displayed as : " + vendorErrMsg);
     			ExtentTestManager.getTest().log(LogStatus.PASS,
-    					"Step :  validation message for Vendor/Model field displayed as : " + vendorErrMsg);
+    					" validation message for Vendor/Model field displayed as : " + vendorErrMsg);
     			Log.info("Vendor/Model warning message displayed as : " + vendorErrMsg);
     			}
     			}catch(NoSuchElementException e) {
     				e.printStackTrace();
-    				System.out.println("Vendor/Mdel warning message is not dipslaying");
+    				Log.info("Vendor/Mdel warning message is not dipslaying");
     				ExtentTestManager.getTest().log(LogStatus.FAIL, " Vendor/Model warning message is not displaying");
     			}catch(Exception ed) {
     				ed.printStackTrace();
@@ -21587,15 +21587,15 @@ try {
 			if(mangadrsErr) {
 			String mngadresErrMsg = getwebelement(
 					xml.getlocator("//locators/" + application + "/AddCPEdevice_managementAddresserrmsg")).getText();
-			System.out.println(
+			Log.info(
 					"Management Addres  message displayed as : " + mngadresErrMsg);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step :  validation message for Management Addres field displayed as : " + mngadresErrMsg);
+					" validation message for Management Addres field displayed as : " + mngadresErrMsg);
 			Log.info("Management Addres warning message displayed as : " + mngadresErrMsg);
 			}
 		 }catch(NoSuchElementException e) {
 			 e.printStackTrace();
-			 System.out.println("management Address warning message is not found");
+			 Log.info("management Address warning message is not found");
 			 ExtentTestManager.getTest().log(LogStatus.FAIL, " Management Address warning message is not displaying");
 		 }catch(Exception ed) {
 			 ed.printStackTrace();
@@ -21611,15 +21611,15 @@ try {
 			if(pwralrmErr) {
 			String pwralarmErrMsg = getwebelement(
 					xml.getlocator("//locators/" + application + "/AddCPEdevice_powerAlarmerrmsg")).getText();
-			System.out.println(
+			Log.info(
 					"Power Alarm  message displayed as : " + pwralarmErrMsg);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step :  validation message for Power Alarm field displayed as : " + pwralarmErrMsg);
+					" validation message for Power Alarm field displayed as : " + pwralarmErrMsg);
 			Log.info("Power Alarm warning message displayed as : " + pwralarmErrMsg);
 			}
 		 }catch(NoSuchElementException e) {
 			 e.printStackTrace();
-			 System.out.println("Power Alarm warning message is not dipslaying");
+			 Log.info("Power Alarm warning message is not dipslaying");
 			 ExtentTestManager.getTest().log(LogStatus.FAIL, " Power Alarm warning message is not displaying");
 		 }catch(Exception er) {
 			 er.printStackTrace();
@@ -21636,15 +21636,15 @@ try {
 			if(mediaErr) {
 			String mediaselectionErrMsg = getwebelement(
 					xml.getlocator("//locators/" + application + "/AddCPEdevice_mediaselectionerrmsg")).getText();
-			System.out.println(
+			Log.info(
 					"Media Selection  message displayed as : " + mediaselectionErrMsg);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step :  validation message for Media Selection field displayed as : " + mediaselectionErrMsg);
+					" validation message for Media Selection field displayed as : " + mediaselectionErrMsg);
 			Log.info("Media Selection warning message displayed as : " + mediaselectionErrMsg);
 			}
 		 }catch(NoSuchElementException e) {
 			 e.printStackTrace();
-			 System.out.println("Media selection waning message is not displaying");
+			 Log.info("Media selection waning message is not displaying");
 			 ExtentTestManager.getTest().log(LogStatus.FAIL, " Media Selection warning message is not displaying");
 		 }catch(Exception er) {
 			 er.printStackTrace();
@@ -21660,17 +21660,17 @@ try {
 			if(macErr) {
 			String macadresErrMsg = getwebelement(
 					xml.getlocator("//locators/" + application + "/AddCPEdevice_macAdressErrmsg")).getText();
-			System.out.println(
+			Log.info(
 					"MAC Address  message displayed as : " + macadresErrMsg);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step :  validation message for MAC Address field displayed as : " + macadresErrMsg);
+					" validation message for MAC Address field displayed as : " + macadresErrMsg);
 			Log.info("MAC Address warning message displayed as : " + macadresErrMsg);
 			}else{
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'MAC Address' warning message is not displaying under 'Add cpe device' page");
 			}
 		 }catch(NoSuchElementException e) {
 			 e.printStackTrace();
-			 System.out.println("Mac Adress warning message is not dipslaying");
+			 Log.info("Mac Adress warning message is not dipslaying");
 			 ExtentTestManager.getTest().log(LogStatus.FAIL, " MAC Address warning message is not displaying");
 		 }catch(Exception er) {
 			 er.printStackTrace();
@@ -21687,21 +21687,21 @@ try {
 				xml.getlocator("//locators/" + application + "/AddCPEdevice_serialNumberErrmsg")).isDisplayed();
 		sa.assertTrue(serialNumberErr, "Serial Number warning message is not displayed ");
 	if(serialNumberErr)	{
-		System.out.println(" 'Serial number; warning message is dipslaying as expected");
+		Log.info(" 'Serial number; warning message is dipslaying as expected");
 		String serialnumberErrMsg = getwebelement(
 				xml.getlocator("//locators/" + application + "/AddCPEdevice_serialNumberErrmsg")).getText();
-		System.out.println(
+		Log.info(
 				"Serial Number  message displayed as : " + serialnumberErrMsg);
 		ExtentTestManager.getTest().log(LogStatus.PASS,
-				"Step :  validation message for Serial Number field displayed as : " + serialnumberErrMsg);
+				" validation message for Serial Number field displayed as : " + serialnumberErrMsg);
 		Log.info("Serial Number warning message displayed as : " + serialnumberErrMsg);
 	}else {
-		System.out.println("Serial Number warning message is not dipslaying");
+		Log.info("Serial Number warning message is not dipslaying");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Serial Number' validation mesage is not displaying");
 	}
 	   }catch(NoSuchElementException e) {
 		   e.printStackTrace();
-		   System.out.println("Serial Number Warning message is not diplsying");
+		   Log.info("Serial Number Warning message is not diplsying");
 		   ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Serial Number' warning message is not displaying");
 	   }
    }
@@ -21716,21 +21716,21 @@ try {
 					xml.getlocator("//locators/" + application + "/AddCPEdevice_hexaSerialNumnerErrmsg")).isDisplayed();
 			sa.assertTrue(HexaserialNumberErr, "Hexa Serial Number warning message is not displayed ");
 			if(HexaserialNumberErr)	{
-				System.out.println(" 'Hexa Serial number' warning message is dipslaying as expected");
+				Log.info(" 'Hexa Serial number' warning message is dipslaying as expected");
 				String hexaserialnumberErrMsg = getwebelement(
 						xml.getlocator("//locators/" + application + "/AddCPEdevice_hexaSerialNumnerErrmsg")).getText();
-				System.out.println(
+				Log.info(
 						"Hexa Serial Number  message displayed as : " + hexaserialnumberErrMsg);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step :  validation message for Hexa Serial Number field displayed as : " + hexaserialnumberErrMsg);
+						" validation message for Hexa Serial Number field displayed as : " + hexaserialnumberErrMsg);
 				Log.info("Hexa Serial Number warning message displayed as : " + hexaserialnumberErrMsg);
 			}else {
-				System.out.println("Hexa Serial Number warning message is not dipslaying");
+				Log.info("Hexa Serial Number warning message is not dipslaying");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Hexa Serial Number' validation mesage is not displaying");
 			}
 		   }catch(NoSuchElementException e) {
 			   e.printStackTrace();
-			   System.out.println("Serial Number Warning message is not diplsying");
+			   Log.info("Serial Number Warning message is not diplsying");
 			   ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Serial Number' warning message is not displaying");
 		   }
 	   }
@@ -21745,16 +21745,16 @@ try {
 			sa.assertTrue(countryErr, "Country warning message is not displayed ");
 			
 		if(countryErr) {
-			System.out.println("country warning message is displaying as expected");
+			Log.info("country warning message is displaying as expected");
 			String countryErrMsg = getwebelement(
 					xml.getlocator("//locators/" + application + "/AddCPEdevice_countryErrmsg")).getText();
-			System.out.println(
+			Log.info(
 					"Country  message displayed as : " + countryErrMsg);
 			ExtentTestManager.getTest().log(LogStatus.PASS,
-					"Step :  validation message for Country field displayed as : " + countryErrMsg);
+					" validation message for Country field displayed as : " + countryErrMsg);
 			Log.info("Country warning message displayed as : " + countryErrMsg);	
 		}else {
-			System.out.println("Country warning message is not displaying");
+			Log.info("Country warning message is not displaying");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Validation message for Country dropdown is not displaying");
 		}
    }
@@ -21768,7 +21768,7 @@ try {
 		
 		 if(name) {
 	          if(cpename.equalsIgnoreCase("null")) {
-	        	  System.out.println("No values has been assed for 'Name' text field");
+	        	  Log.info("No values has been assed for 'Name' text field");
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "No values has been passed for Mandatory 'Name' field under 'Add CPE Device' page");
 				}
 				
@@ -21817,7 +21817,7 @@ try {
 							match = true;
 							Log.info("list of vendor under add devices are : " + vendertypes.getText());
 							ExtentTestManager.getTest().log(LogStatus.PASS,"The list of vender/Model under Add device are: "+vendertypes.getText());
-							System.out.println("list of vendor under add devices are : " + vendertypes.getText());
+							Log.info("list of vendor under add devices are : " + vendertypes.getText());
 
 						}
 						}
@@ -21825,7 +21825,7 @@ try {
 					}
 					
 				}else {
-					System.out.println("dropdown value inside Vender/Model is empty");
+					Log.info("dropdown value inside Vender/Model is empty");
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "No values available inside Vender/Model dropdown for adding devices");
 				}
 				
@@ -21839,14 +21839,14 @@ try {
 		  try {
 				if(vender.equalsIgnoreCase("null")) {
 					
-					System.out.println("No values has been passed for Mandatory 'Vendor/Model' dropdown for adding device");
+					Log.info("No values has been passed for Mandatory 'Vendor/Model' dropdown for adding device");
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "No values has been passed for Mandatory 'Vendor/Model' dropdown for adding device");
 					
 				}
 			else {	
 			Clickon(getwebelement("//div[label[text()='Vendor/Model']]//div[text()='"+vender +"']"));
 			ExtentTestManager.getTest().log(LogStatus.PASS, vender + " is the value passed for Mandatory 'Vendor/Model' dropdown for adding device");
-			System.out.println(vender+" is the value passed for Mandatory 'Vendor/Model' dropdown for adding device");	
+			Log.info(vender+" is the value passed for Mandatory 'Vendor/Model' dropdown for adding device");	
 			}
 				}catch(Exception e) {
 				e.printStackTrace();
@@ -21856,7 +21856,7 @@ try {
 		  
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
-			System.out.println("vendor/Model dropdown is not dipslaying under 'Add CPE device' page");
+			Log.info("vendor/Model dropdown is not dipslaying under 'Add CPE device' page");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Vendor/Model' dropdown is not displayind in 'Add CPE Device' page");
 		}
    }
@@ -21870,7 +21870,7 @@ try {
    		  
    		 if(sNmpro) { 
    			 ExtentTestManager.getTest().log(LogStatus.PASS, " ' Snmpro' field is displaying in 'Add CPE Device' page as expected");
-   			 System.out.println("Smpro text field is displaying as expected");
+   			 Log.info("Smpro text field is displaying as expected");
    			 
    			  boolean actualValue_snmpro=getwebelement(xml.getlocator("//locators/" + application + "/CPEdevice_snmpro_autoPopulatedValue")).isDisplayed();
    			  if(actualValue_snmpro) {
@@ -21883,9 +21883,9 @@ try {
    			  }
    			  
    			  if(snmproValueToBeChanged.equalsIgnoreCase("null")) {
-   				 System.out.println("No changes has been made to 'Snmpro' field"); 
+   				 Log.info("No changes has been made to 'Snmpro' field"); 
    				 ExtentTestManager.getTest().log(LogStatus.PASS, " 'Snmpro' field value is not changed");
-   				 System.out.println(" 'Snmpro' field is displaying as: "+getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_snmpro")).getAttribute("value"));
+   				 Log.info(" 'Snmpro' field is displaying as: "+getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_snmpro")).getAttribute("value"));
    			  }else {
    				getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_snmpro")).clear();
    				Thread.sleep(3000);
@@ -21923,15 +21923,15 @@ try {
    				
    				if(mepid) {
    					
-   					System.out.println("MEP Id  text field is displaying as expected");
+   					Log.info("MEP Id  text field is displaying as expected");
    						
    						mepValue=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_mepid")).getAttribute("value");
    						if(mepValue.equalsIgnoreCase("null")) {
    							ExtentTestManager.getTest().log(LogStatus.FAIL, " No values are displaying under 'MEP ID' field. It should be auto populated by default");
-   							System.out.println(" No values are displaying under 'MEP ID' field. It should be auto populated by default");
+   							Log.info(" No values are displaying under 'MEP ID' field. It should be auto populated by default");
    						}else {
    							ExtentTestManager.getTest().log(LogStatus.PASS, " MEP ID field is auto populated and it is displaying as : "+mepValue);
-   							System.out.println( " MEP ID field is auto populated and it is displaying as : "+mepValue);
+   							Log.info( " MEP ID field is auto populated and it is displaying as : "+mepValue);
    						}
    						
    				}	
@@ -21973,7 +21973,7 @@ try {
 				}
 			   
 			}else {
-				System.out.println("dropdown value inside Vender/Model is empty");
+				Log.info("dropdown value inside Vender/Model is empty");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "No values available inside power alarm dropdown for adding devices");
 			}
 		}catch(Exception e) {
@@ -21986,12 +21986,12 @@ try {
 	//Select value inside power Alarm dropdown	
 			if(poweralarm.equalsIgnoreCase("null")) {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "No values has been passed for Mandatory field 'Powre Alarm' for adding device");
-				System.out.println("No values has been passed for Power Alarm dropdown mandatory Field");
+				Log.info("No values has been passed for Power Alarm dropdown mandatory Field");
 			}else {
 				Clickon(getwebelement("//div[label[text()='Power Alarm']]//div[text()='"+poweralarm +"']"));
 				Thread.sleep(3000);
 				ExtentTestManager.getTest().log(LogStatus.PASS, poweralarm + " is the value passed for Mandatory 'Power Alarm' dropdown field for adding device");
-				System.out.println(poweralarm+" is the value passed for Mandatory 'Power Alarm' dropdown field for adding device");
+				Log.info(poweralarm+" is the value passed for Mandatory 'Power Alarm' dropdown field for adding device");
 			}
 	}catch(NoSuchElementException e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Power Alarm' dropdown is not available in 'Add CPE Device' page");
@@ -22043,11 +22043,11 @@ try {
     	    				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_linklostforowarding")));
     	    				Thread.sleep(3000);
     	    				ExtentTestManager.getTest().log(LogStatus.PASS, " Link Lost Forwarding is unselected as expected");
-    	    				System.out.println(" Link Lost Forwarding is unselected as expected");
+    	    				Log.info(" Link Lost Forwarding is unselected as expected");
     	    			}
     				}else {
     					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'link lostforwarding' is not selected by default");
-    					System.out.println(" 'link lostforwarding' is not selected by default");
+    					Log.info(" 'link lostforwarding' is not selected by default");
     				}
 	    			
 	    			
@@ -22059,7 +22059,7 @@ try {
 	    } 	
 	    }else {
 	    	ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Link Lost Forwarding' checkbox is not dipslaying under 'Add CPE device' page");
-	    	System.out.println(" 'Link Lost Forwarding' checkbox is not displaying under 'Add CPE device' page");
+	    	Log.info(" 'Link Lost Forwarding' checkbox is not displaying under 'Add CPE device' page");
 	    }
 	    }catch(NoSuchElementException e) {
 	    	e.printStackTrace();
@@ -22140,11 +22140,11 @@ public void device_MAcaddress(String application, String macAdressInput) {
    				
    				if(macAdres) {
    					ExtentTestManager.getTest().log(LogStatus.PASS, " ' MAC Address' field is displaying in 'Add CPE Device' page as expected");
-   					System.out.println(" 'MAC Address'  text field is displaying as expected");
+   					Log.info(" 'MAC Address'  text field is displaying as expected");
    					
    					if(macAdressInput.equalsIgnoreCase("null")) {
    						ExtentTestManager.getTest().log(LogStatus.FAIL, "No values has been passed for 'MAC Address' text field for adding device");
-   						System.out.println("No values has been passed for 'MAC Address' mandaotyr field");
+   						Log.info("No values has been passed for 'MAC Address' mandaotyr field");
    						
    					}else {
    						
@@ -22152,7 +22152,7 @@ public void device_MAcaddress(String application, String macAdressInput) {
    						Thread.sleep(3000);
    						
    						ExtentTestManager.getTest().log(LogStatus.PASS, macAdressInput+ " is entered under 'MAc Address' text field" );
-   						System.out.println(macAdressInput+ " is entered under 'MAc Address' text field");
+   						Log.info(macAdressInput+ " is entered under 'MAc Address' text field");
    						
    					}
    				}	
@@ -22175,10 +22175,10 @@ public void device_MAcaddress(String application, String macAdressInput) {
 			sa.assertTrue(Ok, "OK button under add device is not available");
 			
 			if(Ok) {
-				System.out.println(" 'OK' button is displaying under 'Add CPE deivce' page as expected");
+				Log.info(" 'OK' button is displaying under 'Add CPE deivce' page as expected");
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'OK' button is displaying under 'Add CPE deivce' page as expected");
 			}else {
-				System.out.println(" 'OK' button is not displaying under 'Add CPE device' page");
+				Log.info(" 'OK' button is not displaying under 'Add CPE device' page");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'OK' button is not displaying under 'Add CPE device' page");
 			}
 	    }catch(NoSuchElementException e) {
@@ -22198,10 +22198,10 @@ public void device_MAcaddress(String application, String macAdressInput) {
 			sa.assertTrue(cancel, "cancel button under add device is not available");
 			
 			if(cancel) {
-				System.out.println(" 'Cancel' button is displaying under 'Add CPE deivce' page as expected");
+				Log.info(" 'Cancel' button is displaying under 'Add CPE deivce' page as expected");
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'Cancel' button is displaying under 'Add CPE deivce' page as expected");
 			}else {
-				System.out.println(" 'Cancel' button is not displaying under 'Add CPE device' page");
+				Log.info(" 'Cancel' button is not displaying under 'Add CPE device' page");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Cancel' button is not displaying under 'Add CPE device' page");
 			}
 	    }catch(NoSuchElementException e) {
@@ -22231,11 +22231,11 @@ public void device_MAcaddress(String application, String macAdressInput) {
 			 }  
 		   }catch(NoSuchElementException e) {
 			   e.printStackTrace();
-			   System.out.println(" 'Serial Number' text field is not displaying");
+			   Log.info(" 'Serial Number' text field is not displaying");
 			   ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Serial Number' text field is not dipslaying under 'Add CPE device' page");
 		   }catch(Exception er) {
 			   er.printStackTrace();
-			   System.out.println("not able to enter value under 'Serial number' textfield");
+			   Log.info("not able to enter value under 'Serial number' textfield");
 			   ExtentTestManager.getTest().log(LogStatus.FAIL, "Not able to enter value under 'Serial Number' text field");
 		   }
 	}
@@ -22319,7 +22319,7 @@ public void device_MAcaddress(String application, String macAdressInput) {
 	
 		//Media Selection
 	if(technology_siteOrder.equals("Accedian-1G")) {
-		System.out.println("media Selection field will not display for 'Accedian-1G' technology");
+		Log.info("media Selection field will not display for 'Accedian-1G' technology");
 	}else {
 		device_mediaSelection(application, MediaSelectionExpectedValue, MediaselectionActualValue);
 	}
@@ -23141,11 +23141,11 @@ public void device_editVLANIdField(String application, String VLANid) {
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'VLAN id' field is not available ");
-			System.out.println(" 'VLAN id' field is not available ");
+			Log.info(" 'VLAN id' field is not available ");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value in 'VLAN Id' field");
-			System.out.println(" Not able to enter value in 'VLAN Id' field");
+			Log.info(" Not able to enter value in 'VLAN Id' field");
 		}
 	}
 	
@@ -23322,11 +23322,11 @@ public void device_editVLANIdField(String application, String VLANid) {
 		    	
 		    	linklostcheckboxEnabled=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_linklostforowarding")).isEnabled();
 		    	if(linklostcheckboxEnabled) {
-		    		System.out.println(" 'link lostforwarding is enabled for 10G");
+		    		Log.info(" 'link lostforwarding is enabled for 10G");
 		    		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Link Lost forwarding' is enabled");
 		    		
 		    	}else {
-		    		System.out.println("link lost checkbox is disabled as expected");
+		    		Log.info("link lost checkbox is disabled as expected");
 		    		ExtentTestManager.getTest().log(LogStatus.PASS, " 'Link lost Forwarding' checkbox is disabled as expected");
 		    	}
 		    	
@@ -23420,7 +23420,7 @@ public void addCheckbox_commonMethod(String application, String xpath, String la
 			if(availability) {
 				
 				ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " checkbox is displaying as expected");
-				System.out.println(labelname + " checkbox is displaying as expected");
+				Log.info(labelname + " checkbox is displaying as expected");
 			if(!expectedValue.equalsIgnoreCase("null")) {
 				if (expectedValue.equalsIgnoreCase("yes")) {
 
@@ -23431,10 +23431,10 @@ public void addCheckbox_commonMethod(String application, String xpath, String la
 					boolean CPEselection=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isSelected();
 					if(CPEselection) {
 						ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " checkbox is selected as expected");
-						System.out.println(labelname + " checkbox is selected as expected");
+						Log.info(labelname + " checkbox is selected as expected");
 					}else {
 						ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + "  checkbox is not selected");
-						System.out.println(labelname + "  checkbox is not selected");
+						Log.info(labelname + "  checkbox is not selected");
 					}
 					
 				}
@@ -23446,15 +23446,15 @@ public void addCheckbox_commonMethod(String application, String xpath, String la
 			}
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " checbox is not available");
-				System.out.println(labelname + " checbox is not available");
+				Log.info(labelname + " checbox is not available");
 			}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname +  " checkbox is not available ");
-			System.out.println( labelname +  " checkbox is not available ");
+			Log.info( labelname +  " checkbox is not available ");
 		}catch(Exception er) {
 			er.printStackTrace();
-			System.out.println("Not able to select "+ labelname+ " checkbox");
+			Log.info("Not able to select "+ labelname+ " checkbox");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Not able to select "+ labelname+ " checkbox");
 		}
 	}
@@ -23481,11 +23481,11 @@ public void addCheckbox_commonMethod(String application, String xpath, String la
 				}
 		 }catch(NoSuchElementException e) {
 			 e.printStackTrace();
-			 System.out.println("Email field is not available");
+			 Log.info("Email field is not available");
 			 ExtentTestManager.getTest().log(LogStatus.PASS, " 'Email' field is not available under 'create Service' page");
 		 }catch(Exception er) {
 			 er.printStackTrace();
-			 System.out.println("Not able to enter value in 'Email' field");
+			 Log.info("Not able to enter value in 'Email' field");
 			 ExtentTestManager.getTest().log(LogStatus.FAIL, "Not able to enter value in 'Email' field");
 		 }
 	}
@@ -23513,12 +23513,12 @@ public void addCheckbox_commonMethod(String application, String xpath, String la
 		}
 	  }catch(NoSuchElementException e) {
 		  e.printStackTrace();
-		  System.out.println("Phone contact text field is not available");
+		  Log.info("Phone contact text field is not available");
 		  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Phone Contact' text field is not available under 'Create Service' page");
 	  }catch(Exception err) {
 		  err.printStackTrace();
 		  ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to enter value under 'hone Contact' field");
-		  System.out.println("Not able to enter value under 'Phone Contact' field");
+		  Log.info("Not able to enter value under 'Phone Contact' field");
 	  }
 	}
 	
@@ -23545,12 +23545,12 @@ public void addCheckbox_commonMethod(String application, String xpath, String la
 		}
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
-		System.out.println("Remak text field is not availeble");
+		Log.info("Remak text field is not availeble");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Remark' text field is not available under 'Create Service' page");
 	}catch(Exception err) {
 		err.printStackTrace();
-		System.out.println(" Not able t enter value in 'remark' text field");
-		 System.out.println("Not able to enter value under 'Remark' field");
+		Log.info(" Not able t enter value in 'remark' text field");
+		 Log.info("Not able to enter value under 'Remark' field");
 	}
 		
 	}
@@ -23581,7 +23581,7 @@ public void addCheckbox_commonMethod(String application, String xpath, String la
 				}
 				else {
 			
-					System.out.println("Performance Reporting is not selected");
+					Log.info("Performance Reporting is not selected");
 					ExtentTestManager.getTest().log(LogStatus.PASS,"performance Reporting checkbox is not selected");
 				}
 			}else {
@@ -23592,7 +23592,7 @@ public void addCheckbox_commonMethod(String application, String xpath, String la
 			}
 		   }catch(NoSuchElementException e) {
 			   e.printStackTrace();
-			   System.out.println(" 'Perormance reporting' checkbox is not selected");
+			   Log.info(" 'Perormance reporting' checkbox is not selected");
 			   ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Performance Reporting' checkbox is not displaying under 'create service' page");
 		   }catch(Exception err) {
 			   err.printStackTrace();
@@ -23624,7 +23624,7 @@ public void addCheckbox_commonMethod(String application, String xpath, String la
 		}
 	  }catch(NoSuchElementException e) {
 		  e.printStackTrace();
-		  System.out.println(" 'Delivery channel' dropdown is not dispalying");
+		  Log.info(" 'Delivery channel' dropdown is not dispalying");
 		  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Delivery channel' dropdown is not dispalying under 'create Serice' page");
 	  }catch(Exception err) {
 		  err.printStackTrace();
@@ -23641,7 +23641,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		sa.assertTrue(EVPNavaiability, " 'E_VPN tehnology' dropdown is not displayed");
 		if(EVPNavaiability) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'E_VPN tehnology' dropdown is displaying as expected");
-			System.out.println(" 'E_VPN tehnology' dropdown is displaying as expected");
+			Log.info(" 'E_VPN tehnology' dropdown is displaying as expected");
 		if (!E_VPNtechnology.equalsIgnoreCase("null")) {
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/E_VPNtechnologyDropdown")));
@@ -23649,7 +23649,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 			Clickon(getwebelement("//div[contains(text(),'" + E_VPNtechnology + "')]"));
 			Thread.sleep(3000);
 			ExtentTestManager.getTest().log(LogStatus.PASS, E_VPNtechnology + " is selected under 'E_VPN tehnology' dropdown");
-			System.out.println(E_VPNtechnology + " is selected under 'E_VPN tehnology' dropdown");
+			Log.info(E_VPNtechnology + " is selected under 'E_VPN tehnology' dropdown");
 
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.PASS,"No value selected under 'E_VPN tehnology' dropdown"); 
@@ -23659,12 +23659,12 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		}
 	  }catch(NoSuchElementException e) {
 		  e.printStackTrace();
-		  System.out.println(" 'E_VPN tehnology' dropdown is not dispalying");
+		  Log.info(" 'E_VPN tehnology' dropdown is not dispalying");
 		  ExtentTestManager.getTest().log(LogStatus.FAIL, " 'E_VPN tehnology' dropdown is not dispalying under 'create Serice' page");
 	  }catch(Exception err) {
 		  err.printStackTrace();
 		  ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to select value under 'E_VPN tehnology' dropodwn");
-		  System.out.println(" Not able to select value under 'E_VPN tehnology' dropodwn");
+		  Log.info(" Not able to select value under 'E_VPN tehnology' dropodwn");
 	  }
 	}
 
@@ -23695,7 +23695,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		}
 	  }catch(NoSuchElementException e) {
 		  e.printStackTrace();
-		  System.out.println(" 'Management order' dropdown is not displaying");
+		  Log.info(" 'Management order' dropdown is not displaying");
 		  ExtentTestManager.getTest().log(LogStatus.FAIL, " ' Management Order' dropdown is not displaying under 'Create Service' page");
 	  }catch(Exception err) {
 		  err.printStackTrace();
@@ -23745,7 +23745,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 				}
 				
 			}catch(NoSuchElementException e) {
-				System.out.println(" 'Notification management' dropodwn is not displaying under 'create Service' page");
+				Log.info(" 'Notification management' dropodwn is not displaying under 'create Service' page");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Notification management' dropodwn is not displaying under 'create Service' page");
 			}catch(Exception err) {
 				err.printStackTrace();
@@ -23753,7 +23753,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 			}
 			} else {
 				Log.info("Pro active monitoring is not selected");
-				System.out.println("pro active monitoring is not selected");
+				Log.info("pro active monitoring is not selected");
 				ExtentTestManager.getTest().log(LogStatus.PASS,"performance monitor checkbox is not selected "); 
 			}
 
@@ -23785,12 +23785,12 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		}
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
-		System.out.println("'Intermediate Technology' text field is not displying");
+		Log.info("'Intermediate Technology' text field is not displying");
 		ExtentTestManager.getTest().log(LogStatus.FAIL," 'Intermediate Technology' text field is not displying under 'create service' page");
 	}catch(Exception err) {
 		err.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL," Not able to enter value under 'Intermediate Technology' text field in 'create service' page");
-		System.out.println("Not able to enter value under 'Intermediate Technology' text field in 'create service' page");
+		Log.info("Not able to enter value under 'Intermediate Technology' text field in 'create service' page");
 	}
 	}
 	
@@ -23849,7 +23849,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		}
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
-		System.out.println("'Standard CIR' Text Field is not displaying, when 'Actelis Based' checkbox is selected");
+		Log.info("'Standard CIR' Text Field is not displaying, when 'Actelis Based' checkbox is selected");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Standard CIR' Text Field is not displaying, when 'Actelis Based' checkbox is selected");
 	}catch(Exception err) {
 		err.printStackTrace();
@@ -23878,12 +23878,12 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		}
 	 }catch(NoSuchElementException e) {
 			e.printStackTrace();
-			System.out.println("'Standard EIR' Text Field is not displaying, when 'Actelis Based' checkbox is selected");
+			Log.info("'Standard EIR' Text Field is not displaying, when 'Actelis Based' checkbox is selected");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Standard EIR' Text Field is not displaying, when 'Actelis Based' checkbox is selected");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not albe to enter value under 'Standard EIR' field in 'create Service' page");
-			System.out.println(" Not able to enter value under 'Standard EIR' field in 'create Service' page");
+			Log.info(" Not able to enter value under 'Standard EIR' field in 'create Service' page");
 		}
 	}
 	
@@ -23908,7 +23908,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		}	
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
-		System.out.println("'Premium CIR' Text Field is not displaying, when 'Actelis Based' checkbox is selected");
+		Log.info("'Premium CIR' Text Field is not displaying, when 'Actelis Based' checkbox is selected");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Premium CIR' Text Field is not displaying, when 'Actelis Based' checkbox is selected");
 	}catch(Exception err) {
 		err.printStackTrace();
@@ -23937,7 +23937,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		}
 	  }catch(NoSuchElementException e) {
 			e.printStackTrace();
-			System.out.println("'Premium EIR' Text Field is not displaying, when 'Actelis Based' checkbox is selected");
+			Log.info("'Premium EIR' Text Field is not displaying, when 'Actelis Based' checkbox is selected");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Premium EIR' Text Field is not displaying, when 'Actelis Based' checkbox is selected");
 		}catch(Exception err) {
 			err.printStackTrace();
@@ -23967,7 +23967,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 			
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Service Identification field value is not edited");
-			System.out.println(" Service Identification field value is not edited");
+			Log.info(" Service Identification field value is not edited");
 		}
 	}else {
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Service Identification' field is not availale in 'Edit Service'page");
@@ -24025,11 +24025,11 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 	  }catch(NoSuchElementException e) {
 		  e.printStackTrace();
 		  ExtentTestManager.getTest().log(LogStatus.FAIL, "Single EndPoint CPE checkbox is not available under 'Edit Service' page");
-		  System.out.println("Single EndPoint CPE checkbox is not available under 'Edit Service' page");
+		  Log.info("Single EndPoint CPE checkbox is not available under 'Edit Service' page");
 	  }catch(Exception err) {
 		  err.printStackTrace();
 		  ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to click on 'Single endpoint CPE' checkbox");
-		  System.out.println("Not able to click on 'Single endpoint CPE' checkbox");
+		  Log.info("Not able to click on 'Single endpoint CPE' checkbox");
 	  }
 	
 	}	else{
@@ -24061,7 +24061,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 				
 				String Actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/Email")).getAttribute("value");
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'Email' field is edited as: "+Actualvalue );
-				System.out.println("'Email' field is edited as: "+Actualvalue);
+				Log.info("'Email' field is edited as: "+Actualvalue);
 
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "'Email' field is not edited");
@@ -24072,7 +24072,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		 }catch(NoSuchElementException e) {
 			 e.printStackTrace();
 			 ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Email' text field is not available in 'Edit Service' page");
-			 System.out.println(" 'Email' text field is not available in 'Edit Service' page");
+			 Log.info(" 'Email' text field is not available in 'Edit Service' page");
 		 } catch(Exception err) {
 			 err.printStackTrace();
 			 ExtentTestManager.getTest().log(LogStatus.FAIL, " not able to edit 'Email' field");
@@ -24109,11 +24109,11 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 	     }catch(NoSuchElementException e) {
 	    	 e.printStackTrace();
 	    	 ExtentTestManager.getTest().log(LogStatus.FAIL, " Phone Contact field is not available in 'Edit Service' page");
-	    	 System.out.println("Phone Contact field is not available in 'Edit Service' page");
+	    	 Log.info("Phone Contact field is not available in 'Edit Service' page");
 	     }catch(Exception err) {
 	    	 err.printStackTrace();
 	    	 ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit 'phone Contact' field");
-	    	 System.out.println(" Not able to edit 'phone Contact' field");
+	    	 Log.info(" Not able to edit 'phone Contact' field");
 	     }
 	}
 	
@@ -24147,11 +24147,11 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		   }catch(NoSuchElementException e) {
 		    	 e.printStackTrace();
 		    	 ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Remark' field is not available in 'Edit Service' page");
-		    	 System.out.println(" 'remark' field is not available in 'Edit Service' page");
+		    	 Log.info(" 'remark' field is not available in 'Edit Service' page");
 		     }catch(Exception err) {
 		    	 err.printStackTrace();
 		    	 ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit 'Remark' field");
-		    	 System.out.println(" Not able to edit 'Remark' field");
+		    	 Log.info(" Not able to edit 'Remark' field");
 		     }
 	}
 	
@@ -24282,7 +24282,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 					Clickon(getwebelement("//div[contains(text(),'" + deliveryChannel + "')]"));
 					
 					ExtentTestManager.getTest().log(LogStatus.PASS,"Edited value for 'Delivery Channel' dropdown is "+deliveryChannel);
-					System.out.println("Delivery channel dropdown value is edited as expected");
+					Log.info("Delivery channel dropdown value is edited as expected");
 
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Delivery channel dropdown value is not edited");
@@ -24293,7 +24293,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 			   }catch(NoSuchElementException e) {
 				   e.printStackTrace();
 				   ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Delivery channel' dropdown is not available in 'Edit Service' page");
-				   System.out.println(" 'Delivery channel' dropdown is not available in 'Edit Service' page");
+				   Log.info(" 'Delivery channel' dropdown is not available in 'Edit Service' page");
 			   }catch(Exception err){
 				   err.printStackTrace();
 				   ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit 'delvery Channel' dropdown");
@@ -24319,7 +24319,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 					Clickon(getwebelement("//div[contains(text(),'" + EVPNtecnology + "')]"));
 					
 					ExtentTestManager.getTest().log(LogStatus.PASS,"Edited value for 'E-VPN Technology' dropdown is "+EVPNtecnology);
-					System.out.println("E-VPN Technology dropdown value is edited as expected");
+					Log.info("E-VPN Technology dropdown value is edited as expected");
 
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.PASS, "E-VPN Technology dropdown value is not edited");
@@ -24330,7 +24330,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 			   }catch(NoSuchElementException e) {
 				   e.printStackTrace();
 				   ExtentTestManager.getTest().log(LogStatus.FAIL, " 'E-VPN Technology' dropdown is not available in 'Edit Service' page");
-				   System.out.println(" 'E-VPN Technology' dropdown is not available in 'Edit Service' page");
+				   Log.info(" 'E-VPN Technology' dropdown is not available in 'Edit Service' page");
 			   }catch(Exception err){
 				   err.printStackTrace();
 				   ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit 'E-VPN Technology' dropdown");
@@ -24359,12 +24359,12 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 			Thread.sleep(3000);
 			
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Edited value for 'management Order' field is " + ManagementOrder);
-			System.out.println("Edited value for 'management Order' field is " + ManagementOrder);
+			Log.info("Edited value for 'management Order' field is " + ManagementOrder);
 			
 		}else {
 			
 			ExtentTestManager.getTest().log(LogStatus.PASS, "No changes has been made to 'Management order' field");
-			System.out.println("No changes has been made to 'Management order' field");
+			Log.info("No changes has been made to 'Management order' field");
 		}
 	}else {
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Management Order' dropdown is not available in 'Edit Service' page");
@@ -24372,11 +24372,11 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Management Order' dropdown is not available in 'Edit Service' page");
-				System.out.println(" 'Management Order' dropdown is not available in 'Edit Service' page");
+				Log.info(" 'Management Order' dropdown is not available in 'Edit Service' page");
 			}catch(Exception err) {
 				err.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit 'management order' dropodwn");
-				System.out.println(" Not able to edit 'management order' dropodwn");
+				Log.info(" Not able to edit 'management order' dropodwn");
 			}
 		}
 		
@@ -24433,7 +24433,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Intermediate technologies' field is not displaying under 'edit Sevice' page");
-		System.out.println(" 'Intermediate technologies' field is not displaying under 'edit Sevice' page");
+		Log.info(" 'Intermediate technologies' field is not displaying under 'edit Sevice' page");
 	}catch(Exception err) {
 		err.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit 'Intermediate technologies' field");
@@ -24473,11 +24473,11 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Circuit type' "+ CircuitType +" is not dipslaying under 'Edit Service page");
-				System.out.println(" 'Circuit type' "+ CircuitType +" is not dipslaying under 'Edit Service page");
+				Log.info(" 'Circuit type' "+ CircuitType +" is not dipslaying under 'Edit Service page");
 			}catch(Exception er) {
 				er.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'Circuit type' "+ CircuitType +" is disabled under 'Edit Service page");
-				System.out.println(" 'Circuit type' "+ CircuitType +" is disabled under 'Edit Service page");
+				Log.info(" 'Circuit type' "+ CircuitType +" is disabled under 'Edit Service page");
 			}
 		}
 		
@@ -24506,11 +24506,11 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Premise EIR' field is not displaying in 'Edit Service' page ");
-			System.out.println(" Premise EIR' field is not displaying in 'Edit Service' page");
+			Log.info(" Premise EIR' field is not displaying in 'Edit Service' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit 'Premise EIR' field");
-			System.out.println("Not able to edit 'Premise EIR' field");
+			Log.info("Not able to edit 'Premise EIR' field");
 			
 		}
 	  }
@@ -24542,11 +24542,11 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Premise CIR' field is not displaying in 'Edit Service' page ");
-			System.out.println(" Premise CIR' field is not displaying in 'Edit Service' page ");
+			Log.info(" Premise CIR' field is not displaying in 'Edit Service' page ");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit 'Premise CIR' field");
-			System.out.println("Not able to edit 'Premise CIR' field");
+			Log.info("Not able to edit 'Premise CIR' field");
 			
 		}
 	  }
@@ -24578,11 +24578,11 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Standard EIR' field is not displaying in 'Edit Service' page ");
-			System.out.println(" 'Standard EIR' field is not displaying in 'Edit Service' page");
+			Log.info(" 'Standard EIR' field is not displaying in 'Edit Service' page");
 		}catch(Exception err) {
 			err.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit 'Standard EIR' field");
-			System.out.println(" Not able to edit 'Standard EIR' field");
+			Log.info(" Not able to edit 'Standard EIR' field");
 			
 		}
 	  }
@@ -24611,11 +24611,11 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		}catch(NoSuchElementException e) {
 				e.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Standard CIR' field is not displaying in 'Edit Service' page ");
-				System.out.println(" 'Standard CIR' field is not displaying in 'Edit Service' page");
+				Log.info(" 'Standard CIR' field is not displaying in 'Edit Service' page");
 			}catch(Exception err) {
 				err.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit 'Standard CIR' field");
-				System.out.println(" Not able to edit 'Standard CIR' field");
+				Log.info(" Not able to edit 'Standard CIR' field");
 				
 			}
 	  }
@@ -24629,30 +24629,30 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 				String valueinfo = ele.getText().toString();
 				if ((valueinfo.equals("")) || (valueinfo.equalsIgnoreCase(null))) {
 
-					System.out.println("value not displayed for " + label);
+					Log.info("value not displayed for " + label);
 					valueinfo= "Null";
 					
 					sa.assertEquals(valueinfo, expectedValue, label + " value is not displaying as expected");
 					
-//					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : No value displaying for : " + label);
+//					ExtentTestManager.getTest().log(LogStatus.PASS, "No value displaying for : " + label);
 					
 					
 				} else {
 					
-					System.out.println("value displayed for " + label + " is : " + valueinfo);
+					Log.info("value displayed for " + label + " is : " + valueinfo);
 					
-					Log.info("Step : value displayed for" + label + "is : " + valueinfo);
+					Log.info("value displayed for" + label + "is : " + valueinfo);
 					
 					sa.assertEquals(valueinfo, expectedValue, label + " value is not displaying as expected");
 
 					if(valueinfo.equalsIgnoreCase(expectedValue)) {
-						System.out.println("The valus is dipslaying as expected");
+						Log.info("The valus is dipslaying as expected");
 						ExtentTestManager.getTest().log(LogStatus.PASS, " Value is displaying as expected in 'view' page for "+label);
-						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : value displayed for" + label + "is : " + valueinfo);
+						ExtentTestManager.getTest().log(LogStatus.PASS, "value displayed for" + label + "is : " + valueinfo);
 					}else {
-						System.out.println("the values are not dipslaying as expected for label: "+label);
+						Log.info("the values are not dipslaying as expected for label: "+label);
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " Value is not displaying as expected in 'view' page for "+ label);
-						ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : value displayed for " + label + "is : " + valueinfo);
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "value displayed for " + label + "is : " + valueinfo);
 						
 					}
 					
@@ -24661,8 +24661,8 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 				err.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, label + " value is not displaying as expected ");
 			} catch (NoSuchElementException e) {
-				System.out.println("value not displayed for " + label);
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : " + label +" is not displaying");
+				Log.info("value not displayed for " + label);
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "" + label +" is not displaying");
 				
 			}
 		}
@@ -24673,11 +24673,11 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 			availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
 			if(availability) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is displaying as expected");
-				System.out.println(labelname + " text field is displaying as expected");
+				Log.info(labelname + " text field is displaying as expected");
 				
 				if(expectedValueToEdit.equalsIgnoreCase("null")) {
 					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is not edited as expected");
-					System.out.println(labelname + " text field is not edited as expected");
+					Log.info(labelname + " text field is not edited as expected");
 				}else {
 					
 					getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).clear();
@@ -24692,16 +24692,16 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 				
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
-				System.out.println(labelname + " text field is not displaying");
+				Log.info(labelname + " text field is not displaying");
 			}
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " text field is not displaying");
-			System.out.println(labelname + " text field is not displaying");
+			Log.info(labelname + " text field is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Not able to edit"+ labelname + " text field");
-			System.out.println(" Not able to edit"+ labelname + " text field");
+			Log.info(" Not able to edit"+ labelname + " text field");
 		}
 	}
 	  
@@ -24714,12 +24714,12 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		  availability=getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_mappingModedropdown")).isDisplayed();
 		  if(availability) {
 			  ExtentTestManager.getTest().log(LogStatus.PASS, "Mapping mode dropdown is displaying as expected");
-			  System.out.println(labelname + " is displaying as expected");
+			  Log.info(labelname + " is displaying as expected");
 			  
 			  if(mappingMode.equalsIgnoreCase("null")) {
 				  
 				  ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under "+ labelname + " dropdown");
-				  System.out.println(" No values selected under "+ labelname + " dropdown");
+				  Log.info(" No values selected under "+ labelname + " dropdown");
 			  }else {
 				  
 				  Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_mappingModedropdown_xbutton")));
@@ -24730,20 +24730,20 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 				  
 				  String actualValue=getwebelement("//div[label[text()='"+ labelname +"']]//span").getText();
 				  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
-				  System.out.println( labelname + " dropdown value selected as: "+ actualValue);
+				  Log.info( labelname + " dropdown value selected as: "+ actualValue);
 				  
 			  }
 		  }else {
 			  ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " dropdown is not displaying");
-			  System.out.println(labelname + " is not displaying");
+			  Log.info(labelname + " is not displaying");
 		  }
 		}catch(NoSuchElementException e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " dropdown is not displaying");
-			  System.out.println(labelname + " is not displaying");
+			  Log.info(labelname + " is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " NO value selected under "+ labelname + " dropdown");
-			System.out.println(" NO value selected under "+ labelname + " dropdown");
+			Log.info(" NO value selected under "+ labelname + " dropdown");
 		}
 		  
 	  }
@@ -24752,28 +24752,27 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 	  public boolean findPanelHeader(String application, String devicePanelName) throws InterruptedException, DocumentException {
 
 		  scrolltoend();
-		  Thread.sleep(2000);
 		  WebElement el=null;
 		 boolean panelheader=false;
 		try { 
 			
-			el=getwebelement(xml.getlocator("//locators/" + application + "/devicePanelHeaders_InViewSiteOrderPage").replace("value", devicePanelName));
+			el=getwebelementNoWait(xml.getlocator("//locators/" + application + "/devicePanelHeaders_InViewSiteOrderPage").replace("value", devicePanelName));
 			panelheader=el.isDisplayed();
 			
 		 if(panelheader) {
 			 ExtentTestManager.getTest().log(LogStatus.INFO, devicePanelName +" panel is displaying under 'view site order' page");
-			 System.out.println(" 'Equipment' panel is displaying under 'view site order' page");
+			 Log.info(" 'Equipment' panel is displaying under 'view site order' page");
 			 panelheader=true;
 			 
 		 }else {
 			 ExtentTestManager.getTest().log(LogStatus.INFO, devicePanelName + "  panel is not displaying under 'view site order' page");
-			 System.out.println(" 'Equipment' panel is not displaying under 'view site order' page");
+			 Log.info(" 'Equipment' panel is not displaying under 'view site order' page");
 			 panelheader=false;
 			 
 		 }}catch(NoSuchElementException e) {
 			 e.printStackTrace();
 			 ExtentTestManager.getTest().log(LogStatus.INFO, devicePanelName + " panel is not displaying under 'view site order' page");
-			 System.out.println(" 'Equipment' panel is not displaying under 'view site order' page");
+			 Log.info(" 'Equipment' panel is not displaying under 'view site order' page");
 			 panelheader=false;
 			 
 		 }
@@ -24791,20 +24790,20 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 			Thread.sleep(5000);  
 		  
 		 
-		  System.out.println(" ");
+		  Log.info(" ");
 		 List<WebElement> interfacelist= getwebelements(xml.getlocator("//locators/" + application + "/findlistofInterfacesNames"));
 		 
 		 int interfacelistSize=interfacelist.size();
-		 System.out.println("list of interfaces displaying are:"+ interfacelistSize);
+		 Log.info("list of interfaces displaying are:"+ interfacelistSize);
 		 ExtentTestManager.getTest().log(LogStatus.PASS, " size of interfaces displaying is: "+ interfacelistSize);
 		 
 		 ExtentTestManager.getTest().log(LogStatus.PASS, " Interfaces displaying are: ");
-		 System.out.println(" Interfaces displaying are: ");
+		 Log.info(" Interfaces displaying are: ");
 		 
 		 for (WebElement interfaceName : interfacelist) {
 			 
 			 ExtentTestManager.getTest().log(LogStatus.INFO, " "+ interfaceName.getText());
-			 System.out.println("Interface names are: "+ interfaceName.getText());
+			 Log.info("Interface names are: "+ interfaceName.getText());
 		 }
 	  }
 	  
@@ -24818,16 +24817,16 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		 
 		 if(interfacelistSize==0) {
 			 ExtentTestManager.getTest().log(LogStatus.FAIL, "No interfaces are displaying");
-			 System.out.println("no Interfaces are displaying");
+			 Log.info("no Interfaces are displaying");
 		 }else {
-			 System.out.println("list of interfaces displaying are:"+ interfacelistSize);
+			 Log.info("list of interfaces displaying are:"+ interfacelistSize);
 			 ExtentTestManager.getTest().log(LogStatus.PASS, " size of interfaces displaying is: "+ interfacelistSize);
 			 
 			 
 			 for (WebElement interfaceName : interfacelist) {
 				 
 				 ExtentTestManager.getTest().log(LogStatus.INFO, " "+ interfaceName.getText());
-				 System.out.println("Interface names are: "+ interfaceName.getText());
+				 Log.info("Interface names are: "+ interfaceName.getText());
 			 }
 		 }
 	  }
@@ -24840,7 +24839,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 				if(circuitID.equalsIgnoreCase("null")) {
 					
 					ExtentTestManager.getTest().log(LogStatus.PASS, " No input provided for 'Circuit ID' field");
-					System.out.println(" No input provided for 'Circuit ID' field");
+					Log.info(" No input provided for 'Circuit ID' field");
 					
 				}else {
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/selectCircuit_togglebutton")));
@@ -24882,10 +24881,10 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 				String actualMessage=getwebelement(xml.getlocator("//locators/" + application + "/succesMessageForfetchDeviceInterfcae")).getText();
 				if(successMessage) {
 					ExtentTestManager.getTest().log(LogStatus.PASS, " After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
-					System.out.println(" After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
+					Log.info(" After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
 					
 					ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message displays as: "+actualMessage);
-					System.out.println(" Success Message displays as: "+actualMessage);
+					Log.info(" Success Message displays as: "+actualMessage);
 					
 					//click on the 'click here' link
 //					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/succesMessageForfetchDeviceInterfcae")));
@@ -24895,7 +24894,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 					
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.PASS, " After clicking on 'Fetch Device Interface' link, success Message is not displaying");
-					System.out.println(" After clicking on 'Fetch Device Interface' link, success Message is not displaying");
+					Log.info(" After clicking on 'Fetch Device Interface' link, success Message is not displaying");
 				}
 		 }
 	 
@@ -24923,8 +24922,8 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 			 ExtentTestManager.getTest().log(LogStatus.PASS, "After Editing interface, list of values displaying in interface table are: ");
 			 ExtentTestManager.getTest().log(LogStatus.PASS, "value displaying for "+ ColumnNames + " is: "+values);
 			 
-			 System.out.println("After Editing interface, list of values displaying in interface table are: ");
-			 System.out.println("value displaying for "+ ColumnNames + " is: "+values);
+			 Log.info("After Editing interface, list of values displaying in interface table are: ");
+			 Log.info("value displaying for "+ ColumnNames + " is: "+values);
 			 
 		 }
 	 }
@@ -24939,7 +24938,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 
 		TotalPages = Integer.parseInt(TextKeyword);
 
-		System.out.println("Total number of pages in table is: " + TotalPages);
+		Log.info("Total number of pages in table is: " + TotalPages);
 
 		ab:
 		if (TotalPages != 0) {
@@ -24949,17 +24948,17 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 			// Current page
 			String CurrentPage = getwebelement("(//div[div[div[contains(@title,'"+ devicename +"')]]]/following-sibling::div)[1]//span[@ref='lbCurrent']").getText();
 			int Current_page = Integer.parseInt(CurrentPage);
-			System.out.println("The current page is: " + Current_page);
+			Log.info("The current page is: " + Current_page);
 
 			assertEquals(k, Current_page);
 
-			System.out.println("Currently we are in page number: " + Current_page);
+			Log.info("Currently we are in page number: " + Current_page);
 
 			List<WebElement> results = getwebelements("(//div[div[div[contains(@title,'"+ devicename +"')]]]/following-sibling::div)[1]//div[text()='"+ interfacename +"']");
 			
 				
 			int numofrows = results.size();
-			System.out.println("no of results: " + numofrows);
+			Log.info("no of results: " + numofrows);
 			boolean resultflag;
 
 		
@@ -24975,9 +24974,9 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 					try {
 
 						resultflag = results.get(i).isDisplayed();
-						System.out.println("status of result: " + resultflag);
+						Log.info("status of result: " + resultflag);
 						if (resultflag) {
-							System.out.println(results.get(i).getText());
+							Log.info(results.get(i).getText());
 							results.get(i).click();
 							ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected under 'show Interface' ");
 							Thread.sleep(8000);
@@ -25004,7 +25003,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		}
 		}else {
 			
-			System.out.println("No values available in table");
+			Log.info("No values available in table");
 			Log.info("No values available inside the InterfaceInService table");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "No value available inside 'show Interface' panel");
 		}
@@ -25017,14 +25016,14 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 		if(successMessage) {
 			
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message for device deletion is dipslaying as expected");
-			System.out.println( " Success Message for device deletion is dipslaying as expected");
+			Log.info( " Success Message for device deletion is dipslaying as expected");
 			
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Message displays as: "+actualmessage);
-			System.out.println("Message displays as: "+actualmessage);
+			Log.info("Message displays as: "+actualmessage);
 			
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message for device deletion is not dipslaying");
-			System.out.println( " Success Message for device deletion is not dipslaying");
+			Log.info( " Success Message for device deletion is not dipslaying");
 		}
 	}
  
@@ -25036,10 +25035,10 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 	 EquipConfigPanel = getwebelement(xml.getlocator("//locators/" + application + "/EquipementConfigurationPanel")).isDisplayed();
 	 if(EquipConfigPanel) {
 		 ExtentTestManager.getTest().log(LogStatus.PASS, "In 'view Site Order' page, 'Equipment Configuration' panel is displaying as expected for 'Actelis' Technology");
-	System.out.println( "In 'view Site Order' page, 'Equipment Configuration' panel is displaying as expected for 'Actelis' Technology");
+	Log.info( "In 'view Site Order' page, 'Equipment Configuration' panel is displaying as expected for 'Actelis' Technology");
 	 }else {
 		 ExtentTestManager.getTest().log(LogStatus.FAIL, "In 'view Site Order' page, 'Equipment Configuration' panel is not displaying for 'Actelis' Technology");
-		 System.out.println("In 'view Site Order' page, 'Equipment Configuration' panel is not displaying for 'Actelis' Technology");
+		 Log.info("In 'view Site Order' page, 'Equipment Configuration' panel is not displaying for 'Actelis' Technology");
 		 
 	 }
 	return EquipConfigPanel;
@@ -25058,7 +25057,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 	 addActelisHeader=getwebelement(xml.getlocator("//locators/" + application + "/addActelisCPEpage_headerName")).isDisplayed();
 	 if(addActelisHeader) {
 		 ExtentTestManager.getTest().log(LogStatus.PASS, " 'Add Actelis CPE device' page is displaying as expected");
-		 System.out.println(" 'Add Actelis CPE device' page is displaying as expected");
+		 Log.info(" 'Add Actelis CPE device' page is displaying as expected");
 		
 		 Clickon(getwebelement("//span[text()='OK']"));
 		 Thread.sleep(2000);
@@ -25110,7 +25109,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
  public void verifyDataEnteredFordeviceCreation_Actelis(String application, String devicename, String vendorModel, String RouterID,
 		 String manageAddress, String mepID, String ETH_Port) throws InterruptedException, DocumentException {
 	 
-	 waitForpageload();
+	 
 	 waitforPagetobeenable();
 	 
 	 scrolltoend();
@@ -25137,7 +25136,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
  
  public void AddDSLAMandHSL(String application, String DSLMdevice, String HSlname) throws InterruptedException, DocumentException, IOException {
 	 
-	 waitForpageload();
+	 
 	 waitforPagetobeenable();
 	 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/addDSLAMandHSL_xButton")));
@@ -25159,7 +25158,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 				Log.info(DSLMdevice + " is selected under 'DSLAM device' dropdown");
 				
 				
-				waitForpageload();
+				
 				waitforPagetobeenable();
 				
 				click_commonMethod(application, "List_HSL", "List_HSL_Link", xml);		//click on "List HSL" button
@@ -25186,7 +25185,7 @@ public void createService_EVPNtechnology(String application, String E_VPNtechnol
 scrolltoend();
 Thread.sleep(3000);
 
-	 System.out.println("check second time");
+	 Log.info("check second time");
 		int TotalPages;
 
 		String TextKeyword = Gettext(
@@ -25194,7 +25193,7 @@ Thread.sleep(3000);
 
 		TotalPages = Integer.parseInt(TextKeyword);
 
-		System.out.println("Total number of pages in table is: " + TotalPages);
+		Log.info("Total number of pages in table is: " + TotalPages);
 
 		ab:
 
@@ -25207,12 +25206,12 @@ Thread.sleep(3000);
 				int Current_page = Integer.parseInt(CurrentPage);
 
 
-				System.out.println("Currently we are in page number: " + Current_page);
+				Log.info("Currently we are in page number: " + Current_page);
 
 				List<WebElement> results = getwebelements("//div[contains(text(),'"+ interfacenumber +"')]");
 				
 				int numofrows = results.size();
-				System.out.println("no of results: " + numofrows);
+				Log.info("no of results: " + numofrows);
 				boolean resultflag;
 
 				if (numofrows == 0) {
@@ -25229,9 +25228,9 @@ Thread.sleep(3000);
 						try {
 
 							resultflag = results.get(i).isDisplayed();
-							System.out.println("status of result: " + resultflag);
+							Log.info("status of result: " + resultflag);
 							if (resultflag) {
-								System.out.println(results.get(i).getText());
+								Log.info(results.get(i).getText());
 								results.get(i).click();
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacenumber + " is selected under 'Add DSLAM and Device' page");
 								
@@ -25254,7 +25253,7 @@ Thread.sleep(3000);
 			}
 		} else {
 
-			System.out.println("No values available in table");
+			Log.info("No values available in table");
 			Log.info("No Interfaces got fetched");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " NO interfaces got fetched");
 		}
@@ -25264,7 +25263,7 @@ Thread.sleep(3000);
  public void deleteDeviceFromService_EquipmentConfig_Actelis(String application,String devicename) throws InterruptedException, DocumentException {
 		
 		
-	 waitForpageload();
+	 
 	 waitforPagetobeenable();
 	 
 	 scrolltoend();
@@ -25281,7 +25280,7 @@ Thread.sleep(3000);
 			Log.info("Delete popup message is getting displayed");
 			String actualMessage=getwebelement(xml.getlocator("//locators/" + application + "/deleteMessage_equipment")).getText();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Delete device popup is displaying and popup message displays as: "+ actualMessage);
-			System.out.println( "Delete device popup is displaying and popup message displays as: "+ actualMessage);
+			Log.info( "Delete device popup is displaying and popup message displays as: "+ actualMessage);
 			break;
 		} 
 		
@@ -25321,7 +25320,7 @@ Thread.sleep(3000);
 	 if(popupMessage) {
 		 String actualmsg=getwebelement(xml.getlocator("//locators/" + application + "/popupMessage_forRemove_ActelisConfiguration")).getText();
 		 ExtentTestManager.getTest().log(LogStatus.PASS, " On clicking remoe button, popup message displays as: "+ actualmsg);
-		 System.out.println(" On clicking remoe button, popup message displays as: "+ actualmsg);
+		 Log.info(" On clicking remoe button, popup message displays as: "+ actualmsg);
 		 
 			 
 			 Clickon(getwebelement("//button[@class='btn btn-danger']"));
@@ -25340,14 +25339,14 @@ Thread.sleep(3000);
 		if(successMessage) {
 			
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message for removing Interface is dipslaying as expected");
-			System.out.println( " Success Message for removing interface is dipslaying as expected");
+			Log.info( " Success Message for removing interface is dipslaying as expected");
 			
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Message displays as: "+actualmessage);
-			System.out.println("Message displays as: "+actualmessage);
+			Log.info("Message displays as: "+actualmessage);
 			
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message for removing Interface is not dipslaying");
-			System.out.println( " Success Message for removing Interface is not dipslaying");
+			Log.info( " Success Message for removing Interface is not dipslaying");
 		}
 	}
 
@@ -25363,10 +25362,10 @@ Thread.sleep(3000);
 			ENNISelection=getwebelement(xml.getlocator("//locators/" + application + "/ENNI_checkbox")).isSelected();
 			if(ENNISelection) {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'ENNI' checkbox is selected by default");
-				System.out.println(" 'ENNI' checkbox is selected by default");
+				Log.info(" 'ENNI' checkbox is selected by default");
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'ENNI' checkbox is not selected by default");
-				System.out.println( " 'ENNI' checkbox is not selected by default");
+				Log.info( " 'ENNI' checkbox is not selected by default");
 			}
 			
 		}else {
@@ -25376,11 +25375,11 @@ Thread.sleep(3000);
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'ENNI' chekcbox is not displaying");
-			System.out.println(" 'ENNI' chekcbox is not displaying");
+			Log.info(" 'ENNI' chekcbox is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'ENNI' checkbox is not selected");
-			System.out.println(" 'ENNI' checkbox is not selected");
+			Log.info(" 'ENNI' checkbox is not selected");
 		}
  }
  
@@ -25398,10 +25397,10 @@ Thread.sleep(3000);
 			CosSelection=getwebelement(xml.getlocator("//locators/" + application + "/cosCheckbox_createService")).isSelected();
 			if(CosSelection) {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'COS' checkbox is selected by default");
-				System.out.println(" 'COS' checkbox is selected by default");
+				Log.info(" 'COS' checkbox is selected by default");
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.PASS, " 'COS' checkbox is not selected by default");
-				System.out.println( " 'COS' checkbox is not selected by default");
+				Log.info( " 'COS' checkbox is not selected by default");
 			}
 			
 		}else {
@@ -25411,11 +25410,11 @@ Thread.sleep(3000);
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'COS' chekcbox is not displaying");
-			System.out.println(" 'COS' chekcbox is not displaying");
+			Log.info(" 'COS' chekcbox is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'COS' checkbox is not avaiable");
-			System.out.println(" 'COS' checkbox is not avaiable");
+			Log.info(" 'COS' checkbox is not avaiable");
 		}
    }
    
@@ -25431,7 +25430,7 @@ Thread.sleep(3000);
 		boolean COScheckbox=getwebelement(xml.getlocator("//locators/" + application + "/cosCheckbox_createService")).isSelected();
 		if(COScheckbox) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "CoS checkbox is selected");
-			System.out.println("CoS checkbox is selected");
+			Log.info("CoS checkbox is selected");
 		try {
 			multiportAvailability=getwebelement(xml.getlocator("//locators/" + application + "/multiport_checkbox")).isDisplayed();
 			if(multiportAvailability) {
@@ -25440,10 +25439,10 @@ Thread.sleep(3000);
 				multiPOrtSelection=getwebelement(xml.getlocator("//locators/" + application + "/multiport_checkbox")).isSelected();
 				if(multiPOrtSelection) {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Multiport' checkbox is selected by default");
-					System.out.println(" 'Multiport' checkbox is selected by default");
+					Log.info(" 'Multiport' checkbox is selected by default");
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.PASS, " 'Multiport' checkbox is not selected by default");
-					System.out.println( " 'Multiport' checkbox is not selected by default");
+					Log.info( " 'Multiport' checkbox is not selected by default");
 				}
 				
 			}else {
@@ -25452,13 +25451,13 @@ Thread.sleep(3000);
 		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Multiport' checkbox is not available under 'Create Service' page");
-			System.out.println(" 'Multiport' checkbox is not available under 'Create Service' page");
+			Log.info(" 'Multiport' checkbox is not available under 'Create Service' page");
 		}
 			
 			
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "CoS checkbox is not selected");
-			System.out.println("CoS checkbox is not selected");
+			Log.info("CoS checkbox is not selected");
 		}
    }   
    
@@ -25567,22 +25566,22 @@ Thread.sleep(3000);
 				boolean deviceName = getwebelement("//div[div[label[text()='Name']]]//div[contains(text(),'"+ expectedValue +"')]").isDisplayed();
 				
 				if(deviceName) {
-					System.out.println("device name is displaying as expected");
+					Log.info("device name is displaying as expected");
 					
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Device name is displaying as:  "+ devicename + "as expected");
 				}else {
 					
 					WebElement Actualvalue=getwebelement("//div[div[label[text()='Name']]]//div[2]");
-					System.out.println("Device name is not displaying as expected");
+					Log.info("Device name is not displaying as expected");
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Device name is displaying as:  "+ Actualvalue.getText());
 				}
 			} catch(AssertionError err) {
 				err.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, label + " value is not displaying as expected ");
 			} catch (NoSuchElementException e) {
-				System.out.println("value not displayed for " + label);
+				Log.info("value not displayed for " + label);
 				
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : value not displayed for : " + label);
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "value not displayed for : " + label);
 				
 			}
 		}
@@ -25596,12 +25595,12 @@ Thread.sleep(3000);
 		   
 		   if(actualvalueToBeDisplayed) {
 			   
-			   System.out.println("Value is displaying as expected for the field: "+labelname);
+			   Log.info("Value is displaying as expected for the field: "+labelname);
 			   ExtentTestManager.getTest().log(LogStatus.PASS, " Value displaying for "+labelname + " text field is: "+ExpectedValue +" . It is dipslaying as expected");
 			   
 		   }else {
 			   
-			   System.out.println("Value is not displaying as expected for the text field: "+labelname);
+			   Log.info("Value is not displaying as expected for the text field: "+labelname);
 			   ExtentTestManager.getTest().log(LogStatus.FAIL, "Value is not displaying as expected for the text field: "+labelname);
 		   }
 		 }catch(NoSuchElementException e) {
@@ -25619,12 +25618,12 @@ Thread.sleep(3000);
 			
 			 if(actualvalue) {
 				   
-				   System.out.println("Value is displaying as expected for the field: "+labelname);
+				   Log.info("Value is displaying as expected for the field: "+labelname);
 				   ExtentTestManager.getTest().log(LogStatus.PASS, " Value displaying for "+labelname + " dropdown field is: "+ExpectedValue+" . And it is displaying as expected");
 				   
 			   }else {
 				   
-				   System.out.println("Value is not displaying as expected for the text field: "+labelname);
+				   Log.info("Value is not displaying as expected for the text field: "+labelname);
 				   ExtentTestManager.getTest().log(LogStatus.FAIL, "Value is not displaying as expected for the text field: "+labelname);
 			   }
 		}catch(NoSuchElementException e) {
@@ -25647,12 +25646,12 @@ Thread.sleep(3000);
 			actualvalue=getwebelement("//div[div[label[text()='" + labelname + "']]]//div[text()='"+ ExpectedValue +"']").isDisplayed();
 			if(actualvalue) {
 				   
-				   System.out.println("Value is displaying as expected for the field: "+labelname);
+				   Log.info("Value is displaying as expected for the field: "+labelname);
 				   ExtentTestManager.getTest().log(LogStatus.PASS, " Value displaying for "+labelname + " field is: "+ ExpectedValue +" . And it is displaying as expected");
 				   
 			   }else {
 				   
-				   System.out.println("Value is not displaying as expected for the text field: "+labelname);
+				   Log.info("Value is not displaying as expected for the text field: "+labelname);
 				   ExtentTestManager.getTest().log(LogStatus.FAIL, "Value is not displaying as expected for the text field: "+labelname);
 			   }
 		}catch(NoSuchElementException e) {
@@ -25683,7 +25682,7 @@ Thread.sleep(3000);
 			   click_commonMethod(application, "Dump", "Editservice_Dumplink", xml);
 			   Thread.sleep(2000);
 		
-			   waitForpageload();
+			   
 			   
 			   waitforPagetobeenable();
 			   
@@ -25694,11 +25693,11 @@ Thread.sleep(3000);
 			   if(dumpvalue.isEmpty()) {
 				   
 				   ExtentTestManager.getTest().log(LogStatus.INFO, "NO values dipslaying under 'Dump' page");
-				   System.out.println("NO values dipslaying under 'Dump' page");
+				   Log.info("NO values dipslaying under 'Dump' page");
 				   
 			   }else{
 				  ExtentTestManager.getTest().log(LogStatus.PASS, "Dump value is displaying as:   "+ dumpvalue); 
-				  System.out.println("Dump value is displaying as:   "+ dumpvalue);
+				  Log.info("Dump value is displaying as:   "+ dumpvalue);
 			   }
 			   
 			   driver.navigate().back();
@@ -25745,7 +25744,7 @@ Thread.sleep(3000);
 			else if(editExistingPremise.equalsIgnoreCase("null") & editNewPremise.equalsIgnoreCase("null")) {
 				
 				ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made under 'Premise' field");
-				System.out.println("No changes made under 'Premise' field");
+				Log.info("No changes made under 'Premise' field");
 				
 			}
 			
@@ -25851,7 +25850,7 @@ Thread.sleep(3000);
 			else if(editExistingCity.equalsIgnoreCase("null") & editNewCity.equalsIgnoreCase("null")) {
 				
 				ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made under 'Site' field");
-				System.out.println("No changes made under 'Site' field");
+				Log.info("No changes made under 'Site' field");
 				
 			}
 			
@@ -25957,7 +25956,7 @@ Thread.sleep(3000);
 			else if(editExistingCity.equalsIgnoreCase("null") & editNewCity.equalsIgnoreCase("null")) {
 				
 				ExtentTestManager.getTest().log(LogStatus.PASS, "No chnges made under 'City' field");
-				System.out.println("No chnges made under 'City' field");
+				Log.info("No chnges made under 'City' field");
 			}
 			
 		}
@@ -26273,12 +26272,12 @@ Thread.sleep(3000);
 				  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 				  if(availability) {
 					  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
-					  System.out.println(labelname + " dropdown is displaying");
+					  Log.info(labelname + " dropdown is displaying");
 					  
 					  if(expectedValueToAdd.equalsIgnoreCase("null")) {
 						  
 						  ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under "+ labelname + " dropdown");
-						  System.out.println(" No values selected under "+ labelname + " dropdown");
+						  Log.info(" No values selected under "+ labelname + " dropdown");
 					  }else {
 						  
 						  Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
@@ -26289,12 +26288,12 @@ Thread.sleep(3000);
 									.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
 						  
 						  ExtentTestManager.getTest().log(LogStatus.PASS, " List of values inside "+ labelname + " dropdown is:  ");
-						  System.out.println( " List of values inside "+ labelname + "dropdown is:  ");
+						  Log.info( " List of values inside "+ labelname + "dropdown is:  ");
 						  
 							for (WebElement valuetypes : listofvalues) {
 										Log.info("service sub types : " + valuetypes.getText());
 										ExtentTestManager.getTest().log(LogStatus.PASS," " + valuetypes.getText());
-										System.out.println(" " + valuetypes.getText());
+										Log.info(" " + valuetypes.getText());
 							}
 							
 							Thread.sleep(2000);
@@ -26306,20 +26305,20 @@ Thread.sleep(3000);
 						  
 						  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
 						  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
-						  System.out.println( labelname + " dropdown value selected as: "+ actualValue);
+						  Log.info( labelname + " dropdown value selected as: "+ actualValue);
 						  
 					  }
 				  }else {
 					  ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
-					  System.out.println(labelname + " is not displaying");
+					  Log.info(labelname + " is not displaying");
 				  }
 				}catch(NoSuchElementException e) {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
-					  System.out.println(labelname + " is not displaying");
+					  Log.info(labelname + " is not displaying");
 				}catch(Exception ee) {
 					ee.printStackTrace();
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
-					System.out.println(" NO value selected under "+ labelname + " dropdown");
+					Log.info(" NO value selected under "+ labelname + " dropdown");
 				}
 			}
 			
@@ -26342,12 +26341,12 @@ Thread.sleep(3000);
 				  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 				  if(availability) {
 					  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
-					  System.out.println(labelname + " dropdown is displaying");
+					  Log.info(labelname + " dropdown is displaying");
 					  
 					  if(expectedValueToAdd.equalsIgnoreCase("null")) {
 						  
 						  ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under "+ labelname + " dropdown");
-						  System.out.println(" No values selected under "+ labelname + " dropdown");
+						  Log.info(" No values selected under "+ labelname + " dropdown");
 					  }else {
 						  
 						  Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
@@ -26358,12 +26357,12 @@ Thread.sleep(3000);
 									.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
 						  
 						  ExtentTestManager.getTest().log(LogStatus.PASS, " List of values inside "+ labelname + " dropdown is:  ");
-						  System.out.println( " List of values inside "+ labelname + "dropdown is:  ");
+						  Log.info( " List of values inside "+ labelname + "dropdown is:  ");
 						  
 							for (WebElement valuetypes : listofvalues) {
 										Log.info("service sub types : " + valuetypes.getText());
 										ExtentTestManager.getTest().log(LogStatus.PASS," " + valuetypes.getText());
-										System.out.println(" " + valuetypes.getText());
+										Log.info(" " + valuetypes.getText());
 							}
 							
 							Thread.sleep(2000);
@@ -26375,20 +26374,20 @@ Thread.sleep(3000);
 						  
 						  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
 						  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
-						  System.out.println( labelname + " dropdown value selected as: "+ actualValue);
+						  Log.info( labelname + " dropdown value selected as: "+ actualValue);
 						  
 					  }
 				  }else {
 					  ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
-					  System.out.println(labelname + " is not displaying");
+					  Log.info(labelname + " is not displaying");
 				  }
 				}catch(NoSuchElementException e) {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
-					  System.out.println(labelname + " is not displaying");
+					  Log.info(labelname + " is not displaying");
 				}catch(Exception ee) {
 					ee.printStackTrace();
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
-					System.out.println(" NO value selected under "+ labelname + " dropdown");
+					Log.info(" NO value selected under "+ labelname + " dropdown");
 				}
 			}	
 
@@ -26434,20 +26433,20 @@ Thread.sleep(3000);
 			resultField=getwebelement(xml.getlocator("//locators/" + application + "/result_textArea")).isDisplayed();
 			if(resultField) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "'Result' text field is displaying");
-				System.out.println( "'Result' text field is displaying");
+				Log.info( "'Result' text field is displaying");
 				
 				String remarkvalue=getwebelement(xml.getlocator("//locators/" + application + "/result_textArea")).getText();
 				ExtentTestManager.getTest().log(LogStatus.PASS, "value under 'Result' field displaying as "+ remarkvalue);
-				System.out.println("value under 'Result' field displaying as "+ remarkvalue);
+				Log.info("value under 'Result' field displaying as "+ remarkvalue);
 			
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Result' text field is not displaying");
-				System.out.println( "'Result' text field is not displaying");
+				Log.info( "'Result' text field is not displaying");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Result' text field is not displaying");
-			System.out.println("'Result' text field is not displaying");
+			Log.info("'Result' text field is not displaying");
 		}
 				
 			}
@@ -26464,13 +26463,13 @@ Thread.sleep(3000);
 					  
 				  }else {
 					  	ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
-						System.out.println("'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
+						Log.info("'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
 				  }
 				}catch(Exception e) {
 					e.printStackTrace();
 					
 					ExtentTestManager.getTest().log(LogStatus.INFO, "'Hostname or IpAddress' for 'IPv4' text field is not displaying for "+ command_ipv4);
-					System.out.println("'Hostname or IpAddress' for 'Ipv4' text field is not displaying for "+ command_ipv4);
+					Log.info("'Hostname or IpAddress' for 'Ipv4' text field is not displaying for "+ command_ipv4);
 				}
 			}
 
@@ -26498,19 +26497,19 @@ Thread.sleep(3000);
 						
 					}else {
 						ExtentTestManager.getTest().log(LogStatus.PASS, "Test Name is displaying as: "+element);
-						System.out.println("Test Name is displaying as: "+element);
+						Log.info("Test Name is displaying as: "+element);
 						
 						
 						status=getwebelement("(//tbody/tr["+ i +"]/td)[2]/div").getAttribute("class");
-						System.out.println("status displays as: "+status);
+						Log.info("status displays as: "+status);
 						
 						if(status.contains("red")) {
 							ExtentTestManager.getTest().log(LogStatus.PASS, element + " status colour dipslays as: red");
-							System.out.println(element + " status colour dipslays as: red");
+							Log.info(element + " status colour dipslays as: red");
 						}
 						else if(status.contains("green")) {
 							ExtentTestManager.getTest().log(LogStatus.PASS, element + " status colour dipslays as: green");
-							System.out.println(element + " status colour dipslays as: green");
+							Log.info(element + " status colour dipslays as: green");
 						}
 					}
 				  }catch(Exception e) {
@@ -26558,7 +26557,7 @@ Thread.sleep(3000);
 			viewpage=getwebelement(xml.getlocator("//locators/" + application + "/viewCPEdevicepage_devices")).isDisplayed();
 			
 			if(viewpage) {
-				System.out.println("In view page");
+				Log.info("In view page");
 			}else {
 		
 				scrolltoend();
@@ -26604,18 +26603,18 @@ Thread.sleep(3000);
 			if (successMessage) {
 
 				if (actualMessage.isEmpty()) {
-					System.out.println("No messages displays");
+					Log.info("No messages displays");
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Success message is not displaying");
 				}
 				if (actualMessage.contains(expectedValue)) {
 
 					ExtentTestManager.getTest().log(LogStatus.PASS,
 							" After clicking on 'Fetch Device Interface' link, success Message is displaying");
-					System.out.println(
+					Log.info(
 							" After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
 
 					ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message displays as: " + actualMessage);
-					System.out.println(" Success Message displays as: " + actualMessage);
+					Log.info(" Success Message displays as: " + actualMessage);
 
 					// click on the 'click here' link
 //					Clickon(getwebelement(
@@ -26628,11 +26627,11 @@ Thread.sleep(3000);
 
 					ExtentTestManager.getTest().log(LogStatus.PASS,
 							" After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
-					System.out.println(
+					Log.info(
 							" After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
 
 					ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message displays as: " + actualMessage);
-					System.out.println(" Success Message displays as: " + actualMessage);
+					Log.info(" Success Message displays as: " + actualMessage);
 
 					// click on the 'click here' link
 //					Clickon(getwebelement(
@@ -26643,7 +26642,7 @@ Thread.sleep(3000);
 				} else {
 					ExtentTestManager.getTest().log(LogStatus.PASS,
 							"After clicking on 'Fetch Device Interface' link, message displays as " + actualMessage);
-					System.out.println(
+					Log.info(
 							"After clicking on 'Fetch Device Interface' link, message displays as " + actualMessage);
 				}
 
@@ -26652,7 +26651,7 @@ Thread.sleep(3000);
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,
 					"After clicking on 'Fetch Device Interface' link, success message is not displaying");
-			System.out.println("After clicking on 'Fetch Device Interface' link, success message is not displaying");
+			Log.info("After clicking on 'Fetch Device Interface' link, success message is not displaying");
 
 		}
 		return clickLink;
@@ -26669,20 +26668,19 @@ Thread.sleep(3000);
 
 		scrollToTop();
 		Thread.sleep(2000);
-//							WebElement breadcrumb=getwebelement(xml.getlocator("//locators/" + application + "/breadcrump").replace("value", breadCrumpLink));
 		WebElement breadcrumb = null;
 
 		try {
-			breadcrumb = getwebelement(
+			breadcrumb = getwebelementNoWait(
 					xml.getlocator("//locators/" + application + "/breadcrump").replace("value", breadCrumpLink));
 			if (breadcrumb.isDisplayed()) {
-				click_commonMethod_PassingWebelementDirectly(application, "Breadcrump", "breadcrump", xml);
+				click_commonMethod_PassingWebelementDirectly_forBreadcrumb(application, "Breadcrump", breadcrumb, xml);
 			} else {
-				System.out.println("Breadcrumb is not displaying for the element " + breadcrumb);
+				Log.info("Breadcrumb is not displaying for the element " + breadcrumb);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Breadcrumb is not displaying for the element " + breadcrumb);
+			Log.info("Breadcrumb is not displaying for the element " + breadcrumb);
 		}
 	}
 
@@ -26696,15 +26694,15 @@ Thread.sleep(3000);
 
 		if (interfacelistSize == 0) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "No interfaces are displaying");
-			System.out.println("no Interfaces are displaying");
+			Log.info("no Interfaces are displaying");
 		} else {
-			System.out.println("list of interfaces displaying are:" + interfacelistSize);
+			Log.info("list of interfaces displaying are:" + interfacelistSize);
 			ExtentTestManager.getTest().log(LogStatus.PASS, " size of interfaces displaying is: " + interfacelistSize);
 
 			for (WebElement interfaceName : interfacelist) {
 
 				ExtentTestManager.getTest().log(LogStatus.INFO, " " + interfaceName.getText());
-				System.out.println("Interface names are: " + interfaceName.getText());
+				Log.info("Interface names are: " + interfaceName.getText());
 			}
 		}
 
@@ -26745,28 +26743,33 @@ Thread.sleep(3000);
 
 	}
 				
-	public void verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice(String application, String existingDeviceName)
+	public void verifyFieldsandSelectCPEdevicefortheserviceselected_existingDevice(String application, String existingDeviceName,
+			String technologySelected, String vpntopology, String interfacespeed)
 			throws InterruptedException, DocumentException, IOException {
 		
 		scrolltoend();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO,"Select existing CPE device");
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/CPEdevice_adddevicelink")));
-		Thread.sleep(6000);
+		click_commonMethod(application, "Add Device", "CPEdevice_adddevicelink", xml);
+		Thread.sleep(2000);
+		waitforPagetobeenable();
+		 
+		if((technologySelected.equalsIgnoreCase("Atrica")) && (vpntopology.equals("Hub&Spoke")) && (interfacespeed.equals("1GigE"))) {
+			selectTechnology_HubAndSpoke(application);
+		}
+		waitforPagetobeenable();
 		
-		  waitForpageload();   waitforPagetobeenable();
 		click_commonMethod(application, "Select Device", "existingDevice_SelectDeviceToggleButton", xml);
-		Thread.sleep(3000);
-		waitForpageload();
+		Thread.sleep(1000);
 		waitforPagetobeenable();
 		
 		addDropdownValues_forExistingDevice(application, "Choose a Device", "chooseAdeviceDropdown", existingDeviceName, xml);
 		waitforPagetobeenable();
 		
+		scrolltoend();
 		click_commonMethod(application, "OK", "obutton_spanTag", xml);
-		
 		}
 	
 	public void verifyFieldsandSelectCPEdevice_existingDevice_IntEquipment(String application, String existingDeviceName)
@@ -26775,14 +26778,14 @@ Thread.sleep(3000);
 		ExtentTestManager.getTest().log(LogStatus.INFO,"Select existing CPE device");
 		  
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 		scrollToTop();
 		
 		click_commonMethod(application, "Select Device", "existingDevice_SelectDeviceToggleButton", xml);
 		Thread.sleep(3000);
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 		addDropdownValues_forExistingDevice(application, "Choose a Device", "chooseAdeviceDropdown", existingDeviceName, xml);
@@ -26808,24 +26811,24 @@ Thread.sleep(3000);
 		  boolean availability=false;
 		try {  
 			
-			waitForpageload();
+			
 			waitforPagetobeenable();
 			
 		  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 		  if(availability) {
 			  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
-			  System.out.println(labelname + " dropdown is displaying");
+			  Log.info(labelname + " dropdown is displaying");
 			  
 			  if(expectedValueToAdd.equalsIgnoreCase("null")) {
 				  
 				  ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under "+ labelname + " dropdown");
-				  System.out.println(" No values selected under "+ labelname + " dropdown");
+				  Log.info(" No values selected under "+ labelname + " dropdown");
 			  }else {
 				  
 				  Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
 				  Thread.sleep(2000);
 				  
-				  waitForpageload();
+				  
 				  waitforPagetobeenable();
 				  
 					Thread.sleep(2000);
@@ -26837,20 +26840,20 @@ Thread.sleep(3000);
 				  
 				  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
 				  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
-				  System.out.println( labelname + " dropdown value selected as: "+ actualValue);
+				  Log.info( labelname + " dropdown value selected as: "+ actualValue);
 				  
 			  }
 		  }else {
 			  ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
-			  System.out.println(labelname + " is not displaying");
+			  Log.info(labelname + " is not displaying");
 		  }
 		}catch(NoSuchElementException e) {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
-			  System.out.println(labelname + " is not displaying");
+			  Log.info(labelname + " is not displaying");
 		}catch(Exception ee) {
 			ee.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
-			System.out.println(" NO value selected under "+ labelname + " dropdown");
+			Log.info(" NO value selected under "+ labelname + " dropdown");
 		}
 	}
 
@@ -26881,32 +26884,31 @@ Thread.sleep(3000);
 			WebElement element = null;
 
 			try {
-				Thread.sleep(1000);
-				element = getwebelement("//div[div[label[contains(text(),'"+ labelname + "')]]]/div[2]");
+				element = getwebelementNoWait("//div[div[label[contains(text(),'"+ labelname + "')]]]/div[2]");
 				String emptyele = element.getText().toString();
 
 				if(element==null)
 				{
 					ExtentTestManager.getTest().log(LogStatus.FAIL, labelname+" not found");
-					System.out.println(labelname+" not found");
+					Log.info(labelname+" not found");
 				}
 				else if (emptyele!=null && emptyele.isEmpty()) {
 					
 					ExtentTestManager.getTest().log(LogStatus.PASS, "No value displaying under "+ labelname);
-					System.out.println("No value displaying under "+ labelname);
+					Log.info("No value displaying under "+ labelname);
 				}
 //					
 				else {
 					element.getText();
 					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " value is displaying as: "+ emptyele);
-					System.out.println(labelname + " value is displaying as: "+ emptyele);
+					Log.info(labelname + " value is displaying as: "+ emptyele);
 					
 				} 
 				
 			}catch (Exception e) {
 				e.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
-				System.out.println(labelname + " field is not displaying");
+				Log.info(labelname + " field is not displaying");
 			}
 		}
 		
@@ -26987,7 +26989,7 @@ Thread.sleep(3000);
 			 */
 			
 			public void IntEquip_clickonviewButton(String application , String devicename) throws InterruptedException, DocumentException {
-				waitForpageload();
+				
 				waitforPagetobeenable();
 				
 					clickOnBankPage();
@@ -27000,7 +27002,7 @@ Thread.sleep(3000);
 						viewpage=getwebelement(xml.getlocator("//locators/" + application + "/viewCPEdevicepage_devices")).isDisplayed();
 						
 						if(viewpage) {
-							System.out.println("In view page");
+							Log.info("In view page");
 						}else {
 					
 							scrolltoend();
@@ -27067,10 +27069,10 @@ Thread.sleep(3000);
 				waitforPagetobeenable();
 				
 				scrollToTop();
-				Thread.sleep(3000);
+				Thread.sleep(1000);
 				try {	
 					
-					boolean successMsg=getwebelement(xml.getlocator("//locators/" + application + "/serivceAlert")).isDisplayed();
+					boolean successMsg=getwebelementNoWait(xml.getlocator("//locators/" + application + "/serivceAlert")).isDisplayed();
 
 					if(successMsg) {
 						
@@ -27079,17 +27081,19 @@ Thread.sleep(3000);
 						if(expected.contains(alrtmsg)) {
 							
 							ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
-							System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+							Log.info("Message is verified. It is displaying as: "+alrtmsg);
+							successScreenshot(application);
 							
 						}else {
 							
 							ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
-							System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+							Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+							successScreenshot(application);
 						}
 						
 					}else {
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
-						System.out.println(" Success Message is not displaying");
+						Log.info(" Success Message is not displaying");
 					}
 					
 					Thread.sleep(2000);
@@ -27097,7 +27101,7 @@ Thread.sleep(3000);
 				}catch(Exception e) {
 					Log.info("failure in fetching success message - 'Service created Successfully'  ");
 					ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
-					System.out.println(expected+ " message is not getting dislpayed");
+					Log.info(expected+ " message is not getting dislpayed");
 					Thread.sleep(2000);
 				}
 			}
@@ -27110,7 +27114,7 @@ Thread.sleep(3000);
 					String value= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 					if(element==null)
 					{
-						ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, " '"+labelname+"' not found");
 					}
 					else if(value!=null) {
 						Thread.sleep(1000);
@@ -27130,8 +27134,8 @@ Thread.sleep(3000);
 					element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 					if(element==null)
 					{
-						ExtentTestManager.getTest().log(LogStatus.FAIL, "Step: '"+labelname+"' text field not found");
-						Log.info("Step: '"+labelname+"' text field not found");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "'"+labelname+"' text field not found");
+						Log.info("'"+labelname+"' text field not found");
 					}
 					else 
 					{
@@ -27139,7 +27143,7 @@ Thread.sleep(3000);
 							ExtentTestManager.getTest().log(LogStatus.PASS, "No values entered in "+labelname + " text field");
 						}else {
 							element.sendKeys(value);
-							ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Entered '"+value+"' into '"+labelname+"' text field");
+							ExtentTestManager.getTest().log(LogStatus.PASS, "Entered '"+value+"' into '"+labelname+"' text field");
 						}
 					}
 				}catch(NoSuchElementException ep) {
@@ -27297,19 +27301,19 @@ Thread.sleep(3000);
 					String ele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 					if(element==null)
 					{
-						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' is not found");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "'"+ labelname +"' is not found");
 					}
 					else if (ele!=null && ele.isEmpty()) {
-						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "'"+ labelname +"' value is empty");
 					}
 					else {   
 
 						text = element.getText();
-						ExtentTestManager.getTest().log(LogStatus.PASS,"Step: '"+ labelname +"' value is displayed as : '"+text+"'");
+						ExtentTestManager.getTest().log(LogStatus.PASS,"'"+ labelname +"' value is displayed as : '"+text+"'");
 
 					}
 				}catch (Exception e) {
-					ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: '"+ labelname +"' value is not displaying");
+					ExtentTestManager.getTest().log(LogStatus.FAIL,"'"+ labelname +"' value is not displaying");
 					e.printStackTrace();
 				}
 				return text;
@@ -27324,7 +27328,7 @@ Thread.sleep(3000);
 				Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 				Thread.sleep(1000);
 				Log.info("Mouser hovered on Manage Customer's Service");
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouser hovered on 'Manage Customers Service' menu item");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Mouser hovered on 'Manage Customers Service' menu item");
 
 				click_commonMethod(application, "Create Order/Service Link", "CreateOrderServiceLink", xml);	
 				Log.info("=== Create Order/Service navigated ===");
@@ -27338,7 +27342,7 @@ Thread.sleep(3000);
 				//Entering Customer name
 					addtextFields_commonMethod(application, "Customer Name", "entercustomernamefield", ChooseCustomerToBeSelected, xml);
 				
-				waitForpageload();
+				
 				waitforPagetobeenable();
 				Thread.sleep(3000);
 				EnterTextValue(application, "*", "Customer Name", "entercustomernamefield");	
@@ -27358,7 +27362,7 @@ Thread.sleep(3000);
 				Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 				Thread.sleep(3000);
 				Log.info("Mouser hovered on Manage Customer's Service");
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Mouse hovered on 'Manage Customers Service' menu item");
 
 				click_commonMethod(application, "Create Order/Service Link", "CreateOrderServiceLink", xml);	
 				Log.info("=== Create Order/Service navigated ===");
@@ -27367,12 +27371,12 @@ Thread.sleep(3000);
 				//Entering Customer name
 					addtextFields_commonMethod(application, "Customer Name", "entercustomernamefield", ChooseCustomerToBeSelected, xml);
 				
-				waitForpageload();
+				
 				waitforPagetobeenable();
 				Thread.sleep(3000);
 				EnterTextValue(application, "*", "Customer Name", "entercustomernamefield");
 				
-				waitForpageload();
+				
 				waitforPagetobeenable();
 				Thread.sleep(2000);
 
@@ -27415,7 +27419,7 @@ Thread.sleep(3000);
 
 					} else {
 						Log.info("Order not selected");
-						ExtentTestManager.getTest().log(LogStatus.INFO, "Step :Order not selected");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "Order not selected");
 					}
 						
 				}
@@ -27511,11 +27515,11 @@ Thread.sleep(3000);
 
 					if(password.isEmpty()) {
 
-						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Password Field is empty. No values displaying after clicked on 'Generate password link");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Password Field is empty. No values displaying after clicked on 'Generate password link");
 
 						SendKeys(getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")), GeneratePassword);	
 						Thread.sleep(1000);
-						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Password entered manually not automatically generated :  "+GeneratePassword);
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Password entered manually not automatically generated :  "+GeneratePassword);
 						Log.info("===Password entered manually not automatically generated ===");
 
 					}else {
@@ -27563,7 +27567,7 @@ Thread.sleep(3000);
 					Thread.sleep(2000);
 					
 					compareText(application, "Create User success message", "successmsg", "User successfully created", xml);
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : User added successfully");
+					ExtentTestManager.getTest().log(LogStatus.PASS, "User added successfully");
 					Log.info("User added successfully");
 
 					//Edit User
@@ -27586,7 +27590,7 @@ Thread.sleep(3000);
 						
 						WebElement AddedUser = getwebelement(xml.getlocator("//locators/"+application+"/selectuncheckedCheckbox_UserPanel").replace("value", Username));
 						AddedUser.click();
-						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "clicked on Existing user radio button");
 						Log.info("clicked on Existing user radio button");
 
 						click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
@@ -27608,7 +27612,7 @@ Thread.sleep(3000);
 
 						if(editpassword.isEmpty()) {
 
-							ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Password Field is empty. No values displaying under'Generate password link");
+							ExtentTestManager.getTest().log(LogStatus.FAIL, "Password Field is empty. No values displaying under'Generate password link");
 
 							click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
 
@@ -27652,7 +27656,7 @@ Thread.sleep(3000);
 						click_commonMethod(application, "OK", "OK_button", xml);
 						Thread.sleep(2000);
 						
-						waitForpageload();
+						
 						waitforPagetobeenable();
 						
 						clickOnBankPage();
@@ -27663,7 +27667,7 @@ Thread.sleep(3000);
 					}
 					else
 					{
-						ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No users displayed");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "No users displayed");
 						Log.info("No users displayed");
 					}
 
@@ -27694,7 +27698,7 @@ Thread.sleep(3000);
 						
 						WebElement AddedUser = getwebelement(xml.getlocator("//locators/"+application+"/selectuncheckedCheckbox_UserPanel").replace("value", UserNametoSelect));
 						AddedUser.click();
-						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "clicked on Existing user radio button");
 						Log.info("clicked on Existing user radio button");
 						Thread.sleep(2000);
 						
@@ -27793,7 +27797,7 @@ Thread.sleep(3000);
 					}
 					else
 					{
-						ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No users displayed");
+						ExtentTestManager.getTest().log(LogStatus.FAIL, "No users displayed");
 						Log.info("No users displayed");
 					}
 
@@ -27823,7 +27827,7 @@ Thread.sleep(3000);
 						
 						WebElement AddedUser = getwebelement(xml.getlocator("//locators/"+application+"/selectuncheckedCheckbox_UserPanel").replace("value", UserNametoSelect));
 						AddedUser.click();
-						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "clicked on Existing user radio button");
 						Log.info("clicked on Existing user radio button");
 						Thread.sleep(2000);
 
@@ -27837,7 +27841,7 @@ Thread.sleep(3000);
 					}
 					else
 					{
-						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : No users displayed");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "No users displayed");
 						Log.info("No users displayed");
 					}
 				}
@@ -27903,7 +27907,7 @@ Thread.sleep(3000);
 				Thread.sleep(1000);
 //				compareText(application, "Order Header", "orderpanelheader", "Order", xml);
 //				Log.info("Navigated to order panel in view service page");
-//				ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+//				ExtentTestManager.getTest().log(LogStatus.PASS, "Navigated to order panel in view service page");
 
 				
 				if(editorderno.equalsIgnoreCase("Null")) {
@@ -27994,7 +27998,7 @@ Thread.sleep(3000);
 				// Click on Add Overture Link
 				click_commonMethod(application, "Add Overture", "addOvertureLink", xml);
 				Thread.sleep(1000);
-				waitForpageload();  waitforPagetobeenable();
+				  waitforPagetobeenable();
 
 
 				boolean overturePanelHeader = getwebelement(xml.getlocator("//locators/" + application + "/addOverture_overturePanel")).isDisplayed();
@@ -28006,7 +28010,7 @@ Thread.sleep(3000);
 					
 					click_commonMethod(application, "Search", "addOverture_searchButton" , xml);   //Search Button
 					Thread.sleep(2000);
-					waitForpageload();  waitforPagetobeenable();
+					  waitforPagetobeenable();
 					
 					
 					WebElement selectValueInTable = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderAddOverturePage").replace("value", serviceName));
@@ -28021,7 +28025,7 @@ Thread.sleep(3000);
 						
 						click_commonMethod(application, "OK", "addOverture_OKbutton", xml);
 						Thread.sleep(1000);
-						waitForpageload();   waitforPagetobeenable();
+						   waitforPagetobeenable();
 						
 					}catch(Exception e) {
 						e.printStackTrace();
@@ -28104,7 +28108,7 @@ Thread.sleep(3000);
 			
 			public void addOveture_PAMtest_selectRow(String application,  String interface1) throws InterruptedException, DocumentException {
 				
-				waitForpageload();  waitforPagetobeenable();
+				  waitforPagetobeenable();
 				
 				scrolltoend();
 				
@@ -28118,7 +28122,7 @@ Thread.sleep(3000);
 				click_commonMethod(application, "PAMTest", "PAMtest_Link", xml);
 				
 				Thread.sleep(2000);
-				waitForpageload();  waitforPagetobeenable();
+				  waitforPagetobeenable();
 				
 			}
 			
@@ -28130,23 +28134,23 @@ Thread.sleep(3000);
 				pamTestPage=getwebelement(xml.getlocator("//locators/" + application + "/PAMtest_popupPage")).isDisplayed();
 				if(pamTestPage) {
 					ExtentTestManager.getTest().log(LogStatus.PASS, "'PAM Test' popup page is displaying");
-					System.out.println("'PAM Test' popup page is displaying");
+					Log.info("'PAM Test' popup page is displaying");
 					
 				//Type Value	
 					String typeValue=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/PAMTest_TypeFieldValue")));
 					if(typeValue.isEmpty()) {
 						ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Type' field");
-						System.out.println("No values displaying under 'Type' field");
+						Log.info("No values displaying under 'Type' field");
 					}else {
 						ExtentTestManager.getTest().log(LogStatus.PASS, "Under 'Type' field, value is dispaying as: "+typeValue);
-						System.out.println("Under 'Type' field, value is dispaying as: "+typeValue);
+						Log.info("Under 'Type' field, value is dispaying as: "+typeValue);
 					}
 					
 				//Service
 					String serviceValue=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/PAMTest_ServiceValue")));
 					if(serviceValue.isEmpty()) {
 						ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Service' field");
-						System.out.println("No values displaying under 'Service' field");
+						Log.info("No values displaying under 'Service' field");
 					}else {
 						compareText(application, "Service", "PAMTest_ServiceValue" , serviceName, xml);
 					}
@@ -28156,7 +28160,7 @@ Thread.sleep(3000);
 					String siteValue=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/PAMTest_siteValue")));
 					if(siteValue.isEmpty()) {
 						ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Site' field");
-						System.out.println("No values displaying under 'Site' field");
+						Log.info("No values displaying under 'Site' field");
 					}else {
 						compareText(application, "Site", "PAMTest_siteValue" , siteName, xml);
 					}
@@ -28165,10 +28169,10 @@ Thread.sleep(3000);
 					String toolResponse=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/PAMTest_ToolResponse")));
 					if(toolResponse.isEmpty()) {
 						ExtentTestManager.getTest().log(LogStatus.FAIL, "No values displaying under 'Tool Response' field");
-						System.out.println("No values displaying under 'Tool Response' field");
+						Log.info("No values displaying under 'Tool Response' field");
 					}else {
 						ExtentTestManager.getTest().log(LogStatus.PASS, "Under 'Tool Response' field, value is dispaying as: "+toolResponse);
-						System.out.println("Under 'Tool Response' field, value is dispaying as: "+toolResponse);
+						Log.info("Under 'Tool Response' field, value is dispaying as: "+toolResponse);
 					}
 					
 				//click on "X"button to close the popup
@@ -28176,12 +28180,12 @@ Thread.sleep(3000);
 					
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "'PAM Test' popup page is not displaying");
-					System.out.println("'PAM Test' popup page is not displaying");
+					Log.info("'PAM Test' popup page is not displaying");
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "'PAM Test' popup page is not displaying");
-				System.out.println("'PAM Test' popup page is not displaying");
+				Log.info("'PAM Test' popup page is not displaying");
 				}
 			}
 
@@ -28194,7 +28198,7 @@ Thread.sleep(3000);
 				click_commonMethod(application, "deleteCircuitpopup_deleteLink", "deleteCircuit_deleteButton", xml);
 				Thread.sleep(1000);
 				
-				waitForpageload();   waitforPagetobeenable();
+				   waitforPagetobeenable();
 				
 				verifysuccessmessage(application, "Circuit deleted successfully");
 				
@@ -28206,7 +28210,7 @@ Thread.sleep(3000);
 				// Click on Add Accedian-1G Link
 				click_commonMethod(application, "Add Accedian-1G", "addCircuit_AccedianLink", xml);
 				Thread.sleep(1000);
-				waitForpageload();  waitforPagetobeenable();
+				  waitforPagetobeenable();
 
 
 				boolean overturePanelHeader = getwebelement(xml.getlocator("//locators/" + application + "/addCircuit_Accedian1Gpage_panel")).isDisplayed();
@@ -28218,7 +28222,7 @@ Thread.sleep(3000);
 					
 					click_commonMethod(application, "Search", "addOverture_searchButton" , xml);   //Search Button
 					Thread.sleep(2000);
-					waitForpageload();  waitforPagetobeenable();
+					  waitforPagetobeenable();
 					
 					
 					WebElement selectValueInTable = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderAddOverturePage").replace("value", serviceName));
@@ -28233,7 +28237,7 @@ Thread.sleep(3000);
 						
 						click_commonMethod(application, "OK", "addOverture_OKbutton", xml);
 						Thread.sleep(1000);
-						waitForpageload();   waitforPagetobeenable();
+						   waitforPagetobeenable();
 						
 					}catch(Exception e) {
 						e.printStackTrace();
@@ -28259,7 +28263,7 @@ Thread.sleep(3000);
 				// Click on Add Circuit Link
 				click_commonMethod(application, "Add Circuit", "addCircuit_AtricaLink", xml);
 				Thread.sleep(1000);
-				waitForpageload();  waitforPagetobeenable();
+				  waitforPagetobeenable();
 
 
 				boolean overturePanelHeader = getwebelement(xml.getlocator("//locators/" + application + "/addCircuit_Atricapage_Panel")).isDisplayed();
@@ -28271,7 +28275,7 @@ Thread.sleep(3000);
 					
 					click_commonMethod(application, "Search", "addOverture_searchButton" , xml);   //Search Button
 					Thread.sleep(2000);
-					waitForpageload();  waitforPagetobeenable();
+					  waitforPagetobeenable();
 					
 					
 					WebElement selectValueInTable = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderAddOverturePage").replace("value", serviceName));
@@ -28286,7 +28290,7 @@ Thread.sleep(3000);
 						
 						click_commonMethod(application, "OK", "addOverture_OKbutton", xml);
 						Thread.sleep(1000);
-						waitForpageload();   waitforPagetobeenable();
+						   waitforPagetobeenable();
 						
 					}catch(Exception e) {
 						e.printStackTrace();
@@ -28337,33 +28341,33 @@ Thread.sleep(3000);
 			Thread.sleep(3000);
 							
 				//Validate Country dropdown
-						System.out.println("validate Country dropdown");
+						Log.info("validate Country dropdown");
 						validateCountry_AddSiteorder(application);
 						
 							
 				//Validate City Fields
-						System.out.println("Validate city fields");
+						Log.info("Validate city fields");
 						validateCity_AddSiteOrder(application);
 						
 				//Validate Site/CSR field
-						System.out.println("validate Site Fields");
+						Log.info("validate Site Fields");
 						validateSite_AddSiteOrder(application);
 			
 						scrolltoend();
 						Thread.sleep(3000);
 						
 				// Validate performance reporting dropdown
-						System.out.println("validate performance reporting checkbox");
+						Log.info("validate performance reporting checkbox");
 						validatePerformancereporting_AddSiteOrder(application);
 						
 						
 				//validate proactive Monitoring dropdown
-						System.out.println("validate proactive monitoring checkbox");
+						Log.info("validate proactive monitoring checkbox");
 						validateProactiveMonitoring_AddSiteOrder(application);
 						
 						
 				//Validate Smarts monitoring dropdown
-						System.out.println("validate Smarts monitoring checkbox");
+						Log.info("validate Smarts monitoring checkbox");
 						validateSmartsMOnitoring_AddSiteOrder(application);
 						
 						
@@ -28371,22 +28375,22 @@ Thread.sleep(3000);
 						Thread.sleep(1000);
 						
 				//Validate Site Alias field
-						System.out.println("validate Site Alias fields");
+						Log.info("validate Site Alias fields");
 						validateSiteAlias_AddSiteOrder(application);
 						
 				
 				//Validate VLAN Id field
-						System.out.println("validate VLAn Id fields");
+						Log.info("validate VLAn Id fields");
 						validateVlanID_AddSiteOrder(application);
 						
 						
 				//Validate DCA Enabled Site and Cloud Service Provider dropdown
-						System.out.println("validate DCA enabled site checkbox");
+						Log.info("validate DCA enabled site checkbox");
 						valiadateDCAEnabledsite_AddSieOrder(application);
 						
 				
 				//Verify Remark field
-						System.out.println("validate Remark fields");
+						Log.info("validate Remark fields");
 						validateRemark_AddSiteOrder(application);
 						
 						
@@ -28444,10 +28448,10 @@ Thread.sleep(3000);
 					boolean technologypopup=false;
 					technologypopup=getwebelement(xml.getlocator("//locators/" + application + "/technologyPopup")).isDisplayed();
 					if(technologypopup) {
-						System.out.println("Technology popup is displaying as expected");
+						Log.info("Technology popup is displaying as expected");
 						ExtentTestManager.getTest().log(LogStatus.PASS, " Technology popup is displaying as expected");
 					}else {
-						System.out.println("Technology popup is not displaying");
+						Log.info("Technology popup is not displaying");
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " Technology popup is notdisplaying");
 					}
 					
@@ -28455,7 +28459,7 @@ Thread.sleep(3000);
 					boolean technologyDropdown=false;
 					technologyDropdown=getwebelement(xml.getlocator("//locators/" + application + "/technologypopup_dropdown")).isDisplayed();
 					if(technologyDropdown) {
-						System.out.println("Technology dropdown is displaying as expected");
+						Log.info("Technology dropdown is displaying as expected");
 						ExtentTestManager.getTest().log(LogStatus.PASS, " Technology dropdown is displaying as expected");
 						
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/technologypopup_dropdown")));
@@ -28468,7 +28472,7 @@ Thread.sleep(3000);
 					
 							for (WebElement technoloyTypes : listofTechnololgy) {
 								ExtentTestManager.getTest().log(LogStatus.PASS, "List of values available under 'Technology' dropdown are: "+technoloyTypes.getText());
-								System.out.println("List of values available under 'Technology' dropdown are: "+technoloyTypes.getText());
+								Log.info("List of values available under 'Technology' dropdown are: "+technoloyTypes.getText());
 							}
 						}
 							
@@ -28477,10 +28481,10 @@ Thread.sleep(3000);
 							Thread.sleep(3000);
 							String actualValue=getwebelement(xml.getlocator("//locators/" + application + "/tchnologyPopup_dropdownValues")).getText();
 							ExtentTestManager.getTest().log(LogStatus.PASS, " 'Technology' selected is: "+actualValue);
-							System.out.println( " 'Technology' selected is: "+actualValue);
+							Log.info( " 'Technology' selected is: "+actualValue);
 							
 					}else {
-						System.out.println("Technology dropdown is not displaying");
+						Log.info("Technology dropdown is not displaying");
 						ExtentTestManager.getTest().log(LogStatus.FAIL, " Technology dropdown is notdisplaying");
 					}
 					

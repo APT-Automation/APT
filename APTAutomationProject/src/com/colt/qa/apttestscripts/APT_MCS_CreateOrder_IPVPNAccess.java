@@ -27,8 +27,10 @@ public class APT_MCS_CreateOrder_IPVPNAccess extends DriverTestcase{
 		setup();
 		Login.APT_Login_1(map.get("url"));
 		/*
-		//logger= ExtentTestManager.startTest("CreateCustomer"); 
-		//APT_IPVPNHelper.get().createnewcustomer("ipvpnservice", map.get("Name"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));		
+//		logger= ExtentTestManager.startTest("CreateCustomer"); 
+//		APT_IPVPNHelper.get().createnewcustomer("ipvpnservice", map.get("Name"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));		
+		ExtentTestManager.endTest();
+		
 		 
 		logger= ExtentTestManager.startTest("selectCustomertocreateOrder");
 			APT_IPVPNHelper.get().selectCustomertocreateOrder("ipvpnservice",map.get("ChooseCustomerToBeSelected"),map.get("Name1"),map.get("Name2"));
@@ -497,12 +499,14 @@ public class APT_MCS_CreateOrder_IPVPNAccess extends DriverTestcase{
 			APT_IPVPNHelper.get().showInterface_ActelisConfiguuration("ipvpnservice");
 			APT_IPVPNHelper.get().deletInterface_ActelisConfiguration("ipvpnservice", map.get("ActelisTech_DSLAMInterfacename"));
 			APT_IPVPNHelper.get().successMessage_deleteInterfaceFromDevice_ActelisConfiguration("ipvpnservice");
-
+			ExtentTestManager.endTest();
+			
+			
     logger= ExtentTestManager.startTest("verifyEditDeviceFunction");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().DeleteVPNSiteOrder("ipvpnservice", map.get("ServiceSubType"),map.get("VPN Site Order Num"));
 	APT_IPVPNHelper.get().DeleteVPNSiteOrder4("ipvpnservice", map.get("ServiceSubType"),map.get("VPN Site Order Num"));
-	
+	ExtentTestManager.endTest();
        
 
 

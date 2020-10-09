@@ -68,9 +68,12 @@ import com.colt.qa.scripthelpers.APT_SANManagementHelper;
 import com.colt.qa.scripthelpers.APT_VOIPAccessHelper;
 import com.colt.qa.scripthelpers.APT_VoiceLineHelper;
 import com.colt.qa.scripthelpers.APT_wholeSaleHelper;
+import com.colt.qa.scripthelpers.IPVPNHelper_newTab;
 import com.colt.qa.scripthelpers.ImsNmbrTranslator_Helper;
+import com.colt.qa.scripthelpers.LANLINK_NewTab;
 import com.colt.qa.scripthelpers.ManagePostcode_Helper;
 import com.colt.qa.scripthelpers.searchForDeviceHelper;
+import com.colt.qa.scripthelpers.voipAccessHelper_NewTab;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -116,10 +119,8 @@ public class DriverTestcase {
 	public static final ThreadLocal<APT_NGINMessageHelper> APT_NGINMessageHelper=new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_VoiceLineHelper> APT_VoiceLineHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<searchForDeviceHelper>  APT_searchDevice = new InheritableThreadLocal<>();
-	
 	public static final ThreadLocal<APT_VOIPAccessHelper> APT_VOIPHelper = new InheritableThreadLocal<>();
 	public static final ThreadLocal<com.colt.qa.scripthelpers.DDI_Helper> DDI_Helper = new InheritableThreadLocal<>();
-	
 	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_DirectFiberHelper> DirectFiber = new ThreadLocal<>();
 	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_MetroHelper> Metro=new ThreadLocal<>();
 	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_OLOHelper> OLO=new ThreadLocal<>();
@@ -127,6 +128,12 @@ public class DriverTestcase {
 	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_InternationalHelper> International = new InheritableThreadLocal<>();
 	public static final ThreadLocal<com.colt.qa.scripthelpers.Lanlink_NationalHelper> National= new InheritableThreadLocal<>();
 	public static final ThreadLocal<APT_MCS_CreateOrder_IPVPNHelper> APT_IPVPNHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<LANLINK_NewTab> lanlinkNewTab = new InheritableThreadLocal<>();
+	public static final ThreadLocal<voipAccessHelper_NewTab>  voipAccessnewtab = new InheritableThreadLocal<>();
+	public static final ThreadLocal<IPVPNHelper_newTab> ipvpnnewTab = new InheritableThreadLocal<>();
+	
+	
+	
 	
 	public static com.colt.qa.listeners.TestListener Testlistener;
 	public ThreadLocal<String> TestName = new ThreadLocal();
@@ -295,6 +302,15 @@ public class DriverTestcase {
 		 
 		 APT_MCS_CreateOrder_IPVPNHelper ipvpn = new APT_MCS_CreateOrder_IPVPNHelper(getwebdriver());
 			APT_IPVPNHelper.set(ipvpn);
+			
+		LANLINK_NewTab whles = new LANLINK_NewTab(getwebdriver());
+			lanlinkNewTab.set(whles);
+			
+		voipAccessHelper_NewTab voiAcs = new voipAccessHelper_NewTab(getwebdriver());
+			voipAccessnewtab.set(voiAcs);
+
+		IPVPNHelper_newTab ipvpnNewTab = new IPVPNHelper_newTab(getwebdriver());
+			ipvpnnewTab.set(ipvpnNewTab);
 		
 	}
 	

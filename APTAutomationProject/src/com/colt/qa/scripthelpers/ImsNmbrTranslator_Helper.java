@@ -514,7 +514,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 				scrollToTop();
 		 		addtextFields_commonMethod(application, "Search", "searchField_IMSNT", TranslateNumber, xml);
 
-		 		waitForpageload();
+		 		
 		 		waitforPagetobeenable();
 			//click on Search button	
 				click_commonMethod(application, "Search", "Searchbtn", xml);
@@ -558,7 +558,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			
 			{
 				//Verifying the values in View
-				waitForpageload();
+				
 				waitforPagetobeenable();
 				
 				Thread.sleep(1000);
@@ -821,7 +821,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			public void deleteIMST(String application, String numberToTranslate) throws InterruptedException, DocumentException, Exception {
 
 				//Delete Operation
-				waitForpageload();
+				
 				waitforPagetobeenable();
 				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Delete operation and message" );
 				Log.info("Verifying Delete operation and message");
@@ -901,7 +901,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			{
 				click_commonMethod(application, "Synchronize", "SynchronizeAll" , xml);
 
-				waitForpageload();
+				
 				waitforPagetobeenable();
 				
 				Thread.sleep(5000);
@@ -1025,9 +1025,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			 	 */
 			 	public void verifysuccessmessage(String application, String expected) throws InterruptedException {
 			 		
-			 		waitForpageload();
 			 		waitforPagetobeenable();
-			 		
 			 		scrollToTop();
 			 		Thread.sleep(3000);
 			 		try {	
@@ -1079,7 +1077,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			 	//Enter 'Number To Translate' value in search text box	
 			 		edittextFields_commonMethod(application, "Search", "searchField_IMSNT", numberToTranslate, xml);
 
-			 		waitForpageload();
+			 		
 			 		waitforPagetobeenable();
 			 		
 			 		Thread.sleep(2000);

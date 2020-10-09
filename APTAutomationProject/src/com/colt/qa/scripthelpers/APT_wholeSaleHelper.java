@@ -91,7 +91,7 @@ public class APT_wholeSaleHelper extends DriverHelper {
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(2000);
 		Log.info("Mouser hovered on Manage Customer's Service");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouser hovered on 'Manage Customers Service' menu item");
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Mouser hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
 		Thread.sleep(2000);
@@ -153,7 +153,7 @@ public class APT_wholeSaleHelper extends DriverHelper {
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(3000);
 		Log.info("Mouser hovered on Manage Customer's Service");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouser hovered on 'Manage Customers Service' menu item");
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Mouser hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "Create Order/Service Link", "CreateOrderServiceLink", xml);	
 		Log.info("=== Create Order/Service navigated ===");
@@ -218,7 +218,7 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 		} else {
 
 			Log.info("Order not selected");
-			ExtentTestManager.getTest().log(LogStatus.INFO, "Step :Order not selected");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Order not selected");
 		}
 	}
 
@@ -317,7 +317,7 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 	 			String ErrMsg = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath  +"")).getText();
 	 			
 	 			Log.info( fieldlabelName + " field warning  message displayed as : " + ErrMsg + " when we enter value in wrong format");
-	 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step :  validation message for"+ fieldlabelName +"  field displayed as : " + ErrMsg + " when we enter value in wrong format");
+	 			ExtentTestManager.getTest().log(LogStatus.PASS, "  validation message for"+ fieldlabelName +"  field displayed as : " + ErrMsg + " when we enter value in wrong format");
 	 			Log.info(fieldlabelName + " field warning  message displayed as : " + ErrMsg+ " when we enter value in wrong format");
 	 			}else{
 	 				ExtentTestManager.getTest().log(LogStatus.FAIL, "validation message for"+ fieldlabelName +"  field is not displaying");
@@ -337,7 +337,7 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 	
 
 		public void verifysuccessmessage(String application, String expected) throws InterruptedException {
-			waitForpageload();
+			
 			waitforPagetobeenable();
 			
 			scrollToTop();
@@ -655,7 +655,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 
 				Log.info("'"+labelname+"' field warning  message displayed as : " + WarningMsg);
 				ExtentTestManager.getTest().log(LogStatus.PASS,
-						"Step : validation message for '"+labelname+"' text field displayed as : " + WarningMsg);
+						" validation message for '"+labelname+"' text field displayed as : " + WarningMsg);
 				Log.info("'"+labelname+"' field warning message displayed as : " + WarningMsg);
 			}
 		}catch(NoSuchElementException e) {
@@ -731,10 +731,10 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			String ele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 			if(element==null)
 			{
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' is not found");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " '"+ labelname +"' is not found");
 			}
 			else if (ele!=null && ele.isEmpty()) {
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " '"+ labelname +"' value is empty");
 			}
 			else {   
 
@@ -1031,7 +1031,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		String ipInterfaceGroup=null;
 		String prefix_code=null;
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		Thread.sleep(1000);
 		
@@ -1536,7 +1536,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "The CallRateLimit should be less 100 for all Trunks");
 				}
 				else if(i<=100){
-					waitForpageload();
+					
 					waitforPagetobeenable();
 					Thread.sleep(1000);
 					
@@ -2163,7 +2163,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			String localRingBackTone_existingFieldSelection, String localRingBackTone_newFieldSelection, String localRingBackTone_existingValue, String localRingBackTone_newValue,
 			String createLowerCaseRoutervalue,String PSXmanualConfigvalue, String GSXmanualConfigvalue, String callLimit, String limitNumber, String callrateLimiteValue, String SBCmanualconfigValue) throws IOException, InterruptedException, DocumentException {   
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		Thread.sleep(1000);
 		
@@ -2523,7 +2523,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		String gatewayCode=null;
 		String primarytrunk="0";
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		Thread.sleep(1000);
 		
@@ -2536,7 +2536,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 	//click on Edit link
 		click_commonMethod(application, "Edit", "editLink", xml);
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		Thread.sleep(2000);
 		
@@ -2970,7 +2970,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 		
 		WebElement hyperLink=getwebelement("//a[text()='"+ servicename +"']");
-		click_commonMethod_PassingWebelementDirectly(application, "Sevice name hyperlink","hyperLink" , xml);
+		click_commonMethod_PassingWebelementDirectly_forBreadcrumb(application, "Sevice name hyperlink", hyperLink , xml);
 		Thread.sleep(1000);
 		
 		scrolltoend();
@@ -3179,7 +3179,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 			}
 			else if (emptyele!=null && emptyele.isEmpty()) {
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " '"+ labelname +"' value is empty");
 			}else 
 			{   
 				if(emptyele.equals(ExpectedText)) {
@@ -3280,7 +3280,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 	public void verifyAddedMASswitchInformation_View(String application) throws InterruptedException, DocumentException, IOException {
 		
 		
-		waitForpageload();
+		
 		
 		scrollToTop();
 		Thread.sleep(1000);
@@ -3327,7 +3327,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		click_commonMethod(application, "Edit link", "MAS_View_Action_EditLink", xml);
 		
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		Thread.sleep(3000);
 		
@@ -3828,7 +3828,7 @@ try {
 public void routerPanel(String application, String commandIPv4, String commandIPv6, 
 		String vrfname_ipv4, String vrfname_ipv6) throws InterruptedException, DocumentException, IOException {
 	
-	waitForpageload();
+	
 	waitforPagetobeenable();
 	
 	scrollToTop();
@@ -3905,7 +3905,7 @@ public void executeCommandAndFetchTheValue(String application, String executeBut
 	
 	click_commonMethod(application, "Execute", executeButton, xml);
 	
-	waitForpageload();
+	
 	Thread.sleep(1000);
 	
 	waitforPagetobeenable();
@@ -4335,7 +4335,7 @@ try {
 			String PE_VRRfgroupname, String PE_VRF, String PE_interfaceName) 
 					throws InterruptedException, DocumentException, IOException { 
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 		scrollToTop();
@@ -4569,20 +4569,19 @@ try {
 	 */
 		public void clickOnBreadCrump(String application, String breadCrumpLink) throws InterruptedException, DocumentException {
 			
-			waitForpageload();
 			waitforPagetobeenable();
-			Thread.sleep(1000);
 			
 			scrollToTop();
+			Thread.sleep(1000);
 			WebElement breadcrumb=null;
 			
 			try {
-			breadcrumb=getwebelement(xml.getlocator("//locators/" + application + "/breadcrump").replace("value", breadCrumpLink));
+			breadcrumb=getwebelementNoWait(xml.getlocator("//locators/" + application + "/breadcrump").replace("value", breadCrumpLink));
 			if(breadcrumb.isDisplayed()) {
-				click_commonMethod_PassingWebelementDirectly(application, "Breadcrump", "breadcrump", xml);
+				click_commonMethod_PassingWebelementDirectly_forBreadcrumb(application, "Breadcrump", breadcrumb, xml);
 				Thread.sleep(2000);
 				
-				waitForpageload();
+				
 				waitforPagetobeenable();
 			}else {
 				Log.info("Breadcrumb is not displaying for the element "+ breadcrumb);
@@ -4612,7 +4611,7 @@ try {
 
 			click_commonMethod(application, "Edit link", "MAS_View_Action_EditLink", xml);
 			
-			waitForpageload();
+			
 			waitforPagetobeenable();
 			
 			Thread.sleep(2000);
@@ -4764,7 +4763,7 @@ try {
                               else
                               {
                                     Log.info("Delete alert popup is not displayed");
-                                    ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+                                    ExtentTestManager.getTest().log(LogStatus.FAIL, " Delete alert popup is not displayed");
                               }
                               
                         }
@@ -4821,7 +4820,7 @@ try {
                               else
                               {
                                     Log.info("Delete alert popup is not displayed");
-                                    ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+                                    ExtentTestManager.getTest().log(LogStatus.FAIL, " Delete alert popup is not displayed");
                               }
                               
                         }
@@ -4896,7 +4895,7 @@ try {
 				
 				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'view MAS Switch'");
 				
-				waitForpageload();
+				
 				waitforPagetobeenable();
 				
 				WebElement managementOptions_header= getwebelement(xml.getlocator("//locators/" + application + "/managementOptionsPanelheader"));
@@ -5063,7 +5062,7 @@ try {
 		public void SelectInterfacetoremovefromservice(String Application, String interfacename)
 				throws IOException, InterruptedException, DocumentException {
 
-			waitForpageload();
+			
 			
 			waitforPagetobeenable();
 			
@@ -5120,7 +5119,7 @@ try {
 						for (int i = 0; i < numofrows; i++) {
 							try {
 								
-								waitForpageload();
+								
 								waitforPagetobeenable();
 								
 								resultflag = results.get(i).isDisplayed();
@@ -5184,7 +5183,7 @@ try {
 			
 			ExtentTestManager.getTest().log(LogStatus.INFO, "'Select interface_Add Interface to Service'");
 			
-			waitForpageload();
+			
 			
 			waitforPagetobeenable();
 			
@@ -5306,7 +5305,7 @@ try {
 		public void viewTrunk_PSX_executeConfiguration(String application, String expectedConfiguration, String trunkName, String carrierIPoriginating,
 				String carrierIPterminating) throws InterruptedException, DocumentException, IOException {
 			
-			waitForpageload();
+			
 			waitforPagetobeenable();
 			Thread.sleep(2000);
 			
@@ -5356,7 +5355,7 @@ try {
 				       
 //				       alert.dismiss();
 				       alert.accept();
-				       waitForpageload();   waitforPagetobeenable();
+				          waitforPagetobeenable();
 				     try { 
 				      boolean trunkPanel = getwebelement(xml.getlocator("//locators/" + application + "/addTrunkGroupPanel")).isDisplayed(); 
 				      if(trunkPanel) {
@@ -5387,7 +5386,7 @@ try {
 								scrolltoend();
 								Thread.sleep(1000);
 								click_commonMethod(application, "OK", "OKbutton", xml);
-								waitForpageload();  waitforPagetobeenable();
+								  waitforPagetobeenable();
 								
 								verifysuccessmessage(application, "Trunk created successfully");
 								
@@ -5497,7 +5496,7 @@ try {
 	                        click_commonMethod(application, "Execute", "GSX_config_executeButton", xml);
 	                        Thread.sleep(2000);
 	                        
-	                        waitForpageload();    waitforPagetobeenable();
+	                            waitforPagetobeenable();
 	                        
 	                        click_commonMethod(application, "Close", "GSXconfig_closeButton", xml);
 	                  }
@@ -5812,7 +5811,7 @@ try {
              else
              {
                    Log.info("Delete alert popup is not displayed");
-                   ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+                   ExtentTestManager.getTest().log(LogStatus.FAIL, " Delete alert popup is not displayed");
              }
 			
 		}
@@ -5852,7 +5851,7 @@ try {
              else
              {
                    Log.info("Delete alert popup is not displayed");
-                   ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+                   ExtentTestManager.getTest().log(LogStatus.FAIL, " Delete alert popup is not displayed");
              }
 		}
 		
@@ -5892,7 +5891,7 @@ try {
 	             else
 	             {
 	                   Log.info("Delete alert popup is not displayed");
-	                   ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+	                   ExtentTestManager.getTest().log(LogStatus.FAIL, " Delete alert popup is not displayed");
 	             }
 			}
 		
@@ -6219,7 +6218,7 @@ public void selectInterface_AndDelete_MASswitch(String application, String devic
              else
              {
                    Log.info("Delete alert popup is not displayed");
-                   ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+                   ExtentTestManager.getTest().log(LogStatus.FAIL, " Delete alert popup is not displayed");
              }
              compareText(application, "Device delete success message", "MAS_deleteSuccessMessage", "Interface deleted successfully", xml);
              
@@ -6250,7 +6249,7 @@ public void selectInterface_AndDelete_MASswitch(String application, String devic
 	             else
 	             {
 	                   Log.info("Delete alert popup is not displayed");
-	                   ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+	                   ExtentTestManager.getTest().log(LogStatus.FAIL, " Delete alert popup is not displayed");
 	             }
 	             compareText(application, "Device delete success message", "MAS_deleteSuccessMessage", "Interface deleted successfully", xml);
 	             
@@ -6292,7 +6291,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
          else
          {
                Log.info("Delete alert popup is not displayed");
-               ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+               ExtentTestManager.getTest().log(LogStatus.FAIL, " Delete alert popup is not displayed");
          }
          
          verifysuccessmessage(application, "Interface deleted successfully");
@@ -6308,7 +6307,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 	public void viewInterface_MASswitch(String application, String deviceName, String Interface, String link, String interfaceAddressrange,
 			String vlanID) throws InterruptedException, DocumentException {
 		
-		waitForpageload();
+		
 		Thread.sleep(2000);
 		
 		
@@ -6328,7 +6327,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 	public void viewInterface_PEdevice(String application, String deviceName, String Interface, String link, String interfaceAddressrange,
 			String vlanID) throws InterruptedException, DocumentException {
 		
-		waitForpageload();
+		
 		Thread.sleep(2000);
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Added Interface Value");
@@ -6349,7 +6348,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 	public void deleteTrunk(String application, String trunkGroupName, String siteOrderName) throws Exception {
 		
 		
-		waitForpageload();   waitforPagetobeenable();
+		   waitforPagetobeenable();
 		scrolltoend();
 		Thread.sleep(3000);
 		
@@ -6662,7 +6661,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			String	MAS_PrimaryIPv6onMas1, String MAS_SecondaryIPv6onMas2, String MAS_GroupNumber, String MAS_Link, String MAS_VLANID,
 			String	MAS_IVManagement, String MAS_generateConfiguration, String MAS_HSRPTrackInterface, String MAS_HSRPAuthentication) throws InterruptedException, DocumentException, IOException {
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 		addDropdownValues(application, "Access Media", "MAS_PE_AccessMediaDropdown", MAS_AccessMedia);  //Access Media Dropdown
@@ -6769,7 +6768,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
     		String sitename, String sitecode,  String premisename,  String premisecode, 
     		String newsite, String NewPremise) throws InterruptedException, DocumentException {
 		
-		waitForpageload();
+		
 		
 		waitforPagetobeenable();
 		
@@ -7046,7 +7045,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		scrolltoend();
 		Thread.sleep(2000);
 		
-	waitForpageload();
+	
 	waitforPagetobeenable();
 	
 	scrolltoend();
@@ -7077,7 +7076,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
                           else
                           {
                                 Log.info("Delete alert popup is not displayed");
-                                ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+                                ExtentTestManager.getTest().log(LogStatus.FAIL, " Delete alert popup is not displayed");
                           }
                     }
                     else
@@ -7290,11 +7289,11 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 
 			if(password.isEmpty()) {
 
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Password Field is empty. No values displaying after clicked on 'Generate password link");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " Password Field is empty. No values displaying after clicked on 'Generate password link");
 
 				SendKeys(getwebelement(xml.getlocator("//locators/"+application+"/Password_Textfield")), GeneratePassword);	
 				Thread.sleep(1000);
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Password entered manually not automatically generated :  "+GeneratePassword);
+				ExtentTestManager.getTest().log(LogStatus.PASS, " Password entered manually not automatically generated :  "+GeneratePassword);
 				Log.info("===Password entered manually not automatically generated ===");
 
 			}else {
@@ -7341,7 +7340,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			click_commonMethod(application, "OK", "OK_button", xml);
 			Thread.sleep(2000);
 			compareText(application, "Create User success message", "successmsg", "User successfully created", xml);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : User added successfully");
+			ExtentTestManager.getTest().log(LogStatus.PASS, " User added successfully");
 			Log.info("User added successfully");
 
 			//Edit User
@@ -7354,7 +7353,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			{
 				WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 				AddedUser.click();
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " clicked on Existing user radio button");
 				Log.info("clicked on Existing user radio button");
 
 				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
@@ -7376,7 +7375,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 
 				if(editpassword.isEmpty()) {
 
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Password Field is empty. No values displaying under'Generate password link");
+					ExtentTestManager.getTest().log(LogStatus.FAIL, " Password Field is empty. No values displaying under'Generate password link");
 
 					click_commonMethod(application, "Generate Password", "GeneratePassword", xml);
 
@@ -7423,7 +7422,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			}
 			else
 			{
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No users displayed");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " No users displayed");
 				Log.info("No users displayed");
 			}
 
@@ -7445,7 +7444,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 					WebElement AddedUser = getwebelement("//div[contains(text(),'" + Username + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 					AddedUser.click();
 				}
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " clicked on Existing user radio button");
 				Log.info("clicked on Existing user radio button");
 
 				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
@@ -7543,7 +7542,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			}
 			else
 			{
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No users displayed");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " No users displayed");
 				Log.info("No users displayed");
 			}
 
@@ -7567,7 +7566,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 							//getwebelement("//div[contains(text(),'" +  + "')]/preceding-sibling::div//span[@class='ag-icon ag-icon-checkbox-unchecked']");
 					AddedUser.click();
 				}
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing user radio button");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " clicked on Existing user radio button");
 				Log.info("clicked on Existing user radio button");
 
 				click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
@@ -7587,12 +7586,12 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 //				else
 //				{
 //					Log.info("Delete alert popup is not displayed");
-//					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
+//					ExtentTestManager.getTest().log(LogStatus.FAIL, " Delete alert popup is not displayed");
 //				}
 			}
 			else
 			{
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : No users displayed");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " No users displayed");
 				Log.info("No users displayed");
 			}
 		}
@@ -8049,7 +8048,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		
 		public void shownewInfovista(String application) throws Exception {
 			
-			waitForpageload();
+			
 			waitforPagetobeenable();
 			Thread.sleep(2000);
 			
@@ -8139,7 +8138,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 					
 					verifysuccessmessage(application, "Service Status Changed successfully..");
 					
-					waitForpageload();
+					
 					waitforPagetobeenable();
 					Thread.sleep(2000);
 					
@@ -8148,7 +8147,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 					{
 						if(ServiceStatusHistory.isDisplayed())
 						{
-							ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change request logged");
+							ExtentTestManager.getTest().log(LogStatus.PASS, " Service status change request logged");
 							Log.info("Service status change request logged");
 							
 							compareText(application, "status column value", "serviceStatusPopup_statusTable_statusColumn", changeStatus, xml);
@@ -8157,7 +8156,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 						}
 						else
 						{
-							ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Service status change request is not logged");
+							ExtentTestManager.getTest().log(LogStatus.FAIL, " Service status change request is not logged");
 							Log.info("Service status change request is not logged");
 							
 							click_commonMethod(application, "Close", "servicestatus_popupclose", xml);
@@ -8180,7 +8179,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			}
 			else
 			{
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Service status change not reqired");
+				ExtentTestManager.getTest().log(LogStatus.PASS, " Service status change not reqired");
 				Log.info("Service status change not reqired");
 				click_commonMethod(application, "Close", "servicestatus_popupclose", xml);
 			}
@@ -8221,7 +8220,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 			//click on History link
 					click_commonMethod(application, "History", "viewTrunkPage_historyLink", xml);
 					
-					waitForpageload();
+					
 					waitforPagetobeenable();
 					Thread.sleep(2000);
 			
@@ -8251,7 +8250,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 				
 			//Action Column
 				click_commonMethod(application, "View", "historyPanel_viewLink", xml);
-				waitForpageload();
+				
 				waitforPagetobeenable();
 				Thread.sleep(1000);
 				
@@ -8261,7 +8260,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 				scrolltoend();
 				
 				click_commonMethod(application, "Back", "trunk_backbutton", xml);
-				waitForpageload();
+				
 				waitforPagetobeenable();
 				Thread.sleep(2000);
 				
@@ -8271,7 +8270,7 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		
 		public String verifyDevicesUnderPEpanel(String application) throws InterruptedException, DocumentException {
 			
-			waitForpageload();
+			
 			waitforPagetobeenable();
 			Thread.sleep(1000);
 			

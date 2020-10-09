@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<locators>
+<newTab>
+
+<ManageCustomerServiceLink>//span[b[contains(text(),"MANAGE CUSTOMER'S SERVICE")]]</ManageCustomerServiceLink>
+<searchorderORservicelink>//li[text()='Search Order/Service']</searchorderORservicelink>
+<searchService_serviceTextField>//label[text()='Service']/parent::div//input</searchService_serviceTextField>
+<searchButton>//span[text()='Search']</searchButton>
+<selectSearchedService>//div[text()='value']/parent::div//span[@class='ag-icon ag-icon-checkbox-unchecked']</selectSearchedService>
+<searchSerice_ActionDropdown>//button[text()='Action']</searchSerice_ActionDropdown>
+<searchService_viewLink>//a[text()='View']</searchService_viewLink>
+
+
+<!--  MAS switch -->
+<managementOptionsPanelheader>//div[div[contains(text(),'Management Options')]]</managementOptionsPanelheader>
+<MASswitch_panelHeader>//div[div[text()='MAS Switch']]</MASswitch_panelHeader>
+<addMASswitch_link>//a[contains(text(),'Add MAS Switch')]</addMASswitch_link>
+<MAS_AddMASSwitch_header>//div[contains(text(),'Add MAS Switch')]</MAS_AddMASSwitch_header>
+<MASswitch_warningmessage>//div[text()='IMS POP Location']</MASswitch_warningmessage>
+<AddmasSWitch_IMSpopswitch_dropdown>//div[label[text()='IMS POP Location']]//input</AddmasSWitch_IMSpopswitch_dropdown>
+<okButton>//span[text()='OK']</okButton>
+
+
+<!-- Edit MAS Switch -->
+<editLink>(//span[text()='Edit'])[1]</editLink>
+<MAS_View_ActionLink>(//button[text()='Action'])[1]</MAS_View_ActionLink>
+<MAS_View_Action_EditLink>//a[text()='Edit']</MAS_View_Action_EditLink>
+<MAS_deviceName>//div[label[text()='Name']]//input</MAS_deviceName>
+<MAS_vendorModel>//div[label[text()='Vendor/Model']]//input</MAS_vendorModel>
+<MAS_managementAddress>//div[label[text()='Management Address']]//input</MAS_managementAddress>
+<MAS_snmpro>//div[label[text()='Snmpro']]//input</MAS_snmpro>
+
+
+<!--  Success Message -->
+ <AlertForServiceCreationSuccessMessage>//div[@role='alert']/span</AlertForServiceCreationSuccessMessage>
+ <serivceAlert>//div[@role='alert']</serivceAlert>
+ 
+ 
+ <!-- Breadcrumb -->
+ <breadCrumb>//ol[@class='breadcrumb']//a[contains(text(),'value')]</breadCrumb>
+ <breadCrumbForcurrentPage>//ol[@class='breadcrumb']//li[contains(text(),'value')]</breadCrumbForcurrentPage>
+
+</newTab>
+</locators>

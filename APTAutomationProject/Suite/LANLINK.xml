@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="APT Test Suite" thread-count="4" data-provider-thread-count="1" verbose="4"  parallel ="tests">
+
+ 
+	<listeners>
+	  <listener class-name="com.colt.qa.listeners.TestListener"/>
+	   <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+    	
+    
+   <test name="Lanlink_DirectFiber">
+		<classes>
+			<class name = "com.colt.qa.apttestscripts.Lanlink_DirectFiber" />
+		</classes>
+	</test>
+	
+	
+	<test name="Lanlink_International">
+		<classes>
+			<class name = "com.colt.qa.apttestscripts.Lanlink_International" />
+		</classes>
+	</test>	
+	
+	
+	<test name="Lanlink_Metro">
+		<classes>
+			<class name = "com.colt.qa.apttestscripts.Lanlink_Metro" />
+		</classes>
+	</test>	
+	
+	<test name="LANLINK_OLO">
+		<classes>
+			<class name = "com.colt.qa.apttestscripts.Lanlink_OLO" />
+		</classes>
+	</test>	<!-- Test -->
+	
+	
+	<test name="LANLINK_National">
+		<classes>
+			<class name = "com.colt.qa.apttestscripts.Lanlink_National" />
+		</classes>
+	</test>
+	
+	<test name="Lanlink_Outbandmanagement">
+		<classes>
+			<class name = "com.colt.qa.apttestscripts.Lanlink_Outbandmanagement" />
+		</classes>
+	</test>
+	
+</suite>	 <!-- Suite -->
+
+

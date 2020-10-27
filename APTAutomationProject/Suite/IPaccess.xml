@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="APT Test Suite" thread-count="5" data-provider-thread-count="1" verbose="4"  parallel="tests" >
+
+    
+	<listeners>
+	  <listener class-name="com.colt.qa.listeners.TestListener"/>
+	   <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+    
+	<test name="IPAccess_ColtTotalConfiguration">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_IPAccess_ColtTotalTest"/>
+		</classes>
+	</test>	
+	
+	
+	<test name="IPAccess_virtualCPEConfiguration">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_IPAccess_VCPEConfigTest"/>
+		</classes>
+	</test>	
+	
+	
+	<test name="IPAccess_virtualCPEResilientConfiguration">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_IPAccess_VCPEResilientConfigTest"/>
+		</classes>
+	</test>	
+	
+	
+	<test name="IPAccess_CMSdataCenters">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_IPAccessCMSDataCenterTest"/>
+		</classes>
+	</test>	
+	
+	
+	<test name="IPAccess_IPAccessConfiguration">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_IPAccessConfigTest"/>
+		</classes>
+	</test>	
+	
+	
+	<test name="IPAccess_MultihomedConfiguration">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_IPAccessMultihomedTest"/>
+		</classes>
+	</test>	
+	
+	
+	<test name="IPAccess_noCPEConfiguration">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_IPAccessNoCPETest"/>
+		</classes>
+	</test>	
+	
+	
+	<test name="IPAccess_resilientConfiguration">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_IPAccessResilientConfigTest"/>
+		</classes>
+	</test>	
+	
+	
+	<test name="IPAccess_speedBoat">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_IPAccessSpeedboatTest"/>
+		</classes>
+	</test>	
+	
+</suite>	
+
+
+

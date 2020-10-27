@@ -1,0 +1,490 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+ExtentReports Library 2.40.2 | http://relevantcodes.com/extentreports-for-selenium/ | https://github.com/anshooarora/
+Copyright (c) 2015, Anshoo Arora (Relevant Codes) | Copyrights licensed under the New BSD License | http://opensource.org/licenses/BSD-3-Clause
+Documentation: http://extentreports.relevantcodes.com 
+-->
+
+<meta charset='UTF-8' /> 
+<meta name='description' content='ExtentReports (by Anshoo Arora) is a reporting library for automation testing for .NET and Java. It creates detailed and beautiful HTML reports for modern browsers. ExtentReports shows test and step summary along with dashboards, system and environment details for quick analysis of your tests.' />
+<meta name='robots' content='noodp, noydir' />
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+
+<title>
+ExtentReports 2.0
+</title>
+
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+<link href='https://cdn.rawgit.com/anshooarora/extentreports/e4f8ea1de961161791c01b99a71a1e17f81125cf/cdn/extent.css' type='text/css' rel='stylesheet' />
+
+<style>
+
+            
+                
+            
+        
+</style>
+</head>
+
+
+<body class='extent standard hide-overflow'>
+<!-- nav -->
+<nav>
+<div class='logo-container'>
+<a class='logo-content' href='http://extentreports.relevantcodes.com'>
+<span>ExtentReports</span>
+</a>
+<a href='#' data-activates='slide-out' class='button-collapse hide-on-large-only'><i class='mdi-navigation-apps'></i></a>
+</div>
+<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+<li class='analysis waves-effect active'><a href='#!' class='test-view' onclick="_updateCurrentStage(0)"><i class='mdi-action-dashboard'></i>Test Details</a></li>
+<li class='analysis waves-effect'><a href='#!' class='dashboard-view'><i class='mdi-action-track-changes'></i></i>Analysis</a></li>
+</ul>
+<span class='report-name'>Automation Report</span> <span class='report-headline'></span>
+<ul class='right hide-on-med-and-down nav-right'>
+<li class='theme-selector' alt='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");' title='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");'>
+<i class='mdi-hardware-desktop-windows'></i>
+</li>
+<li>
+<span class='suite-started-time'>2020-10-06 14:20:33</span>
+</li>
+<li>
+<span>v2.40.2</span>
+</li>
+</ul>
+</nav>
+<!-- /nav -->
+
+<!-- container -->
+<div class='container'>
+
+<!-- dashboard -->
+<div id='dashboard-view' class='row'>
+<div class='time-totals'>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-tests'> 
+<span class='panel-name'>Total Tests</span> 
+<span class='total-tests'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-steps'> 
+<span class='panel-name'>Total Steps</span> 
+<span class='total-steps'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-current'> 
+<span class='panel-name'>Total Time Taken (Current Run)</span> 
+<span class='suite-total-time-current-value panel-lead'>0h 1m 25s+609ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-overall'> 
+<span class='panel-name'>Total Time Taken (Overall)</span> 
+<span class='suite-total-time-overall-value panel-lead'>0h 1m 25s+609ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-start-time'>
+<div class='card accent green-accent'> 
+<span class='panel-name'>Start</span> 
+<span class='panel-lead suite-started-time'>2020-10-06 14:19:08</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-end-time'>
+<div class='card accent pink-accent'> 
+<span class='panel-name'>End</span> 
+<span class='panel-lead suite-ended-time'>2020-10-06 14:20:33</span> 
+</div> 
+</div>
+</div>
+<div class='charts'>
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Tests View</span>
+</div> 
+<div class='panel-setting modal-trigger test-count-setting right'>
+<a href='#test-count-setting'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='test-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='t-pass-count weight-normal'></span> test(s) passed</span>
+</div> 
+<div>
+<span class='weight-light'><span class='t-fail-count weight-normal'></span> test(s) failed, <span class='t-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div> 
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Steps View</span>
+</div> 
+<div class='panel-setting modal-trigger step-status-filter right'>
+<a href='#step-status-filter'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='step-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='s-pass-count weight-normal'></span> step(s) passed </span>
+</div> 
+<div>
+<span class='weight-light'><span class='s-fail-count weight-normal'></span> step(s) failed, <span class='s-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div>
+<div class='col s12 m12 l4 fh'> 
+<div class='card-panel'> 
+<span class='panel-name'>Pass Percentage</span> 
+<span class='pass-percentage panel-lead'></span> 
+<div class='progress light-blue lighten-3'> 
+<div class='determinate light-blue'></div> 
+</div> 
+</div> 
+</div>
+</div>
+<div class='system-view'>
+<div class='col l4 m12 s12'>
+<div class='card-panel'>
+<span class='label info outline right'>Environment</span>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Windows Server 2016</td>
+</tr>
+<tr>
+<td>User Name</td>
+<td>COLT</td>
+</tr>
+<tr>
+<td>Java Version</td>
+<td>1.8.0_221</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td>QA</td>
+</tr>
+<tr>
+<td>Host Name</td>
+<td>APT_QA_Colt</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- /dashboard -->
+
+<!-- tests -->
+<div id='test-view' class='row _addedTable'>
+<div class='col _addedCell1'>
+<div class='contents'>
+<div class='card-panel heading'>
+<h5>Tests</h5>
+</div>
+<div class='card-panel filters'>
+<div>
+<a data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#' class='dropdown-button button tests-toggle'><i class='mdi-action-subject icon'></i></a>
+<ul id='tests-toggle' class='dropdown-content'>
+<li class='pass'><a href='#!'>Pass</a></li>
+<li class='fail'><a href='#!'>Fail</a></li>
+<li class='skip'><a href='#!'>Skip</a></li>
+<li class='divider'></li>
+<li class='clear'><a href='#!'>Clear Filters</a></li>
+</ul>
+</div>
+<div>
+<a id='clear-filters' alt='Clear Filters' title='Clear Filters'><i class='mdi-navigation-close icon'></i></a>
+</div>
+<div>&nbsp;&middot;&nbsp;</div>
+<div>
+<a id='enableDashboard' alt='Enable Dashboard' title='Enable Dashboard'><i class='mdi-action-track-changes icon'></i></a>
+</div>
+<div>
+<a id='refreshCharts' alt='Refresh Charts on Filters' title='Refresh Charts on Filters' class='enabled'><i class='mdi-navigation-refresh icon'></i></i></a>
+</div>
+<div>&nbsp;&middot;</div>
+<div class='search' alt='Search Tests' title='Search Tests'>
+<div class='input-field left'>
+<input id='searchTests' type='text' class='validate' placeholder='Search Tests...'>
+</div>
+<i class='mdi-action-search icon'></i>
+</div>
+</div>
+<div class='card-panel no-padding-h no-padding-v no-margin-v'>
+<div class='wrapper'>
+<ul id='test-collection' class='test-collection'>
+<li class='collection-item test displayed active pass ' extentid='88f7f402-7efc-4914-9f52-93089b80374b'>
+<div class='test-head'>
+<span class='test-name'>search Device </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-10-06 14:19:08</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2020-10-06 14:20:33</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 1m 25s+84ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:19:11</td>
+<td class='step-details'>clicked on manage colt's Network link</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:19:14</td>
+<td class='step-details'>Step: Clicked on 'search For Device' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:19:20</td>
+<td class='step-details'>Device Name text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:19:20</td>
+<td class='step-details'>No values added to text field Device Name</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:19:21</td>
+<td class='step-details'>Management Address text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:19:21</td>
+<td class='step-details'>No values added to text field Management Address</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:19:34</td>
+<td class='step-details'>list of values displaying inside Vendor/Model available dropdown is: [3Com 3Com SuperStackII, 3Com CoreBuilder-3900, 3Com Modem-Bridge US, 3Com SuperStackII 3300, 3Com Unknown, ALU 7750, Accedian 10GigE-MetroNode-CE-2Port, Accedian 10GigE-MetroNode-CE-4Port, Accedian Clipper LT, Accedian Clipper LT-S, Accedian FSX, Accedian LTS, Accedian MetroNID GT, Accedian MetroNID GT-S, Accedian MetroNID GX-S, Accedian Velocity FS 10G, Accedian Velocity FS 1G, Accedian-1G 1GigE-MetroNID-GT, Accedian-1G 1GigE-MetroNID-GT-S, Accedian-1G GX, Actelis ML1300, Actelis ML2300, Actelis ML622, Actelis ML624, Actelis ML624i, Actelis ML628, Actelis ML648, Actelis ML744-O, Actelis ML748-O, Actelis CPE ML622, Actelis CPE ML622i, Actelis CPE ML624, Actelis CPE ML624i, Actelis CPE ML628, Actelis CPE ML644E, Actelis CPE ML648, Actelis CPE ML648E, Adva FSP-F7, Advantec 1000, Advantec 120_L1W1, Advantec 120_L7430-W178, Advantec 120_NW, Advantec 810, Advantech 1012, Advantech 2012, Advantech 3260, Arista 7050Q, Arista 7130-48E, Arista 7130-48L, Arista 7150S, Arista DCS-7124SX, Arista DCS-7124SX-F, Arista DCS-7124SX-R, Arista DCS-7148SX-F, Arista DCS-7150S-24-CL-R, Arista DCS-7150S-24-F, Arista DCS-7150S-24-R, Arista DCS-7150S-52-CL-R, Atrica A-8100, Audioodes Mediant 1000, BRC BRC-9530, Belgacom A-MODEM, Cabletron SEHI, Ciena 6500, Cisco 12008, Cisco 12012, Cisco 12016, Cisco 12404, Cisco 12406, Cisco 12406 GSR, Cisco 12410, Cisco 12410 GSR, Cisco 12416, Cisco 15454, Cisco 1601, Cisco 1605, Cisco 1701, Cisco 1710, Cisco 1710 VPN, Cisco 1721, Cisco 1750, Cisco 1751, Cisco 1760, Cisco 1760 (V), Cisco 1841, Cisco 1921, Cisco 1941, Cisco 2501, Cisco 2511-RJ-CH, Cisco 2511RJ, Cisco 2514, Cisco 2610, Cisco 2611, Cisco 2611AC, Cisco 2611VWIC, Cisco 2611XM, Cisco 2620, Cisco 2620XM, Cisco 2621, Cisco 2621XM, Cisco 2651XM, Cisco 2800, Cisco 2811, Cisco 2811DC, Cisco 2821, Cisco 2901, Cisco 2911, Cisco 2911-K9-ISR G2, Cisco 2912XL, Cisco 2924, Cisco 2924M-XL, Cisco 2924XL-V, Cisco 2948G, Cisco 2950, Cisco 2950T-48, Cisco 2951, Cisco 2960, Cisco 2960-24, Cisco 2960-24TC-L, Cisco 2960-48, Cisco 2960-48-TT-L, Cisco 2960-48TT-L, Cisco 296048TT, Cisco 2960S-24PS-L, Cisco 2960S-24TS-L, Cisco 2960S-48LPS-L, Cisco 2960S-48TS-L, Cisco 3508, Cisco 3512, Cisco 3512 XL, Cisco 3524, Cisco 3524 XL, Cisco 3524XL, Cisco 3548, Cisco 3548XL, Cisco 3550, Cisco 3560, Cisco 3560-24TS, Cisco 3560-24TS-S, Cisco 3560-48TS, Cisco 3560-48TS-E, Cisco 3560-48TS-S, Cisco 3560-8PC, Cisco 3560-X, Cisco 3560G-24PS, Cisco 3560V2-48TS-S, Cisco 3560X, Cisco 3560X-24T-S, Cisco 3580G XL, Cisco 3600, Cisco 3620, Cisco 3640, Cisco 3650, Cisco 3660, Cisco 3662-AC, Cisco 3662-AC-CO, Cisco 3725, Cisco 3750, Cisco 3750-24PS-S, Cisco 3750-24TS-E, Cisco 3750-48PS-S, Cisco 3750-48TS-S, Cisco 3750-Stack, Cisco 375024PS, Cisco 3750G-12S-E, Cisco 3750G-12S-S, Cisco 3750G-24PS-E, Cisco 3750G-24T-S, Cisco 3750G-24TS-E1U, Cisco 3750G-24TS-S1U, Cisco 3750G-48PS-E, Cisco 3750G-48TS-E, Cisco 3750G-48TS-S, Cisco 3750G48TS, Cisco 3750V2-24PS-S, Cisco 3750V2-24TS-E, Cisco 3750V2-48PS-S, Cisco 3750V2-48TS-E, Cisco 3750V2-48TS-S, Cisco 3750X, Cisco 3750X-48P-E, Cisco 3750X-48P-S, Cisco 3750v248ps, Cisco 3750v248ts, Cisco 3825, Cisco 3845, Cisco 3850, Cisco 3925, Cisco 3925E, Cisco 3945, Cisco 3945E, Cisco 4000, Cisco 4003, Cisco 4006, Cisco 4221, Cisco 4232, Cisco 4321, Cisco 4331, Cisco 4351, Cisco 4431, Cisco 4928-10GE, Cisco 4948, Cisco 5400, Cisco 5500, Cisco 5505, Cisco 6009, Cisco 6500, Cisco 6503-CATOS, Cisco 6503-E, Cisco 6503-IOS, Cisco 6504E, Cisco 6506E-S32-GE, Cisco 6509, Cisco 6509-E-PFC2, Cisco 6509-E-RF, Cisco 6509-NEB-A, Cisco 6509E-S32-GE, Cisco 6K-MSFC, Cisco 7120, Cisco 7120-AE3, Cisco 7120AT3, Cisco 7120T3, Cisco 7140-2FE, Cisco 7200, Cisco 7202, Cisco 7204, Cisco 7204VXR, Cisco 7206, Cisco 7206VXR, Cisco 7206VXR/300, Cisco 7206VXR/400/GE, Cisco 7507, Cisco 7507MX, Cisco 7513, Cisco 7513MX, Cisco 7513Z, Cisco 7609, Cisco 806, Cisco 826, Cisco 827H, Cisco 828, Cisco 831, Cisco 836, Cisco 837, Cisco 871, Cisco 876, Cisco 877, Cisco 877M, Cisco 878, Cisco 878W, Cisco 881, Cisco 881G, Cisco 886, Cisco 886G, Cisco 886VA, Cisco 887, Cisco 887G, Cisco 887VA, Cisco 887VA-M, Cisco 887VA-M-K9, Cisco 888, Cisco 888G, Cisco 93180YC-EX, Cisco 9348GC-FXP, Cisco ACE-4710-K9, Cisco ACE10-6500-K9, Cisco AIR-CT5508-K9, Cisco APIC, Cisco AS5300, Cisco AS5350, Cisco AS5400, Cisco AS5400XM, Cisco ASA5505, Cisco ASA5510, Cisco ASA5520, Cisco ASA5540, Cisco ASR1000, Cisco ASR1001, Cisco ASR1001-HX, Cisco ASR1001X, Cisco ASR1001X-2.5G-VPN, Cisco ASR1001X-20G-SEC, Cisco ASR1002, Cisco ASR1002-F, Cisco ASR1002-HX, Cisco ASR1004, Cisco ASR1006, Cisco ASR9006, Cisco ASR920, Cisco ASR9906, Cisco ASR9910, Cisco C1000, Cisco C1111-4P, Cisco C1111-8P, Cisco C1721, Cisco C1751, Cisco C2950-12, Cisco C2950-24, Cisco C2950G-24, Cisco C2950G-24-DC, Cisco C2950G-48, Cisco C2950T-24, Cisco C2960S-48FPS-L, Cisco C3750V2-24TS-S, Cisco C6509-E, Cisco C6509E-S720-10G, Cisco C870, Cisco C881-K9, Cisco C886VAG-LTE-GA-K9, Cisco C886VAJ-K9, Cisco C887VAG-4G-GA-K9, Cisco C891F-K9, Cisco C891F-K9 AC, Cisco C921-4P, Cisco C921-4PLTEGB, Cisco C921J-4P, Cisco C926-4P, Cisco C927-4P, Cisco C927-4PM, Cisco C9300, Cisco C93180YC-EX, Cisco C9348GC-FXP, Cisco C9364C, Cisco CAT4500, Cisco CRS-1, Cisco Catalyst 5505, Cisco Catalyst wsc1900, Cisco FWSM, Cisco IOS 6509, Cisco ISR4351-SEC/K9, Cisco ISR4431-SEC/K9, Cisco ISR4431/K9, Cisco ISR4451-X, Cisco ISR4451-X-SEC/K9, Cisco MR53-HW, Cisco MS350-24X-HW, Cisco MSFC2, Cisco MX-1003, Cisco MX240, Cisco MX400-HW, Cisco Meraki MR53-HW, Cisco Meraki MS350-24X-HW, Cisco Meraki MX400-HW, Cisco N5K-C5548UP-FA, Cisco N9K-C93180YC-EX, Cisco NCS540, Cisco NCS5501, Cisco NCS5502-SE, Cisco NCS5508, Cisco NCS55A1, Cisco Nexus-9300, Cisco Nexus-9332C, Cisco PIX515E, Cisco PIX520, Cisco PIX525, Cisco PIX535, Cisco Unknown, Cisco WS-C3550-12G, Cisco WS-C3550-24, Cisco WS-C3550-24Dc, Cisco WS-C3550-48, Cisco WS-C3560G-48TS, Cisco WS-C3750E-24TD, Cisco WS-C3750G-24TS, Cisco WS-C3750V2-24TS, Cisco WS-C3850-12XS-S, Cisco WS-C3850-24T-E, Cisco WS-C3850-24T-S, Cisco WS-C3850-24U-L, Cisco WS-C3850-24XS-E, Cisco WS-C3850-48T-E, Cisco WS-C3850-48T-S, Cisco WS-C3850-48U-L, Cisco WS-C4500X-32SFP+, Cisco WS-C6506-E, Cisco WS-F6k-MSFC, Cisco WS-S4006, Cisco XTC, Cyan Z22, Cyan Z33, Cyan Z77, ENI 5660, Efficient 5890, Efficient 7950, F5 BIG-IP 1600, F5 BIG-IP 3900, HP J4813A ProCurve Switch 2524, HP Unknown, HP Proliant D360p, Huawei 183x, Huawei AR 1220, Huawei AR 151, Huawei AR 200, Huawei AR 2220, Huawei AR 2240, Huawei AR 3260, Huawei AR1831, Huawei AR1834, Huawei AR1834E, Huawei AR1835, Huawei AR2809, Huawei AR2810, Huawei AR2811, Huawei AR2831, Huawei AR4640, Huawei Quidway S3528P, Huawei Quidway S3528P-EA, Huawei Quidway S3552P, Huawei S3026, Huawei S3328TP-EI, Huawei S3528, Huawei S5516, Huawei Unknown, Juniper E320, Juniper ERX1400, Juniper ERX1400 Virtual Router, Juniper ERX700, Juniper EX2200, Juniper EX2200-24T-4G, Juniper EX2200-48T-4G, Juniper EX2200-C-12T-2G, Juniper EX2200C, Juniper EX3400, Juniper EX4200, Juniper EX4200-24F, Juniper EX4200-24T, Juniper EX4500, Juniper ISG2000, Juniper MX10, Juniper MX204, Juniper MX240, Juniper MX260, Juniper MX40-T, Juniper MX480, Juniper MX5-T, Juniper MX80-T-AC, Juniper MX960, Juniper QFX3500, Juniper SRX-210HE, Juniper SRX1400, Juniper SRX1500, Juniper SRX1500-AC, Juniper SRX210, Juniper SRX240H2, Juniper SRX300, Juniper SRX320, Juniper SRX340, Juniper SRX345, Juniper SRX4100, Juniper SRX4100-AC, Juniper SRX4200, Juniper SRX4200-AC, Juniper SRX550M, Juniper SSG-140, Juniper SSG20, Linux NET-SNMP SOLARIS, MRV Optiswitch OS-F2026, MRV Optiswitch OSN 105, MetroNode 10GE, Nokia IP1220, Nokia IP265, Nokia IP290, Nokia IP350, Nokia IP390, Nokia IP530, Nokia IP560, Nokia IP690, Nokia M1112, Nortel CVX-1800, Nortel Optera Metro 5100, Nortel Optera Metro 5200, OneAccess One200, OneAccess One270, OneAccess One300, OneAccess One425, OneAccess One700, Other  , Overture ISG 2200, Overture ISG-26, Overture ISG-26R, Overture ISG-26S, Overture ISG140, Overture ISG180, Overture ISG24, Overture ISG6000, Sun Netra T1, Sun UltraSPARC-II, Sun V210, Sun V240, Sun V440, Sun V880, Traffic Aggregator  Cisco, Versa FWA-2320-VS500E, Versa FWA-2320-VS510E, Zyxel 650H-31, Zyxel 650H-33, Zyxel 660H-31, Zyxel ES2008]</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:19:39</td>
+<td class='step-details'>Juniper MX480 got selected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:19:42</td>
+<td class='step-details'>Step: Clicked on 'Add' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:19:52</td>
+<td class='step-details'>Cisco 12008 got selected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:19:56</td>
+<td class='step-details'>Step: Clicked on 'Add' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:01</td>
+<td class='step-details'>list of values displaying inside Vendor/Model available dropdown is: [Juniper MX480, Cisco 12008]</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:02</td>
+<td class='step-details'>list of values displaying inside Device Type available dropdown is: [Access Router, Access Switch, Core Router, DCN Device, DSLAM Device, Firewall, Key Server, Load Balancer, MDF Firewall, Mini DSLAM, Prizmnet, Router CPE, Traffic Aggregator, Voice-Gateway, VOIPAccess DAS Switch, WDM CPE]</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:07</td>
+<td class='step-details'>Access Router got selected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:11</td>
+<td class='step-details'>Step: Clicked on 'Add' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:16</td>
+<td class='step-details'>list of values displaying inside Device Type available dropdown is: [Access Router]</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:17</td>
+<td class='step-details'>Search City text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:17</td>
+<td class='step-details'>No values added to text field Search City</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:19</td>
+<td class='step-details'>Search CO text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:19</td>
+<td class='step-details'>No values added to text field Search CO</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:21</td>
+<td class='step-details'>Router Id text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:21</td>
+<td class='step-details'>No values added to text field Router Id</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:25</td>
+<td class='step-details'>Step: Clicked on 'Search' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:28</td>
+<td class='step-details'>Step: Clicked on 'selectValueUnderSearchResultCheckbox' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:30</td>
+<td class='step-details'>Step: Clicked on 'Action' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:20:33</td>
+<td class='step-details'>Step: Clicked on 'View' button</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id='test-details-wrapper' class='col _addedCell2'>
+<div class='contents'>
+<div class='card-panel details-view'>
+<h5 class='details-name'></h5>
+<div class='details-container'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- /tests -->
+
+<!-- categories -->
+<!-- /categories -->
+
+<!-- exceptions -->
+<!-- /exceptions -->
+
+<!-- testrunner logs -->
+<!-- /testrunner logs -->
+
+</div>
+<!-- /container -->
+
+<!-- test dashboard counts setting -->
+<div id='test-count-setting' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Configure Tests Count Setting</h5> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodes' class='with-gap'> 
+<label for='parentWithoutNodes'>Parent Tests Only (Does not include child nodes in counts)</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodesAndNodes' class='with-gap'> 
+<label for='parentWithoutNodesAndNodes'>Parent Tests Without Child Tests + Child Tests</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='childNodes' class='with-gap'> 
+<label for='childNodes'>Child Tests Only</label> 
+</div> 
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /test dashboard counts setting -->
+
+<!-- filter for step status -->
+<div id='step-status-filter' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Select status</h5> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-pass'> 
+<label for='step-dashboard-filter-pass'>Pass</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fail'> 
+<label for='step-dashboard-filter-fail'>Fail</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fatal'> 
+<label for='step-dashboard-filter-fatal'>Fatal</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-error'> 
+<label for='step-dashboard-filter-error'>Error</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-warning'> 
+<label for='step-dashboard-filter-warning'>Warning</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-skip'> 
+<label for='step-dashboard-filter-skip'>Skipped</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-info'> 
+<label for='step-dashboard-filter-info'>Info</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-unknown'> 
+<label for='step-dashboard-filter-unknown'>Unknown</label> 
+</div>
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /filter for step status -->
+
+<script src='https://cdn.rawgit.com/anshooarora/extentreports/c936a26fc8bb9c5fc0253b5bc6f289e1d14bb595/cdn/extent.js' type='text/javascript'></script>
+
+<script>$(document).ready(function() { $('.logo span').html('ExtentReports'); });</script>
+<script>
+
+            
+                $(document).ready(function() {
+                    
+                });
+            
+        
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="APT Test Suite" thread-count="5" data-provider-thread-count="1" verbose="4" parallel="tests">
+
+    
+	<listeners>
+	  <listener class-name="com.colt.qa.listeners.TestListener"/>
+	   <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+    
+	<test name="createAccessCoreDevice_AccessRouter">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter" />
+			
+		</classes>
+	</test>	<!-- Test -->
+	
+  	
+	<test name="createAccessCoreDevice_AccessSwitch">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessSwitch" />
+		</classes>
+	</test>	
+	
+	<test name="CreateAccessCoreDevice_CoreRouter">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_CoreRouter" />
+		</classes>
+	</test>
+	
+	<test name="CreateAccessCoreDevice_DCNDevice">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DCNDevice" />
+		</classes>
+	</test>
+	
+	<test name="CreateAccessCoreDevice_DSLAM">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DSLAM" />
+		</classes>
+	</test>
+	
+	<test name="CreateAccessCoreDevice_Firewall">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Firewall" />
+		</classes>
+	</test>
+	
+	<test name="CreateAccessCoreDevice_Keyserver">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Keyserver" />
+		</classes>
+	</test>
+	
+	<test name="CreateAccessCoreDevice_LoadBalancer">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_LoadBalancer" />
+		</classes>
+	</test>
+	
+	<test name="CreateAccessCoreDevice_MDFFirewall">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MDFFirewall" />
+		</classes>
+	</test>
+	
+	<test name="CreateAccessCoreDevice_MiniDSLAM">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MiniDSLAM" />
+		</classes>
+	</test>
+	
+	<test name="CreateAccessCoreDevice_Prizmnet">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Prizmnet" />
+		</classes>
+	</test>
+	
+	<test name="CreateAccessCoreDevice_TrafficAggregator">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_TrafficAggregator" />
+		</classes>
+	</test>
+	
+	<test name="CreateAccessCoreDevice_VoiceGateway">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VoiceGateway" />
+		</classes>
+	</test>
+	
+	<test name="CreateAccessCoreDevice_VOIPAccessDASSwitch">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VOIPAccessDASSwitch" />
+		</classes>
+	</test>
+	
+	
+	<test name="searchForDevice">
+		<classes>
+			<class name="com.colt.qa.apttestscripts.searchForDevice" />
+		</classes>
+	</test>
+		
+	
+</suite>	 <!-- Suite -->
+
+

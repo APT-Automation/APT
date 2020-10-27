@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="classes" verbose="4" data-provider-thread-count="1" thread-count="4" name="APT Test Suite">
+
+<!-- Suite -->
+
+<listeners>
+	<listener class-name="com.colt.qa.listeners.TestListener"/>
+	<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+	<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+</listeners>
+
+
+<test name="APT_Automation_Suite">
+
+<classes>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CustomerFunctionality"/>
+		<class name="com.colt.qa.apttestscripts.PerformOrder_Supply"/>
+		<class name="com.colt.qa.apttestscripts.Lanlink_National"/>
+		<class name="com.colt.qa.apttestscripts.Lanlink_International"/>
+		<class name="com.colt.qa.apttestscripts.Lanlink_OLO"/>
+		<class name="com.colt.qa.apttestscripts.Lanlink_DirectFiber"/>
+		<class name="com.colt.qa.apttestscripts.Lanlink_Metro"/>
+		<class name="com.colt.qa.apttestscripts.Lanlink_Outbandmanagement"/>
+		<class name="com.colt.qa.apttestscripts.APT_wholesale"/>
+		<class name="com.colt.qa.apttestscripts.APT_HSSTest"/>
+		<class name="com.colt.qa.apttestscripts.Manage_Postcode"/>
+		<class name="com.colt.qa.apttestscripts.IMSN_Translator"/>
+		<class name="com.colt.qa.apttestscripts.APT_ManageNetworkTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPTransitTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_NGINMessageTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_NGINTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_SANManagementTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_VoiceLineTest"/>
+		<class name="com.colt.qa.apttestscripts.searchForDevice"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNAccess"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNConnect"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNCPESolutionL2"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNCPESolutionL3"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNIPSec"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNIPVoice"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNPlus"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNSwiftNet"/>
+		<class name="com.colt.qa.apttestscripts.APT_VoiceLineTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_DomainManagementTest"/>
+		<class name="com.colt.qa.apttestscripts.DDI_Test"/>
+		<class name="com.colt.qa.apttestscripts.APT_VOIPAccessTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessSwitch"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_CoreRouter"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DCNDevice"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DSLAM"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Firewall"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Keyserver"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_LoadBalancer"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MDFFirewall"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MiniDSLAM"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Prizmnet"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_TrafficAggregator"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VoiceGateway"/>
+		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VOIPAccessDASSwitch"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccess_ColtTotalTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccess_VCPEConfigTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccess_VCPEResilientConfigTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccessCMSDataCenterTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccessConfigTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccessMultihomedTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccessNoCPETest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccessResilientConfigTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccessSpeedboatTest"/>
+		
+		
+</classes>
+
+</test>
+
+<!-- Test -->
+
+
+</suite>

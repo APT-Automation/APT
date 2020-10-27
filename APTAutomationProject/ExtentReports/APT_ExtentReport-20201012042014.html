@@ -1,0 +1,1802 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+ExtentReports Library 2.40.2 | http://relevantcodes.com/extentreports-for-selenium/ | https://github.com/anshooarora/
+Copyright (c) 2015, Anshoo Arora (Relevant Codes) | Copyrights licensed under the New BSD License | http://opensource.org/licenses/BSD-3-Clause
+Documentation: http://extentreports.relevantcodes.com 
+-->
+
+<meta charset='UTF-8' /> 
+<meta name='description' content='ExtentReports (by Anshoo Arora) is a reporting library for automation testing for .NET and Java. It creates detailed and beautiful HTML reports for modern browsers. ExtentReports shows test and step summary along with dashboards, system and environment details for quick analysis of your tests.' />
+<meta name='robots' content='noodp, noydir' />
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+
+<title>
+ExtentReports 2.0
+</title>
+
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+<link href='https://cdn.rawgit.com/anshooarora/extentreports/e4f8ea1de961161791c01b99a71a1e17f81125cf/cdn/extent.css' type='text/css' rel='stylesheet' />
+
+<style>
+
+            
+                
+            
+        
+</style>
+</head>
+
+
+<body class='extent standard hide-overflow'>
+<!-- nav -->
+<nav>
+<div class='logo-container'>
+<a class='logo-content' href='http://extentreports.relevantcodes.com'>
+<span>ExtentReports</span>
+</a>
+<a href='#' data-activates='slide-out' class='button-collapse hide-on-large-only'><i class='mdi-navigation-apps'></i></a>
+</div>
+<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+<li class='analysis waves-effect active'><a href='#!' class='test-view' onclick="_updateCurrentStage(0)"><i class='mdi-action-dashboard'></i>Test Details</a></li>
+<li class='analysis waves-effect'><a href='#!' class='exceptions-view' onclick="_updateCurrentStage(2)"><i class='mdi-action-bug-report'></i>Exceptions</a></li>
+<li class='analysis waves-effect'><a href='#!' class='dashboard-view'><i class='mdi-action-track-changes'></i></i>Analysis</a></li>
+</ul>
+<span class='report-name'>Automation Report</span> <span class='report-headline'></span>
+<ul class='right hide-on-med-and-down nav-right'>
+<li class='theme-selector' alt='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");' title='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");'>
+<i class='mdi-hardware-desktop-windows'></i>
+</li>
+<li>
+<span class='suite-started-time'>2020-10-12 16:34:43</span>
+</li>
+<li>
+<span>v2.40.2</span>
+</li>
+</ul>
+</nav>
+<!-- /nav -->
+
+<!-- container -->
+<div class='container'>
+
+<!-- dashboard -->
+<div id='dashboard-view' class='row'>
+<div class='time-totals'>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-tests'> 
+<span class='panel-name'>Total Tests</span> 
+<span class='total-tests'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-steps'> 
+<span class='panel-name'>Total Steps</span> 
+<span class='total-steps'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-current'> 
+<span class='panel-name'>Total Time Taken (Current Run)</span> 
+<span class='suite-total-time-current-value panel-lead'>0h 14m 29s+306ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-overall'> 
+<span class='panel-name'>Total Time Taken (Overall)</span> 
+<span class='suite-total-time-overall-value panel-lead'>0h 14m 29s+306ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-start-time'>
+<div class='card accent green-accent'> 
+<span class='panel-name'>Start</span> 
+<span class='panel-lead suite-started-time'>2020-10-12 16:20:14</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-end-time'>
+<div class='card accent pink-accent'> 
+<span class='panel-name'>End</span> 
+<span class='panel-lead suite-ended-time'>2020-10-12 16:34:43</span> 
+</div> 
+</div>
+</div>
+<div class='charts'>
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Tests View</span>
+</div> 
+<div class='panel-setting modal-trigger test-count-setting right'>
+<a href='#test-count-setting'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='test-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='t-pass-count weight-normal'></span> test(s) passed</span>
+</div> 
+<div>
+<span class='weight-light'><span class='t-fail-count weight-normal'></span> test(s) failed, <span class='t-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div> 
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Steps View</span>
+</div> 
+<div class='panel-setting modal-trigger step-status-filter right'>
+<a href='#step-status-filter'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='step-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='s-pass-count weight-normal'></span> step(s) passed </span>
+</div> 
+<div>
+<span class='weight-light'><span class='s-fail-count weight-normal'></span> step(s) failed, <span class='s-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div>
+<div class='col s12 m12 l4 fh'> 
+<div class='card-panel'> 
+<span class='panel-name'>Pass Percentage</span> 
+<span class='pass-percentage panel-lead'></span> 
+<div class='progress light-blue lighten-3'> 
+<div class='determinate light-blue'></div> 
+</div> 
+</div> 
+</div>
+</div>
+<div class='system-view'>
+<div class='col l4 m12 s12'>
+<div class='card-panel'>
+<span class='label info outline right'>Environment</span>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Windows Server 2016</td>
+</tr>
+<tr>
+<td>User Name</td>
+<td>COLT</td>
+</tr>
+<tr>
+<td>Java Version</td>
+<td>1.8.0_221</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td>QA</td>
+</tr>
+<tr>
+<td>Host Name</td>
+<td>APT_QA_Colt</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- /dashboard -->
+
+<!-- tests -->
+<div id='test-view' class='row _addedTable'>
+<div class='col _addedCell1'>
+<div class='contents'>
+<div class='card-panel heading'>
+<h5>Tests</h5>
+</div>
+<div class='card-panel filters'>
+<div>
+<a data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#' class='dropdown-button button tests-toggle'><i class='mdi-action-subject icon'></i></a>
+<ul id='tests-toggle' class='dropdown-content'>
+<li class='pass'><a href='#!'>Pass</a></li>
+<li class='fail'><a href='#!'>Fail</a></li>
+<li class='skip'><a href='#!'>Skip</a></li>
+<li class='divider'></li>
+<li class='clear'><a href='#!'>Clear Filters</a></li>
+</ul>
+</div>
+<div>
+<a id='clear-filters' alt='Clear Filters' title='Clear Filters'><i class='mdi-navigation-close icon'></i></a>
+</div>
+<div>&nbsp;&middot;&nbsp;</div>
+<div>
+<a id='enableDashboard' alt='Enable Dashboard' title='Enable Dashboard'><i class='mdi-action-track-changes icon'></i></a>
+</div>
+<div>
+<a id='refreshCharts' alt='Refresh Charts on Filters' title='Refresh Charts on Filters' class='enabled'><i class='mdi-navigation-refresh icon'></i></i></a>
+</div>
+<div>&nbsp;&middot;</div>
+<div class='search' alt='Search Tests' title='Search Tests'>
+<div class='input-field left'>
+<input id='searchTests' type='text' class='validate' placeholder='Search Tests...'>
+</div>
+<i class='mdi-action-search icon'></i>
+</div>
+</div>
+<div class='card-panel no-padding-h no-padding-v no-margin-v'>
+<div class='wrapper'>
+<ul id='test-collection' class='test-collection'>
+<li class='collection-item test displayed active pass ' extentid='a179bc72-e14a-4b57-b920-02e6bb73aea6'>
+<div class='test-head'>
+<span class='test-name'>CreateCustomer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-10-12 16:20:14</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2020-10-12 16:21:17</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 1m 3s+462ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:17</td>
+<td class='step-details'>Step : Mouse hovered on 'Manage Customers Service' menu item</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:20</td>
+<td class='step-details'>Step: Clicked on 'create customer link' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:24</td>
+<td class='step-details'>The Expected value for 'create customer page header' field 'Create Customer' is same as the Acutal value 'Create Customer'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:26</td>
+<td class='step-details'>Step: Clicked on 'Ok' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:29</td>
+<td class='step-details'>Step :  validation message forLegal Customer Name  field displayed as : Legal Customer Name is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:31</td>
+<td class='step-details'>Step :  validation message forCountry  field displayed as : Country is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:33</td>
+<td class='step-details'>Step :  validation message forOCN  field displayed as : OCN is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:35</td>
+<td class='step-details'>Step :  validation message forType  field displayed as : Type is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:38</td>
+<td class='step-details'>Step :  validation message forEmail  field displayed as : Email is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:38</td>
+<td class='step-details'>Customer Name text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:39</td>
+<td class='step-details'>Customer Name text field value added as: HSS1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:40</td>
+<td class='step-details'>Main Domain text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:42</td>
+<td class='step-details'>Main Domain text field value added as: hssdomain1247.com</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:45</td>
+<td class='step-details'>Step: Clicked on 'Reset' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:45</td>
+<td class='step-details'>All text field values are cleared</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:45</td>
+<td class='step-details'>Customer Name text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:47</td>
+<td class='step-details'>Customer Name text field value added as: HSS1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:47</td>
+<td class='step-details'>Main Domain text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:49</td>
+<td class='step-details'>Main Domain text field value added as: hssdomain1247.com</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:49</td>
+<td class='step-details'>Country dropdown is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:51</td>
+<td class='step-details'>list of values inside Country dropdown is: [AT (Austria), BE (Belgium), CH (Switzerland), DE (Germany), DK (Denmark), ES (Spain), FR (France), IE (Ireland), INT (International), IS (Iceland), IT (Italy), LU (Luxembourg), NL (Netherlands), PT (Portugal), SE (Sweden), UK (United Kingdom), US (United States)]</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:53</td>
+<td class='step-details'>Country dropdown value selected as: BE (Belgium)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:53</td>
+<td class='step-details'>OCN text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:55</td>
+<td class='step-details'>OCN text field value added as: hssocn1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:55</td>
+<td class='step-details'>Reference text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:57</td>
+<td class='step-details'>Reference text field value added as: testreference1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:57</td>
+<td class='step-details'>Technical Contact Name text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:59</td>
+<td class='step-details'>Technical Contact Name text field value added as: hsscontact1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:59</td>
+<td class='step-details'>Type dropdown is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:00</td>
+<td class='step-details'>list of values inside Type dropdown is: [Colt Telecom - internal, End Corporate Customer, Partner, SME, Supplier, Wholesale Customer]</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:03</td>
+<td class='step-details'>Type dropdown value selected as: Colt Telecom - internal</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:03</td>
+<td class='step-details'>Email text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:05</td>
+<td class='step-details'>Email text field value added as: hss1247@test.com</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:05</td>
+<td class='step-details'>Phone text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:07</td>
+<td class='step-details'>Phone text field value added as: 9973825582</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:07</td>
+<td class='step-details'>Fax text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:09</td>
+<td class='step-details'>Fax text field value added as: 9973857923</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:12</td>
+<td class='step-details'>Step: Clicked on 'Ok' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:17</td>
+<td class='step-details'>Message is verified. It is displaying as: Customer successfully created.</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='656b5ac8-9eb2-4e17-87be-5aa32c0f7a3a'>
+<div class='test-head'>
+<span class='test-name'>selectExistingCustomer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-10-12 16:21:17</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2020-10-12 16:21:49</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 31s+948ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:23</td>
+<td class='step-details'>Step : Mouse hovered on 'Manage Customers Service' menu item</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:25</td>
+<td class='step-details'>Step: Clicked on 'Create Order/Service' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:27</td>
+<td class='step-details'>Step: Clicked on 'Next' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:30</td>
+<td class='step-details'>Step :  validation message forChoose a customer  field displayed as : Choose a customer is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:30</td>
+<td class='step-details'>Customer Name text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:31</td>
+<td class='step-details'>Customer Name text field value added as: HSS1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:38</td>
+<td class='step-details'>Customer Name text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:40</td>
+<td class='step-details'>Customer Name text field value added as: HSS1247*</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:40</td>
+<td class='step-details'>Choose a customer dropdown is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:40</td>
+<td class='step-details'>list of values inside Choose a customer dropdown is: [HSS1247]</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:42</td>
+<td class='step-details'>Choose a customer dropdown value selected as: HSS1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:44</td>
+<td class='step-details'>Step: Clicked on 'Next' button</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='be48ee87-1473-4a12-8403-4ec4f5045672'>
+<div class='test-head'>
+<span class='test-name'>verifycreateorder </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-10-12 16:21:49</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2020-10-12 16:22:17</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 27s+842ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:53</td>
+<td class='step-details'>Step: Clicked on 'Next' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:57</td>
+<td class='step-details'>Step :  validation message forService Type  field displayed as : Service type is required</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:59</td>
+<td class='step-details'>Order/Contract Number text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:01</td>
+<td class='step-details'>Order/Contract Number text field value added as: HSSOrder_1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:01</td>
+<td class='step-details'>RFI Voice line Number text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:03</td>
+<td class='step-details'>RFI Voice line Number text field value added as: HSSRFI_1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:05</td>
+<td class='step-details'>Step: Clicked on 'create order' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:16</td>
+<td class='step-details'>Message is verified. It is displaying as: Order created successfully</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='2a3264fb-3373-4da6-bbdd-44255b28cb63'>
+<div class='test-head'>
+<span class='test-name'>verifyservicetypeselection </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-10-12 16:22:17</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2020-10-12 16:22:45</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 27s+624ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:18</td>
+<td class='step-details'>Service Type dropdown is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:23</td>
+<td class='step-details'>List of values inside Service Type dropdown is:</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:23</td>
+<td class='step-details'>Domain Management</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:23</td>
+<td class='step-details'>HSS</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:23</td>
+<td class='step-details'>IP Access (On-net/Offnet/EoS)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:23</td>
+<td class='step-details'>IP Transit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:23</td>
+<td class='step-details'>IP VPN</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:23</td>
+<td class='step-details'>LANLink</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:23</td>
+<td class='step-details'>NGIN</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:23</td>
+<td class='step-details'>Number Hosting</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:23</td>
+<td class='step-details'>Voice Line (V)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:24</td>
+<td class='step-details'>VOIP Access</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:24</td>
+<td class='step-details'>Wholesale SIP Trunking</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:37</td>
+<td class='step-details'>Service Type dropdown value selected as: HSS</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:40</td>
+<td class='step-details'>Step: Clicked on 'Next' button</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='9161cfae-ab4d-4776-8a76-2dd789273af7'>
+<div class='test-head'>
+<span class='test-name'>verifyservicecreation </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-10-12 16:22:45</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2020-10-12 16:23:17</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 32s+193ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:45</td>
+<td class='step-details'>Service Identification text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:47</td>
+<td class='step-details'>Service Identification text field value added as: HSSService_1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:47</td>
+<td class='step-details'>Remark text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:49</td>
+<td class='step-details'>Remark text field value added as: HSS  Creation</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:49</td>
+<td class='step-details'>Email text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:50</td>
+<td class='step-details'>Email text field value added as: test@test.com</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:53</td>
+<td class='step-details'>Step: Clicked on '>>' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:53</td>
+<td class='step-details'>Phone Contact text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:54</td>
+<td class='step-details'>Phone Contact text field value added as: 124745678</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:56</td>
+<td class='step-details'>Step: Clicked on '>>' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:00</td>
+<td class='step-details'>Performance Reporting checkbox is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:01</td>
+<td class='step-details'>Performance Reporting checkbox is not selected by default as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:02</td>
+<td class='step-details'>Performance Reporting checkbox is selected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:03</td>
+<td class='step-details'>waveServiceCheckbox checkbox is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:04</td>
+<td class='step-details'>waveServiceCheckbox checkbox is not selected by default as expected</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:04</td>
+<td class='step-details'>No changes made for waveServiceCheckbox checkbox</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:06</td>
+<td class='step-details'>Step: Clicked on 'OK' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:17</td>
+<td class='step-details'>Message is verified. It is displaying as: Service successfully created.</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='b277f627-a451-49f5-aeee-aee45a985a25'>
+<div class='test-head'>
+<span class='test-name'>verifyservicepanelinviewservicepage </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-10-12 16:23:17</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2020-10-12 16:23:27</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 9s+735ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:20</td>
+<td class='step-details'>The Expected value for 'Service Identification' field 'HSSService_1247' is same as the Acutal value 'HSSService_1247'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:21</td>
+<td class='step-details'>The Expected value for 'Service Type' field 'HSS' is same as the Acutal value 'HSS'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:23</td>
+<td class='step-details'>The Expected value for 'Remarks' field 'HSS  Creation' is same as the Acutal value 'HSS Creation'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:26</td>
+<td class='step-details'>The Expected value for 'Email' field 'test@test.com' is same as the Acutal value 'test@test.com'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:27</td>
+<td class='step-details'>The Expected value for 'Phone Contact' field '124745678' is same as the Acutal value '124745678'</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='ccaa9c97-deb1-4c1b-a068-f81a8d4c6b93'>
+<div class='test-head'>
+<span class='test-name'>VerifyManagementOptionsPanel </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-10-12 16:23:27</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2020-10-12 16:23:35</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 8s+513ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:31</td>
+<td class='step-details'>The Expected value for 'Management Options' field 'Management Options' is same as the Acutal value 'Management Options'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:33</td>
+<td class='step-details'>The Expected value for 'Performance Reporting' field 'Yes' is same as the Acutal value 'Yes'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:35</td>
+<td class='step-details'>The Expected value for 'Wave Service' field 'No' is same as the Acutal value 'No'</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='7a0f0ec5-f164-4e1b-99f2-92dc946bbeb8'>
+<div class='test-head'>
+<span class='test-name'>VerifyOrderPanel </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-10-12 16:23:35</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2020-10-12 16:26:06</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 2m 30s+953ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:40</td>
+<td class='step-details'>Step: Clicked on 'Action dropdown' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:42</td>
+<td class='step-details'>Step: Clicked on 'Edit Order' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:49</td>
+<td class='step-details'>The Expected value for 'Edit Order' field 'Edit Order' is same as the Acutal value 'Edit Order'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:53</td>
+<td class='step-details'>Step: Clicked on 'Order Number' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:57</td>
+<td class='step-details'>Order Number text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:59</td>
+<td class='step-details'>Order Number text field value added as: HSSOrderedit1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:02</td>
+<td class='step-details'>Step: Clicked on 'RFI Voice Line Number' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:06</td>
+<td class='step-details'>RFI Voiceline Number text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:08</td>
+<td class='step-details'>RFI Voiceline Number text field value added as: HSSRFIedit1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:10</td>
+<td class='step-details'>Step: Clicked on 'Cancel' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:21</td>
+<td class='step-details'>Step: Clicked on 'Action dropdown' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:23</td>
+<td class='step-details'>Step: Clicked on 'Edit Order' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:25</td>
+<td class='step-details'>The Expected value for 'Edit Order Header' field 'Edit Order' is same as the Acutal value 'Edit Order'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:28</td>
+<td class='step-details'>Step: Clicked on 'Order Number' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:36</td>
+<td class='step-details'>Order Number text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:38</td>
+<td class='step-details'>Order Number text field value added as: HSSOrderedit1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:40</td>
+<td class='step-details'>Step: Clicked on 'RFI Voice Line Number' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:48</td>
+<td class='step-details'>RFI Voice Line Number text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:50</td>
+<td class='step-details'>RFI Voice Line Number text field value added as: HSSRFIedit1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:52</td>
+<td class='step-details'>Step: Clicked on 'OK' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:57</td>
+<td class='step-details'>The Expected value for 'Order Number' field 'HSSOrderedit1247' is same as the Acutal value 'HSSOrderedit1247'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:00</td>
+<td class='step-details'>The Expected value for 'RFI Voice Line Number' field 'HSSRFIedit1247' is same as the Acutal value 'HSSRFIedit1247'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:05</td>
+<td class='step-details'>Step: Clicked on 'Action dropdown' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:07</td>
+<td class='step-details'>Step: Clicked on 'Change Order' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:09</td>
+<td class='step-details'>The Expected value for 'Change Order header' field 'Change Order' is same as the Acutal value 'Change Order'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:13</td>
+<td class='step-details'>Step: Clicked on 'Choose order dropdown' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:17</td>
+<td class='step-details'>Step: Clicked on 'Select order switch' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:19</td>
+<td class='step-details'>Step: Clicked on 'Order Number' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:21</td>
+<td class='step-details'>Order Number text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:23</td>
+<td class='step-details'>Order Number text field value added as: HSSOrder1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:25</td>
+<td class='step-details'>Step: Clicked on 'RFI Voice Line Number' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:28</td>
+<td class='step-details'>RFI Voice Line Number text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:30</td>
+<td class='step-details'>RFI Voice Line Number text field value added as: HSSRFI1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:32</td>
+<td class='step-details'>Step: Clicked on 'Cancel' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:36</td>
+<td class='step-details'>Step: Clicked on 'Action dropdown' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:39</td>
+<td class='step-details'>Step: Clicked on 'Change Order' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:41</td>
+<td class='step-details'>The Expected value for 'Change Order header' field 'Change Order' is same as the Acutal value 'Change Order'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:44</td>
+<td class='step-details'>Step: Clicked on 'Select order switch' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:46</td>
+<td class='step-details'>Step: Clicked on 'Order Number' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:48</td>
+<td class='step-details'>Order Number text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:50</td>
+<td class='step-details'>Order Number text field value added as: HSSOrder1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:52</td>
+<td class='step-details'>Step: Clicked on 'RFI Voice Line Number' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:55</td>
+<td class='step-details'>RFI Voice Line Number text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:57</td>
+<td class='step-details'>RFI Voice Line Number text field value added as: HSSRFI1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:59</td>
+<td class='step-details'>Step: Clicked on 'Create Order' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:04</td>
+<td class='step-details'>The Expected value for 'Order Number' field 'HSSOrder1247' is same as the Acutal value 'HSSOrder1247'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:06</td>
+<td class='step-details'>The Expected value for 'RFI Voice Line Number' field 'HSSRFI1247' is same as the Acutal value 'HSSRFI1247'</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='6cdf2880-f5a4-4269-ac04-f75e934fa934'>
+<div class='test-head'>
+<span class='test-name'>verifyServicePanelLinks </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-10-12 16:26:06</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2020-10-12 16:27:50</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 1m 44s+335ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:11</td>
+<td class='step-details'>Step: Clicked on 'Action dropdown' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:13</td>
+<td class='step-details'>Step: Clicked on 'Edit' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:16</td>
+<td class='step-details'>Service Identification text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:21</td>
+<td class='step-details'>Service Identification text field is edited as: HSSService_1247</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:22</td>
+<td class='step-details'>Remarks text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:27</td>
+<td class='step-details'>Remarks text field is edited as: testedit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:29</td>
+<td class='step-details'>Step: Clicked on 'Selected Email' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:31</td>
+<td class='step-details'>Step: Clicked on 'Email remove arrow' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:32</td>
+<td class='step-details'>Email text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:33</td>
+<td class='step-details'>Email text field is not edited. It is displaying as test@test.com</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:36</td>
+<td class='step-details'>Step: Clicked on 'Email adding arrow' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:38</td>
+<td class='step-details'>Step: Clicked on 'Selected phone contact' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:40</td>
+<td class='step-details'>Step: Clicked on 'Phonecontact remove arrow' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:41</td>
+<td class='step-details'>Phone Contact text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:46</td>
+<td class='step-details'>Phone Contact text field is edited as: 9367462881</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:49</td>
+<td class='step-details'>Step: Clicked on 'phonecontact adding Arrow' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:51</td>
+<td class='step-details'>Step: Clicked on 'OK' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:00</td>
+<td class='step-details'>Message is verified. It is displaying as: Service successfully updated.</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:04</td>
+<td class='step-details'>Step: Clicked on 'Action dropdown' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:07</td>
+<td class='step-details'>Step: Clicked on 'Dump' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:17</td>
+<td class='step-details'>Step: 'Dump header' value is displayed as : 'Service HSSService_1247'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:19</td>
+<td class='step-details'>The Expected value for 'Service header' field 'Service' is same as the Acutal value 'Service'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:22</td>
+<td class='step-details'>Step: 'Dump page service details' value is displayed as : '--------------------------------------------------------------------------------------------
+> service
+[id: 2298639075]
+[message: This service must contain at least one device.] [type: 2] [key: hss.groupWithWrongDevices]
+[name: HSSService_1247] [type: 10 (HSS)]
+    [att type: 86 (performancereporting)] [value: true]
+    [att type: 301 (phonecontact)] [value: test@test.com]
+    [att type: 302 (email)] [value: 9367462881]
+    [att type: 970 (waveservice)] [value: false]
+--------------------------------------------------------------------------------------------
+> orderinfo
+[id: 2298639074]
+[name: HSSOrderedit1247] [type: 9 (New Order)]
+--------------------------------------------------------------------------------------------
+> company
+[id: o=hssocn1247]
+[name: HSS1247] [mainDomain: hssdomain1247.com] [type: ou=Colt Telecom - internal,ou=customertypes,dc=colt, dc=net (Colt Telecom - internal)]
+--------------------------------------------------------------------------------------------
+> groups
+[id: null]
+[message: There are missing items. Please complete the service.] [type: 2] [key: missing]
+[name: null]
+--------------------------------------------------------------------------------------------
+> device
+[id: null]
+[message: There are missing items. Please complete the service.] [type: 2] [key: missing]
+[name: null] [type: 7 (null)] [address: null]
+--------------------------------------------------------------------------------------------
+> interface
+[id: null]
+[message: There are missing items. Please complete the service.] [type: 2] [key: missing]
+[name: null] [type: ] [address: null] [addressIpv6: null]
+--------------------------------------------------------------------------------------------
+> interface
+[id: null]
+[message: There are missing items. Please complete the service.] [type: 2] [key: missing]
+[name: null] [type: ] [address: null] [addressIpv6: null]'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:25</td>
+<td class='step-details'>Step: Clicked on 'Close' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:30</td>
+<td class='step-details'>Step: Clicked on 'Action dropdown' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:34</td>
+<td class='step-details'>Step: Clicked on 'Show Infovista Report' button</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active fail ' extentid='3f93a78b-c06d-4fba-b444-ffccb2daf427'>
+<div class='test-head'>
+<span class='test-name'>AddNewPEDevice <i class='tooltipped mdi-alert-error' data-position='top' data-delay='50' data-tooltip='Close was called before test could end safely using EndTest.'></i></span>
+<span class='test-status label right outline capitalize fail'>fail</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2020-10-12 16:27:50</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2020-10-12 16:34:43</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 6m 52s+623ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:55</td>
+<td class='step-details'>The Expected value for 'Device' field 'Device' is same as the Acutal value 'Device'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:57</td>
+<td class='step-details'>Step: Clicked on 'Add Device' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:59</td>
+<td class='step-details'>The Expected value for 'Add Device Header' field 'Add Device' is same as the Acutal value 'Add Device'</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:01</td>
+<td class='step-details'>Step: Clicked on 'Add New Device toggle' button</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:02</td>
+<td class='step-details'>Name text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:04</td>
+<td class='step-details'>Name text field value added as: Device1373</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:04</td>
+<td class='step-details'>Vendor/Model dropdown is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:05</td>
+<td class='step-details'>list of values inside Vendor/Model dropdown is: [Adva FSP-F7, Ciena 6500, Nortel Optera Metro 5100, Nortel Optera Metro 5200]</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:07</td>
+<td class='step-details'>Vendor/Model dropdown value selected as: Adva FSP-F7</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:07</td>
+<td class='step-details'>Management Address text field is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:08</td>
+<td class='step-details'>Management Address text field value added as: 10.25.57.52</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:09</td>
+<td class='step-details'>Step : Snmpro value is displayed as: incc</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:11</td>
+<td class='step-details'>Country dropdown is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:17</td>
+<td class='step-details'>list of values inside Country dropdown is: [AE (United Arab Emirates), AL (Albania), AO (Angola), AT (Austria), AU (Australia), BD (Bangladesh), BE (Belgium), BG (Bulgaria), BH (Bahrain), BI (Burundi), BR (Brazil), BY (Belarus), CA (Canada), CD (DRC), CH (Switzerland), CI (Ivory Coast), CL (Chile), CM (Cameroon), CN (China), CY (Cyprus), CZ (Czech Republic), DE (Germany), DK (Denmark), EE (Estonia), EG (Egypt), ES (Spain), FI (Finland), FR (France), GI (Gibraltar), GM (Gambia), GN (Guinea), GR (Greece), HK (Hong Kong), HR (Croatia), HU (Hungary), IE (Ireland), IL (Israel), IN (India), IS (Iceland), IT (Italy), JP (Japan), KE (Kenya), KR (Korea), LI (Liechtenstein), LR (Liberia), LT (Lithuania), LU (Luxembourg), LV (Latvia), MC (Monaco), MD (MOLDOVA), ML (Mali), MU (Mauritius), MX (Mexico), MY (Malaysia), NL (Netherlands), NO (Norway), null (CH), null (COUNTRY), null (UK), PL (Poland), PT (Portugal), RO (Romania), RU (Russian Federation), RW (Rwanda), SE (Sweden), SG (Singapore), SI (Slovenia), SK (Slovakia ), SL (Sierra Leone), SN (Senegal), TR (Turkey), TU (Tunisia), TW (Taiwan), TZ (TANZANIA), UA (Ukraine), UG (Uganda), UK (United Kingdom), US (United States), VN (VIETNAM), XX (International), YU (Yugoslavia), ZA (South Africa)]</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:19</td>
+<td class='step-details'>Country dropdown value selected as: AU (Australia)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:19</td>
+<td class='step-details'>City dropdown is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:20</td>
+<td class='step-details'>list of values inside City dropdown is: [67 (777777), 90 (88888888), NSW (Australia), hf2 (Bengaluru), KA8 (Bengaluru), ar2 (Bengaluru), INJ (Injune), AUS (SYDNEY), SYD (Sydney), SDY (Sydney 2), (VIENNA), (VRSAC), (WIEN), sd5 (ueogfnh)]</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:22</td>
+<td class='step-details'>City dropdown value selected as: AUS (SYDNEY)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:22</td>
+<td class='step-details'>Site dropdown is displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:23</td>
+<td class='step-details'>list of values inside Site dropdown is: [(43232322dde), (89ghy), (AU_109004_72 HENDERSON ROAD__2_TECH), (AU_2060_WALKER ST_157_8_SERVER), (AU_2065_ALBANY ST_39-47_2_COMPUTER ROOM), (AU_2086_FRENCHS FOREST ROAD_81, UNIT 4_G_COMPUTER), (AU_2128_SLOUGH AVE_2_1_SERVER), (AU_3066_WELLINGTON ST_36_2_COMPUTER ROOM), (AU_3122_CHURCH ST_117_2_COMMS), (AU_6090_MALAGA DR_101_G_GROUND), (AU_NSW 22_GEORGE DOWNES DRIVE_232_G_SERVER), (AU_NSW-2088_83 PARRIWI RD, THE SPIT, MOSMAN_SHOP 6), (AU_NSW20_CARRINGTON STREET_36_5_COMMS), (LanlinkCSR1), (csrnamedieep3245234523452435), (csrnamedieep342523454), (fdvdvdsffgsdf436546), (gdfgh), (ilsyuifdgudsgfyuasgdf), (ksdhjfghsjkdhfgkjsfd), (sfdggsdfgsdfgsfdg)]</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:26</td>
+<td class='step-details'>Site dropdown value selected as: (AU_109004_72 HENDERSON ROAD__2_TECH)</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:28</td>
+<td class='step-details'>Step: Clicked on 'OK' button</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:28:39</td>
+<td class='step-details'>Message is displaying and it gets mismatches. It is displaying as: Address Already Exist .The Expected value is: Device successfully created.</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:29:50</td>
+<td class='step-details'>Step: 'Name' value is not displaying</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:31:00</td>
+<td class='step-details'>Vendor/Model field is not displaying</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:32:10</td>
+<td class='step-details'>Management Address field is not displaying</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:33:22</td>
+<td class='step-details'>Step: 'Country' value is not displaying</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:34:33</td>
+<td class='step-details'>Step: 'City' value is not displaying</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:34:36</td>
+<td class='step-details'>Step: 'Site' value is displayed as : ''</td>
+</tr>
+<tr>
+<td class='status fail' title='fail' alt='fail'><i class='mdi-navigation-cancel'></i></td>
+<td class='timestamp'>16:34:43</td>
+<td class='step-details'><pre>com.relevantcodes.extentreports.ExtentTestInterruptedException: Close was called before test could end safely using EndTest.
+at com.relevantcodes.extentreports.Report.terminate(Report.java:416)
+at com.relevantcodes.extentreports.ExtentReports.close(ExtentReports.java:708)
+at com.colt.qa.driverlibrary.DriverTestcase.closeReport(DriverTestcase.java:398)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:564)
+at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:213)
+at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:308)
+at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+at org.testng.TestNG.run(TestNG.java:1057)
+at org.testng.TestNG.privateMain(TestNG.java:1364)
+at org.testng.TestNG.main(TestNG.java:1333)
+</pre></td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id='test-details-wrapper' class='col _addedCell2'>
+<div class='contents'>
+<div class='card-panel details-view'>
+<h5 class='details-name'></h5>
+<div class='details-container'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- /tests -->
+
+<!-- categories -->
+<!-- /categories -->
+
+<!-- exceptions -->
+<div id='exceptions-view' class='row _addedTable hide'>
+<div class='col _addedCell1'>
+<div class='contents'>
+<div class='card-panel heading'>
+<h5>Defects</h5>
+</div>
+<div class='card-panel filters'>
+<div class='search' alt='Search tests' title='Search tests'>
+<div class='input-field left'>
+<input id='searchTests' type='text' class='validate' placeholder='Search tests...'>
+</div>
+<i class='mdi-action-search icon'></i>
+</div>
+</div>
+<div class='card-panel no-padding-h no-padding-v'>
+<div class='wrapper'>
+<ul id='exception-collection' class='exception-collection'>
+<li class='exception-item displayed'>
+<div class='exception-head'>
+<span class='exception-name'>com.relevantcodes.extentreports.ExtentTestInterruptedException</span>
+</div>
+<div class='exception-test-count'>
+<span class='fail label'>1</span>
+</div>
+<div class='exception-body'>
+<div class='exception-tests'>
+<table class='bordered'>
+<thead>
+<tr>
+<th>RunDate</th>
+<th>Test Name</th>
+<th>Exception</th>
+</tr>
+</thead>
+<tbody>
+<tr class='fail'>
+<td>2020-10-12 16:27:50</td>
+<td><span class='exception-link linked' extentid='3f93a78b-c06d-4fba-b444-ffccb2daf427'>AddNewPEDevice</span></td>
+<td><pre class='exception-message'>com.relevantcodes.extentreports.ExtentTestInterruptedException: Close was called before test could end safely using EndTest.
+at com.relevantcodes.extentreports.Report.terminate(Report.java:416)
+at com.relevantcodes.extentreports.ExtentReports.close(ExtentReports.java:708)
+at com.colt.qa.driverlibrary.DriverTestcase.closeReport(DriverTestcase.java:398)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:564)
+at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:213)
+at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:308)
+at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+at org.testng.TestNG.run(TestNG.java:1057)
+at org.testng.TestNG.privateMain(TestNG.java:1364)
+at org.testng.TestNG.main(TestNG.java:1333)
+</pre></td>
+</tr>
+<tbody>
+</table>
+</div>
+</div> 
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id='exception-details-wrapper' class='col _addedCell2'>
+<div class='contents'>
+<div class='card-panel details-view'>
+<h5 class='exception-name'></h5>
+<div class='exception-container'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- /exceptions -->
+
+<!-- testrunner logs -->
+<!-- /testrunner logs -->
+
+</div>
+<!-- /container -->
+
+<!-- test dashboard counts setting -->
+<div id='test-count-setting' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Configure Tests Count Setting</h5> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodes' class='with-gap'> 
+<label for='parentWithoutNodes'>Parent Tests Only (Does not include child nodes in counts)</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodesAndNodes' class='with-gap'> 
+<label for='parentWithoutNodesAndNodes'>Parent Tests Without Child Tests + Child Tests</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='childNodes' class='with-gap'> 
+<label for='childNodes'>Child Tests Only</label> 
+</div> 
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /test dashboard counts setting -->
+
+<!-- filter for step status -->
+<div id='step-status-filter' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Select status</h5> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-pass'> 
+<label for='step-dashboard-filter-pass'>Pass</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fail'> 
+<label for='step-dashboard-filter-fail'>Fail</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fatal'> 
+<label for='step-dashboard-filter-fatal'>Fatal</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-error'> 
+<label for='step-dashboard-filter-error'>Error</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-warning'> 
+<label for='step-dashboard-filter-warning'>Warning</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-skip'> 
+<label for='step-dashboard-filter-skip'>Skipped</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-info'> 
+<label for='step-dashboard-filter-info'>Info</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-unknown'> 
+<label for='step-dashboard-filter-unknown'>Unknown</label> 
+</div>
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /filter for step status -->
+
+<script src='https://cdn.rawgit.com/anshooarora/extentreports/c936a26fc8bb9c5fc0253b5bc6f289e1d14bb595/cdn/extent.js' type='text/javascript'></script>
+
+<script>$(document).ready(function() { $('.logo span').html('ExtentReports'); });</script>
+<script>
+
+            
+                $(document).ready(function() {
+                    
+                });
+            
+        
+</script>
+</body>
+</html>

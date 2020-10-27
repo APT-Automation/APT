@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<locators>
+<newTab>
+
+<ManageCustomerServiceLink>//span[b[contains(text(),"MANAGE CUSTOMER'S SERVICE")]]</ManageCustomerServiceLink>
+<searchorderORservicelink>//li[text()='Search Order/Service']</searchorderORservicelink>
+<searchService_serviceTextField>//label[text()='Service']/parent::div//input</searchService_serviceTextField>
+<searchButton>//span[text()='Search']</searchButton>
+<selectSearchedService>//div[text()='value']/parent::div//span[@class='ag-icon ag-icon-checkbox-unchecked']</selectSearchedService>
+<searchSerice_ActionDropdown>//button[text()='Action']</searchSerice_ActionDropdown>
+<searchService_viewLink>//a[text()='View']</searchService_viewLink>
+<searchSiteOrder_VPNSiteOrderField>//input[@id='vpnSiteOrderNumber']</searchSiteOrder_VPNSiteOrderField>
+
+</newTab>
+
+
+<IPVPN>
+
+
+<devicePanelHeader>//div[text()='Device']</devicePanelHeader>
+<addInterfacePanelHeader>//p[text()='Add ']</addInterfacePanelHeader>
+
+ <!-- Breadcrumb -->
+ <breadCrumb>//ol[@class='breadcrumb']//a[contains(text(),'value')]</breadCrumb>
+ <breadCrumbForcurrentPage>//ol[@class='breadcrumb']//li/span[contains(text(),'value')]</breadCrumbForcurrentPage>
+
+
+ <devicePanelHeaders_InViewSiteOrderPage>//div[div[text()='value']]</devicePanelHeaders_InViewSiteOrderPage>
+ 
+  <PEdevice_adddevicelink>//div[div[div[text()='Provider Equipment (PE)']]]//a[text()='Add PE Device']</PEdevice_adddevicelink>
+  
+   <chooseAdeviceDropdown>//div[label[text()='Choose a device']]//input</chooseAdeviceDropdown>
+   <viewPEdevicePage_fetchDeviceDetails>//div[div[label[contains(text(),'value')]]]/div[2]</viewPEdevicePage_fetchDeviceDetails>
+   <nextButton>//span[text()='Next']</nextButton>
+   
+   
+   <!--  Add Interface PE device -->
+   <routerToolPanelheader>//div[div[text()='Router Tools']]</routerToolPanelheader>
+   <InterfacePanel_actionDropdown>//div[div[text()='Interfaces']]//following-sibling::div//button[text()='Action']</InterfacePanel_actionDropdown>
+   <addInterfaceOrLink>//a[text()='Add Interface']</addInterfaceOrLink>
+   <addMultilinkLink>//a[text()=' Add Multlink']</addMultilinkLink>
+   <addLoopBackLink>//a[contains(text(),'Add Loopback')]</addLoopBackLink>
+
+	<PE_addInterface_networklabelName>(//label[text()='Network'])[1]</PE_addInterface_networklabelName>
+	<configureInterfaceOnDevice_checkbox>//input[@id='configInterfaceOnDevice']</configureInterfaceOnDevice_checkbox>
+	<networkLabelname_IPv6>(//label[text()='Network'])[2]</networkLabelname_IPv6>
+	<configureInterfaceOnDevice_LabelName>//label[contains(text(),'Configure Interface on Device')]</configureInterfaceOnDevice_LabelName>
+	<getAddress_IPv4>(//span[text()='Get Address'])[1]</getAddress_IPv4>
+	<EIPallocation_addInterfaceIPV4>(//span[contains(text(),'EIP Allocation')])[1]</EIPallocation_addInterfaceIPV4>
+	<EIPallocation_addInterfaceIpv6>(//span[contains(text(),'EIP Allocation')])[2]</EIPallocation_addInterfaceIpv6>
+	<subnetSize_dropdown>//div[label[text()='Subnet Size']]//input</subnetSize_dropdown>
+	<availableBlocks_dropdown>//div[label[text()='Available Blocks']]//input</availableBlocks_dropdown>
+	<allocateSubnetButton>//span[contains(text(),'Allocate Subnet')]</allocateSubnetButton>
+	<EIPallocation_xButton>//span[contains(text(),'×')]</EIPallocation_xButton>
+	<FetchInterfaceAddressRangeDropdown_addInterface>(//div[label[text()='Interface Address Range']]//span)[2]</FetchInterfaceAddressRangeDropdown_addInterface>
+	<fetchInterfaceAddressRangeDropdown_addInterfaceIPv6>(//div[label[text()='Interface Address Range']]//span)[4]</fetchInterfaceAddressRangeDropdown_addInterfaceIPv6>
+	<FetchInterfaceAddressRangeDropdown_addMultilink>(//div[label[text()='Interface Address Range']]//span)[1]</FetchInterfaceAddressRangeDropdown_addMultilink>
+	<fetchInterfaceAddressRangeDropdown_addMultilinkIPv6>(//div[label[text()='Interface Address Range']]//span)[2]</fetchInterfaceAddressRangeDropdown_addMultilinkIPv6>
+	<FetchInterfaceDropdown_addInterface>(//div[label[text()='Address']])[1]//input</FetchInterfaceDropdown_addInterface>
+	<FetchInterfaceDropdown_addInterfaceIPv6>(//div[label[text()='Address']])[2]//input</FetchInterfaceDropdown_addInterfaceIPv6>
+	<interfaceAddressRange_textField>(//div[label[text()='Interface Address Range']]//input)[1]</interfaceAddressRange_textField>
+	<interfaceAddressRangeIPv6_textField>(//div[label[text()='Interface Address Range']]//input)[2]</interfaceAddressRangeIPv6_textField>
+	<interfaceAddress_textField>(//input[@id='interfaceIPV4Address'])[1]</interfaceAddress_textField>
+	<interfaceAddressIPv6_textField>(//input[@id='interfaceIPV6Address'])[1]</interfaceAddressIPv6_textField>
+	<rightArrowButton_interfaceAddressRange>(//i[@class='fa fa-chevron-circle-right'])[1]</rightArrowButton_interfaceAddressRange>
+	<rightArrowButton_interfaceAddressRangeIPv6>(//i[@class='fa fa-chevron-circle-right'])[2]</rightArrowButton_interfaceAddressRangeIPv6>
+	<fetchValuefromAddressDropdown>(//div[label[text()='Address']]//span)[2]</fetchValuefromAddressDropdown>
+	<addInterface_changeButton>(//span[contains(text(),'Change')])[1]</addInterface_changeButton>
+	<addInterface_changeButtonIPv6>(//span[contains(text(),'Change')])[2]</addInterface_changeButtonIPv6>
+	<Link_textField>//input[@id='linkName']</Link_textField>
+	<bearerType_Dropdown>//div[label[text()='Bearer Type']]//input</bearerType_Dropdown>
+	<fetchBearerTypedropdownvalue>//div[label[text()='Bearer Type']]//div//span</fetchBearerTypedropdownvalue>
+	<bearerNumber_addtextField>//input[@id='bearerNumber']</bearerNumber_addtextField>
+	<encapsulation_Dropdown>//div[label[text()='Encapsulation']]//input</encapsulation_Dropdown>
+	<slot_textField>//div[label[text()='Slot']]//input</slot_textField>
+	<port_textField>//div[label[text()='Port']]//input</port_textField>
+	<vlanId_textField>//div[label[text()='VLAN Id']]//input</vlanId_textField>
+	<unitId_textField>//div[label[text()='Unit ID']]//input</unitId_textField>
+	<pic_textField>//div[label[text()='Pic']]//input</pic_textField>
+	<stm1Number_textField>//div[label[text()='STM1 Number']]//input</stm1Number_textField>
+	<bandwidth_Dropdown>//div[label[text()='Bandwidth']]//input</bandwidth_Dropdown>
+	<cardType_Dropdown>//div[label[text()='Card Type']]//input</cardType_Dropdown>
+	<framingType_Dropdown>//div[label[text()='Framing Type']]//input</framingType_Dropdown>
+	<clockSource_Dropdown>//div[label[text()='Clock Source']]//input</clockSource_Dropdown>
+	<timeSlot_textField>//div[label[text()='Timeslot']]//input</timeSlot_textField>
+	<Interface_textField>//div[label[text()='Interface']]//input</Interface_textField>
+	<PPPencapsulation_Dropdown>(//div[label[text()='PPP Encapsulation']]//input)[1]</PPPencapsulation_Dropdown>
+	<DSLdownstreamSpead_Dropdown>//div[label[text()='DSL Downstream Speed']]//input</DSLdownstreamSpead_Dropdown>
+	<DSLupstreamSpeed_Dropdown>//div[label[text()='DSL Upstream Speed']]//input</DSLupstreamSpeed_Dropdown>
+	<addMultilink_DSLdownStreamSpeeedPCR>(//div[label[text()='DSL Downstream Speed (PCR)']]//input)[1]</addMultilink_DSLdownStreamSpeeedPCR>
+	<addMultilink_DSLupstreamSpeedSCR>(//div[label[text()='DSL Upstream Speed (SCR)']]//input)[1]</addMultilink_DSLupstreamSpeedSCR>
+	<vpi_textField>//input[@id='vpi']</vpi_textField>
+	<vci_textField>//input[@id='vci']</vci_textField>
+	<sipBat_textField>//input[@id='SIPBay']</sipBat_textField>
+	<mbsDropdown>//label[text()='MBS']/parent::div//input</mbsDropdown>
+	<interfaceAddress_TextField>//label[text()='Interface Address']/parent::div//input</interfaceAddress_TextField>
+	<addLoopback_interfaceTextField>//label[text()='Interface']/parent::div//input</addLoopback_interfaceTextField>
+	<configureOnBackupBRX_checkbox>//label[text()='Configure on backup BRX']/parent::div//input</configureOnBackupBRX_checkbox>
+	<IVmanagement_checkbox>//div[label[text()='IV management']]//input</IVmanagement_checkbox>
+	<addMultilink_networkLabelName>(//label[text()='Network'])[1]</addMultilink_networkLabelName>
+	<configuraInterfaceCheckboxSelection>//label[text()='Configure Interface on Device']/parent::div//input</configuraInterfaceCheckboxSelection>
+	<addInterface_okButton>//span[text()='OK']</addInterface_okButton>
+	<addMultilink_okButton>//span[text()='Ok']</addMultilink_okButton>
+	<fetchDeviceName_PEdevice>//label[text()='Name']/parent::div//following-sibling::div[@class='customLabelValue form-label']</fetchDeviceName_PEdevice>
+	<selectFirstValueUnderAddressDropdown>(//div[@class='sc-bxivhb kqVrwh'])[1]/div</selectFirstValueUnderAddressDropdown>
+	
+	<addMultilink_multilinkTableHeader>//div[text()='Multilinked Bearers']</addMultilink_multilinkTableHeader>
+	<addMultilink_checkToAddColumnName>//div[text()='Multilinked Bearers']/parent::div//following-sibling::div//span[text()='Check to add to Multilink']</addMultilink_checkToAddColumnName>
+	<addMultilinkTable_interfaceColumnName>//div[text()='Multilinked Bearers']/parent::div//following-sibling::div//span[text()='Interface ']</addMultilinkTable_interfaceColumnName>
+	<addMultilinkTable_linkOrcircuitColumnName>//div[text()='Multilinked Bearers']/parent::div//following-sibling::div//span[text()='Link / Circuit Id']</addMultilinkTable_linkOrcircuitColumnName>
+	<addMultilinkTable_bearerTypeColumnName>//div[text()='Multilinked Bearers']/parent::div//following-sibling::div//span[text()='Bearer Type']</addMultilinkTable_bearerTypeColumnName>
+	<addMultilinkTable_vlanIDcolumnName>//div[text()='Multilinked Bearers']/parent::div//following-sibling::div//span[text()='VLAN Id']</addMultilinkTable_vlanIDcolumnName>
+	
+	<PEdevice_backButton>//span[text()='Back']</PEdevice_backButton>
+	<viewPEDevice_deviceName>//div[label[text()='Name']]//following-sibling::div</viewPEDevice_deviceName>
+	<viewPEdveice_fetchVendorName>//div[label[text()='Vendor/Model']]//following-sibling::div</viewPEdveice_fetchVendorName>
+	<viewPEdevice_fetchManagementAddress>//div[label[text()='Management Address']]//following-sibling::div</viewPEdevice_fetchManagementAddress>
+	
+	<addInterface_confiugrationPanelheader>//div[div[text()='Configuration']]</addInterface_confiugrationPanelheader>
+	<addInterface_generateLink>//span[text()='Generate']</addInterface_generateLink>
+	<addInterface_configurationtextArea>//textarea[@name='configurationDetails']</addInterface_configurationtextArea>
+	<addInterface_executeAndSaveButton>//span[text()='Execute And Save']</addInterface_executeAndSaveButton>
+
+	<interface_warningMessage>//li[text()='Interface is required.']</interface_warningMessage>
+	<BearerType_warningMessage>//li[text()='Bearer Type is required.']</BearerType_warningMessage>
+	<encapsulation_warningMessage>//li[text()='Encapsulation is required.']</encapsulation_warningMessage>
+	<slot_warningMessage>//li[text()='Slot is required.']</slot_warningMessage>
+	<port_warningMessage>//li[text()='Port is required.']</port_warningMessage>
+	<vpi_warningMessage>//li[text()='VPI is required.']</vpi_warningMessage>
+	<vci_warningMessage>//li[text()='VCI is required.']</vci_warningMessage>
+	<configuration_warningMessage>//li[text()='Configuration is required.']</configuration_warningMessage>
+	<interfaceAddress_warningMessage>//div[text()='Interface Address']</interfaceAddress_warningMessage>
+	
+	
+	<PEdevice_showInterfaceLink>//div[text()='Provider Equipment (PE)']/parent::div//following-sibling::div//a[text()='Show Interfaces']</PEdevice_showInterfaceLink>
+	<selectInterfaceUnderPEdevice>//div[text()='Provider Equipment (PE)']/parent::div//following-sibling::div//div[div[contains(text(),'value')]]//input</selectInterfaceUnderPEdevice>	
+	<actionDropdown_UnderProviderEquipmentPanel>//div[text()='Provider Equipment (PE)']/parent::div//following-sibling::div//button[text()='Action']</actionDropdown_UnderProviderEquipmentPanel>	
+	<editLink_underProviderEquipment>//a[text()='Edit']</editLink_underProviderEquipment>	
+	
+	
+	<!-- Fetch Device INterface -->
+	<viewDevicePage_ActionDropdown>//div[text()='Device']/parent::div//button[text()='Action']</viewDevicePage_ActionDropdown>
+	<viewDevicePage_fetchDeviceInterfaceLink>//a[text()='Fetch Device Interfaces']</viewDevicePage_fetchDeviceInterfaceLink>
+	<fetchDeviceInterace_SuccessMessage>//div[contains(text(),'Fetch interfaces started successfully. Please check the sync status of this device.')]</fetchDeviceInterace_SuccessMessage>
+    <fetchdeviceInterface_successtextMessage>(//div[@class='alert alert-success alert-Style col-12 col-sm-12 col-md-12'])[1]</fetchdeviceInterface_successtextMessage>
+    <fetchDeviceInterface_hereLink>//a[text()='here']</fetchDeviceInterface_hereLink>
+		
+					
+	<!--  For Success Message -->
+	 <AlertForServiceCreationSuccessMessage>//div[@role='alert']/span</AlertForServiceCreationSuccessMessage>
+     <serivceAlert>//div[@role='alert']</serivceAlert>
+     
+     <!-- breadcrump common code -->
+	<breadcrump>//a[text()='value']</breadcrump>
+	
+     
+     <!--  Select Interface  -->
+     <existingdevicegrid_PEdevice>(//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div[@class='div-margin row'])//b</existingdevicegrid_PEdevice>
+     <existingdevicegrid>(//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div[@class='div-margin row'])[2]</existingdevicegrid>
+     <PE_fetchAlldevice_InviewPage>//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div[@class='div-margin row']//b</PE_fetchAlldevice_InviewPage>
+     <PE_selectInterface_InViewPage>//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Select Interfaces']</PE_selectInterface_InViewPage>
+     <interfacesInServices_searchTextBox>//div[text()='Interfaces in Service']/parent::div//following-sibling::div//input[@id='filter-text-box']</interfacesInServices_searchTextBox>
+     <interfacesToSelect_searchtextBOx>//div[text()='Interfaces to Select']/parent::div//following-sibling::div//input[@id='filter-text-box']</interfacesToSelect_searchtextBOx>
+    
+    <selectinterfaceUnderInterfacesInService>//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//div[div[text()='value']]//input</selectinterfaceUnderInterfacesInService>
+    
+     <InterfaceInselect_currentpage>//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//span[@ref='lbCurrent']</InterfaceInselect_currentpage>
+	<InterfaceInselect_totalpage>//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//span[@ref='lbTotal']</InterfaceInselect_totalpage>
+	<InterfaceInselect_Prevouespage>//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//button[text()='Previous']</InterfaceInselect_Prevouespage>
+	<InterfaceInselect_nextpage>//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//button[text()='Next']</InterfaceInselect_nextpage>
+	<InterfaceToselect_Actiondropdown>//div[div[text()='Interfaces to Select']]//button[text()='Action']</InterfaceToselect_Actiondropdown>
+	<InterfaceToselect_addbuton>//div[div[text()='Interfaces to Select']]//a[contains(text(),'Add')]</InterfaceToselect_addbuton>
+	     
+	<InterfaceToselect_currentpage>//div[div[contains(text(),'Interfaces to Select')]]/following-sibling::div[1]//span[@ref='lbCurrent']</InterfaceToselect_currentpage>
+	<InterfaceToselect_totalpage>//div[div[contains(text(),'Interfaces to Select')]]/following-sibling::div[1]//span[@ref='lbTotal']</InterfaceToselect_totalpage>
+	<InterfaceToselect_Prevouespage>//div[div[contains(text(),'Interfaces to Select')]]/following-sibling::div[1]//button[text()='Previous']</InterfaceToselect_Prevouespage>
+	<InterfaceToselect_nextpage>//div[div[contains(text(),'Interfaces to Select')]]/following-sibling::div[1]//button[text()='Next']</InterfaceToselect_nextpage>
+	<InterfaceInselect_Actiondropdown>//div[div[text()='Interfaces in Service']]//button[text()='Action']</InterfaceInselect_Actiondropdown>
+	<InterfaceInselect_removebuton>//div[div[text()='Interfaces in Service']]//a[contains(text(),'Remove')]</InterfaceInselect_removebuton>
+	<InterfaceToselect_backbutton>//span[contains(text(),'Back')]</InterfaceToselect_backbutton>
+	     
+	 <InteraceColumn_Filter>(//div[div[text()='Interfaces to Select']]//following-sibling::div//span[@class='ag-icon ag-icon-menu'])[2]</InteraceColumn_Filter> 
+	 <filterTxt>//input[@id='filterText']</filterTxt>
+	 <InterfaceInService_panelHeader>//div[div[contains(text(),'Interfaces in Service')]]</InterfaceInService_panelHeader>   
+	 <InterfaceToSelect_interfaceColumnHeader>//div[div[text()='Interfaces to Select']]//following-sibling::div//span[text()='Interface']</InterfaceToSelect_interfaceColumnHeader>
+	 <InterfacetoSelect_listOFinterfaceValuesDisplaying>//div[div[contains(text(),'Interfaces to Select')]]/following-sibling::div[1]//div[div[text()='value']]//span[@class='ag-icon ag-icon-checkbox-unchecked']</InterfacetoSelect_listOFinterfaceValuesDisplaying>
+  
+  	<PEdevice_deleteLink>//a[text()='Delete']</PEdevice_deleteLink>
+  
+  <!-- AutodiscoverVPN -->
+  <clickOnAutoDiscoverVPNunderProviderEquipmentPanel>//div[text()='Provider Equipment (PE)']/parent::div//following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Autodiscover VPNs']</clickOnAutoDiscoverVPNunderProviderEquipmentPanel>
+  <providerEquipment_panelHeader>//div[text()='Provider Equipment (PE)']</providerEquipment_panelHeader>
+    
+  <clickOnviewLinkUnderProviderEqiupment>//div[text()='Provider Equipment (PE)']/parent::div//following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='View']</clickOnviewLinkUnderProviderEqiupment>   
+    <deleteMessages_textMessage>//div[@class='modal-body']</deleteMessages_textMessage>
+    <delete_alertpopup>//div[@class='modal-content']</delete_alertpopup>
+    <deletebutton>//button[@class='btn btn-danger']</deletebutton>
+    
+    <!--  Delete PE device -->
+    <PE_deleteFromService>//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Delete from Service']</PE_deleteFromService>
+
+
+	<siteValue_IPVPN>//label[text()='Site']/parent::div//following-sibling::div</siteValue_IPVPN>
+	<interfaceInService_PanelHeader>//div[text()='Interfaces in Service']</interfaceInService_PanelHeader>
+
+</IPVPN>
+</locators>
+
+

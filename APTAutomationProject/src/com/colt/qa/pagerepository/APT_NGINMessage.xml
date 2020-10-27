@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<locators>
+<nginmessage>
+
+<managecoltnetworklink>(//div[@class='ant-menu-submenu-title']/span/b)[2]</managecoltnetworklink>
+<san_searchbutton>//button[@type='submit']//span</san_searchbutton>
+<!--  NGIN Message  -->
+<customernamecolumn>//span[@role='columnheader'][text()='Customer Name']</customernamecolumn>
+<searchsan_actiondropdown>//button[text()='Action']</searchsan_actiondropdown>
+<nginmessageslink>//li[text()='NGIN Messages']</nginmessageslink>
+<nginmessageheader>//div[contains(text(),'Manage Messages - Messages Search')]</nginmessageheader>
+<nginmsg_sannumber>//div[contains(text(),'Manage Messages')]/parent::div/following-sibling::form//div//input[@id='msgsan']</nginmsg_sannumber>
+<nginmsg_customername_textfield>//label[text()='Customer Name ']/following-sibling::input</nginmsg_customername_textfield>
+<nginmsg_frcnumbercolumn>//span[@role='columnheader'][text()='FRC Number ']</nginmsg_frcnumbercolumn>
+<nginmsg_namecolumn>//span[@role='columnheader'][text()='Name']</nginmsg_namecolumn>
+<editmessageheader>//div[text()='Edit Message']</editmessageheader>
+<editmessage_customername>//label[text()='Customer Name']/following-sibling::input</editmessage_customername>
+<editmessage_countrycode>//label[text()='Country Code']/following-sibling::input</editmessage_countrycode>
+<editmessage_sanreference>//label[text()='SAN Reference']/following-sibling::input</editmessage_sanreference>
+<editmessage_name>//label[text()='Name']/following-sibling::input</editmessage_name>
+<editmessage_description>//label[text()='Description']/following-sibling::input</editmessage_description>
+<editmessage_bodyfield>//label[text()='Body']/following-sibling::input</editmessage_bodyfield>
+<editmessage_prefixfield>//label[text()='Prefix']/following-sibling::input</editmessage_prefixfield>
+<editmessage_repetitionsfield>//label[text()='Repetitions']/following-sibling::input</editmessage_repetitionsfield>
+<editmessage_durationfield>//label[text()='Duration']/following-sibling::input</editmessage_durationfield>
+<editmessage_suffixfield>//label[text()='Suffix']/following-sibling::input</editmessage_suffixfield>
+<editmessage_startnetworkcharge>//label[text()='Start Network Charge']/following-sibling::div//input</editmessage_startnetworkcharge>
+<editmessage_okbutton>//button[@type='button']//span[text()='Ok']</editmessage_okbutton>
+<editmessage_successmessage>//div[@role='alert']//span</editmessage_successmessage>
+
+<edit>//div[@class='dropdown-menu show']//a[text()='Edit']</edit>
+<view>//div[@class='dropdown-menu show']//a[text()='View']</view>
+<delete>//div[@class='dropdown-menu show']//a[contains(text(),'Delete')]</delete>
+<cancelbutton>//span[contains(text(),'Cancel')]</cancelbutton>
+
+<!--  success Message -->
+<alertMsg>(//div[@role='alert'])[1]</alertMsg>
+<AlertForServiceCreationSuccessMessage>(//div[@role='alert']/span)[1]</AlertForServiceCreationSuccessMessage>
+
+</nginmessage>
+</locators>

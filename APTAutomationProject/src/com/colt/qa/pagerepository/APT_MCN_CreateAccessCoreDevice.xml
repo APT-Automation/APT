@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<locators>
+
+<CreateAccessCoreDevice>
+
+<mcnlink>//b[contains(text(),"MANAGE COLT'S NETWORK")]</mcnlink>
+<createaccesscoredevicelink>//li[contains(text(),'Create Access/Core Device')]</createaccesscoredevicelink>
+
+<!-- Create Device Page -->
+<nametextfield>//input[@id='name']</nametextfield>
+<devicetypeinput>//select[@id='deviceTypeId']</devicetypeinput>
+<devicetypeinput1>//div[label[text()='Device Type']]//input</devicetypeinput1>
+<vendormodelinput>//div[label[text()='Vendor/Model']]//input</vendormodelinput>
+<routeridtextfield>//input[@id='routerId']</routeridtextfield>
+<snmproinputfield>//input[@id='snmpro']</snmproinputfield>
+<telnetradiobutton>//input[@value='telnet']</telnetradiobutton>
+<sshradiobutton>//input[@value='ssh']</sshradiobutton>
+<c2cradiobutton>//input[@value='2c']</c2cradiobutton>
+<c3radiobutton>//input[@value='3']</c3radiobutton>
+<snmprotextfield>//input[@id='snmpro']</snmprotextfield>
+<snmprwtextfield>//input[@id='snmprw']</snmprwtextfield>
+<snmpv3username>//input[@id='snmpV3UserName']</snmpv3username>
+<snmpv3authpassword>//input[@id='snmpV3AuthPassword']</snmpv3authpassword>
+<snmpv3privpassword>//input[@id='snmpV3PrivPassword']</snmpv3privpassword>
+<modularmspcheckbox>//input[@id='modularMSP']</modularmspcheckbox>
+<fulliqnetcheckbox>//input[@id='fullIqnet']</fulliqnetcheckbox>
+<countryinput>//div[label[contains(text(),'Country')]]//input</countryinput>
+<managementaddresstextbox>//input[@id='ipField']</managementaddresstextbox>
+<citydropdowninput>//div[label[@class='form-label labelStyle'][contains(text(),'City')]]//input</citydropdowninput>
+<sitedropdowninput>//div[label[@class='form-label labelStyle'][contains(text(),'Site')]]//input</sitedropdowninput>
+<premisedropdowninput>//div[label[@class='form-label labelStyle'][contains(text(),'Premise')]]//input</premisedropdowninput>
+<addcityswitch>//div[label[contains(text(),'Add City')]]/preceding-sibling::div//div[@class='react-switch']</addcityswitch>
+<addsiteswitch>//div[label[contains(text(),'Add Site')]]/preceding-sibling::div//div[@class='react-switch']</addsiteswitch>
+<addpremiseswitch>//div[label[contains(text(),'Add Premise')]]/preceding-sibling::div//div[@class='react-switch']</addpremiseswitch>
+<iosxrcheckbox>//input[@id='iosXr']</iosxrcheckbox>
+<selectpremiseswitch>//div[label[contains(text(),'Select Premise')]]/preceding-sibling::div//div[@class='react-switch']</selectpremiseswitch>
+<selectsiteswitch>//div[label[contains(text(),'Select Site')]]/preceding-sibling::div//div[@class='react-switch']</selectsiteswitch>
+<selectcityswitch>//div[label[contains(text(),'Select City')]]/preceding-sibling::div//div[@class='react-switch']</selectcityswitch>
+
+
+<DSLAMdevice_alertpopup>//div[@class='modal-content']</DSLAMdevice_alertpopup>
+<DSLAMdevice_alertmessage>//div[@class='modal-body']</DSLAMdevice_alertmessage>
+<DSLAMdevice_popupOkbutton>//div[@class='modal-content']//span[text()='OK']</DSLAMdevice_popupOkbutton>
+
+<successMessage_deviceUpdation>//span[text()='Device updated successfully']</successMessage_deviceUpdation>
+<successMessage_Alert>(//div[@role='alert'])[1]//span</successMessage_Alert>
+<succesMsg_alertDisplay>(//div[@role='alert'])[1]</succesMsg_alertDisplay>
+<!--        Warning Message         -->
+<WarningMesassage_site>//div[text()='Site']</WarningMesassage_site>
+<warningMessage_city>//div[text()='City']</warningMessage_city>
+<warningMessage_Country>//div[text()='Country']</warningMessage_Country>
+<warningMessage_name>//div[text()='Name']</warningMessage_name>
+<warningMessage_deviceType>//div[text()='Device Type']</warningMessage_deviceType>
+<warningMessage_vendor>//div[text()='Vendor/Model']</warningMessage_vendor>
+<warningMessage_routerId>//div[text()='Router Id']</warningMessage_routerId>
+
+
+<!--  fetch device Interface -->
+<fetchDeviceinterfacelink_viewDevicePage>//a[text()='Fetch device interfaces']</fetchDeviceinterfacelink_viewDevicePage>
+<ClickhereLink_fetchInterface>//a[text()='here']</ClickhereLink_fetchInterface>
+
+<!--  manage link -->
+<manageLink_viewDevicepage>//a[contains(text(),'Manage')]</manageLink_viewDevicepage>
+
+
+
+<addCitytogglebutton>//div[div[label[text()='Add City']]]//div[@class='react-switch-bg']</addCitytogglebutton>
+
+<citynameinputfield>//input[@id='cityName']</citynameinputfield>
+<citycodeinputfield>//input[@id='cityCode']</citycodeinputfield>
+<sitenameinputfield_addCityToggleSelected>(//div[label[text()='Site Name']]//input)[1]</sitenameinputfield_addCityToggleSelected>
+<sitecodeinputfield_addCityToggleSelected>(//div[label[text()='Site Code']]//input)[1]</sitecodeinputfield_addCityToggleSelected>
+<premisecodeinputfield_addCityToggleSelected>(//div[label[text()='Premise Code']]//input)[1]</premisecodeinputfield_addCityToggleSelected>
+<premisenameinputfield_addCityToggleSelected>(//div[label[text()='Premise Name']]//input)[1]</premisenameinputfield_addCityToggleSelected>
+
+
+<sitenameinputfield_addSiteToggleSelected>(//div[label[text()='Site Name']]//input)[2]</sitenameinputfield_addSiteToggleSelected>
+<sitecodeinputfield_addSiteToggleSelected>(//div[label[text()='Site Code']]//input)[2]</sitecodeinputfield_addSiteToggleSelected>
+<premisecodeinputfield_addSiteToggleSelected>(//div[label[text()='Premise Code']]//input)[2]</premisecodeinputfield_addSiteToggleSelected>
+<premisenameinputfield_addSiteToggleSelected>(//div[label[text()='Premise Name']]//input)[2]</premisenameinputfield_addSiteToggleSelected>
+
+<premisecodeinputfield_addPremiseToggleSelected>(//div[label[text()='Premise Code']]//input)[3]</premisecodeinputfield_addPremiseToggleSelected>
+<premisenameinputfield_addPremiseToggleSelected>(//div[label[text()='Premise Name']]//input)[3]</premisenameinputfield_addPremiseToggleSelected>
+
+
+
+
+<clearbutton>//span[contains(text(),'Clear')]</clearbutton>
+<okbutton>//span[contains(text(),'OK')]</okbutton>
+
+
+<!-- view device page -->
+<devicecreationsuccessmsg>//span[contains(text(),'Device created successfully')]</devicecreationsuccessmsg>
+
+
+
+<!-- Edit Device -->
+	<Action>//div[text()='Device']/following-sibling::div//button[text()='Action']</Action>
+	<Edit>//div[text()='Device']/following-sibling::div//a[text()='Edit']</Edit>
+
+<!--  Delete Device -->
+	<Delete>//div[text()='Device']/following-sibling::div//a[text()='Delete']</Delete>
+	<DeleteDeviceAlertHeader>//div[text()='Delete Device']</DeleteDeviceAlertHeader>
+	<DeleteConfirmButton>//button[text()='Delete']</DeleteConfirmButton>
+	<delete_alertpopup>//div[@class='modal-content']</delete_alertpopup>
+	<deleteMessages_textMessage>//div[@class='modal-body']</deleteMessages_textMessage>
+	<deletebutton>//button[@class='btn btn-danger']</deletebutton> 
+
+<!--  Search Device -->
+<SearchDeviceLink>//li[contains(text(),'Search for Device')]</SearchDeviceLink>
+<DeviceName>//input[@id='deviceName']</DeviceName>
+
+
+
+
+<managementaddressbutton>//button//span[text()='Management Address']</managementaddressbutton>
+
+<IQNet_alertHeader>//div[div[@class='modal-header']]</IQNet_alertHeader>
+<IQNet_alertBody>//div[@class='modal-body']</IQNet_alertBody>
+<IONet_xButton>//span[contains(text(),'×')]</IONet_xButton>
+
+
+<!--  Router Panel -->
+<commandIPV4_dropdown>//div[label[text()='Command IPV4']]//input</commandIPV4_dropdown>
+<commandIPv4_hostnameTextfield>//input[@id='routertools.hostnameOrIPAddress']</commandIPv4_hostnameTextfield>
+<commandIPv4_vrfnameTextField>(//input[@id='routertools.vrfName'])[1]</commandIPv4_vrfnameTextField>
+
+<commandIPV6_dropdown>//div[label[text()='Command IPV6']]//input</commandIPV6_dropdown>
+<commandIPv6_hostnameTextfield>//input[@id='routertools.hostnameOrIPv6Address']</commandIPv6_hostnameTextfield>
+<commandIPv6_vrfnameTextField>(//input[@id='routertools.vrfName'])</commandIPv6_vrfnameTextField>
+
+<executebutton_Ipv4>(//span[text()='Execute'])[1]</executebutton_Ipv4>
+<executebutton_IPv6>(//span[text()='Execute'])[2]</executebutton_IPv6>
+
+<result_textArea>//div[label[text()='Result']]//textarea</result_textArea>
+
+
+<!-- select tag Dropdown -->
+ <countryDropdown_selectTag>//select[@id='countryId']</countryDropdown_selectTag>
+ <cityDropdown_selectTag>//select[@id='cityId']</cityDropdown_selectTag>
+ <siteDropdown_selectTag>//select[@id='siteId']</siteDropdown_selectTag>
+ <premiseDropdown_selectTag>//select[@id='premiseId']</premiseDropdown_selectTag>
+ 
+ <testCommandTable>//div[text()='* Device reachability tests require the device to have an IP address.']</testCommandTable>
+
+
+</CreateAccessCoreDevice>
+</locators>

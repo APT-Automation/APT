@@ -19,11 +19,9 @@ public class Manage_Postcode extends DriverTestcase{
 
 			String countryName=map.get("Countrylist");
 			
-			logger= ExtentTestManager.startTest ("manageColtNetwork");
-			
 				setup();
 				
-				Login.APT_Login_1(map.get("url"));
+				Login.APT_Login_1(map.get("url for the Product"));
 			
 				ManagePostcode_Helper.get().selectColtnetwork("ManageColt");
 			

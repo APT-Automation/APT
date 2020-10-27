@@ -125,6 +125,11 @@ public class APT_wholesale extends DriverTestcase{
 			APT_Helper.get().dump_viewServicepage("wholesaleService");
 			ExtentTestManager.endTest(); 
 	
+			
+		/**
+		 * MAS switch	
+		 */
+			
 		logger= ExtentTestManager.startTest("addMASswitch_wholesaleSIP");
 			APT_Helper.get().verifyAddMASswitch("wholesaleService", map.get("MAS_IMSPOPLocation"));
 			APT_Helper.get().verifysuccessmessage("wholesaleService", "MAS switch added successfully");
@@ -186,7 +191,7 @@ public class APT_wholesale extends DriverTestcase{
 					map.get("MAS_InterfaceAddressRange"), map.get("MAS_VLANID"));
 			ExtentTestManager.endTest(); 
 	
-		logger= ExtentTestManager.startTest("editInterface_MAS Switch_wholesaleSIP");
+		logger= ExtentTestManager.startTest("editInterface_MASSwitch_wholesaleSIP");
 			APT_Helper.get().clickOnEditInterfaceLink("wholesaleService");
 			APT_Helper.get().editInterface("wholesaleService", map.get("MAS_editAccessMedia"), map.get("MAS_editNetwork") , map.get("MAS_editHSRPBGP"), 
 					map.get("MAS_editInterface"), map.get("MAS_editInterfaceAddressRange"), map.get("MAS_editInterfaceAddressMask"), map.get("MAS_editHSRPIP"), 
@@ -223,11 +228,15 @@ public class APT_wholesale extends DriverTestcase{
 			APT_Helper.get().selectInterface_AndDelete_MASswitch("wholesaleService", map.get("MAS_deviceName"), interfaceName);
 			ExtentTestManager.endTest(); 
 	
-		logger= ExtentTestManager.startTest("delete MASdevice_wholesaleSIP");
+		logger= ExtentTestManager.startTest("deleteMASdevice_wholesaleSIP");
 			APT_Helper.get().MASswitch__DeleteFromServiceFunctionality("wholesaleService", map.get("MAS_deviceName"));
 			APT_Helper.get().MASswitch__DeleteFromServiceFunctionality("wholesaleService", map.get("MAS-devicename2"));
 			ExtentTestManager.endTest(); 
 			
+			
+			/**
+			 * Provider Equipment (PE)
+			 */
 		logger= ExtentTestManager.startTest("addPEdevice_wholesaleSIP");
 			APT_Helper.get().verifyPEdevice("wholesaleService", map.get("PE_IMSPOPLocation"));
 			APT_Helper.get().verifysuccessmessage("wholesaleService", "PE Device added successfully");
@@ -310,7 +319,7 @@ public class APT_wholesale extends DriverTestcase{
 						map.get("PE_editVRRP_GroupName"), map.get("PE_editVRF"),interfacename2 );
 				ExtentTestManager.endTest(); 
 			
-			logger= ExtentTestManager.startTest("selectInterface_PE");
+			logger= ExtentTestManager.startTest("selectInterface_PE_wholesaleIP");
 				APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 				APT_Helper.get().PEdevice_clickOnselectInterface("wholesaleService", map.get("PE_deviceName"));
 				if(map.get("PE_RemoveInterface_Selection").equalsIgnoreCase("yes")) {
@@ -324,12 +333,12 @@ public class APT_wholesale extends DriverTestcase{
 				}
 				ExtentTestManager.endTest(); 
 				
-			logger= ExtentTestManager.startTest("deletInterfce");
+			logger= ExtentTestManager.startTest("deletInterface_wholesaleSIP");
 				APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 				APT_Helper.get().selectInterface_AndDelete_PEdevice("wholesaleService", map.get("PE_deviceName"), interfacename2);
 				ExtentTestManager.endTest(); 
 			
-			logger= ExtentTestManager.startTest("delete_PEdevice");
+			logger= ExtentTestManager.startTest("delete_PEdevice_wholesaleSIP");
 				APT_Helper.get().PEdevice__DeleteFromServiceFunctionality("wholesaleService", map.get("PE_deviceName"));
 //				APT_Helper.get().PEdevice__DeleteFromServiceFunctionality("wholesaleService", map.get("PE_deviceName2"));
 				ExtentTestManager.endTest(); 
@@ -338,9 +347,13 @@ public class APT_wholesale extends DriverTestcase{
 				ExtentTestManager.getTest().log(LogStatus.INFO, "No devices displaying under 'Provider Equipment' Panel");
 				Log.info("No devices displaying under 'Provider Equipment' Panel");
 			}
+		
 			
+	/**
+	 *  Trunk		
+	 */
 			
-		logger= ExtentTestManager.startTest("addTrunkSiteOrder");
+		logger= ExtentTestManager.startTest("addTrunkSiteOrder_wholesaleSIP");
 			String siteOrderNumber=null;
 			APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 			APT_Helper.get().addTrunkSiteOrder("wholesaleService", map.get("TrunkGroupOrder"), map.get("TrunkGroupOrderNumber"));
@@ -355,7 +368,7 @@ public class APT_wholesale extends DriverTestcase{
 			}
 			ExtentTestManager.endTest(); 
 			
-		logger= ExtentTestManager.startTest("addTrunk");
+		logger= ExtentTestManager.startTest("addTrunk_wholesaleSIP");
 			APT_Helper.get().verifyAddedSiteOrderAndTrunkLinkUnderTrunkPanel("wholesaleService", siteOrderNumber );
 			APT_Helper.get().addTrunk("wholesaleService", CustomerName, serviceIdentification ,map.get("trunkType"), map.get("voipProtocol"), map.get("BillingCountry"), map.get("CDRdelivery"),
 					map.get("gateway"), map.get("quality"), map.get("trafficDirection"), map.get("ipAddresstype"), map.get("SIPsignallingPort"),
@@ -379,7 +392,7 @@ public class APT_wholesale extends DriverTestcase{
 			APT_Helper.get().verifysuccessmessage("wholesaleService", "Trunk created successfully");
 			ExtentTestManager.endTest(); 
 			
-		logger= ExtentTestManager.startTest("viewTrunk");
+		logger= ExtentTestManager.startTest("viewTrunk_wholesaleSIP");
 			APT_Helper.get().viewTrunk_Primary("wholesaleService", CustomerName, serviceIdentification ,map.get("trunkType"), map.get("voipProtocol"), map.get("BillingCountry"), map.get("CDRdelivery"),
 					map.get("gateway"), map.get("quality"), map.get("trafficDirection"), map.get("ipAddresstype"), map.get("SIPsignallingPort"),
 					map.get("internetBasedCustomer"), map.get("vlanTag"), map.get("subInterfaceSlot"), map.get("signallngZone"), map.get("signallingtransportProtocol"),
@@ -401,14 +414,14 @@ public class APT_wholesale extends DriverTestcase{
 					map.get("createLowerCaseRoutervalue"), map.get("PSXmanualConfigvalue"), map.get("GSXmanualConfigvalue"), map.get("callLimit"), map.get("limitNumber"), map.get("callrateLimiteValue"),  map.get("SBCmanualconfigValue"));
 			ExtentTestManager.endTest(); 
 			
-		logger= ExtentTestManager.startTest("History");
+		logger= ExtentTestManager.startTest("History_wholesaleSIP");
 			String trunkGroupName = APT_Helper.get().fetchTrunkName("wholesaleService");
 			
 			APT_Helper.get().history("wholesaleService", "insert_trunk", trunkGroupName, map.get("gateway"), map.get("voipProtocol"), 
 					map.get("signallingtransportProtocol"));
 			ExtentTestManager.endTest(); 
 			
-		logger= ExtentTestManager.startTest("editTrunk");
+		logger= ExtentTestManager.startTest("editTrunk_wholesaleSIP");
 			APT_Helper.get().editTrunk("wholesaleService",CustomerName, serviceIdentification ,  map.get("trunkType"), map.get("edit_TrunkType"), map.get("edit_VOIPprotocol"), map.get("edit_BillingCountry"), map.get("edit_CDRdelivery"),
 					map.get("editPrefix"), map.get("editGateway"), map.get("editQuality"), map.get("editTrafficDirection"), map.get("edit_IpAddressType"),
 					map.get("editCarrierIPoriginating"), map.get("editCarrierIPterminating"), map.get("editSIPsignallingPort"), map.get("editSignallingTransport"),
@@ -433,7 +446,7 @@ public class APT_wholesale extends DriverTestcase{
 			ExtentTestManager.endTest(); 
 
 			
-			logger= ExtentTestManager.startTest("viewTrunk_GSX_PSX_configuration");
+			logger= ExtentTestManager.startTest("viewTrunk_GSX_PSX_configuration_wholesaleSIP");
 			String trunkName=APT_Helper.get().fetchTrunkName("wholesaleService");
 			TrunkName=trunkName;
 			
@@ -458,39 +471,44 @@ public class APT_wholesale extends DriverTestcase{
 				}
 				ExtentTestManager.endTest(); 
 				
-//			logger= ExtentTestManager.startTest("SBCmanualConfig");
-//				if(Gateway.contains("SBC")) {
-//					APT_Helper.get().addSBC_manualExecutionConfig("wholesaleService", map.get("SBCmanualConfigvalue"));
-//					APT_Helper.get().verifySBCfileAdded("wholesaleService");
-//					APT_Helper.get().editSBC_manualExecutionConfig("wholesaleService", map.get("editSBCmanualConfigvalue"));
-//					APT_Helper.get().deleteSBC_manualExecutionConfig("wholesaleService");
-//					
-//				}else {
-//					DriverTestcase.logger.log(LogStatus.INFO, "'SBC Manual Execution Configuration' panel will not display, if 'SBC' gateway not selected ");
-//				}
-//				
-//				
-//			logger= ExtentTestManager.startTest("PSXmanualConfig");
-//				APT_Helper.get().addPSX_manualExecutionConfig("wholesaleService", map.get("PSXmanualConfigValue"));
-//				APT_Helper.get().verifyPSXfileAdded("wholesaleService");
-//				APT_Helper.get().editPSX_manualExecutionConfig("wholesaleService", map.get("editPSXmanualConfigValue"));
-//				APT_Helper.get().deletePSX_manualExecutionConfig("wholesaleService");
-//				
-//				
-//			logger= ExtentTestManager.startTest("GSXmanualConfig");
-//				if(Gateway.contains("SBC")) {
-//					DriverTestcase.logger.log(LogStatus.INFO, "'GSX Manual Execution Configuration' panel will not display, if 'SBC' gateway is selected ");
-//				}
-//				else {
-//					APT_Helper.get().addGSX_manualExecutionConfig("wholesaleService", map.get("GSXmanualConfigValue"));
-//					APT_Helper.get().verifyGSXfileAdded("wholesaleService");
-//					APT_Helper.get().editGSX_manualExecutionConfig("wholesaleService", map.get("editGSXmanualConfigValue"));
-//					APT_Helper.get().deleteGSX_manualExecutionConfig("wholesaleService");
-//				
-//				}
+			logger= ExtentTestManager.startTest("SBCmanualConfig_wholesaleSIP");
+				if(Gateway.contains("SBC")) {
+					APT_Helper.get().addSBC_manualExecutionConfig("wholesaleService", map.get("SBCmanualConfigvalue"));
+					APT_Helper.get().verifySBCfileAdded("wholesaleService");
+					APT_Helper.get().editSBC_manualExecutionConfig("wholesaleService", map.get("editSBCmanualConfigvalue"));
+					APT_Helper.get().deleteSBC_manualExecutionConfig("wholesaleService");
+					ExtentTestManager.endTest();
+				}else {
+					ExtentTestManager.getTest().log(LogStatus.INFO, "'SBC Manual Execution Configuration' panel will not display, if 'SBC' gateway not selected ");
+					ExtentTestManager.endTest();
+				}
 				
+				
+			logger= ExtentTestManager.startTest("PSXmanualConfig_wholesaleSIP");
+				APT_Helper.get().addPSX_manualExecutionConfig("wholesaleService", map.get("PSXmanualConfigValue"));
+				APT_Helper.get().verifyPSXfileAdded("wholesaleService");
+				APT_Helper.get().editPSX_manualExecutionConfig("wholesaleService", map.get("editPSXmanualConfigValue"));
+				APT_Helper.get().deletePSX_manualExecutionConfig("wholesaleService");
+				ExtentTestManager.endTest();
+				
+			logger= ExtentTestManager.startTest("GSXmanualConfig_wholesaleSIP");
+				if(Gateway.contains("SBC")) {
+					ExtentTestManager.getTest().log(LogStatus.INFO, "'GSX Manual Execution Configuration' panel will not display, if 'SBC' gateway is selected ");
+					ExtentTestManager.endTest();
+				}
+				else {
+					APT_Helper.get().addGSX_manualExecutionConfig("wholesaleService", map.get("GSXmanualConfigValue"));
+					APT_Helper.get().verifyGSXfileAdded("wholesaleService");
+					APT_Helper.get().editGSX_manualExecutionConfig("wholesaleService", map.get("editGSXmanualConfigValue"));
+					APT_Helper.get().deleteGSX_manualExecutionConfig("wholesaleService");
+					ExtentTestManager.endTest();
+				}
 			
-			logger= ExtentTestManager.startTest("addCPEdevice");
+				
+			/**
+			 * CPE device	
+			 */
+			logger= ExtentTestManager.startTest("addCPEdevice_wholesaleSIP");
 			String resilTrunkName=APT_Helper.get().fetchTrunkName("wholesaleService");
 				APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
 				APT_Helper.get().clickOnCPEdeviceLink("wholesaleService", trunkName, siteOrderNumber);
@@ -503,7 +521,7 @@ public class APT_wholesale extends DriverTestcase{
 				APT_Helper.get().verifysuccessmessage("wholesaleService", "CPE Device added successfully");
 				ExtentTestManager.endTest(); 
 			
-			logger= ExtentTestManager.startTest("viewCPEdevice");
+			logger= ExtentTestManager.startTest("viewCPEdevice_wholesaleSIP");
 				APT_Helper.get().CPEdevice_clickOnViewLink("wholesaleService", map.get("CPEdevice_routerID"));
 				APT_Helper.get().viewCPEdevice("wholesaleService", map.get("CPEdevice_routerID"), map.get("CPEdevice_vendorModel"),
 						map.get("CPEdevice_managementAddress"), map.get("CPEdevice_Snmpro"), map.get("CPEdevice_Snmprw"), map.get("CPEdevice_SNMPv3Contextname"),
@@ -513,7 +531,7 @@ public class APT_wholesale extends DriverTestcase{
 						map.get("NewSiteName"),map.get("NewSiteCode"), map.get("NewPremiseName"), map.get("NewPremiseCode"), map.get("NewSite"), map.get("NewPremise"));
 				ExtentTestManager.endTest(); 
 				
-			logger= ExtentTestManager.startTest("editCPEdevice");
+			logger= ExtentTestManager.startTest("editCPEdevice_wholesaleSIP");
 				APT_Helper.get().editCPEdeviceLink("wholesaleService");
 				APT_Helper.get().editCPEdevice("wholesaleService", map.get("editCPEdevice_routerID"), map.get("editCPEdevice_vendorModel"), map.get("editCPEdevice_managementAddress"),
 						map.get("editCPEdevice_Snmpro"), map.get("editCPEdevice_Snmprw"), map.get("editCPEdevice_SNMPv3Contextname"), map.get("editCPEdevice_SNMPv3ContextEngineId"),
@@ -525,11 +543,11 @@ public class APT_wholesale extends DriverTestcase{
 				APT_Helper.get().verifysuccessmessage("wholesaleService", "CPE Device updated successfully");
 				ExtentTestManager.endTest(); 
 			
-			logger= ExtentTestManager.startTest("routerPanel_CPEdevice");
+			logger= ExtentTestManager.startTest("routerPanel_CPEdevice_wholesaleSIP");
 				APT_Helper.get().routerPanel("wholesaleService", map.get("CPE_command_ipv4"), map.get("CPE_command_ipv6"), map.get("CPE_vrf_Ipv4"), map.get("CPE_vrf_Ipv6"));
 				ExtentTestManager.endTest(); 
 				
-			logger= ExtentTestManager.startTest("deleteCPEdevice");
+			logger= ExtentTestManager.startTest("deleteCPEdevice_wholesaleSIP");
 				String routerId=null;
 				if(map.get("editCPEdevice_routerID").equalsIgnoreCase("null")) {
 					routerId=map.get("CPEdevice_routerID");
@@ -543,18 +561,18 @@ public class APT_wholesale extends DriverTestcase{
 				APT_Helper.get().verifysuccessmessage("wholesaleService", "CPE Device deleted successfully");
 				ExtentTestManager.endTest(); 	
 			
-				logger= ExtentTestManager.startTest("deleteTrunk");
+				logger= ExtentTestManager.startTest("deleteTrunkSiteOrder_wholesaleSIP");
 				APT_Helper.get().clickOnBreadCrump("wholesaleService", serviceIdentification);
-				Thread.sleep(2000);
-				APT_Helper.get().deleteTrunk("wholesaleService",  resilTrunkName, siteOrderNumber);
-//				APT_Helper.get().deleteTrunk("wholesaleService", trunkGroupName, siteOrderNumber);
-				ExtentTestManager.endTest();
 				
-				logger= ExtentTestManager.startTest("deleteTrunkSiteOrder");
+				if(map.get("viewtrunk_PSXconfiguration").equals("Add Destination IP Address")) {
+					APT_Helper.get().deleteTrunk("wholesaleService",  resilTrunkName, siteOrderNumber);
+				}
+//				APT_Helper.get().deleteTrunk("wholesaleService", trunkGroupName, siteOrderNumber);
+				
 				APT_Helper.get().deleteSiteOrder("wholesaleService", siteOrderNumber);
 				ExtentTestManager.endTest(); 
 				
-			logger= ExtentTestManager.startTest("deleteService");
+			logger= ExtentTestManager.startTest("deleteService_wholesaleSIP");
 				APT_Helper.get().deleteService("wholesaleService");
 				ExtentTestManager.endTest(); 
 			}

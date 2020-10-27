@@ -43,7 +43,7 @@
 <emailwarngmsg>//input[@id='email']/parent::div//div</emailwarngmsg>
 <customer_createorderpage_warngmsg>//div[text()='Choose a customer']</customer_createorderpage_warngmsg>
 <sidwarngmsg>//label[text()='Service Identification']/parent::div/div</sidwarngmsg>
-<billingtype_warngmsg>//label[text()='Billing Type']/parent::div/following-sibling::div</billingtype_warngmsg>
+<billingtype_warngmsg>//label[text()='Billing Type']/parent::div//div</billingtype_warngmsg>
 
 <!--  Verify Customer details panel  -->
 <customerdetailsheader>//div[text()='Customer Details']</customerdetailsheader>
@@ -125,7 +125,7 @@
 <cancelbutton>//span[contains(text(),'Cancel')]</cancelbutton>
 <servicecreationmessage>//div[@role='alert']//span</servicecreationmessage>
 <terminationdate_field>//label[text()='Termination Date']/parent::div//input[@name='terminationDate']</terminationdate_field>
-<billingtype_dropdown>//label[text()='Billing Type']/parent::div//input</billingtype_dropdown>
+<billingtype_dropdown>//label[text()='Billing Type']/parent::div//select</billingtype_dropdown>
 <emailaddarrow>//label[text()='Email']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</emailaddarrow>
 <phoneaddarrow>//label[text()='Phone Contact']/parent::div/parent::div/following-sibling::div//button//span[text()='>>']</phoneaddarrow>
 <emailremovearrow>(//label[text()='Email']/parent::div/parent::div/following-sibling::div//button//span)[2]</emailremovearrow>

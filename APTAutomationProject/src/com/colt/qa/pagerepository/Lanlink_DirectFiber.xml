@@ -453,6 +453,10 @@
 
 <LANLINK>
 
+<ClassNameForDropdowns>//div[@class='sc-ifAKCX oLlzc']</ClassNameForDropdowns>
+
+<selectValueUnderTechnologyDropdown>//div[text()='value']</selectValueUnderTechnologyDropdown>
+
 <obutton_spanTag>//span[contains(text(),'OK')]</obutton_spanTag>
 <chooseCustomerdropdown>//div[@class='react-dropdown-select-content react-dropdown-select-type-single css-jznujr-ContentComponent e1gn6jc30']</chooseCustomerdropdown>
 

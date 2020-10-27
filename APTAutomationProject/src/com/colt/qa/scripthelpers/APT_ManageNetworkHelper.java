@@ -163,9 +163,9 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		String NewStatusvalue= getwebelement(xml.getlocator("//locators/" + application + "/statuspage_newstatusdropdownvalue")).getText();
 		ExtentTestManager.getTest().log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue);
 		click_commonMethod(application, "OK", "statuspage_okbutton", xml);
-		Thread.sleep(2000);
+		waitforPagetobeenable();
 		scrollToTop();
-		compareText(application, "Device status update success message", "Sync_successmsg", "Device Status history successfully changed", xml);
+		verifysuccessmessage(application, "Device Status history successfully changed");
 		Thread.sleep(1000);
 		scrolltoend();
 		//verify 'new status' table column headers
@@ -400,10 +400,9 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		String NewStatusvalue1= getwebelement(xml.getlocator("//locators/" + application + "/interface_statuspage_newstatusdropdownvalue")).getText();
 		ExtentTestManager.getTest().log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue1);
 		click_commonMethod(application, "OK", "interface_statuspage_okbutton", xml);
-		Thread.sleep(2000);
+		waitforPagetobeenable();
 		scrollToTop();
-		compareText(application, "Interface status update success message", "Sync_successmsg", "Interface Status History successfully changed.", xml);
-		Thread.sleep(1000);
+		verifysuccessmessage(application, "Interface Status History successfully changed.");
 		scrolltoend();
 		Thread.sleep(1000);
 		//verify 'new status' table column headers
@@ -502,7 +501,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		}
 		}else
 		{
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "No Interface added in table");
+			ExtentTestManager.getTest().log(LogStatus.PASS, "No Interface added in table");
 		}
 		
 		click_commonMethod(application, "Close", "viewinterface_closebutton", xml);
@@ -735,11 +734,10 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		//verify synchronize link
 		Thread.sleep(2000);
 		click_commonMethod(application, "Synchronize", "synchronization_synchronizelink", xml);
-		Thread.sleep(1000);
+		waitforPagetobeenable();
 		scrollToTop();
-		Thread.sleep(4000);
-		isElementPresent("//locators/" + application + "/Sync_successmsg");
-		compareText(application, "Synchronize Success Msg", "Sync_successmsg", "Sync started successfully. Please check the sync status of this device.", xml);
+		Thread.sleep(2000);
+		verifysuccessmessage(application, "Sync started successfully. Please check the sync status of this device.");
 		Thread.sleep(2000);
 		
 		//verify device name link in status panel
@@ -760,24 +758,20 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 	public void searchdevice(String application, String devicename) throws InterruptedException, DocumentException, IOException {
 
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/managecoltnetworklink")));
-		Thread.sleep(2000);
-
+		Thread.sleep(1000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchdevicelink")));
-
 		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/devicenamefield")),devicename);
 		Thread.sleep(1000);
-		scrolltoend();
+		ScrolltoElement(application, "searchbutton", xml);
 		WebElement searchbutton= getwebelement(xml.getlocator("//locators/" + application + "/searchbutton"));
 		Clickon(searchbutton);
-		Thread.sleep(2000);
 		waitforPagetobeenable();
-		scrolltoend();
+		ScrolltoElement(application, "searchbutton", xml);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/deviceradiobutton")));
-		Thread.sleep(3000);
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchdevice_actiondropdown")));
 		Thread.sleep(1000);
+		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchdevice_actiondropdown")));
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/managelink")));
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 	}
 
 	
@@ -851,6 +845,44 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 			e.printStackTrace();
 		}
 		return text;
+
+	}
+
+	public void verifysuccessmessage(String application, String expected) throws InterruptedException {
+
+		scrollToTop();
+		Thread.sleep(3000);
+		try {	
+
+			boolean successMsg=getwebelement(xml.getlocator("//locators/" + application + "/alertMsg")).isDisplayed();
+
+			if(successMsg) {
+
+				String alrtmsg=getwebelement(xml.getlocator("//locators/" + application + "/AlertForServiceCreationSuccessMessage")).getText();
+
+				if(expected.contains(alrtmsg)) {
+
+					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
+					System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+					successScreenshot(application);
+					
+				}else {
+
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
+					System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+					successScreenshot(application);
+				}
+
+			}else {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
+				System.out.println(" Success Message is not displaying");
+			}
+
+		}catch(Exception e) {
+			Log.info("failure in fetching success message - 'Service created Successfully'  ");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
+			System.out.println(expected+ " message is not getting dislpayed");
+		}
 
 	}
 

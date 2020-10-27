@@ -24,7 +24,7 @@ public class APT_MCS_CreateAccessCoreDevice_TrafficAggregator extends DriverTest
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));
+		Login.APT_Login_1(map.get("url for the Product"));
 		
 		logger= ExtentTestManager.startTest ("verifyNavigationToCreateAccessCoreDevicePage_Traffic Aggregator");
 			APT_CreateTrafficAggregatorDeviceHelper.get().navigatetomanagecoltnetwork("CreateAccessCoreDevice");
@@ -43,7 +43,7 @@ public class APT_MCS_CreateAccessCoreDevice_TrafficAggregator extends DriverTest
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessagefor_TrafficAggregatorDevice_"+devicename);
-			APT_CreateTrafficAggregatorDeviceHelper.get().verifyDeviceCreationMessage("CreateAccessCoreDevice");
+			APT_CreateTrafficAggregatorDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device created successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyEnteredValueForTrafficAggregatorDevice_"+devicename);
@@ -68,7 +68,7 @@ public class APT_MCS_CreateAccessCoreDevice_TrafficAggregator extends DriverTest
 			ExtentTestManager.endTest(); 
 	
 		logger= ExtentTestManager.startTest ("verifyDeviceUpdationSuccessMessagefor_TrafficAggregatorDevice_"+devicename);
-			APT_CreateTrafficAggregatorDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
+			APT_CreateTrafficAggregatorDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device updated successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyUpdatedValueForTrafficAggregatorDevice_"+devicename);

@@ -140,6 +140,7 @@ public class APT_VOIPAccessHelper extends DriverHelper {
 						
 						ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 						System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+						successScreenshot(application);
 						
 					}else {
 						
@@ -491,15 +492,6 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		//	} 
 
 		
-		public void scrolltoend() {//Or Scroll Down
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		}
-
-
-		public void scrollToTop() {
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0)");
-		}
-
 		public void clickOnBankPage() {
 			driver.findElement(By.xpath("//body")).click();
 		}
@@ -1120,7 +1112,8 @@ public void SelectDropdownValueUnderSelectTag(String application, String labelna
 			String reference, String tcn, String type, String email, String phone, String fax)
 					throws Exception {
 
-
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer Creation Functionality");
+		try {
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(2000);
 		System.out.println("Mouse hovered on Manage Customer's Service");
@@ -1140,15 +1133,6 @@ public void SelectDropdownValueUnderSelectTag(String application, String labelna
 		warningMessage_commonMethod(application, "typewarngmsg", "Type", xml);
 		warningMessage_commonMethod(application, "emailwarngmsg", "Email", xml);
 
-		//Clear customer info
-		addtextFields_commonMethod(application, "Customer Name", "nametextfield", name, xml);
-		addtextFields_commonMethod(application, "Main Domain", "maindomaintextfield", maindomain, xml);
-		Thread.sleep(1000);
-		scrolltoend();
-		click_commonMethod(application, "Reset", "resetbutton", xml);
-		ExtentTestManager.getTest().log(LogStatus.PASS, "All text field values are cleared");
-		Log.info("All text field values are cleared");
-
 		//Create customer by providing all info
 		addtextFields_commonMethod(application, "Customer Name", "nametextfield", name, xml);
 		addtextFields_commonMethod(application, "Main Domain", "maindomaintextfield", maindomain, xml);
@@ -1163,8 +1147,16 @@ public void SelectDropdownValueUnderSelectTag(String application, String labelna
 		scrolltoend();
 		Thread.sleep(1000);
 		click_commonMethod(application, "Ok", "okbutton", xml);
-		//compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.", xml);
-		verifysuccessmessage(application, "Customer successfully created.");
+		compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.", xml);
+		}catch(NoSuchElementException e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Service Creation page");
+			System.out.println(  e+ " : Field is not displayed in  Service Creation page");
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Service Creation page ");
+			System.out.println(  e+" : Field is not displayed in Service Creation page");
+		}
 		sa.assertAll();
 	}
 
@@ -1222,36 +1214,35 @@ public void customerCreationForm_UI(String application)	throws Exception {
 
 	
 
-public void selectCustomertocreateOrder(String application, String ChooseCustomerToBeSelected)
-		throws InterruptedException, DocumentException, IOException {
+	public void selectCustomertocreateOrder(String application, String ChooseCustomerToBeSelected)
+			throws InterruptedException, DocumentException, IOException {
 
-	Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-	Thread.sleep(3000);
-	System.out.println("Mouse hovered on Manage Customer's Service");
-	ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
-	Log.info("Mouse hovered on 'Manage Customers Service' menu item");
+		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
+		Thread.sleep(3000);
+		System.out.println("Mouse hovered on Manage Customer's Service");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
+		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
-	click_commonMethod(application, "Create Order/Service", "CreateOrderServiceLink", xml);
-	Log.info("=== Create Order/Service navigated ===");
+		click_commonMethod(application, "Create Order/Service", "CreateOrderServiceLink", xml);
+		Log.info("=== Create Order/Service navigated ===");
 
-	//click on Next button to check mandatory messages
-	click_commonMethod(application, "Next", "nextbutton", xml);
+		//click on Next button to check mandatory messages
+		click_commonMethod(application, "Next", "nextbutton", xml);
 
-	//Customer Error message	
-	warningMessage_commonMethod(application, "customer_createorderpage_warngmsg", "Choose a customer", xml);
+		//Customer Error message	
+		warningMessage_commonMethod(application, "customer_createorderpage_warngmsg", "Choose a customer", xml);
 
-	//Entering Customer name
-    addtextFields_commonMethod(application, "Customer Name", "entercustomernamefield", ChooseCustomerToBeSelected, xml);
-    
-    Thread.sleep(7000);
-    addtextFields_commonMethod(application, "Customer Name", "entercustomernamefield", "*", xml);
-    
-    //Select Customer from dropdown
-    addDropdownValues_commonMethod(application, "Choose a customer", "chooseCustomerdropdown", ChooseCustomerToBeSelected, xml);
+		//Entering Customer name
+        addtextFields_commonMethod(application, "Customer Name", "entercustomernamefield", ChooseCustomerToBeSelected, xml);
+        
+        Thread.sleep(7000);
+        addtextFields_commonMethod(application, "Customer Name", "entercustomernamefield", "*", xml);
+        
+        //Select Customer from dropdown
+        addDropdownValues_commonMethod(application, "Choose a customer", "chooseCustomerdropdown", ChooseCustomerToBeSelected, xml);
+		click_commonMethod(application, "Next", "nextbutton", xml);
 
-	click_commonMethod(application, "Next", "nextbutton", xml);
-
-}
+	}
 
 
 
@@ -1297,6 +1288,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 	public void selectCustomertocreateOrder(String application, String ChooseCustomerToBeSelected, String customerName1, String customerName2)
 			throws Exception {
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer Selection Functionality");
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 		Thread.sleep(3000);
 		System.out.println("Mouser hovered on Manage Customer's Service");
@@ -1335,7 +1327,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		warningMessage_commonMethod(application, "servicetype_warngmsg", "Service Type", xml);
 
 		if (neworder.equalsIgnoreCase("YES")) {
-
+			ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying New Order Creation Functionality");
 			addtextFields_commonMethod(application, "Order/Contract Number", "newordertextfield", neworderno, xml);
 			addtextFields_commonMethod(application, "RFI Voice line Number", "newrfireqtextfield", newrfireqno, xml);
 			click_commonMethod(application, "create order", "createorderbutton", xml);
@@ -1347,6 +1339,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		} 
 
 		else if (existingorderservice.equalsIgnoreCase("YES")) {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Existing Order Selection Functionality");
 			Thread.sleep(2000);
 			click_commonMethod(application, "select order switch", "selectorderswitch", xml);
 			addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber, xml);
@@ -1408,8 +1401,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			String reference, String tcn, String type, String email, String phone, String fax)
 					throws InterruptedException, DocumentException, IOException {
 
-		//**scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/CustomerDetailsHeader")));
-		
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer informations");		
 		implicitlyWait("Service screen");
 		webdriverWait(application, "userspanel_header", xml);
 		//scrollToTop();
@@ -1719,6 +1711,8 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 	
 	public void verifyDumpFunctionInviewServicepage(String application) throws InterruptedException, DocumentException {
+		
+		try {
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
 		Thread.sleep(5000);
@@ -1728,7 +1722,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		   Thread.sleep(3000);
 		   click_commonMethod(application, "Dump", "DumpLink", xml);
 		   Thread.sleep(2000);
-		   
+		   waitforPagetobeenable();
 		   boolean DumpPage=false;
 		   DumpPage=getwebelement(xml.getlocator("//locators/" + application + "/dumpPage_header")).isDisplayed();
 		   if(DumpPage) {
@@ -1771,11 +1765,24 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			   System.out.println("Service Dump Detail page is not displaying");
 
 		   }
+		   
+		}catch(NoSuchElementException e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+			System.out.println(  e+ " : Field is not displayed");
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+			System.out.println(  e+" : Field is not displayed");
+		}
+		sa.assertAll();
 	}
 
 	
 	public void manageSubnet_viewServicepage(String application) throws InterruptedException, DocumentException {
 		
+		waitforPagetobeenable();
+		try {
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
 		Thread.sleep(5000);
@@ -1785,7 +1792,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		   Thread.sleep(3000);
 		   click_commonMethod(application, "Manage Subnet IPv6", "ManageSubnetsIpv6Link", xml);
 		   Thread.sleep(2000);
-		   
+		   waitforPagetobeenable();
 		   boolean DumpPage=false;
 		   DumpPage=getwebelement(xml.getlocator("//locators/" + application + "/dumpPage_header")).isDisplayed();
 		   if(DumpPage) {
@@ -1832,6 +1839,17 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			   System.out.println("manage subnet ipv6 page is not displaying");
 
 		   }
+		   
+		}catch(NoSuchElementException e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+			System.out.println(  e+ " : Field is not displayed");
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+			System.out.println(  e+" : Field is not displayed");
+		}
+		sa.assertAll();
 		   
 	}
 	
@@ -3110,7 +3128,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	
 	public void verifyselectservicetype(String application, String servicetype)
 			throws InterruptedException, IOException, DocumentException {
-
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Service Type Selection Functionality");
 		// select service type
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		
@@ -3256,7 +3274,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	public void verifyingservicecreation(String application, String sid, String ResellerCode,  String Remarks, String EmailService, String PhoneService, 
 			String ManageService, String SyslogEventView, String ServiceStatusView, String RouterConfigurationView, String PerformanceReporting, String ProactiveNotification,
 			String NotificationManagementTeam, String DialUserAdministration, String orderno, String rfireqno, String servicetype) throws InterruptedException, IOException, DocumentException {
- 
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Service Creation Functionality");
 		if(getwebelement(xml.getlocator("//locators/" + application + "/createorderservice_header")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'Servce Creation' page navigated as expected");
 			System.out.println("'Servce Creation' page navigated as expected");
@@ -3383,22 +3401,6 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 					}
 				
 
-		
-		
-//		//Proactive Notification checkbox
-//		if (ProactiveNotification.equalsIgnoreCase("YES")) {
-//			click(application, "Proactive Notification checkbox", "ProactiveNotificationcheckbox");
-//		} else {
-//			System.out.println("Proactive Notification checkbox is not selected");
-//			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Proactive Notification checkbox is not selected");
-//		}
-//		if (ProactiveNotification.equalsIgnoreCase("NO")) {
-//			System.out.println("Proactive Notification checkbox is already selected");
-//			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Proactive Notification checkbox is already selected");
-//		} else {
-//			click(application, "Proactive Notification checkbox", "ProactiveNotificationcheckbox");
-//		}
-//		
 		
 		//Dial User Administration checkbox
 		if(getwebelement(xml.getlocator("//locators/" + application + "/DialUserAdministrationcheckbox")).isEnabled()){
@@ -3565,20 +3567,6 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 		
 		
-//		//Proactive Notification checkbox
-//		if (ProactiveNotification.equalsIgnoreCase("YES")) {
-//			click(application, "Proactive Notification checkbox", "ProactiveNotificationcheckbox");
-//		} else {
-//			System.out.println("Proactive Notification checkbox is not selected");
-//			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Proactive Notification checkbox is not selected");
-//		}
-//		if (ProactiveNotification.equalsIgnoreCase("NO")) {
-//			System.out.println("Proactive Notification checkbox is already selected");
-//			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Proactive Notification checkbox is already selected");
-//		} else {
-//			click(application, "Proactive Notification checkbox", "ProactiveNotificationcheckbox");
-//		}
-//		
 		
 		//Dial User Administration checkbox
 		if(getwebelement(xml.getlocator("//locators/" + application + "/DialUserAdministrationcheckbox")).isEnabled()){
@@ -3614,7 +3602,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Servce Creation' page not navigated");
 			System.out.println("'Servce Creation' page navigated");
 		}
-				sa.assertAll();//Temp
+				sa.assertAll();
 	}
 	
 	
@@ -3727,288 +3715,178 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	
 	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
 		
-		implicitlyWait("Service screen");
-		webdriverWait(application, "userspanel_header", xml);
-		
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
-
-		if(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed()) {
-			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order' panel navigated as expected in view service page");
-			System.out.println("'Order' panel navigated as expected in view service page");
-		
-			try {
+		Thread.sleep(2000);
+		waitforPagetobeenable();
+		ScrolltoElement(application, "userspanel_header", xml);
+try {
 		//Cancel Edit order in Order panel
-		click(application, "Action dropdown", "orderactionbutton");
-		click(application, "Edit Order", "editorderlink");
-		if(getwebelement(xml.getlocator("//locators/" + application + "/editorderheader")).isDisplayed()) {
-			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit Order' Page navigated as expected");
-			System.out.println("'Edit Order' Page navigated as expected");
-			
-			ClearAndEnterTextValue(application, "Order/Contract Number (Parent SID)", "editorderno", editorderno, xml);
-			ClearAndEnterTextValue(application, "RFI/RFQ/IP Voice Line Number", "editvoicelineno", editvoicelineno, xml);
-			click(application, "Cancel", "cancelbutton");
-		}else {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Edit Order' Page not navigated");
-			System.out.println("'Edit Order' Page not navigated");
-		}
-		}catch(NoSuchElementException e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit Order page");
-			System.out.println(  e+ " : Field is not displayed in  Edit Order page");
-		}catch(Exception e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Edit Order page ");
-			System.out.println(  e+" : Field is not displayed in Edit Order page");
-		}
-		}else {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Order' panel not navigated in view service page");
-			System.out.println("'Order' panel not navigated in view service page");
-		}
-		
-			
-		implicitlyWait("Service screen");
-		Thread.sleep(4000);
-		webdriverWait(application, "userspanel_header", xml);
-		
-		Thread.sleep(5000);
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
-
-		if(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed()) {
-			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order' panel navigated as expected in view service page");
-			System.out.println("'Order' panel navigated as expected in view service page");
-		//Cancel Edit order in Order panel
-			try {
-		click(application, "Action dropdown", "orderactionbutton");
-		click(application, "Edit Order", "editorderlink");
-		if(getwebelement(xml.getlocator("//locators/" + application + "/editorderheader")).isDisplayed()) {
-			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit Order' Page navigated as expected");
-			System.out.println("'Edit Order' Page navigated as expected");
-			
-			ClearAndEnterTextValue(application, "Order/Contract Number (Parent SID)", "editorderno", editorderno, xml);
-			ClearAndEnterTextValue(application, "RFI/RFQ/IP Voice Line Number", "editvoicelineno", editvoicelineno, xml);
-			click(application, "OK", "editorder_okbutton");
-			
-			try {
-			compareText(application, "Order Edited/Updated message", "orderupdate_successmsg", "Order successfully updated");
-			}catch(NoSuchElementException e) {
-				e.printStackTrace();
-				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit Order page");
-				System.out.println(  e+ " : Field is not displayed in  Edit Order page");
-			}catch(Exception e) {
-				e.printStackTrace();
-				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Edit Order page ");
-				System.out.println(  e+" : Field is not displayed in Edit Order page");
-			}
-			implicitlyWait("Service screen");
-			webdriverWait(application, "userspanel_header", xml);
-			Thread.sleep(5000);
-			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
-			compareText(application, "Order/Contract Number (Parent SID)", "ordernumbervalue", editorderno, xml);
-			compareText(application, "RFI/RFQ/IP Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
-			Log.info("------ Edit Order is successful ------");
-			
-		}else {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Edit Order' Page not navigated");
-			System.out.println("'Edit Order' Page not navigated");
-		}
-		
-			}catch(NoSuchElementException e) {
-				e.printStackTrace();
-				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit Order page");
-				System.out.println(  e+ " : Field is not displayed in  Edit Order page");
-			}catch(Exception e) {
-				e.printStackTrace();
-				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Edit Order page ");
-				System.out.println(  e+" : Field is not displayed in Edit Order page");
-			}
-		
-		}else {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Order' panel not navigated in view service page");
-			System.out.println("'Order' panel not navigated in view service page");
-		}
-	}
-
-	
-	
-	public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
-		
-		implicitlyWait("Service screen");
-		webdriverWait(application, "userspanel_header", xml);
-		
-		Thread.sleep(3000);
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
+		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+		click_commonMethod(application, "Edit Order", "editorderlink", xml);
+		waitforPagetobeenable();
+		compareText(application, "Edit Order", "editorderheader", "Edit Order", xml);
 		Thread.sleep(1000);
 
-		click(application, "Action dropdown", "orderactionbutton");
-		click(application, "Change Order", "changeorderlink");
+		WebElement EditOrderNo= getwebelement(xml.getlocator("//locators/" + application + "/editorderno"));
+		click_commonMethod(application, "Order Number", "editorderno", xml);
+		Thread.sleep(2000);
+		Clear(EditOrderNo);
+		Thread.sleep(2000);
+		addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
 
-		if(getwebelement(xml.getlocator("//locators/" + application + "/changeorderheader")).isDisplayed()) {
-			ExtentTestManager.getTest().log(LogStatus.PASS, "'Change Order' Page navigated as expected");
-			System.out.println("'Change Order' Page navigated as expected");
+		WebElement EditVoiceLineNo= getwebelement(xml.getlocator("//locators/" + application + "/editvoicelineno"));
+		click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
+		Thread.sleep(2000);
+		Clear(EditVoiceLineNo);
+		Thread.sleep(2000);
+		addtextFields_commonMethod(application, "Order Number", "editvoicelineno", editvoicelineno, xml);
+		click_commonMethod(application, "Cancel", "cancelbutton", xml);
+		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
+		Log.info("Navigated to order panel in view service page");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
-			try {
-		click(application, "Choose order dropdown", "changeorder_chooseorderdropdown");
-		List<WebElement> ChangeOrder_DropdownList= driver.findElements(By.xpath(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist")));
+		//Edit Order
+		Thread.sleep(1000);
+		ScrolltoElement(application, "userspanel_header", xml);
+		Thread.sleep(1000);
+		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+		click_commonMethod(application, "Edit Order", "editorderlink", xml);
+		waitforPagetobeenable();
+		compareText(application, "Edit Order Header", "editorderheader", "Edit Order", xml);
+		Thread.sleep(1000);
+		click_commonMethod(application, "Order Number", "editorderno", xml);
+		Thread.sleep(2000);
+		cleartext(application, "Order Number", "editorderno");
+		Thread.sleep(2000);
+		addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
+		click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
+		Thread.sleep(2000);
+		cleartext(application, "RFI Voice Line Number", "editvoicelineno");
+		Thread.sleep(2000);
+		addtextFields_commonMethod(application, "Order Number", "editvoicelineno", editvoicelineno, xml);
+		click_commonMethod(application, "OK", "editorder_okbutton", xml);
+		waitforPagetobeenable();
+		Thread.sleep(1000);
+		ScrolltoElement(application, "userspanel_header", xml);
+		Thread.sleep(1000);
+		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
+		Log.info("Navigated to order panel in view service page");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+
+		Log.info("------ Edit Order is successful ------");
+}catch(NoSuchElementException e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+	System.out.println(  e+ " : Field is not displayed");
+}catch(Exception e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+	System.out.println(  e+" : Field is not displayed");
+}
+sa.assertAll();
+	}
+
+	public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno
+			) throws InterruptedException, DocumentException, IOException {
+
+		ScrolltoElement(application, "userspanel_header", xml);
+		Thread.sleep(1000);
+		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+		click_commonMethod(application, "Change Order", "changeorderlink", xml);
+		compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
+		Thread.sleep(1000);
+		click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
+		List<WebElement> ChangeOrder_DropdownList= getwebelements(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist"));
 		int ChangeOrder_Dropdown_count= ChangeOrder_DropdownList.size();
+		System.out.println("Dropdown Count : "+ChangeOrder_Dropdown_count);
 		if(ChangeOrder_Dropdown_count> 1)
 		{
-			Clickon(getwebelement("(//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//div/div/div/div)[1]"));
+			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/changeorder_dropdownvalue")));
 			Thread.sleep(3000);
 
 			//Cancel change order
-			click(application, "Cancel", "changeorder_cancelbutton");
-			
-			Thread.sleep(3000);
-			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
+			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
+			waitforPagetobeenable();
 			Thread.sleep(1000);
-			Boolean OrderHeader = getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed();
-			sa.assertTrue(OrderHeader,"Order");
+			ScrolltoElement(application, "userspanel_header", xml);
+			Thread.sleep(1000);
+			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
 			Log.info("Navigated to order panel in view service page");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 			//Change order
-			click(application, "Action dropdown", "orderactionbutton");
-			click(application, "Change Order", "changeorderlink");
+			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
+			Thread.sleep(1000);
+			click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
 			
-			
-			if(getwebelement(xml.getlocator("//locators/" + application + "/changeorderheader")).isDisplayed()) {
-				ExtentTestManager.getTest().log(LogStatus.PASS, "'Change Order' Page navigated as expected");
-				System.out.println("'Change Order' Page navigated as expected");
-			try {	
-			click(application, "Choose order dropdown", "changeorder_chooseorderdropdown");
-			Clickon(getwebelement("(//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//div/div/div/div)[2]"));
-			Thread.sleep(3000);
+			WebElement changeOrderDropdopdownvalue=getwebelement("//div[text()='"+ changeorderno +"']");
+			Clickon(changeOrderDropdopdownvalue);
+			Thread.sleep(5000);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected order from dropdown");
-
-			click(application, "OK", "changeorder_okbutton");
+			click_commonMethod(application, "OK", "changeorder_okbutton", xml);
+			waitforPagetobeenable();
 			Thread.sleep(1000);
-			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
+			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-			Boolean OrderHeader1 = getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed();
-			sa.assertTrue(OrderHeader1,"Order");
+			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
 			Log.info("Navigated to order panel in view service page");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno);
-			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno);
+			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
+			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
 			
-			}catch(NoSuchElementException e) {
-				e.printStackTrace();
-				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Change Order page");
-				System.out.println(  e+ " : Field is not displayed in  Change Order page");
-			}catch(Exception e) {
-				e.printStackTrace();
-				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Change Order page ");
-				System.out.println(  e+" : Field is not displayed in Change Order page");
-			}
-			
-			}else {
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Change Order' Page not navigated");
-				System.out.println("'Change Order' Page not navigated");
-			}
-		
-
 		}
 		else
 		{
-			click(application, "Select order switch", "changeorder_selectorderswitch");
-			WebElement ChangeOrderNo= getwebelement(xml.getlocator("//locators/" + application + "/changeordernumber"));
-			click(application, "Order Number", "changeordernumber");
+			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
+			click_commonMethod(application, "Order Number", "changeordernumber", xml);
 			Thread.sleep(2000);
-			EnterTextValue(application, changeorderno, "Order Number", "changeordernumber");
-
-			WebElement ChangeVoiceLineNo= getwebelement(xml.getlocator("//locators/" + application + "/changeordervoicelinenumber"));
-			click(application, "RFI Voice Line Number", "changeordervoicelinenumber");
+			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
+			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
 			Thread.sleep(3000);
-			EnterTextValue(application, changevoicelineno, "RFI Voice Line Number", "changeordervoicelinenumber");
-			click(application, "Cancel", "changeorder_cancelbutton");
-
-			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
+			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
+			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
+			waitforPagetobeenable();
+			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-			
-			
-			Boolean OrderHeader = getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed();
-			sa.assertTrue(OrderHeader,"Order");
+			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
 			Log.info("Navigated to order panel in view service page");
 
 			//Change Order
-			click(application, "Action dropdown", "orderactionbutton");
-			click(application, "Change Order", "changeorderlink");
-
-			if(getwebelement(xml.getlocator("//locators/" + application + "/changeorderheader")).isDisplayed()) {
-				ExtentTestManager.getTest().log(LogStatus.PASS, "'Change Order' Page navigated as expected");
-				System.out.println("'Change Order' Page navigated as expected");
+			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
+			Thread.sleep(1000);
 			
-				Thread.sleep(3000);
-				try {
-			click(application, "Select order switch", "changeorder_selectorderswitch");
-			click(application, "Order Number", "changeordernumber");
+			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
+			click_commonMethod(application, "Order Number", "changeordernumber", xml);
 			Thread.sleep(2000);
-			EnterTextValue(application, changeorderno, "Order Number", "changeordernumber");
-			EnterTextValue(application, changevoicelineno, "RFI Voice Line Number", "changeordervoicelinenumber");
-			
-			click(application, "Select order switch", "changeorder_selectorderswitch");
-			click(application, "Choose order dropdown", "changeorder_chooseorderdropdown");
-			Clickon(getwebelement("(//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//div/div/div/div)[1]"));
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected order from dropdown");
-
-			click(application, "OK", "changeorder_okbutton");
-			Thread.sleep(1000);
-			compareText(application, "Change Order Success Message", "ChangeOrder_successmsg", "Order successfully  changed.", xml);
+			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
+			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
 			Thread.sleep(3000);
-			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
+			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
+			click_commonMethod(application, "Create Order", "createorder_button", xml);
 			Thread.sleep(1000);
-			Boolean OrderHeader1 = getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed();
-			sa.assertTrue(OrderHeader1,"Order");
+			waitforPagetobeenable();
+			ScrolltoElement(application, "userspanel_header", xml);
+			Thread.sleep(1000);
+			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
 			Log.info("Navigated to order panel in view service page");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
-
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno);
-			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno);
+			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
+			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
-			
-				}catch(NoSuchElementException e) {
-					e.printStackTrace();
-					ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Change Order page");
-					System.out.println(  e+ " : Field is not displayed in  Change Order page");
-				}catch(Exception e) {
-					e.printStackTrace();
-					ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Change Order page ");
-					System.out.println(  e+" : Field is not displayed in Change Order page");
-				}
-				
-				}else {
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "'Change Order' Page not navigated");
-					System.out.println("'Change Order' Page not navigated");
-				}
-		}
-		
-			}catch(NoSuchElementException e) {
-				e.printStackTrace();
-				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Change Order page");
-				System.out.println(  e+ " : Field is not displayed in  Change Order page");
-			}catch(Exception e) {
-				e.printStackTrace();
-				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Change Order page ");
-				System.out.println(  e+" : Field is not displayed in Change Order page");
-			}
-			
-		}else {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Change Order' Page not navigated");
-			System.out.println("'Change Order' Page not navigated");
 		}
 	}
 	
 	
-	
-	
 
 	public void verifyorderpanel_editorder_UI(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
-		
 		implicitlyWait("Service screen");
 		webdriverWait(application, "userspanel_header", xml);
 		Thread.sleep(5000);
+		try {
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
 		if(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order' panel navigated as expected in view service page");
@@ -4034,7 +3912,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Order' panel not navigated in view service page");
 			System.out.println("'Order' panel not navigated in view service page");
 		}
-
+		}catch(NoSuchElementException e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+			System.out.println(  e+ " : Field is not displayed");
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+			System.out.println(  e+" : Field is not displayed");
+		}
+		sa.assertAll();
 	}
 
 	
@@ -4043,8 +3930,8 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		implicitlyWait("Service screen");
 		webdriverWait(application, "userspanel_header", xml);
-		
 		Thread.sleep(3000);
+		try {
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
 		Thread.sleep(1000);
 
@@ -4089,6 +3976,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "'Order' Panel not navigated in view service page");
 		System.out.println("'Order' Panel not navigated in view service page");
 		}
+		}catch(NoSuchElementException e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+			System.out.println(  e+ " : Field is not displayed");
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+			System.out.println(  e+" : Field is not displayed");
+		}
+		sa.assertAll();
 	}
 	
 	
@@ -4131,7 +4028,8 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			String EditManageService, String EditSyslogEventView, String EditServiceStatusView, String EditRouterConfigurationView, String EditPerformanceReporting,
 			String EditProactiveNotification,
 			String EditNotificationManagementTeam, String EditDialUserAdministration) throws InterruptedException, DocumentException, IOException {
-
+		
+		waitforPagetobeenable();
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
 		Thread.sleep(5000);
@@ -4141,11 +4039,13 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		click(application, "Action dropdown", "serviceactiondropdown");
 		click(application, "Edit", "edit");
+		waitforPagetobeenable();
 		cleartext(application, "Remarks", "remarktextarea");
 		EnterTextValue(application, EditRemarks, "Remarks", "remarktextarea");
-		scrolltoend();
+		ScrolltoElement(application, "cancelbutton", xml);
 		click(application, "Cancel", "cancelbutton");
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
 		if(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")).isDisplayed())
 		{
@@ -4169,19 +4069,16 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		edittextFields_commonMethod(application, "Remark", "remarktextarea", Remarks, xml);
 		
 	
-scrolltoend();
+		ScrolltoElement(application, "OKbutton_ServiceCreation", xml);
 Thread.sleep(2000);
 
 	//Performance Reporting
 		editcheckbox_commonMethod(application, PerformanceReporting, "PerformanceReportingcheckbox", "Performance Reporting", xml);
 		
 		
-		
-		
-		
-		
-		scrolltoend();
+		ScrolltoElement(application, "OKbutton_ServiceCreation", xml);
 		click(application, "OK", "OKbutton_ServiceCreation");
+		waitforPagetobeenable();
 		
 		Thread.sleep(2000);
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/CustomerDetailsHeader")));
@@ -4237,7 +4134,7 @@ Thread.sleep(2000);
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
 		click(application, "Action dropdown", "serviceactiondropdown");
 		click(application, "Edit", "edit");
-			
+		waitforPagetobeenable();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/EditService_header")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit Service' page navigated as expected");
 			System.out.println("'Edit Service' page navigated as expected");
@@ -4405,11 +4302,13 @@ Thread.sleep(2000);
 			String servicestatuschangerequired) throws InterruptedException, DocumentException, IOException {
 		
 		try {
+			waitforPagetobeenable();
 		//Manage service
 				Thread.sleep(2000);
 				scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
 				click(application, "Action dropdown", "serviceactiondropdown");
 				click(application, "Manage", "manageLink");
+				waitforPagetobeenable();
 				compareText(application, "Manage service header", "manageservice_header", "Manage Service");
 				compareText(application, "Order Name", "status_ordername", changeorderno);
 				compareText(application, "Service Identification", "status_servicename", sid);
@@ -5124,7 +5023,7 @@ Thread.sleep(2000);
 	
 	
 	public void verifyAddMASswitch(String application, String MAS_IMSPOPLocation) throws InterruptedException, DocumentException, IOException {
-
+try {
 		WebElement ProviderEquipment_header= getwebelement(xml.getlocator("//locators/" + application + "/ProviderEquipment_header"));
 		scrolltoview(ProviderEquipment_header);
 		click(application, "Add MAS Switch Link", "MAS_AddMASSwitchLink");
@@ -5161,6 +5060,17 @@ Thread.sleep(2000);
 		
 		
 		Log.info("------ MAS Switch added successfully ------");
+		
+}catch(NoSuchElementException e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+	System.out.println(  e+ " : Field is not displayed");
+}catch(Exception e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+	System.out.println(  e+" : Field is not displayed");
+}
+sa.assertAll();
 	}
 
 	
@@ -5824,23 +5734,8 @@ public void testStatus_MAS(String application) throws InterruptedException {
 			ClearAndEnterTextValue(application, "Link textfield", "MAS_PE_LinkTextfield", MAS_LinkEdit);
 			ClearAndEnterTextValue(application, "VLAN ID textfield", "MAS_PE_VLANIDTextfield", MAS_VLANIDEdit);
 
-//			//IV Management Checkbox
-//			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_IVManagementCheckbox")).isEnabled()){
-//				if (MAS_IVManagementEdit.equalsIgnoreCase("YES")) {
-//					click(application, "'IV Management' checkbox", "MAS_PE_IVManagementCheckbox");
-//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
-//					System.out.println("Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
-//				} else {
-//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
-//					System.out.println("Step : 'IV Management' checkbox is not Selected");
-//				}
-//			
-//				}else {
-//					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
-//					System.out.println("Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
-//				}
 
-			addCheckbox_commonMethod(application, "MAS_PE_IVManagementCheckbox", "IV Management", MAS_IVManagementEdit, "No", xml);
+			editcheckbox_commonMethod(application, MAS_IVManagementEdit, "MAS_PE_IVManagementCheckbox", "IV Management", xml);
 		
 
 			//Thread.sleep(2000);
@@ -6180,7 +6075,7 @@ public void testStatus_MAS(String application) throws InterruptedException {
 	//////////////////////////////////  PE DEVICE PANEL  ///////////////////////////////////////
 	
 	public void verifyAddPEDevice(String application, String PE_IMSPOPLocation) throws InterruptedException, DocumentException, IOException {
-
+try {
 		WebElement TrunkGroupSiteOrders_header= getwebelement(xml.getlocator("//locators/" + application + "/TrunkGroupSiteOrders_header"));
 		scrolltoview(TrunkGroupSiteOrders_header);
 		click(application, "Add PE Device Link", "PE_AddPEDeviceLink");
@@ -6217,6 +6112,17 @@ public void testStatus_MAS(String application) throws InterruptedException {
 		}
 		
 		Log.info("------ PE Device added successfully ------");
+		
+}catch(NoSuchElementException e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+	System.out.println(  e+ " : Field is not displayed");
+}catch(Exception e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+	System.out.println(  e+" : Field is not displayed");
+}
+sa.assertAll();
 	}
 
 	
@@ -6457,6 +6363,8 @@ public void testStatus_PE(String application) throws InterruptedException {
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Edit PE Device' Functionality");
 		
+		try {
+		scrollToTop();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/PE_ViewDevice_Header")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
 			System.out.println("'View PE Device' page navigated as expected");
@@ -6606,6 +6514,17 @@ public void testStatus_PE(String application) throws InterruptedException {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View PE Device' page not navigated");
 			System.out.println("'View PE Device' page navigated");
 		}
+		
+		 }catch(NoSuchElementException e) {
+		    	e.printStackTrace();
+		    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		    	System.out.println(  e+ " : Field is not displayed");
+		    }catch(Exception e) {
+		    	e.printStackTrace();
+		    	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		    	System.out.println(  e+" : Field is not displayed");
+		    }
+		    sa.assertAll();
 	}
 
 	
@@ -6969,7 +6888,7 @@ public void verifyEditPEDeviceFunction_UI(String application, String ServiceIden
 
 	
 public void verifFetchDeviceInterfacesFunction_PE(String application,String ServiceIdentification, String PE_ServiceStatusChangeRequired) throws InterruptedException, DocumentException, IOException {
-
+try {
 	
 	scrollToTop();
 	if(getwebelement(xml.getlocator("//locators/" + application + "/PE_ViewDevice_Header")).isDisplayed()) {
@@ -7095,7 +7014,16 @@ public void verifFetchDeviceInterfacesFunction_PE(String application,String Serv
 	ExtentTestManager.getTest().log(LogStatus.FAIL, "'View PE Device' page not navigated");
 	System.out.println("'View PE Device' page navigated");
 }
-
+}catch(NoSuchElementException e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+	System.out.println(  e+ " : Field is not displayed");
+}catch(Exception e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+	System.out.println(  e+" : Field is not displayed");
+}
+sa.assertAll();
 
 	}
 	
@@ -7328,7 +7256,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			String	PE_PrimaryIPv6onMas1, String PE_SecondaryIPv6onMas2, String PE_GroupNumber, String PE_Link, String PE_VLANID, String PE_VRRPGroupName , String PE_VRF,
 			String	PE_IVManagement, String PE_Configuration, String PE_VRRPTrackInterface, String PE_VRRPAuthentication) throws InterruptedException, DocumentException, IOException {
 		
-		
+		try {
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_CommandIPV4_header")));//RouterTool_header//MAS_PE_CommandIPV4_header//MAS_PE_InterfacesPanel_header
 			click(application, "ACTION Link", "MAS_View_InterfacesActionLink");
 			click(application, "Add Interface Link", "MAS_PE_AddInterfaceLink");
@@ -7339,7 +7267,6 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 				
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_Configuration_label")));
 			
-		try {
 		click(application, "OK Button", "MAS_PE_OKButton");
 		WarningMessage(application, "Configuration is required", "MAS_PE_ConfigurationWarningMessage");
 		scrollToTop();
@@ -7348,6 +7275,8 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		
 		
 		if(PE_AccessMedia.equalsIgnoreCase("VPN")) {
+			Thread.sleep(2000);
+			scrollToTop();
 			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMedia);
 			
 			EnterTextValue(application, PE_InterfaceAddressRange, "Interface Address Range Textfield", "MAS_PE_InterfaceAddressRangeTextfield");
@@ -7407,9 +7336,12 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces sucessfully added by selecting VPN as Access Media");
 			
 		}else if(PE_AccessMedia.equalsIgnoreCase("EPN")) {
+			scrollToTop();
+			Thread.sleep(2000);
+			scrollToTop();
 			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMedia);
-			click(application, "Access Media Dropdown", "MAS_PE_AccessMediaDropdown");
-			Thread.sleep(3000);
+			click_commonMethod(application, "Access Media", "MAS_PE_AccessMediaDropdown", xml);
+			Thread.sleep(5000);
 			WebElement SelectMAS_AccessMediaDropdownValue=getwebelement("//div[text()='"+PE_AccessMedia+"']");
 			Clickon(SelectMAS_AccessMediaDropdownValue);
 			
@@ -7461,7 +7393,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			
 			click(application, "Generate Configuration Button", "MAS_PE_GenerateConfigurationButton");
 			GetText(application, "Save Configuration to File Button", "MAS_PE_SaveConfigurationtoFileButton");
-			
+			EnterTextValue(application, "Configuration test", "Configuration", "MAS_PE_ConfigurationTextfield");
 			GetText(application, "Configuration information after configuration generated", "MAS_PE_ConfigurationTextfield");
 			
 			click(application, "OK Button", "MAS_PE_OKButton");
@@ -7475,21 +7407,20 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Access Media Dropdown is not selected as VPN or EPN");
 		}
 		
-		
-		}catch(NoSuchElementException e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Add Interface page");
-			System.out.println(  e+ " : Field is not displayed in  Add Interface page");
-		}catch(Exception e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in  Add Interface page ");
-			System.out.println(  e+" : Field is not displayed in  Add Interface page");
-		}
-
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "'PE Add Interface' page not navigated");
 				System.out.println("'PE Add Interface' page not navigated");
 			}
+			
+		}catch(NoSuchElementException e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+			System.out.println(  e+ " : Field is not displayed");
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+			System.out.println(  e+" : Field is not displayed");
+		}
 			sa.assertAll();
 		
 	}
@@ -7613,7 +7544,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			String	PE_PrimaryIPv6onMas1Edit, String PE_SecondaryIPv6onMas2Edit, String PE_GroupNumberEdit, String PE_LinkEdit, String PE_VLANIDEdit, String PE_VRRPGroupNameEdit, String PE_VRFEdit,
 			String	PE_IVManagementEdit, String PE_ConfigurationEdit, String PE_VRRPTrackInterfaceEdit, String PE_VRRPAuthenticationEdit) throws InterruptedException, DocumentException, IOException {
 		
-
+		try {
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/ProviderEquipment_header")));//ProviderEquipment_header//portalaccess_header//managementoptions_header
 			//***click(application, "Show Interfaces Link", "MAS_ShowInterfaceLink");
 			Thread.sleep(2000);
@@ -7647,24 +7578,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			ClearAndEnterTextValue(application, "VRRP Group textfield", "MAS_PE_VRRPGroupNameTextfield", PE_VRRPGroupNameEdit);
 			ClearAndEnterTextValue(application, "VRF textfield", "MAS_PE_VRFTextfield", PE_VRFEdit);
 
-			//**click(application, "IV Management Checkbox", "MAS_PE_IVManagementCheckbox");
-			//addCheckbox_commonMethod(application, "MAS_PE_IVManagementCheckbox", "IV Management", PE_IVManagementEdit, "Yes", xml);
-
-			//IV Management Checkbox
-			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_IVManagementCheckbox")).isEnabled()){
-				if (PE_IVManagementEdit.equalsIgnoreCase("YES")) {
-					click(application, "'IV Management' checkbox", "MAS_PE_IVManagementCheckbox");
-					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
-					System.out.println("Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
-				} else {
-					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
-					System.out.println("Step : 'IV Management' checkbox is not Selected");
-				}
-			
-				}else {
-					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
-					System.out.println("Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
-				}
+			editcheckbox_commonMethod(application, PE_IVManagementEdit, "MAS_PE_IVManagementCheckbox", "IV Management", xml);
 			
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_GenerateConfigurationButton")));
 			click(application, "Generate Configuration Dropdown", "MAS_PE_GenerateConfigurationDropdown");
@@ -7705,26 +7619,9 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			ClearAndEnterTextValue(application, "VRRP Group textfield", "MAS_PE_VRRPGroupNameTextfield", PE_VRRPGroupNameEdit);
 			ClearAndEnterTextValue(application, "VRF textfield", "MAS_PE_VRFTextfield", PE_VRFEdit);
 
-			//**click(application, "IV Management Checkbox", "MAS_PE_IVManagementCheckbox");
-			//**addCheckbox_commonMethod(application, "MAS_PE_IVManagementCheckbox", "IV Management", PE_IVManagementEdit, "No", xml);
 
-			//IV Management Checkbox
-			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_IVManagementCheckbox")).isEnabled()){
-				if (PE_IVManagementEdit.equalsIgnoreCase("YES")) {
-					click(application, "'IV Management' checkbox", "MAS_PE_IVManagementCheckbox");
-					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
-					System.out.println("Step : 'IV Management' checkbox is Enabled and 'IV Management' checkbox Selected");
-				} else {
-					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is not Selected");
-					System.out.println("Step : 'IV Management' checkbox is not Selected");
-				}
-			
-				}else {
-					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
-					System.out.println("Step : 'IV Management' checkbox is Disabled, So can't make any changes in Checkbox status");
-				}
+			editcheckbox_commonMethod(application, PE_IVManagementEdit, "MAS_PE_IVManagementCheckbox", "IV Management", xml);
 
-			
 			ClearAndEnterTextValue(application, "VRRP Track Interface textfield", "MAS_PE_VRRPTrackInterfaceTextfield", PE_VRRPTrackInterfaceEdit);
 			ClearAndEnterTextValue(application, "VRRP Authentication textfield", "MAS_PE_VRRPAuthenticationTextfield", PE_VRRPAuthenticationEdit);
 			
@@ -7732,20 +7629,21 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			click(application, "Generate Configuration Dropdown", "MAS_PE_GenerateConfigurationDropdown");
 			Thread.sleep(2000);
 			
-			scrolltoend();
-			EnterTextValue(application, PE_GenerateConfigurationEdit, "Enter Generate Configuration", "MAS_PE_GenerateConfigurationDropdown");
-			WebElement SelectGenerateConfigurationDropdownValue=getwebelement("//div[text()='"+ PE_GenerateConfigurationEdit +"']");
-			Clickon(SelectGenerateConfigurationDropdownValue);
+			ScrolltoElement(application, "MAS_PE_IVManagementCheckbox", xml);
+//			EnterTextValue(application, PE_GenerateConfigurationEdit, "Enter Generate Configuration", "MAS_PE_GenerateConfigurationDropdown");
+//			WebElement SelectGenerateConfigurationDropdownValue=getwebelement("//div[text()='"+PE_GenerateConfigurationEdit+"']");
+//			Clickon(SelectGenerateConfigurationDropdownValue);
 			
+			addDropdownValues_commonMethod(application, "Generate Configuration ", "MAS_PE_GenerateConfigurationDropdown", PE_GenerateConfigurationEdit, xml);
 			Thread.sleep(3000);
 			click(application, "Generate Configuration Button", "MAS_PE_GenerateConfigurationButton");
 			GetText(application, "Save Configuration to File Button", "MAS_PE_SaveConfigurationtoFileButton");
-			
+			EnterTextValue(application, "Configuration test", "Configuration", "MAS_PE_ConfigurationTextfield");
 			GetText(application, "Configuration information after configuration generated", "MAS_PE_ConfigurationTextfield");
-			scrolltoend();
+			ScrolltoElement(application, "MAS_PE_OKButton", xml);
 			click(application, "OK Button", "MAS_PE_OKButton");
-			
-			compareText(application, "Interface Updated Successfully Message", "MAS_PE_UpdateInterfaceSuccessfullMessage", "Interface updated successfully");
+			waitforPagetobeenable();
+			verifysuccessmessage(application, "Interface updated successfully");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces sucessfully updated by selecting EPN as Access Media");
 			Log.info("------ Interface Updated successfully ------");
 		
@@ -7771,8 +7669,17 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 				System.out.println("'PE Edit Interface' page not navigated");
 			}
 			
-			sa.assertAll();
-	
+			
+		}catch(NoSuchElementException e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit Interface page");
+			System.out.println(  e+ " : Field is not displayed in  Edit Interface page");
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in  Edit Interface page ");
+			System.out.println(  e+" : Field is not displayed in  Edit Interface page");
+		}
+		sa.assertAll();
 }
 	
 	
@@ -7982,7 +7889,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		boolean TrunkGroupSiteOrderPanel_header=false;
 		boolean addtrunkSiteorderPage_panelheader=false;
 		boolean trunkgrupOrderErrMsg= false;
-		
+		try {
 		scrolltoend();
 		//Thread.sleep(2000);
 		
@@ -8059,6 +7966,17 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'Trunk Group/Site Orders' panel is not displaying in 'view Service' page");
 			System.out.println("'Trunk Group/Site Orders' panel is not displaying in 'view Service' page");
 		}
+		
+		}catch(NoSuchElementException e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+			System.out.println(  e+ " : Field is not displayed");
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+			System.out.println(  e+" : Field is not displayed");
+		}
+		sa.assertAll();
 	}
 	
 	
@@ -8214,6 +8132,7 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 	
 	public void deleteTrunkGroupSiteOrderNumber(String application, String TrunkGroupSiteOrderNumber) throws InterruptedException, DocumentException, IOException {
 		Thread.sleep(5000);
+		try {
 		scrolltoend();
 		boolean TrunkGroupSiteOrderNumberText=false;
 		//boolean ViewService_Trunk_DeleteSiteOrderSuccessMessage=false;
@@ -8257,6 +8176,17 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 			ExtentTestManager.getTest().log(LogStatus.FAIL, TrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
 			System.out.println(TrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
 								  }
+   
+		 }catch(NoSuchElementException e) {
+		    	e.printStackTrace();
+		    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		    	System.out.println(  e+ " : Field is not displayed");
+		    }catch(Exception e) {
+		    	e.printStackTrace();
+		    	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		    	System.out.println(  e+" : Field is not displayed");
+		    }
+		    sa.assertAll();
 }
 	
 	
@@ -8335,7 +8265,7 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 	
 	
 	public void verifyAddedSiteOrderAndTrunkLinkUnderTrunkPanel(String application, String TrunkGroupSiteOrderNumber) throws InterruptedException, DocumentException, IOException {
-		
+		try {
 		scrolltoend();
 		Thread.sleep(1000);
 		
@@ -8360,6 +8290,16 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 			ExtentTestManager.getTest().log(LogStatus.FAIL, TrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
 			System.out.println(TrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
 										 }
+		}catch(NoSuchElementException e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+			System.out.println(  e+ " : Field is not displayed");
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+			System.out.println(  e+" : Field is not displayed");
+		}
+		sa.assertAll();
 									}
 
 	
@@ -9359,8 +9299,8 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		String ipInterfaceGroup=null;
 		String prefix_code=null;
 		
-		
-		
+		try {
+		scrollToTop();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/AddTrunk_Header")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'Add Trunk' Page navigated as expected");
 			System.out.println("'Add Trunk' Page navigated as expected");
@@ -10084,6 +10024,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		Thread.sleep(1000);
 		
 		click_commonMethod(application, "OK", "trunk_okButton", xml);
+		waitforPagetobeenable();
 		GetText(application, "Trunk Creation Success Message", "CreateTrunkSuccessMessage");
 		
 		
@@ -10091,6 +10032,16 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Add Trunk' Page is not navigated");
 			System.out.println("'Add Trunk' Page is not navigated");
 		}
+		}catch(NoSuchElementException e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+			System.out.println(  e+ " : Field is not displayed");
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+			System.out.println(  e+" : Field is not displayed");
+		}
+		sa.assertAll();
 		
 	  }
 	  
@@ -11084,7 +11035,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		}
 				
 		else if(gateway.equals("LONNBS1")) {
-			code="801";
+			code="813";
 		}
 				
 		else if(gateway.equals("FRANBS1")) {
@@ -11347,13 +11298,13 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 		String NIFgroupDEfaultValue_starting="SIF-1-";
 		String NIFgroupDEfaultValue_middle="-2-";
 		String NIGgroupdefaultValue_last="-OUTSIDE";
-
-
+try {
+	waitforPagetobeenable();
+		scrollToTop();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/ViewTrunk_Header")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'View Trunk' Page navigated as expected");
 			System.out.println("'View Trunk' Page navigated as expected");
 			
-			scrollToTop();
 			Thread.sleep(2000);
 			
 			
@@ -11632,12 +11583,23 @@ public void verifyAddedTrunkInformationInviewTrunk(String application, String cu
 			System.out.println("'View Trunk' Page is not navigated as expected");
 		}
 		
+}catch(NoSuchElementException e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+	System.out.println(  e+ " : Field is not displayed");
+}catch(Exception e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+	System.out.println(  e+" : Field is not displayed");
+}
+sa.assertAll();
+		
 			
 	}
 	
 	
 public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_DRplanB, String Add_DRplanC, String Add_DRplanD, String Add_DRplanE, String rangestart_cc, String rangestart_lac, String rangestart_num, String rangefinish_cc, String rangefinish_lac, String rangefinish_num, String destinationnumber_cc, String destinationnumber_lac, String destinationnumber_num, String activate_deactivateDRplan_dropdownvalue, String edit_rangestart_cc, String edit_rangestart_lac, String edit_rangestart_num, String edit_rangefinish_cc, String edit_rangefinish_lac, String edit_rangefinish_num, String edit_destinationnumber_cc, String edit_destinationnumber_lac, String edit_destinationnumber_num, String edit_activate_deactivateDRplan_dropdownvalue) throws InterruptedException, DocumentException, IOException {
-
+try {
 	Thread.sleep(3000);
 	ScrolltoElement(application, "customizedmedia_header", xml);
 	Thread.sleep(1000);
@@ -11647,13 +11609,15 @@ public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_
 	Thread.sleep(1000);
 	waitforPagetobeenable();
 	compareText(application, "Add DR Plans Header", "addDRplan_header", "Disaster Recovery Plans", xml);
-
+	
 	if(Add_DRplanA.equalsIgnoreCase("Yes")) {
+		scrollToTop();
 		compareText(application, "DR Plan A_header", "DRplanA_header", "DR Plan A", xml);
 		click_commonMethod(application, "DR Plan A Action dropdown", "DRplanA_actiondropdown", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Add", "DRplan_addlink", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 		compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
 		compareText(application, "Range Finish", "DRplanA_rangefinish_columnheader", "Range Finish", xml);
@@ -11666,6 +11630,7 @@ public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_
 		Thread.sleep(1000);
 		click_commonMethod(application, "Edit", "DRplan_editlink", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 		//Delete DR Plan
@@ -11685,14 +11650,14 @@ public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_
 
 	}
 	if(Add_DRplanB.equalsIgnoreCase("Yes")) {
-		ScrolltoElement(application, "DRplanB_header", xml);
+		ScrolltoElement(application, "DRplanA_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		compareText(application, "DR Plan B_header", "DRplanB_header", "DR Plan B", xml);
 		click_commonMethod(application, "DR Plan B Action dropdown", "DRplanB_actiondropdown", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Add", "DRplan_addlink", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 		compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
 		compareText(application, "Range Finish", "DRplanA_rangefinish_columnheader", "Range Finish", xml);
@@ -11700,20 +11665,19 @@ public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_
 		compareText(application, "Activate/Deactivate DR Plan", "DRplanA_activateDeactivate_columnheader", "Activate/Deactivate DR Plan", xml);
 
 		//Edit DR Plan
-		ScrolltoElement(application, "DRplanB_header", xml);
+		ScrolltoElement(application, "DRplanA_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		addedDRplan(application, "DR Plan B", rangestart_cc, rangestart_lac, rangestart_num);
 		click_commonMethod(application, "DR Plan B Action dropdown", "DRplanB_actiondropdown", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Edit", "DRplan_editlink", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 		//Delete DR Plan
-		ScrolltoElement(application, "DRplanB_header", xml);
+		ScrolltoElement(application, "DRplanA_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		if(edit_rangestart_cc.equalsIgnoreCase("Yes") || edit_rangestart_cc.equalsIgnoreCase("null") || edit_rangestart_lac.equalsIgnoreCase("Yes")|| edit_rangestart_lac.equalsIgnoreCase("null") || edit_rangestart_num.equalsIgnoreCase("Yes")||edit_rangestart_num.equalsIgnoreCase("null"))
 		{
 			editedDRplan(application, "DR Plan B", rangestart_cc, rangestart_lac, rangestart_num, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num);
@@ -11730,14 +11694,14 @@ public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_
 	}
 	if(Add_DRplanC.equalsIgnoreCase("Yes")) {
 
-		ScrolltoElement(application, "DRplanC_header", xml);
+		ScrolltoElement(application, "DRplanB_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		compareText(application, "DR Plan C_header", "DRplanC_header", "DR Plan C", xml);
 		click_commonMethod(application, "DR Plan C Action dropdown", "DRplanC_actiondropdown", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Add", "DRplan_addlink", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 		compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
 		compareText(application, "Range Finish", "DRplanA_rangefinish_columnheader", "Range Finish", xml);
@@ -11745,20 +11709,19 @@ public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_
 		compareText(application, "Activate/Deactivate DR Plan", "DRplanA_activateDeactivate_columnheader", "Activate/Deactivate DR Plan", xml);
 
 		//Edit DR Plan
-		ScrolltoElement(application, "DRplanC_header", xml);
+		ScrolltoElement(application, "DRplanB_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		addedDRplan(application, "DR Plan C", rangestart_cc, rangestart_lac, rangestart_num);
 		click_commonMethod(application, "DR Plan C Action dropdown", "DRplanC_actiondropdown", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Edit", "DRplan_editlink", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 		//Delete DR Plan
-		ScrolltoElement(application, "DRplanC_header", xml);
+		ScrolltoElement(application, "DRplanB_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		if(edit_rangestart_cc.equalsIgnoreCase("Yes") || edit_rangestart_cc.equalsIgnoreCase("null") || edit_rangestart_lac.equalsIgnoreCase("Yes")|| edit_rangestart_lac.equalsIgnoreCase("null") || edit_rangestart_num.equalsIgnoreCase("Yes")||edit_rangestart_num.equalsIgnoreCase("null"))
 		{
 			editedDRplan(application, "DR Plan C", rangestart_cc, rangestart_lac, rangestart_num, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num);
@@ -11775,14 +11738,14 @@ public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_
 
 	}
 	if(Add_DRplanD.equalsIgnoreCase("Yes")) {
-		ScrolltoElement(application, "DRplanD_header", xml);
+		ScrolltoElement(application, "DRplanC_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		compareText(application, "DR Plan D_header", "DRplanD_header", "DR Plan D", xml);
 		click_commonMethod(application, "DR Plan D Action dropdown", "DRplanD_actiondropdown", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Add", "DRplanD_E_addlink", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 		compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
 		compareText(application, "Range Finish", "DRplanA_rangefinish_columnheader", "Range Finish", xml);
@@ -11790,20 +11753,19 @@ public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_
 		compareText(application, "Activate/Deactivate DR Plan", "DRplanA_activateDeactivate_columnheader", "Activate/Deactivate DR Plan", xml);
 
 		//Edit DR Plan
-		ScrolltoElement(application, "DRplanD_header", xml);
+		ScrolltoElement(application, "DRplanC_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		addedDRplan(application, "DR Plan D", rangestart_cc, rangestart_lac, rangestart_num);
 		click_commonMethod(application, "DR Plan D Action dropdown", "DRplanD_actiondropdown", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Edit", "DRplanD_E_editlink", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 		//Delete DR Plan
-		ScrolltoElement(application, "DRplanD_header", xml);
+		ScrolltoElement(application, "DRplanC_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		if(edit_rangestart_cc.equalsIgnoreCase("Yes") || edit_rangestart_cc.equalsIgnoreCase("null") || edit_rangestart_lac.equalsIgnoreCase("Yes")|| edit_rangestart_lac.equalsIgnoreCase("null") || edit_rangestart_num.equalsIgnoreCase("Yes")||edit_rangestart_num.equalsIgnoreCase("null"))
 		{
 			editedDRplan(application, "DR Plan D", rangestart_cc, rangestart_lac, rangestart_num, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num);
@@ -11820,14 +11782,14 @@ public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_
 
 	}
 	if(Add_DRplanE.equalsIgnoreCase("Yes")) {
-		ScrolltoElement(application, "DRplanE_header", xml);
+		ScrolltoElement(application, "DRplanD_header", xml);
 		Thread.sleep(2000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		compareText(application, "DR Plan E_header", "DRplanE_header", "DR Plan E", xml);
 		click_commonMethod(application, "DR Plan E Action dropdown", "DRplanE_actiondropdown", xml);
 		Thread.sleep(2000);
 		click_commonMethod(application, "Add", "DRplanD_E_addlink", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 		compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
 		compareText(application, "Range Finish", "DRplanA_rangefinish_columnheader", "Range Finish", xml);
@@ -11835,20 +11797,19 @@ public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_
 		compareText(application, "Activate/Deactivate DR Plan", "DRplanA_activateDeactivate_columnheader", "Activate/Deactivate DR Plan", xml);
 
 		//Edit DR Plan
-		ScrolltoElement(application, "DRplanE_header", xml);
+		ScrolltoElement(application, "DRplanD_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		addedDRplan(application, "DR Plan E", rangestart_cc, rangestart_lac, rangestart_num);
 		click_commonMethod(application, "DR Plan E Action dropdown", "DRplanE_actiondropdown", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Edit", "DRplanD_E_editlink", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 		//Delete DR Plan
-		ScrolltoElement(application, "DRplanE_header", xml);
+		ScrolltoElement(application, "DRplanD_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		if(edit_rangestart_cc.equalsIgnoreCase("Yes") || edit_rangestart_cc.equalsIgnoreCase("null") || edit_rangestart_lac.equalsIgnoreCase("Yes")|| edit_rangestart_lac.equalsIgnoreCase("null") || edit_rangestart_num.equalsIgnoreCase("Yes")||edit_rangestart_num.equalsIgnoreCase("null"))
 		{
 			editedDRplan(application, "DR Plan E", rangestart_cc, rangestart_lac, rangestart_num, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num);
@@ -11864,8 +11825,19 @@ public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_
 		deleteDRPlan(application);
 	}
 	Thread.sleep(1000);
-	scrolltoend();
+	ScrolltoElement(application, "viewpage_backbutton", xml);
 	click_commonMethod(application, "Back", "viewpage_backbutton", xml);
+	waitforPagetobeenable();
+}catch(NoSuchElementException e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+	System.out.println(  e+ " : Field is not displayed");
+}catch(Exception e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+	System.out.println(  e+" : Field is not displayed");
+}
+sa.assertAll();
 }
 
 public void AddDRPlan(String application, String rangestart_cc, String rangestart_lac, String rangestart_num, String rangefinish_cc, String rangefinish_lac, String rangefinish_num, String destinationnumber_cc, String destinationnumber_lac, String destinationnumber_num, String activate_deactivateDRplan_dropdownvalue) throws InterruptedException, DocumentException, IOException {
@@ -12141,7 +12113,7 @@ public void activate_deactivateDRPlan_dropdown(String application, String labeln
 }
 
 public void verifyDRPlansBulkInterface(String application, String bulkjob_filepath, String ExistingTrunkName) throws InterruptedException, DocumentException {
-
+try {
 	Thread.sleep(3000);
 	ScrolltoElement(application, "customizedmedia_header", xml);
 	Thread.sleep(1000);
@@ -12149,34 +12121,52 @@ public void verifyDRPlansBulkInterface(String application, String bulkjob_filepa
 	Thread.sleep(1000);
 	click_commonMethod(application, "DR Plans Bulk Interface", "DRplans_bulkinterface_link", xml);
 	Thread.sleep(1000);
+	waitforPagetobeenable();
 	compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
+	try {
 	WebElement BulkJob_Choosefile_button= getwebelement(xml.getlocator("//locators/" + application + "/bulkjob_choosefilebutton"));
 	BulkJob_Choosefile_button.sendKeys(bulkjob_filepath);
 	click_commonMethod(application, "Submit", "bulkjobsubmit", xml);
-
+	}
+	catch (Exception e) {
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Upload file path '"+bulkjob_filepath+"' is not found");
+	}
 	//Archive link in bulk interface page
 	click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
 	click_commonMethod(application, "Archive", "bulkinterface_archivelink", xml);
-	Thread.sleep(4000);
-	scrolltoend();
+	Thread.sleep(2000);
+	waitforPagetobeenable();
+	ScrolltoElement(application, "archive_backbutton", xml);
 	click_commonMethod(application, "Back", "archive_backbutton", xml);
 
 	//Refresh link in bulk interface page
 	scrollToTop();
 	click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
 	click_commonMethod(application, "Refresh", "bulkinterface_refreshlink", xml);
+	waitforPagetobeenable();
 	compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
 	ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Bulk Interface page refresh successful");
 	Log.info("Bulk Interface page refresh successful");
 	Thread.sleep(2000);
 
 	addedBulkInterface(application, ExistingTrunkName);
-	scrolltoend();
+	ScrolltoElement(application, "bulkinterface_backbutton", xml);
 	click_commonMethod(application, "Back", "bulkinterface_backbutton", xml);
+	waitforPagetobeenable();
+}catch(NoSuchElementException e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+	System.out.println(  e+ " : Field is not displayed");
+}catch(Exception e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+	System.out.println(  e+" : Field is not displayed");
+}
+sa.assertAll();
 }
 
 public void verifydownloadDRplans(String application, String DRPlansfilename, String browserfiles_downloadspath) throws InterruptedException, DocumentException {
-	
+	try {
 	Thread.sleep(3000);
 	ScrolltoElement(application, "customizedmedia_header", xml);
 	Thread.sleep(1000);
@@ -12184,7 +12174,18 @@ public void verifydownloadDRplans(String application, String DRPlansfilename, St
 	Thread.sleep(1000);
 	click_commonMethod(application, "Download DR Plans", "downloadDRplans_link", xml);
 	Thread.sleep(1000);
+	waitforPagetobeenable();
 	isFileDownloaded(DRPlansfilename, browserfiles_downloadspath);
+	 }catch(NoSuchElementException e) {
+	    	e.printStackTrace();
+	    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+	    	System.out.println(  e+ " : Field is not displayed");
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+	    	System.out.println(  e+" : Field is not displayed");
+	    }
+	    sa.assertAll();
 }
 
 public void VerifyDisasterRecoveryStatus(String application) throws InterruptedException, DocumentException {
@@ -12300,8 +12301,9 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 		boolean trunkgrupOrderErrMsg= false;
 		boolean TrunkGroupSiteOrderNumberText=false;
 		Thread.sleep(10000);
-		scrolltoend();
 		
+		try {
+		scrolltoend();
 		System.out.println("Scroll To Trunk Panel");
 		Thread.sleep(6000);
 		TrunkNameToAddCPEDeviceText= getwebelement("//div[text()='"+ExistingTrunkName+"']").isDisplayed();
@@ -12323,7 +12325,7 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 		  String TunkActionLinkXpathInViewServicePage="//div[div[span[contains(text(),'"+TrunkGroupSiteOrderNumber+"')]]]/following-sibling::div//button[text()='Action']";
 		  Thread.sleep(2000);
 		//**click_commonMethod_PassingWebelementDirectly(application, "Trunk Action", TunkActionLinkXpathInViewServicePage, xml);
-		click(application, "ACTION LINK in Trunk panel", "ViewService_Trunk_ActionLink2");
+		click(application, "ACTION LINK in Trunk panel", "ViewService_Trunk_ActionLink1");
 													
 		//Thread.sleep(2000);
 		String ViewTrunkLinkXpathInViewServicePage="//div[div[span[contains(text(),'"+TrunkGroupSiteOrderNumber+"')]]]/following-sibling::div//a[text()='View']";
@@ -12334,6 +12336,18 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Expected 'Trunk Name' is not displaying as expected under Trunk Panel in 'view Service' page");
 				System.out.println("Expected 'Trunk Name'' is not displaying as expected under Trunk Panel in 'view Service' page");
 			  }
+		
+		}catch(NoSuchElementException e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+			System.out.println(  e+ " : Field is not displayed");
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+			System.out.println(  e+" : Field is not displayed");
+		}
+sa.assertAll();
+
 	}
 	
 	
@@ -12700,6 +12714,9 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 		String prefix_code=null;
 		
 		Thread.sleep(5000);
+		
+		
+		try {
 		scrollToTop();
 	//Action button	
 		click_commonMethod(application, "Action", "ViewTrunkPage_ActionButton", xml);//viewPage_ActionButton
@@ -13482,6 +13499,16 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Edit Trunk' Page is not navigated");
 			System.out.println("'Edit Trunk' Page is not navigated");
 		}
+		}catch(NoSuchElementException e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+			System.out.println(  e+ " : Field is not displayed");
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+			System.out.println(  e+" : Field is not displayed");
+		}
+		sa.assertAll();
 		
 	  }
 	  
@@ -14263,7 +14290,7 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 		WebElement Trunknumber1=null;
 		
 		Thread.sleep(5000);
-		//scrolltoend();
+		try {
 		ScrolltoElement(application, "addTrunkSiteOrderlink", xml);
 		Thread.sleep(2000);
 			
@@ -14281,7 +14308,7 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 		Thread.sleep(5000);
 		ExtentTestManager.getTest().log(LogStatus.PASS,"Step : Checkbox Selection is done for Expected trunk, Selected Trunk is " + TrunkName);
 		Log.info("Selected Trunk is  : " + TrunkName);
-		click(application, "ACTION LINK in Trunk panel", "ViewService_Trunk_ActionLink2");
+		click(application, "ACTION LINK in Trunk panel", "ViewService_Trunk_ActionLink1");
 		click(application, "Add CPE Device Link", "ViewService_Trunk_AddCPEDeviceLink1");
 		
 		
@@ -14310,7 +14337,6 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 			//**EnterTextValue(application, CPE_DeviceName, "Device Name", "CPE_DeviceNameTextfield");//Bydefault
 			
 			
-			//**SelectDropdownValueUnderDivTag(application, "Vendor/Model", CPE_VendorModel, "CPE_VendorModelDropdown", "commonDropdownValueTag"); //div[@class='sc-htpNat AUGYd']/div
 			SelectDropdownValueUnderSpanTag(application, "Vendor/Model", CPE_VendorModel, "CPE_VendorModelDropdown", "commonDropdownValueTag", xml); 
 
 			EnterTextValue(application, CPE_ManagementAddress, "Management Address", "CPE_ManagementAddressTextfield");
@@ -14319,23 +14345,17 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 			EnterTextValue(application, CPE_SnmpV3ContextName, "Snmp v3 Context Name", "CPE_Snmpv3ContextNameTextfield");
 			EnterTextValue(application, CPE_SnmpV3ContextEngineID, "Snmp V3 Context Engine ID", "CPE_snmpv3ContextEngineIdTextfield");
 			EnterTextValue(application, CPE_SnmpV3SecurityUsername, "Snmp V3 Security Username", "CPE_snmpv3SecurityUserNameTextfield");
-			//EnterTextValue(application, CPE_SnmpV3AuthProto, labelname, "CPE_SnmpV3AuthProtoDropdown");
 			EnterTextValue(application, CPE_SnmpV3AuthPassword, "Snmp V3 Auth Password", "CPE_snmpv3AuthPasswordTextfield");
 			
 			scrolltoend();
-			//**SelectDropdownValueUnderDivTag(application, "Country", CPE_Country, "CPE_CountryDropdown", "commonDropdownValueTag");
 			SelectDropdownValueUnderSelectTag(application, "Country", CPE_Country, "CPE_CountryDropdown", xml);
-			//**SelectDropdownValueUnderDivTag(application, "City", CPE_City, "CPE_CityDropdown", "commonDropdownValueTag");
 			SelectDropdownValueUnderSelectTag(application, "City", CPE_City, "CPE_CityDropdown", xml);
-			//**SelectDropdownValueUnderDivTag(application, "Site", CPE_Site, "CPE_SiteDropdown", "commonDropdownValueTag");
 			SelectDropdownValueUnderSelectTag(application, "Site", CPE_Site, "CPE_SiteDropdown", xml);
 
-			//**SelectDropdownValueUnderDivTag(application, "Premise", CPE_Premise, "CPE_PremiseDropdown", "commonDropdownValueTag");
 			//**SelectDropdownValueUnderSelectTag(application, "Premise", CPE_Premise, "CPE_PremiseDropdown", "commonDropdownValueTag");
 
 			click(application, "OK Button", "trunk_okButton");
 			
-			//verifysuccessmessage(application, "CPE Device added successfully");
 			compareText(application, "Add CPE Device Success Message", "CPE_AddCPEDeviceSuccessMessage", "CPE Device added successfully");
 			
 			}catch(NoSuchElementException e) {
@@ -14359,6 +14379,16 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 				System.out.println("Expected 'Trunk Name'' is not displaying as expected under Trunk Panel in 'view Service' page");
 						}
 				}
+		 }catch(NoSuchElementException e) {
+		    	e.printStackTrace();
+		    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		    	System.out.println(  e+ " : Field is not displayed");
+		    }catch(Exception e) {
+		    	e.printStackTrace();
+		    	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		    	System.out.println(  e+" : Field is not displayed");
+		    }
+		    sa.assertAll();
 }
 		
 
@@ -14381,7 +14411,7 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 			String  CPE_Snmpro,  String  CPE_Snmprw ,String   CPE_SnmpV3ContextName,  String   CPE_SnmpV3ContextEngineID,  String  CPE_SnmpV3SecurityUsername ,  
 			String  CPE_SnmpV3AuthProto , String   CPE_SnmpV3AuthPassword,  String   CPE_Country,  String   CPE_City,  String CPE_Site ,  String CPE_Premise
 			) throws InterruptedException, DocumentException, IOException {
-
+try {
 		WebElement TrunkGroupSiteOrders_header= getwebelement(xml.getlocator("//locators/" + application + "/TrunkGroupSiteOrders_header"));
 		scrolltoview(TrunkGroupSiteOrders_header);
 		
@@ -14445,7 +14475,16 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 		ExtentTestManager.getTest().log(LogStatus.PASS, "All Fields values verified in View CPE Device Page");
 		Log.info("------ Verified Added CPE Device Information successfully ------");
 		
-		
+}catch(NoSuchElementException e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+	System.out.println(  e+ " : Field is not displayed");
+}catch(Exception e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+	System.out.println(  e+" : Field is not displayed");
+}
+sa.assertAll();
 
 	}
 	
@@ -14456,14 +14495,9 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 			, String CPE_SnmproEdit, String	CPE_SnmprwEdit, String	CPE_SnmpV3ContextNameEdit,	String CPE_SnmpV3ContextEngineIDEdit, String	CPE_SnmpV3SecurityUsernameEdit, 
 			String	CPE_SnmpV3AuthProtoEdit, String	CPE_SnmpV3AuthPasswordEdit, String CPE_CountryEdit, String	CPE_CityEdit, String CPE_SiteEdit, String	CPE_PremiseEdit) throws InterruptedException, DocumentException, IOException {
 		
+		try {
 		scrollToTop();
 
-		//These 3 lines code needed only for direct edit cpe device
-		//**WebElement TrunkGroupSiteOrders_header= getwebelement(xml.getlocator("//locators/" + application + "/TrunkGroupSiteOrders_header"));
-		//**scrolltoview(TrunkGroupSiteOrders_header);
-		//**click(application, "Edit Link For CPE Device under Trunk panel", "ViewService_Trunk_EditCPEDeviceLink");
-		
-		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/CPE_ViewDevice_Header")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'View CPE Device' page navigated as expected");
 			System.out.println("'View CPE Device' page navigated as expected");
@@ -14538,6 +14572,16 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 			System.out.println("'View CPE Device' page not navigated");
 		}
 		
+		 }catch(NoSuchElementException e) {
+		    	e.printStackTrace();
+		    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		    	System.out.println(  e+ " : Field is not displayed");
+		    }catch(Exception e) {
+		    	e.printStackTrace();
+		    	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		    	System.out.println(  e+" : Field is not displayed");
+		    }
+		    sa.assertAll();
 			
 	}
 
@@ -14547,13 +14591,9 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 	
 	
 public void veriyFetchDeviceInterfacesFunction_CPE(String application,String ServiceIdentification, String CPE_ServiceStatusChangeRequired) throws InterruptedException, DocumentException, IOException {
-	//	scrolltoend();
-	//	WebElement TrunkGroupSiteOrders_header= getwebelement(xml.getlocator("//locators/" + application + "/TrunkGroupSiteOrders_header"));
-	//	scrolltoview(TrunkGroupSiteOrders_header);
-	//	click(application, "View Link For CPE Device under Trunk Device panel", "ViewService_Trunk_ViewCPEDeviceLink");
-	//	GetText(application, "Device", "CPE_ViewDevice_Header");//Device//Last Modified on :2020-05-14 07:18 GMT, Modified By :colttest@colt.net, Sync Status: sync in progress
 	
-	scrollToTop();
+	try{
+		scrollToTop();
 	if(getwebelement(xml.getlocator("//locators/" + application + "/CPE_ViewDevice_Header")).isDisplayed()) {
 		ExtentTestManager.getTest().log(LogStatus.PASS, "'View CPE Device' page navigated as expected");
 		System.out.println("'View CPE Device' page navigated as expected");
@@ -14668,6 +14708,16 @@ public void veriyFetchDeviceInterfacesFunction_CPE(String application,String Ser
 	ExtentTestManager.getTest().log(LogStatus.FAIL, "'View CPE Device' page not navigated");
 	System.out.println("'View CPE Device' page not navigated");
 }
+	}catch(NoSuchElementException e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		System.out.println(  e+ " : Field is not displayed");
+	}catch(Exception e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		System.out.println(  e+" : Field is not displayed");
+	}
+sa.assertAll();
 
 		
 	}
@@ -14685,7 +14735,7 @@ public void veriyFetchDeviceInterfacesFunction_CPE(String application,String Ser
 	
 	
 public void verifyRouterToolFunction_CPE(String application,String ServiceIdentification, String CPE_CommandIPV4, String CPE_CommandIPV6, String CPE_ManagementAddress) throws InterruptedException, DocumentException, IOException {
-		
+		try {
 		scrollToTop();
 		Thread.sleep(2000);
 		
@@ -14708,6 +14758,17 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 		SelectDropdownValueUnderDivTag(application, "Commands IPV6", CPE_CommandIPV6, "CPE_Router_IPV4CommandsDropdown", "commonDropdownValueTag");
 		EnterTextValue(application, CPE_ManagementAddress, "Commands IPV6", "CPE_Router_IPV6CommandTextfield");
 		click(application, "Execute button IPV6", "CPE_Router_IPV6Command_Executebutton");
+		
+		 }catch(NoSuchElementException e) {
+		    	e.printStackTrace();
+		    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		    	System.out.println(  e+ " : Field is not displayed");
+		    }catch(Exception e) {
+		    	e.printStackTrace();
+		    	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		    	System.out.println(  e+" : Field is not displayed");
+		    }
+		    sa.assertAll();
 }
 	
 
@@ -14720,14 +14781,14 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 	
 	////
 		public void verifyDeleteDeviceFunction_CPE(String application,String ServiceIdentification) throws InterruptedException, DocumentException, IOException {
-			
+			try {
 			scrollToTop();
 			if(getwebelement(xml.getlocator("//locators/" + application + "/CPE_ViewDevice_Header")).isDisplayed()) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "'View CPE Device' page navigated as expected");
 				System.out.println("'View CPE Device' page navigated as expected");
 				
 			//Delete MAS Device from View Device Page
-				Thread.sleep(4000);
+				Thread.sleep(7000);
 			click(application, "ACTION link", "CPE_View_ActionLink");
 			click(application, "Delete Device from View Device page", "CPE_View_Action_DeleteLink");
 			compareText(application, "Delete PE Device Warning Message from View Device page", "CPE_ViewDevice_Action_DeletePEDeviceWarningMessage", "Are you sure that you want to delete this item?");
@@ -14740,6 +14801,16 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "'View CPE Device' page not navigated");
 				System.out.println("'View CPE Device' page not navigated");
 			}
+			 }catch(NoSuchElementException e) {
+			    	e.printStackTrace();
+			    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+			    	System.out.println(  e+ " : Field is not displayed");
+			    }catch(Exception e) {
+			    	e.printStackTrace();
+			    	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+			    	System.out.println(  e+" : Field is not displayed");
+			    }
+			    sa.assertAll();
 			}
 	
 		
@@ -15162,23 +15233,34 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 	
 	
 		
-public void clickOnBreadCrump(String application, String breadCrumpLink) throws InterruptedException, DocumentException {
-			scrollToTop();
-			Thread.sleep(2000);
-			WebElement breadcrumb=null;
-			try {
-			breadcrumb=getwebelement(xml.getlocator("//locators/" + application + "/breadcrump").replace("value", breadCrumpLink));
-			if(breadcrumb.isDisplayed()) {
-				click_commonMethod_PassingWebelementDirectly(application, "Breadcrump", "breadcrump", xml);
-			}else {
+		/**
+		 * 	
+		 * @param application
+		 * @throws DocumentException 
+		 * @throws InterruptedException 
+		 */
+			public void clickOnBreadCrump(String application, String breadCrumpLink) throws InterruptedException, DocumentException {
+				
+				waitForpageload();
+				waitforPagetobeenable();
+				
+				scrollToTop();
+				Thread.sleep(2000);
+				WebElement breadcrumb=null;
+		
+				try {
+				breadcrumb=getwebelement(xml.getlocator("//locators/" + application + "/breadcrump").replace("value", breadCrumpLink));
+				if(breadcrumb.isDisplayed()) {
+					click_commonMethod_PassingWebelementDirectly(application, "Breadcrump", "breadcrump", xml);
+					Thread.sleep(3000);
+				}else {
+					System.out.println("Breadcrumb is not displaying for the element "+ breadcrumb);
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
 				System.out.println("Breadcrumb is not displaying for the element "+ breadcrumb);
 			}
-		}catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("Breadcrumb is not displaying for the element "+ breadcrumb);
-			}
 		}
-		
 	
 
 public void clickOnViewLink(String application, String trunkGroupName, String siteOrderName) throws Exception {
@@ -15217,7 +15299,7 @@ public void viewTrunk_GSX_generateConfiguration(String application) throws Inter
 
 
 public void viewTrunk_PSX_executeConfiguration(String application, String expectedConfiguration) throws InterruptedException, DocumentException, IOException {
-	
+	try {
 	waitForpageload();
 	Thread.sleep(7000);
 	
@@ -15273,12 +15355,23 @@ public void viewTrunk_PSX_executeConfiguration(String application, String expect
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed ");
 			System.out.println(  e+" : Field is not displayed");
 		}
+     
+	}catch(NoSuchElementException e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		System.out.println(  e+ " : Field is not displayed");
+	}catch(Exception e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		System.out.println(  e+" : Field is not displayed");
+	}
+	sa.assertAll();
 
 }
 
 
 public void viewTrunk_SBC_executeConfiguration(String application, String expectedConfiguration) throws InterruptedException, DocumentException {
-	
+	try {
 	
 	System.out.println("expected value "+ expectedConfiguration);
 	scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/DDIRange_Header")));
@@ -15322,12 +15415,22 @@ public void viewTrunk_SBC_executeConfiguration(String application, String expect
 					+ "to overwrite the changes.");
      }
 	
+	}catch(NoSuchElementException e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		System.out.println(  e+ " : Field is not displayed");
+	}catch(Exception e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		System.out.println(  e+" : Field is not displayed");
+	}
+	sa.assertAll();
 }
 
 
 public void viewTrunk_GSX_executeConfiguration(String application, String expectedConfiguration) throws InterruptedException, DocumentException, IOException {
 	
-	
+	try {
 	System.out.println("expected value "+ expectedConfiguration);
 	scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/DDIRange_Header")));
 	Thread.sleep(2000);
@@ -15361,7 +15464,6 @@ public void viewTrunk_GSX_executeConfiguration(String application, String expect
                 scrolltoend();
                 Thread.sleep(2000);
                 click_commonMethod(application, "Execute", "GSX_config_executeButton", xml);
-                
           }
     }
     
@@ -15378,9 +15480,17 @@ public void viewTrunk_GSX_executeConfiguration(String application, String expect
    else {
 	   ExtentTestManager.getTest().log(LogStatus.PASS, "After clicking on 'Execute' button, success Message displays as: "+gsxSuccessMesage);
    }
- 
-    
-	
+   
+	}catch(NoSuchElementException e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		System.out.println(  e+ " : Field is not displayed");
+	}catch(Exception e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		System.out.println(  e+" : Field is not displayed");
+	}
+	sa.assertAll();
 }
 
 
@@ -15393,7 +15503,7 @@ public void viewTrunk_GSX_executeConfiguration(String application, String expect
  * @throws IOException 
  */
 public void addSBC_manualExecutionConfig(String application, String manualConfigurationValue) throws InterruptedException, DocumentException, IOException {
-	
+	try {
 	scrolltoend();
 	Thread.sleep(2000);
 	
@@ -15449,6 +15559,17 @@ public void addSBC_manualExecutionConfig(String application, String manualConfig
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "'SBC Manully Executed Configuration' panel is not displaying");
 		System.out.println("'SBC Manully Executed Configuration' panel is not displaying");
 	}
+	
+	}catch(NoSuchElementException e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		System.out.println(  e+ " : Field is not displayed");
+	}catch(Exception e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		System.out.println(  e+" : Field is not displayed");
+	}
+	sa.assertAll();
 }
 
 
@@ -15522,7 +15643,7 @@ public void verifySBCfileAdded(String application) throws InterruptedException, 
 
 public void editGSX_manualExecutionConfig(String application, String editGSXmanualConfigvalur) throws InterruptedException, DocumentException, IOException {
 	
-	
+	try {
 	click_commonMethod(application, "GSXcreated", "GSX_selectCreatedValue", xml);
 	
 	click_commonMethod(application, "Action", "GSXManualConfig_actionDropdown", xml);  //click acton dropdown
@@ -15563,13 +15684,22 @@ public void editGSX_manualExecutionConfig(String application, String editGSXmanu
     //**verifysuccessmessage(application, "Manual Configuration updated Successfully");
     compareText(application, "Update GSX Manual Configuration Successfully", "UpdateManualConfiguration_SuccessMessage", "Manual Configuration updated Successfully", xml);
 
-
+	 }catch(NoSuchElementException e) {
+	    	e.printStackTrace();
+	    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+	    	System.out.println(  e+ " : Field is not displayed");
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+	    	System.out.println(  e+" : Field is not displayed");
+	    }
+	    sa.assertAll();
     
 }
 
 
 public void editPSX_manualExecutionConfig(String application, String editPSXmanualConfigvalur) throws InterruptedException, DocumentException, IOException {
-	
+	try {
 	
 	click_commonMethod(application, "PSXcreated", "PSX_selectCreatedValue", xml);
 	
@@ -15612,12 +15742,21 @@ public void editPSX_manualExecutionConfig(String application, String editPSXmanu
     Thread.sleep(1000);
     compareText(application, "Update PSX Manual Configuration Successfully", "UpdateManualConfiguration_SuccessMessage", "Manual Configuration updated Successfully", xml);
 
-    
+	}catch(NoSuchElementException e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		System.out.println(  e+ " : Field is not displayed");
+	}catch(Exception e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		System.out.println(  e+" : Field is not displayed");
+	}
+	sa.assertAll();
 }
 
 
 public void editSBC_manualExecutionConfig(String application, String editGSXmanualConfigvalur) throws InterruptedException, DocumentException, IOException {
-	
+	try {
 	
 	click_commonMethod(application, "PSXcreated", "SBC_selectCreatedValue", xml);
 	
@@ -15656,7 +15795,16 @@ public void editSBC_manualExecutionConfig(String application, String editGSXmanu
     driver.switchTo().window(mainWindow);
     Thread.sleep(1000);
     compareText(application, "Update SBC Manual Configuration Successfully", "UpdateManualConfiguration_SuccessMessage", "Manual Configuration updated Successfully", xml);
-
+	 }catch(NoSuchElementException e) {
+	    	e.printStackTrace();
+	    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+	    	System.out.println(  e+ " : Field is not displayed");
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+	    	System.out.println(  e+" : Field is not displayed");
+	    }
+	    sa.assertAll();
 
     
 }
@@ -15664,7 +15812,7 @@ public void editSBC_manualExecutionConfig(String application, String editGSXmanu
 
 
 public void deleteSBC_manualExecutionConfig(String application) throws InterruptedException, DocumentException, IOException {
-	
+	try {
 	scrolltoend();
 	Thread.sleep(2000);
 	
@@ -15690,6 +15838,16 @@ public void deleteSBC_manualExecutionConfig(String application) throws Interrupt
            Log.info("Delete alert popup is not displayed");
            ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
      }
+	}catch(NoSuchElementException e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		System.out.println(  e+ " : Field is not displayed");
+	}catch(Exception e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		System.out.println(  e+" : Field is not displayed");
+	}
+	sa.assertAll();
 
 }
 
@@ -15704,7 +15862,7 @@ public void deleteSBC_manualExecutionConfig(String application) throws Interrupt
 * @throws IOException
 */
 public void deletePSX_manualExecutionConfig(String application) throws InterruptedException, DocumentException, IOException {
-	
+	try {
 	scrolltoend();
 	Thread.sleep(2000);
 	
@@ -15732,6 +15890,17 @@ public void deletePSX_manualExecutionConfig(String application) throws Interrupt
            Log.info("Delete alert popup is not displayed");
            ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
      }
+     
+	 }catch(NoSuchElementException e) {
+	    	e.printStackTrace();
+	    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+	    	System.out.println(  e+ " : Field is not displayed");
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+	    	System.out.println(  e+" : Field is not displayed");
+	    }
+	    sa.assertAll();
 
 }
 
@@ -15744,7 +15913,7 @@ public void deletePSX_manualExecutionConfig(String application) throws Interrupt
  * @throws IOException
  */
 	public void deleteGSX_manualExecutionConfig(String application) throws InterruptedException, DocumentException, IOException {
-		
+		try {
 		scrolltoend();
 		Thread.sleep(2000);
 		
@@ -15770,6 +15939,16 @@ public void deletePSX_manualExecutionConfig(String application) throws Interrupt
 	           Log.info("Delete alert popup is not displayed");
 	           ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete alert popup is not displayed");
 	     }
+		 }catch(NoSuchElementException e) {
+		    	e.printStackTrace();
+		    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		    	System.out.println(  e+ " : Field is not displayed");
+		    }catch(Exception e) {
+		    	e.printStackTrace();
+		    	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		    	System.out.println(  e+" : Field is not displayed");
+		    }
+		    sa.assertAll();
 
 	}
 
@@ -15785,6 +15964,7 @@ public void deletePSX_manualExecutionConfig(String application) throws Interrupt
  */
 public void addPSX_manualExecutionConfig(String application, String PSXmanualConfiguratio) throws InterruptedException, DocumentException, IOException {
 	
+	try {
 	scrolltoend();
 	Thread.sleep(2000);
 	
@@ -15852,6 +16032,17 @@ public void addPSX_manualExecutionConfig(String application, String PSXmanualCon
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "'PSX Manully Executed Configuration' panel is not displaying");
 		System.out.println("'PSX Manully Executed Configuration' panel is not displaying");
 	}
+	}catch(NoSuchElementException e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		System.out.println(  e+ " : Field is not displayed");
+	}catch(Exception e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		System.out.println(  e+" : Field is not displayed");
+	}
+sa.assertAll();
+
 }
 
 
@@ -15863,7 +16054,7 @@ public void addPSX_manualExecutionConfig(String application, String PSXmanualCon
  * @throws IOException 
  */
 public void addGSX_manualExecutionConfig(String application, String GSXmanualConfiguratio) throws InterruptedException, DocumentException, IOException {
-	
+	try {
 	scrolltoend();
 	Thread.sleep(2000);
 	
@@ -15921,6 +16112,17 @@ public void addGSX_manualExecutionConfig(String application, String GSXmanualCon
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "'GSX Manully Executed Configuration' panel is not displaying");
 		System.out.println("'GSX Manully Executed Configuration' panel is not displaying");
 	}
+	}catch(NoSuchElementException e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		System.out.println(  e+ " : Field is not displayed");
+	}catch(Exception e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		System.out.println(  e+" : Field is not displayed");
+	}
+sa.assertAll();
+
 }
 
 
@@ -15933,7 +16135,7 @@ public void addGSX_manualExecutionConfig(String application, String GSXmanualCon
 */
 public void verifyPSXfileAdded(String application) throws InterruptedException, DocumentException, IOException {
 	
-	
+	try {
 	scrolltoend();
 	Thread.sleep(1000);
 	
@@ -15994,6 +16196,17 @@ public void verifyPSXfileAdded(String application) throws InterruptedException, 
 	}
 		
 	}
+	}catch(NoSuchElementException e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		System.out.println(  e+ " : Field is not displayed");
+	}catch(Exception e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		System.out.println(  e+" : Field is not displayed");
+	}
+sa.assertAll();
+
 }
 
 
@@ -16006,7 +16219,7 @@ public void verifyPSXfileAdded(String application) throws InterruptedException, 
 */
 public void verifyGSXfileAdded(String application) throws InterruptedException, DocumentException, IOException {
 	
-	
+	try {
 	scrolltoend();
 	Thread.sleep(1000);
 	
@@ -16067,6 +16280,17 @@ public void verifyGSXfileAdded(String application) throws InterruptedException, 
 	}
 	
 	}
+	}catch(NoSuchElementException e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		System.out.println(  e+ " : Field is not displayed");
+	}catch(Exception e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		System.out.println(  e+" : Field is not displayed");
+	}
+sa.assertAll();
+
 }
 
 	
@@ -16074,7 +16298,7 @@ public void verifyGSXfileAdded(String application) throws InterruptedException, 
 	
 	
 public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  String ExistingTrunkName) throws InterruptedException, DocumentException {
-	
+	try {
 	scrollToTop();
 	waitForpageload();
 	
@@ -16124,6 +16348,17 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 		System.out.println("'View Trunk' Page is not navigated as expected");
 	}
 	
+	}catch(NoSuchElementException e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+		System.out.println(  e+ " : Field is not displayed");
+	}catch(Exception e) {
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+		System.out.println(  e+" : Field is not displayed");
+	}
+	sa.assertAll();
+	
 	
 }
 
@@ -16133,8 +16368,9 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 
  public void trunkPSXQueue(String application, String TrunkGroupSiteOrderNumber,  String ExistingTrunkName) throws InterruptedException, DocumentException {
 	
-	 //**click_commonMethod(application, "Back Button in History page", "BackButton_History", xml);
-	scrollToTop();
+try {
+	 
+	 scrollToTop();
 	waitForpageload();
 	
 	if(getwebelement(xml.getlocator("//locators/" + application + "/ViewTrunk_Header")).isDisplayed()) {
@@ -16175,7 +16411,16 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "'View Trunk' Page is not navigated as expected");
 		System.out.println("'View Trunk' Page is not navigated as expected");
 	}
-	
+}catch(NoSuchElementException e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in PSX Queue page");
+	System.out.println(  e+ " : Field is not displayed in PSX Queue page");
+}catch(Exception e) {
+	e.printStackTrace();
+	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in PSX Queue page ");
+	System.out.println(  e+" : Field is not displayed in PSX Queue page");
+}
+sa.assertAll();	
 	
 }
 	
@@ -16272,41 +16517,42 @@ public void trunkHistory(String application, String TrunkGroupSiteOrderNumber,  
 		
 		
 		//public static Boolean isFileDownloaded(String fileName, String downloadspath) {
-				public static Boolean isFileDownloaded(String fileName, String downloadspath) {
-
-				boolean flag = false;
-				//paste your directory path below
-				//eg: C:\\Users\\username\\Downloads
-				String dirPath = downloadspath; 
-				File dir = new File(dirPath);
-				File[] files = dir.listFiles();
-				if (files.length == 0 || files == null) {
-					System.out.println("The directory is empty");
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Downloads folder is empty");
-					flag = false;
-				} else {
-					for (File listFile : files) {
-						if (listFile.getName().contains(fileName)) {
-							System.out.println(fileName + " is present");
-							ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+fileName+"' excel file is downloaded successfully");
-							break;
-						}
-						flag = true;
+		public static Boolean isFileDownloaded(String fileName, String downloadspath) {
+			boolean flag = false;
+			//paste your directory path below
+			//eg: C:\\Users\\username\\Downloads
+			String dirPath = downloadspath; 
+			File dir = new File(dirPath);
+			File[] files = dir.listFiles();
+			try {
+			if (files.length == 0 || files == null) {
+				System.out.println("The directory is empty");
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Downloads folder is empty");
+				flag = false;
+			} else {
+				for (File listFile : files) {
+					if (listFile.getName().contains(fileName)) {
+						System.out.println(fileName + " is present");
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+fileName+"' excel file is downloaded successfully");
+						break;
 					}
+					flag = true;
 				}
-				return flag;
 			}
-				
-
+			}
+			catch (Exception e) {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Downloads folder path '"+dirPath+"' is not found");
+			}
+			return flag;
+		}
+		
 				
 				
 				
 public void deleteServiceFunction(String application, String expectedvalue) throws InterruptedException, DocumentException{
 			Thread.sleep(5000);
-			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
-			//scrolltoview(application, "Service Panel", "orderpanelheader", xml);
-			
 			try {
+			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
 				click_commonMethod(application, "Action", "serviceactiondropdown", xml);
 				Thread.sleep(2000);
 				click(application, "Delete Link", "DeleteLink");
@@ -16315,15 +16561,17 @@ public void deleteServiceFunction(String application, String expectedvalue) thro
 				Thread.sleep(3000);
 				compareText(application, "Delete Service Successful Message", "deletesuccessmsg", "Service successfully deleted.");
 				
-				}catch(NoSuchElementException e) {
-					e.printStackTrace();
-					ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Delete Service page");
-					System.out.println(  e+ " : Field is not displayed in Delete Service page");
-				}catch(Exception e) {
-					e.printStackTrace();
-					ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in in Delete Service page");
-					System.out.println(  e+" : Field is not displayed in in Delete Service page");
-				}
+			
+			 }catch(NoSuchElementException e) {
+			    	e.printStackTrace();
+			    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+			    	System.out.println(  e+ " : Field is not displayed");
+			    }catch(Exception e) {
+			    	e.printStackTrace();
+			    	ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+			    	System.out.println(  e+" : Field is not displayed");
+			    }
+			    sa.assertAll();
 	}		
 			
 			

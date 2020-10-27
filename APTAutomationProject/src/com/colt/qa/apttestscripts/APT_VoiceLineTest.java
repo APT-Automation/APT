@@ -26,27 +26,27 @@ public String Gateway;
 	public void VoiceLineVService(Map<String, String> map) throws Exception {
 		
 		setup();
-		Login.APT_Login_1(map.get("url"));
+		Login.APT_Login_1(map.get("url for the product"));
 		
 		newCustomerName=map.get("newCustomerCreation");
         existingCustomer=map.get("existingCustomerSelection");
         
         if(newCustomerName.equalsIgnoreCase("yes") && existingCustomer.equalsIgnoreCase("no")) {
               
-              logger= ExtentTestManager.startTest ("CreateCustomer");
+              logger= ExtentTestManager.startTest ("CreateCustomer - Voice Line V");
               APT_VoiceLineHelper.get().createcustomer("voiceline", map.get("newCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), 
                           map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), 
                           map.get("Fax"));
               CustomerName=map.get("newCustomer");
               ExtentTestManager.endTest();
               
-              logger= ExtentTestManager.startTest ("selectNewCustomer"); 
+              logger= ExtentTestManager.startTest ("selectNewCustomer - Voice Line V"); 
               APT_VoiceLineHelper.get().selectCustomertocreateOrder("voiceline",map.get("newCustomer"));
               ExtentTestManager.endTest();
         }
         else if(newCustomerName.equalsIgnoreCase("no") && existingCustomer.equalsIgnoreCase("Yes")) {
               
-              logger= ExtentTestManager.startTest ("selectExistingCustomer"); 
+              logger= ExtentTestManager.startTest ("selectExistingCustomer - Voice Line V"); 
               APT_NGIN.get().selectCustomertocreateOrder("nginservice",map.get("existingCustomer"));
               CustomerName=map.get("existingCustomer");
               ExtentTestManager.endTest();
@@ -65,7 +65,10 @@ public String Gateway;
 		ExtentTestManager.endTest();
 		
 		logger= ExtentTestManager.startTest ("verifyCustomerDetailsInformation");
-		APT_VoiceLineHelper.get().verifyCustomerDetailsInformation("voiceline", map.get("Name"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
+		APT_VoiceLineHelper.get().verifyCustomerDetailsInformation("voiceline", map.get("newCustomerCreation"), map.get("existingCustomerSelection"),
+				map.get("newCustomer"),	map.get("existingCustomer"),
+				map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"), 
+				map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
 		APT_VoiceLineHelper.get().verifyUserDetailsInformation("voiceline", map.get("LoginColumn"), map.get("NameColumn"), map.get("EmailColumn"), map.get("RolesColumn"), map.get("AddressColumn"), map.get("ResourceColumn"));
 		ExtentTestManager.endTest();
 		
@@ -75,6 +78,12 @@ public String Gateway;
 //				map.get("HideRouterToolsIPv4CommandsCisco_ToBeSelected"), map.get("HideServicesToBeSelected"),map.get("HideSiteOrderToBeSelected"), map.get("editRolesToBeSelected"), map.get("edit_RoleToBeHidden"), map.get("RouterToolsIPv6CommandsCisco_ToBeAvailable"), map.get("RouterToolsIPv6CommandsCisco_ToBeHidden"), map.get("RouterToolsIPv4CommandsHuiwai_ToBeAvailable"), map.get("HideRouterToolsIPv4CommandsHuiwai_ToBeHidden"), map.get("HideRouterToolsIPv4CommandsCisco_ToBeAvailable"), 
 //				map.get("HideRouterToolsIPv4CommandsCisco_ToBeHidden"), map.get("Services_ToBeAvailable"), map.get("Services_ToBeHidden"), map.get("SiteOrders_ToBeAvailable"), map.get("SiteOrders_ToBeHidden"));
 //		ExtentTestManager.endTest();
+		
+		logger= ExtentTestManager.startTest("verifyOrderDetailsInformation");
+		APT_VoiceLineHelper.get().verifyorderpanel_editorder("voiceline", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
+		APT_VoiceLineHelper.get().verifyorderpanel_changeorder("voiceline", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
+				map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));
+		ExtentTestManager.endTest();
 		
 		logger= ExtentTestManager.startTest ("verifyServicepanelinviewservicepage");
 		APT_VoiceLineHelper.get().verifyservicepanelInformationinviewservicepage("voiceline", map.get("ServiceIdentification"), map.get("ServiceType"), map.get("Remarks"), map.get("ResellerCode_Value"), map.get("ThirdPartyInternet_Checkbox"), map.get("PhoneContact"));
@@ -128,7 +137,11 @@ public String Gateway;
 		ExtentTestManager.endTest();
 		
 		logger= ExtentTestManager.startTest ("FetchInterfaces");
+		boolean FetchInterfaceSuccessMsg= APT_VoiceLineHelper.get().fetchDeviceInterface_viewdevicepage("voiceline");
+		
+		if(FetchInterfaceSuccessMsg) {
 		APT_VoiceLineHelper.get().verifyFetchInterface("voiceline", map.get("IMSPopLocation_DropdownValue"), map.get("ServiceIdentification"), map.get("editASRDeviceName"), map.get("InServiceStatus"), map.get("InMaintenanceStatus"), map.get("InterfaceName"), map.get("Edit_InterfaceName"));
+		}
 		ExtentTestManager.endTest();
 		
 		logger= ExtentTestManager.startTest ("verifySiteOrder");
@@ -214,6 +227,7 @@ public String Gateway;
 		ExtentTestManager.endTest();
 		
 		logger= ExtentTestManager.startTest ("addCPEdevice");
+		
 		String siteOrderNumber=null;
 		if(map.get("edit_TrunkGroupOrderNumber").equalsIgnoreCase("null")) {
 			
@@ -254,7 +268,20 @@ public String Gateway;
 				map.get("editNewSiteCode"), map.get("editNewPremiseName"), map.get("editNewPremiseCode"));
 		ExtentTestManager.endTest();
 	
+		
+		
 		logger= ExtentTestManager.startTest ("DR using TDM Links");
+		
+		String DRusingTDMValue= null;
+		if(map.get("edit_DRusingTDM_checkbox").equalsIgnoreCase("null")) {
+			
+			DRusingTDMValue= map.get("DRusingTDM_checkbox");
+		}
+		else {
+			DRusingTDMValue= map.get("edit_DRusingTDM_checkbox");
+		}
+				//APT_VoiceLineHelper.get().DRusingTDMvalue("voiceline");
+		if(DRusingTDMValue.equalsIgnoreCase("Yes")) {
 		
 			String siteOrderNumber1=null;
 			if(map.get("edit_TrunkGroupOrderNumber").equalsIgnoreCase("null")) {
@@ -265,12 +292,13 @@ public String Gateway;
 				siteOrderNumber1=map.get("edit_TrunkGroupOrderNumber");
 			}
 		APT_VoiceLineHelper.get().clickOnViewTrunkLink("voiceline", siteOrderNumber1);
-		String DRusingTDMValue= APT_VoiceLineHelper.get().DRusingTDMvalue("voiceline");
-		
-		if(DRusingTDMValue.equalsIgnoreCase("Yes")) {
 		APT_VoiceLineHelper.get().verifyAddDRPlans("voiceline", map.get("Add_DRplanA"), map.get("Add_DRplanB"), map.get("Add_DRplanC"), map.get("Add_DRplanD"), map.get("Add_DRplanE"), map.get("rangestart_cc"), map.get("rangestart_lac"), map.get("rangestart_num"), map.get("rangefinish_cc"), map.get("rangefinish_lac"), map.get("rangefinish_num"), map.get("destinationnumber_cc"), map.get("destinationnumber_lac"), map.get("destinationnumber_num"), map.get("activate_deactivateDRplan_dropdownvalue"), map.get("edit_rangestart_cc"), map.get("edit_rangestart_lac"), map.get("edit_rangestart_num"), map.get("edit_rangefinish_cc"), map.get("edit_rangefinish_lac"), map.get("edit_rangefinish_num"), map.get("edit_destinationnumber_cc"), map.get("edit_destinationnumber_lac"), map.get("edit_destinationnumber_num"), map.get("edit_activate_deactivateDRplan_dropdownvalue"));
 		APT_VoiceLineHelper.get().verifyDRPlansBulkInterface("voiceline", map.get("BulkJob_FilePath"));
 		APT_VoiceLineHelper.get().verifydownloadDRplans("voiceline", map.get("DRPlans_FileName"), map.get("Browserfiles_Downloadspath"));
+		}
+		else
+		{
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : DR Links are not displaying as DRusingTDM checkbox is not checked");
 		}
 		ExtentTestManager.endTest();
 		
@@ -287,6 +315,7 @@ public String Gateway;
 		ExtentTestManager.endTest();
 		
 		logger= ExtentTestManager.startTest ("VerifyDDIRange");
+		
 		APT_VoiceLineHelper.get().AddDDIRange("voiceline",map.get("LACValue"),map.get("MainNumberValue"),map.get("RangeStartValue"),map.get("RangeEndValue"),map.get("ExtensionDigitsValue"),map.get("IncomingRouting_Checkbox"),map.get("Prefix_DropdownValue"), map.get("Edit_Prefix_DropdownValue"));
 		APT_VoiceLineHelper.get().viewDDIRange("voiceline",map.get("LACValue"),map.get("MainNumberValue"),map.get("RangeStartValue"),map.get("RangeEndValue"),map.get("ExtensionDigitsValue"),map.get("ViewDDI_PSXConfig_DropdownValue"));
 		APT_VoiceLineHelper.get().editDDIRange("voiceline",map.get("Edit_LACValue"),map.get("MainNumberValue"),map.get("Edit_MainNumberValue"),map.get("Edit_RangeStartValue"),map.get("Edit_RangeEndValue"),map.get("Edit_ExtensionDigitsValue"),map.get("Edit_IncomingRouting_Checkbox"),map.get("Prefix_DropdownValue"), map.get("Edit_Prefix_DropdownValue"));

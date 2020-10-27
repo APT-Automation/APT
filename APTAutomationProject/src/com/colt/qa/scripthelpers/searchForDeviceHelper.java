@@ -197,7 +197,7 @@ public class searchForDeviceHelper extends DriverHelper {
 		GetValues(application, "Name");		//Device Name
 		GetValues(application, "Device Type");	//Device Type
 		GetValues(application, "Vendor/Model");		//Vendor/Model
-		GetValues(application, "Snmpro");	//Snmpro
+//		GetValues(application, "Snmpro");	//Snmpro
 		GetValues(application, "Router Id");	//Router Id
 		GetValues(application, "Full IQNET");	//Full IQNET
 		GetValues(application, "Management Address");	//Management Address

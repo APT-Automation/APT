@@ -35,20 +35,18 @@ public class APT_SANManagementHelper extends DriverHelper{
 		compareText(application, "SAN Search", "sansearchheader", "SAN Search", xml);
 		addtextFields_commonMethod(application, "SAN", "santextfield", search_sannumber, xml);
 		click_commonMethod(application, "Search", "san_searchbutton", xml);
-		Thread.sleep(1000);
 		waitforPagetobeenable();
 		click_commonMethod(application, "Download To Excel", "downloadtoexcellink", xml);
 		isFileDownloaded(searchSANfilename, browserfiles_downloadspath);
-
+		waitforPagetobeenable();
 		//Rework done
 		edittextFields_commonMethod(application, "SAN", "santextfield", search_sannumber, xml);
-		Thread.sleep(1000);
+		waitforPagetobeenable();
 		click_commonMethod(application, "Search", "san_searchbutton", xml);
-		Thread.sleep(1000);
 		waitforPagetobeenable();
 
 		WebElement SelectSAN= getwebelement("//div[contains(text(),'"+search_sannumber+"')]/parent::div//span[contains(@class,'unchecked')]");
-
+		try {
 		if(SelectSAN.isDisplayed())
 		{
 			//Verify SearchSAN columns headers
@@ -89,6 +87,11 @@ public class APT_SANManagementHelper extends DriverHelper{
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
 			Log.info("No existing SAN to display");
 		}
+		}
+		catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL,"Step : No existing SAN to display");
+				e.printStackTrace();
+		}
 			click_commonMethod(application, "View", "view", xml);
 			compareText(application, "View San Header", "searchsan_viewpageheader", "View San", xml);
 
@@ -109,9 +112,10 @@ public class APT_SANManagementHelper extends DriverHelper{
 			GetText(application, "CPS Free Format", "CPSvalue");
 			GetText(application, "Ring To Number", "ringtonumbervalue");
 			GetText(application, "Announcement to play", "searchsan_announcementtoplayvalue");
-			Thread.sleep(2000);
+			ScrolltoElement(application, "viewpage_backbutton", xml);
+			waitforPagetobeenable();
 			click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-
+			waitforPagetobeenable();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/sansearchheader")).isDisplayed())
 		{
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to SAN Search page");
@@ -125,26 +129,25 @@ public class APT_SANManagementHelper extends DriverHelper{
 
 		//Verify Search order/service page
 		edittextFields_commonMethod(application, "SAN", "santextfield", search_sannumber, xml);
-		Thread.sleep(1000);
+		waitforPagetobeenable();
 		click_commonMethod(application, "Search", "san_searchbutton", xml);
-		Thread.sleep(1000);
 		waitforPagetobeenable();
 		WebElement SelectSAN1= getwebelement("//div[contains(text(),'"+search_sannumber+"')]/parent::div//span[contains(@class,'unchecked')]");
+		try {
 		if(SelectSAN1.isDisplayed())
 		{	
 			String OrderNumber= getwebelement(xml.getlocator("//locators/" + application + "/ordername_link")).getText();
 			click_commonMethod(application, "Order Name", "ordername_link", xml);
 			compareText(application, "Search For Order / Service Header", "searchfororder_header", "Search For Order / Service", xml);
-			Thread.sleep(1000);
+			waitforPagetobeenable();
 			WebElement SelectExistingOrder= getwebelement("//div[contains(text(),'"+OrderNumber+"')]/parent::div//input[@type='radio']");
 
 			if(SelectExistingOrder.isDisplayed())
 			{
 				Clickon(SelectExistingOrder);
 				click_commonMethod(application, "Action dropdown", "searchsan_actiondropdown", xml);
-				Thread.sleep(1000);
+				waitforPagetobeenable();
 				click_commonMethod(application, "View", "searchfororder_viewlink", xml);
-				Thread.sleep(1000);
 				waitforPagetobeenable();
 				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 				{
@@ -170,9 +173,13 @@ public class APT_SANManagementHelper extends DriverHelper{
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
 			Log.info(" No existing SAN to display");
 		}
-
+		}
+		catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL,"Step : No existing SAN to display");
+				e.printStackTrace();
+		}
 		driver.navigate().back();
-		Thread.sleep(2000);
+		waitforPagetobeenable();
 
 		//Verify manage link in search order page
 		compareText(application, "SAN Search", "sansearchheader", "SAN Search", xml);
@@ -190,9 +197,9 @@ public class APT_SANManagementHelper extends DriverHelper{
 
 		edittextFields_commonMethod(application, "SAN", "santextfield", search_sannumber, xml);
 		click_commonMethod(application, "Search", "san_searchbutton", xml);
-		Thread.sleep(1000);
 		waitforPagetobeenable();
 		WebElement SelectSAN2= getwebelement("//div[contains(text(),'"+search_sannumber+"')]/parent::div//span[contains(@class,'unchecked')]");
+		try {
 		if(SelectSAN2.isDisplayed())
 		{
 			String OrderNumber= getwebelement(xml.getlocator("//locators/" + application + "/ordername_link")).getText();
@@ -204,7 +211,6 @@ public class APT_SANManagementHelper extends DriverHelper{
 				Clickon(SelectExistingOrder);
 				click_commonMethod(application, "Action dropdown", "searchsan_actiondropdown", xml);
 				click_commonMethod(application, "Manage", "searchfororder_managelink", xml);
-				Thread.sleep(1000);
 				waitforPagetobeenable();
 				
 				if(getwebelement(xml.getlocator("//locators/" + application + "/manageservice_header")).isDisplayed())
@@ -231,25 +237,30 @@ public class APT_SANManagementHelper extends DriverHelper{
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
 			Log.info("No existing SAN to display");
 		}
-
+		}
+		catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL,"Step : No existing SAN to display");
+				e.printStackTrace();
+		}
+		
 		driver.navigate().back();
-		Thread.sleep(2000);
+		waitforPagetobeenable();
 
 		//Verify Delete SAN details
 		edittextFields_commonMethod(application, "SAN", "santextfield", search_sannumber, xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Search", "san_searchbutton", xml);
-		Thread.sleep(1000);
 		waitforPagetobeenable();
 		WebElement SelectSAN3= getwebelement("//div[contains(text(),'"+search_sannumber+"')]/parent::div//span[contains(@class,'unchecked')]");
+		try {
 		if(SelectSAN3.isDisplayed())
 		{
 			Clickon(SelectSAN3);
-			Thread.sleep(2000);
+			waitforPagetobeenable();
 			click_commonMethod(application, "Action dropdown", "searchsan_actiondropdown", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Delete SAN", "delete", xml);
-			Thread.sleep(2000);
+			waitforPagetobeenable();
 			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
 			if(DeleteAlertPopup.isDisplayed())
 			{
@@ -268,7 +279,12 @@ public class APT_SANManagementHelper extends DriverHelper{
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
 			Log.info("No existing SAN to display");
 		}
-
+		}
+		catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL,"Step : No existing SAN to display");
+				e.printStackTrace();
+		}
+		
 	}
 
 	
@@ -279,6 +295,7 @@ public class APT_SANManagementHelper extends DriverHelper{
 		String dirPath = downloadspath; 
 		File dir = new File(dirPath);
 		File[] files = dir.listFiles();
+		try {
 		if (files.length == 0 || files == null) {
 			System.out.println("The directory is empty");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Downloads folder is empty");
@@ -293,6 +310,10 @@ public class APT_SANManagementHelper extends DriverHelper{
 				flag = true;
 			}
 		}
+		}
+		catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Downloads folder path '"+dirPath+"' is not found");
+		}
 		return flag;
 	}
 	
@@ -302,7 +323,7 @@ public class APT_SANManagementHelper extends DriverHelper{
 		WebElement element = null;
 
 		try {
-			Thread.sleep(1000);
+			waitforPagetobeenable();
 			element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")); 
 			String ele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 			if(element==null)
@@ -329,7 +350,7 @@ public class APT_SANManagementHelper extends DriverHelper{
 	public void verifysuccessmessage(String application, String expected) throws InterruptedException {
 		
 		scrollToTop();
-		Thread.sleep(3000);
+		waitforPagetobeenable();
 		try {	
 			
 			boolean successMsg=getwebelement(xml.getlocator("//locators/" + application + "/alertMsg")).isDisplayed();
@@ -342,11 +363,13 @@ public class APT_SANManagementHelper extends DriverHelper{
 					
 					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 					System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+					successScreenshot(application);
 					
 				}else {
 					
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 					System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+					successScreenshot(application);
 				}
 				
 			}else {
@@ -365,7 +388,7 @@ public class APT_SANManagementHelper extends DriverHelper{
 	public void cleartext(String application, String labelname, String xpath) throws InterruptedException, DocumentException {
 		WebElement element= null;
 		try {
-			Thread.sleep(1000);
+			waitforPagetobeenable();
 			element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 			String value= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 			if(element==null)

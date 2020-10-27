@@ -24,7 +24,7 @@ public class APT_MCS_CreateAccessCoreDevice_VoiceGateway extends DriverTestcase 
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));
+		Login.APT_Login_1(map.get("url for the Product"));
 		
 		logger= ExtentTestManager.startTest ("verifyNavigationToCreateAccessCoreDevicepage_VoiceGateway");
 			APT_CreateVoiceGatewayDeviceHelper.get().navigatetomanagecoltnetwork("CreateAccessCoreDevice");
@@ -43,7 +43,7 @@ public class APT_MCS_CreateAccessCoreDevice_VoiceGateway extends DriverTestcase 
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessageforVoiceGatewayDevice_"+devicename);
-			APT_CreateVoiceGatewayDeviceHelper.get().verifyDeviceCreationMessage("CreateAccessCoreDevice");
+			APT_CreateVoiceGatewayDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device created successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyEnteredValueForVoiceGatewayDevice_"+devicename);
@@ -68,7 +68,7 @@ public class APT_MCS_CreateAccessCoreDevice_VoiceGateway extends DriverTestcase 
 			ExtentTestManager.endTest(); 
 	
 		logger= ExtentTestManager.startTest ("verifyDeviceUpdationSuccessMessagefor_voiceGatewayDevice");
-			APT_CreateVoiceGatewayDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
+			APT_CreateVoiceGatewayDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device updated successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyUpdatedValueForDevice_"+devicename);

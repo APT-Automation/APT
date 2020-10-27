@@ -1,10 +1,9 @@
 @Echo off
 cd..
-SET LOGFILE2=D:\APT_phase1_deliverable24082020\APTAutomationProject\Logs\logfile.log
+SET LOGFILE2=D:\APT_Phase1_Automation_Project_Deliverables\APTAutomationProject/Logs/consoleLogger.log
 call :Logit >> %LOGFILE2%
 exit /b 0
 :Logit
-set projectpath=D:\APT_phase1_deliverable24082020\APTAutomationProject
-set classpath=%projectpath%\bin;%projectpath%\lib\*
-java org.testng.TestNG Suite\NGINmessage.xml
-pause 
+set projectpath=D:\APT_Phase1_Automation_Project_Deliverables\APTAutomationProject
+set classpath=%projectpath%\bin;%projectpath%\lib\*;%projectpath%\reportng\*
+java org.testng.TestNG Suite\NGINmessage.xml 

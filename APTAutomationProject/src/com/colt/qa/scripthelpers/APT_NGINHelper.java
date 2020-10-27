@@ -285,6 +285,7 @@ public class APT_NGINHelper extends DriverHelper {
 		//Create service
 		ScrolltoElement(application, "createorderservice_header", xml);
 		click_commonMethod(application, "select order switch", "selectorderswitch", xml);
+		Thread.sleep(1000);
 		addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", orderno, xml);
 		
 		boolean availability1=false;
@@ -432,24 +433,43 @@ public class APT_NGINHelper extends DriverHelper {
 	}
 
 
-	public void verifyCustomerDetailsInformation(String application, String name, String maindomain, String country, String ocn,
+	public void verifyCustomerDetailsInformation(String application, String newCustomerCreation, String existingCustomerSelection,String newCustomer,
+			String existingCustomer, String maindomain, String country, String ocn,
 			String reference, String tcn, String type, String email, String phone, String fax)
 					throws InterruptedException, DocumentException, IOException {
-
+		
+		
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer informations");
 		ScrolltoElement(application, "customerdetailsheader", xml);
-		//compareText(application, "Customer Name", "Name_Value", name, xml);
-		GetText(application, "Customer Name", "Name_Value");
-		compareText(application, "Main Domain", "MainDomain_Value", maindomain, xml);
-		compareText(application, "Country", "Country_Value", country, xml);
-		compareText(application, "OCN", "OCN_Value", ocn, xml);
-		compareText(application, "Reference", "Reference_Value", reference, xml);
-		compareText(application, "Technical Contact Name", "TechnicalContactName_Value", tcn, xml);
-		compareText(application, "Type", "Type_Value", type, xml);
-		compareText(application, "Email", "Email_Value", email, xml);
-		compareText(application, "Phone", "Phone_Value", phone, xml);
-		compareText(application, "Fax", "Fax_Value", fax, xml);
+		
+		
+		//Customer Name
+			if(newCustomerCreation.equalsIgnoreCase("Yes") || existingCustomerSelection.equalsIgnoreCase("No")) {
+				compareText(application, "Customer Name", "Name_Value", newCustomer, xml);
+				
+				compareText(application, "Country", "Country_Value", country, xml);
+				compareText(application, "OCN", "OCN_Value", ocn, xml);
+				compareText(application, "Reference", "Reference_Value", reference, xml);
+				compareText(application, "Technical Contact Name", "TechnicalContactName_Value", tcn, xml);
+				compareText(application, "Type", "Type_Value", type, xml);
+				compareText(application, "Email", "Email_Value", email, xml);
+				compareText(application, "Phone", "Phone_Value", phone, xml);
+				compareText(application, "Fax", "Fax_Value", fax, xml);
+				
+			}
+			else if(newCustomerCreation.equalsIgnoreCase("No") || existingCustomerSelection.equalsIgnoreCase("Yes")) {
+				
+				compareText(application, "Customer Name", "Name_Value", existingCustomer, xml);
+			}
+		
+		//Main Domain
+			if(maindomain.equalsIgnoreCase("Null")) {
+				Log.info("A default displays for main domain field, if no provided while creating customer");
+			}else {
+				compareText(application, "Main Domain", "MainDomain_Value", maindomain, xml);
+			}
+		
 		Log.info("=== Customer Details panel fields Verified ===");
-		sa.assertAll();
 	}
 
 	public void verifyUserDetailsInformation(String application, String Login, String Name, String Email, String Roles, String Address, String Resource)
@@ -1059,10 +1079,20 @@ public class APT_NGINHelper extends DriverHelper {
 		sa.assertAll();
 	}
 
-	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
+	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno, String editOrderSelection) 
+			throws InterruptedException, DocumentException, IOException {
 
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Edit Order' Functionality");
+		
 		ScrolltoElement(application, "userspanel_header", xml);
 
+		if(editOrderSelection.equalsIgnoreCase("No")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Edit Order is not performed");
+			Log.info("Edit Order is not performed");
+		}
+		else if(editOrderSelection.equalsIgnoreCase("Yes")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Performing Edit Order Functionality");
+		
 		//Cancel Edit order in Order panel
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
@@ -1083,9 +1113,6 @@ public class APT_NGINHelper extends DriverHelper {
 		Thread.sleep(2000);
 		addtextFields_commonMethod(application, "RFI Voiceline Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-		Log.info("Navigated to order panel in view service page");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 		//Edit Order
 		Thread.sleep(1000);
@@ -1109,101 +1136,84 @@ public class APT_NGINHelper extends DriverHelper {
 		Thread.sleep(1000);
 		ScrolltoElement(application, "userspanel_header", xml);
 		Thread.sleep(1000);
-		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-		Log.info("Navigated to order panel in view service page");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
-		compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
-		compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		if(editorderno.equalsIgnoreCase("Null")) {
+			
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order/Contract Number (Parent SID)' field is not edited");
+			Log.info("'Order/Contract Number (Parent SID)' field is not edited");
+		}else {
+			compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
+		}
+		
+		if(editvoicelineno.equalsIgnoreCase("Null")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS,"'RFI/RFQ/IP Voice Line Number' field is not edited");
+			Log.info("'RFI/RFQ/IP Voice Line Number' field is not edited");
+		}else {
+			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		}
 		Log.info("------ Edit Order is successful ------");
+		}
 
 	}
 
-	public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
+	public void verifyorderpanel_changeorder(String application, String ChangeOrder_newOrderNumber, String changevoicelineno, String changeOrderSelection_newOrder,
+			String changeOrderSelection_existingOrder, String ChangeOrder_existingOrderNumber) throws InterruptedException, DocumentException, IOException {
 
 		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-		click_commonMethod(application, "Change Order", "changeorderlink", xml);
-		compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-		List<WebElement> ChangeOrder_DropdownList= getwebelements(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist"));
-		int ChangeOrder_Dropdown_count= ChangeOrder_DropdownList.size();
-		if(ChangeOrder_Dropdown_count> 1)
-		{
-			Clickon(getwebelement("//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false'][1]"));
-			Thread.sleep(3000);
-
-			//Cancel change order
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-
-			//Change order
-			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-			click_commonMethod(application, "Change Order", "changeorderlink", xml);
-			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-			Clickon(getwebelement("//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false'][1]"));
-			Thread.sleep(3000);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected order from dropdown");
-			Log.info("Selected order from dropdown");
-			click_commonMethod(application, "OK", "changeorder_okbutton", xml);
-			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
-			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
-			Log.info("------ Change Order is successful ------");
-
+				
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Change Order' Functionality");
+		
+		if((changeOrderSelection_newOrder.equalsIgnoreCase("No")) && (changeOrderSelection_existingOrder.equalsIgnoreCase("No"))) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Change Order is not performed");
+			Log.info("Change Order is not performed");
 		}
-		else
-		{
-			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
-			click_commonMethod(application, "Order Number", "changeordernumber", xml);
-			Thread.sleep(2000);
-			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
-			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
-			Thread.sleep(3000);
-			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-
+		else if(changeOrderSelection_newOrder.equalsIgnoreCase("Yes")) {
+			
 			//Change Order
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			waitforPagetobeenable();
 			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
 			click_commonMethod(application, "Order Number", "changeordernumber", xml);
 			Thread.sleep(2000);
-			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
+			addtextFields_commonMethod(application, "Order Number", "changeordernumber", ChangeOrder_newOrderNumber, xml);
 			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
 			Thread.sleep(3000);
 			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 			click_commonMethod(application, "Create Order", "createorder_button", xml);
-			Thread.sleep(1000);
+			waitforPagetobeenable();
 			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
+			compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_newOrderNumber, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
 		}
+		else if(changeOrderSelection_existingOrder.equalsIgnoreCase("yes")) 
+		{
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Performing Change Order functionality");
+			
+			ScrolltoElement(application, "userspanel_header", xml);
+			Thread.sleep(1000);
+			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			waitforPagetobeenable();
+			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
+			Thread.sleep(1000);
+			
+				addDropdownValues_commonMethod(application, "Order/Contract Number (Parent SID)", "changeorder_chooseorderdropdown", ChangeOrder_existingOrderNumber, xml);
+				
+				click_commonMethod(application, "OK", "changeorder_okbutton", xml);
+				waitforPagetobeenable();
+				ScrolltoElement(application, "userspanel_header", xml);
+				Thread.sleep(1000);
+				compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_existingOrderNumber, xml);
+				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
+				Log.info("------ Change Order is successful ------");
+	
+		}
+		
 	}
 
 	public void verifyservicepanelInformationinviewservicepage(String application, String sid, String servicetype, String Remarks) throws InterruptedException, DocumentException, IOException {
@@ -1221,7 +1231,6 @@ public class APT_NGINHelper extends DriverHelper {
 		//Cancel edit service
 		waitforPagetobeenable();
 		ScrolltoElement(application, "orderpanelheader", xml);
-		//((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		Thread.sleep(2000);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Edit", "edit", xml);
@@ -1420,8 +1429,7 @@ public class APT_NGINHelper extends DriverHelper {
 		Thread.sleep(1000);
 		waitforPagetobeenable();
 		//Refresh link in bulk interface page
-		//scrollToTop();
-		ScrolltoElement(application, "bulkinterfaceheader", xml);
+		scrollToTop();
 		Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
 		click_commonMethod(application, "Refresh", "bulkinterface_refreshlink", xml);
@@ -1441,7 +1449,6 @@ public class APT_NGINHelper extends DriverHelper {
 			String sanadm, String reselladm) throws InterruptedException, DocumentException, IOException {
 
 		ScrolltoElement(application, "managementoptions_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		
 		compareText(application, "Management Options", "managementoptions_header", "Management Options", xml);
 
@@ -2201,7 +2208,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		click_commonMethod(application, "Add SAN", "addsan_link", xml);
 		scrollToTop();
 		waitforPagetobeenable();
-		compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
+		compareText_fromActualvalue(application, "Add SAN header", "addsan_header", "Add SAN", xml);
 		Thread.sleep(1000);
 		ScrolltoElement(application, "cancelbutton", xml);
 		Thread.sleep(2000);
@@ -2222,7 +2229,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		waitforPagetobeenable();
 		scrollToTop();
 		Thread.sleep(2000);
-		compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
+		compareText_fromActualvalue(application, "Add SAN header", "addsan_header", "Add SAN", xml);
 		addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
 		click_commonMethod(application, "Customer Name dropdown", "customername", xml);
 		Thread.sleep(1000);
@@ -2274,7 +2281,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			Thread.sleep(3000);	
 			waitforPagetobeenable();
 			ScrolltoElement(application, "addsan_header", xml);
-			compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
+			compareText_fromActualvalue(application, "Add SAN header", "addsan_header", "Add SAN", xml);
 			Thread.sleep(1000);
 
 			//Select Country from dropdown
@@ -2290,7 +2297,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step :Customer name selected is : " + SAN_Customernamevalue);
 		Log.info("Customer name selected is : " + SAN_Customernamevalue);
 		String SAN_Customername=SAN_Customernamevalue.substring(0, SAN_Customernamevalue.indexOf("(")).trim();
-		writetoexcel("src\\com\\colt\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 162, SAN_Customername);
+		writetoexcel("src\\com\\colt\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 166, SAN_Customername);
 
 		String SANNumber_CountryCode=getwebelement(xml.getlocator("//locators/" + application + "/san_number")).getAttribute("value");
 		addtextFields_commonMethod(application, "SAN Number", "san_number", sannumber, xml);
@@ -2298,7 +2305,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		String SANNumberValue= SANNumber_CountryCode+sannumber;
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step :SAN Number is dsplayed as : " + SANNumberValue);
 		Log.info("SAN Number is dsplayed as : " + SANNumberValue);
-		writetoexcel("src\\com\\colt\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 163, SANNumberValue);
+		writetoexcel("src\\com\\colt\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 167, SANNumberValue);
 
 		//Select service profile from dropdown
 		addDropdownValues_commonMethod(application, "Service Profile", "serviceprofile", serviceprofilevalue, xml);
@@ -2311,6 +2318,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		addtextFields_commonMethod(application, "Max call duration", "maxcallduration", maxcallduration, xml);
 		//Select charge band name from dropdown
 		ScrolltoElement(application, "customer_country", xml);
+		Thread.sleep(2000);
 		addDropdownValues_commonMethod(application, "Charge Band Name", "chargebandname", chargebandname, xml);
 		addCheckbox_commonMethod(application, "payphoneblockingenabled", "Pay phone blocking enabled", payphoneblocking_checkbox, "no", xml);
 		addCheckbox_commonMethod(application, "webaccessblocked", "webAccessBlocked", webaccessblocked_checkbox, "no", xml);
@@ -2449,7 +2457,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			Thread.sleep(2000);
 			waitforPagetobeenable();
 			scrollToTop();
-			compareText(application, "Edit SAN Header", "editsan_header", "Edit SAN", xml);
+			compareText_fromActualvalue(application, "Edit SAN Header", "editsan_header", "Edit SAN", xml);
 
 			//verify Customer Name field
 			if(getwebelement(xml.getlocator("//locators/" + application + "/editsan_customername")).getAttribute("readonly")!=null)
@@ -2638,7 +2646,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			waitforPagetobeenable();
 			if(getwebelement(xml.getlocator("//locators/" + application + "/editsan_header")).isDisplayed())
 			{
-				compareText(application, "Edit SAN Header", "editsan_header", "Edit SAN", xml);
+				compareText_fromActualvalue(application, "Edit SAN Header", "editsan_header", "Edit SAN", xml);
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to Edit SAN page");
 				Log.info("Navigated to Edit SAN page");
 				ScrolltoElement(application, "cancelbutton", xml);
@@ -3060,7 +3068,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				click_commonMethod(application, "Add SAN", "addsan_link", xml);
 				waitforPagetobeenable();
 				scrollToTop();
-				compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
+				compareText_fromActualvalue(application, "Add SAN header", "addsan_header", "Add SAN", xml);
 
 				addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
 				click_commonMethod(application, "Customer Name dropdown", "customername", xml);
@@ -3142,7 +3150,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 					Thread.sleep(3000);	
 					waitforPagetobeenable();
 					ScrolltoElement(application, "addsan_header", xml);
-					compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
+					compareText_fromActualvalue(application, "Add SAN header", "addsan_header", "Add SAN", xml);
 					Thread.sleep(1000);
 
 					//Select Country from dropdown
@@ -3157,7 +3165,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				String SAN_Customernamevalue= getwebelement(xml.getlocator("//locators/" + application + "/customername_selectedtext")).getText();
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Step :Customer name selected is : " + SAN_Customernamevalue);
 				String SAN_Customername=SAN_Customernamevalue.substring(0, SAN_Customernamevalue.indexOf("(")).trim();
-				writetoexcel("src\\com\\colt\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 162, SAN_Customername);
+				writetoexcel("src\\com\\colt\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 166, SAN_Customername);
 
 				String SANNumber_CountryCode=getwebelement(xml.getlocator("//locators/" + application + "/san_number")).getAttribute("value");
 				addtextFields_commonMethod(application, "SAN Number", "san_number", sannumbervalue1, xml);
@@ -3833,7 +3841,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		click_commonMethod(application, "Add SAN", "addsan_link", xml);
 		scrollToTop();
 		waitforPagetobeenable();
-		compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
+		compareText_fromActualvalue(application, "Add SAN header", "addsan_header", "Add SAN", xml);
 
 		addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
 		click_commonMethod(application, "Customer Name dropdown", "customername", xml);
@@ -3917,7 +3925,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			Thread.sleep(3000);	
 			waitforPagetobeenable();
 			ScrolltoElement(application, "addsan_header", xml);
-			compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
+			compareText_fromActualvalue(application, "Add SAN header", "addsan_header", "Add SAN", xml);
 			Thread.sleep(1000);
 
 			//Select Country from dropdown
@@ -3932,7 +3940,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		String SAN_Customernamevalue= getwebelement(xml.getlocator("//locators/" + application + "/customername_selectedtext")).getText();
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step :Customer name selected is : " + SAN_Customernamevalue);
 		String SAN_Customername=SAN_Customernamevalue.substring(0, SAN_Customernamevalue.indexOf("(")).trim();
-		writetoexcel("src\\com\\colt\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 162, SAN_Customername);
+		writetoexcel("src\\com\\colt\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 166, SAN_Customername);
 
 		String SANNumber_CountryCode=getwebelement(xml.getlocator("//locators/" + application + "/san_number")).getAttribute("value");
 		addtextFields_commonMethod(application, "SAN Number", "san_number", bulkmove_sannumber1, xml);
@@ -4009,7 +4017,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		click_commonMethod(application, "Add SAN", "addsan_link", xml);
 		waitforPagetobeenable();
 		scrollToTop();
-		compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
+		compareText_fromActualvalue(application, "Add SAN header", "addsan_header", "Add SAN", xml);
 
 		addDropdownValues_commonMethod(application, "Country", "customer_country", country, xml);
 		click_commonMethod(application, "Customer Name dropdown", "customername", xml);
@@ -4093,7 +4101,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			Thread.sleep(3000);	
 			waitforPagetobeenable();
 			ScrolltoElement(application, "addsan_header", xml);
-			compareText(application, "Add SAN header", "addsan_header", "Add SAN", xml);
+			compareText_fromActualvalue(application, "Add SAN header", "addsan_header", "Add SAN", xml);
 			Thread.sleep(1000);
 
 			//Select Country from dropdown
@@ -4330,6 +4338,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			{
 				click_commonMethod(application, "Delete", "deletebutton", xml);
 				Thread.sleep(2000);
+				waitforPagetobeenable();
 				verifysuccessmessage(application, "San deleted Successfully");
 				Thread.sleep(1000);
 				ScrolltoElement(application, "customerheader", xml);
@@ -4374,6 +4383,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			{
 				click_commonMethod(application, "Delete", "deletebutton", xml);
 				Thread.sleep(2000);
+				waitforPagetobeenable();
 				verifysuccessmessage(application, "Customer successfully deleted.");
 			}
 			else
@@ -4408,6 +4418,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 			{
 				click_commonMethod(application, "Delete", "deletebutton", xml);
 				Thread.sleep(2000);
+				waitforPagetobeenable();
 				verifysuccessmessage(application, "Reseller successfully deleted.");
 			}
 			else
@@ -4430,6 +4441,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		{
 			click_commonMethod(application, "Delete", "deletebutton", xml);
 			Thread.sleep(2000);
+			waitforPagetobeenable();
 			verifysuccessmessage(application, "Service successfully deleted");
 		}
 		else
@@ -4643,11 +4655,13 @@ public void verify_EditReseller(String application, String ocn, String editemail
 				
 				ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 				System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+				successScreenshot(application);
 				
 			}else {
 				
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 				System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+				successScreenshot(application);
 			}
 			
 		}else {
@@ -4662,5 +4676,85 @@ public void verify_EditReseller(String application, String ocn, String editemail
 	}
 
 }
+	
+	/**
+	 *  For Comparing the value from actual value 
+	 * @param application
+	 * @param labelname
+	 * @param xpath
+	 * @param ExpectedText
+	 * @param xml
+	 * @throws InterruptedException
+	 * @throws DocumentException
+	 */
+	public void compareText_fromActualvalue(String application, String labelname, String xpath, String ExpectedText, XMLReader xml) throws InterruptedException, DocumentException {
+
+		String text = null;
+		WebElement element = null;
+
+		try {
+			Thread.sleep(1000);
+			element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
+			String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
+			if(element==null)
+			{
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+			}
+			else if (emptyele!=null && emptyele.isEmpty()) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+			}else 
+			{
+				   
+				text = element.getText();
+				if((text.contains(" ")) ||  text.contains("-")) {
+					
+					String[] actualTextValue=text.split(" ");
+					String[] expectedValue =ExpectedText.split(" ");
+					
+					if(expectedValue[0].equalsIgnoreCase(actualTextValue[0])) {
+						ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					}
+					else if(expectedValue[0].contains(actualTextValue[0])) {
+						ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					
+					}
+					else
+					{
+						ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+					}
+					
+				}else {
+					if(ExpectedText.equalsIgnoreCase(text)) {
+						ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					}
+					else if(ExpectedText.contains(text)) {
+						ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					
+					}
+					else if(text.contains(ExpectedText)) {
+						ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					
+					}
+					else
+					{
+						ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+					}
+				}
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
+			Log.info(labelname + " field is not displaying");
+		}
+
+	}
+	
 
 }

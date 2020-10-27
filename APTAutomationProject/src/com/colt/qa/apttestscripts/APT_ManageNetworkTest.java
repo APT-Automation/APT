@@ -19,7 +19,7 @@ public class APT_ManageNetworkTest extends DriverTestcase{
 	public void managenetwork(Map<String, String> map) throws Exception {
 		
 		setup();	
-		Login.APT_Login_1(map.get("url"));
+		Login.APT_Login_1(map.get("url for the product"));
 		
 		logger= ExtentTestManager.startTest ("ManageNetwork");
 		APT_ManageNetworkHelper.get().searchdevice("ManageNetwork", map.get("DeviceName"));

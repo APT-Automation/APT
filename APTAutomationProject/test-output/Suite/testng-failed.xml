@@ -3,15 +3,23 @@
 <suite name="Failed suite [Suite]">
   <test name="Test(failed)">
     <classes>
-      <class name="com.colt.qa.apttestscripts.APT_DomainManagementTest">
+      <class name="com.colt.qa.apttestscripts.PerformOrder_Supply">
         <methods>
-          <include name="getResult"/>
-          <include name="DomainManagementService" invocation-numbers="0"/>
-          <include name="BeforeMethod"/>
+          <include name="Verify_serivceOrderCreationforCustomer"/>
+          <include name="deleteFunctionality"/>
+          <include name="Verify_Subscribers"/>
           <include name="startReport"/>
+          <include name="Verify_SupplyServiceFromOneCustomerToOtherCustomer1"/>
           <include name="BeforeSuite"/>
         </methods>
-      </class> <!-- com.colt.qa.apttestscripts.APT_DomainManagementTest -->
+      </class> <!-- com.colt.qa.apttestscripts.PerformOrder_Supply -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CustomerFunctionality">
+        <methods>
+          <include name="getResult"/>
+          <include name="Verify_CreateCustomerFunctionality" invocation-numbers="0"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CustomerFunctionality -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

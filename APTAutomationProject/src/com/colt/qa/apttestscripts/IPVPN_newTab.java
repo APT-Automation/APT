@@ -16,7 +16,7 @@ public class IPVPN_newTab extends DriverTestcase {
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));
+		Login.APT_Login_1(map.get("url for the Product"));
 		
 		String interfaceName = "Null";
 		String interfaceCreation = "Null";

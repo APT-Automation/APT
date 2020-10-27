@@ -26,27 +26,28 @@ public class APT_DomainManagementTest extends DriverTestcase{
 	public void DomainManagementService(Map<String, String> map) throws Exception {
 		
 		setup();	
-		Login.APT_Login_1(map.get("url"));
+		Login.APT_Login_1(map.get("url for the product"));
 		
         String newCustomerName=map.get("newCustomerCreation");
         String existingCustomer=map.get("existingCustomerSelection");
         
         if(newCustomerName.equalsIgnoreCase("yes") && existingCustomer.equalsIgnoreCase("no")) {
               
-              logger= ExtentTestManager.startTest ("CreateCustomer");
+              logger= ExtentTestManager.startTest ("CreateCustomer - Domain Management");
               APT_DomainManageHelper.get().createcustomer("DomainManagementservice", map.get("newCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), 
                           map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), 
                           map.get("Fax"));
               CustomerName=map.get("newCustomer");
+              ExtentTestManager.endTest();
               
-              logger= ExtentTestManager.startTest ("selectNewCustomer");
+              logger= ExtentTestManager.startTest ("selectNewCustomer - Domain Management");
               APT_DomainManageHelper.get().selectCustomertocreateOrder("DomainManagementservice",map.get("newCustomer"));
               ExtentTestManager.endTest();
               
         }
         else if(newCustomerName.equalsIgnoreCase("no") && existingCustomer.equalsIgnoreCase("Yes")) {
               
-              logger= ExtentTestManager.startTest ("selectExistingCustomer"); 
+              logger= ExtentTestManager.startTest ("selectExistingCustomer - Domain Management"); 
               APT_DomainManageHelper.get().selectCustomertocreateOrder("DomainManagementservice",map.get("existingCustomer"));
               CustomerName=map.get("existingCustomer");
               ExtentTestManager.endTest();
@@ -70,10 +71,17 @@ public class APT_DomainManagementTest extends DriverTestcase{
 				, map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ServiceType"));
 		ExtentTestManager.endTest();
 		
+		logger= ExtentTestManager.startTest ("verifyCustomerDetailsInformation");
+		APT_DomainManageHelper.get().verifyCustomerDetailsInformation("DomainManagementservice", map.get("newCustomerCreation"), map.get("existingCustomerSelection"),
+				map.get("newCustomer"),	map.get("existingCustomer"),
+				map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"), 
+				map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
+		ExtentTestManager.endTest();
 		
 		logger= ExtentTestManager.startTest ("verifyorderpanelinviewservicepage");
-		APT_DomainManageHelper.get().verifyorderpanel_editorder("DomainManagementservice", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
-		APT_DomainManageHelper.get().verifyorderpanel_changeorder("DomainManagementservice", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"));
+		APT_DomainManageHelper.get().verifyorderpanel_editorder("DomainManagementservice", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
+		APT_DomainManageHelper.get().verifyorderpanel_changeorder("DomainManagementservice", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
+				map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));
 		ExtentTestManager.endTest();
 		
 		

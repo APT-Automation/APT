@@ -30,7 +30,7 @@ public class APT_MCS_CreateAccessCoreDevice_CoreRouter extends DriverTestcase {
 			
 			setup();	
 			
-			Login.APT_Login_1(map.get("url"));	
+			Login.APT_Login_1(map.get("url for the Product"));	
 		
 		logger= ExtentTestManager.startTest ("verifyNavigationToCreateAccessCoreDevicepage_Access Router");	
 			APT_CreateCoreRouterDeviceHelper.get().navigatetomanagecoltnetwork("CreateAccessCoreDevice");
@@ -49,7 +49,7 @@ public class APT_MCS_CreateAccessCoreDevice_CoreRouter extends DriverTestcase {
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessageforCoreRouterDevice_"+devicename);
-			APT_CreateCoreRouterDeviceHelper.get().verifyDeviceCreationMessage("CreateAccessCoreDevice");
+			APT_CreateCoreRouterDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device created successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyEnteredValueForCoreRouterDevice");
@@ -61,7 +61,9 @@ public class APT_MCS_CreateAccessCoreDevice_CoreRouter extends DriverTestcase {
 				map.get("Country"), map.get("Management Address"), map.get("ExistingCity"), map.get("ExistingCityValue"), map.get("ExistingSite"),
 				map.get("Existing SiteValue"), map.get("ExistingPremise"), map.get("Existing PremiseValue"), map.get("NewCity"), map.get("NewCityName"), map.get("NewCityCode"), 
 				map.get("NewSiteName"),map.get("NewSiteCode"), map.get("NewPremiseName"), map.get("NewPremiseCode"), map.get("NewSite"), map.get("NewPremise"));
-		
+			ExtentTestManager.endTest();
+			
+			
 		logger= ExtentTestManager.startTest ("editCoreRouterDevice_"+devicename);
 			APT_CreateCoreRouterDeviceHelper.get().verifydeviceEdit_AccessRouter("CreateAccessCoreDevice", map.get("editdeviceName"), map.get("DeviceType"),
 				map.get("editVendorModel"), map.get("editRouterID"), map.get("editModularMSP"), map.get("editFullIQNET"), map.get("editIOSXR"), map.get("editTelnet"),
@@ -74,7 +76,7 @@ public class APT_MCS_CreateAccessCoreDevice_CoreRouter extends DriverTestcase {
 			
 	
 		logger= ExtentTestManager.startTest ("verifyDeviceUpdationSuccessMessagefor_coreRouterDevice_"+devicename);
-			APT_CreateCoreRouterDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
+			APT_CreateCoreRouterDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device updated successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyUpdatedValueForCoreRouterDevice_"+devicename);

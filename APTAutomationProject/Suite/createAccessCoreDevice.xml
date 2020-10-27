@@ -4,6 +4,12 @@
 <suite name="APT Test Suite" thread-count="5" data-provider-thread-count="1" verbose="4" parallel="tests">
 
     
+	<listeners>
+	  <listener class-name="com.colt.qa.listeners.TestListener"/>
+	   <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+    
 	<test name="createAccessCoreDevice_AccessRouter">
 		<classes>
 			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter" />
@@ -80,19 +86,13 @@
 	
 	<test name="CreateAccessCoreDevice_VoiceGateway">
 		<classes>
-			<class name="com.colt.qa.apttestscripts.CreateAccessCoreDevice_VoiceGateway" />
+			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VoiceGateway" />
 		</classes>
 	</test>
 	
 	<test name="CreateAccessCoreDevice_VOIPAccessDASSwitch">
 		<classes>
 			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VOIPAccessDASSwitch" />
-		</classes>
-	</test>
-	
-	<test name="createAccessCoreDevice_AccessSwitch">
-		<classes>
-			<class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessSwitch" />
 		</classes>
 	</test>
 	

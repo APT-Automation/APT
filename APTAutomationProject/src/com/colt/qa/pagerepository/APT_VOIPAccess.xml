@@ -29,7 +29,7 @@
 <enablededicatedportalcheckbox>//*[text()='Enable Dedicated Portal']/following-sibling::div//input</enablededicatedportalcheckbox>
 <dedicatedportaldropdown>//div[label[text()='Dedicated Portal']]//input</dedicatedportaldropdown>
 <okbutton>//span[contains(text(),'OK')]</okbutton>
-<customercreationsuccessmsg>//div[@role='alert']//span</customercreationsuccessmsg>
+<customercreationsuccessmsg>//span[contains(text(),'Customer successfully created.')]</customercreationsuccessmsg>
 <clearbutton>//span[text()='Clear']</clearbutton>
 <clearcountryvalue>//label[text()='Country']/parent::div//div[text()='×']</clearcountryvalue>
 <cleartypevalue>//label[text()='Type']/parent::div//div[text()='×']</cleartypevalue>
@@ -245,6 +245,11 @@
 <changeorder_selectorderswitch>//div[@class='react-switch-bg']</changeorder_selectorderswitch>
 <changeorder_chooseorderdropdown>(//label[text()='Order/Contract Number (Parent SID)']/following-sibling::div//div[1])[1]</changeorder_chooseorderdropdown>
 <RFIRFQIPVoiceLineNumberText>//label[contains(text(),'RFI/RFQ/IP Voice Line Number')]</RFIRFQIPVoiceLineNumberText>
+
+<changeorder_dropdownlist>//div[@class='sc-bxivhb kqVrwh']/div</changeorder_dropdownlist>
+<changeorder_dropdownvalue>(//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//div/div/div/div)[1]</changeorder_dropdownvalue>
+
+
 <changeorder_backbutton>//span[contains(text(),'Back')]</changeorder_backbutton>
 <changeorder_okbutton>//span[contains(text(),'OK')]</changeorder_okbutton>
 <editorderheader>//div[text()='Edit Order']</editorderheader>
@@ -253,11 +258,8 @@
 <editorder_okbutton>(//span[contains(text(),'OK')])[1]</editorder_okbutton>
 <changeorderheader>//div[text()='Change Order']</changeorderheader>
 <createorder_button>//button//span[text()='Create Order']</createorder_button>
-<changeorder_dropdownlist>//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//div/div/div/div</changeorder_dropdownlist>
 <orderupdate_successmsg>//div[@role='alert']//span[text()='Order successfully updated']</orderupdate_successmsg>
 <ChangeOrder_successmsg>//div[@role='alert']//span[text()='Order successfully  changed.']</ChangeOrder_successmsg>
-
-
 
 
 <!-- service panel fields and actions list in view service page -->
@@ -1105,7 +1107,6 @@
 
 <!-- DISASTER RECOVERY -->
 <bulkinterfaceheader>//div[text()='Bulk Interface']</bulkinterfaceheader>
-<bulkjob_choosefilebutton>//label[text()='Submit Bulk Job']/parent::div/parent::div//input</bulkjob_choosefilebutton>
 <bulkjobsubmit>//span[text()='Submit']</bulkjobsubmit>
 <bulkjobcancel>(//span[text()='Cancel'])[1]</bulkjobcancel>
 <bulkinterfacelink>//a[text()='Bulk Interface']</bulkinterfacelink>
@@ -1197,8 +1198,10 @@
 <addedDRplan_tablelist>(//div[text()='value']/parent::div/following-sibling::div[@class='ag-div-margin row'])[1]//div[@ref='eBodyContainer']</addedDRplan_tablelist>
 <addedDRplan_rangestart>(//div[text()='value']/parent::div/following-sibling::div[@class='ag-div-margin row'])[1]//div[@ref='eBodyContainer']//div[@role='row']//div[@col-id='rangeStart']</addedDRplan_rangestart>
 
+<viewpage_backbutton>//span[text()='Back']</viewpage_backbutton>
+
 <!--  DR Plans Bulk Interface -->
-<DRplans_bulkinterface_link>//a/span[text()='DR Plans Bulk Interface ']</DRplans_bulkinterface_link>
+<DRplans_bulkinterface_link>//a/span[text()='DR Plans Bulk Interface']</DRplans_bulkinterface_link>
 <bulkinterfaceheader>//div[text()='Bulk Interface']</bulkinterfaceheader>
 <bulkjob_choosefilebutton>//label[text()='File:']/parent::div/parent::div/following-sibling::div//input</bulkjob_choosefilebutton>
 <bulkjobsubmit>//span[text()='Submit']</bulkjobsubmit>
@@ -1235,150 +1238,7 @@
 
 
 
+
 </voipservice>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<wholesaleService>
-<!--  Service creation -->
-<servicetypeDropdown>//div[label[text()='Service Type']]//input</servicetypeDropdown>
-<Nextbutton>//span[text()='Next']</Nextbutton>
-<OKbutton>//span[contains(text(),'OK')]</OKbutton>
-<serviceIdentificationWarningmsg>//div[text()='Service Identification']</serviceIdentificationWarningmsg>
-<secivceIdentification_textField>//div[label[text()='Service Identification']]//input</secivceIdentification_textField>
-<sericetype_defaultvalue>//div[@class='customLabelValue form-label']</sericetype_defaultvalue>
-<remark_textField>//div[label[text()='Remark']]//textarea</remark_textField>
-<Email_textfield>//div[label[contains(text(),'Email')]]//input</Email_textfield>
-<Email_addButton>//div[div[label[text()='Email']]]/following-sibling::div//span[text()='>>']</Email_addButton>
-<Phone_textField></Phone_textField>
-<phoneContact_addButton>//div[div[label[text()='Phone Contact']]]/following-sibling::div//span[text()='>>']</phoneContact_addButton>
-<phoneContact_TextField>//div[label[text()='Phone Contact']]//input</phoneContact_TextField>
-<ImproperEmail_errValidationmsg>//div[text()='Email']</ImproperEmail_errValidationmsg>
-<performanceReporting_checkbox>//div[label[text()='Performance Reporting']]//input</performanceReporting_checkbox>
-
-<!--  Edit Service -->
-<OrderPanel>//div[div[text()='Order']]</OrderPanel>
-<ActionDropdown_InViewPage>//div[div[text()='Service']]//button[text()='Action']</ActionDropdown_InViewPage>
-<editLink_InViewPage>//a[text()='Edit']</editLink_InViewPage>
-<editSerivcePage_pnaleHeader>//div[div[p[text()='Edit Service']]]</editSerivcePage_pnaleHeader>
-
-<!--  success Message -->
-<alertMsg>(//div[@role='alert'])[1]</alertMsg>
-<AlertForServiceCreationSuccessMessage>(//div[@role='alert']/span)[1]</AlertForServiceCreationSuccessMessage>
-
-
-
-
-
-
-
-<!--  trunk creation -->
-<!-- NO Use -->
-<trafficDirection_Dropdown>//select[@id='trafficDirection']</trafficDirection_Dropdown>
-<routepriority_Dropdown>//select[@id='routepriority']</routepriority_Dropdown>
-<PSPSGname_Dropdown>//select[@id='pspgnamecvnh']</PSPSGname_Dropdown>ressReachability_Dropdown>
-<globalProfile_Dropdown>//select[@id='e164GlobalProfile']</globalProfile_Dropdown>
-<localProfile_Dropdown>//select[@id='e164LocalProfile']</localProfile_Dropdown>
-<preferredPSP_Dropdown>//select[@id='preferredpsp']</preferredPSP_Dropdown>
-<carriers_Dropdown>//select[@id='carrierIdNH']</carriers_Dropdown>
-<IPsignallingProfile_Dropdown>//select[@id='ipsigProfId']</IPsignallingProfile_Dropdown>
-<EgressIpsignal_Dropdown>//select[@id='iptgipsigProfId']</EgressIpsignal_Dropdown>
-<InDMPMrule_Dropdown>//select[@id='indmpmrule']</InDMPMrule_Dropdown>
-<OutDMPMrule_Dropdown>//select[@id='outdmpmrule']</OutDMPMrule_Dropdown>
-<featureControlprofile_Dropdown>//select[@id='featurecontrolprofile']</featureControlprofile_Dropdown>
-<localRingBackTone_Dropdown>//select[@id='localringbacktone']</localRingBackTone_Dropdown>
-<retryinvite_textField>//input[@id='retryinvite']</retryinvite_textField>
-<defaultTextMessageUnderretryInvite>//div[label[text()='Retry Invite']]/div</defaultTextMessageUnderretryInvite>
-<prefix_textField>//input[@id='prefix']</prefix_textField>
-<carrierIPterminating_textField>//input[@id='ipField']</carrierIPterminating_textField>
-<carrierIPterminating_addedValue_selectDropdownField>//select[@id='selecteddrPbxRange']</carrierIPterminating_addedValue_selectDropdownField>
-<globalProfile_textField>//input[@id='e164GlobalProfileValue']</globalProfile_textField>
-<localProfile_TextField>//input[@id='e164LocalProfileValue']</localProfile_TextField>
-<PSPGname_TextField>//input[@id='pspgnamecvnhValue']</PSPGname_TextField>
-<preferredPSP_TextField>//input[@id='preferredpspValue']</preferredPSP_TextField>
-
-<InDMPMrule_TextField>//input[@id='indmpmruleValue']</InDMPMrule_TextField>
-<OutDMPMrule_TextField>//input[@id='outdmpmruleValue']</OutDMPMrule_TextField>
-<featureControlprofile_TextField>//input[@id='featurecontrolprofileValue']</featureControlprofile_TextField>
-<localRingBackTone_TextField>//input[@id='localringbacktoneValue']</localRingBackTone_TextField>
-<globalProfile_Checkbox>//input[@id='e164GlobalProfileCheck']</globalProfile_Checkbox>
-<localProfile_checkbox>//input[@id='e164LocalProfileCheck']</localProfile_checkbox>
-<PSPGname_Checkbox>//input[@id='pspgnamecvnhcheck']</PSPGname_Checkbox>
-<preferredPSP_checkbox>//input[@id='preferredpspcheck']</preferredPSP_checkbox>
-
-<InDMPMrule_checkbox>//input[@id='indmpmrulecheck']</InDMPMrule_checkbox>
-<OutDMPMrule_checkbox>//input[@id='outdmpmrulecheck']</OutDMPMrule_checkbox>
-<featureControlprofile_Checkbox>//input[@id='featurecontrolprofilecheck']</featureControlprofile_Checkbox>
-<localRingBackTone_checkbox>//input[@id='localringbacktonecheck']</localRingBackTone_checkbox>
-<createLowerCaseRoute_checkbox>//input[@id='createLowerCaseRoutes']</createLowerCaseRoute_checkbox>
-<PSXmanualConfig_checkbox>//input[@id='psxManualConfigCheckTG']</PSXmanualConfig_checkbox>
-<GSXmanualConfig_checkbox>//input[@id='gsxManualConfigCheck']</GSXmanualConfig_checkbox>
-<allocatePrefix_button>//span[contains(text(),'Allocate Prefix')]</allocatePrefix_button>
-<carrierIPterminating_addButton>//div[div[div[contains(text(),'Carrier IP Terminating')]]]/following-sibling::div//span[text()='>>']</carrierIPterminating_addButton>
-
-
-
-
-</wholesaleService>
 </locators>

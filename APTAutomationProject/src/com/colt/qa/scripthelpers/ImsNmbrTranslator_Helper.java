@@ -734,7 +734,7 @@ public class ImsNmbrTranslator_Helper extends DriverHelper{
 			
 			public void uploadUpdatefile (String application, String filepath) throws Exception 
 			{
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Verifying Upload Update file Service Area Link and Fields");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Upload Update file Service Area Link and Fields");
 				
 				click_commonMethod(application, "Upload Update File", "Uploadupdatefile", xml);		//click on upload update file link
 				Thread.sleep(2000);
@@ -1203,6 +1203,8 @@ public String viewPage_country(String application, String countryName) {
 			Log.info("'Number Translation' file is deleted");
 		}catch(Exception e) {
 			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Number Translation' file is not created");
+			Log.info("'Number Translation' file is not created");
 		}
 		
 	}

@@ -16,9 +16,9 @@ public class APT_SANManagementTest extends DriverTestcase{
 	@Test(description = "TC-01",dataProviderClass = DataReader.class, dataProvider = "Finaldatareader_SANManagement", priority=1)
 	 public void verifySearchforSAN(Map<String, String> map) throws Exception {
 		
-		setup();	
-		Login.APT_Login_1(map.get("url"));
-		logger= ExtentTestManager.startTest ("verifySearchforSAN");
+		setup();
+		Login.APT_Login_1(map.get("url for the product"));
+		logger= ExtentTestManager.startTest ("verifySearchforSAN - SAN Management");
 		APT_SANMgmtHelper.get().verifySearchSAN("sanmgmt", map.get("Search_SANNumber"), map.get("SearchSANfilename"), map.get("Browserfiles_Downloadspath"));
 		ExtentTestManager.endTest();
 	

@@ -24,7 +24,7 @@ public class APT_MCS_CreateAccessCoreDevice_DCNDevice extends DriverTestcase {
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));
+		Login.APT_Login_1(map.get("url for the Product"));
 		
 
 		logger= ExtentTestManager.startTest ("verifyNavigationToCreateAccessCoreDevicePage_DCN Device");
@@ -44,7 +44,7 @@ public class APT_MCS_CreateAccessCoreDevice_DCNDevice extends DriverTestcase {
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessageforDCNDevice_"+devicename);
-			APT_CreateDCNDeviceHelper.get().verifyDeviceCreationMessage("CreateAccessCoreDevice");
+			APT_CreateDCNDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device created successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyEnteredValueForDCNDevice_"+devicename);
@@ -69,7 +69,7 @@ public class APT_MCS_CreateAccessCoreDevice_DCNDevice extends DriverTestcase {
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyDeviceUpdationMessageforDCNDevice_"+devicename);
-			APT_CreateDCNDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
+			APT_CreateDCNDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device updated successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyUpdatedValueForDevice_"+devicename);

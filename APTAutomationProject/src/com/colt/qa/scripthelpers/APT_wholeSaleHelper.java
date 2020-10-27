@@ -233,7 +233,7 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 		scrolltoend();
 		Thread.sleep(2000);
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Nextbutton")));
+		click_commonMethod(application, "Next", "Nextbutton", xml);
 		Thread.sleep(2000);
 		
 	}
@@ -3211,6 +3211,9 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 	 */
 	public void verifyAddMASswitch(String application, String MAS_IMSPOPLocation) throws InterruptedException, DocumentException, IOException {
 
+		waitforPagetobeenable();
+		Thread.sleep(1000);
+		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Add MAS Switch' Functionality");
 		
 		WebElement managementOptions_header= getwebelement(xml.getlocator("//locators/" + application + "/managementOptionsPanelheader"));
@@ -6220,7 +6223,8 @@ public void selectInterface_AndDelete_MASswitch(String application, String devic
                    Log.info("Delete alert popup is not displayed");
                    ExtentTestManager.getTest().log(LogStatus.FAIL, " Delete alert popup is not displayed");
              }
-             compareText(application, "Device delete success message", "MAS_deleteSuccessMessage", "Interface deleted successfully", xml);
+
+             verifysuccessmessage(application, "Interface deleted successfully");
              
              
 		  }else {
@@ -6251,8 +6255,8 @@ public void selectInterface_AndDelete_MASswitch(String application, String devic
 	                   Log.info("Delete alert popup is not displayed");
 	                   ExtentTestManager.getTest().log(LogStatus.FAIL, " Delete alert popup is not displayed");
 	             }
-	             compareText(application, "Device delete success message", "MAS_deleteSuccessMessage", "Interface deleted successfully", xml);
-	             
+
+	             verifysuccessmessage(application, "Interface deleted successfully"); 
 
 			  }else {
 				  ExtentTestManager.getTest().log(LogStatus.FAIL, interfaceName + " is not displaying under 'MAS Switch' for the device "+ deviceName);

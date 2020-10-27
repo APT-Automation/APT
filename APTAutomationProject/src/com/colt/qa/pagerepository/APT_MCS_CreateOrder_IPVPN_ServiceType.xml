@@ -793,7 +793,7 @@
 
 <Togglebutton>(//div[@class='react-switch-bg'])[1]</Togglebutton>
 
-<AddPrimierToggle>(//div[@class='react-switch-bg'])[2]</AddPrimierToggle>
+<AddPrimierToggle>(//div[@class='react-switch-bg'])[3]</AddPrimierToggle>
 
 <SelectsiteToogle>(//div[@class='react-switch-bg'])[3]</SelectsiteToogle>
 
@@ -1039,7 +1039,8 @@
 
 <SelectInterface>//div[text()='Customer Premise Equipment ( CPE ) ']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'1')]/parent::span/parent::div//following-sibling::div//span[text()='Select Interfaces']</SelectInterface>
 
-<DeleteCPE>//div[text()='Customer Premise Equipment ( CPE ) ']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'1')]/parent::span/parent::div//following-sibling::div//span[text()='Delete from Service']</DeleteCPE>
+<DeleteCPE>//div[text()='Customer Premise Equipment ( CPE ) ']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'1')]/parent::span/parent::div//following-sibling::div//span[text()='Delete']</DeleteCPE>
+<ConfigureCPE>//div[text()='Customer Premise Equipment ( CPE ) ']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'1')]/parent::span/parent::div//following-sibling::div//span[text()='Configure']</ConfigureCPE>
 
 <DeleteAny>//button[contains(@class,'btn-danger')]</DeleteAny>
 

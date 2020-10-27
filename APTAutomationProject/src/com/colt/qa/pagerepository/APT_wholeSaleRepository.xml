@@ -1133,11 +1133,11 @@ ressReachability_Dropdown>
 
 <SBCManualConfig_actionDropdown>//div[div[contains(text(),'SBC Manually Executed Configurations')]]//button</SBCManualConfig_actionDropdown>
 
-<SBC_addLink>//a[text()='Add']</SBC_addLink>
+<SBC_addLink>//a[contains(text(),'Add')]</SBC_addLink>
 
-<SBC_editLink>//a[text()='Edit']</SBC_editLink>
+<SBC_editLink>//a[contains(text(),'Edit')]</SBC_editLink>
 
-<SBC_deleteLink>//a[text()='Delete']</SBC_deleteLink>
+<SBC_deleteLink>//a[contains(text(),'Delete')]</SBC_deleteLink>
 
 <SBC_selectCreatedValue>(//div[div[text()='SBC Manually Executed Configurations']]//following-sibling::div//div[contains(text(),'manualcfg')])[1]</SBC_selectCreatedValue>
 
@@ -1162,11 +1162,11 @@ ressReachability_Dropdown>
 
 <PSX_dates>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//div[@role='gridcell'][@col-id='value']</PSX_dates>
 
-<PSX_addLink>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//a[text()='Add ']</PSX_addLink>
+<PSX_addLink>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//a[contains(text(),'Add')]</PSX_addLink>
 
-<PSX_editLink>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//a[text()='Edit ']</PSX_editLink>
+<PSX_editLink>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//a[contains(text(),'Edit')]</PSX_editLink>
 
-<PSX_deleteLink>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//a[text()='Delete ']</PSX_deleteLink>
+<PSX_deleteLink>//div[div[text()='PSX Manually Executed Configurations']]//following-sibling::div//a[contains(text(),'Delete')]</PSX_deleteLink>
 
 <!-- GSX Manual Execution panel -->
 
@@ -1183,11 +1183,11 @@ ressReachability_Dropdown>
 
 <GSX_dates>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//div[@role='gridcell'][@col-id='value']</GSX_dates>
 
-<GSX_addLink>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//a[text()='Add ']</GSX_addLink>
+<GSX_addLink>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//a[contains(text(),'Add')]</GSX_addLink>
 
-<GSX_editLink>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//a[text()='Edit ']</GSX_editLink>
+<GSX_editLink>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//a[contains(text(),'Edit')]</GSX_editLink>
 
-<GSX_deleteLink>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//a[text()='Delete ']</GSX_deleteLink>
+<GSX_deleteLink>//div[div[text()='GSX Manually Executed Configurations']]//following-sibling::div//a[contains(text(),'Delete')]</GSX_deleteLink>
 
 <GSX_editPage_SaveButton>//button/span[text()='Save']</GSX_editPage_SaveButton>
 

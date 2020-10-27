@@ -17,7 +17,7 @@ APT_Login Login=new APT_Login();
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));
+		Login.APT_Login_1(map.get("url for the Product"));
 		
 		logger = ExtentTestManager.startTest("search Device");
 		APT_searchDevice.get().clickOnSearchForDevice("searchDevice");

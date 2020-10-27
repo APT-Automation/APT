@@ -18,11 +18,11 @@ public class IMSN_Translator extends DriverTestcase{
 	   
 	   
 		@Test(dataProviderClass = DataReader.class, dataProvider = "DataReader_ManageTranslation", priority=1)
-		public void manageColtNetwork(Map<String, String> map) throws Exception {
+		public void manageNumberTranslation(Map<String, String> map) throws Exception {
 
 			setup();
 			
-			Login.APT_Login_1(map.get("url"));
+			Login.APT_Login_1(map.get("url for the Product"));
 		
 			logger = ExtentTestManager.startTest("Navigate to 'Manage Number Translation'");
 			ImsNmbrTranslator_Helper.get().selectImsTranslator("ManageColt");

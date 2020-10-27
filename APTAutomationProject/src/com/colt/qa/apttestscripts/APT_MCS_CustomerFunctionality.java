@@ -20,7 +20,7 @@ public class APT_MCS_CustomerFunctionality extends DriverTestcase{
 			
 			setup();	
 			
-			Login.APT_Login_1(map.get("url"));	
+			Login.APT_Login_1(map.get("url for the Product"));	
 			
 		logger= ExtentTestManager.startTest ("Verify_CreateCustomerFunctionality");
 			createCustomerSeparateHelper.get().navigateToCreateCustomerPage("CreateCustomer");

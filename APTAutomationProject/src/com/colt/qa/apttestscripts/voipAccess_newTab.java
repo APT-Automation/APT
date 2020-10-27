@@ -17,20 +17,30 @@ APT_Login Login=new APT_Login();
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));	
+		Login.APT_Login_1(map.get("url for the Product"));	
 		
 
 		logger= ExtentTestManager.startTest("Search Existing Service");
 		voipAccessnewtab.get().searchOrderORservice("newTab",  map.get("serviceName"));
+		ExtentTestManager.endTest();
 		
 		logger= ExtentTestManager.startTest("Add MAS switch");
 		voipAccessnewtab.get().verifyAddMASswitch("newTab", map.get("IMSpopLocation"), map.get("customerName"), map.get("serviceName"));
+		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("Edit MAS switch");
+		logger= ExtentTestManager.startTest("EditMASswitch and close child tabs");
 		voipAccessnewtab.get().editMASdevice("newTab", map.get("customerName"), map.get("serviceName"), map.get("MAS_editName"), map.get("MAS_editVendor"), map.get("MAS_manageAddress"),
 				map.get("MAS_Snmpro"));
 		
 		voipAccessnewtab.get().closeChildtab("newTab");
+		ExtentTestManager.endTest();
+		
+		
+		logger= ExtentTestManager.startTest("deleteMASdevice_wholesaleSIP");
+		APT_Helper.get().clickOnBreadCrump("wholesaleService", map.get("serviceName"));
+		APT_Helper.get().MASswitch__DeleteFromServiceFunctionality("wholesaleService", map.get("MAS_deviceName"));
+		APT_Helper.get().MASswitch__DeleteFromServiceFunctionality("wholesaleService", map.get("MAS_devicename2"));
+		ExtentTestManager.endTest(); 
 	
 	}	
 	

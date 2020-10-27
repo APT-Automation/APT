@@ -324,8 +324,67 @@ XMLReader xml = new XMLReader("src\\com\\colt\\qa\\pagerepository\\voipAccess_ne
 					Log.info(expected+ " message is not getting dislpayed");
 					Thread.sleep(2000);
 				}
-
 			}
+			
+			
+			
+			/**
+			 * For deleting the MAS SWitches
+			 * @param application
+			 * @param existingdevicename
+			 * @throws InterruptedException
+			 * @throws DocumentException
+			 */
+			public void MASswitch__DeleteFromServiceFunctionality(String application, String existingdevicename) throws InterruptedException, DocumentException { 
+				
+				ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Delete MAS Switch' Functionality");
+				
+				WebElement managementOptions_header= getwebelement(xml.getlocator("//locators/" + application + "/managementOptionsPanelheader"));
+				scrolltoview(managementOptions_header);
+				Thread.sleep(2000);
+				
+				if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid_MAS")).isDisplayed())
+	            {
+	                  List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/MAS_fetchAlldevice_InviewPage"));
+//	                  Log.info(addeddevicesList);
+	                  int AddedDevicesCount= addeddevicesList.size();
+	                  for(int i=0;i<AddedDevicesCount;i++) {
+	                        String AddedDeviceNameText= addeddevicesList.get(i).getText();
+	                        String AddedDevice_SNo= AddedDeviceNameText.substring(0, 1);
+	                        if(AddedDeviceNameText.contains(existingdevicename))
+	                        {
+	                              WebElement AddedDevice_DeletefromserviceLink=getwebelement(xml.getlocator("//locators/" + application + "/MAS_deleteFromService_InViewPage").replace("value", AddedDevice_SNo)); 
+	                              Clickon(AddedDevice_DeletefromserviceLink);
+	                              Thread.sleep(2000);
+	                              WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
+	                              if(DeleteAlertPopup.isDisplayed())
+	                              {
+	                                    click_commonMethod(application, "Delete", "deletebutton", xml);
+	                                    compareText(application, "Device delete success message", "MAS_deleteSuccessMessage", "MAS switch deleted successfully", xml);
+	                                    break;
+	                              
+	                              }
+	                              else
+	                              {
+	                                    Log.info("Delete alert popup is not displayed");
+	                                    ExtentTestManager.getTest().log(LogStatus.FAIL, " Delete alert popup is not displayed");
+	                              }
+	                        }
+	                        else
+	                        {
+	                              ExtentTestManager.getTest().log(LogStatus.FAIL, "Invalid device name");
+	                        }
+	                       
+	                  }
+	            }
+	            else
+	            {
+	                  ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid under 'MAS Switch' Panel");
+	            }		
+				}
+			
+			
+
 
 		
 

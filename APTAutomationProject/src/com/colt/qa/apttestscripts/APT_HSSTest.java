@@ -21,27 +21,27 @@ import com.relevantcodes.extentreports.LogStatus;
 			public void HSSService(Map<String, String> map) throws Exception {
 				
 				setup();	
-				Login.APT_Login_1(map.get("url"));
+				Login.APT_Login_1(map.get("url for the product"));
 				
 		        String newCustomerName=map.get("newCustomerCreation");
 		        String existingCustomer=map.get("existingCustomerSelection");
 		        
 		        if(newCustomerName.equalsIgnoreCase("yes") && existingCustomer.equalsIgnoreCase("no")) {
 		              
-		              logger= ExtentTestManager.startTest ("CreateCustomer");
+		              logger= ExtentTestManager.startTest ("CreateCustomer - HSS");
 		              APT_HSSHelper.get().createcustomer("hss", map.get("newCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), 
 		                          map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), 
 		                          map.get("Fax"));
 		              CustomerName=map.get("newCustomer");
 		              ExtentTestManager.endTest();
 		              
-		              logger= ExtentTestManager.startTest ("selectExistingCustomer"); 
+		              logger= ExtentTestManager.startTest ("selectExistingCustomer - HSS"); 
 		              APT_HSSHelper.get().selectCustomertocreateOrder("hss",map.get("newCustomer"));
 		              ExtentTestManager.endTest();
 		        }
 		        else if(newCustomerName.equalsIgnoreCase("no") && existingCustomer.equalsIgnoreCase("Yes")) {
 		              
-		              logger= ExtentTestManager.startTest ("selectExistingCustomer"); 
+		              logger= ExtentTestManager.startTest ("selectExistingCustomer - HSS"); 
 		              APT_HSSHelper.get().selectCustomertocreateOrder("hss",map.get("existingCustomer"));
 		              CustomerName=map.get("existingCustomer");
 		              ExtentTestManager.endTest();
@@ -61,6 +61,13 @@ import com.relevantcodes.extentreports.LogStatus;
 				,map.get("InterfaceSpeedValue"),map.get("TypeOfServiceValue"));
 				ExtentTestManager.endTest();
 				
+				logger= ExtentTestManager.startTest ("verifyCustomerDetailsInformation");
+				APT_HSSHelper.get().verifyCustomerDetailsInformation("hss", map.get("newCustomerCreation"), map.get("existingCustomerSelection"),
+						map.get("newCustomer"),	map.get("existingCustomer"),
+						map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"), 
+						map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
+				ExtentTestManager.endTest();
+				
 				logger= ExtentTestManager.startTest ("verifyservicepanelinviewservicepage");
 				APT_HSSHelper.get().verifyservicepanelInformationinviewservicepage("hss", map.get("ServiceIdvalue")
 						,map.get("RemarkValue"),map.get("EmailValue"),map.get("PhoneContactValue"),map.get("ServiceType"));
@@ -72,8 +79,9 @@ import com.relevantcodes.extentreports.LogStatus;
 				ExtentTestManager.endTest();
 				
 				logger= ExtentTestManager.startTest ("VerifyOrderPanel");
-				APT_HSSHelper.get().verifyorderpanel_editorder("hss", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
-				APT_HSSHelper.get().verifyorderpanel_changeorder("hss", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"));
+				APT_HSSHelper.get().verifyorderpanel_editorder("hss", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
+				APT_HSSHelper.get().verifyorderpanel_changeorder("hss", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
+						map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));
 				ExtentTestManager.endTest();
 				
 			logger= ExtentTestManager.startTest ("verifyServicePanelLinks");

@@ -20,7 +20,14 @@
 <MASswitch_warningmessage>//div[text()='IMS POP Location']</MASswitch_warningmessage>
 <AddmasSWitch_IMSpopswitch_dropdown>//div[label[text()='IMS POP Location']]//input</AddmasSWitch_IMSpopswitch_dropdown>
 <okButton>//span[text()='OK']</okButton>
+<MAS_fetchAlldevice_InviewPage>//div[text()='MAS Switch']/parent::div/following-sibling::div[@class='div-margin row']//b</MAS_fetchAlldevice_InviewPage>
+<CPEdevice_fetchAlldevice_inViewPage>(//div[text()='Trunk Group/Site Orders']/parent::div/following-sibling::div[@class='div-margin row']//b)[4]</CPEdevice_fetchAlldevice_inViewPage>
+<MAS_deleteFromService_InViewPage>//div[text()='MAS Switch']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Delete from Service']</MAS_deleteFromService_InViewPage>
+<MAS_viewLink_InViewPage>//div[text()='MAS Switch']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='View']</MAS_viewLink_InViewPage>
 
+<delete_alertpopup>//div[@class='modal-content']</delete_alertpopup>
+<deletebutton>//button[text()=' Delete']</deletebutton>
+<deletesuccessmsg>//div[@role='alert']//span</deletesuccessmsg>
 
 <!-- Edit MAS Switch -->
 <editLink>(//span[text()='Edit'])[1]</editLink>

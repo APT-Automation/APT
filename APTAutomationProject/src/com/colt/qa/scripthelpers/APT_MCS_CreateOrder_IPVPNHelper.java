@@ -1063,9 +1063,7 @@ public class APT_MCS_CreateOrder_IPVPNHelper extends DriverHelper {
 			
 		}
 
-		
-		
-		
+
 		
 		public void addDropdownValues_common(String application, String labelname, String xpath, String expectedValueToAdd, XMLReader xml) throws InterruptedException, DocumentException {
 			  boolean availability=false;
@@ -1125,6 +1123,67 @@ public class APT_MCS_CreateOrder_IPVPNHelper extends DriverHelper {
 			
 		}
 
+		public void addDropdownValues_commonMethodDivSpan(String application, String labelname, String xpath, String expectedValueToAdd , XMLReader xml)
+				throws InterruptedException, DocumentException {
+			  boolean availability=false;
+			  List<String> ls = new ArrayList<String>();
+			  
+			try {  
+				
+				 availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"").replace("Value", labelname)).isDisplayed();
+				 if(availability) {
+				  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
+				  System.out.println(labelname + " dropdown is displaying");
+				  
+				  if(expectedValueToAdd.equalsIgnoreCase("null")) {
+					  
+					  ExtentTestManager.getTest().log(LogStatus.PASS, " No values selected under "+ labelname + " dropdown");
+					  System.out.println(" No values selected under "+ labelname + " dropdown");
+				  }else {
+					  
+					  Clickon(getwebelementNoWait("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
+					  
+					  
+					  //verify list of values inside dropdown
+					  List<WebElement> listofvalues = driver
+								.findElements(By.xpath("//span[@role='option']"));
+					  
+					  
+						for (WebElement valuetypes : listofvalues) {
+									Log.info("List of values : " + valuetypes.getText());
+									 ls.add(valuetypes.getText());
+						}
+						
+						    ExtentTestManager.getTest().log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
+				            System.out.println("list of values inside "+labelname+" dropdown is: "+ls);
+						
+					SendKeys(getwebelementNoWait("//div[label[text()='"+ labelname +"']]//input"), expectedValueToAdd);	
+						
+					  Clickon(getwebelementNoWait("(//div[label[text()='"+ labelname +"']]//span[contains(text(),'"+ expectedValueToAdd +"')])[1]"));
+					  Thread.sleep(1000);
+					  
+					  String actualValue=getwebelementNoWait("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
+					  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
+					  System.out.println( labelname + " dropdown value selected as: "+ actualValue);
+					  
+				  }
+			  }else {
+				  ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
+				  System.out.println(labelname + " is not displaying");
+			  }
+			}catch(NoSuchElementException e) {
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " is not displaying");
+				  System.out.println(labelname + " is not displaying");
+			}catch(Exception ee) {
+				ee.printStackTrace();
+				ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to perform selection under "+ labelname + " dropdown");
+				System.out.println(" NO value selected under "+ labelname + " dropdown");
+			}
+			
+		}
+		
+		
+		
 		public void ClearDropdownValues_common(String application, String labelname, String xpath, String expectedValueToAdd, XMLReader xml) throws InterruptedException, DocumentException {
 			  boolean availability=false;
 			try {  
@@ -1861,12 +1920,12 @@ public class APT_MCS_CreateOrder_IPVPNHelper extends DriverHelper {
 		//Entering Customer name	
 		EnterTextValue(application, ChooseCustomerToBeSelected, "Customer Name", "entercustomernamefield");
 		waitforPageenable();
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
 		EnterTextValue(application, "*", "Customer Name", "entercustomernamefield");
-		Thread.sleep(3000);
-		ClearAndEnterTextValue(application, "Customer Name", "entercustomernamefield", ChooseCustomerToBeSelected);
+		//Thread.sleep(3000);
+		//ClearAndEnterTextValue(application, "Customer Name", "entercustomernamefield", ChooseCustomerToBeSelected);
 		waitforPageenable();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		
 		//Select Customer from dropdown
 		
@@ -5218,8 +5277,10 @@ public class APT_MCS_CreateOrder_IPVPNHelper extends DriverHelper {
 		cleartext(application, "Phone Contact", "phonecontacttextfield");
 		EnterTextValue(application, PhoneService, "Phone Contact", "phonecontacttextfield");
 		click(application, "Phone Contact Arrow", "phonearrow");
-		
 		addDropdownValues_commonMethod(application, "Delivery Channel", "DeliveryChannelField", DeliveryChannel, xml);
+		String type=getwebelement(xml.getlocator("//locators/" + application + "/IPVPNType")).getText();
+		if(!type.equalsIgnoreCase("IP Voice")) {
+			
 		addDropdownValues_commonMethod(application, "Package", "PackageField", Pakage, xml);
 		Thread.sleep(2000);
 		
@@ -5269,10 +5330,11 @@ public class APT_MCS_CreateOrder_IPVPNHelper extends DriverHelper {
 		        
 		        
 		    }
+		}
 		
 		scrollToTop();
-		String type=getwebelement(xml.getlocator("//locators/" + application + "/IPVPNType")).getText();
-		System.out.println(type);
+		//String type=getwebelement(xml.getlocator("//locators/" + application + "/IPVPNType")).getText();
+		//System.out.println(type);
 		if(type.equalsIgnoreCase("IPVPN Connect" )||type.equalsIgnoreCase("IPVPN IPSec")||type.equalsIgnoreCase("IPVPN Access")) {
 			scrolltoend();
 			//ScrolltoElement(application, "VPNNext");
@@ -5435,11 +5497,13 @@ public class APT_MCS_CreateOrder_IPVPNHelper extends DriverHelper {
 
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		compareText(application, "Sync Status", "sync_status", syncstatus);
+		/*
 		if(!Subtype.equalsIgnoreCase("IP Voice")) {
 		click(application, "Synchronize", "synchronizelink");
 		waitforPageenable();
 		compareText(application, "Synchronize Success Msg", "Sync_successmsg", "Sync started successfully. Please check the sync status of this service.");
 		}
+		*/
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		click(application, "Back", "managepage_backbutton");
 		waitforPageenable();
@@ -5454,10 +5518,12 @@ public class APT_MCS_CreateOrder_IPVPNHelper extends DriverHelper {
 		//compareText(application, "Show Infovista Report Link", "ShowNewInfovistaReportLink", "Show Infovista Report");
 		compareText(application, "Show New Infovista Report Link", "ShowNewInfovistaReportLink", "Show New Infovista Report");
 		compareText(application, "Manage Link", "manageLink", "Manage");
+		if((!Subtype.equalsIgnoreCase("IPVPN IPSec"))&& (!Subtype.equalsIgnoreCase("IPVPN Access"))) {
 		compareText(application, "Synchronize Link", "SynchronizeServiceLink", "Synchronize");
+	}
 		//compareText(application, "Manage Subnets Ipv6 Link", "ManageSubnetsIpv6Link", "Manage Subnets Ipv6");
 		compareText(application, "Dump Link", "DumpLink", "Dump");
-		click(application, "Action dropdown", "serviceactiondropdown");
+		//click(application, "Action dropdown", "serviceactiondropdown");
 		
 		
 		//click(application, "Manage Subnets Ipv6 Link", "ManageSubnetsIpv6Link");
@@ -5741,7 +5807,7 @@ public class APT_MCS_CreateOrder_IPVPNHelper extends DriverHelper {
 	
 		public void AddVPNSiteOrderPlus(String application, String ServiceSubType, String VPNCountry,String VPNDeviceCity,String VPNSiteOrder,String VPNSiteAlias,
 			String CSRName,String SiteOrderType,String IAReference,String IVReference,String PerfReport,String PerCoS,String RouterIPv4,String RouterIPv6, String CPEName,String VoipCheckbox,String VoipService, String VirtualCPECheckbox,
-			String SelectSiteToggle,String SelectCityToggle,String Device_Xng_City_Name,String Device_Xng_City_Code,String DSLSite,String SpeedboatSite,String ActelisBased) throws InterruptedException, DocumentException, IOException {
+			String SelectSiteToggle,String SelectCityToggle,String Device_Xng_City_Name,String Device_Xng_City_Code,String DSLSite,String SpeedboatSite,String ActelisBased,String Physical_Site) throws InterruptedException, DocumentException, IOException {
 if(ServiceSubType.equalsIgnoreCase("IPVPN Plus")) {
 		WebElement VPNSiteOrder_header= getwebelement(xml.getlocator("//locators/" + application + "/VPNSiteOrderHeader"));
 		scrolltoview(VPNSiteOrder_header);
@@ -5779,10 +5845,11 @@ if(ServiceSubType.equalsIgnoreCase("IPVPN Plus")) {
 		
 		if(SelectSiteToggle.equalsIgnoreCase("Yes")) {
 		click(application, "Toggle", "SelectsiteToogle");
-		EnterTextValueCommon(application, CSRName, "Physical Site/CSR Name", "TextValueCommon");
+		addDropdownValues_commonMethodDivSpan(application, "Physical Site", "SelectValueDropdown", Physical_Site, xml);
+		//addDropdownValues_common(application, "Physical Site", "SelectValueDropdown", " (1232)", xml);
 		}
 		else {
-			addDropdownValues_common(application, "Physical Site", "SelectValueDropdown", " (1232)", xml);
+			EnterTextValueCommon(application, CSRName, "Physical Site/CSR Name", "TextValueCommon");	
 		}
 		addDropdownValues_common(application, "Site Order Type", "SelectValueDropdown", SiteOrderType, xml);
 		if(SiteOrderType.equalsIgnoreCase("secondary")) {
@@ -5865,7 +5932,7 @@ if(ServiceSubType.equalsIgnoreCase("IPVPN Plus")) {
 
 	public void AddVPNSiteOrder3(String application, String ServiceSubType, String VPNCountry,String VPNDeviceCity,String VPNSiteOrder,String VPNSiteAlias,
 			String CSRName,String SiteOrderType,String IAReference,String IVReference,String PerfReport,String PerCoS,String RouterIPv4,String RouterIPv6, String CPEName,String VoipService,
-			String SelectSiteToggle,String SelectCityToggle,String Device_Xng_City_Name,String Device_Xng_City_Code,String VoipCheckbox,String DSLSite,String SpeedboatSite,String ActelisBased,String CNGOption,String CNG) throws InterruptedException, DocumentException, IOException {
+			String SelectSiteToggle,String SelectCityToggle,String Device_Xng_City_Name,String Device_Xng_City_Code,String VoipCheckbox,String DSLSite,String SpeedboatSite,String ActelisBased,String CNGOption,String CNG,String Physical_Site) throws InterruptedException, DocumentException, IOException {
 	if(ServiceSubType.equalsIgnoreCase("IPVPN IPSec")||ServiceSubType.equalsIgnoreCase("IPVPN Connect")||ServiceSubType.equalsIgnoreCase("IPVPN Access")) {
 		WebElement VPNSiteOrder_header= getwebelement(xml.getlocator("//locators/" + application + "/VPNSiteOrderHeader"));
 		scrolltoview(VPNSiteOrder_header);
@@ -5904,11 +5971,14 @@ if(ServiceSubType.equalsIgnoreCase("IPVPN Plus")) {
 		
 		if(SelectSiteToggle.equalsIgnoreCase("Yes")) {
 		click(application, "Toggle", "SelectsiteToogle");
-		EnterTextValueCommon(application, CSRName, "Physical Site/CSR Name", "TextValueCommon");
+		addDropdownValues_commonMethodDivSpan(application, "Physical Site", "SelectValueDropdown", Physical_Site, xml);
+		//addDropdownValues_common(application, "Physical Site", "SelectValueDropdown", " (1232)", xml);
+		
 		}
 		else {
-			addDropdownValues_common(application, "Physical Site", "SelectValueDropdown", " (1232)", xml);
-		}
+			EnterTextValueCommon(application, CSRName, "Physical Site/CSR Name", "TextValueCommon");
+			
+			}
 		
 		
 		//addDropdownValues_common(application, "Site Order Type", "SelectValueDropdown", SiteOrderType, xml);
@@ -5916,15 +5986,16 @@ if(ServiceSubType.equalsIgnoreCase("IPVPN Plus")) {
 		ScrolltoElementComm(application, "Primary Site Order", "SelectValueDropdown");
 		if(VoipCheckbox.equalsIgnoreCase("YES")) {
 		ClickCommon(application, "VoIP", "CheckboxCommon");
-		if(ServiceSubType.equalsIgnoreCase("IPVPN Access")) {
-			addDropdownValues_common(application, "Smart Monitoring Destination", "SelectValueDropdown", "ITSM Ticket", xml);
-		}
+		//if(ServiceSubType.equalsIgnoreCase("IPVPN Access")) {
+			//addDropdownValues_common(application, "Smart Monitoring Destination", "SelectValueDropdown", "ITSM Ticket", xml);
+	//	}
 		addDropdownValues_commonMethod(application, "VoIP Class of Service", "VPNVoipService", VoipService, xml);
-		if(ServiceSubType.equalsIgnoreCase("IPVPN Access")) {
-		EnterTextValueCommon(application,"980", "IPV Number", "TextValueCommon");
-		EnterTextValueCommon(application,"2", "Band Width", "TextValueCommon");
-		EnterTextValueCommon(application,"123", "VPN Proposition ID", "TextValueCommon");
-		}
+		
+		//if(ServiceSubType.equalsIgnoreCase("IPVPN Access")) {
+		//EnterTextValueCommon(application,"980", "IPV Number", "TextValueCommon");
+		//EnterTextValueCommon(application,"2", "Band Width", "TextValueCommon");
+		//EnterTextValueCommon(application,"123", "VPN Proposition ID", "TextValueCommon");
+		//}
 		}
 		
 		addDropdownValues_common(application, "Performance Reporting", "SelectValueDropdown", PerfReport, xml);
@@ -5977,7 +6048,7 @@ if(ServiceSubType.equalsIgnoreCase("IPVPN Plus")) {
 	
 	
 	public void AddVPNSiteOrder(String application, String ServiceSubType,String VPNCountry,String VPNDeviceCity,String VPNPhysicalSite,String VPNVendorModel,String VPNSiteOrder,String VPNSiteAlias,
-			String VPNRouterId,String VPNManagementAdd,String VoipService,String HubSpoke,String SelectSiteToggle,String SelectCityToggle,String Device_Xng_City_Name,String Device_Xng_City_Code,String VoipCheckbox,String DeviceToggle) throws InterruptedException, DocumentException, IOException {
+			String VPNRouterId,String VPNManagementAdd,String VoipService,String HubSpoke,String SelectSiteToggle,String SelectCityToggle,String Device_Xng_City_Name,String Device_Xng_City_Code,String VoipCheckbox,String DeviceToggle,String Physical_Site) throws InterruptedException, DocumentException, IOException {
 	if(ServiceSubType.equalsIgnoreCase("CPE Solutions L2")||ServiceSubType.equalsIgnoreCase("CPE Solutions L3")||ServiceSubType.equalsIgnoreCase("IP Voice")||ServiceSubType.equalsIgnoreCase("SwiftNet")) {
 		if(!ServiceSubType.equalsIgnoreCase("SwiftNet")) {
 		WebElement VPNSiteOrder_header= getwebelement(xml.getlocator("//locators/" + application + "/VPNSiteOrderHeader"));
@@ -6024,7 +6095,8 @@ if(ServiceSubType.equalsIgnoreCase("IPVPN Plus")) {
 		
 		if(SelectSiteToggle.equalsIgnoreCase("Yes")) {
 		click(application, "Toggle", "SelectsiteToogleL2");
-		addDropdownValues_common(application, "Physical Site", "SelectValueDropdown", " (1232)", xml);
+		addDropdownValues_commonMethodDivSpan(application, "Physical Site", "SelectValueDropdown", Physical_Site, xml);
+		//addDropdownValues_common(application, "Physical Site", "SelectValueDropdown", " (1232)", xml);
 		}
 		else {
 			EnterTextValue(application, VPNPhysicalSite, "Physical Site", "VPNPhysicalSite");
@@ -6066,7 +6138,11 @@ if(ServiceSubType.equalsIgnoreCase("IPVPN Plus")) {
 			
 			ClearAndEnterTextValueComm(application, "Snmpro", "TextValueCommon", "Colt");
 			ClearAndEnterTextValueComm(application, "Snmprw", "TextValueCommon", "Colt123");
+			if(ServiceSubType.equalsIgnoreCase("SwiftNet")) {
 			EnterTextValueCommon(application, "Colt", "Snmp V3 User Name", "TextValueCommon");
+			}else {
+				EnterTextValueCommon(application, "Colt", "Snmp V3 Security User Name", "TextValueCommon");	
+			}
 			EnterTextValueCommon(application, "Colt123", "Snmp V3 Auth Password", "TextValueCommon");
 			//EnterTextValueCommon(application, "Colt32", "Snmp V3 Priv Password", "TextValueCommon");
 			EnterTextValueCommon(application, "ColtTest", "Snmp V3 Context Name", "TextValueCommon");
@@ -6092,7 +6168,7 @@ if(ServiceSubType.equalsIgnoreCase("IPVPN Plus")) {
 	}
 	
 	public void SwifNetSpoke(String application, String ServiceSubType,String VPNCountry,String VPNDeviceCity,String VPNPhysicalSite,String VPNVendorModel,String VPNSiteOrder,String VPNSiteAlias,
-			String VPNRouterId,String VPNManagementAdd,String VoipService,String HubSpoke,String SelectSiteToggle,String SelectCityToggle,String Device_Xng_City_Name,String Device_Xng_City_Code,String VoipCheckbox,String DeviceToggle) throws InterruptedException, DocumentException, IOException {
+			String VPNRouterId,String VPNManagementAdd,String VoipService,String HubSpoke,String SelectSiteToggle,String SelectCityToggle,String Device_Xng_City_Name,String Device_Xng_City_Code,String VoipCheckbox,String DeviceToggle,String Physical_Site) throws InterruptedException, DocumentException, IOException {
 	if(ServiceSubType.equalsIgnoreCase("SwiftNet")) {
 		
 			WebElement HUB_header= getwebelement("//div[text()='Spoke']");
@@ -6135,7 +6211,8 @@ if(ServiceSubType.equalsIgnoreCase("IPVPN Plus")) {
 		
 		if(SelectSiteToggle.equalsIgnoreCase("Yes")) {
 		click(application, "Toggle", "SelectsiteToogleL2");
-		addDropdownValues_common(application, "Physical Site", "SelectValueDropdown", " (1232)", xml);
+		addDropdownValues_commonMethodDivSpan(application, "Physical Site", "SelectValueDropdown", Physical_Site, xml);
+		//addDropdownValues_common(application, "Physical Site", "SelectValueDropdown", " (1232)", xml);
 		}
 		else {
 			EnterTextValue(application, VPNPhysicalSite, "Physical Site", "VPNPhysicalSite");
@@ -6444,7 +6521,7 @@ ClickCommon(application, "View", "AddVPNSiteCommonLink");
         waitforPageenable();
         Thread.sleep(2000);
         click(application, "Click Ok", "UserOk");
-        Thread.sleep(2000);
+      //  Thread.sleep(2000);
 		 GetText(application, "Success Message", "SuccessMessageCom");
 		 Thread.sleep(4000);
        waitforPageenable();
@@ -6487,7 +6564,7 @@ ClickCommon(application, "View", "AddVPNSiteCommonLink");
             waitforPageenable();
             Thread.sleep(2000);
             click(application, "Click Ok", "UserOk");
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
     		 GetText(application, "Success Message", "SuccessMessageCom");
     		 Thread.sleep(4000);
             waitforPageenable();
@@ -6593,6 +6670,10 @@ public void AddVPNAlis(String application, String ServiceSubType, String VPNName
        waitforPageenable();
         Thread.sleep(2000);
 		}
+	else {
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Add VPN Alis Should not Present");
+		}
+
 }
 
 	
@@ -6631,6 +6712,10 @@ public void EditVPNAlis(String application, String ServiceSubType, String VPNNam
 			}
 
 	}
+	else {
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Edit VPN Alis Should not Present");
+		}
+
           	}
 public void DeleteVPNAlis(String application, String ServiceSubType, String VPNName,String VPNAlis) throws InterruptedException, DocumentException, IOException {
 	 
@@ -6665,12 +6750,16 @@ public void DeleteVPNAlis(String application, String ServiceSubType, String VPNN
 
 
 	}
+	else {
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Delete VPN Alis Should not Present");
+		}
+
 }
 
 
 	
 	public void EditVPNSiteOrderPlus(String application, String ServiceSubType, String VoipCheckbox,String VoipService,String VirtualCPECheckbox,String VPNSiteAlias,
-			String CSRName,String SiteOrderType,String IAReference,String IVReference,String PerfReport,String PerCoS,String RouterIPv4,String RouterIPv6, String CPEName,String VPNSiteOrder) throws InterruptedException, DocumentException, IOException {
+			String CSRName,String SiteOrderType,String IAReference,String IVReference,String PerfReport,String PerCoS,String RouterIPv4,String RouterIPv6, String CPEName,String VPNSiteOrder,String Physical_Site) throws InterruptedException, DocumentException, IOException {
 		if(ServiceSubType.equalsIgnoreCase("IPVPN Plus")) {
 			
 			WebElement VPNSiteOrder_header= getwebelement(xml.getlocator("//locators/" + application + "/VPNSiteOrderHeader"));
@@ -6708,6 +6797,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		edittext_common(application, "Site Alias", "VPNSiteAlis", VPNSiteAlias,xml);
 		//edittext_common(application, "CSR Name", "TextValueCommon",CSRName,xml);
 		//click(application, "Toggle", "Togglebutton");
+		//addDropdownValues_commonMethodDivSpan(application, "Physical Site", "SelectValueDropdown", Physical_Site, xml);
 		//addDropdownValues_common(application, "Physical Site", "SelectValueDropdown", " (1232)", xml);
 		edittext_common(application, "Cpe Lan Interface", "TextValueCommon","10.38",xml);
 		addDropdownValues_common(application, "Site Order Type", "SelectValueDropdown", SiteOrderType, xml);
@@ -6777,7 +6867,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 
 	
 	public void EditVPNSiteOrder3(String application, String ServiceSubType, String VPNCountry,String VPNDeviceCity,String VPNSiteOrder,String VPNSiteAlias,
-			String CSRName,String SiteOrderType,String IAReference,String IVReference,String PerfReport,String PerCoS,String RouterIPv4,String RouterIPv6, String CPEName,String VoipService) throws InterruptedException, DocumentException, IOException {
+			String CSRName,String SiteOrderType,String IAReference,String IVReference,String PerfReport,String PerCoS,String RouterIPv4,String RouterIPv6, String CPEName,String VoipService,String Physical_Site) throws InterruptedException, DocumentException, IOException {
 	if(ServiceSubType.equalsIgnoreCase("IPVPN IPSec")||ServiceSubType.equalsIgnoreCase("IPVPN Connect")||ServiceSubType.equalsIgnoreCase("IPVPN Access")) {
 		WebElement VPNSiteOrder_header= getwebelement(xml.getlocator("//locators/" + application + "/VPNSiteOrderHeader"));
 		scrolltoview(VPNSiteOrder_header);
@@ -6812,6 +6902,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 	//compareText(application, "Add VPN Site Order header", "AddVPNSitePage", "Add VPN Site Order");
 	
 	edittext_common(application, "Site Alias", "VPNSiteAlis", VPNSiteAlias,xml);
+	//addDropdownValues_commonMethodDivSpan(application, "Physical Site", "SelectValueDropdown", Physical_Site, xml);
 	//edittext_common(application, "CSR Name", "TextValueCommon",CSRName,xml);
 			//addDropdownValues_common(application, "Site Order Type", "SelectValueDropdown", SiteOrderType, xml);
 		addDropdownValues_common(application, "IV Reference", "SelectValueDropdown", IVReference, xml);
@@ -6830,7 +6921,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		ClickCommon(application, "DSL Site", "CheckboxCommon");
 		if(ServiceSubType.equalsIgnoreCase("IPVPN IPSec")||ServiceSubType.equalsIgnoreCase("IPVPN Connect")) {
 			
-		ClickCommon(application, "Actelis Based", "CheckboxCommon");
+		//ClickCommon(application, "Actelis Based", "CheckboxCommon");
 		}
 		//addDropdownValues_common(application, "Wholesale Provider", "SelectValueDropdown", "IPC-Standard", xml);
 		scrolltoend();
@@ -6850,7 +6941,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 	}
 	}
 	public void EditVPNSiteOrder(String application, String ServiceSubType,String VPNCountry,String VPNDeviceCity,String VPNPhysicalSite,String VPNVendorModel,String VPNSiteOrder,String VPNSiteAlias,
-			String VPNRouterId,String VPNManagementAdd,String VoipService,String HubSpoke) throws InterruptedException, DocumentException, IOException {
+			String VPNRouterId,String VPNManagementAdd,String VoipService,String HubSpoke,String Physical_Site) throws InterruptedException, DocumentException, IOException {
 	if(ServiceSubType.equalsIgnoreCase("CPE Solutions L2")||ServiceSubType.equalsIgnoreCase("CPE Solutions L3")||ServiceSubType.equalsIgnoreCase("IP Voice")||ServiceSubType.equalsIgnoreCase("SwiftNet")) {
 		if(!ServiceSubType.equalsIgnoreCase("SwiftNet")) {
 		WebElement VPNSiteOrder_header= getwebelement(xml.getlocator("//locators/" + application + "/VPNSiteOrderHeader"));
@@ -6864,7 +6955,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
        click(application, "VPN Edit Site Link", "VPN_EditSite");
 		}
 		else {
-			click(application, "VPN Edit Site Link", "VPN_EditSiteHub");
+			click(application, "VPN HUB Edit Site Link", "VPN_EditSiteHub");
 			
 		}
 		waitforPageenable();
@@ -6874,6 +6965,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 			edittext_common(application, "Site Alias", "VPNSiteAlis", VPNSiteAlias,xml);
 			}
 		//click(application, "Toggle", "Togglebutton");
+		//addDropdownValues_commonMethodDivSpan(application, "Physical Site", "SelectValueDropdown", Physical_Site, xml);
 		//addDropdownValues_common(application, "Physical Site", "SelectValueDropdown", " (1232)", xml);
 		
 		edittext_common(application, "Physical Site", "VPNPhysicalSite",VPNPhysicalSite,xml);
@@ -6906,7 +6998,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		click(application, "Generate Password", "VPNGeneratePass2");
 		}
 		*/
-		click(application, "OK in Edit MAS Device", "VPN_OKbutton");
+		click(application, "OK in Edit HUB VPN Order", "VPN_OKbutton");
 		waitforPageenable();
 		Thread.sleep(5000);
 		compareText(application, "Add VPN Site", "SuccessMessageCom", "Site Order successfully updated.");
@@ -6915,7 +7007,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 	}
 
 	public void EditVPNSiteOrderSpoke(String application, String ServiceSubType,String VPNCountry,String VPNDeviceCity,String VPNPhysicalSite,String VPNVendorModel,String VPNSiteOrder,String VPNSiteAlias,
-			String VPNRouterId,String VPNManagementAdd,String VoipService,String HubSpoke) throws InterruptedException, DocumentException, IOException {
+			String VPNRouterId,String VPNManagementAdd,String VoipService,String HubSpoke,String Physical_Site) throws InterruptedException, DocumentException, IOException {
 	if(ServiceSubType.equalsIgnoreCase("SwiftNet")) {
 		
 			WebElement HUB_header= getwebelement("//div[text()='Hub']");
@@ -6925,7 +7017,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
        click(application, "VPN Edit Site Link", "VPN_EditSite");
 		}
 		else {
-			click(application, "VPN Edit Site Link", "VPN_EditSiteSpoke");
+			click(application, "VPN Spoke Edit Site Link", "VPN_EditSiteSpoke");
 			
 		}
 		waitforPageenable();
@@ -6935,6 +7027,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 			edittext_common(application, "Site Alias", "VPNSiteAlis", VPNSiteAlias,xml);
 			}
 		//click(application, "Toggle", "Togglebutton");
+		//addDropdownValues_commonMethodDivSpan(application, "Physical Site", "SelectValueDropdown", Physical_Site, xml);
 		//addDropdownValues_common(application, "Physical Site", "SelectValueDropdown", " (1232)", xml);
 		
 		edittext_common(application, "Physical Site", "VPNPhysicalSite",VPNPhysicalSite,xml);
@@ -6967,7 +7060,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		click(application, "Generate Password", "VPNGeneratePass2");
 		}
 		*/
-		click(application, "OK in Edit MAS Device", "VPN_OKbutton");
+		click(application, "OK in Edit VPN Spoke ", "VPN_OKbutton");
 		waitforPageenable();
 		Thread.sleep(5000);
 		compareText(application, "Add VPN Site", "SuccessMessageCom", "Site Order successfully updated.");
@@ -7017,11 +7110,12 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 			 click(application, "Delete", "DeleteAny");
 		 		Thread.sleep(3000);
 		         waitforPageenable();
-		         GetText(application, "Delete Interface", "SuccessMessageCom");
-		  		//compareText(application, "Delete Device", "SuccessMessageCom", "Static Route successfully deleted.");
+		        // GetText(application, "Delete Interface", "SuccessMessageCom");
+		  		compareText(application, "Delete VPN order", "SuccessMessageCom", "Site Order deleted successfully");
 		 		Thread.sleep(2000);
 		
 		}
+		
 	}
 	public void DeleteVPNSiteOrder4(String application, String ServiceSubType,String VPNSiteOrder) throws InterruptedException, DocumentException, IOException {
 		if(ServiceSubType.equalsIgnoreCase("CPE Solutions L2")||ServiceSubType.equalsIgnoreCase("CPE Solutions L3")||ServiceSubType.equalsIgnoreCase("IP Voice")||ServiceSubType.equalsIgnoreCase("SwiftNet")) {
@@ -7043,8 +7137,8 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 						 click(application, "Delete", "DeleteAny");
 					 		Thread.sleep(3000);
 					         waitforPageenable();
-					         GetText(application, "Delete Interface", "SuccessMessageCom");
-					  		//compareText(application, "Delete Device", "SuccessMessageCom", "Static Route successfully deleted.");
+					       //  GetText(application, "Delete Interface", "SuccessMessageCom");
+					  		compareText(application, "Delete Site Order", "SuccessMessageCom", "Site Order deleted successfully");
 					 		Thread.sleep(2000);
 						
 			
@@ -7141,7 +7235,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 				click(application, "VPN Edit Link", "VPN_editdevice1");
 			}
 			else {
-				click(application, "VPN Edit Device Link", "VPN_EditDeviceHub");
+				click(application, "VPN Edit HUB  Device Link", "VPN_EditDeviceHub");
 				
 			}
 			waitforPageenable();
@@ -7177,7 +7271,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		//scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/VPN_Edit_PremiseLevel")));
 		//click(application, "Generate Password", "VPNGeneratePass1");
 		
-		click(application, "OK in Edit", "VPN_OKbutton");
+		click(application, "OK in Edit HUB Device", "VPN_OKbutton");
 		waitforPageenable();
 		Thread.sleep(5000);
 		compareText(application, "VPN Update message", "VPN_UpdateSwitchSuccessfulMessage", "Device successfully updated");
@@ -7200,7 +7294,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 				click(application, "VPN Edit Link", "VPN_editdevice1");
 			}
 			else {
-				click(application, "VPN Edit Device Link", "VPN_EditDeviceSpoke");
+				click(application, "VPN Edit Spoke Device Link", "VPN_EditDeviceSpoke");
 				
 			}
 			waitforPageenable();
@@ -7236,7 +7330,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		//scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/VPN_Edit_PremiseLevel")));
 		//click(application, "Generate Password", "VPNGeneratePass1");
 		
-		click(application, "OK in Edit", "VPN_OKbutton");
+		click(application, "OK in Edit Spoke Device", "VPN_OKbutton");
 		waitforPageenable();
 		Thread.sleep(5000);
 		compareText(application, "VPN Update message", "VPN_UpdateSwitchSuccessfulMessage", "Device successfully updated");
@@ -7311,6 +7405,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		compareText(application, "Add Site Device Successful Message for VPN Order", "VPN_AddDeviceSuccessfulMessage", "Site device created successfully");
 	Thread.sleep(2000);
 	}
+	else {
+	ExtentTestManager.getTest().log(LogStatus.PASS, "Step :No Device Should Exit");
+	}
 	}
 
 	public void AddWholesaleInterconnect(String application, String ServiceSubType,String WholesaleDeviceName,String WholesaleInterface) throws InterruptedException, DocumentException, IOException {
@@ -7372,6 +7469,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 			compareText(application, "Wholesale Interconnect selected", "SuccessMessageCom", "Wholesale Interconnect successfully selected.");
 			Thread.sleep(2000);
 		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Add Wholesale Should not Present");
+			}
 	
 	}
 	
@@ -7400,7 +7500,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 			compareText(application, "Wholesale Interconnect updated", "SuccessMessageCom", "Wholesale Interconnect interface successfully updated.");
 			Thread.sleep(2000);
 		}
-	
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Edit  Wholesale Should not Present");
+			}
 	}
 	
 	
@@ -7425,7 +7527,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 			Thread.sleep(2000);
 			}
 		}
-	
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Delete  Wholesale Should not Present");
+			}
 	}
 	
 	public void AddCPEDevice(String application, String ServiceSubType,String VPNVendorModel,String VPNRouterId,String VPNManagementAdd,String VPNSiterderNum,String GetAddressCPE,String AvailableBlockCPE,
@@ -7578,6 +7682,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 
     
 		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
 	}
 	
 	public void ViewCPEDevice(String application, String ServiceSubType,String VPNVendorModel,String VPNRouterId,String VPNManagementAdd,String VPNSiterderNum,String GetAddressCPE,String AvailableBlockCPE,
@@ -7666,6 +7773,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 	        */
 		       
 		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
 	}
 	
 	
@@ -7875,6 +7985,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 
     
 		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
 	}
 	
 	public void DeleteCPEDevice(String application, String ServiceSubType,String VPNVendorModel,String VPNRouterId,String VPNManagementAdd,String VPNSiterderNum,String GetAddressCPE,String AvailableBlockCPE,
@@ -7925,7 +8038,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		{
 			
 			WebElement AddedUser = driver
-					.findElement(By.xpath("//span[contains(text(),'"+VPNManagementAdd+"')]//parent::div//parent::div//div//span[text()='Delete from Service']"));
+					.findElement(By.xpath("//span[contains(text(),'"+VPNManagementAdd+"')]//parent::div//parent::div//div//span[text()='Delete']"));
 			AddedUser.click();
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing CPE Device Edit button");
 		}
@@ -7945,9 +8058,118 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		  		//compareText(application, "Delete Device", "SuccessMessageCom", "Static Route successfully deleted.");
 		 		Thread.sleep(2000);
 					}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
 	}
 
-	
+	public void CPEDeviceConfiguration(String application, String ServiceSubType,String VPNVendorModel,String VPNRouterId,String VPNManagementAdd,String VPNSiterderNum,String GetAddressCPE,String AvailableBlockCPE,
+			String PremiseName,String PremiseCode,String PremiseToggle,String JitterCPE,String ConnectProtocoltal,String ConnectProtocolssh, String Premise,String SNMP3) throws InterruptedException, DocumentException, IOException {
+		if(ServiceSubType.contains("IPVPN")&& !ServiceSubType.equalsIgnoreCase("IPVPN Access")) {
+			
+		WebElement VPNSiteOrder_header= getwebelement(xml.getlocator("//locators/" + application + "/VPNSiteOrderHeader"));
+		scrolltoview(VPNSiteOrder_header);
+		List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='VPN Site Orders']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
+		int NoOfUsers = ExistingUsers.size();
+		System.out.println("Numberofuser="+ NoOfUsers);
+
+		if(NoOfUsers==1)
+		{
+			click(application, "VPN Order Radio button", "VPNSiteOrderRadio");
+			Thread.sleep(3000);
+		}
+		else if(NoOfUsers>=1)
+		{
+			WebElement AddedUser = driver
+					.findElement(By.xpath("//div[contains(text(),'" + VPNSiterderNum+ "')]//parent::div//parent::div//preceding-sibling::div//span[@class='ag-selection-checkbox']"));
+			AddedUser.click();
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing VPN Site Order radio button");
+		}
+		else
+		{
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : No Order displayed");
+
+		}
+
+		click(application, "Action dropdown", "VPNSiteactionbutton");
+		ClickCommon(application, "View", "AddVPNSiteCommonLink");
+		waitforPageenable();
+       // compareText_Common(application, "Site Order Number", "CompareTextCommon", "View VPN Order", xml);
+        scrolltoend();
+        
+        List<WebElement> ExistingDevices= driver.findElements(By.xpath("//div[text()='Customer Premise Equipment ( CPE ) ']//parent::div//following-sibling::div[@class='div-margin row']"));
+		int NoOfDevices = ExistingDevices.size();
+		int NoOfDevice=NoOfDevices-1;
+		System.out.println("Numberofuser="+ NoOfDevice);
+		Thread.sleep(3000);
+		if(NoOfDevice<5)
+		{
+			click(application, "Delete CPE Device", "ConfigureCPE");
+			Thread.sleep(3000);
+		}
+		else if(NoOfDevice>5)
+		{
+			
+			WebElement AddedUser = driver
+					.findElement(By.xpath("//span[contains(text(),'"+VPNManagementAdd+"')]//parent::div//parent::div//div//span[text()='Configure']"));
+			AddedUser.click();
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing CPE Device Edit button");
+		}
+		else
+		{
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : No Device displayed");
+
+		}
+		 Thread.sleep(2000);
+	        waitforPageenable();
+	        WebElement Configuration_header= getwebelement("//div[text()='Configuration']");
+			scrolltoview(Configuration_header);
+			
+	        if(ServiceSubType.equalsIgnoreCase("IPVPN Plus")) {
+	        Clickon(getwebelement("//span[text()='Generate Configuration']"));
+ 			Thread.sleep(2000);
+ 			waitforPageenable();
+ 			ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Generate Button");
+ 			 Clickon(getwebelement("//span[text()='Save Configuration']"));
+  			Thread.sleep(2000);
+  			waitforPageenable();
+  			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Save Configuration");
+  			 Clickon(getwebelement("//span[text()='Execute Configuration on Device']"));
+  			Thread.sleep(2000);
+  			waitforPageenable();
+  			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Execute Configuration");
+	        }
+	        else if(ServiceSubType.equalsIgnoreCase("IPVPN Connect")|| ServiceSubType.equalsIgnoreCase("IPVPN IPSec")) {
+	        	addDropdownValues_common(application, "Generate Configuration For", "SelectValueDropdown", "Full Configuration", xml);
+	        Thread.sleep(2000);
+	        	Clickon(getwebelement("//span[text()='Generate']"));
+	   			Thread.sleep(2000);
+	   			waitforPageenable();
+	   			ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Generate Button");
+	   		 Clickon(getwebelement("//span[text()='Save Configuration']"));
+	  			Thread.sleep(2000);
+	  			waitforPageenable();
+	  			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Save Configuration");
+	  			 Clickon(getwebelement("//span[text()='Execute Configuration']"));
+	   			Thread.sleep(2000);
+	   			waitforPageenable();
+	   			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Execute Configuration");
+	   			
+	        	
+	        }
+	        scrolltoend();
+  			 Clickon(getwebelement("//span[text()='Back']"));
+  			Thread.sleep(2000);
+  			waitforPageenable();
+  			
+ 			
+	        
+	      				}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
+	}
+
 	public void AddInterfaceCPE(String application, String ServiceSubType,String CPEBearerType,String CPEBandwidthE1,String CPEBandwidthE3,String CPEBandwidthSTM,String CPELink,String CpeEncapsulation,
 			String CpeClockSource,String CpePrimary_Backup,String CpenterfaceDirection,String CpeVoiceline,String CpeIVManagement,String CpeIVBitCounter, String CpeAddRange,String CpeSecondaryIp,String CpeNetmask,
 			String CpeSpeed,String CpeDuplex,String CpeInterface,String CpeInterfaceAddRangeDdn,String CpeInterfaceAddRangeText,String CpeAddress ,String CPEGetAddress,String VPNRouterId,String VPNSiterderNum,String CpeAddInterfaceButton,
@@ -8138,6 +8360,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
  		compareText(application, "Add CPE Device", "SuccessMessageCom", "Interface successfully created.");
  		Thread.sleep(2000);
 		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
 	}
 
 	
@@ -8308,6 +8533,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
  		compareText(application, "Add CPE Device", "SuccessMessageCom", "Interface successfully updated.");
  		Thread.sleep(2000);
 		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
 	}
 
 	public void DeleteInterfaceCPE(String application, String ServiceSubType,String CPEBearerType,String CPEBandwidthE1,String CPEBandwidthE3,String CPEBandwidthSTM,String CPELink,String CpeEncapsulation,
@@ -8365,6 +8593,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 			
 	        
 		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
 	}
 
 	
@@ -8536,6 +8767,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
  		compareText(application, "Add CPE Device", "SuccessMessageCom", "Multilink interface successfully created.");
  		Thread.sleep(2000);
 		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
 	}
 
 	public void EditMultilinkCPE(String application, String ServiceSubType,String MultilinkEthernetCheckbox,String CPEBandwidthE1,String CPEBandwidthE3,String CPEBandwidthSTM,String CPELink,String CpeEncapsulation,
@@ -8679,6 +8913,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
  		compareText(application, "Add CPE Device", "SuccessMessageCom", "Multilink interface successfully updated.");
  		Thread.sleep(2000);
 		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
 	}
 
 	public void DeleteMultilinkCPE(String application, String ServiceSubType,String MultilinkEthernetCheckbox,String CPEBandwidthE1,String CPEBandwidthE3,String CPEBandwidthSTM,String CPELink,String CpeEncapsulation,
@@ -8735,6 +8972,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 			 		Thread.sleep(2000);
 				
 				}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
 	}
 
 	
@@ -8817,6 +9057,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 			
 		
        		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
 	}
 
 	public void EditRoutesCPE(String application, String ServiceSubType,String VPNRouterId,String VPNSiterderNum,String RoutesDestination,String RoutesNetMask,String RoutesMetrics) throws InterruptedException, DocumentException, IOException {
@@ -8903,6 +9146,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 			
 		
        		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
 	}
 
 	public void DeleteRoutesCPE(String application, String ServiceSubType,String VPNRouterId,String VPNSiterderNum,String RoutesDestination,String RoutesNetMask,String RoutesMetrics) throws InterruptedException, DocumentException, IOException {
@@ -8980,6 +9226,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 			
 		
        		}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
 	}
 	
 	public void AddRouterTool4(String application, String ServiceSubType,String VPNCountry,String VPNDeviceCity,String VPNPhysicalSite,String VPNVendorModel,String VPNSiteOrder,String VPNSiteAlias,
@@ -9110,7 +9359,12 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		GetText(application, "Router Tool Result", "RouterToolResult");
 		}
 		}
+		else {
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+		}
 	}
+		
+		
 
 
 	public void SelectInterface(String application, String ServiceSubType,String VPNRouterId,String VPNSiterderNum,String CpeInterface) throws InterruptedException, DocumentException, IOException {
@@ -9176,6 +9430,10 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		 Thread.sleep(2000);
 		 waitforPageenable();
 				}
+		else {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+			}
+
 	}
 
 
@@ -10601,8 +10859,10 @@ ClickCommon(application, "View", "AddVPNSiteCommonLink");
 
  	public void shownewInfovista(String application) throws InterruptedException, DocumentException {
  		  
-   		WebElement orderPanel= getwebelement(xml.getlocator("//locators/" + application + "/viewServicepage_OrderPanel"));
-		ScrolltoElement(orderPanel);
+ 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
+		
+   		//WebElement orderPanel= getwebelement(xml.getlocator("//locators/" + application + "/viewServicepage_OrderPanel"));
+		//ScrolltoElement(orderPanel);
 		Thread.sleep(3000);
    		
 	   click_commonMethod(application, "Action", "Editservice_actiondropdown", xml);
@@ -10648,9 +10908,9 @@ ClickCommon(application, "View", "AddVPNSiteCommonLink");
    }
 
  	public void syncservices(String application) throws InterruptedException, DocumentException {
- 	   
- 	   WebElement orderPanel= getwebelement(xml.getlocator("//locators/" + application + "/viewServicepage_OrderPanel"));
- 		ScrolltoElement(orderPanel);
+ 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
+ 	   //WebElement orderPanel= getwebelement(xml.getlocator("//locators/" + application + "/viewServicepage_OrderPanel"));
+ 	//	ScrolltoElement(application,orderPanel);
  		Thread.sleep(3000);
  	   
  	   click_commonMethod(application, "Action", "Editservice_actiondropdown", xml);
@@ -13749,7 +14009,7 @@ public void isDisplayed(String application, String xpath, String labelname) {
 		            scrollToTop();
 		            Thread.sleep(1000);
 		            
-		            verifysuccessmessage(application, "Link successfully deleted.");
+		            verifysuccessmessage(application, "Link successfully inserted.");
 		         }
 		         else
 		         {
@@ -14542,7 +14802,7 @@ public void isDisplayed(String application, String xpath, String labelname) {
 		
 		public void verifyAddDSLAMandHSLlink(String application, String DSLMdevice,String ServiceSubType,String VPNSiteOrder) throws InterruptedException, DocumentException {
 			
-			if(ServiceSubType.equalsIgnoreCase("IPVPN IPSec")||ServiceSubType.equalsIgnoreCase("IPVPN Connect")||ServiceSubType.equalsIgnoreCase("IPVPN Access")) {
+			if(ServiceSubType.contains("IPVPN")) {
 				
 				WebElement VPNSiteOrder_header= getwebelement(xml.getlocator("//locators/" + application + "/VPNSiteOrderHeader"));
 				scrolltoview(VPNSiteOrder_header);
@@ -14615,12 +14875,16 @@ public void isDisplayed(String application, String xpath, String labelname) {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Actelis Configuration' panel is not displaying");
 			}
 			}
+			else {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+				}
+
 			
 	}
 		
 		
-		 public void AddDSLAMandHSL(String application, String DSLMdevice, String HSlname) throws InterruptedException, DocumentException, IOException {
-			 
+		 public void AddDSLAMandHSL(String application, String DSLMdevice, String HSlname,String ServiceSubType) throws InterruptedException, DocumentException, IOException {
+			 if(ServiceSubType.contains("IPVPN")) {
 			 waitForpageload();
 			 waitforPagetobeenable();
 			 
@@ -14635,7 +14899,7 @@ public void isDisplayed(String application, String xpath, String labelname) {
 				
 				try {
 					if(valueToSElect.isDisplayed()) {
-						ExtentTestManager.getTest().log(LogStatus.FAIL, DSLMdevice + " is displaying under 'DSLAM device' dropdown");
+						ExtentTestManager.getTest().log(LogStatus.PASS, DSLMdevice + " is displaying under 'DSLAM device' dropdown");
 						Log.info(DSLMdevice + " is displaying under 'DSLAM device' dropdown");
 						
 						Clickon(valueToSElect);
@@ -14664,8 +14928,11 @@ public void isDisplayed(String application, String xpath, String labelname) {
 				
 				
 		 }
-		 
-		 
+			 else {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+					}
+
+		 }
 		 public void selectRowForAddingInterface_Actelis(String Application, String interfacenumber)
 					throws IOException, InterruptedException, DocumentException {
 	scrolltoend();
@@ -14691,7 +14958,7 @@ public void isDisplayed(String application, String xpath, String labelname) {
 								getwebelement(xml.getlocator("//locators/" + Application + "/InterfaceToSelect_actelis_currentpage")));
 						int Current_page = Integer.parseInt(CurrentPage);
 
-
+						Clickon(getwebelement("//div[text()='Add DSLAM and HSL']")); 
 						System.out.println("Currently we are in page number: " + Current_page);
 
 						List<WebElement> results = getwebelements("//div[contains(text(),'"+ interfacenumber +"')]");
@@ -14747,16 +15014,22 @@ public void isDisplayed(String application, String xpath, String labelname) {
 			}
 
 		 
-		 public void showInterface_ActelisConfiguuration(String application) throws InterruptedException, DocumentException {
-			 
+		 public void showInterface_ActelisConfiguuration(String application,String ServiceSubType) throws InterruptedException, DocumentException {
+			 if(ServiceSubType.contains("IPVPN")){
 			 Clickon(getwebelement(xml.getlocator("//locators/" + application + "/showInterface_ActelisCnfiguration")));
 			 Thread.sleep(3000);
 			 
 		 }
+			 else {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+					}
+
+		 }
 		 
 		 
-		 public void deletInterface_ActelisConfiguration(String application, String interfaceName) throws InterruptedException, DocumentException {
-			 
+		 
+		 public void deletInterface_ActelisConfiguration(String application, String interfaceName,String ServiceSubType) throws InterruptedException, DocumentException {
+			 if(ServiceSubType.contains("IPVPN")) {
 			//select the interface
 			 Clickon(getwebelement("//div[text()='"+ interfaceName +"']"));
 			 
@@ -14781,10 +15054,13 @@ public void isDisplayed(String application, String xpath, String labelname) {
 				 ExtentTestManager.getTest().log(LogStatus.FAIL, " popup message does not display after clicking on 'Remove' button");
 			 }
 		 }
-		
-		 
-		 public void successMessage_deleteInterfaceFromDevice_ActelisConfiguration(String application) throws InterruptedException, DocumentException {
-				
+			 else {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+					}
+
+		 }
+		 public void successMessage_deleteInterfaceFromDevice_ActelisConfiguration(String application,String ServiceSubType) throws InterruptedException, DocumentException {
+				if(ServiceSubType.contains("IPVPN")) {
 				boolean successMessage=getwebelement(xml.getlocator("//locators/" + application + "/successMessage_ActelisConfiguration_removeInterface")).isDisplayed();
 				String actualmessage=getwebelement(xml.getlocator("//locators/" + application + "/successMessage_ActelisConfiguration_removeInterface")).getText();
 				if(successMessage) {
@@ -14800,8 +15076,11 @@ public void isDisplayed(String application, String xpath, String labelname) {
 					System.out.println( " Success Message for removing Interface is not dipslaying");
 				}
 			}
+				else {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Should not Present");
+					}
 
-
+		 }
 
 		 public void PEInterface_clickOnDeleteLink(String application, String interfaceName) throws InterruptedException, DocumentException, IOException {
 				

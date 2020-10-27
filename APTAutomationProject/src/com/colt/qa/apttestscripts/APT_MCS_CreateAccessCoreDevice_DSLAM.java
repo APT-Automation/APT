@@ -24,7 +24,7 @@ public class APT_MCS_CreateAccessCoreDevice_DSLAM extends DriverTestcase {
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));	
+		Login.APT_Login_1(map.get("url for the Product"));	
 		
 		logger= ExtentTestManager.startTest ("verifyNavigationToCreateDevicePage_DSLAM");
 			APT_CreateDSLAMDeviceHelper.get().navigatetomanagecoltnetwork("CreateAccessCoreDevice");
@@ -43,7 +43,7 @@ public class APT_MCS_CreateAccessCoreDevice_DSLAM extends DriverTestcase {
 			ExtentTestManager.endTest(); 
 
 		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessageforDSLAMdevice_"+devicename);
-			APT_CreateDSLAMDeviceHelper.get().verifyDeviceCreationMessage("CreateAccessCoreDevice");
+			APT_CreateDSLAMDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device created successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyEnteredValueForDSLAMDevice_"+devicename);
@@ -68,7 +68,7 @@ public class APT_MCS_CreateAccessCoreDevice_DSLAM extends DriverTestcase {
 			ExtentTestManager.endTest(); 
 	
 		logger= ExtentTestManager.startTest ("verifyDeviceUpdationSuccessMessageforDSLAMDevice_"+devicename);
-			APT_CreateDSLAMDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
+			APT_CreateDSLAMDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device updated successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyUpdatedValueForDSLAMDevice_"+devicename);

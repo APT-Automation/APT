@@ -48,7 +48,7 @@ public class IPVPNHelper_newTab extends DriverHelper{
 		scrolltoend();
 		
 		click_commonMethod(application, "Search", "searchButton" , xml);
-		waitForpageload();   waitforPagetobeenable();
+		   waitforPagetobeenable();
 		
 		WebElement selectTheSearchedService = getwebelement(xml.getlocator("//locators/"+application+"/selectSearchedService").replace("value", existingService));
 		Clickon(selectTheSearchedService);
@@ -57,7 +57,7 @@ public class IPVPNHelper_newTab extends DriverHelper{
 		click_commonMethod(application, "View", "searchService_viewLink", xml);
 		Thread.sleep(2000);
 		
-		waitForpageload();   waitforPagetobeenable();
+		   waitforPagetobeenable();
 	}
 	
 	
@@ -78,7 +78,7 @@ public class IPVPNHelper_newTab extends DriverHelper{
 		Switchtotab();
 		Thread.sleep(2000);
 		
-		  waitForpageload();  waitforPagetobeenable();
+		    waitforPagetobeenable();
   		scrollToTop();
   		
   		String actualPageTitle=driver.getTitle();
@@ -126,7 +126,7 @@ public class IPVPNHelper_newTab extends DriverHelper{
 		
 		boolean addressValue=false;
 		
-		waitForpageload();   waitforPagetobeenable();
+		   waitforPagetobeenable();
 		
 		scrollToTop();
 	//Configure Interface on Device	
@@ -150,7 +150,7 @@ public class IPVPNHelper_newTab extends DriverHelper{
 			
 			Thread.sleep(2000);
 			
-			waitForpageload();  waitforPagetobeenable();
+			  waitforPagetobeenable();
 			click_commonMethod(application, "Get Address", "getAddress_IPv4", xml);
 			
 			String interfaceAddressRange=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/FetchInterfaceAddressRangeDropdown_addInterface")));
@@ -167,7 +167,7 @@ public class IPVPNHelper_newTab extends DriverHelper{
 				
 				click_commonMethod(application, ">>" , "rightArrowButton_interfaceAddressRange", xml);
 				Thread.sleep(5000);
-				waitForpageload();   waitforPagetobeenable();
+				   waitforPagetobeenable();
 				
 				addressValue = getwebelement(xml.getlocator("//locators/" + application + "/FetchInterfaceDropdown_addInterface")).isDisplayed();
 				if(addressValue) {
@@ -229,7 +229,7 @@ public class IPVPNHelper_newTab extends DriverHelper{
 					
 					click_commonMethod(application, ">>" , "rightArrowButton_interfaceAddressRangeIPv6", xml);
 					Thread.sleep(4000);
-					waitForpageload();  waitforPagetobeenable();
+					  waitforPagetobeenable();
 					
 				try {	
 					addressValue = getwebelement(xml.getlocator("//locators/" + application + "/FetchInterfaceDropdown_addInterfaceIPv6")).isDisplayed();
@@ -632,7 +632,7 @@ public class IPVPNHelper_newTab extends DriverHelper{
 	
 	public void EIPallocationSuccessMessage(String application, String expected) throws InterruptedException {
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 		scrollToTop();
@@ -782,7 +782,7 @@ public class IPVPNHelper_newTab extends DriverHelper{
 */
 	public void clickOnBreadCrump(String application, String breadCrumpLink) throws InterruptedException, DocumentException {
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 		scrollToTop();
@@ -871,7 +871,7 @@ public class IPVPNHelper_newTab extends DriverHelper{
 	
 	public String successmessageForInterfaceOrMultilinkCreation(String application, String expected) throws InterruptedException {
 		
-		waitForpageload();
+		
 		waitforPagetobeenable();
 		
 		scrollToTop();
@@ -908,7 +908,7 @@ public class IPVPNHelper_newTab extends DriverHelper{
 
 	public void PEinterface_clickOEditlink(String application, String interfaceName) throws Exception {
 		
-		waitForpageload();  waitforPagetobeenable();
+		  waitforPagetobeenable();
 		
 		scrolltoend();
 		Thread.sleep(1000);
@@ -971,7 +971,7 @@ if(editInterface_v4ConfigurationSelection.equalsIgnoreCase("Yes")) {
 		
 		Thread.sleep(2000);
 		
-		waitForpageload();  waitforPagetobeenable();
+		  waitforPagetobeenable();
 		click_commonMethod(application, "Get Address", "getAddress_IPv4", xml);
 		
 		String interfaceAddressRange=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/FetchInterfaceAddressRangeDropdown_addInterface")));
@@ -1461,7 +1461,7 @@ if(serviceSubType.equalsIgnoreCase("IPVPN Plus") || serviceSubType.equalsIgnoreC
 	      				Log.info("Clicked on 'View' link");
 	                    Switchtotab();
 	                      
-	                    waitForpageload();  waitforPagetobeenable();
+	                      waitforPagetobeenable();
 	            		scrollToTop();
 	            		
 	            		String actualPageTitle=driver.getTitle();
@@ -1549,7 +1549,7 @@ if(serviceSubType.equalsIgnoreCase("IPVPN Plus") || serviceSubType.equalsIgnoreC
   	      				Log.info("Clicked on 'View' link");
   	                    Switchtotab();
   	                      	
-  	                    waitForpageload();  waitforPagetobeenable();
+  	                      waitforPagetobeenable();
   	            		scrollToTop();
   	            		
   	            		String actualPageTitle=driver.getTitle();
@@ -1601,16 +1601,17 @@ if(serviceSubType.equalsIgnoreCase("IPVPN Plus") || serviceSubType.equalsIgnoreC
 
 	public void SelectInterfacetoremovefromservice(String Application, String interfacename)
 			throws IOException, InterruptedException, DocumentException {
-
-		waitForpageload();
 		
 		waitforPagetobeenable();
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "'Select Interface'_Remove Interace from Service");
 		
+		WebElement siteValue = getwebelement(xml.getlocator("//locators/" + Application + "/siteValue_IPVPN"));
+		scrolltoview(siteValue);
+		
 			addtextFields_commonMethod(Application, "search", "interfacesInServices_searchTextBox", interfacename, xml);
 			
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 			selectRowforInterfaceInService(Application, interfacename);
 
 	}
@@ -1658,7 +1659,7 @@ if(serviceSubType.equalsIgnoreCase("IPVPN Plus") || serviceSubType.equalsIgnoreC
 					for (int i = 0; i < numofrows; i++) {
 						try {
 							
-							waitForpageload();
+							
 							waitforPagetobeenable();
 							
 							resultflag = results.get(i).isDisplayed();
@@ -1705,13 +1706,13 @@ if(serviceSubType.equalsIgnoreCase("IPVPN Plus") || serviceSubType.equalsIgnoreC
 	public void SelectInterfacetoaddwithservcie(String Application, String interfacenumber)
 			throws InterruptedException, DocumentException, IOException {
 
-		scrolltoend();
-		Thread.sleep(4000);
+		waitforPagetobeenable();
+		
+		WebElement interfaceInService = getwebelement(xml.getlocator("//locators/" + Application + "/interfaceInService_PanelHeader"));
+		scrolltoview(interfaceInService);
+		Thread.sleep(1000);
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "'Select interface'_Add Interface to Service'");
-		
-		waitForpageload();
-		waitforPagetobeenable();
 		
 		addtextFields_commonMethod(Application, "Search", "interfacesToSelect_searchtextBOx", interfacenumber, xml);
 		

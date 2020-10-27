@@ -269,11 +269,13 @@ public class APT_NGINMessageHelper extends DriverHelper{
 					
 					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 					System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+					successScreenshot(application);
 					
 				}else {
 					
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 					System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+					successScreenshot(application);
 				}
 				
 			}else {
@@ -310,10 +312,11 @@ public class APT_NGINMessageHelper extends DriverHelper{
 		}
 	}
 	
-	public void successScreenshot(String application) {
-	String screenshotBase64 = "data:image/jpg;base64," +((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
-	String ScreenshottoReport= ExtentTestManager.getTest().addScreenCapture(screenshotBase64);
-	ExtentTestManager.getTest().log(LogStatus.PASS, ScreenshottoReport);
+//	public void successScreenshot(String application) {
+//	String screenshotBase64 = "data:image/jpg;base64," +((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
+//	String ScreenshottoReport= ExtentTestManager.getTest().addScreenCapture(screenshotBase64);
+//	ExtentTestManager.getTest().log(LogStatus.PASS, ScreenshottoReport);
+//	
+//	}
 	
-	}
 }

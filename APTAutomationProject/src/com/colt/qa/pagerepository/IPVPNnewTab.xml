@@ -197,12 +197,13 @@
     <deleteMessages_textMessage>//div[@class='modal-body']</deleteMessages_textMessage>
     <delete_alertpopup>//div[@class='modal-content']</delete_alertpopup>
     <deletebutton>//button[@class='btn btn-danger']</deletebutton>
-     
-     
     
     <!--  Delete PE device -->
     <PE_deleteFromService>//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div[@class='div-margin row']//b[contains(text(),'value')]/parent::div/following-sibling::div//span[text()='Delete from Service']</PE_deleteFromService>
 
+
+	<siteValue_IPVPN>//label[text()='Site']/parent::div//following-sibling::div</siteValue_IPVPN>
+	<interfaceInService_PanelHeader>//div[text()='Interfaces in Service']</interfaceInService_PanelHeader>
 
 </IPVPN>
 </locators>

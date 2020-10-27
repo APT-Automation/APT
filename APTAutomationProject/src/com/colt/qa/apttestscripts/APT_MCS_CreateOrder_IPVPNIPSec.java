@@ -21,34 +21,42 @@ public class APT_MCS_CreateOrder_IPVPNIPSec extends DriverTestcase{
 	
 	
 	@Test(description = "TC-01",dataProviderClass = DataReader.class, dataProvider = "Finaldatareader_IPVPNIPSec", priority=0)
-	public void CreateCustomer(Map<String, String> map) throws Exception {
+	public void IPVPN_IPSec(Map<String, String> map) throws Exception {
 		setup();
-		Login.APT_Login_1(map.get("url"));
-		/*
-		//logger= ExtentTestManager.startTest("CreateCustomer"); 
-		//APT_IPVPNHelper.get().createnewcustomer("ipvpnservice", map.get("Name"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));		
-		 
-		logger= ExtentTestManager.startTest("selectCustomertocreateOrder");
+		Login.APT_Login_1(map.get("url for the Product"));
+		
+		if(map.get("New Customer").equalsIgnoreCase("Yes")) {
+		logger= ExtentTestManager.startTest("CreateCustomer-IPVPNSEC"); 
+		APT_IPVPNHelper.get().createnewcustomer("ipvpnservice", map.get("Name"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));		
+		ExtentTestManager.endTest();
+		}else {
+		logger= ExtentTestManager.startTest("selectCustomertocreateOrder-IPVPNSEC");
 			APT_IPVPNHelper.get().selectCustomertocreateOrder("ipvpnservice",map.get("ChooseCustomerToBeSelected"),map.get("Name1"),map.get("Name2"));
-			logger= ExtentTestManager.startTest("createneworderservice");
+			ExtentTestManager.endTest();
+		}
+		logger= ExtentTestManager.startTest("selectCustomertocreateOrder-IPVPNSEC");
+		APT_IPVPNHelper.get().selectCustomertocreateOrder("ipvpnservice",map.get("ChooseCustomerToBeSelected"),map.get("Name1"),map.get("Name2"));
+		ExtentTestManager.endTest();
+	
+			logger= ExtentTestManager.startTest("createneworderservice-IPVPNSEC");
 			APT_IPVPNHelper.get().createneworderservice("ipvpnservice", map.get("NewOrderService"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"));	
-			
-			logger= ExtentTestManager.startTest("verifyservicetypeandSubtype");
+			ExtentTestManager.endTest();
+			logger= ExtentTestManager.startTest("verifyservicetypeandSubtype-IPVPNSEC");
 		 APT_IPVPNHelper.get().verifyservicetypeandSubtype("ipvpnservice", map.get("ServiceType"),map.get("ServiceSubType"));
-		 logger= ExtentTestManager.startTest("createservice");
+		 ExtentTestManager.endTest();
+		 logger= ExtentTestManager.startTest("createservice-IPVPNSEC");
 		 APT_IPVPNHelper.get().createservice("ipvpnservice", map.get("ServiceIdentification"),map.get("Remarks"),map.get("Email"),map.get("Phone"),map.get("DeliveryChannel"),map.get("Package"),
 				map.get("Management Vpn"),map.get("VPN Topology"),map.get("Wholesale VPN/Global MPLS"),map.get("Multicast Group Address"),map.get("Multicast Group Pool"),map.get("Multicast Threshold (in kbps)"),map.get("MulticastCheckbox"),
 				map.get("AllowSMCEmail"),map.get("ProactiveNotification"),map.get("DialUserAdmin"),map.get("ApplicationAwareNetwork"),map.get("Performance Reporting Type"));
-
-		 logger= ExtentTestManager.startTest("verifyCustomerDetailsInformation");
-			
-		 	APT_IPVPNHelper.get().selectCustomertocreateOrder("ipvpnservice",map.get("ChooseCustomerToBeSelected"),map.get("Name1"),map.get("Name2"));
-		
+		 ExtentTestManager.endTest();
+		 
+		 logger= ExtentTestManager.startTest("verifyCustomerDetailsInformation-IPVPNSEC");	
+		 	APT_IPVPNHelper.get().selectCustomertocreateOrder("ipvpnservice",map.get("ChooseCustomerToBeSelected"),map.get("Name1"),map.get("Name2"));	
 		APT_IPVPNHelper.get().verifyCustomerDetailsInformation("ipvpnservice", map.get("Name"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
-		
+		ExtentTestManager.endTest();
 	
 		
-		//logger= ExtentTestManager.startTest("verifyUserDetailsInformation");
+		//logger= ExtentTestManager.startTest("verifyUserDetailsInformation-IPVPNSEC");
 	 	//APT_IPVPNHelper.get().selectCustomertocreateOrder("ipvpnservice",map.get("ChooseCustomerToBeSelected"),map.get("Name1"),map.get("Name2"));
 	//APT_IPVPNHelper.get().createnewuser("ipvpnservice", map.get("UserName"), map.get("FirstName"), map.get("SurName"), map.get("PostalAddress"), map.get("UserEmail"), map.get("Phone"), map.get("EditUserName"), map.get("EditFirstName"), map.get("EditSurName"), map.get("EditPostalAddress"), map.get("EditEmail"), map.get("EditPhone"),
 		//	 map.get("User-Roles"), map.get("User_Hide-Services"), map.get("User_IPV4CommandCisco"), map.get("User_IPV4CommandHuawai"), map.get("User_IPV6CommandCisco"));
@@ -60,81 +68,89 @@ public class APT_MCS_CreateOrder_IPVPNIPSec extends DriverTestcase{
 	//APT_IPVPNHelper.get().Deletenewuser("ipvpnservice", map.get("UserName"));
 
 	
-	 logger= ExtentTestManager.startTest("verifyOrderDetailsInformation");
+	 logger= ExtentTestManager.startTest("verifyOrderDetailsInformation-IPVPNSEC");
 	 APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().verifyorderpanelinformation_Neworder("ipvpnservice", map.get("NewOrderService"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"));
-	 logger= ExtentTestManager.startTest("verifyorderpanel_editorder");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("verifyorderpanel_editorder-IPVPNSEC");
 	APT_IPVPNHelper.get().verifyorderpanel_editorder("ipvpnservice", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
-	 logger= ExtentTestManager.startTest("verifyorderpanel_changeorder");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("verifyorderpanel_changeorder-IPVPNSEC");
 	APT_IPVPNHelper.get().verifyorderpanel_changeorder("ipvpnservice", map.get("ChangeOrder_OrderNumber1"), map.get("ChangeOrder_VoicelineNumber"),map.get("CreateNewOrder"));	
-
-	logger= ExtentTestManager.startTest("verifyServicepanelinviewservicepage");
+	ExtentTestManager.endTest();
+	
+	logger= ExtentTestManager.startTest("verifyServicepanelinviewservicepage-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().verifyservicepanelInformationinviewservicepage("ipvpnservice", map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceSubType") , map.get("Remarks") , map.get("EditEmail") , map.get("EditPhone"));
 	APT_IPVPNHelper.get().verifyservicepanel_links("ipvpnservice",map.get("ServiceSubType"), map.get("EditRemarks"), map.get("Remarks"), map.get("ChangeOrder_OrderNumber"),
 			map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
 	
-	logger= ExtentTestManager.startTest("Editservice");
+	ExtentTestManager.endTest();
+	
+	logger= ExtentTestManager.startTest("Editservice-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().Editservice("ipvpnservice", map.get("ServiceIdentification"),map.get("Remarks"),map.get("Email"),map.get("Phone"),map.get("DeliveryChannel"),map.get("Package"),
 			map.get("Management Vpn"),map.get("VPN Topology"),map.get("Wholesale VPN/Global MPLS"),map.get("Multicast Group Address"),map.get("Multicast Group Pool"),map.get("Multicast Threshold (in kbps)"));
 	
-	logger= ExtentTestManager.startTest("syncservices");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("syncservices-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().syncservices("ipvpnservice");
-
-	logger= ExtentTestManager.startTest("Dumpservice");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("Dumpservice-IPVPNSEC");
 	APT_IPVPNHelper.get().Dumpservice("ipvpnservice", map.get("ServiceIdentification"),map.get("Remarks"),map.get("Email"),map.get("Phone"),map.get("DeliveryChannel"),map.get("Package"),
 			map.get("Management Vpn"),map.get("VPN Topology"),map.get("Wholesale VPN/Global MPLS"),map.get("Multicast Group Address"),map.get("Multicast Group Pool"),map.get("Multicast Threshold (in kbps)"));
-
-    logger= ExtentTestManager.startTest("verifyManagementOptionspanel");
+	ExtentTestManager.endTest();
+    logger= ExtentTestManager.startTest("verifyManagementOptionspanel-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().verifyManagementOptionspanel("ipvpnservice",map.get("ServiceSubType"));
-
-	logger= ExtentTestManager.startTest("AddManageUser");
+	ExtentTestManager.endTest();
+	
+	logger= ExtentTestManager.startTest("AddManageUser-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().AddManageUser("ipvpnservice",map.get("ServiceSubType"),map.get("ManageUserName"));
-	
-	logger= ExtentTestManager.startTest("ViewManageUser");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("ViewManageUser-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().ViewManageUser("ipvpnservice",map.get("ServiceSubType"),map.get("EditUserName"),map.get("ManageUserName"));
-	
-	logger= ExtentTestManager.startTest("EditManageUser");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("EditManageUser-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().EditManageUser("ipvpnservice",map.get("ServiceSubType"),map.get("EditUserName"),map.get("ManageUserName"));
-	logger= ExtentTestManager.startTest("DeleteManageUser");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("DeleteManageUser-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().DeleteManageUser("ipvpnservice",map.get("ServiceSubType"),map.get("EditUserName"));
-
+	ExtentTestManager.endTest();
 	
-	logger= ExtentTestManager.startTest("AddVPNAlis");
+	logger= ExtentTestManager.startTest("AddVPNAlis-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().AddVPNAlis("ipvpnservice",map.get("ServiceSubType"),map.get("VPN Name"),map.get("VPN Alis"));
-	
-	logger= ExtentTestManager.startTest("EditVPNAlis");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("EditVPNAlis-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().EditVPNAlis("ipvpnservice",map.get("ServiceSubType"),map.get("VPN Name"),map.get("VPN Alis"));
-	logger= ExtentTestManager.startTest("DeleteVPNAlis");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("DeleteVPNAlis-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().DeleteVPNAlis("ipvpnservice",map.get("ServiceSubType"),map.get("VPN Name"),map.get("VPN Alis"));
-
-
-
-	logger= ExtentTestManager.startTest("AddVPNSITEOrder");
+	ExtentTestManager.endTest();
+	
+	logger= ExtentTestManager.startTest("AddVPNSITEOrder-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().AddVPNSiteOrder("ipvpnservice", map.get("ServiceSubType"),map.get("VPN Device Country"),map.get("VPN Device City"),map.get("Physical Site"),map.get("VPN Vendor/Model"),map.get("VPN Site Order Num"),map.get("VPN Site Alis"),
-			map.get("Router Id"),map.get("Management Address"),map.get("Voip Service"),map.get("HUB/SPOKE"),map.get("SelectSiteToggle"),map.get("SelectCityToggle"),map.get("Device_Xng_City_Name"),map.get("Device_Xng_City_Code"),map.get("VoIPCheckBox"),map.get("DeviceToggle"));
+			map.get("Router Id"),map.get("Management Address"),map.get("Voip Service"),map.get("HUB/SPOKE"),map.get("SelectSiteToggle"),map.get("SelectCityToggle"),map.get("Device_Xng_City_Name"),map.get("Device_Xng_City_Code"),map.get("VoIPCheckBox"),map.get("DeviceToggle"),map.get("Physical_Site"));
 	APT_IPVPNHelper.get().AddVPNSiteOrderPlus("ipvpnservice", map.get("ServiceSubType"), map.get("VPN Device Country"),map.get("VPN Device City"),map.get("VPN Site Order Num"),map.get("VPN Site Alis"),map.get("CSRName"),map.get("Site Order Type"),
 			map.get("IAReference"),map.get("IV Reference"),map.get("PerfReport"),map.get("PerCoS"),map.get("RouterIPv4"),map.get("RouterIPv6"),map.get("CPEName"),map.get("VoIPCheckBox"),map.get("Voip Service"),map.get("VirtualCPEcheckbox"),
-			map.get("SelectSiteToggle"),map.get("SelectCityToggle"),map.get("Device_Xng_City_Name"),map.get("Device_Xng_City_Code"),map.get("DSL_Site"),map.get("Speedboat_Site"),map.get("ActelisBased"));
+			map.get("SelectSiteToggle"),map.get("SelectCityToggle"),map.get("Device_Xng_City_Name"),map.get("Device_Xng_City_Code"),map.get("DSL_Site"),map.get("Speedboat_Site"),map.get("ActelisBased"),map.get("Physical_Site"));
 	APT_IPVPNHelper.get().AddVPNSiteOrder3("ipvpnservice", map.get("ServiceSubType"), map.get("VPN Device Country"),map.get("VPN Device City"),map.get("VPN Site Order Num"),map.get("VPN Site Alis"),map.get("CSRName"),map.get("Site Order Type"),
 			map.get("IAReference"),map.get("IV Reference"),map.get("PerfReport"),map.get("PerCoS"),map.get("RouterIPv4"),map.get("RouterIPv6"),map.get("CPEName"),map.get("VoipService"),
-		map.get("SelectSiteToggle"),map.get("SelectCityToggle"),map.get("Device_Xng_City_Name"),map.get("Device_Xng_City_Code"),map.get("VoIPCheckBox"),map.get("DSL_Site"),map.get("Speedboat_Site"),map.get("ActelisBased"),map.get("CNG-Option"),map.get("CNG"));
+		map.get("SelectSiteToggle"),map.get("SelectCityToggle"),map.get("Device_Xng_City_Name"),map.get("Device_Xng_City_Code"),map.get("VoIPCheckBox"),map.get("DSL_Site"),map.get("Speedboat_Site"),map.get("ActelisBased"),map.get("CNG-Option"),map.get("CNG"),map.get("Physical_Site"));
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().SwifNetSpoke("ipvpnservice", map.get("ServiceSubType"),map.get("VPN Device Country"),map.get("VPN Device City"),map.get("Spoke_Physical Site"),map.get("VPN Vendor/Model"),map.get("Spoke_VPN Site Order Num"),map.get("Spoke_VPN Site Alis"),
-			map.get("Spoke_Router Id"),map.get("Spoke_Management Address"),map.get("Voip Service"),map.get("Spoke_HUB/SPOKE"),map.get("SelectSiteToggle"),map.get("SelectCityToggle"),map.get("Device_Xng_City_Name"),map.get("Spoke_Device_Xng_City_Code"),map.get("VoIPCheckBox"),map.get("DeviceToggle"));
-
-	logger= ExtentTestManager.startTest("verifyAddedVPNSiteInformation");
+			map.get("Spoke_Router Id"),map.get("Spoke_Management Address"),map.get("Voip Service"),map.get("Spoke_HUB/SPOKE"),map.get("SelectSiteToggle"),map.get("SelectCityToggle"),map.get("Device_Xng_City_Name"),map.get("Spoke_Device_Xng_City_Code"),map.get("VoIPCheckBox"),map.get("DeviceToggle"),map.get("Physical_Site"));
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("verifyAddedVPNSiteInformation-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().verifyAddedVPNSitePlusInformation_View("ipvpnservice", map.get("ServiceSubType"), map.get("VPN Device Country"),map.get("VPN Device City"),map.get("VPN Site Order Num"),map.get("VPN Site Alis"),map.get("CSRName"),map.get("Site Order Type"),
 			map.get("IAReference"),map.get("IV Reference"),map.get("PerfReport"),map.get("PerCoS"),map.get("RouterIPv4"),map.get("RouterIPv6"),map.get("CPEName"));
@@ -144,68 +160,82 @@ public class APT_MCS_CreateOrder_IPVPNIPSec extends DriverTestcase{
 			map.get("Router Id"),map.get("Management Address"),map.get("Voip Service"),map.get("HUB/SPOKE"));
 	APT_IPVPNHelper.get().VerifyVPNSiteOrderSpoke("ipvpnservice", map.get("ServiceSubType"),map.get("VPN Device Country"),map.get("VPN Device City"),map.get("Physical Site"),map.get("VPN Vendor/Model"),map.get("VPN Site Order Num"),map.get("VPN Site Alis"),
 			map.get("Router Id"),map.get("Management Address"),map.get("Voip Service"),map.get("Spoke_HUB/SPOKE"));
+	ExtentTestManager.endTest();
 	
-	logger= ExtentTestManager.startTest("verifyEditDeviceFunction");
+	logger= ExtentTestManager.startTest("verifyEditDeviceFunction-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().EditVPNSiteOrderPlus("ipvpnservice", map.get("ServiceSubType"), map.get("VoIPCheckBox"),map.get("Voip Service"),map.get("VirtualCPEcheckbox"),map.get("VPN Site Alis"),map.get("CSRName"),map.get("Site Order Type"),
-			map.get("IAReference"),map.get("IV Reference"),map.get("PerfReport"),map.get("PerCoS"),map.get("RouterIPv4"),map.get("RouterIPv6"),map.get("CPEName"),map.get("VPN Site Order Num"));
+			map.get("IAReference"),map.get("IV Reference"),map.get("PerfReport"),map.get("PerCoS"),map.get("RouterIPv4"),map.get("RouterIPv6"),map.get("CPEName"),map.get("VPN Site Order Num"),map.get("Physical_Site"));
 	APT_IPVPNHelper.get().EditVPNSiteOrder3("ipvpnservice", map.get("ServiceSubType"), map.get("VPN Device Country"),map.get("VPN Device City"),map.get("VPN Site Order Num"),map.get("VPN Site Alis"),map.get("CSRName"),map.get("Site Order Type"),
-			map.get("IAReference"),map.get("IV Reference"),map.get("PerfReport"),map.get("PerCoS"),map.get("RouterIPv4"),map.get("RouterIPv6"),map.get("CPEName"),map.get("VoipService"));
+			map.get("IAReference"),map.get("IV Reference"),map.get("PerfReport"),map.get("PerCoS"),map.get("RouterIPv4"),map.get("RouterIPv6"),map.get("CPEName"),map.get("VoipService"),map.get("Physical_Site"));
 	APT_IPVPNHelper.get().EditVPNSiteOrder("ipvpnservice", map.get("ServiceSubType"),map.get("VPN Device Country"),map.get("VPN Device City"),map.get("Physical Site"),map.get("VPN Vendor/Model"),map.get("VPN Site Order Num"),map.get("VPN Site Alis"),
-			map.get("Router Id"),map.get("Management Address"),map.get("Voip Service"),map.get("HUB/SPOKE"));
+			map.get("Router Id"),map.get("Management Address"),map.get("Voip Service"),map.get("HUB/SPOKE"),map.get("Physical_Site"));
 	APT_IPVPNHelper.get().EditVPNSiteOrderSpoke("ipvpnservice", map.get("ServiceSubType"),map.get("VPN Device Country"),map.get("VPN Device City"),map.get("Physical Site"),map.get("VPN Vendor/Model"),map.get("VPN Site Order Num"),map.get("VPN Site Alis"),
-			map.get("Router Id"),map.get("Management Address"),map.get("Voip Service"),map.get("HUB/SPOKE"));
+			map.get("Router Id"),map.get("Management Address"),map.get("Voip Service"),map.get("Spoke_HUB/SPOKE"),map.get("Physical_Site"));
 	APT_IPVPNHelper.get().verifyEditDeviceFunction("ipvpnservice", map.get("ServiceSubType"),map.get("Router Id"),map.get("ManagementAdd_Re"),map.get("VPN Vendor/Model"));
 	APT_IPVPNHelper.get().verifyEditDeviceFunctionSpoke("ipvpnservice", map.get("ServiceSubType"),map.get("Router Id"),map.get("ManagementAdd_Re"),map.get("VPN Vendor/Model"));
-
-	logger= ExtentTestManager.startTest("showNewInfovistaReport");
+	ExtentTestManager.endTest();
+	
+	logger= ExtentTestManager.startTest("showNewInfovistaReport-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().shownewInfovista("ipvpnservice");
-
-	logger= ExtentTestManager.startTest("AddNewDevice");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("AddNewDevice-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().AddNewDevice("ipvpnservice", map.get("ServiceSubType"),map.get("VPN Vendor/Model"),map.get("Router Id"),map.get("Management Address"),map.get("Snmp V3 User Name"));
-
-	 logger= ExtentTestManager.startTest("AddWholesaleInterconnect");
+	ExtentTestManager.endTest();
+	 logger= ExtentTestManager.startTest("AddWholesaleInterconnect-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().AddWholesaleInterconnect("ipvpnservice",map.get("ServiceSubType"), map.get("WholesaleDeviceName"), map.get("WholesaleInterface"));
 	APT_IPVPNHelper.get().EditWholesaleInterconnect("ipvpnservice",map.get("ServiceSubType"), map.get("IV_Management"));
 	APT_IPVPNHelper.get().DeleteWholesaleInterconnect("ipvpnservice",map.get("ServiceSubType"),map.get("DeleteWholesale"));
-
-	logger= ExtentTestManager.startTest("CreateCPEDevice");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("CreateCPEDevice-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().AddCPEDevice("ipvpnservice", map.get("ServiceSubType"),map.get("CPE_VPN Vendor/Model"),map.get("CPE_Router Id"),map.get("CPE_Management Address"),map.get("VPN Site Order Num"),map.get("CPEGetAddress"),map.get("CPEAvailableBlock"),map.get("CPEPremiseName"),map.get("CPEPremiseCode")
 			,map.get("CPEPremiseToggle"),map.get("CPEJitterRadio"),map.get("CPEConnectPortalTal"),map.get("CPEConnectPortalSsh"),map.get("CPEPremiseddn"),map.get("CPESNMP3"));
-
-	logger= ExtentTestManager.startTest("ViewCPEDevice");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("ViewCPEDevice-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().ViewCPEDevice("ipvpnservice", map.get("ServiceSubType"),map.get("CPE_VPN Vendor/Model"),map.get("CPE_Router Id"),map.get("CPE_Management Address"),map.get("VPN Site Order Num"),map.get("CPEGetAddress"),map.get("CPEAvailableBlock"),map.get("CPEPremiseName"),map.get("CPEPremiseCode")
 			,map.get("CPEPremiseToggle"),map.get("CPEJitterRadio"), map.get("VPN Device Country"),map.get("VPN Device City"),map.get("CSRName"));
-	logger= ExtentTestManager.startTest("EditCPEDevice");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("EditCPEDevice-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().EditCPEDevice("ipvpnservice", map.get("ServiceSubType"),map.get("CPE_VPN Vendor/Model"),map.get("CPE_Router Id"),map.get("CPE_Management Address"),map.get("VPN Site Order Num"),map.get("CPEGetAddress"),map.get("CPEAvailableBlock"),map.get("CPEPremiseName"),map.get("CPEPremiseCode")
 			,map.get("CPEPremiseToggle"),map.get("CPEJitterRadio"),map.get("CPEConnectPortalTal"),map.get("CPEConnectPortalSsh"),map.get("CPEPremiseddn"),map.get("CPESNMP3"));
-
-	logger= ExtentTestManager.startTest("AddInterfaceCPE");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("AddInterfaceCPE-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().AddInterfaceCPE("ipvpnservice", map.get("ServiceSubType"),map.get("CPEBearerType"),map.get("CPEBandwidthE1"),map.get("CPEBandwidthE3"),map.get("CPEBandwidthSTM"),map.get("CPELink"),map.get("CpeEncapsulation"),map.get("CpeClockSource"),map.get("CpePrimary/Backup")
 			,map.get("CpenterfaceDirection"),map.get("CpeVoiceline"), map.get("CpeIVManagement"),map.get("CpeIVBitCounter"),map.get("CpeAddRange"),map.get("CpeSecondaryIp"),map.get("CpeNetmask"),map.get("CpeSpeed"),map.get("CpeDuplex"),map.get("CpeInterface"),map.get("CpeInterfaceAddRangeDdn"),map.get("CpeInterfaceAddRangeText"),map.get("CpeAddress"),
 			map.get("InterfaceGetAddress"),map.get("CPE_Router Id"),map.get("VPN Site Order Num"),map.get("CpeAddInterfaceButton"),map.get("InterfaceCNGReferance"));
-	logger= ExtentTestManager.startTest("EditInterfaceCPE");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("EditInterfaceCPE-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().EditInterfaceCPE("ipvpnservice", map.get("ServiceSubType"),map.get("CPEBearerType"),map.get("CPEBandwidthE1"),map.get("CPEBandwidthE3"),map.get("CPEBandwidthSTM"),map.get("CPELink"),map.get("CpeEncapsulation"),map.get("CpeClockSource"),map.get("CpePrimary/Backup")
 			,map.get("CpenterfaceDirection"),map.get("CpeVoiceline"), map.get("CpeIVManagement"),map.get("CpeIVBitCounter"),map.get("CpeAddRange"),map.get("CpeSecondaryIp"),map.get("CpeNetmask"),map.get("CpeSpeed"),map.get("CpeDuplex"),map.get("CpeInterface"),map.get("CpeInterfaceAddRangeDdn"),map.get("CpeInterfaceAddRangeText"),map.get("CpeAddress"),
 			map.get("InterfaceGetAddress"),map.get("CPE_Router Id"),map.get("VPN Site Order Num"),map.get("CpeAddInterfaceButton"),map.get("InterfaceCNGReferance"));
-	logger= ExtentTestManager.startTest("SelectInterface");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("CPEDeviceConfiguration-IPVPNSEC");
+	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
+	APT_IPVPNHelper.get().CPEDeviceConfiguration("ipvpnservice", map.get("ServiceSubType"),map.get("CPE_VPN Vendor/Model"),map.get("CPE_Router Id"),map.get("CPE_Management Address"),map.get("VPN Site Order Num"),map.get("CPEGetAddress"),map.get("CPEAvailableBlock"),map.get("CPEPremiseName"),map.get("CPEPremiseCode")
+			,map.get("CPEPremiseToggle"),map.get("CPEJitterRadio"),map.get("CPEConnectPortalTal"),map.get("CPEConnectPortalSsh"),map.get("CPEPremiseddn"),map.get("CPESNMP3"));
+	ExtentTestManager.endTest();
+	
+	logger= ExtentTestManager.startTest("SelectInterface-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().SelectInterface("ipvpnservice", map.get("ServiceSubType"),map.get("CPE_Router Id"),map.get("VPN Site Order Num"),map.get("CpeInterface"));
-	logger= ExtentTestManager.startTest("DeleteInterfaceCPE");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("DeleteInterfaceCPE-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().DeleteInterfaceCPE("ipvpnservice", map.get("ServiceSubType"),map.get("CPEBearerType"),map.get("CPEBandwidthE1"),map.get("CPEBandwidthE3"),map.get("CPEBandwidthSTM"),map.get("CPELink"),map.get("CpeEncapsulation"),map.get("CpeClockSource"),map.get("CpePrimary/Backup")
 			,map.get("CpenterfaceDirection"),map.get("CpeVoiceline"), map.get("CpeIVManagement"),map.get("CpeIVBitCounter"),map.get("CpeAddRange"),map.get("CpeSecondaryIp"),map.get("CpeNetmask"),map.get("CpeSpeed"),map.get("CpeDuplex"),map.get("CpeInterface"),map.get("CpeInterfaceAddRangeDdn"),map.get("CpeInterfaceAddRangeText"),map.get("CpeAddress"),
 			map.get("InterfaceGetAddress"),map.get("CPE_Router Id"),map.get("VPN Site Order Num"),map.get("CpeAddInterfaceButton"),map.get("InterfaceCNGReferance"));
+	ExtentTestManager.endTest();
 	
-	logger= ExtentTestManager.startTest("addPPPconfiguration");
+	if ((map.get("ServiceSubType").contains("IPVPN"))&& (!map.get("ServiceSubType").equalsIgnoreCase("IPVPN Access"))) {
+		logger= ExtentTestManager.startTest("addPPPconfiguration-IPVPNSEC");	
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().CPEdevice_clickOnPPPconfiguration("ipvpnservice", map.get("CPE_Router Id"),map.get("VPN Site Order Num"));
 	APT_IPVPNHelper.get().pppConfiguration("ipvpnservice");
@@ -219,9 +249,9 @@ public class APT_MCS_CreateOrder_IPVPNIPSec extends DriverTestcase{
 			map.get("CPE_ppp_framedIPv6route1"), map.get("CPE_ppp_framedIPv6Route2"), map.get("CPE_ppp_framedIPv6route3"), map.get("CPE_ppp_framedIPv6Route4"),
 			map.get("CPE_ppp_framedIPv6Route5"), map.get("CPE_ppp_framedIPv6Route6"), map.get("CPE_ppp_framedIPv6route7"), map.get("CPE_pppConfig_uniIPv6LocalInterface"),
 			map.get("CPE_pppConfig_uniIPv6VirtualRouter"), map.get("CPE_pppConfig_uniIngressStatistics"));
-	APT_IPVPNHelper.get().verifysuccessmessage("ipvpnservice", "Device successfully created.");
-			
-	logger= ExtentTestManager.startTest("viewPPPconfiguration");
+	APT_IPVPNHelper.get().verifysuccessmessage("ipvpnservice", "Device successfully created.-IPVPNSEC");
+	ExtentTestManager.endTest();		
+	logger= ExtentTestManager.startTest("viewPPPconfiguration-IPVPNSEC");
 	APT_IPVPNHelper.get().viewPPPconfiguration("ipvpnservice", map.get("CPE_Router Id") , map.get("CPE_pppconfiguration_framedWANipAddress"),
 			map.get("CPE_pppConfiguration_framedRoute0"), map.get("CPE_pppConfiguration_framedRoute1"), map.get("CPE_pppConfiguration_framedRoute2"), 
 			map.get("CPE_pppConfiguration_framedRoute3"), map.get("CPE_pppConfiguration_framedRoute4"), map.get("CPE_pppConfiguration_framedRoute5"),
@@ -232,8 +262,8 @@ public class APT_MCS_CreateOrder_IPVPNIPSec extends DriverTestcase{
 			map.get("CPE_ppp_framedIPv6route1"), map.get("CPE_ppp_framedIPv6Route2"), map.get("CPE_ppp_framedIPv6route3"), map.get("CPE_ppp_framedIPv6Route4"),
 			map.get("CPE_ppp_framedIPv6Route5"), map.get("CPE_ppp_framedIPv6Route6"), map.get("CPE_ppp_framedIPv6route7"));
 	
-
-	logger= ExtentTestManager.startTest("editPPPconfiguration");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("editPPPconfiguration-IPVPNSEC");
 	APT_IPVPNHelper.get().editPPPconfiguration("ipvpnservice", map.get("CPE_editPPPconfig_framedWANipAddress"),
 			map.get("CPE_editPPPconfig_framedRoute0"), map.get("CPE_editPPPconfig_framedRoute1"), map.get("CPE_editPPPconfig_framedRoute2"), 
 			map.get("CPE_editPPPconfig_framedRoute3"), map.get("CPE_editPPPconfig_framedRoute4"), map.get("CPE_editPPPconfig_framedRoute5"),
@@ -247,51 +277,58 @@ public class APT_MCS_CreateOrder_IPVPNIPSec extends DriverTestcase{
 	APT_IPVPNHelper.get().verifysuccessmessage("ipvpnservice", "Device successfully updated.");
 	
 	
-	//logger= ExtentTestManager.startTest("deletePPPconfiguration");
+	//logger= ExtentTestManager.startTest("deletePPPconfiguration-IPVPNSEC");
 	//APT_IPVPNHelper.get().deletePPPconfiguration("ipvpnservice");
-
 	
-	logger= ExtentTestManager.startTest("AddMultilinkCPE");
+	ExtentTestManager.endTest();
+	}
+	logger= ExtentTestManager.startTest("AddMultilinkCPE-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().AddMultilinkCPE("ipvpnservice", map.get("ServiceSubType"),map.get("MultilinkEthernetCheckbox"),map.get("CPEBandwidthE1"),map.get("CPEBandwidthE3"),map.get("CPEBandwidthSTM"),map.get("CPELink"),map.get("CpeEncapsulation"),map.get("CpeClockSource"),map.get("CpePrimary/Backup")
 			,map.get("CpenterfaceDirection"),map.get("CpeVoiceline"), map.get("CpeIVManagement"),map.get("CpeIVBitCounter"),map.get("CpeAddRange"),map.get("CpeSecondaryIp"),map.get("CpeNetmask"),map.get("CpeSpeed"),map.get("CpeDuplex"),map.get("CpeInterface"),map.get("CpeMultilinkAddRangeDdn"),map.get("CpeMultilinkAddRangeText"),map.get("CpeAddress"),
 			map.get("InterfaceGetAddress"),map.get("CPE_Router Id"),map.get("VPN Site Order Num"),map.get("CpeAddInterfaceButton"),map.get("InterfaceCNGReferance"));
-	logger= ExtentTestManager.startTest("EditMultilinkCPE");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("EditMultilinkCPE-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().EditMultilinkCPE("ipvpnservice", map.get("ServiceSubType"),map.get("MultilinkEthernetCheckbox"),map.get("CPEBandwidthE1"),map.get("CPEBandwidthE3"),map.get("CPEBandwidthSTM"),map.get("CPELink"),map.get("CpeEncapsulation"),map.get("CpeClockSource"),map.get("CpePrimary/Backup")
 			,map.get("CpenterfaceDirection"),map.get("CpeVoiceline"), map.get("CpeIVManagement"),map.get("CpeIVBitCounter"),map.get("CpeAddRange"),map.get("CpeSecondaryIp"),map.get("CpeNetmask"),map.get("CpeSpeed"),map.get("CpeDuplex"),map.get("CpeInterface"),map.get("CpeMultilinkAddRangeDdn"),map.get("CpeMultilinkAddRangeText"),map.get("CpeAddress"),
 			map.get("InterfaceGetAddress"),map.get("CPE_Router Id"),map.get("VPN Site Order Num"),map.get("CpeAddInterfaceButton"),map.get("InterfaceCNGReferance"));
-	logger= ExtentTestManager.startTest("DeleteMultilinkCPE");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("DeleteMultilinkCPE-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().DeleteMultilinkCPE("ipvpnservice", map.get("ServiceSubType"),map.get("MultilinkEthernetCheckbox"),map.get("CPEBandwidthE1"),map.get("CPEBandwidthE3"),map.get("CPEBandwidthSTM"),map.get("CPELink"),map.get("CpeEncapsulation"),map.get("CpeClockSource"),map.get("CpePrimary/Backup")
 			,map.get("CpenterfaceDirection"),map.get("CpeVoiceline"), map.get("CpeIVManagement"),map.get("CpeIVBitCounter"),map.get("CpeAddRange"),map.get("CpeSecondaryIp"),map.get("CpeNetmask"),map.get("CpeSpeed"),map.get("CpeDuplex"),map.get("CpeInterface"),map.get("CpeMultilinkAddRangeDdn"),map.get("CpeMultilinkAddRangeText"),map.get("CpeAddress"),
 			map.get("InterfaceGetAddress"),map.get("CPE_Router Id"),map.get("VPN Site Order Num"),map.get("CpeAddInterfaceButton"),map.get("InterfaceCNGReferance"));
-	
-	logger= ExtentTestManager.startTest("AddRoutesCPE");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("AddRoutesCPE-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().AddRoutesCPE("ipvpnservice", map.get("ServiceSubType"),map.get("CPE_Router Id"),map.get("VPN Site Order Num"), map.get("RoutesDestination"), map.get("RoutesNetMask"), map.get("RoutesMetrics"));
-	logger= ExtentTestManager.startTest("EditRoutesCPE");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("EditRoutesCPE-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().EditRoutesCPE("ipvpnservice", map.get("ServiceSubType"),map.get("CPE_Router Id"),map.get("VPN Site Order Num"), map.get("RoutesDestination"), map.get("RoutesNetMask"), map.get("RoutesMetrics"));
-	logger= ExtentTestManager.startTest("DeleteRoutesCPE");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("DeleteRoutesCPE-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().DeleteRoutesCPE("ipvpnservice", map.get("ServiceSubType"),map.get("CPE_Router Id"),map.get("VPN Site Order Num"), map.get("RoutesDestination"), map.get("RoutesNetMask"), map.get("RoutesMetrics"));
-	
-	logger= ExtentTestManager.startTest("AddRouterTool");
+	ExtentTestManager.endTest();
+	logger= ExtentTestManager.startTest("AddRouterTool-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().AddRouterTool("ipvpnservice", map.get("ServiceSubType"),map.get("CPE_Router Id"),map.get("VPN Site Order Num"), map.get("RouterToolIPV4"), map.get("RouterToolIPV6"));
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().AddRouterTool4("ipvpnservice", map.get("ServiceSubType"),map.get("VPN Device Country"),map.get("VPN Device City"),map.get("Physical Site"),map.get("VPN Vendor/Model"),map.get("VPN Site Order Num"),map.get("VPN Site Alis"),
 			map.get("Router Id"), map.get("RouterToolIPV4"), map.get("RouterToolIPV6"),map.get("HUB/SPOKE"));
+	ExtentTestManager.endTest();
 	
-	
-	logger= ExtentTestManager.startTest("DeleteCPEDevice");
+	logger= ExtentTestManager.startTest("DeleteCPEDevice-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().DeleteCPEDevice("ipvpnservice", map.get("ServiceSubType"),map.get("CPE_VPN Vendor/Model"),map.get("CPE_Router Id"),map.get("CPE_Management Address"),map.get("VPN Site Order Num"),map.get("CPEGetAddress"),map.get("CPEAvailableBlock"),map.get("CPEPremiseName"),map.get("CPEPremiseCode")
 			,map.get("CPEPremiseToggle"),map.get("CPEJitterRadio"),map.get("CPEConnectPortalTal"),map.get("CPEConnectPortalSsh"),map.get("CPEPremiseddn"),map.get("CPESNMP3"));
-
+	ExtentTestManager.endTest();
 	
-	logger= ExtentTestManager.startTest("PEdevice"); 
+	if (map.get("ServiceSubType").contains("IPVPN")) {
+		
+	logger= ExtentTestManager.startTest("PEdevice-IPVPNSEC"); 
 	
 	//verify whether Equipment panel is available	
 		boolean EquipmentPanel=APT_IPVPNHelper.get().findPanelHeader("ipvpnservice", "Provider Equipment (PE)");
@@ -311,8 +348,8 @@ public class APT_MCS_CreateOrder_IPVPNIPSec extends DriverTestcase{
 			System.out.println("Provider Equipment (PE) panel is not displaying");
 		}
 
-
-		logger= ExtentTestManager.startTest("PEdevice_addInterface");
+		ExtentTestManager.endTest();
+		logger= ExtentTestManager.startTest("PEdevice_addInterface-IPVPNSEC");
 		String interfaceCreation = "No";
 		String multilinkCreation = "No";
 		String interfaceName = "Null";
@@ -480,29 +517,33 @@ public class APT_MCS_CreateOrder_IPVPNIPSec extends DriverTestcase{
 				APT_IPVPNHelper.get().PEInterface_clickOnDeleteLink("ipvpnservice", interfaceName);
 			}
 			
-		//Delete Provier Equipment
+			//Delete Provier Equipment
 			APT_IPVPNHelper.get().deletePEdevice("ipvpnservice", map.get("ExistingPEdevice"));
 			APT_IPVPNHelper.get().verifysuccessmessage("ipvpnservice", "Device successfully removed from service.");
-			*/
 			
-			logger= ExtentTestManager.startTest("CPE to CPE Links"); 
+			
+			logger= ExtentTestManager.startTest("CPE to CPE Links-IPVPNSEC"); 
 			APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 			//	APT_IPVPNHelper.get().CPEtoCPElink("ipvpnservice", map.get("sourceDevice"), map.get("sourceInterface"), map.get("targetDevice"), map.get("targetInterface"));
-		
-			logger= ExtentTestManager.startTest("Actelis");	
+			ExtentTestManager.endTest();
+			
+			logger= ExtentTestManager.startTest("Actelis-IPVPNSEC");	
+			APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 			APT_IPVPNHelper.get().verifyAddDSLAMandHSLlink("ipvpnservice", map.get("ActelisTech_DSLAMdevice"),map.get("ServiceSubType"),map.get("VPN Site Order Num"));
-			APT_IPVPNHelper.get().AddDSLAMandHSL("ipvpnservice", map.get("ActelisTech_DSLAMdevice"), map.get("ActelisTech_DSLAMInterfacename"));
-			APT_IPVPNHelper.get().showInterface_ActelisConfiguuration("ipvpnservice");
-			APT_IPVPNHelper.get().deletInterface_ActelisConfiguration("ipvpnservice", map.get("ActelisTech_DSLAMInterfacename"));
-			APT_IPVPNHelper.get().successMessage_deleteInterfaceFromDevice_ActelisConfiguration("ipvpnservice");
-
-    logger= ExtentTestManager.startTest("verifyEditDeviceFunction");
+			APT_IPVPNHelper.get().AddDSLAMandHSL("ipvpnservice", map.get("ActelisTech_DSLAMdevice"), map.get("ActelisTech_DSLAMInterfacename"),map.get("ServiceSubType"));
+			APT_IPVPNHelper.get().showInterface_ActelisConfiguuration("ipvpnservice",map.get("ServiceSubType"));
+			APT_IPVPNHelper.get().deletInterface_ActelisConfiguration("ipvpnservice", map.get("ActelisTech_DSLAMInterfacename"),map.get("ServiceSubType"));
+			APT_IPVPNHelper.get().successMessage_deleteInterfaceFromDevice_ActelisConfiguration("ipvpnservice",map.get("ServiceSubType"));
+			ExtentTestManager.endTest();
+	}
+			
+    logger= ExtentTestManager.startTest("DeleteVPNSiterder-IPVPNSEC");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().DeleteVPNSiteOrder("ipvpnservice", map.get("ServiceSubType"),map.get("VPN Site Order Num"));
 	APT_IPVPNHelper.get().DeleteVPNSiteOrder4("ipvpnservice", map.get("ServiceSubType"),map.get("VPN Site Order Num"));
 	
-       
-
+	ExtentTestManager.endTest();
+	
 
 	} 
 	

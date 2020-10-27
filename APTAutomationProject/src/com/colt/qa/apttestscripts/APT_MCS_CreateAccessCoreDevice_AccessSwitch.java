@@ -24,7 +24,7 @@ public class APT_MCS_CreateAccessCoreDevice_AccessSwitch extends DriverTestcase 
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));	
+		Login.APT_Login_1(map.get("url for the Product"));	
 	
 		logger= ExtentTestManager.startTest("verifyNavigationToCreateAccessCoreDevicePage_Access Switch");
 			APT_CreateAccessSwitchDeviceHelper.get().navigatetomanagecoltnetwork("CreateAccessCoreDevice");
@@ -43,7 +43,7 @@ public class APT_MCS_CreateAccessCoreDevice_AccessSwitch extends DriverTestcase 
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest("verifyDeviceCreationMessagefor_AccessSwitchDevice");
-			APT_CreateAccessSwitchDeviceHelper.get().verifyDeviceCreationMessage("CreateAccessCoreDevice");
+			APT_CreateAccessSwitchDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device created successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest("verifyEnteredValueForCreateAccessSwitch_"+devicename);
@@ -55,7 +55,8 @@ public class APT_MCS_CreateAccessCoreDevice_AccessSwitch extends DriverTestcase 
 				map.get("Country"), map.get("Management Address"), map.get("ExistingCity"), map.get("ExistingCityValue"), map.get("ExistingSite"),
 				map.get("Existing SiteValue"), map.get("ExistingPremise"), map.get("Existing PremiseValue"), map.get("NewCity"), map.get("NewCityName"), map.get("NewCityCode"), 
 				map.get("NewSiteName"),map.get("NewSiteCode"), map.get("NewPremiseName"), map.get("NewPremiseCode"), map.get("NewSite"), map.get("NewPremise"));
-		
+			ExtentTestManager.endTest();
+			
 		logger= ExtentTestManager.startTest("editAccessSwitch_"+devicename);
 			APT_CreateAccessSwitchDeviceHelper.get().verifydeviceEdit_AccessRouter("CreateAccessCoreDevice", map.get("editdeviceName"), map.get("DeviceType"),
 				map.get("editVendorModel"), map.get("editRouterID"), map.get("editModularMSP"), map.get("editFullIQNET"), map.get("editIOSXR"), map.get("editTelnet"),
@@ -67,7 +68,7 @@ public class APT_MCS_CreateAccessCoreDevice_AccessSwitch extends DriverTestcase 
 			ExtentTestManager.endTest(); 
 	
 		logger= ExtentTestManager.startTest("verifyDeviceUpdationSuccessMessagefor_AccessSwitchDevice_"+devicename);
-			APT_CreateAccessSwitchDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
+			APT_CreateAccessSwitchDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device updated successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest("verifyUpdatedValueforAccessSwitch_"+devicename);

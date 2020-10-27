@@ -16,6 +16,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -2646,7 +2647,7 @@ Thread.sleep(3000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/managementOrder")));
 		
 		try {
-		List<WebElement> listofmanagementOrder = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+		List<WebElement> listofmanagementOrder = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 		for (WebElement mnaagementOrdertypes : listofmanagementOrder) {
 			
 			Log.info("Available Management Order name is : " + mnaagementOrdertypes.getText().toString());
@@ -2698,7 +2699,7 @@ Thread.sleep(3000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/VPNtopology_xbutton")));
 		
 		try {
-		List<WebElement> listofvpntopology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+		List<WebElement> listofvpntopology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 		for (WebElement vpntopologytyeps : listofvpntopology) {
 
 			boolean match = false;
@@ -3250,7 +3251,7 @@ try {
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/managementOrder")));
 		
 		try {
-		List<WebElement> listofmanagementOrder = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+		List<WebElement> listofmanagementOrder = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 		for (WebElement mnaagementOrdertypes : listofmanagementOrder) {
 			
 			Log.info("Available Management Order name is : " + mnaagementOrdertypes.getText().toString());
@@ -3303,7 +3304,7 @@ try {
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/VPNtopology_xbutton")));
 		
 		try {
-		List<WebElement> listofvpntopology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+		List<WebElement> listofvpntopology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 		for (WebElement vpntopologytyeps : listofvpntopology) {
 
 			boolean match = false;
@@ -3654,6 +3655,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 					
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 					Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+					successScreenshot(application);
 				}
 				
 			}else {
@@ -3786,7 +3788,7 @@ if(modularmsp.equalsIgnoreCase("no")) {
 	//Existing Site	
 		if(existingsiteselection.equalsIgnoreCase("yes")) {
 			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Sitetogglebutton")));
+			click_commonMethod(application, "Site Order Toggle button", "Addsiteorder_Sitetogglebutton", xml);
 			Thread.sleep(3000);
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_sitedropdown")));
@@ -3925,9 +3927,9 @@ if(modularmsp.equalsIgnoreCase("no")) {
 			
 		if(technology.equals("Actelis") || technology.equals("Atrica") || technology.equals("Overture") || technology.equals("Accedian-1G") || technology.equals("Cyan" ) || technology.equals("Alu"))	{
 			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
 			Thread.sleep(3000);
-			Clickon(getwebelement("//div[text()='" + technology + "']"));
+			WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", technology)); clickonTechnology(technologySelected, technology);
 			Thread.sleep(3000);
 			ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
 			
@@ -4053,9 +4055,9 @@ if(modularmsp.equalsIgnoreCase("no")) {
 				
 				if(technology.equals("Accedian"))	{
 					
-					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+					click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
 					Thread.sleep(3000);
-					Clickon(getwebelement("//div[text()='" + technology + "']"));
+					WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", technology)); clickonTechnology(technologySelected, technology);
 					Thread.sleep(3000);
 					ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
 						
@@ -7329,7 +7331,7 @@ scrolltoend();
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_mappingModedropdown")));
 				Thread.sleep(3000);
 				
-				List<WebElement> listofMappingMode = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+				List<WebElement> listofMappingMode = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 				
 				if(listofMappingMode.size()>=1) {	
 					for (WebElement mappingModetypes : listofMappingMode) {
@@ -7420,8 +7422,8 @@ scrolltoend();
 						.isDisplayed();
 				sa.assertTrue(technology, "Technology dropdown is not displayed");
 
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-				List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+				click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+				List<WebElement> listoftechnology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 				
 			if(listoftechnology.size()>=1) {	
 				for (WebElement technologytypes : listoftechnology) {
@@ -7439,8 +7441,10 @@ scrolltoend();
 								ExtentTestManager.getTest().log(LogStatus.INFO, "when technology 'Actelis' is selected under Technology"
 										+ "no additional fields displays");
 								
-								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-								Clickon(getwebelement("//div[text()='" +Technology[k] + "']"));
+								click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+								
+								
+								WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 									
 							}
 							
@@ -7453,8 +7457,8 @@ scrolltoend();
 										+ "Non Termination point checkbox"
 										+ "Protected checkbox");
 								
-								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-								Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+								click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+								WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 								
 								
 						//Device Name	
@@ -7474,8 +7478,8 @@ scrolltoend();
 										+ "Non Termination point checkbox"
 										+ "Protected checkbox");
 								
-								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-								Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+								click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+								WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 								
 							//Non Termination Point	
 								verifySiteOrderFields_NonterminationField(application);
@@ -7492,8 +7496,8 @@ scrolltoend();
 										+ "list of fields should occur: "
 										+ "Device name - Mandatory field");
 								
-								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-								Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+								click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+								WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 								
 							//Device Name	
 								verifySiteOrderField_deviceName(application);
@@ -7508,8 +7512,8 @@ scrolltoend();
 										+ "Protected checkbox");
 								
 								addDropdownValues_commonMethod(application, "Technology", "Addsiteorder_Technology", Technology[k], xml);
-//								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-//								Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+//								click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+//								WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 
 							//Non Termination Point	
 								verifySiteOrderFields_NonterminationField(application);
@@ -7528,8 +7532,8 @@ scrolltoend();
 										+ "Non Termination point checkbox");
 								
 								
-								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-								Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+								click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+								WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 
 							//Non Termination Point	
 								verifySiteOrderFields_NonterminationField(application);
@@ -7555,8 +7559,8 @@ public void technologyDropdownFor10GigE(String application) throws InterruptedEx
 						.isDisplayed();
 				sa.assertTrue(technology, "Technology dropdown is not displayed");
 
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-				List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+				click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+				List<WebElement> listoftechnology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 				
 			if(listoftechnology.size()>=1) {	
 				for (WebElement technologytypes : listoftechnology) {
@@ -7576,8 +7580,9 @@ public void technologyDropdownFor10GigE(String application) throws InterruptedEx
 						+ "Non Termination point checkbox"
 						+ "Protected checkbox");
 				
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-				Clickon(getwebelement("//div[text()='" + Technology + "']"));
+				click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+				WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology));  clickonTechnology(technologySelected, Technology);
+				
 				
 				
 			//Non Termination Point	
@@ -7609,8 +7614,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 					.isDisplayed();
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+			List<WebElement> listoftechnology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -7628,8 +7633,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 							ExtentTestManager.getTest().log(LogStatus.INFO, "when technology 'Actelis' is selected under Technology"
 									+ "no additional fields displays");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 								
 						}
 						
@@ -7642,8 +7647,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 									+ "Non Termination point checkbox"
 									+ "Protected checkbox");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -7666,8 +7671,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 									+ "Primary VLAN Text Field"
 									+ "Primary VLAN Ether Type dropdown");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -7686,7 +7691,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 						ExtentTestManager.getTest().log(LogStatus.PASS, " 'GCR OLO Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_GCRoloTypeDropdown")));
-						List<WebElement> listofGcrOLOtype = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+						List<WebElement> listofGcrOLOtype = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 						if(listofGcrOLOtype.size()>=1) {
 						for (WebElement GCROlotypes : listofGcrOLOtype) {
@@ -7746,7 +7751,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 						ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_VLANEtherTypeDropdown")));
-						List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+						List<WebElement> listofVLANethertype = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 						if(listofVLANethertype.size()>=1) {
 						for (WebElement VLANEthertypes : listofVLANethertype) {
@@ -7800,7 +7805,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 						ExtentTestManager.getTest().log(LogStatus.PASS, " 'Primary VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_primaryVLANEtherTypeDropdown")));
-						List<WebElement> listofprimaryVLANethertype = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+						List<WebElement> listofprimaryVLANethertype = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 						if(listofprimaryVLANethertype.size()>=1) {
 						for (WebElement primaryVLANEthertypes : listofprimaryVLANethertype) {
@@ -7835,8 +7840,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 					ExtentTestManager.getTest().log(LogStatus.INFO, "when technology 'Alu' is selected under Technology"
 							+ "no additional fields display");
 					
-					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-					Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+					click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+					WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 				}	
 				
 
@@ -7847,8 +7852,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 							+ "Non Termination point checkbox"
 							+ "Protected checkbox");
 					
-					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-					Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+					click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+					WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 					
 				//Non Termination Point	
 					verifySiteOrderFields_NonterminationField(application);
@@ -7865,8 +7870,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access(String application) th
 								+ "list of fields should occur: "
 								+ "Non Termination point checkbox");
 						
-						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-						Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+						click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+						WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 						
 						
 					//Non Termination Point	
@@ -7915,8 +7920,10 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 					.isDisplayed();
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+			List<WebElement> listoftechnology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
+			
+			
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -7946,8 +7953,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 						+ "Primary VLAN Text Field"
 						+ "Primary VLAN Ether Type dropdown");
 				
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-				Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+				click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+				WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 				
 				
 		//Non Termination Point	
@@ -7965,7 +7972,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'GCR OLO Type' drodpown field is displaying under 'Add Site Order' page as expected");
 				
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_GCRoloTypeDropdown")));
-			List<WebElement> listofGcrOLOtype = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			List<WebElement> listofGcrOLOtype = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 			if(listofGcrOLOtype.size()>=1) {
 			for (WebElement GCROlotypes : listofGcrOLOtype) {
@@ -8019,7 +8026,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 				
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_VLANEtherTypeDropdown")));
-			List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			List<WebElement> listofVLANethertype = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 			if(listofVLANethertype.size()>=1) {
 			for (WebElement VLANEthertypes : listofVLANethertype) {
@@ -8073,7 +8080,7 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 			ExtentTestManager.getTest().log(LogStatus.PASS, " 'Primary VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 				
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_primaryVLANEtherTypeDropdown")));
-			List<WebElement> listofprimaryVLANethertype = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			List<WebElement> listofprimaryVLANethertype = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 			if(listofprimaryVLANethertype.size()>=1) {
 			for (WebElement primaryVLANEthertypes : listofprimaryVLANethertype) {
@@ -8109,8 +8116,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Access_offnetselected(String 
 						+ "Non Termination point checkbox"
 						+ "Protected checkbox");
 				
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-				Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+				click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+				WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 				
 			//Non Termination Point	
 				verifySiteOrderFields_NonterminationField(application);
@@ -8136,8 +8143,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 					.isDisplayed();
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+			List<WebElement> listoftechnology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 			Log.info("Number of technology sizes: "+listoftechnology.size());
 			
 			for (WebElement technologytypesSample : listoftechnology ) {
@@ -8165,8 +8172,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 							ExtentTestManager.getTest().log(LogStatus.INFO, "when technology 'Actelis' is selected under Technology"
 									+ "no additional fields displays");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 						}
 						
 					//Atrica	
@@ -8178,8 +8185,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 									+ "Protected checkbox"
 									+ " Device name field");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -8200,8 +8207,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 									+ "Non Termination point checkbox"
 									+ "Protected checkbox");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -8217,8 +8224,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 							ExtentTestManager.getTest().log(LogStatus.INFO, "when technology 'Alu' is selected under Technology"
 									+ "'Device Name' Text field should display");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Device Name	
 								verifySiteOrderField_deviceName(application);
@@ -8233,8 +8240,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 									+ "Non Termination point checkbox"
 									+ "Protected checkbox");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -8251,8 +8258,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary(String application) t
 									+ "list of fields should occur: "
 									+ "Non Termination point checkbox");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -8300,8 +8307,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary_offnetselected(String
 					.isDisplayed();
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+			List<WebElement> listoftechnology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -8327,8 +8334,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary_offnetselected(String
 						+ "Non Termination point checkbox"
 						+ "Protected checkbox");
 				
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-				Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+				click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+				WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 				
 			//Non Termination Point	
 				verifySiteOrderFields_NonterminationField(application);
@@ -8346,8 +8353,8 @@ public void technologyDropdownFor1GigE_HubAndSpoke_Primary_offnetselected(String
 						+ "Non Termination point checkbox"
 						+ "Protected checkbox");
 				
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-				Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+				click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+				WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 				
 			
 			//Non Termination Point	
@@ -8376,8 +8383,8 @@ public void technologyDropdownFor10GigE_HubAndSpoke_primary(String application) 
 					.isDisplayed();
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+			List<WebElement> listoftechnology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -8397,9 +8404,9 @@ public void technologyDropdownFor10GigE_HubAndSpoke_primary(String application) 
 					+ "Non Termination point checkbox"
 					+ "Protected checkbox");
 			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
 			Log.info("site order to be selected is: "+Technology);
-			Clickon(getwebelement("//div[text()='" + Technology + "']"));
+			WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology));  clickonTechnology(technologySelected, Technology);
 			
 		
 		//Non Termination Point	
@@ -8422,8 +8429,8 @@ public void technologyDropdownFor10GigE_HubAndSpoke_Access(String application) t
 					.isDisplayed();
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+			List<WebElement> listoftechnology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -8443,7 +8450,7 @@ public void technologyDropdownFor10GigE_HubAndSpoke_Access(String application) t
 					+ "Non Termination point checkbox"
 					+ "Protected checkbox");
 			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
 			Log.info("site order to be selected is: "+Technology);
 			Clickon(getwebelement("//div[text()='"+ Technology +"']"));
 			
@@ -8473,8 +8480,8 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 					.isDisplayed();
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+			List<WebElement> listoftechnology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -8492,8 +8499,8 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 							ExtentTestManager.getTest().log(LogStatus.INFO, "when technology 'Actelis' is selected under Technology"
 									+ "no additional fields displays");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 						}
 						
 						
@@ -8507,8 +8514,8 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 									+ " Mapping Mode drodpown"
 									+ " Device Name text field");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -8536,8 +8543,8 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 									+ "VLAN text field"
 									+ "VLAN Ether Type dropdown");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 							
 						//Non Termination Point	
@@ -8559,7 +8566,7 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 						ExtentTestManager.getTest().log(LogStatus.PASS, " 'GCR OLO Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_GCRoloTypeDropdown")));
-						List<WebElement> listofGcrOLOtype = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+						List<WebElement> listofGcrOLOtype = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 						if(listofGcrOLOtype.size()>=1) {
 						for (WebElement GCROlotypes : listofGcrOLOtype) {
@@ -8611,7 +8618,7 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 						ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_VLANEtherTypeDropdown")));
-						List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+						List<WebElement> listofVLANethertype = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 						if(listofVLANethertype.size()>=1) {
 						for (WebElement VLANEthertypes : listofVLANethertype) {
@@ -8648,8 +8655,8 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 									+ " Mapping Mode dropdown "
 									+ " Device Name Text Field should display");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Mapping Mode
 							verifySiteorderFields_mappingMode(application);
@@ -8668,8 +8675,8 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 									+ " Protected checkbox"
 									+ " Device Name text Field should display");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -8690,8 +8697,8 @@ public void technologyDropdownFor1GigE_EPN_Access(String application) throws Int
 									+ "list of fields should occur: "
 									+ "Non Termination point checkbox");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -8725,8 +8732,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 					.isDisplayed();
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+			List<WebElement> listoftechnology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -8745,8 +8752,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 							ExtentTestManager.getTest().log(LogStatus.INFO, "when technology 'Actelis' is selected under Technology"
 									+ "no additional fields displays");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 						}
 						
 						
@@ -8760,8 +8767,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 									+ " Mapping Mode drodpown"
 									+ " Device Name text field");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -8789,8 +8796,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 									+ "VLAN text field"
 									+ "VLAN Ether Type dropdown");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 							
 						//Non Termination Point	
@@ -8812,7 +8819,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 						ExtentTestManager.getTest().log(LogStatus.PASS, " 'GCR OLO Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_GCRoloTypeDropdown")));
-						List<WebElement> listofGcrOLOtype = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+						List<WebElement> listofGcrOLOtype = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 						if(listofGcrOLOtype.size()>=1) {
 						for (WebElement GCROlotypes : listofGcrOLOtype) {
@@ -8864,7 +8871,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 						ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_VLANEtherTypeDropdown")));
-						List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+						List<WebElement> listofVLANethertype = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 						if(listofVLANethertype.size()>=1) {
 						for (WebElement VLANEthertypes : listofVLANethertype) {
@@ -8900,8 +8907,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 									+ " Mapping Mode dropdown "
 									+ " Device Name Text Field should display");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Mapping Mode
 							verifySiteorderFields_mappingMode(application);
@@ -8920,8 +8927,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 									+ " Protected checkbox"
 									+ " Device Name text Field should display");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -8940,8 +8947,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Access(String applicatio
 									+ "list of fields should occur: "
 									+ "Non Termination point checkbox");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -8963,8 +8970,8 @@ public void technologyDropdownFor1GigE_EPN_Primary(String application) throws In
 					.isDisplayed();
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+			List<WebElement> listoftechnology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -8982,8 +8989,8 @@ public void technologyDropdownFor1GigE_EPN_Primary(String application) throws In
 							ExtentTestManager.getTest().log(LogStatus.INFO, "when technology 'Actelis' is selected under Technology"
 									+ "no additional fields displays");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 						}
 						
 						
@@ -8996,8 +9003,8 @@ public void technologyDropdownFor1GigE_EPN_Primary(String application) throws In
 									+ " Protected checkbox"
 									+ " Device Name text field");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						
 						//Non Termination Point	
@@ -9024,8 +9031,8 @@ public void technologyDropdownFor1GigE_EPN_Primary(String application) throws In
 									+ "Protected checkbox"
 									+  " should display");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -9044,8 +9051,8 @@ public void technologyDropdownFor1GigE_EPN_Primary(String application) throws In
 							ExtentTestManager.getTest().log(LogStatus.INFO, "when technology 'Alu' is selected under Technology"
 									+ " Device Name Text Field should display");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 					
 						//Device Name	
 								verifySiteOrderField_deviceName(application);
@@ -9061,8 +9068,8 @@ public void technologyDropdownFor1GigE_EPN_Primary(String application) throws In
 									+ " Protected checkbox"
 									+ " Device Name text Field should display");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						
 						//Non Termination Point	
@@ -9085,8 +9092,8 @@ public void technologyDropdownFor1GigE_EPN_Primary(String application) throws In
 									+ "list of fields should occur: "
 									+ "Non Termination point checkbox");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -9112,8 +9119,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 					.isDisplayed();
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+			List<WebElement> listoftechnology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -9131,8 +9138,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 							ExtentTestManager.getTest().log(LogStatus.INFO, "when technology 'Actelis' is selected under Technology"
 									+ "no additional fields displays");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 						}
 						
 						
@@ -9145,8 +9152,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 									+ " Protected checkbox"
 									+ " Device Name text field");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						
 						//Non Termination Point	
@@ -9171,8 +9178,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 									+ "Protected checkbox"
 									+  " should display");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -9205,7 +9212,7 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 						ExtentTestManager.getTest().log(LogStatus.PASS, " 'VLAN Ether Type' drodpown field is displaying under 'Add Site Order' page as expected");
 							
 						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_VLANEtherTypeDropdown")));
-						List<WebElement> listofVLANethertype = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+						List<WebElement> listofVLANethertype = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 						if(listofVLANethertype.size()>=1) {
 						for (WebElement VLANEthertypes : listofVLANethertype) {
@@ -9234,8 +9241,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 							ExtentTestManager.getTest().log(LogStatus.INFO, "when technology 'Alu' is selected under Technology"
 									+ " Device Name Text Field should display");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 					
 						//Device Name	
 								verifySiteOrderField_deviceName(application);
@@ -9251,8 +9258,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 									+ " Protected checkbox"
 									+ " Device Name text Field should display");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						
 						//Non Termination Point	
@@ -9275,8 +9282,8 @@ public void technologyDropdownFor1GigE_EPNEOSDHselected_Primary(String applicati
 									+ "list of fields should occur: "
 									+ "Non Termination point checkbox");
 							
-							Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-							Clickon(getwebelement("//div[text()='" + Technology[k] + "']"));
+							click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+							WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", Technology[k]));  clickonTechnology(technologySelected, Technology[k]);
 							
 						//Non Termination Point	
 							verifySiteOrderFields_NonterminationField(application);
@@ -9302,8 +9309,8 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 					.isDisplayed();
 			sa.assertTrue(technology, "Technology dropdown is not displayed");
 
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
-			List<WebElement> listoftechnology = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
+			List<WebElement> listoftechnology = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 			
 		if(listoftechnology.size()>=1) {	
 			for (WebElement technologytypes : listoftechnology) {
@@ -9329,7 +9336,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 					+ "Non Termination point checkbox"
 					+ "Protected checkbox");
 			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
 			Clickon(getwebelement("//div[text()='" + Technology + "']"));
 			
 			
@@ -9529,11 +9536,11 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 			String serialNumber, String hexaSerialnumber, String linkLostForwarding)
 			throws InterruptedException, DocumentException, IOException {
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewPCEdevice_Actiondropdown")));
-		Thread.sleep(3000);
+		click_commonMethod(application, "Action", "viewPCEdevice_Actiondropdown", xml);
+		Thread.sleep(1000);
 
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EditCPEdevicelink")));
-		Thread.sleep(3000);
+		click_commonMethod(application, "EditCPEdevice link", "EditCPEdevicelink", xml);
+		waitforPagetobeenable();
 
 //		  Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EditCPEdevlielink_underEquipment")));
 //	     Thread.sleep(3000);
@@ -9634,7 +9641,8 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying fields for CPE device under Equipment");
 		
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/CPEdevice_adddevicelink")));
-		Thread.sleep(6000);
+		Thread.sleep(1000);
+		waitforPagetobeenable();
 		
 		if(technologySelected.equalsIgnoreCase("Accedian-1G")) {
 			equip_adddevi_Accedian1G(application, interfaceSpeed, cpename, vender, snmpro, managementAddress, Mepid, poweralarm, mediaSelection, 
@@ -10373,7 +10381,7 @@ public void technologyDropdownFor10GigE_EPN(String application) throws Interrupt
 		scrollToTop();
 		Thread.sleep(3000);
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewPCEdevice_Actiondropdown")));
+		click_commonMethod(application, "Action", "viewPCEdevice_Actiondropdown", xml);
 		
 		Thread.sleep(3000);
 		
@@ -10447,7 +10455,7 @@ Thread.sleep(3000);
 		scrollToTop();
 		Thread.sleep(1000);
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewPCEdevice_Actiondropdown")));
+		click_commonMethod(application, "Action", "viewPCEdevice_Actiondropdown", xml);
 		
 		Thread.sleep(3000);
 		
@@ -10502,7 +10510,7 @@ Thread.sleep(3000);
 
 		scrollToTop();
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewPCEdevice_Actiondropdown")));
+		click_commonMethod(application, "Action", "viewPCEdevice_Actiondropdown", xml);
 		
 		Thread.sleep(3000);
 		
@@ -10529,13 +10537,14 @@ Thread.sleep(3000);
 	//power alarm	
 		device_editPowerAlarm(application, poweralarm);
 		
+		//Media Selection  
+		device_editMediaselection(application, Mediaselection);
+	    
+		
 		WebElement countrylabelname=getwebelement(xml.getlocator("//locators/" + application + "/countrylabelname_IntEquipment"));
 		ScrolltoElement(countrylabelname);
 	Thread.sleep(3000);
 	
-	//Media Selection  
-		device_editMediaselection(application, Mediaselection);
-	    
 	    
 	//Mac address  
 		device_editMACaddress(application, Macaddress);
@@ -10544,7 +10553,7 @@ Thread.sleep(3000);
 		device_editlinkLostforwarding(application, linkLostForwarding);
 	
 		scrolltoend();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		
 		//Country
 				if(!Country.equalsIgnoreCase("Null")) {
@@ -10654,7 +10663,7 @@ Thread.sleep(3000);
 
 		scrollToTop();
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewPCEdevice_Actiondropdown")));
+		click_commonMethod(application, "Action", "viewPCEdevice_Actiondropdown", xml);
 		
 		Thread.sleep(3000);
 		
@@ -11188,7 +11197,7 @@ Thread.sleep(3000);
 					Thread.sleep(3000);
 					
 					//verify list of values inside technology dropdown
-					 List<WebElement> listofTechnololgy = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+					 List<WebElement> listofTechnololgy = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 						
 						if(listofTechnololgy.size()>0) {
 				
@@ -11242,7 +11251,7 @@ Thread.sleep(3000);
 				Thread.sleep(3000);
 				
 				//verify list of values inside technology dropdown
-				 List<WebElement> listofTechnololgy = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+				 List<WebElement> listofTechnololgy = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 					
 					if(listofTechnololgy.size()>0) {
 			
@@ -11651,7 +11660,7 @@ Thread.sleep(3000);
 		Log.info("Entered edit functionalitty");
 
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewPCEdevice_Actiondropdown")));
+		click_commonMethod(application, "Action", "viewPCEdevice_Actiondropdown", xml);
 		
 		Thread.sleep(3000);
 		
@@ -11795,7 +11804,7 @@ Thread.sleep(3000);
 
 		scrollToTop();
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewPCEdevice_Actiondropdown")));
+		click_commonMethod(application, "Action", "viewPCEdevice_Actiondropdown", xml);
 		
 		Thread.sleep(3000);
 		
@@ -12317,7 +12326,7 @@ public void deleteDeviceFromServiceForIntermediateequipment(String application, 
 
 		WebElement manageAddress=getwebelement(xml.getlocator("//locators/" + Application + "/labelname_managementAddresss"));
 		scrolltoview(manageAddress);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		
 		selectRowforInterfaceInService(Application, interfacename);
 
@@ -12633,7 +12642,7 @@ public void selectconfigurelinkAndverifyEditInterfacefield__Equipment(String app
 	 
 	waitforPagetobeenable();
 	
-	Thread.sleep(2000);
+	Thread.sleep(1000);
 	clickOnBankPage();
 	Thread.sleep(1000);
 	
@@ -12642,18 +12651,17 @@ public void selectconfigurelinkAndverifyEditInterfacefield__Equipment(String app
 	
 	Clickon(getwebelement("//div[div[div[text()='Equipment']]]//div[div[div[contains(@title,'"+ devicename +"')]]]//span[text()='Configure']"));
 	  
-	Thread.sleep(3000);
-	
+waitforPagetobeenable();	
 	WebElement searialnumber=getwebelement(xml.getlocator("//locators/" + application + "/labelName_searialnumber"));
 	scrolltoview(searialnumber);
 	Thread.sleep(2000);
 	
 		
-	//Try to edit without selecting the interface	
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureActiondropdown")));
+	//Try to edit without selecting the interface
+		click_commonMethod(application, "Action", "Equipment_configureActiondropdown", xml);
         Thread.sleep(1000);		
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureEditlink")));
+        click_commonMethod(application, "Edit", "Equipment_configureEditlink", xml);
 		Thread.sleep(3000);	
 		
 		//check whether Alert message displays
@@ -12668,8 +12676,8 @@ public void selectconfigurelinkAndverifyEditInterfacefield__Equipment(String app
 			ExtentTestManager.getTest().log(LogStatus.PASS, "when we do not select any interface, Alert message displays as: "+alertMsg);
 			Log.info(" Alert message displays as: "+alertMsg);
 			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/configure_alertPopup_xbutton")));
-			Thread.sleep(3000);
+			click_commonMethod(application, "Alert popup 'X' button", "configure_alertPopup_xbutton", xml);
+			Thread.sleep(2000);
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "'Alert' popup is not displaying when we click on 'edit' without selecting an interface");
 			Log.info("'Alert' popup is not displaying when we click on 'edit' without selecting an interface");
@@ -12681,8 +12689,8 @@ public void selectconfigurelinkAndverifyEditInterfacefield__Equipment(String app
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Edit interface popup is displaying without selected an interface");
 				Log.info("Edit interface popup is displaying without selected an interface");
 				
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EditInterfacepopup_xbutton")));
-				Thread.sleep(3000);
+				click_commonMethod(application, "Alert popup 'x' button", "EditInterfacepopup_xbutton", xml);
+				Thread.sleep(2000);
 			}
 			}catch(Exception e) {
 			e.printStackTrace();
@@ -12708,24 +12716,27 @@ public void selectconfigurelinkAndverifyEditInterfacefield__Equipment(String app
 	
 	
 	
-	public void SelectShowInterfacelinkAndVerifyEditInterfacePage(String application, String interfacename, String devicename) throws InterruptedException, DocumentException, IOException {
+	public String SelectShowInterfacelinkAndVerifyEditInterfacePage(String application, String interfacename, String devicename) throws InterruptedException, DocumentException, IOException {
 		
-		   waitforPagetobeenable();
-		
+		waitforPagetobeenable();
 		scrolltoend();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		
 		click_commonMethod(application, "showInterface_Link", "CPEdevice_showinterfaceslink", xml);
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		
 		WebElement devinameRow=getwebelement("//div[div[div[text()='Equipment']]]//div[div[div[contains(@title,'"+ devicename +"')]]]");
 		scrolltoview(devinameRow);
 		Thread.sleep(2000);
 		
-		selectRowForEditingInterface_showInterface(application, interfacename, devicename);
+		String interfaceAvailability = selectRowForEditingInterface_showInterface(application, interfacename, devicename);
 		
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Equipment_showintefaceedit")));
-		Thread.sleep(3000);		
+		if(interfaceAvailability.equalsIgnoreCase("Yes")) {
+			click_commonMethod(application, "Edit", "Equipment_showintefaceedit", xml);
+			Thread.sleep(1000);	
+		}
+		
+		return interfaceAvailability;	
 		
 	}
 	
@@ -12839,7 +12850,7 @@ public void SelectShowInterfacelink_CustomerPremiseeequipmentAndVerifyEditInterf
 
 
 
-public void selectRowForEditingInterface_showInterface(String Application, String interfacename, String devicename) throws InterruptedException, DocumentException, IOException {
+public String selectRowForEditingInterface_showInterface(String Application, String interfacename, String devicename) throws InterruptedException, DocumentException, IOException {
 
 
 	int TotalPages;
@@ -12849,7 +12860,8 @@ public void selectRowForEditingInterface_showInterface(String Application, Strin
 	TotalPages = Integer.parseInt(TextKeyword);
 
 	Log.info("Total number of pages in table is: " + TotalPages);
-
+	
+	String interfaceAvailability = "yes";
 	ab:
 	if (TotalPages != 0) {
 
@@ -12915,7 +12927,11 @@ public void selectRowForEditingInterface_showInterface(String Application, Strin
 		Log.info("No values available in table");
 		Log.info("No values available inside the InterfaceInService table");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "No value available inside 'show Interface' panel");
+		interfaceAvailability = "No";
 	}
+	
+	return interfaceAvailability;
+	
 }
 
 
@@ -13170,7 +13186,7 @@ public void selectRowForconfiglinkunderEquipmentconfig(String Application, Strin
 }
 
 
-public void selectRowForconfiglinkunderIntermediateEquipment(String Application, String interfacename) throws InterruptedException, DocumentException, IOException {
+public String selectRowForconfiglinkunderIntermediateEquipment(String Application, String interfacename) throws InterruptedException, DocumentException, IOException {
 
 
 	int TotalPages;
@@ -13180,6 +13196,7 @@ public void selectRowForconfiglinkunderIntermediateEquipment(String Application,
 //	  js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 //	  Thread.sleep(3000);
 
+	String interfaceAvailability = "Yes";
 	String TextKeyword = Gettext(
 			getwebelement(xml.getlocator("//locators/" + Application + "/configure_totalPage")));
 
@@ -13251,8 +13268,12 @@ if (TotalPages != 0) {
 	}
 }else {
 	Log.info("No values present inside the table");
-	ExtentTestManager.getTest().log(LogStatus.FAIL, "No values present inside the table");
+	ExtentTestManager.getTest().log(LogStatus.FAIL, "No interface present inside the table");
+	interfaceAvailability = "No";
 }
+	
+	return interfaceAvailability;
+	
 }
 
 
@@ -14335,18 +14356,19 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
    
 	
     
-    public void EnterdataForEditInterfaceforConfigurelinkunderIntermediateEquipment(String application, String interfacename, String circuitID, String bearertype, String bearerspeed, String totalbandwidth,
+    public String EnterdataForEditInterfaceforConfigurelinkunderIntermediateEquipment(String application, String interfacename, String circuitID, String bearertype, String bearerspeed, String totalbandwidth,
     		String vlanid, String vlantype) throws InterruptedException, DocumentException, IOException {
     	
 
     	//select the Interface	
-				selectRowForconfiglinkunderIntermediateEquipment(application, interfacename);
-				
-			//Perform edit Interface	
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureActiondropdown")));
+			String interfaceavailability = selectRowForconfiglinkunderIntermediateEquipment(application, interfacename);
+			
+		if(interfaceavailability.equalsIgnoreCase("Yes")) {	
+			//Perform edit Interface
+				click_commonMethod(application, "Action","Equipment_configureActiondropdown", xml);
 		        Thread.sleep(1000);		
 				
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Equipment_configureEditlink")));
+		        click_commonMethod(application, "Edit", "Equipment_configureEditlink", xml);
 				Thread.sleep(1000);	
 				
 			//verify Edit Interface page	
@@ -14398,9 +14420,10 @@ public void selectRowUnderIntermediateEquipment(String Application, String inter
 	ExtentTestManager.getTest().log(LogStatus.PASS, "Data has been entered inside Edit Interface page by selecting configure link under Intermediate Equipment");	
 		
 		click_commonMethod(application, "OK", "okbutton", xml);
-		Thread.sleep(3000);
 	
-		   
+		} 
+		
+		return interfaceavailability;
     }
     
     
@@ -15817,7 +15840,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 	}
 			
 	  try {
-	  List<WebElement> listofvender = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+	  List<WebElement> listofvender = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 			
 			if(listofvender.size()>0) {
 	
@@ -15871,7 +15894,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 		}
 			
 		try {
-		List<WebElement> listofalarm = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+		List<WebElement> listofalarm = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 		if(listofalarm.size()>0) {	
 			for (WebElement alarmtypes : listofalarm) {
@@ -15909,7 +15932,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Mediaselection dropdown is not available");
 		}
 		try {	
-		List<WebElement> listofmedia = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+		List<WebElement> listofmedia = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 		if(listofmedia.size()>0) {
 			for (WebElement mediatypes : listofmedia) {
@@ -15966,7 +15989,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Country dropdown");
 			Log.info("Clicked on Country dropdown");
 
-			List<WebElement> cntrylist = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			List<WebElement> cntrylist = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 			for (WebElement countrylist : cntrylist) {
 
 				Log.info("Available Country name is : " + countrylist.getText().toString());
@@ -15982,7 +16005,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on City dropdown");
 			Log.info("Clicked on City dropdown");
 
-			List<WebElement> citylist = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+			List<WebElement> citylist = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 			for (WebElement ctylist : citylist) {
 
 				Log.info("Available City name is : " + ctylist.getText().toString());
@@ -16040,7 +16063,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Site dropdown");
 				Log.info("Clicked on Site dropdown");
 
-				List<WebElement> stelist = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+				List<WebElement> stelist = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 				for (WebElement sitelist : stelist) {
 
 					Log.info("Available site name is : " + sitelist.getText().toString());
@@ -16058,7 +16081,7 @@ public void selectconfigurelinkAndverifyForProviderEquipment(String application,
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Premise dropdown");
 				Log.info("Clicked on Premise dropdown");
 
-				List<WebElement> prmlist = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+				List<WebElement> prmlist = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 					for (WebElement premiselist : prmlist) {
 
 					Log.info("Available Premise name is : " + premiselist.getText().toString());
@@ -16621,7 +16644,7 @@ public void validateCountry_AddSiteorder(String application) throws InterruptedE
 		Log.info("Country dropdown is displaying");
 		
 	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Country")));
-	List<WebElement> listofcountry = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+	List<WebElement> listofcountry = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 
 	if(listofcountry.size()>=1) {
 	for (WebElement countrytypes : listofcountry) {
@@ -16668,7 +16691,7 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 
 		else if ((existingsiteselection.equalsIgnoreCase("no")) & (newsiteselection.equalsIgnoreCase("yes"))) {
 				
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Sitetogglebutton")));
+			click_commonMethod(application, "Site Order Toggle button", "Addsiteorder_Sitetogglebutton", xml);
 			Thread.sleep(3000);
 			
 			if(CSR_Name.equalsIgnoreCase("null")){
@@ -16719,7 +16742,7 @@ public void Site_AddSiteOrder(String application, String existingsiteselection, 
 			}
 
 			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Sitetogglebutton")));
+			click_commonMethod(application, "Site Order Toggle button", "Addsiteorder_Sitetogglebutton", xml);
 			Thread.sleep(3000);
 
 	//Check for Error message for physical Site
@@ -17434,9 +17457,9 @@ try {
  			
  		if(technology.equals("Actelis") || technology.equals("Atrica") || technology.equals("Overture") || technology.equals("Accedian-1G") || technology.equals("Cyan" ) || technology.equals("Alu"))	{
  			
- 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+ 			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
  			Thread.sleep(3000);
- 			Clickon(getwebelement("//div[text()='" + technology + "']"));
+ 			WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", technology)); clickonTechnology(technologySelected, technology);
  			Thread.sleep(3000);
  			ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
  			
@@ -17495,9 +17518,10 @@ try {
  				
  				if(technology.equals("Accedian"))	{
  					
- 					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+ 					click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
  					Thread.sleep(3000);
- 					Clickon(getwebelement("//div[text()='" + technology + "']"));
+ 					WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", technology)); clickonTechnology(technologySelected, technology);
+ 					
  					Thread.sleep(3000);
  					ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
  						
@@ -17528,9 +17552,9 @@ try {
   		
   		if(technology.equals("Actelis") || technology.equals("Atrica") || technology.equals("Overture") || technology.equalsIgnoreCase("Accedian-1G") || technology.equals("Cyan" ) || technology.equals("Alu"))	{
   			
-  			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+  			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
   			Thread.sleep(3000);
-  			Clickon(getwebelement("//div[text()='" + technology + "']"));
+  			WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", technology)); clickonTechnology(technologySelected, technology);
   			Thread.sleep(3000);
   			ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
   			
@@ -17586,9 +17610,9 @@ try {
   		
   		if(technology.equals("Overture") || technology.equalsIgnoreCase("Accedian-1G") || technology.equalsIgnoreCase("Accedian"))	{
   			
-  			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+  			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
   			Thread.sleep(3000);
-  			Clickon(getwebelement("//div[text()='" + technology + "']"));
+  			WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", technology)); clickonTechnology(technologySelected, technology);
   			Thread.sleep(3000);
   			ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
   			
@@ -17615,9 +17639,9 @@ try {
   		
   		if(technology.equals("Actelis") || technology.equals("Atrica") || technology.equals("Overture") || technology.equals("Accedian-1G") || technology.equals("Cyan" ) || technology.equals("Alu"))	{
   			
-  			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+  			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
   			Thread.sleep(3000);
-  			Clickon(getwebelement("//div[text()='" + technology + "']"));
+  			WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", technology)); clickonTechnology(technologySelected, technology);
   			Thread.sleep(3000);
   			ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
   			
@@ -17666,9 +17690,9 @@ try {
   			
   		if(technology.equals("Actelis") || technology.equals("Atrica") || technology.equals("Overture") || technology.equalsIgnoreCase("Accedian-1G") || technology.equals("Cyan" ) || technology.equals("Alu"))	{
   			
-  			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+  			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
   			Thread.sleep(3000);
-  			Clickon(getwebelement("//div[text()='" + technology + "']"));
+  			WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", technology)); clickonTechnology(technologySelected, technology);
   			Thread.sleep(3000);
   			ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
   			
@@ -17747,9 +17771,9 @@ try {
   			
   		if(technology.equals("Overture") || technology.equalsIgnoreCase("Accedian-1G") || technology.equals("Accedian"))	{
   			
-  			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+  			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
   			Thread.sleep(3000);
-  			Clickon(getwebelement("//div[text()='" + technology + "']"));
+  			WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", technology)); clickonTechnology(technologySelected, technology);
   			Thread.sleep(3000);
   			ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
   			
@@ -17809,9 +17833,9 @@ try {
   			
   		if(technology.equals("Actelis") || technology.equals("Atrica") || technology.equals("Overture") || technology.equals("Accedian-1G") || technology.equals("Cyan" ) || technology.equals("Alu"))	{
   			
-  			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+  			click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
   			Thread.sleep(3000);
-  			Clickon(getwebelement("//div[text()='" + technology + "']"));
+  			WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", technology)); clickonTechnology(technologySelected, technology);
   			Thread.sleep(3000);
   			ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
   			
@@ -17918,9 +17942,9 @@ try {
     	 
 				if(technology.equals("Accedian"))	{
 					
-					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+					click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
 					Thread.sleep(3000);
-					Clickon(getwebelement("//div[text()='" + technology + "']"));
+					WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", technology)); clickonTechnology(technologySelected, technology);
 					Thread.sleep(3000);
 					ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
 						
@@ -17957,9 +17981,9 @@ try {
     	 
 				if(technology.equals("Accedian"))	{
 					
-					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_Technology")));
+					click_commonMethod(application, "Technology dropdown", "Addsiteorder_Technology", xml);
 					Thread.sleep(3000);
-					Clickon(getwebelement("//div[text()='" + technology + "']"));
+					WebElement technologySelected = getwebelement(xml.getlocator("//locators/" + application + "/selectValueUnderTechnologyDropdown").replace("value", technology)); clickonTechnology(technologySelected, technology);
 					Thread.sleep(3000);
 					ExtentTestManager.getTest().log(LogStatus.PASS, technology + " is selected under technology dropdown");
 						
@@ -18027,7 +18051,7 @@ try {
  			if(IVReference) {
  				
  			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/Addsiteorder_IVreferencedropdown")));
- 			List<WebElement> listofIVreference= driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+ 			List<WebElement> listofIVreference= getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
  			
  		if(listofIVreference.size()>=1) {	
  			for (WebElement IVreferencetypes : listofIVreference) {
@@ -18868,7 +18892,7 @@ try {
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_vender")));
 				
 		  try {
-		  List<WebElement> listofvender = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
+		  List<WebElement> listofvender = getwebelements(xml.getlocator("//locators/" + application + "/ClassNameForDropdowns"));
 				
 				if(listofvender.size()>0) {
 		
@@ -19008,58 +19032,11 @@ try {
    	}
    	
    	
-   	public void device_powerAlarm(String application, String[] powerAlarm, String poweralarm) throws InterruptedException, DocumentException {
-   	 boolean powralrm=false;
-	    try {
-			powralrm=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_poweralarm")).isDisplayed();
-			sa.assertTrue(powralrm, "The poweralarm dropdown under add device is not available");
-			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_poweralarm")));
-			Thread.sleep(3000);
-		
-	//Check values inside Power Alarm dropdown	
-		try {
-		List<WebElement> listofalarm = driver.findElements(By.xpath("//div[@class='sc-ifAKCX oLlzc']"));
-
-		if(listofalarm.size()>0) {	
-			for (WebElement alarmtypes : listofalarm) {
-
-				boolean match = false;
-				for (int i = 0; i < powerAlarm.length; i++) {
-					if (alarmtypes.getText().equals(powerAlarm[i])) {
-						match = true;
-						Log.info("list of power alarm under add devices are : " + alarmtypes.getText());
-						ExtentTestManager.getTest().log(LogStatus.PASS,"The list of powerAlarm under Add device are: "+alarmtypes.getText());
-					}
-					}
-				 sa.assertTrue(match);
-				}
-			   
-			}else {
-				Log.info("dropdown value inside Vender/Model is empty");
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "No values available inside power alarm dropdown for adding devices");
-			}
-		}catch(Exception e) {
-			  
-			  e.printStackTrace();
-			  ExtentTestManager.getTest().log(LogStatus.FAIL, "value mismatch for poweralarm dropdown");
-			  
-		  }
-		
-	//Select value inside power Alarm dropdown	
-			if(poweralarm.equalsIgnoreCase("null")) {
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "No values has been passed for Mandatory field 'Powre Alarm' for adding device");
-				Log.info("No values has been passed for Power Alarm dropdown mandatory Field");
-			}else {
-				Clickon(getwebelement("//div[label[text()='Power Alarm']]//div[text()='"+poweralarm +"']"));
-				Thread.sleep(3000);
-				ExtentTestManager.getTest().log(LogStatus.PASS, poweralarm + " is the value passed for Mandatory 'Power Alarm' dropdown field for adding device");
-				Log.info(poweralarm+" is the value passed for Mandatory 'Power Alarm' dropdown field for adding device");
-			}
-	}catch(NoSuchElementException e) {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Power Alarm' dropdown is not available in 'Add CPE Device' page");
-		}
-
+   	public void device_powerAlarm(String application, String[] powerAlarm, String poweralarm ) throws InterruptedException, DocumentException {
+   		
+   		addDropdownValues_commonMethod(application, "Power Alarm", "AddCPEdevice_poweralarm", poweralarm, xml);
+   		
+   
    	}
    	
    	
@@ -19357,9 +19334,6 @@ public void device_MAcaddress(String application, String macAdressInput) {
 			
 		//MAC Address Error Message
 		device_macAddressWarningMessage(application);
-		
-		
-			
 
 		//Vendor/Model
 		device_vendorModel(application, Vender, vender);      
@@ -19378,12 +19352,13 @@ public void device_MAcaddress(String application, String macAdressInput) {
 		
 		//MAC Address
 		device_MAcaddress(application, Macaddress);
+		
+		//Media Selection
+				device_mediaSelection(application, MediaSelectionExpectedValue, MediaselectionActualValue);
 	
 	scrolltoend();
 	Thread.sleep(3000);
 	
-		//Media Selection
-		device_mediaSelection(application, MediaSelectionExpectedValue, MediaselectionActualValue);
 		
 	    //Link lost Forwarding
 		device_linklostForwarding(application, linkLostForwarding, linklostForwardingcheckboxstate);
@@ -19971,37 +19946,7 @@ public void device_MAcaddress(String application, String macAdressInput) {
 	
 	public void device_editPowerAlarm(String application, String poweralarm) throws InterruptedException, DocumentException {
 		
-		boolean powerAlarm=false;
-		try {
-			
-			
-			
-			powerAlarm=getwebelement(xml.getlocator("//locators/" + application + "/AddCPEdevice_poweralarm")).isDisplayed();
-			
-		if(powerAlarm) {	
-			
-			ExtentTestManager.getTest().log(LogStatus.PASS, " 'POwer Alarm' field is displaying in 'Edit CPE device' page as expected");
-			if(poweralarm.equalsIgnoreCase("null")) {
-				
-				ExtentTestManager.getTest().log(LogStatus.PASS, "No changes made for 'Power alarm' dropdown while editing cpe device under Equipment");
-				
-			}else {
-				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/EditCPEdevice_powerAlarm_xbutton")));
-				Thread.sleep(3000);
-				
-				Clickon(getwebelement("//div[label[text()='Power Alarm']]//div[text()='"+poweralarm +"']"));
-				ExtentTestManager.getTest().log(LogStatus.PASS, poweralarm+ " is the edited value for 'Power Alarm' field");
-			}
-		}else {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Power Alarm' field is not available in 'Edit CPE device' page");
-		}
-		}catch(NoSuchElementException e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "'power alarm' mandatory dropdown is not available");
-		}catch(Exception er) {
-			er.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL, " NOt able to enter value under 'Power Alarm' dropdown");
-		}
+		addDropdownValues_commonMethod(application, "Power Alarm", "AddCPEdevice_poweralarm", poweralarm, xml);
 	    
 	}
 	
@@ -21567,12 +21512,13 @@ public void device_MAcaddress(String application, String macAdressInput) {
 		 scrollToTop();
 		 Thread.sleep(3000);
 		 
-		 Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewPCEdevice_Actiondropdown")));
+		 click_commonMethod(application, "Action", "viewPCEdevice_Actiondropdown", xml);
+			Thread.sleep(1000);
 			
-			Thread.sleep(3000);
-			
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/fetchDeviceinterfacelink_viewDevicePage")));
+			click_commonMethod(application, "fetchDeviceInterfaceLink", "fetchDeviceinterfacelink_viewDevicePage", xml);
 			Thread.sleep(2000);
+			
+			waitforPagetobeenable();
 			
 			
 		//verify success Message
@@ -21644,8 +21590,9 @@ public void device_MAcaddress(String application, String macAdressInput) {
 
 	 public void verifyeditedinterfacevalue(String application, String interfaceName) throws InterruptedException {
 		 
-		 List<WebElement> interfacedetails=getwebelements("//div[div[text()='"+ interfaceName +"']]/div");
+		 waitforPagetobeenable();
 		 
+		 List<WebElement> interfacedetails=getwebelements("//div[div[text()='"+ interfaceName +"']]/div");
 		 
 		 for(WebElement listOfInterfacenames : interfacedetails) {
 			 
@@ -21996,7 +21943,7 @@ Thread.sleep(3000);
 				}else 
 				{   
 					text = element.getText();
-					if((text.contains(" ")) ||  text.contains("-")) {
+					if( text.contains("-")) {
 						
 						String[] actualTextValue=text.split(" ");
 						String[] expectedValue =ExpectedText.split(" ");
@@ -23116,7 +23063,7 @@ Thread.sleep(3000);
 			Log.info("Under 'Devices For Service' Panel, List Of column Names dispaying are: " + ls1);
 			
 		//verify vales under 'device' panel
-			compareText_fromtextFields(application, "DeviceValue", "AMNvalidator_devicePanel_deviceName" , deviceName, xml);
+			compareText_amnValidator(application, "DeviceValue", "AMNvalidator_devicePanel_deviceName", deviceName, xml);
 			
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'AMN Validator' panel is not displaying");
@@ -23901,9 +23848,88 @@ Thread.sleep(3000);
 			return proactiveMonitor;
 		}
 
+		
+		public void clickonTechnology(WebElement el, String technology) throws InterruptedException {
+			//Thread.sleep(3000);
+			
+			try {
+			el.click();
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Under 'technology' dropdown, '"+ technology + "' is selected");
+			Log.info("Under 'technology' dropdown, '"+ technology + "' is selected");
+			}
+			catch(Exception e)
+			//Thread.sleep(3000);
+			{
+				e.printStackTrace();
+				ExtentTestManager.getTest().log(LogStatus.FAIL, technology + " is not available under 'Technology' dropdown");
+				Log.info( technology + " is not available under 'Technology' dropdown");
+			}
+		}
+		
+		
+		public void compareText_amnValidator(String application, String labelname, String xpath, String ExpectedText, XMLReader xml) throws InterruptedException, DocumentException {
 
+			String text = null;
+			WebElement element = null;
 
-	
-	
+			try {
+				element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
+				String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
+				if(element==null)
+				{
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+				}
+				else if (emptyele!=null && emptyele.isEmpty()) {
+					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+				}else 
+				{
+					   
+					text = element.getText();
+					if(text.contains("-")) {
+						
+						String[] actualTextValue=text.split(" ");
+						String[] expectedValue =ExpectedText.split(" ");
+						
+						if(expectedValue[0].equalsIgnoreCase(actualTextValue[0])) {
+							ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						}
+						else if(expectedValue[0].contains(actualTextValue[0])) {
+							ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						
+						}
+						else
+						{
+							ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+						}
+						
+					}else {
+						if(text.equalsIgnoreCase(ExpectedText)) {
+							ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						}
+						else if(text.contains(ExpectedText)) {
+							ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						
+						}
+						else
+						{
+							ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+							Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+						}
+					}
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+				ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
+				Log.info(labelname + " field is not displaying");
+			}
+
+		}
+
+		
 			
 }

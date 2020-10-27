@@ -31,7 +31,7 @@ public class APT_MCS_CreateAccessCoreDeviceHelper extends DriverHelper{
 		super(dr);
 		// TODO Auto-generated constructor stub
 	}
-	
+		
 	WebElement el;
 
 	SoftAssert sa = new SoftAssert();
@@ -445,8 +445,6 @@ public class APT_MCS_CreateAccessCoreDeviceHelper extends DriverHelper{
     			compareText_InViewPage(application, "Premise", premisename, xml);
     	}
     	
-    //IOS-XR
-//    	compareText_InViewPage("IOS-XR", ios);
     	
    }
     

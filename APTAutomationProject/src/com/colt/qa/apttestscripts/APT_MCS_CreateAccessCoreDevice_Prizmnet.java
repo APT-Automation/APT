@@ -25,7 +25,7 @@ public class APT_MCS_CreateAccessCoreDevice_Prizmnet extends DriverTestcase {
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));
+		Login.APT_Login_1(map.get("url for the Product"));
 		
 		logger= ExtentTestManager.startTest ("verifyNavigationToCreateAccessCoreDevicePage_"+devicename);
 			APT_CreatePrizmnetDeviceHelper.get().navigatetomanagecoltnetwork("CreateAccessCoreDevice");
@@ -44,7 +44,7 @@ public class APT_MCS_CreateAccessCoreDevice_Prizmnet extends DriverTestcase {
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessageforPrizmnetDevice_"+devicename);
-			APT_CreatePrizmnetDeviceHelper.get().verifyDeviceCreationMessage("CreateAccessCoreDevice");
+			APT_CreatePrizmnetDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device created successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyEnteredValueForPrizmnetDevice_"+devicename);
@@ -69,7 +69,7 @@ public class APT_MCS_CreateAccessCoreDevice_Prizmnet extends DriverTestcase {
 			ExtentTestManager.endTest(); 
 	
 		logger= ExtentTestManager.startTest ("verifyDeviceUpdationSuccessMessagefor_PrizmnetDevice_"+devicename);
-			APT_CreatePrizmnetDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
+			APT_CreatePrizmnetDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device updated successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyUpdatedValueForPrizmnetDevice_"+devicename);

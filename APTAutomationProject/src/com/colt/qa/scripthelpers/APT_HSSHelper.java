@@ -55,9 +55,9 @@ import com.colt.qa.reporter.ExtentTestManager;
 			Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 			click_commonMethod(application, "create customer link", "createcustomerlink", xml);
-			Thread.sleep(2000);
+			waitforPagetobeenable();
 			compareText(application, "create customer page header", "createcustomer_header", "Create Customer", xml);
-			scrolltoend();
+			ScrolltoElement(application, "okbutton", xml);
 			click_commonMethod(application, "Ok", "okbutton", xml);
 
 			//Warning msg check
@@ -71,7 +71,7 @@ import com.colt.qa.reporter.ExtentTestManager;
 			addtextFields_commonMethod(application, "Customer Name", "nametextfield", name, xml);
 			addtextFields_commonMethod(application, "Main Domain", "maindomaintextfield", maindomain, xml);
 			Thread.sleep(1000);
-			scrolltoend();
+			ScrolltoElement(application, "resetbutton", xml);
 			click_commonMethod(application, "Reset", "resetbutton", xml);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "All text field values are cleared");
 			Log.info("All text field values are cleared");
@@ -87,10 +87,10 @@ import com.colt.qa.reporter.ExtentTestManager;
 			addtextFields_commonMethod(application, "Email", "emailtextfield", email, xml);
 			addtextFields_commonMethod(application, "Phone", "phonetextfield", phone, xml);
 			addtextFields_commonMethod(application, "Fax", "faxtextfield", fax, xml);
-			scrolltoend();
+			ScrolltoElement(application, "okbutton", xml);
 			Thread.sleep(1000);
-			waitforPagetobeenable();
 			click_commonMethod(application, "Ok", "okbutton", xml);
+			waitforPagetobeenable();
 			verifysuccessmessage(application, "Customer successfully created.");
 			sa.assertAll();
 		}
@@ -100,7 +100,7 @@ import com.colt.qa.reporter.ExtentTestManager;
 				throws InterruptedException, DocumentException, IOException {
 
 			Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 			System.out.println("Mouse hovered on Manage Customer's Service");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 			Log.info("Mouse hovered on 'Manage Customers Service' menu item");
@@ -315,6 +315,44 @@ import com.colt.qa.reporter.ExtentTestManager;
 		    
 		}
 		 
+		public void verifyCustomerDetailsInformation(String application, String newCustomerCreation, String existingCustomerSelection,String newCustomer,
+				String existingCustomer, String maindomain, String country, String ocn,
+				String reference, String tcn, String type, String email, String phone, String fax)
+						throws InterruptedException, DocumentException, IOException {
+			
+			
+			ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer informations");
+			ScrolltoElement(application, "customerdetailsheader", xml);
+			
+			
+			//Customer Name
+				if(newCustomerCreation.equalsIgnoreCase("Yes") || existingCustomerSelection.equalsIgnoreCase("No")) {
+					compareText(application, "Customer Name", "Name_Value", newCustomer, xml);
+					
+					compareText(application, "Country", "Country_Value", country, xml);
+					compareText(application, "OCN", "OCN_Value", ocn, xml);
+					compareText(application, "Reference", "Reference_Value", reference, xml);
+					compareText(application, "Technical Contact Name", "TechnicalContactName_Value", tcn, xml);
+					compareText(application, "Type", "Type_Value", type, xml);
+					compareText(application, "Email", "Email_Value", email, xml);
+					compareText(application, "Phone", "Phone_Value", phone, xml);
+					compareText(application, "Fax", "Fax_Value", fax, xml);
+					
+				}
+				else if(newCustomerCreation.equalsIgnoreCase("No") || existingCustomerSelection.equalsIgnoreCase("Yes")) {
+					
+					compareText(application, "Customer Name", "Name_Value", existingCustomer, xml);
+				}
+			
+			//Main Domain
+				if(maindomain.equalsIgnoreCase("Null")) {
+					Log.info("A default displays for main domain field, if no provided while creating customer");
+				}else {
+					compareText(application, "Main Domain", "MainDomain_Value", maindomain, xml);
+				}
+			
+			Log.info("=== Customer Details panel fields Verified ===");
+		}
 		
 		public void verifyservicepanelInformationinviewservicepage(String application ,String ServiceIdvalue
 				, String RemarkValue, String EmailValue, String PhoneContactValue, String ServiceType
@@ -325,7 +363,7 @@ import com.colt.qa.reporter.ExtentTestManager;
 			
 			compareText_InViewPage(application ,"Service Identification",ServiceIdvalue,xml);
 			compareText_InViewPage(application ,"Service Type",ServiceType,xml);
-			compareText(application, "Remarks", "servicepanel_remarksvalue", RemarkValue, xml);
+			GetText(application, "Remarks", "servicepanel_remarksvalue");
 			compareText(application, "Email", "servicepanel_email", EmailValue, xml);
 			compareText_InViewPage(application ,"Phone Contact",PhoneContactValue,xml);
 			
@@ -738,15 +776,23 @@ import com.colt.qa.reporter.ExtentTestManager;
 			sa.assertAll();
 		}
 
-		public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
+		public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno, String editOrderSelection) 
+				throws InterruptedException, DocumentException, IOException {
 
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Edit Order' Functionality");
+			
 			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
 
+			if(editOrderSelection.equalsIgnoreCase("No")) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Edit Order is not performed");
+				Log.info("Edit Order is not performed");
+			}
+			else if(editOrderSelection.equalsIgnoreCase("Yes")) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Performing Edit Order Functionality");
+			
 			//Cancel Edit order in Order panel
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Edit Order", "editorderlink", xml);
-			waitforPagetobeenable();
 			compareText(application, "Edit Order", "editorderheader", "Edit Order", xml);
 			Thread.sleep(1000);
 
@@ -764,10 +810,6 @@ import com.colt.qa.reporter.ExtentTestManager;
 			Thread.sleep(2000);
 			addtextFields_commonMethod(application, "RFI Voiceline Number", "editvoicelineno", editvoicelineno, xml);
 			click_commonMethod(application, "Cancel", "cancelbutton", xml);
-			waitforPagetobeenable();
-//			compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-//			Log.info("Navigated to order panel in view service page");
-//			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 			//Edit Order
 			Thread.sleep(1000);
@@ -791,90 +833,84 @@ import com.colt.qa.reporter.ExtentTestManager;
 			Thread.sleep(1000);
 			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-//			compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-//			Log.info("Navigated to order panel in view service page");
-//			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
-			compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
-			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+			if(editorderno.equalsIgnoreCase("Null")) {
+				
+				ExtentTestManager.getTest().log(LogStatus.PASS, "'Order/Contract Number (Parent SID)' field is not edited");
+				Log.info("'Order/Contract Number (Parent SID)' field is not edited");
+			}else {
+				compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
+			}
+			
+			if(editvoicelineno.equalsIgnoreCase("Null")) {
+				ExtentTestManager.getTest().log(LogStatus.PASS,"'RFI/RFQ/IP Voice Line Number' field is not edited");
+				Log.info("'RFI/RFQ/IP Voice Line Number' field is not edited");
+			}else {
+				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+			}
 			Log.info("------ Edit Order is successful ------");
+			}
 
 		}
 
-		public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
+		public void verifyorderpanel_changeorder(String application, String ChangeOrder_newOrderNumber, String changevoicelineno, String changeOrderSelection_newOrder,
+				String changeOrderSelection_existingOrder, String ChangeOrder_existingOrderNumber) throws InterruptedException, DocumentException, IOException {
 
 			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-			click_commonMethod(application, "Change Order", "changeorderlink", xml);
-			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-			List<WebElement> ChangeOrder_DropdownList= getwebelements(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist"));
-			int ChangeOrder_Dropdown_count= ChangeOrder_DropdownList.size();
-			if(ChangeOrder_Dropdown_count> 1)
-			{
-				Clickon(getwebelement("//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false'][1]"));
-				Thread.sleep(3000);
-
-				//Cancel change order
-				click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-				Thread.sleep(1000);
-				ScrolltoElement(application, "userspanel_header", xml);
-				Thread.sleep(1000);
-				
-				//Change order
-				click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-				click_commonMethod(application, "Change Order", "changeorderlink", xml);
-				compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-				Thread.sleep(1000);
-				click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-				Clickon(getwebelement("//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false'][1]"));
-				Thread.sleep(3000);
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected order from dropdown");
-				Log.info("Selected order from dropdown");
-				click_commonMethod(application, "OK", "changeorder_okbutton", xml);
-				Thread.sleep(1000);
-				ScrolltoElement(application, "userspanel_header", xml);
-				Thread.sleep(1000);
-				compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
-				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
-				Log.info("------ Change Order is successful ------");
-
+					
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Change Order' Functionality");
+			
+			if((changeOrderSelection_newOrder.equalsIgnoreCase("No")) && (changeOrderSelection_existingOrder.equalsIgnoreCase("No"))) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Change Order is not performed");
+				Log.info("Change Order is not performed");
 			}
-			else
-			{
-				click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
-				click_commonMethod(application, "Order Number", "changeordernumber", xml);
-				Thread.sleep(2000);
-				addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
-				click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
-				Thread.sleep(3000);
-				addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
-				click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-				ScrolltoElement(application, "userspanel_header", xml);
-				Thread.sleep(1000);
+			else if(changeOrderSelection_newOrder.equalsIgnoreCase("Yes")) {
+				
 				//Change Order
 				click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 				click_commonMethod(application, "Change Order", "changeorderlink", xml);
+				waitforPagetobeenable();
 				compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
 				Thread.sleep(1000);
 				click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
 				click_commonMethod(application, "Order Number", "changeordernumber", xml);
 				Thread.sleep(2000);
-				addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
+				addtextFields_commonMethod(application, "Order Number", "changeordernumber", ChangeOrder_newOrderNumber, xml);
 				click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
 				Thread.sleep(3000);
 				addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 				click_commonMethod(application, "Create Order", "createorder_button", xml);
-				Thread.sleep(1000);
+				waitforPagetobeenable();
 				ScrolltoElement(application, "userspanel_header", xml);
 				Thread.sleep(1000);
-				compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
+				compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_newOrderNumber, xml);
 				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 				Log.info("------ Change Order is successful ------");
 			}
+			else if(changeOrderSelection_existingOrder.equalsIgnoreCase("yes")) 
+			{
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Performing Change Order functionality");
+				
+				ScrolltoElement(application, "userspanel_header", xml);
+				Thread.sleep(1000);
+				click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+				click_commonMethod(application, "Change Order", "changeorderlink", xml);
+				waitforPagetobeenable();
+				compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
+				Thread.sleep(1000);
+				
+					addDropdownValues_commonMethod(application, "Order/Contract Number (Parent SID)", "changeorder_chooseorderdropdown", ChangeOrder_existingOrderNumber, xml);
+					
+					click_commonMethod(application, "OK", "changeorder_okbutton", xml);
+					waitforPagetobeenable();
+					ScrolltoElement(application, "userspanel_header", xml);
+					Thread.sleep(1000);
+					compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_existingOrderNumber, xml);
+					compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
+					Log.info("------ Change Order is successful ------");
+		
+			}
+			
 		}
 
 		public void navigateToAddNewDevicepage(String application) throws InterruptedException, DocumentException {
@@ -2148,11 +2184,13 @@ public void deleteService(String application) throws InterruptedException, Docum
  					
  					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
  					System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+ 					successScreenshot(application);
  					
  				}else {
  					
  					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
  					System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+ 					successScreenshot(application);
  				}
  				
  			}else {

@@ -476,6 +476,12 @@
 
 <LANLINK>
 
+<ClassNameForDropdowns>//div[@class='sc-ifAKCX oLlzc']</ClassNameForDropdowns>
+
+<selectValueUnderTechnologyDropdown>//div[text()='value']</selectValueUnderTechnologyDropdown>
+
+<obutton_spanTag>//span[contains(text(),'OK')]</obutton_spanTag>
+
 <chooseCustomerdropdown>//div[@class='react-dropdown-select-content react-dropdown-select-type-single css-jznujr-ContentComponent e1gn6jc30']</chooseCustomerdropdown>
 
   <OrderContractNumber_Select_build3>(//div[@class='react-dropdown-select-content react-dropdown-select-type-single css-jznujr-ContentComponent e1gn6jc30'])[1]</OrderContractNumber_Select_build3>
@@ -1892,7 +1898,7 @@
       <deleteCircuit_deleteButton>//button[@class='btn btn-danger']</deleteCircuit_deleteButton>
       <configure_alertPopup_xbutton>//span[text()='×']</configure_alertPopup_xbutton>
       
-      
+      <peTOcpeLink_xbutton>//div[text()='Add New Link']/parent::div//span[text()='×']</peTOcpeLink_xbutton>
      </LANLINK>   
  
 </locators>

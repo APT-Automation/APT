@@ -3,17 +3,55 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessSwitch">
+      <class name="com.colt.qa.apttestscripts.APT_IPAccess_VCPEConfigTest">
         <methods>
-          <include name="Teardown"/>
-          <include name="createAccessCoreDevice_AccessSwitch" invocation-numbers="0"/>
-          <include name="getResult"/>
-          <include name="BeforeMethod"/>
-          <include name="endReport"/>
+          <include name="IPAccessVCPEConfigService"/>
           <include name="startReport"/>
           <include name="BeforeSuite"/>
         </methods>
-      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessSwitch -->
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccess_VCPEConfigTest -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccessConfigTest">
+        <methods>
+          <include name="ipa_ConfigurationService"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccessConfigTest -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccessNoCPETest">
+        <methods>
+          <include name="IPAccessNoCPETestCases"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccessNoCPETest -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccessResilientConfigTest">
+        <methods>
+          <include name="APT_IPAccessResilientConfigTestCases"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccessResilientConfigTest -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccessSpeedboatTest">
+        <methods>
+          <include name="IPAccessVCPEConfigService"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccessSpeedboatTest -->
+      <class name="com.colt.qa.apttestscripts.APT_ColtTotalTest">
+        <methods>
+          <include name="ColtTotalConfigTestCases"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_ColtTotalTest -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccessCMSDataCenterTest">
+        <methods>
+          <include name="IPAccessVCPEConfigService" invocation-numbers="0"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccessCMSDataCenterTest -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccessMultihomedTest">
+        <methods>
+          <include name="MultihomedTestCases"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccessMultihomedTest -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccess_VCPEResilientConfigTest">
+        <methods>
+          <include name="IPAccessVCPEConfigService"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccess_VCPEResilientConfigTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

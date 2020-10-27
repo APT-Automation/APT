@@ -1135,7 +1135,7 @@ public void Moveon(WebElement el) {
 	try {
 		
 
-		availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
+		availability=getwebelementNoWait(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).isDisplayed();
 		if(availability) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field is displaying");
 			System.out.println(labelname + " text field is displaying");
@@ -1146,7 +1146,7 @@ public void Moveon(WebElement el) {
 			}else {
 				
 				SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")), expectedValueToAdd);
-				String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
+				String actualvalue=getwebelementNoWait(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
 				ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field value added as: "+ actualvalue);
 			}
 			
@@ -1184,7 +1184,7 @@ public void Moveon(WebElement el) {
 		  
 		try {  
 			
-		  availability=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
+		  availability=getwebelementNoWait(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 		  if(availability) {
 			  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
 			  System.out.println(labelname + " dropdown is displaying");
@@ -1195,7 +1195,7 @@ public void Moveon(WebElement el) {
 				  System.out.println(" No values selected under "+ labelname + " dropdown");
 			  }else {
 				  
-				  Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
+				  Clickon(getwebelementNoWait("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
 				  
 				  
 				  //verify list of values inside dropdown
@@ -1211,12 +1211,12 @@ public void Moveon(WebElement el) {
 					    ExtentTestManager.getTest().log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
 			            System.out.println("list of values inside "+labelname+" dropdown is: "+ls);
 					
-				SendKeys(getwebelement("//div[label[text()='"+ labelname +"']]//input"), expectedValueToAdd);	
+				SendKeys(getwebelementNoWait("//div[label[text()='"+ labelname +"']]//input"), expectedValueToAdd);	
 					
-				  Clickon(getwebelement("(//div[label[text()='"+ labelname +"']]//div[contains(text(),'"+ expectedValueToAdd +"')])[1]"));
+				  Clickon(getwebelementNoWait("(//div[label[text()='"+ labelname +"']]//div[contains(text(),'"+ expectedValueToAdd +"')])[1]"));
 				  Thread.sleep(1000);
 				  
-				  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
+				  String actualValue=getwebelementNoWait("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
 				  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
 				  System.out.println( labelname + " dropdown value selected as: "+ actualValue);
 				  
@@ -1595,7 +1595,7 @@ public void Moveon(WebElement el) {
 				{
 					   
 					text = element.getText();
-					if((text.contains(" ")) ||  text.contains("-")) {
+					if(text.contains("-")) {
 						
 						String[] actualTextValue=text.split(" ");
 						String[] expectedValue =ExpectedText.split(" ");
@@ -2016,6 +2016,17 @@ public void isDisplayed(String application, WebElement el, String labelname, XML
 	}
 }
 
+
+public void GetMessageFromAlertJavaScriptPopup(){
+	String alertMessage= driver.switchTo().alert().getText();
+    if(alertMessage.isEmpty()) {
+ 	   ExtentTestManager.getTest().log(LogStatus.FAIL, "No Message displays under Alert popup");
+	       System.out.println("No Message displays under Alert popup"); 
+    }else {
+ 	   ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+	       System.out.println("text message for alert displays as: "+alertMessage);
+    }
+	}
 			
 			
 		

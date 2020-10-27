@@ -25,7 +25,7 @@ public class APT_MCS_CreateAccessCoreDevice_MDFFirewall extends DriverTestcase {
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));
+		Login.APT_Login_1(map.get("url for the Product"));
 		
 		logger= ExtentTestManager.startTest ("verifyNavigationToCreateDevicePage_MDFfirewall");
 			APT_CreateMDFFirewallDeviceHelper.get().navigatetomanagecoltnetwork("CreateAccessCoreDevice");
@@ -44,7 +44,7 @@ public class APT_MCS_CreateAccessCoreDevice_MDFFirewall extends DriverTestcase {
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessageforMDFfirewallDevice_"+devicename);
-			APT_CreateMDFFirewallDeviceHelper.get().verifyDeviceCreationMessage("verifyDeviceCreationMessagefor_MDFfirewallDevice");
+			APT_CreateMDFFirewallDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device created successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyEnteredValueForDevice_"+devicename);
@@ -69,7 +69,7 @@ public class APT_MCS_CreateAccessCoreDevice_MDFFirewall extends DriverTestcase {
 			ExtentTestManager.endTest(); 
 	
 		logger= ExtentTestManager.startTest ("verifyDeviceUpdationSuccessMessagefor_MDFfirewallDevice_"+devicename);
-			APT_CreateMDFFirewallDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
+			APT_CreateMDFFirewallDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device updated successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyUpdatedValueForMDFfirewallDevice_"+devicename);

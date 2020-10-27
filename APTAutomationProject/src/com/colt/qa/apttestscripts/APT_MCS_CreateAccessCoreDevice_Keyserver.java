@@ -24,7 +24,7 @@ public class APT_MCS_CreateAccessCoreDevice_Keyserver extends DriverTestcase {
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));	
+		Login.APT_Login_1(map.get("url for the Product"));	
 		
 		logger= ExtentTestManager.startTest ("verifyNavigationToCreateDevicePage_keyServer");
 			APT_CreateKeyserverDeviceHelper.get().navigatetomanagecoltnetwork("CreateAccessCoreDevice");
@@ -43,7 +43,7 @@ public class APT_MCS_CreateAccessCoreDevice_Keyserver extends DriverTestcase {
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessageforKeyServerDevice_"+devicename);
-			APT_CreateKeyserverDeviceHelper.get().verifyDeviceCreationMessage("CreateAccessCoreDevice");
+			APT_CreateKeyserverDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device created successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyEnteredValueForDevice_"+devicename);
@@ -68,7 +68,7 @@ public class APT_MCS_CreateAccessCoreDevice_Keyserver extends DriverTestcase {
 			ExtentTestManager.endTest(); 
 	
 		logger= ExtentTestManager.startTest ("verifyDeviceUpdationSuccessMessagefor_keyServerDevice_"+devicename);
-			APT_CreateKeyserverDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
+			APT_CreateKeyserverDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device updated successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyUpdatedValueForDevice_"+devicename);

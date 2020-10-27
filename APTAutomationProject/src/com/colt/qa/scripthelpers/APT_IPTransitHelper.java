@@ -291,6 +291,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 		ScrolltoElement(application, "CreateOrderHeader", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "select order switch", "selectorderswitch", xml);
+		Thread.sleep(1000);
 		addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", orderno, xml);
 		addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
 		// click on next button
@@ -313,7 +314,8 @@ public class APT_IPTransitHelper extends DriverHelper {
 		//Create service
 		addtextFields_commonMethod(application, "Service Identification", "serviceidentificationtextfield", sid, xml);
 		addtextFields_commonMethod(application, "Termination Date", "terminationdate_field", terminationdate, xml);
-		addDropdownValues_commonMethod(application, "Billing Type", "billingtype_dropdown", billingtypevalue, xml);
+		//addDropdownValues_commonMethod(application, "Billing Type", "billingtype_dropdown", billingtypevalue, xml);
+		selectValueInsideDropdown(application, "billingtype_dropdown", "Billing Type", billingtypevalue, xml);
 		addtextFields_commonMethod(application, "Remarks", "remarktextarea", Remarks, xml);
 		addtextFields_commonMethod(application, "Email", "emailtextfieldvalue", email, xml);
 		click_commonMethod(application, "Email adding Arrow", "emailaddarrow", xml);
@@ -335,24 +337,43 @@ public class APT_IPTransitHelper extends DriverHelper {
 		sa.assertAll();
 	}
 
-	public void verifyCustomerDetailsInformation(String application, String name, String maindomain, String country, String ocn,
+	public void verifyCustomerDetailsInformation(String application, String newCustomerCreation, String existingCustomerSelection,String newCustomer,
+			String existingCustomer, String maindomain, String country, String ocn,
 			String reference, String tcn, String type, String email, String phone, String fax)
 					throws InterruptedException, DocumentException, IOException {
-
+		
+		
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer informations");
 		ScrolltoElement(application, "customerdetailsheader", xml);
-		//compareText(application, "Customer Name", "Name_Value", name, xml);
-		GetText(application, "Customer Name", "Name_Value");
-		compareText(application, "Main Domain", "MainDomain_Value", maindomain, xml);
-		compareText(application, "Country", "Country_Value", country, xml);
-		compareText(application, "OCN", "OCN_Value", ocn, xml);
-		compareText(application, "Reference", "Reference_Value", reference, xml);
-		compareText(application, "Technical Contact Name", "TechnicalContactName_Value", tcn, xml);
-		compareText(application, "Type", "Type_Value", type, xml);
-		compareText(application, "Email", "Email_Value", email, xml);
-		compareText(application, "Phone", "Phone_Value", phone, xml);
-		compareText(application, "Fax", "Fax_Value", fax, xml);
+		
+		
+		//Customer Name
+			if(newCustomerCreation.equalsIgnoreCase("Yes") || existingCustomerSelection.equalsIgnoreCase("No")) {
+				compareText(application, "Customer Name", "Name_Value", newCustomer, xml);
+				
+				compareText(application, "Country", "Country_Value", country, xml);
+				compareText(application, "OCN", "OCN_Value", ocn, xml);
+				compareText(application, "Reference", "Reference_Value", reference, xml);
+				compareText(application, "Technical Contact Name", "TechnicalContactName_Value", tcn, xml);
+				compareText(application, "Type", "Type_Value", type, xml);
+				compareText(application, "Email", "Email_Value", email, xml);
+				compareText(application, "Phone", "Phone_Value", phone, xml);
+				compareText(application, "Fax", "Fax_Value", fax, xml);
+				
+			}
+			else if(newCustomerCreation.equalsIgnoreCase("No") || existingCustomerSelection.equalsIgnoreCase("Yes")) {
+				
+				compareText(application, "Customer Name", "Name_Value", existingCustomer, xml);
+			}
+		
+		//Main Domain
+			if(maindomain.equalsIgnoreCase("Null")) {
+				Log.info("A default displays for main domain field, if no provided while creating customer");
+			}else {
+				compareText(application, "Main Domain", "MainDomain_Value", maindomain, xml);
+			}
+		
 		Log.info("=== Customer Details panel fields Verified ===");
-		sa.assertAll();
 	}
 
 	public void verifyUserDetailsInformation(String application, String Login, String Name, String Email, String Roles, String Address, String Resource)
@@ -960,37 +981,47 @@ public class APT_IPTransitHelper extends DriverHelper {
 		sa.assertAll();
 	}
 
-	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
+	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno, String editOrderSelection) 
+			throws InterruptedException, DocumentException, IOException {
 
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Edit Order' Functionality");
+		
 		ScrolltoElement(application, "userspanel_header", xml);
+
+		if(editOrderSelection.equalsIgnoreCase("No")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Edit Order is not performed");
+			Log.info("Edit Order is not performed");
+		}
+		else if(editOrderSelection.equalsIgnoreCase("Yes")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Performing Edit Order Functionality");
+		
 		//Cancel Edit order in Order panel
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
-		waitforPagetobeenable();
 		compareText(application, "Edit Order", "editorderheader", "Edit Order", xml);
 		Thread.sleep(1000);
 
 		WebElement EditOrderNo= getwebelement(xml.getlocator("//locators/" + application + "/editorderno"));
 		click_commonMethod(application, "Order Number", "editorderno", xml);
 		Thread.sleep(2000);
-		edittextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
+		Clear(EditOrderNo);
+		Thread.sleep(2000);
+		addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
 
 		WebElement EditVoiceLineNo= getwebelement(xml.getlocator("//locators/" + application + "/editvoicelineno"));
 		click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
 		Thread.sleep(2000);
-		edittextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
+		Clear(EditVoiceLineNo);
+		Thread.sleep(2000);
+		addtextFields_commonMethod(application, "RFI Voiceline Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		waitforPagetobeenable();
-		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-		Log.info("Navigated to order panel in view service page");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 		//Edit Order
+		Thread.sleep(1000);
 		ScrolltoElement(application, "userspanel_header", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
-		waitforPagetobeenable();
 		compareText(application, "Edit Order Header", "editorderheader", "Edit Order", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Order Number", "editorderno", xml);
@@ -1004,83 +1035,42 @@ public class APT_IPTransitHelper extends DriverHelper {
 		Thread.sleep(2000);
 		addtextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "OK", "editorder_okbutton", xml);
-		waitforPagetobeenable();
+		Thread.sleep(1000);
 		ScrolltoElement(application, "userspanel_header", xml);
 		Thread.sleep(1000);
-		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-		Log.info("Navigated to order panel in view service page");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
-		compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
-		compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		if(editorderno.equalsIgnoreCase("Null")) {
+			
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order/Contract Number (Parent SID)' field is not edited");
+			Log.info("'Order/Contract Number (Parent SID)' field is not edited");
+		}else {
+			compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
+		}
+		
+		if(editvoicelineno.equalsIgnoreCase("Null")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS,"'RFI/RFQ/IP Voice Line Number' field is not edited");
+			Log.info("'RFI/RFQ/IP Voice Line Number' field is not edited");
+		}else {
+			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		}
 		Log.info("------ Edit Order is successful ------");
+		}
 
 	}
 
-	public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
+	public void verifyorderpanel_changeorder(String application, String ChangeOrder_newOrderNumber, String changevoicelineno, String changeOrderSelection_newOrder,
+			String changeOrderSelection_existingOrder, String ChangeOrder_existingOrderNumber) throws InterruptedException, DocumentException, IOException {
 
 		ScrolltoElement(application, "userspanel_header", xml);
-		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-		click_commonMethod(application, "Change Order", "changeorderlink", xml);
-		waitforPagetobeenable();
-		compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-		List<WebElement> ChangeOrder_DropdownList= getwebelements(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist"));
-		int ChangeOrder_Dropdown_count= ChangeOrder_DropdownList.size();
-		if(ChangeOrder_Dropdown_count> 1)
-		{
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/changeorder_dropdownvalue")));
-			Thread.sleep(3000);
-
-			//Cancel change order
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			Thread.sleep(1000);
-			waitforPagetobeenable();
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-
-			//Change order
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-			click_commonMethod(application, "Change Order", "changeorderlink", xml);
-			waitforPagetobeenable();
-			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/changeorder_dropdownvalue")));
-			Thread.sleep(3000);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected order from dropdown");
-			click_commonMethod(application, "OK", "changeorder_okbutton", xml);
-			Thread.sleep(1000);
-			waitforPagetobeenable();
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
-			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
-			Log.info("------ Change Order is successful ------");
-
+				
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Change Order' Functionality");
+		
+		if((changeOrderSelection_newOrder.equalsIgnoreCase("No")) && (changeOrderSelection_existingOrder.equalsIgnoreCase("No"))) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Change Order is not performed");
+			Log.info("Change Order is not performed");
 		}
-		else
-		{
-			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
-			click_commonMethod(application, "Order Number", "changeordernumber", xml);
-			Thread.sleep(2000);
-			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
-			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
-			Thread.sleep(3000);
-			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-
+		else if(changeOrderSelection_newOrder.equalsIgnoreCase("Yes")) {
+			
 			//Change Order
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Change Order", "changeorderlink", xml);
@@ -1090,22 +1080,42 @@ public class APT_IPTransitHelper extends DriverHelper {
 			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
 			click_commonMethod(application, "Order Number", "changeordernumber", xml);
 			Thread.sleep(2000);
-			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
+			addtextFields_commonMethod(application, "Order Number", "changeordernumber", ChangeOrder_newOrderNumber, xml);
 			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
 			Thread.sleep(3000);
 			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 			click_commonMethod(application, "Create Order", "createorder_button", xml);
-			Thread.sleep(1000);
 			waitforPagetobeenable();
 			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
+			compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_newOrderNumber, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
 		}
+		else if(changeOrderSelection_existingOrder.equalsIgnoreCase("yes")) 
+		{
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Performing Change Order functionality");
+			
+			ScrolltoElement(application, "userspanel_header", xml);
+			Thread.sleep(1000);
+			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			waitforPagetobeenable();
+			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
+			Thread.sleep(1000);
+			
+				addDropdownValues_commonMethod(application, "Order/Contract Number (Parent SID)", "changeorder_chooseorderdropdown", ChangeOrder_existingOrderNumber, xml);
+				
+				click_commonMethod(application, "OK", "changeorder_okbutton", xml);
+				waitforPagetobeenable();
+				ScrolltoElement(application, "userspanel_header", xml);
+				Thread.sleep(1000);
+				compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_existingOrderNumber, xml);
+				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
+				Log.info("------ Change Order is successful ------");
+	
+		}
+		
 	}
 
 	public void verifyservicepanelInformationinviewservicepage(String application, String sid, String servicetype, String Remarks, String terminationdate, String billingtypevalue, String email, String phonecontact) throws InterruptedException, DocumentException, IOException {
@@ -1150,7 +1160,7 @@ public class APT_IPTransitHelper extends DriverHelper {
 		scrollToTop();
 		edittextFields_commonMethod(application, "Service Identification", "serviceidentificationtextfield", sid, xml);
 		edittextFields_commonMethod(application, "Termination Date", "terminationdate_field", editterminationdate, xml);
-		edittextFields_commonMethod(application, "Billing Type", "billingtype_dropdown", editbillingtypevalue, xml);
+		selectValueInsideDropdown(application, "billingtype_dropdown", "Billing Type", editbillingtypevalue, xml);
 		edittextFields_commonMethod(application, "Remarks", "remarktextarea", EditRemarks, xml);
 		
 		ScrolltoElement(application, "remarktextarea", xml);
@@ -3578,7 +3588,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 			click_commonMethod(application, "Edit", "edit", xml);
 			Thread.sleep(2000);
 			waitforPagetobeenable();
-			compareText(application, "Edit Interface/Link", "editinterface_header", "Edit", xml);
+			compareText(application, "Edit Interface/Link", "editinterface_header", "Edit Interface/Link", xml);
 			scrollToTop();
 			editcheckbox_commonMethod(application, edit_configureinterface_checkbox, "configureinterface_checkbox", "Configure Interface on Device", xml);
 			edittextFields_commonMethod(application, "Interface", "interfacename_textfield", edit_interfacename, xml);
@@ -4264,7 +4274,7 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
 			click_commonMethod(application, "Edit", "edit", xml);
 			Thread.sleep(2000);
 			waitforPagetobeenable();
-			compareText(application, "Edit Interface/Link", "editinterface_header", "Edit", xml);
+			compareText(application, "Edit Interface/Link", "editinterface_header", "Edit Interface/Link", xml);
 
 			editcheckbox_commonMethod(application, edit_configureinterface_checkbox, "configureinterface_checkbox", "Configure Interface on Device", xml);
 			addDropdownValues_commonMethod(application, "Network", "network_fieldvalue", edit_network, xml);
@@ -5642,7 +5652,7 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
       
            public void verifysuccessmessage(String application, String expected) throws InterruptedException {
         		
-        		scrollToTop();
+        	   scrollToTop();
         		Thread.sleep(3000);
         		try {	
         			
@@ -5656,11 +5666,13 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
         					
         					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
         					System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+        					successScreenshot(application);
         					
         				}else {
         					
         					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
         					System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+        					successScreenshot(application);
         				}
         				
         			}else {

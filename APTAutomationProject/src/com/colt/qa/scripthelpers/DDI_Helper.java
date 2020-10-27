@@ -224,7 +224,7 @@ public class DDI_Helper extends DriverHelper{
 		
 		Thread.sleep(4000);
 		
-		isFileDownloaded_DDI("C:\\Users\\PKumar4-ADM\\Downloads", "ddiRanges_Tgid");
+		isFileDownloaded_DDI("D:\\APT_Phase1_Automation_Project_Deliverables\\APTAutomationProject\\src", "ddiRanges_Tgid2");
 		
 		Thread.sleep(2000);
 	}
@@ -385,7 +385,9 @@ public class DDI_Helper extends DriverHelper{
 	}
 
 	
-	
+	public void scrolltoendOptional() {//Or Scroll Down
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	}
 	
 	public void ViewDDIRange(String application, String CountrycodeValue, String LACValue, String MainNumbervalue, String RangestartValue,
 			String RangeEndValue, String ExtensionDigits, String ActivateIncomingRouting, String InGeo, String PSXconfigurationValue) throws Exception
@@ -452,9 +454,8 @@ public class DDI_Helper extends DriverHelper{
     	compareText(application, "IN GEO", "viewPage_INGEOValue", ingeo, xml);
     
     	
-    	scrolltoend();
-    	
-    //PSX Configuration
+    	scrolltoendOptional();
+    	//PSX Configuration
     	try {
     	addDropdownValues_commonMethod(application, "PSX Configuration", "PSXconfigurationDropdown_viewDDI", PSXconfigurationValue, xml);
     	
@@ -555,6 +556,28 @@ public class DDI_Helper extends DriverHelper{
 	    	  safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/ShowDDIRanges")));
 	  		Thread.sleep(5000);	
 	  		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Show DDI Ranges");
+
+//	  		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/LacLabel")));
+//	  		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/LacLabel")));
+//	  		
+//	  		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/LACFilter")));
+//	  		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/LACFilter")));
+//	  		ExtentTestManager.getTest().log(LogStatus.PASS, "Filterng LAC Value");
+//	  		Thread.sleep(5000);
+//	  		
+//	  		
+//	  		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/LACFilter_Text")), LACValue);
+//	  		ExtentTestManager.getTest().log(LogStatus.PASS, "Entering LAC Value");
+//	  		Thread.sleep(5000);
+//
+//	  		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/DDIRadiobtn")));
+//	  		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Radio button");
+//	  		Thread.sleep(5000);
+//	  		
+//	  		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/DDIPanelAction")));
+//	  		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Action Dropdown");
+//	  		Thread.sleep(1000);
+
 	  		safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" + application + "/DDIDelete")));
 	  		ExtentTestManager.getTest().log(LogStatus.PASS, "Selected Delete from Action Dropdown");
 	  		Thread.sleep(2000);
@@ -784,7 +807,36 @@ public void implicitlyWait(String pageNavigation) {
 			}
 			return flag;
 		}
+		
 			
+			/**
+			 * 	
+			 * @param application
+			 * @throws DocumentException 
+			 * @throws InterruptedException 
+			 */
+				public void clickOnBreadCrump(String application, String breadCrumpLink) throws InterruptedException, DocumentException {
+					
+					waitForpageload();
+					waitforPagetobeenable();
+					
+					scrollToTop();
+					Thread.sleep(2000);
+					WebElement breadcrumb=null;
+			
+					try {
+					breadcrumb=getwebelement(xml.getlocator("//locators/" + application + "/breadcrump").replace("value", breadCrumpLink));
+					if(breadcrumb.isDisplayed()) {
+						click_commonMethod_PassingWebelementDirectly(application, "Breadcrump", "breadcrump", xml);
+						Thread.sleep(3000);
+					}else {
+						System.out.println("Breadcrumb is not displaying for the element "+ breadcrumb);
+					}
+				}catch(Exception e) {
+					e.printStackTrace();
+					System.out.println("Breadcrumb is not displaying for the element "+ breadcrumb);
+				}
+			}
 
 }
 

@@ -56,9 +56,8 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 	public void navigateToCreateCustomerPage(String application) throws InterruptedException, DocumentException {
 		navigateToManageCustomerServicePage(application);
 		Clickon(getwebelement(xml.getlocator("//locators/"+application+"/CreateCustomerLink"))); 	
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Navigated to Çreate Customer Page");
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Navigated to 'create Customer' Page");
 		Log.info(" Create customer navigated ");	
-		Thread.sleep(5000);
 	}
 	
 	
@@ -70,10 +69,8 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		Log.info(" Create customer navigated ");
 		
 		scrolltoend();
-		Thread.sleep(2000);
 		Clickon(getwebelement(xml.getlocator("//locators/"+application+"/OkButton_CreateCustomer")));
 		scrollToTop();
-		Thread.sleep(2000);
 		
 		//Warning Messages
 		warningMessage_commonMethod(application, "name_validationmsg", "Legal Customer Name", xml);
@@ -185,7 +182,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		}
 		
 		scrolltoend();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		click_commonMethod(application, "OK", "OkButton_EditCustomer" , xml);
 
 	}
@@ -414,10 +411,8 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 		Thread.sleep(1000);
 		
 		click_commonMethod(application, "User_Action", "Users_Action" , xml);
-		Thread.sleep(1000);
 		
 		click_commonMethod(application, "Edit_User", "EditUserLink" , xml);
-		Thread.sleep(10000);
 	}
 		
 		public void verifyAddedUserValuesInViewUserPage(String application, String UserName, String FirstName, String SurName,String PostalAddress, 
@@ -426,7 +421,7 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 				String	HideRouterToolsIPv4CommandsCisco_ToBeSelected, String HideServicesToBeSelected,String HideSiteOrderToBeSelected ) 
 				throws InterruptedException, DocumentException {
 				
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 
 				WebElement customerName=getwebelement(xml.getlocator("//locators/"+application+"/legalcustomerName_labelName"));
 				scrolltoview(customerName);
@@ -526,7 +521,6 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			Thread.sleep(1000);
 			
 			click_commonMethod(application, "User_Action", "Users_Action" , xml);
-			Thread.sleep(1000);
 			
 			click_commonMethod(application, "Delete User Link", "DeleteUserLink", xml);
 			
@@ -544,10 +538,9 @@ public class APT_MCS_CustomerUserHelper extends DriverHelper {
 			Thread.sleep(3000);
 		   
 		   click_commonMethod(application, "Action", "Editservice_actiondropdown", xml);   //click on Action dropodwn
-		   Thread.sleep(1000);
 		   
 		   click_commonMethod(application, "Delete", "viewService_deletLink", xml);
-		   Thread.sleep(3000);
+		   Thread.sleep(1000);
 		   
 //		   boolean alertpopup=false;
 //			alertpopup=getwebelement(xml.getlocator("//locators/" + application + "/alertPopupForviewLink_underOrderpanel")).isDisplayed();

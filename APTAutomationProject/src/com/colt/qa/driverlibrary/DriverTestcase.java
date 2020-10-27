@@ -40,9 +40,17 @@ import com.colt.qa.scripthelpers.APT_VOIPAccessHelper;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import com.colt.qa.scripthelpers.APT_ColtTotalConfigHelper;
 import com.colt.qa.scripthelpers.APT_CreateAccessCoreDevice_ManageNetworkHelper;
 import com.colt.qa.scripthelpers.APT_DomainManagementHelper;
 import com.colt.qa.scripthelpers.APT_HSSHelper;
+import com.colt.qa.scripthelpers.APT_IPAccessCMSDataCenterHelper;
+import com.colt.qa.scripthelpers.APT_IPAccessMultihomedHelper;
+import com.colt.qa.scripthelpers.APT_IPAccessNoCPEHelper;
+import com.colt.qa.scripthelpers.APT_IPAccessResilientConfigHelper;
+import com.colt.qa.scripthelpers.APT_IPAccessSpeedboatHelper;
+import com.colt.qa.scripthelpers.APT_IPAccess_VCPEConfigHelper;
+import com.colt.qa.scripthelpers.APT_IPAccess_VCPEResilientConfigHelper;
 import com.colt.qa.scripthelpers.APT_IPTransitHelper;
 import com.colt.qa.scripthelpers.APT_LoginHelper;
 import com.colt.qa.scripthelpers.APT_MCS_CreateAccessCoreDeviceHelper;
@@ -131,7 +139,16 @@ public class DriverTestcase {
 	public static final ThreadLocal<LANLINK_NewTab> lanlinkNewTab = new InheritableThreadLocal<>();
 	public static final ThreadLocal<voipAccessHelper_NewTab>  voipAccessnewtab = new InheritableThreadLocal<>();
 	public static final ThreadLocal<IPVPNHelper_newTab> ipvpnnewTab = new InheritableThreadLocal<>();
-	
+	public static final ThreadLocal<APT_IPAccessNoCPEHelper> NoCPEHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_IPAccessMultihomedHelper>MultihomedHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_IPAccessResilientConfigHelper>ResilientHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_ColtTotalConfigHelper>ColtTotalHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<com.colt.qa.scripthelpers.APT_IPAccessConfigHelper>APT_IPAccessConfigHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_IPAccessSpeedboatHelper>APT_IPASpeedboatHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_IPAccess_VCPEConfigHelper> APT_IPAccess_VCPEConfigHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_IPAccess_VCPEResilientConfigHelper> APT_IPA_VCPEResilientConfigHelper = new InheritableThreadLocal<>();
+	public static final ThreadLocal<APT_IPAccessCMSDataCenterHelper> APT_IPA_CMSHelper = new InheritableThreadLocal<>();
+
 	
 	
 	
@@ -311,6 +328,38 @@ public class DriverTestcase {
 
 		IPVPNHelper_newTab ipvpnNewTab = new IPVPNHelper_newTab(getwebdriver());
 			ipvpnnewTab.set(ipvpnNewTab);
+			
+		
+		
+		APT_IPAccessNoCPEHelper ipaccessnocpeconfig= new APT_IPAccessNoCPEHelper(getwebdriver());
+		NoCPEHelper.set(ipaccessnocpeconfig);
+		
+		APT_IPAccessMultihomedHelper ipaccessmultihomedonfig= new APT_IPAccessMultihomedHelper(getwebdriver());
+		MultihomedHelper.set(ipaccessmultihomedonfig);
+		
+		APT_IPAccessResilientConfigHelper ipaccessResilientConfig= new APT_IPAccessResilientConfigHelper(getwebdriver());
+		ResilientHelper.set(ipaccessResilientConfig);
+		
+		APT_ColtTotalConfigHelper colttotal= new APT_ColtTotalConfigHelper(getwebdriver());
+		ColtTotalHelper.set(colttotal);
+		
+		com.colt.qa.scripthelpers.APT_IPAccessConfigHelper ipaccessconfig= new com.colt.qa.scripthelpers.APT_IPAccessConfigHelper(getwebdriver());
+		APT_IPAccessConfigHelper.set(ipaccessconfig);
+		
+
+		APT_IPAccessSpeedboatHelper speedboat= new APT_IPAccessSpeedboatHelper(getwebdriver());
+		APT_IPASpeedboatHelper.set(speedboat);
+		
+		com.colt.qa.scripthelpers.APT_IPAccess_VCPEConfigHelper IPVCPE= new com.colt.qa.scripthelpers.APT_IPAccess_VCPEConfigHelper(getwebdriver());
+		APT_IPAccess_VCPEConfigHelper.set(IPVCPE);
+		
+		APT_IPAccess_VCPEResilientConfigHelper IPVCPEResilient= new APT_IPAccess_VCPEResilientConfigHelper(getwebdriver());
+		APT_IPA_VCPEResilientConfigHelper.set(IPVCPEResilient);
+		
+		
+		APT_IPAccessCMSDataCenterHelper IPACMS= new APT_IPAccessCMSDataCenterHelper(getwebdriver());
+		APT_IPA_CMSHelper.set(IPACMS);
+		
 		
 	}
 	
@@ -324,7 +373,8 @@ public class DriverTestcase {
 	@AfterClass
 	public void Teardown() 
 	{
-		// dr.close();
+//		WebDriver dr = WEB_DRIVER_THREAD_LOCAL.get();
+//		 dr.quit();
 	}
 
 	public static WebDriver getwebdriver() 
@@ -373,6 +423,10 @@ public class DriverTestcase {
 		} else if (result.getStatus() == ITestResult.SKIP) {
 			logger.log(LogStatus.SKIP, "Test Case Skipped is :" + result.getName());
 		}
+		
+		WebDriver dr = WEB_DRIVER_THREAD_LOCAL.get();
+		dr.quit();
+		 
 	}
 
 	@AfterTest

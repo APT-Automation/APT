@@ -26,27 +26,27 @@ public static String VendorModelValue=null;
 	public void IPTransitService(Map<String, String> map) throws Exception {
 		
 		setup();	
-		Login.APT_Login_1(map.get("url"));
+		Login.APT_Login_1(map.get("url for the product"));
 		
         String newCustomerName=map.get("newCustomerCreation");
         String existingCustomer=map.get("existingCustomerSelection");
         
         if(newCustomerName.equalsIgnoreCase("yes") && existingCustomer.equalsIgnoreCase("no")) {
               
-              logger= ExtentTestManager.startTest("CreateCustomer");
+              logger= ExtentTestManager.startTest("CreateCustomer - IP Transit");
               APT_IPTransitHelper.get().createcustomer("iptransit", map.get("newCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), 
                           map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), 
                           map.get("Fax"));
               CustomerName=map.get("newCustomer");
               ExtentTestManager.endTest();
               
-              logger= ExtentTestManager.startTest("selectExistingCustomer"); 
+              logger= ExtentTestManager.startTest("selectExistingCustomer - IP Transit"); 
               APT_IPTransitHelper.get().selectCustomertocreateOrder("iptransit",map.get("newCustomer"));
               ExtentTestManager.endTest();
         }
         else if(newCustomerName.equalsIgnoreCase("no") && existingCustomer.equalsIgnoreCase("Yes")) {
               
-              logger= ExtentTestManager.startTest("selectExistingCustomer"); 
+              logger= ExtentTestManager.startTest("selectExistingCustomer - IP Transit"); 
               APT_IPTransitHelper.get().selectCustomertocreateOrder("iptransit",map.get("existingCustomer"));
               CustomerName=map.get("existingCustomer");
               ExtentTestManager.endTest();
@@ -65,7 +65,10 @@ public static String VendorModelValue=null;
 		ExtentTestManager.endTest();
 		
 		logger= ExtentTestManager.startTest("verifyCustomerDetailsInformation");
-		APT_IPTransitHelper.get().verifyCustomerDetailsInformation("iptransit", map.get("Name"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
+		APT_IPTransitHelper.get().verifyCustomerDetailsInformation("iptransit", map.get("newCustomerCreation"), map.get("existingCustomerSelection"),
+				map.get("newCustomer"),	map.get("existingCustomer"),
+				map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"), 
+				map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
 		APT_IPTransitHelper.get().verifyUserDetailsInformation("iptransit", map.get("LoginColumn"), map.get("NameColumn"), map.get("EmailColumn"), map.get("RolesColumn"), map.get("AddressColumn"), map.get("ResourceColumn"));
 		ExtentTestManager.endTest();
 		
@@ -78,8 +81,9 @@ public static String VendorModelValue=null;
 //		ExtentTestManager.endTest();
 		
 		logger= ExtentTestManager.startTest("verifyOrderDetailsInformation");
-		APT_IPTransitHelper.get().verifyorderpanel_editorder("iptransit", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
-		APT_IPTransitHelper.get().verifyorderpanel_changeorder("iptransit", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"));
+		APT_IPTransitHelper.get().verifyorderpanel_editorder("iptransit", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
+		APT_IPTransitHelper.get().verifyorderpanel_changeorder("iptransit", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
+				map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));
 		ExtentTestManager.endTest();
 		
 		logger= ExtentTestManager.startTest("verifyServicepanelinviewservicepage");

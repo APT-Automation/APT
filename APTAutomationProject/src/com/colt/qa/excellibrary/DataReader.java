@@ -2556,7 +2556,6 @@ public class DataReader {
 				}
 
 			 
-			 
 			 /**
 			  * For VOIP Access
 			  * @return
@@ -3889,8 +3888,8 @@ public class DataReader {
 						 * @return
 						 * @throws IOException
 						 */
-							@DataProvider
-							public static Object[][] DataReader_LANLINKNewTab() throws IOException {
+					 		@DataProvider(name = "DataReader_LANLINKNewTab",parallel=false) 
+							public synchronized static Object[][] DataReader_LANLINKNewTab() throws IOException {
 								
 								int count=0;
 								
@@ -3971,8 +3970,8 @@ public class DataReader {
 							 * @return
 							 * @throws IOException
 							 */
-								@DataProvider
-								public static Object[][] DataReader_voipAccessNewTab() throws IOException {
+					 			@DataProvider(name = "DataReader_voipAccessNewTab",parallel=false) 
+								public synchronized static Object[][] DataReader_voipAccessNewTab() throws IOException {
 									
 									int count=0;
 									
@@ -4047,8 +4046,8 @@ public class DataReader {
 									 * @return
 									 * @throws IOException
 									 */
-										@DataProvider
-										public static Object[][] DataReader_IPVPNNewTab() throws IOException {
+					 					@DataProvider(name = "DataReader_IPVPNNewTab",parallel=false) 
+										public synchronized static Object[][] DataReader_IPVPNNewTab() throws IOException {
 											
 											int count=0;
 											
@@ -4121,6 +4120,729 @@ public class DataReader {
 
 											return obj;
 										}
+					 					
+					 					
+					 					
+					 					 
+					 					 
+					 					 
+
+
+		
+										 
+										 
+										 /**
+											 * For IP Access Virtual CPE Configuration	 
+											 * @return
+											 * @throws IOException
+											 */
+											@DataProvider(name = "Finaldatareader_IPAccess_VCPEConfig",parallel=false) 
+											public synchronized static Object[][] Finaldatareader_IPAccess_VCPEConfig() throws IOException {
+
+												int count=0;
+
+												String filename = "APT_IPACCESS.xlsx";
+
+												File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPACCESS.xlsx");
+
+												FileInputStream inputStream = new FileInputStream(file);
+
+												Workbook workbook = null;
+
+												String fileExtensionName = filename.substring(filename.indexOf("."));
+
+												if (fileExtensionName.equals(".xlsx")) {
+
+													workbook = new XSSFWorkbook(inputStream);
+
+												}
+
+												else if (fileExtensionName.equals(".xls")) {
+
+													workbook = new HSSFWorkbook(inputStream);
+
+												}
+
+												Sheet sheet = workbook.getSheet("IPAccessVCPE");
+
+												int rowCountForMap = 0;
+
+												for(int k=1;k<=sheet.getLastRowNum();k++){
+													XSSFRow counter=(XSSFRow) sheet.getRow(k);
+													if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+													{
+														rowCountForMap=rowCountForMap+1;
+													}
+												}
+
+
+												int rowCount = sheet.getLastRowNum();
+
+												System.out.println("total row count: "+rowCount);
+
+												int colCount = sheet.getRow(0).getLastCellNum();
+
+
+												System.out.println("Column count: "+colCount);
+												Object[][] obj = new Object[rowCountForMap][1];
+
+
+												for (int i = 0; i < rowCount; i++) {
+
+													Map<Object, Object> datamap = new HashMap<Object, Object>();
+
+													if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+
+														for (int j = 0; j < colCount; j++) {
+
+															datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+
+														}
+
+														obj[count][0] = datamap;
+														count++;
+													}
+													else {
+														//System.out.println("No changes");
+													}
+
+												}
+
+												return obj;
+											}
+
+											/**
+											 * For IP Access Virtual CPE Resilient Configuration	 
+											 * @return
+											 * @throws IOException
+											 */
+											@DataProvider(name = "Finaldatareader_IPAccess_VCPEResilientConfig",parallel=false) 
+											public synchronized static Object[][] Finaldatareader_IPAccess_VCPEResilientConfig() throws IOException {
+
+												int count=0;
+
+												String filename = "APT_IPACCESS.xlsx";
+
+												File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPACCESS.xlsx");
+
+												FileInputStream inputStream = new FileInputStream(file);
+
+												Workbook workbook = null;
+
+												String fileExtensionName = filename.substring(filename.indexOf("."));
+
+												if (fileExtensionName.equals(".xlsx")) {
+
+													workbook = new XSSFWorkbook(inputStream);
+
+												}
+
+												else if (fileExtensionName.equals(".xls")) {
+
+													workbook = new HSSFWorkbook(inputStream);
+
+												}
+
+												Sheet sheet = workbook.getSheet("IPAccessVCPEResilient");
+
+												int rowCountForMap = 0;
+
+												for(int k=1;k<=sheet.getLastRowNum();k++){
+													XSSFRow counter=(XSSFRow) sheet.getRow(k);
+													if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+													{
+														rowCountForMap=rowCountForMap+1;
+													}
+												}
+
+
+												int rowCount = sheet.getLastRowNum();
+
+												System.out.println("total row count: "+rowCount);
+
+												int colCount = sheet.getRow(0).getLastCellNum();
+
+
+												System.out.println("Column count: "+colCount);
+												Object[][] obj = new Object[rowCountForMap][1];
+
+
+												for (int i = 0; i < rowCount; i++) {
+
+													Map<Object, Object> datamap = new HashMap<Object, Object>();
+
+													if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+
+														for (int j = 0; j < colCount; j++) {
+
+															datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+
+														}
+
+														obj[count][0] = datamap;
+														count++;
+													}
+													else {
+														//System.out.println("No changes");
+													}
+
+												}
+
+												return obj;
+											}
+
+											/**
+											 * For IP Access Configuration	 
+											 * @return
+											 * @throws IOException
+											 */
+											@DataProvider(name = "Finaldatareader_IPAccessConfig",parallel=false) 
+											public synchronized static Object[][] Finaldatareader_IPAccessConfig() throws IOException {
+
+												int count=0;
+
+												String filename = "APT_IPACCESS.xlsx";
+
+												File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPACCESS.xlsx");
+
+												FileInputStream inputStream = new FileInputStream(file);
+
+												Workbook workbook = null;
+
+												String fileExtensionName = filename.substring(filename.indexOf("."));
+
+												if (fileExtensionName.equals(".xlsx")) {
+
+													workbook = new XSSFWorkbook(inputStream);
+
+												}
+
+												else if (fileExtensionName.equals(".xls")) {
+
+													workbook = new HSSFWorkbook(inputStream);
+
+												}
+
+												Sheet sheet = workbook.getSheet("IPAccessConfig");
+
+												int rowCountForMap = 0;
+
+												for(int k=1;k<=sheet.getLastRowNum();k++){
+													XSSFRow counter=(XSSFRow) sheet.getRow(k);
+													if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+													{
+														rowCountForMap=rowCountForMap+1;
+													}
+												}
+
+
+												int rowCount = sheet.getLastRowNum();
+
+												System.out.println("total row count: "+rowCount);
+
+												int colCount = sheet.getRow(0).getLastCellNum();
+
+
+												System.out.println("Column count: "+colCount);
+												Object[][] obj = new Object[rowCountForMap][1];
+
+
+												for (int i = 0; i < rowCount; i++) {
+
+													Map<Object, Object> datamap = new HashMap<Object, Object>();
+
+													if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+
+														for (int j = 0; j < colCount; j++) {
+
+															datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+
+														}
+
+														obj[count][0] = datamap;
+														count++;
+													}
+													else {
+														//System.out.println("No changes");
+													}
+
+												}
+
+												return obj;
+											}
+
+											/**
+											 * For IP Access CMS Data Center	 
+											 * @return
+											 * @throws IOException
+											 */
+											@DataProvider(name = "Finaldatareader_IPA_CMSDataCenter",parallel=false) 
+											public synchronized static Object[][] Finaldatareader_IPA_CMSDataCenter() throws IOException {
+
+												int count=0;
+
+												String filename = "APT_IPACCESS.xlsx";
+
+												File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPACCESS.xlsx");
+
+												FileInputStream inputStream = new FileInputStream(file);
+
+												Workbook workbook = null;
+
+												String fileExtensionName = filename.substring(filename.indexOf("."));
+
+												if (fileExtensionName.equals(".xlsx")) {
+
+													workbook = new XSSFWorkbook(inputStream);
+
+												}
+
+												else if (fileExtensionName.equals(".xls")) {
+
+													workbook = new HSSFWorkbook(inputStream);
+
+												}
+
+												Sheet sheet = workbook.getSheet("IPA_CMSDataCenter");
+
+												int rowCountForMap = 0;
+
+												for(int k=1;k<=sheet.getLastRowNum();k++){
+													XSSFRow counter=(XSSFRow) sheet.getRow(k);
+													if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+													{
+														rowCountForMap=rowCountForMap+1;
+													}
+												}
+
+
+												int rowCount = sheet.getLastRowNum();
+
+												System.out.println("total row count: "+rowCount);
+
+												int colCount = sheet.getRow(0).getLastCellNum();
+
+
+												System.out.println("Column count: "+colCount);
+												Object[][] obj = new Object[rowCountForMap][1];
+
+
+												for (int i = 0; i < rowCount; i++) {
+
+													Map<Object, Object> datamap = new HashMap<Object, Object>();
+
+													if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+
+														for (int j = 0; j < colCount; j++) {
+
+															datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+
+														}
+
+														obj[count][0] = datamap;
+														count++;
+													}
+													else {
+														//System.out.println("No changes");
+													}
+
+												}
+
+												return obj;
+											}
+
+											/**
+											 * For IP Access Speedboat	 
+											 * @return
+											 * @throws IOException
+											 */
+											@DataProvider(name = "Finaldatareader_IPAccessSpeedboat",parallel=false) 
+											public synchronized static Object[][] Finaldatareader_IPAccessSpeedboat() throws IOException {
+
+												int count=0;
+
+												String filename = "APT_IPACCESS.xlsx";
+
+												File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPACCESS.xlsx");
+
+												FileInputStream inputStream = new FileInputStream(file);
+
+												Workbook workbook = null;
+
+												String fileExtensionName = filename.substring(filename.indexOf("."));
+
+												if (fileExtensionName.equals(".xlsx")) {
+
+													workbook = new XSSFWorkbook(inputStream);
+
+												}
+
+												else if (fileExtensionName.equals(".xls")) {
+
+													workbook = new HSSFWorkbook(inputStream);
+
+												}
+
+												Sheet sheet = workbook.getSheet("IPA_Speedboat");
+
+												int rowCountForMap = 0;
+
+												for(int k=1;k<=sheet.getLastRowNum();k++){
+													XSSFRow counter=(XSSFRow) sheet.getRow(k);
+													if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+													{
+														rowCountForMap=rowCountForMap+1;
+													}
+												}
+
+
+												int rowCount = sheet.getLastRowNum();
+
+												System.out.println("total row count: "+rowCount);
+
+												int colCount = sheet.getRow(0).getLastCellNum();
+
+
+												System.out.println("Column count: "+colCount);
+												Object[][] obj = new Object[rowCountForMap][1];
+
+
+												for (int i = 0; i < rowCount; i++) {
+
+													Map<Object, Object> datamap = new HashMap<Object, Object>();
+
+													if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+
+														for (int j = 0; j < colCount; j++) {
+
+															datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+
+														}
+
+														obj[count][0] = datamap;
+														count++;
+													}
+													else {
+														//System.out.println("No changes");
+													}
+
+												}
+
+												return obj;
+											}
+
+											/**
+											  * For Colt Total Configuration
+											  * @return
+											  * @throws IOException
+											  */
+											 @DataProvider(name = "DataReader_ColtTotal",parallel=false)
+												public synchronized static Object[][] DataReader_ColtTotalConfig() throws IOException {
+													
+													int count=0;
+													
+													String filename = "APT_IPACCESS.xlsx";
+
+													File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPACCESS.xlsx");
+													
+													FileInputStream inputStream = new FileInputStream(file);
+
+													Workbook workbook = null;
+
+													String fileExtensionName = filename.substring(filename.indexOf("."));
+
+													if (fileExtensionName.equals(".xlsx")) {
+
+														workbook = new XSSFWorkbook(inputStream);
+
+													}
+
+													else if (fileExtensionName.equals(".xls")) {
+
+														workbook = new HSSFWorkbook(inputStream);
+
+													}
+
+													Sheet sheet = workbook.getSheet("ColtTotal");
+													
+													int rowCountForMap = 0;
+
+											        for(int k=1;k<=sheet.getLastRowNum();k++){
+											                        XSSFRow counter=(XSSFRow) sheet.getRow(k);
+											                        if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+											                        {
+											                        	rowCountForMap=rowCountForMap+1;
+											                        }
+											        }
+
+
+													int rowCount = sheet.getLastRowNum();
+													
+													int colCount = sheet.getRow(0).getLastCellNum();
+
+													
+													Object[][] obj = new Object[rowCountForMap][1];
+
+													
+													for (int i = 0; i < rowCount; i++) {
+
+														Map<Object, Object> datamap = new HashMap<Object, Object>();
+														
+														if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+															
+															for (int j = 0; j < colCount; j++) {
+
+																datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+															
+															}
+															
+															obj[count][0] = datamap;
+															count++;
+														}
+														else {
+															System.out.println("No changes");
+														}
+													}
+
+													return obj;
+												}
+											 
+											 /**
+											  * For IP Access Multihomed Configuration
+											  * @return
+											  * @throws IOException
+											  */
+											 //@DataProvider(parallel = false)
+											 @DataProvider(name = "DataReader_Multihomed",parallel=false)
+												public synchronized static Object[][] DataReader_Multihomed() throws IOException {
+													
+													int count=0;
+													
+													String filename = "APT_IPACCESS.xlsx";
+
+													File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPACCESS.xlsx");
+													
+													FileInputStream inputStream = new FileInputStream(file);
+
+													Workbook workbook = null;
+
+													String fileExtensionName = filename.substring(filename.indexOf("."));
+
+													if (fileExtensionName.equals(".xlsx")) {
+
+														workbook = new XSSFWorkbook(inputStream);
+
+													}
+
+													else if (fileExtensionName.equals(".xls")) {
+
+														workbook = new HSSFWorkbook(inputStream);
+
+													}
+
+													Sheet sheet = workbook.getSheet("Multohomed");
+													
+													int rowCountForMap = 0;
+
+											        for(int k=1;k<=sheet.getLastRowNum();k++){
+											                        XSSFRow counter=(XSSFRow) sheet.getRow(k);
+											                        if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+											                        {
+											                        	rowCountForMap=rowCountForMap+1;
+											                        }
+											        }
+
+
+													int rowCount = sheet.getLastRowNum();
+													
+													int colCount = sheet.getRow(0).getLastCellNum();
+
+													
+													Object[][] obj = new Object[rowCountForMap][1];
+
+													
+													for (int i = 0; i < rowCount; i++) {
+
+														Map<Object, Object> datamap = new HashMap<Object, Object>();
+														
+														if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+															
+															for (int j = 0; j < colCount; j++) {
+
+																datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+															
+															}
+															
+															obj[count][0] = datamap;
+															count++;
+														}
+														else {
+															System.out.println("No changes");
+														}
+													}
+
+													return obj;
+												}
+
+
+											 
+											 
+											 /**
+											  * For IP Access Resilient Configuration
+											  * @return
+											  * @throws IOException
+											  */
+											 @DataProvider(name = "DataReader_IPAResilientConfig",parallel=false)
+												public synchronized static Object[][] DataReader_IPAResilientConfig() throws IOException {
+													
+													int count=0;
+													
+													String filename = "APT_IPACCESS.xlsx";
+
+													File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPACCESS.xlsx");
+													
+													FileInputStream inputStream = new FileInputStream(file);
+
+													Workbook workbook = null;
+
+													String fileExtensionName = filename.substring(filename.indexOf("."));
+
+													if (fileExtensionName.equals(".xlsx")) {
+
+														workbook = new XSSFWorkbook(inputStream);
+
+													}
+
+													else if (fileExtensionName.equals(".xls")) {
+
+														workbook = new HSSFWorkbook(inputStream);
+
+													}
+
+													Sheet sheet = workbook.getSheet("Resilient");
+													
+													int rowCountForMap = 0;
+
+													for(int k=1;k<=sheet.getLastRowNum();k++){
+														XSSFRow counter=(XSSFRow) sheet.getRow(k);
+														if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+														{
+															rowCountForMap=rowCountForMap+1;
+														}
+													}
+
+
+													int rowCount = sheet.getLastRowNum();
+
+													System.out.println("total row count: "+rowCount);
+
+													int colCount = sheet.getRow(0).getLastCellNum();
+
+
+													System.out.println("Column count: "+colCount);
+													Object[][] obj = new Object[rowCountForMap][1];
+
+
+													for (int i = 0; i < rowCount; i++) {
+
+														Map<Object, Object> datamap = new HashMap<Object, Object>();
+
+														if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+
+															for (int j = 0; j < colCount; j++) {
+
+																datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+
+															}
+
+															obj[count][0] = datamap;
+															count++;
+														}
+														else {
+															//System.out.println("No changes");
+														}
+
+													}
+
+													return obj;
+												}
+											 
+											 
+											 /**
+											  * For IP Access NO CPE Configuration
+											  * @return
+											  * @throws IOException
+											  */
+											 @DataProvider(name = "DataReader_NoCPE",parallel=false)
+												public synchronized static Object[][] DataReader_NoCPE() throws IOException {
+													
+													int count=0;
+													
+													String filename = "APT_IPACCESS.xlsx";
+
+													File file = new File("src\\com\\colt\\qa\\datalibrary\\APT_IPACCESS.xlsx");
+													
+													FileInputStream inputStream = new FileInputStream(file);
+
+													Workbook workbook = null;
+
+													String fileExtensionName = filename.substring(filename.indexOf("."));
+
+													if (fileExtensionName.equals(".xlsx")) {
+
+														workbook = new XSSFWorkbook(inputStream);
+
+													}
+
+													else if (fileExtensionName.equals(".xls")) {
+
+														workbook = new HSSFWorkbook(inputStream);
+
+													}
+
+													Sheet sheet = workbook.getSheet("NoCPE");
+													
+													int rowCountForMap = 0;
+
+											        for(int k=1;k<=sheet.getLastRowNum();k++){
+											                        XSSFRow counter=(XSSFRow) sheet.getRow(k);
+											                        if(counter.getCell(0).toString().equalsIgnoreCase("Yes"))
+											                        {
+											                        	rowCountForMap=rowCountForMap+1;
+											                        }
+											        }
+
+
+													int rowCount = sheet.getLastRowNum();
+													
+													int colCount = sheet.getRow(0).getLastCellNum();
+
+													
+													Object[][] obj = new Object[rowCountForMap][1];
+
+													
+													for (int i = 0; i < rowCount; i++) {
+
+														Map<Object, Object> datamap = new HashMap<Object, Object>();
+														
+														if(sheet.getRow(i + 1).getCell(0).toString().equalsIgnoreCase("Yes")) {
+															
+															for (int j = 0; j < colCount; j++) {
+
+																datamap.put(sheet.getRow(0).getCell(j).toString(), sheet.getRow(i + 1).getCell(j).toString());
+															
+															}
+															
+															obj[count][0] = datamap;
+															count++;
+														}
+														else {
+															System.out.println("No changes");
+														}
+													}
+
+													return obj; 
+												}
 
 
 				 

@@ -24,7 +24,7 @@ public class APT_MCS_CreateAccessCoreDevice_VOIPAccessDASSwitch extends DriverTe
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));	
+		Login.APT_Login_1(map.get("url for the Product"));	
 		
 		logger= ExtentTestManager.startTest ("verifyNavigationToCreateAccessCoreDevicePage_VOIPAccessDASSwitch");
 			APT_CreateVOIPAccessDASSwitchDeviceHelper.get().navigatetomanagecoltnetwork("CreateAccessCoreDevice");
@@ -43,7 +43,7 @@ public class APT_MCS_CreateAccessCoreDevice_VOIPAccessDASSwitch extends DriverTe
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessageforVOIPaccessDASswitchDevice_"+devicename);
-			APT_CreateVOIPAccessDASSwitchDeviceHelper.get().verifyDeviceCreationMessage("CreateAccessCoreDevice");
+			APT_CreateVOIPAccessDASSwitchDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device created successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyEnteredValueForVOIPaccessDASswitchDevice_"+devicename);
@@ -68,7 +68,7 @@ public class APT_MCS_CreateAccessCoreDevice_VOIPAccessDASSwitch extends DriverTe
 			ExtentTestManager.endTest(); 
 	
 		logger= ExtentTestManager.startTest ("verifyDeviceUpdationSuccessMessagefor_VOIPaccessDASswitchDevice_"+devicename);
-			APT_CreateVOIPAccessDASSwitchDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
+			APT_CreateVOIPAccessDASSwitchDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device updated successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyEnteredValueForVOIPaccessDASswicthDevice_"+devicename);

@@ -24,7 +24,7 @@ public class APT_MCS_CreateAccessCoreDevice_MiniDSLAM extends DriverTestcase {
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));	
+		Login.APT_Login_1(map.get("url for the Product"));	
 		
 		
 		logger= ExtentTestManager.startTest ("verifynavigationtoCreateAccessCoreDevicepage_MiniDSLAM");
@@ -44,7 +44,7 @@ public class APT_MCS_CreateAccessCoreDevice_MiniDSLAM extends DriverTestcase {
 			ExtentTestManager.endTest(); 
 		
 		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessagefor_miniDSLAMDevice_"+devicename);
-			APT_CreateMiniDSLAMDeviceHelper.get().verifyDeviceCreationMessage("CreateAccessCoreDevice");
+			APT_CreateMiniDSLAMDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device created successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyEnteredValueForDevice_"+devicename);
@@ -69,7 +69,7 @@ public class APT_MCS_CreateAccessCoreDevice_MiniDSLAM extends DriverTestcase {
 			ExtentTestManager.endTest(); 
 		
 		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessageforMiniDSLAMDevice_"+devicename);
-			APT_CreateMiniDSLAMDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
+			APT_CreateMiniDSLAMDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device updated successfully");
 			ExtentTestManager.endTest(); 
 		
 		logger= ExtentTestManager.startTest ("verifyEnteredValueForDeviceUpdated_"+devicename);

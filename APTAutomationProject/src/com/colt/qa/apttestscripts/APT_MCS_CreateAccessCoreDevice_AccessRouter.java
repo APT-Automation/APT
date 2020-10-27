@@ -23,7 +23,7 @@ public class APT_MCS_CreateAccessCoreDevice_AccessRouter extends DriverTestcase 
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));	
+		Login.APT_Login_1(map.get("url for the Product"));	
 		
 		logger= ExtentTestManager.startTest ("verifyNavigationToCreateAccessCoreDevicepage_"+devicename);
 			APT_CreateAccessCoreDeviceHelper.get().navigatetomanagecoltnetwork("CreateAccessCoreDevice");
@@ -42,7 +42,7 @@ public class APT_MCS_CreateAccessCoreDevice_AccessRouter extends DriverTestcase 
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyDeviceCreationMessagefor_AccessRouterDevice_"+devicename);
-			APT_CreateAccessCoreDeviceHelper.get().verifyDeviceCreationMessage("CreateAccessCoreDevice");
+			APT_CreateAccessCoreDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device created successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyEnteredValueForAccessRouterDevice_"+devicename);
@@ -67,7 +67,7 @@ public class APT_MCS_CreateAccessCoreDevice_AccessRouter extends DriverTestcase 
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyDeviceUpdationSuccessMessagefor_AccessRouterDevice_"+devicename);
-			APT_CreateAccessCoreDeviceHelper.get().verifyDeviceUpdationSuccessMessage("CreateAccessCoreDevice");
+			APT_CreateAccessCoreDeviceHelper.get().verifysuccessmessage("CreateAccessCoreDevice", "Device updated successfully");
 			ExtentTestManager.endTest(); 
 			
 		logger= ExtentTestManager.startTest ("verifyUpdatedValueForAccessRouterDevice_"+devicename);

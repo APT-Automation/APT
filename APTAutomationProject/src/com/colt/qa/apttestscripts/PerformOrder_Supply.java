@@ -19,7 +19,7 @@ public class PerformOrder_Supply extends DriverTestcase{
 		
 		setup();	
 		
-		Login.APT_Login_1(map.get("url"));	
+		Login.APT_Login_1(map.get("url for the Product"));	
 		
 		
 		logger= ExtentTestManager.startTest ("Verify_SupplyServiceFromOneCustomerToOtherCustomer");

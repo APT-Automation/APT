@@ -59,7 +59,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 	public String Edit_primarytrunkGroupname=null;
 	public String primarytrunkGroupname_Resilient=null;
 	public String ASRDevice_ManagementAddress=null;
-	public String DRusingTDM_Value= null;
+	//public String DRusingTDM_Value= "Yes";
 
 	public void webelementpresencelogger(WebElement ele, String msg) {
 
@@ -91,7 +91,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
 		Thread.sleep(2000);
 		compareText(application, "create customer page header", "createcustomer_header", "Create Customer", xml);
-		scrolltoend();
+		ScrolltoElement(application, "okbutton", xml);
 		click_commonMethod(application, "Ok", "okbutton", xml);
 
 		//Warning msg check
@@ -105,7 +105,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "Customer Name", "nametextfield", name, xml);
 		addtextFields_commonMethod(application, "Main Domain", "maindomaintextfield", maindomain, xml);
 		Thread.sleep(1000);
-		scrolltoend();
+		ScrolltoElement(application, "resetbutton", xml);
 		click_commonMethod(application, "Reset", "resetbutton", xml);
 		ExtentTestManager.getTest().log(LogStatus.PASS, "All text field values are cleared");
 		Log.info("All text field values are cleared");
@@ -121,7 +121,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "Email", "emailtextfield", email, xml);
 		addtextFields_commonMethod(application, "Phone", "phonetextfield", phone, xml);
 		addtextFields_commonMethod(application, "Fax", "faxtextfield", fax, xml);
-		scrolltoend();
+		ScrolltoElement(application, "okbutton", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Ok", "okbutton", xml);
 		waitforPagetobeenable();
@@ -166,7 +166,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 	public void createorderservice(String application, String neworder, String neworderno, String newrfireqno, String existingorderservice, String existingordernumber)
 			throws InterruptedException, IOException, DocumentException {
 
-		scrolltoend();
+		ScrolltoElement(application, "nextbutton", xml);
 		click_commonMethod(application, "Next", "nextbutton", xml);
 		Thread.sleep(1000);
 
@@ -208,7 +208,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			throws InterruptedException, IOException, DocumentException {
 
 		// select service type
-		scrolltoend();
+		ScrolltoElement(application, "nextbutton", xml);
 		//addDropdownValues_commonMethod(application, "Service Type", "servicetypetextfield", servicetype, xml);
 		boolean availability=false;
 		try {  
@@ -243,7 +243,6 @@ public class APT_VoiceLineHelper extends DriverHelper {
 					SendKeys(getwebelement("//div[label[text()='Service Type']]//input"), servicetype);	
 					Thread.sleep(2000);
 
-					//scrolltoend();
 					ScrolltoElement(application, "nextbutton", xml);
 					Thread.sleep(2000);
 					Clickon(getwebelement("(//div[text()='"+ servicetype +"'])[1]"));
@@ -368,7 +367,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Dial User Administration Checkbox is not disabled");
 		}
 		
-		scrolltoend();
+		ScrolltoElement(application, "okbutton", xml);
 		click_commonMethod(application, "OK", "okbutton", xml);
 
 		Thread.sleep(1000);
@@ -379,25 +378,45 @@ public class APT_VoiceLineHelper extends DriverHelper {
 	}
 
 
-	public void verifyCustomerDetailsInformation(String application, String name, String maindomain, String country, String ocn,
+	public void verifyCustomerDetailsInformation(String application, String newCustomerCreation, String existingCustomerSelection,String newCustomer,
+			String existingCustomer, String maindomain, String country, String ocn,
 			String reference, String tcn, String type, String email, String phone, String fax)
 					throws InterruptedException, DocumentException, IOException {
-
+		
+		
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer informations");
 		ScrolltoElement(application, "customerdetailsheader", xml);
-
-		GetText(application, "Customer Name", "Name_Value");
-		compareText(application, "Main Domain", "MainDomain_Value", maindomain, xml);
-		compareText(application, "Country", "Country_Value", country, xml);
-		compareText(application, "OCN", "OCN_Value", ocn, xml);
-		compareText(application, "Reference", "Reference_Value", reference, xml);
-		compareText(application, "Technical Contact Name", "TechnicalContactName_Value", tcn, xml);
-		compareText(application, "Type", "Type_Value", type, xml);
-		compareText(application, "Email", "Email_Value", email, xml);
-		compareText(application, "Phone", "Phone_Value", phone, xml);
-		compareText(application, "Fax", "Fax_Value", fax, xml);
+		
+		
+		//Customer Name
+			if(newCustomerCreation.equalsIgnoreCase("Yes") || existingCustomerSelection.equalsIgnoreCase("No")) {
+				compareText(application, "Customer Name", "Name_Value", newCustomer, xml);
+				
+				compareText(application, "Country", "Country_Value", country, xml);
+				compareText(application, "OCN", "OCN_Value", ocn, xml);
+				compareText(application, "Reference", "Reference_Value", reference, xml);
+				compareText(application, "Technical Contact Name", "TechnicalContactName_Value", tcn, xml);
+				compareText(application, "Type", "Type_Value", type, xml);
+				compareText(application, "Email", "Email_Value", email, xml);
+				compareText(application, "Phone", "Phone_Value", phone, xml);
+				compareText(application, "Fax", "Fax_Value", fax, xml);
+				
+			}
+			else if(newCustomerCreation.equalsIgnoreCase("No") || existingCustomerSelection.equalsIgnoreCase("Yes")) {
+				
+				compareText(application, "Customer Name", "Name_Value", existingCustomer, xml);
+			}
+		
+		//Main Domain
+			if(maindomain.equalsIgnoreCase("Null")) {
+				Log.info("A default displays for main domain field, if no provided while creating customer");
+			}else {
+				compareText(application, "Main Domain", "MainDomain_Value", maindomain, xml);
+			}
+		
 		Log.info("=== Customer Details panel fields Verified ===");
-		sa.assertAll();
 	}
+
 
 	public void verifyUserDetailsInformation(String application, String Login, String Name, String Email, String Roles, String Address, String Resource)
 			throws InterruptedException, DocumentException, IOException {
@@ -452,21 +471,25 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
 		click_commonMethod(application, "Add", "AddLink", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		compareText(application, "Create User Header", "CreateUserHeader", "Create User", xml);
-		scrolltoend();
+		ScrolltoElement(application, "cancelbutton", xml);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
+		waitforPagetobeenable();
 		compareText(application, "User panel Header", "userspanel_header", "Users", xml);
 
 		//Create User
 		ScrolltoElement(application, "customerdetailsheader", xml);
 		click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
 		click_commonMethod(application, "Add", "AddLink", xml);
+		waitforPagetobeenable();
 		compareText(application, "Create User Header", "CreateUserHeader", "Create User", xml);
 
 		//Warning messages verify
-		scrolltoend();
+		ScrolltoElement(application, "OK_button", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "OK", "OK_button", xml);
+		waitforPagetobeenable();
 		scrollToTop();
 		warningMessage_commonMethod(application, "warningmsg_username", "User Name", xml);
 		warningMessage_commonMethod(application, "warningmsg_firstname", "First Name", xml);
@@ -519,7 +542,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		selectAndAddValueFromLeftDropdown(application, "Hide Site Order", "HideSiteOrder_Available" , siteOrdersToBeselectedList , "hideSiteOrder_addbutton");
 		verifySelectedValuesInsideRightDropdown(application, "Hide Site Order" , "HideSiteOrderDropdown_selectedValues");
 
-		scrolltoend();
+		ScrolltoElement(application, "OK_button", xml);
 		Thread.sleep(1000);
 
 		//Hide Router Tool IPv4 Commands(Cisco)
@@ -536,7 +559,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		//			selectAndAddValueFromLeftDropdown(application, "Hide Router Tool IPv6 Commands(Cisco)" , "HideRouterToolIPv6_Cisco_Available" , selectValue, xpathForAddButton);
 		//			verifySelectedValuesInsideRightDropdown(application, "Hide Router Tool IPv6 Commands(Cisco)" , xpath);
 
-		scrolltoend();
+		ScrolltoElement(application, "OK_button", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "OK", "OK_button", xml);
 		Thread.sleep(2000);
@@ -603,7 +626,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			selectAndAddValueFromLeftDropdown(application, "SiteOrder_Available", "HideSiteOrder_Available" , siteOrdersToBeHiddenList , "hideSiteOrder_addbutton");
 			verifySelectedValuesInsideRightDropdown(application, "Hiden Site Orders" , "HideSiteOrderDropdown_selectedValues");
 
-			scrolltoend();
+			ScrolltoElement(application, "OK_button", xml);
 			Thread.sleep(1000);
 
 			//Hide Router Tool IPv4 Commands(Cisco)
@@ -616,7 +639,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			selectAndAddValueFromLeftDropdown(application, "Router Tool IPv4 Commands(Huawei)_Available" , "hideRouterToolIPv4_Huawei_available" , routerToolIPv4HuaweiTobeHiddenList, "hideRouterToolIPv4__Huawei_addButton");
 			verifySelectedValuesInsideRightDropdown(application, "Hideen Router Tool IPv4 Commands(Huawei)" , "hideRouterToolIpv4_Huawei_selectedvalues");
 
-			scrolltoend();
+			ScrolltoElement(application, "OK_button", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "OK", "OK_button", xml);
 			Thread.sleep(2000);
@@ -681,7 +704,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "List of Hidden Router Tool IPv4 Commands(Cisco) are: " + listofHiddenCiscoValues.getText());
 			}
 
-			scrolltoend();
+			ScrolltoElement(application, "viewpage_backbutton", xml);
 			Thread.sleep(2000);
 
 			//Hidden Router Tool IPv4 (Huawei)
@@ -701,7 +724,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "List of Hidden Router Tool IPv6 Commands(Cisco) are: " + listofHiddenIPv6CiscoValues.getText());
 			}			
 
-			scrolltoend();
+			ScrolltoElement(application, "viewpage_backbutton", xml);
 			Thread.sleep(2000);
 			click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 			waitforPagetobeenable();
@@ -777,15 +800,23 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		sa.assertAll();
 	}
 
-	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
+	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno, String editOrderSelection) 
+			throws InterruptedException, DocumentException, IOException {
 
-		Thread.sleep(2000);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Edit Order' Functionality");
+		
 		ScrolltoElement(application, "userspanel_header", xml);
 
+		if(editOrderSelection.equalsIgnoreCase("No")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Edit Order is not performed");
+			Log.info("Edit Order is not performed");
+		}
+		else if(editOrderSelection.equalsIgnoreCase("Yes")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Performing Edit Order Functionality");
+		
 		//Cancel Edit order in Order panel
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
-		waitforPagetobeenable();
 		compareText(application, "Edit Order", "editorderheader", "Edit Order", xml);
 		Thread.sleep(1000);
 
@@ -803,10 +834,6 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		Thread.sleep(2000);
 		addtextFields_commonMethod(application, "RFI Voiceline Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		waitforPagetobeenable();
-		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-		Log.info("Navigated to order panel in view service page");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 		//Edit Order
 		Thread.sleep(1000);
@@ -828,86 +855,41 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "OK", "editorder_okbutton", xml);
 		Thread.sleep(1000);
-		waitforPagetobeenable();
 		ScrolltoElement(application, "userspanel_header", xml);
 		Thread.sleep(1000);
-		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-		Log.info("Navigated to order panel in view service page");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
-		compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
-		compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		if(editorderno.equalsIgnoreCase("Null")) {
+			
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order/Contract Number (Parent SID)' field is not edited");
+			Log.info("'Order/Contract Number (Parent SID)' field is not edited");
+		}else {
+			compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
+		}
+		
+		if(editvoicelineno.equalsIgnoreCase("Null")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS,"'RFI/RFQ/IP Voice Line Number' field is not edited");
+			Log.info("'RFI/RFQ/IP Voice Line Number' field is not edited");
+		}else {
+			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		}
 		Log.info("------ Edit Order is successful ------");
+		}
 
 	}
 
-	public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
+	public void verifyorderpanel_changeorder(String application, String ChangeOrder_newOrderNumber, String changevoicelineno, String changeOrderSelection_newOrder,
+			String changeOrderSelection_existingOrder, String ChangeOrder_existingOrderNumber) throws InterruptedException, DocumentException, IOException {
 
 		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-		click_commonMethod(application, "Change Order", "changeorderlink", xml);
-		waitforPagetobeenable();
-		compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-		List<WebElement> ChangeOrder_DropdownList= driver.findElements(By.xpath(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist")));
-		int ChangeOrder_Dropdown_count= ChangeOrder_DropdownList.size();
-		if(ChangeOrder_Dropdown_count> 1)
-		{
-			Clickon(getwebelement("//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false'][1]"));
-			Thread.sleep(3000);
-
-			//Cancel change order
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			Thread.sleep(1000);
-			waitforPagetobeenable();
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-
-			//Change order
-			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-			click_commonMethod(application, "Change Order", "changeorderlink", xml);
-			waitforPagetobeenable();
-			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-			Clickon(getwebelement("//label[text()='Order/Contract Number (Parent SID)']/parent::div//div[@role='list']//span[@aria-selected='false'][1]"));
-			Thread.sleep(3000);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected order from dropdown");
-			click_commonMethod(application, "OK", "changeorder_okbutton", xml);
-			Thread.sleep(1000);
-			waitforPagetobeenable();
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
-			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
-			Log.info("------ Change Order is successful ------");
-
+				
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Change Order' Functionality");
+		
+		if((changeOrderSelection_newOrder.equalsIgnoreCase("No")) && (changeOrderSelection_existingOrder.equalsIgnoreCase("No"))) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Change Order is not performed");
+			Log.info("Change Order is not performed");
 		}
-		else
-		{
-			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
-			click_commonMethod(application, "Order Number", "changeordernumber", xml);
-			Thread.sleep(2000);
-			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
-			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
-			Thread.sleep(3000);
-			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			Thread.sleep(2000);
-			waitforPagetobeenable();
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-
+		else if(changeOrderSelection_newOrder.equalsIgnoreCase("Yes")) {
+			
 			//Change Order
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Change Order", "changeorderlink", xml);
@@ -917,23 +899,44 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
 			click_commonMethod(application, "Order Number", "changeordernumber", xml);
 			Thread.sleep(2000);
-			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
+			addtextFields_commonMethod(application, "Order Number", "changeordernumber", ChangeOrder_newOrderNumber, xml);
 			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
 			Thread.sleep(3000);
 			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 			click_commonMethod(application, "Create Order", "createorder_button", xml);
-			Thread.sleep(1000);
 			waitforPagetobeenable();
 			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
+			compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_newOrderNumber, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
 		}
+		else if(changeOrderSelection_existingOrder.equalsIgnoreCase("yes")) 
+		{
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Performing Change Order functionality");
+			
+			ScrolltoElement(application, "userspanel_header", xml);
+			Thread.sleep(1000);
+			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			waitforPagetobeenable();
+			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
+			Thread.sleep(1000);
+			
+				addDropdownValues_commonMethod(application, "Order/Contract Number (Parent SID)", "changeorder_chooseorderdropdown", ChangeOrder_existingOrderNumber, xml);
+				
+				click_commonMethod(application, "OK", "changeorder_okbutton", xml);
+				waitforPagetobeenable();
+				ScrolltoElement(application, "userspanel_header", xml);
+				Thread.sleep(1000);
+				compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_existingOrderNumber, xml);
+				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
+				Log.info("------ Change Order is successful ------");
+	
+		}
+		
 	}
+
 
 	public void verifyservicepanelInformationinviewservicepage(String application, String sid, String servicetype, String Remarks, String resellercodevalue, String thirdpartyinternet_checkbox, String phonecontact) throws InterruptedException, DocumentException, IOException {
 
@@ -959,7 +962,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Edit", "edit", xml);
 		waitforPagetobeenable();
-		scrolltoend();
+		ScrolltoElement(application, "cancelbutton", xml);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
 		Thread.sleep(2000);
 		waitforPagetobeenable();
@@ -996,15 +999,13 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		click_commonMethod(application, "Selected Email", "selectedemail", xml);
 		click_commonMethod(application, "Email remove arrow", "emailremovearrow", xml);
 		Thread.sleep(1000);
-		cleartext(application, "Email", "emailtextfieldvalue");
-		addtextFields_commonMethod(application, "Email", "emailtextfieldvalue", edit_email, xml);
+		edittextFields_commonMethod(application, "Email", "emailtextfieldvalue", edit_email, xml);
 		click_commonMethod(application, "Email adding arrow", "emailaddarrow", xml);
-		scrolltoend();
+		ScrolltoElement(application, "okbutton", xml);
 		//Edit phone contact
 		click_commonMethod(application, "Selected phone contact", "selectedphone", xml);
 		click_commonMethod(application, "Phonecontact remove arrow", "phoneremovearrow", xml);
-		cleartext(application, "Phone Contact", "phonecontacttextfieldvalue");
-		addtextFields_commonMethod(application, "Phone Contact", "phonecontacttextfieldvalue", edit_phonecontact, xml);
+		edittextFields_commonMethod(application, "Phone Contact", "phonecontacttextfieldvalue", edit_phonecontact, xml);
 		click_commonMethod(application, "phonecontact adding Arrow", "phoneaddarrow", xml);
 		Thread.sleep(1000);
 
@@ -1074,7 +1075,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		{
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Dial User Administration Checkbox is not disabled");
 		}
-		scrolltoend();
+		ScrolltoElement(application, "okbutton", xml);
 		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(3000);
 		waitForpageload();
@@ -1244,9 +1245,10 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			System.out.println("Service Details column value should be empty");
 		}
 
-		scrolltoend();
+		ScrolltoElement(application, "synchronizelink", xml);
 		GetText(application, "Sync Status", "sync_status");
 		click_commonMethod(application, "Synchronize", "synchronizelink", xml);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Sync started successfully. Please check the sync status of this service.");
 		clickOnBreadCrumb(application, sid);
 		Thread.sleep(2000);
@@ -1491,7 +1493,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 						compareText_fromtextFields(application, "Name", "edit_asrdevicename", ASRDeviceName, xml);
 					}
 
-					compareText(application, "Vendor/Model", "edit_asrvendormodel", "Cisco 12016", xml);
+					compareText_fromActualvalue(application, "Vendor/Model", "edit_asrvendormodel", "Cisco 12016", xml);
 
 					if(!edit_asrmanagementaddress.equalsIgnoreCase("null"))
 					{
@@ -1516,7 +1518,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 						ASRDevice_Country= getwebelement(xml.getlocator("//locators/" + application + "/countryinput")).getText();
 						compareText(application, "Country", "countryinput", ASRDevice_Country, xml);
 					}
-					scrolltoend();
+					ScrolltoElement(application, "okbutton", xml);
 					//New City		
 					if(editExistingCity.equalsIgnoreCase("no") & editNewCity.equalsIgnoreCase("yes")) {
 						Clickon_addToggleButton(application, "addcityswitch");
@@ -1592,19 +1594,22 @@ public class APT_VoiceLineHelper extends DriverHelper {
 								"addpremiseswitch", editExistingPremiseValue, editNewPremiseName, editNewPremiseCode, "Premise");
 
 					}
+					ScrolltoElement(application, "okbutton", xml);
 					click_commonMethod(application, "OK", "okbutton", xml);
 					Thread.sleep(2000);
-					compareText(application, "Update ASR Device success message", "successmsg", "ASR Device updated successfully", xml);
+					waitforPagetobeenable();
+					verifysuccessmessage(application, "ASR Device updated successfully");
 
 					ASRDeviceNameValue= ASRDeviceName;
 					ASRManagementAddressValue= ASRManagementAddress;
 					ASRDeviceCountryValue= ASRDevice_Country;
+					break;
 				}
 				else
 				{
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Device not added for "+IMSPopLocation_Code+ " location");
 				}
-				break;
+				
 			}
 		}
 		else
@@ -2060,6 +2065,74 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		return Location_code;
 	}
 
+	 public boolean fetchDeviceInterface_viewdevicepage(String application) throws InterruptedException, DocumentException {
+			
+		 boolean clickLink=false;
+		 String actualMessage=null;
+		 
+		 scrollToTop();
+		 Thread.sleep(3000);
+		 
+		 Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewdevice_Actiondropdown")));
+			
+			Thread.sleep(3000);
+			
+			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewdevice_fetchinterfacelink")));
+			Thread.sleep(2000);
+			
+			
+		//verify success Message
+			String expectedValue="Fetch interfaces started successfully. Please check the sync status of this device";
+			boolean successMessage=false;
+		try {	
+			successMessage=getwebelement(xml.getlocator("//locators/" + application + "/fetchDeviceInterace_SuccessMessage")).isDisplayed();
+			actualMessage=getwebelement(xml.getlocator("//locators/" + application + "/fetchdeviceInterface_successtextMessage")).getText();
+			if(successMessage) {
+				
+				if(actualMessage.contains(expectedValue)) {
+					
+					ExtentTestManager.getTest().log(LogStatus.PASS, " After clicking on 'Fetch Device Interface' link, success Message is displaying");
+				System.out.println(" After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
+				
+				ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message displays as: "+actualMessage);
+				System.out.println(" Success Message displays as: "+actualMessage);
+				
+				//click on the 'click here' link
+//				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ClickhereLink_fetchInterface")));
+//				Thread.sleep(3000);
+				
+				clickLink=true;
+				
+				}
+				else if (actualMessage.equalsIgnoreCase(expectedValue)) {
+					
+					ExtentTestManager.getTest().log(LogStatus.PASS, " After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
+					System.out.println(" After clicking on 'Fetch Device Interface' link, success Message is displaiyng as expected");
+					
+					ExtentTestManager.getTest().log(LogStatus.PASS, " Success Message displays as: "+actualMessage);
+					System.out.println(" Success Message displays as: "+actualMessage);
+					
+					//click on the 'click here' link
+//					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ClickhereLink_fetchInterface")));
+//					Thread.sleep(3000);
+					
+					clickLink=true;
+				}
+				else {
+					ExtentTestManager.getTest().log(LogStatus.INFO, "Message displays as: 'Message not found for Message ID : Can't start the fetch operation because another process is already fetching the interfaces for this device.'");
+					System.out.println("Message displays as: 'Message not found for Message ID : Can't start the fetch operation because another process is already fetching the interfaces for this device.'");
+				}
+				
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Message displays as: 'Message not found for Message ID : Can't start the fetch operation because another process is already fetching the interfaces for this device.'");
+			System.out.println("Message displays as: 'Message not found for Message ID : Can't start the fetch operation because another process is already fetching the interfaces for this device.'");
+			
+		}
+			return clickLink;
+	 }
+	 
 	public static String InterfaceAddress;
 	public void verifyFetchInterface(String application, String imspoplocation_dropdownvalue, String sid, String edit_asrdevicename, String Inservice_status, String Inmaintenance_status, String interfacename, String edit_interfacename) throws InterruptedException, DocumentException, IOException {
 
@@ -2691,7 +2764,6 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		waitforPagetobeenable();
 		ScrolltoElement(application, "asrdevice_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
 			List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/addeddevicename"));
@@ -2866,9 +2938,8 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 	public void verify_CiscoVendor_AddInterface(String application, String interfacename, String addInterface_Allocate, String configuration_dropdownvalue, String interfaceAddress, String virtualTemplate, String cpeAddressRange, String localPreShareKey, String remotePreShareKey, String identityEmail, String sid) throws InterruptedException, DocumentException, IOException {
 
-		ScrolltoElement(application, "interfaces_header", xml);
+		ScrolltoElement(application, "commandIPV4_dropdown", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
 		//compareText(application, "Interfaces header", "interfaces_header", "Interfaces", xml);
 		click_commonMethod(application, "Action dropdown", "interfacepanel_actiondropdown", xml);
 		click_commonMethod(application, "Add Interface/Link", "addinterface_link", xml);
@@ -3132,7 +3203,6 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		ScrolltoElement(application, "asrdevice_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		ExtentTestManager.getTest().log(LogStatus.INFO, "check 'Select Interface' link");
 
 		String IMSPoplocation_Code= imsPopLocationValue(application, imspoplocation_dropdownvalue);
@@ -6285,10 +6355,10 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			numberofBRIPorts(application, numberofbriports_dropdownvalue, briport1_value, briport2_value, briport3_value, briport4_value, briport5_value, briport6_value, briport7_value, briport8_value);
 		}
 		Thread.sleep(1000);
-		scrolltoend();
+		ScrolltoElement(application, "okbutton", xml);
 		selectValueInsideDropdown(application, "numberoffxsports_dropdown", "Number of FXS Ports", numberofFXSports_dropdownvalue, xml);
 		NumberofFXSPorts(application, numberofFXSports_dropdownvalue, fxsnumber1_value, fxsnumber2_value);
-		scrolltoend();
+		ScrolltoElement(application, "okbutton", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
@@ -6454,11 +6524,11 @@ public class APT_VoiceLineHelper extends DriverHelper {
 	public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_DRplanB, String Add_DRplanC, String Add_DRplanD, String Add_DRplanE, String rangestart_cc, String rangestart_lac, String rangestart_num, String rangefinish_cc, String rangefinish_lac, String rangefinish_num, String destinationnumber_cc, String destinationnumber_lac, String destinationnumber_num, String activate_deactivateDRplan_dropdownvalue, String edit_rangestart_cc, String edit_rangestart_lac, String edit_rangestart_num, String edit_rangefinish_cc, String edit_rangefinish_lac, String edit_rangefinish_num, String edit_destinationnumber_cc, String edit_destinationnumber_lac, String edit_destinationnumber_num, String edit_activate_deactivateDRplan_dropdownvalue) throws InterruptedException, DocumentException, IOException {
 
 		Thread.sleep(3000);
-		ScrolltoElement(application, "addDRplans_link", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "viewpage_usageofincomingrouting", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Add DR Plan", "addDRplans_link", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		compareText(application, "Add DR Plans Header", "addDRplan_header", "Disaster Recovery Plans", xml);
 
 		if(Add_DRplanA.equalsIgnoreCase("Yes")) {
@@ -6479,6 +6549,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			Thread.sleep(1000);
 			click_commonMethod(application, "Edit", "DRplan_editlink", xml);
 			Thread.sleep(1000);
+			waitforPagetobeenable();
 			EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 			//Delete DR Plan
@@ -6493,19 +6564,19 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			click_commonMethod(application, "DR Plan A Action dropdown", "DRplanA_actiondropdown", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Delete", "DRplan_Deletelink", xml);
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			deleteDRPlan(application);
 
 		}
 		if(Add_DRplanB.equalsIgnoreCase("Yes")) {
-			ScrolltoElement(application, "DRplanB_header", xml);
+			ScrolltoElement(application, "DRplanA_header", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			compareText(application, "DR Plan B_header", "DRplanB_header", "DR Plan B", xml);
 			click_commonMethod(application, "DR Plan B Action dropdown", "DRplanB_actiondropdown", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Add", "DRplan_addlink", xml);
 			Thread.sleep(1000);
+			waitforPagetobeenable();
 			AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 			compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
 			compareText(application, "Range Finish", "DRplanA_rangefinish_columnheader", "Range Finish", xml);
@@ -6513,20 +6584,19 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			compareText(application, "Activate/Deactivate DR Plan", "DRplanA_activateDeactivate_columnheader", "Activate/Deactivate DR Plan", xml);
 
 			//Edit DR Plan
-			ScrolltoElement(application, "DRplanB_header", xml);
+			ScrolltoElement(application, "DRplanA_header", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			addedDRplan(application, "DR Plan B", rangestart_cc, rangestart_lac, rangestart_num);
 			click_commonMethod(application, "DR Plan B Action dropdown", "DRplanB_actiondropdown", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Edit", "DRplan_editlink", xml);
 			Thread.sleep(1000);
+			waitforPagetobeenable();
 			EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 			//Delete DR Plan
-			ScrolltoElement(application, "DRplanB_header", xml);
+			ScrolltoElement(application, "DRplanA_header", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			if(edit_rangestart_cc.equalsIgnoreCase("Yes") || edit_rangestart_cc.equalsIgnoreCase("null") || edit_rangestart_lac.equalsIgnoreCase("Yes")|| edit_rangestart_lac.equalsIgnoreCase("null") || edit_rangestart_num.equalsIgnoreCase("Yes")||edit_rangestart_num.equalsIgnoreCase("null"))
 			{
 				editedDRplan(application, "DR Plan B", rangestart_cc, rangestart_lac, rangestart_num, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num);
@@ -6543,14 +6613,14 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		}
 		if(Add_DRplanC.equalsIgnoreCase("Yes")) {
 
-			ScrolltoElement(application, "DRplanC_header", xml);
+			ScrolltoElement(application, "DRplanB_header", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			compareText(application, "DR Plan C_header", "DRplanC_header", "DR Plan C", xml);
 			click_commonMethod(application, "DR Plan C Action dropdown", "DRplanC_actiondropdown", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Add", "DRplan_addlink", xml);
 			Thread.sleep(1000);
+			waitforPagetobeenable();
 			AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 			compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
 			compareText(application, "Range Finish", "DRplanA_rangefinish_columnheader", "Range Finish", xml);
@@ -6558,20 +6628,19 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			compareText(application, "Activate/Deactivate DR Plan", "DRplanA_activateDeactivate_columnheader", "Activate/Deactivate DR Plan", xml);
 
 			//Edit DR Plan
-			ScrolltoElement(application, "DRplanC_header", xml);
+			ScrolltoElement(application, "DRplanB_header", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			addedDRplan(application, "DR Plan C", rangestart_cc, rangestart_lac, rangestart_num);
 			click_commonMethod(application, "DR Plan C Action dropdown", "DRplanC_actiondropdown", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Edit", "DRplan_editlink", xml);
 			Thread.sleep(1000);
+			waitforPagetobeenable();
 			EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 			//Delete DR Plan
-			ScrolltoElement(application, "DRplanC_header", xml);
+			ScrolltoElement(application, "DRplanB_header", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			if(edit_rangestart_cc.equalsIgnoreCase("Yes") || edit_rangestart_cc.equalsIgnoreCase("null") || edit_rangestart_lac.equalsIgnoreCase("Yes")|| edit_rangestart_lac.equalsIgnoreCase("null") || edit_rangestart_num.equalsIgnoreCase("Yes")||edit_rangestart_num.equalsIgnoreCase("null"))
 			{
 				editedDRplan(application, "DR Plan C", rangestart_cc, rangestart_lac, rangestart_num, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num);
@@ -6588,14 +6657,14 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		}
 		if(Add_DRplanD.equalsIgnoreCase("Yes")) {
-			ScrolltoElement(application, "DRplanD_header", xml);
+			ScrolltoElement(application, "DRplanC_header", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			compareText(application, "DR Plan D_header", "DRplanD_header", "DR Plan D", xml);
 			click_commonMethod(application, "DR Plan D Action dropdown", "DRplanD_actiondropdown", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Add", "DRplanD_E_addlink", xml);
 			Thread.sleep(1000);
+			waitforPagetobeenable();
 			AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 			compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
 			compareText(application, "Range Finish", "DRplanA_rangefinish_columnheader", "Range Finish", xml);
@@ -6603,20 +6672,19 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			compareText(application, "Activate/Deactivate DR Plan", "DRplanA_activateDeactivate_columnheader", "Activate/Deactivate DR Plan", xml);
 
 			//Edit DR Plan
-			ScrolltoElement(application, "DRplanD_header", xml);
+			ScrolltoElement(application, "DRplanC_header", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			addedDRplan(application, "DR Plan D", rangestart_cc, rangestart_lac, rangestart_num);
 			click_commonMethod(application, "DR Plan D Action dropdown", "DRplanD_actiondropdown", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Edit", "DRplanD_E_editlink", xml);
 			Thread.sleep(1000);
+			waitforPagetobeenable();
 			EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 			//Delete DR Plan
-			ScrolltoElement(application, "DRplanD_header", xml);
+			ScrolltoElement(application, "DRplanC_header", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			if(edit_rangestart_cc.equalsIgnoreCase("Yes") || edit_rangestart_cc.equalsIgnoreCase("null") || edit_rangestart_lac.equalsIgnoreCase("Yes")|| edit_rangestart_lac.equalsIgnoreCase("null") || edit_rangestart_num.equalsIgnoreCase("Yes")||edit_rangestart_num.equalsIgnoreCase("null"))
 			{
 				editedDRplan(application, "DR Plan D", rangestart_cc, rangestart_lac, rangestart_num, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num);
@@ -6633,14 +6701,14 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		}
 		if(Add_DRplanE.equalsIgnoreCase("Yes")) {
-			ScrolltoElement(application, "DRplanE_header", xml);
+			ScrolltoElement(application, "DRplanD_header", xml);
 			Thread.sleep(2000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			compareText(application, "DR Plan E_header", "DRplanE_header", "DR Plan E", xml);
 			click_commonMethod(application, "DR Plan E Action dropdown", "DRplanE_actiondropdown", xml);
 			Thread.sleep(2000);
 			click_commonMethod(application, "Add", "DRplanD_E_addlink", xml);
 			Thread.sleep(1000);
+			waitforPagetobeenable();
 			AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 			compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
 			compareText(application, "Range Finish", "DRplanA_rangefinish_columnheader", "Range Finish", xml);
@@ -6648,20 +6716,19 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			compareText(application, "Activate/Deactivate DR Plan", "DRplanA_activateDeactivate_columnheader", "Activate/Deactivate DR Plan", xml);
 
 			//Edit DR Plan
-			ScrolltoElement(application, "DRplanE_header", xml);
+			ScrolltoElement(application, "DRplanD_header", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			addedDRplan(application, "DR Plan E", rangestart_cc, rangestart_lac, rangestart_num);
 			click_commonMethod(application, "DR Plan E Action dropdown", "DRplanE_actiondropdown", xml);
 			Thread.sleep(1000);
 			click_commonMethod(application, "Edit", "DRplanD_E_editlink", xml);
 			Thread.sleep(1000);
+			waitforPagetobeenable();
 			EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 			//Delete DR Plan
-			ScrolltoElement(application, "DRplanE_header", xml);
+			ScrolltoElement(application, "DRplanD_header", xml);
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 			if(edit_rangestart_cc.equalsIgnoreCase("Yes") || edit_rangestart_cc.equalsIgnoreCase("null") || edit_rangestart_lac.equalsIgnoreCase("Yes")|| edit_rangestart_lac.equalsIgnoreCase("null") || edit_rangestart_num.equalsIgnoreCase("Yes")||edit_rangestart_num.equalsIgnoreCase("null"))
 			{
 				editedDRplan(application, "DR Plan E", rangestart_cc, rangestart_lac, rangestart_num, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num);
@@ -6677,8 +6744,9 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			deleteDRPlan(application);
 		}
 		Thread.sleep(1000);
-		scrolltoend();
+		ScrolltoElement(application, "viewpage_backbutton", xml);
 		click_commonMethod(application, "Back", "viewpage_backbutton", xml);
+		waitforPagetobeenable();
 	}
 
 
@@ -6687,7 +6755,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		compareText(application, "Add DR Plan Header", "addDRplan_header1", "Disaster Recovery Plans", xml);
 		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(1000);
-
+		waitforPagetobeenable();
 		//verify warning messages
 		warningMessage_commonMethod(application, "rangestart_cc_warngmsg", "Range Start CC", xml);
 		warningMessage_commonMethod(application, "rangestart_lac_warngmsg", "Range Start LAC", xml);
@@ -6715,6 +6783,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		compareText(application, "Activate/Deactivate DR Plan", "activate_deactivate_label", "Activate/Deactivate DR Plan", xml);
 		activate_deactivateDRPlan_dropdown(application, "Activate/Deactivate DR Plan", "activate_deactivate_dropdownvalue", activate_deactivateDRplan_dropdownvalue, xml);
 		click_commonMethod(application, "OK", "okbutton", xml);
+		waitforPagetobeenable();
 	}
 
 	public void addedDRplan(String application, String DRPlanHeader, String rangestart_cc, String rangestart_lac, String rangestart_num) throws InterruptedException, DocumentException {
@@ -6871,7 +6940,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		compareText(application, "Activate/Deactivate DR Plan", "activate_deactivate_label", "Activate/Deactivate DR Plan", xml);
 		activate_deactivateDRPlan_dropdown(application, "Activate/Deactivate DR Plan", "activate_deactivate_dropdownvalue", edit_activate_deactivateDRplan_dropdownvalue, xml);
 		click_commonMethod(application, "OK", "okbutton", xml);
-
+		waitforPagetobeenable();
 	}
 
 	public void deleteDRPlan(String application) {
@@ -6956,44 +7025,51 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 	public void verifyDRPlansBulkInterface(String application, String bulkjob_filepath) throws InterruptedException, DocumentException {
 
-		ScrolltoElement(application, "addDRplans_link", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "viewpage_usageofincomingrouting", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "DR Plans Bulk Interface", "DRplans_bulkinterface_link", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
+		try {
 		WebElement BulkJob_Choosefile_button= getwebelement(xml.getlocator("//locators/" + application + "/bulkjob_choosefilebutton"));
 		BulkJob_Choosefile_button.sendKeys(bulkjob_filepath);
 		click_commonMethod(application, "Submit", "bulkjobsubmit", xml);
-
+		waitforPagetobeenable();
+		}
+		catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Upload file path '"+bulkjob_filepath+"' is not found");
+		}
 		//Archive link in bulk interface page
 		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
 		click_commonMethod(application, "Archive", "bulkinterface_archivelink", xml);
 		Thread.sleep(4000);
-		scrolltoend();
+		waitforPagetobeenable();
+		ScrolltoElement(application, "archive_backbutton", xml);
 		click_commonMethod(application, "Back", "archive_backbutton", xml);
-
+		waitforPagetobeenable();
 		//Refresh link in bulk interface page
 		scrollToTop();
 		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
 		click_commonMethod(application, "Refresh", "bulkinterface_refreshlink", xml);
+		waitforPagetobeenable();
 		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Bulk Interface page refresh successful");
 		Log.info("Bulk Interface page refresh successful");
 		Thread.sleep(2000);
 
 		addedBulkInterface(application);
-		scrolltoend();
+		ScrolltoElement(application, "bulkinterface_backbutton", xml);
 		click_commonMethod(application, "Back", "bulkinterface_backbutton", xml);
 	}
 
 	public void verifydownloadDRplans(String application, String DRPlansfilename, String browserfiles_downloadspath) throws InterruptedException, DocumentException {
 		
-		ScrolltoElement(application, "addDRplans_link", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "viewpage_usageofincomingrouting", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Download DR Plans", "downloadDRplans_link", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		isFileDownloaded(DRPlansfilename, browserfiles_downloadspath);
 	}
 
@@ -7004,6 +7080,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		String dirPath = downloadspath; 
 		File dir = new File(dirPath);
 		File[] files = dir.listFiles();
+		try {
 		if (files.length == 0 || files == null) {
 			System.out.println("The directory is empty");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Downloads folder is empty");
@@ -7017,6 +7094,10 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				}
 				flag = true;
 			}
+		}
+		}
+		catch (Exception e) {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Downloads folder path '"+dirPath+"' is not found");
 		}
 		return flag;
 	}
@@ -7270,8 +7351,9 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				compareText_InViewPage(application, "Number of PRI ports", numberofpriports_dropdownvalue, xml);
 				compareText_InViewPage(application, "Number of FXS ports", numberofFXSports_dropdownvalue, xml);
 
-				scrolltoend();
+				ScrolltoElement(application, "viewpage_backbutton", xml);
 				click_commonMethod(application, "Back", "viewpage_backbutton", xml);
+				waitforPagetobeenable();
 			}
 		}
 
@@ -7368,7 +7450,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				compareText_fromtextFields(application, "Snmpro", "snmpro_textfield", "incc", xml);
 
 				//select country
-				scrolltoend();
+				ScrolltoElement(application, "okbutton", xml);
 				Thread.sleep(2000);
 				selectValueInsideDropdown(application, "countryinput", "Country", edit_voiceCPE_country, xml);
 				ScrolltoElement(application, "managementaddress_voicecpe", xml);
@@ -7442,13 +7524,14 @@ public class APT_VoiceLineHelper extends DriverHelper {
 					numberofBRIPorts(application, edit_numberofbriports_dropdownvalue, edit_briport1_value, edit_briport2_value, edit_briport3_value, edit_briport4_value, edit_briport5_value, edit_briport6_value, edit_briport7_value, edit_briport8_value);
 				}
 				Thread.sleep(1000);
-				scrolltoend();
+				ScrolltoElement(application, "okbutton", xml);
 				selectValueInsideDropdown(application, "numberoffxsports_dropdown", "Number of FXS Ports", edit_numberofFXSports_dropdownvalue, xml);
 				NumberofFXSPorts(application, edit_numberofFXSports_dropdownvalue, edit_fxsnumber1_value, edit_fxsnumber2_value);
-				scrolltoend();
+				ScrolltoElement(application, "okbutton", xml);
 				Thread.sleep(1000);
 				click_commonMethod(application, "OK", "okbutton", xml);
 				Thread.sleep(2000);
+				waitforPagetobeenable();
 				verifysuccessmessage(application, "Device updated successfully");
 			}
 		}
@@ -7480,10 +7563,10 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				if(VoiceCPEsValue.contains(voiceCPEdevicename) || VoiceCPEsValue.contains(edit_voiceCPEdevicename))
 				{
 					RowID= ExistingPort_prefix_RowID;
+					break;
 				}
 			}
 
-			break;
 		}
 		return RowID;
 	}
@@ -7506,10 +7589,10 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				if(VoiceCPEsValue.contains(voiceCPEdevicename) || VoiceCPEsValue.contains(edit_voiceCPEdevicename))
 				{
 					RowID= ExistingPort_prefix_RowID;
+					break;
 				}
 			}
 
-			break;
 		}
 		return RowID;
 	}
@@ -7537,23 +7620,23 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				if(VoiceCPEsValue.contains(voiceCPEdevicename) || VoiceCPEsValue.contains(edit_voiceCPEdevicename))
 				{
 					RowID= ExistingPort_prefix_RowID;
+					break;
 				}
 			}
 
-			break;
 		}
 		return RowID;
 	}
 	
 	public void AddPortGroup(String application, String prefix_dropdownvalue, String routePriority_dropdownvalue, String voiceCPEdevicename, String edit_voiceCPEdevicename) throws InterruptedException, DocumentException {
 
-		ScrolltoElement(application, "portgroup_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "disasterrecoverystatus_header", xml);
 		compareText(application, "Port Group", "portgroup_header", "Port Group", xml);
 		click_commonMethod(application, "Action Dropdown", "portgroup_Actiondropdown", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Add Port Group", "addportgroup_link", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		compareText(application, "Port Group", "addportgroup_header", "Port Group", xml);
 		addPrefix_DropdownValues(application, "Prefix", "prefix_dropdown", prefix_dropdownvalue, xml);
 		addDropdownValues_commonMethod(application, "Route Priority", "routepriority_dropdown", routePriority_dropdownvalue, xml);
@@ -7563,13 +7646,13 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		verifySelectedValuesInsideRightDropdown(application, "Ports Selected", "portsselected_list");
 
 		click_commonMethod(application, "OK", "okbutton", xml);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Port Group VCPE successfully created.");
 	}
 
 	public void ViewPortGroup(String application, String prefix_dropdownvalue, String Edit_prefix_dropdownvalue, String routePriority_dropdownvalue, String voiceCPEdevicename, String edit_voiceCPEdevicename) throws InterruptedException, DocumentException {
 
-		ScrolltoElement(application, "portgroup_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "disasterrecoverystatus_header", xml);
 		compareText(application, "Port Group", "portgroup_header", "Port Group", xml);
 		String AddedPort_RowID= viewPortGroupRow(application, prefix_dropdownvalue, routePriority_dropdownvalue, voiceCPEdevicename, edit_voiceCPEdevicename);
 		WebElement AddedPort_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/addedport_checkbox").replace("value", AddedPort_RowID));
@@ -7577,6 +7660,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		click_commonMethod(application, "Action Dropdown", "portgroup_Actiondropdown", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "View", "view", xml);
+		waitforPagetobeenable();
 		compareText(application, "Port Group", "addportgroup_header", "Port Group", xml);
 		GetText(application, "Prefix", "prefix_viewportgroup");
 		GetText(application, "Voice CPES", "voiceCPEs_viewportgroup");
@@ -7586,8 +7670,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 	public void EditPortGroup(String application, String prefix_dropdownvalue, String routePriority_dropdownvalue, String Edit_prefix_dropdownvalue, String Edit_routePriority_dropdownvalue, String voiceCPEdevicename, String edit_voiceCPEdevicename) throws InterruptedException, DocumentException {
 
-		ScrolltoElement(application, "portgroup_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "disasterrecoverystatus_header", xml);
 		compareText(application, "Port Group", "portgroup_header", "Port Group", xml);
 		String AddedPort_RowID= viewPortGroupRow(application, prefix_dropdownvalue, routePriority_dropdownvalue, voiceCPEdevicename, edit_voiceCPEdevicename);
 		WebElement AddedPort_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/addedport_checkbox").replace("value", AddedPort_RowID));
@@ -7596,7 +7679,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		Thread.sleep(1000);
 		click_commonMethod(application, "Edit", "edit", xml);
 		Thread.sleep(2000);
-
+		waitforPagetobeenable();
 		compareText(application, "Port Group", "addportgroup_header", "Port Group", xml);
 		Thread.sleep(1000);
 		editPrefix_dropdown(application, "Prefix", "prefix_dropdown", Edit_prefix_dropdownvalue, xml);
@@ -7609,15 +7692,15 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
-		compareText(application, "Update port group success message", "successmsg", "Port Group VCPE successfully updated.", xml);
+		waitforPagetobeenable();
+		verifysuccessmessage(application, "Port Group VCPE successfully updated.");
 
 	}
 
 	public void OverflowPortGroup(String application, String prefix_dropdownvalue, String Edit_prefix_dropdownvalue, String routePriority_dropdownvalue, String voiceCPEdevicename, String edit_voiceCPEdevicename) throws InterruptedException, DocumentException {
 
-		String overflowPrefixValue;
-		ScrolltoElement(application, "portgroup_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		String overflowPrefixValue= null;
+		ScrolltoElement(application, "disasterrecoverystatus_header", xml);
 		compareText(application, "Port Group", "portgroup_header", "Port Group", xml);
 		Thread.sleep(1000);
 		String AddedPort_RowID= ExistingPortGroupRow(application, prefix_dropdownvalue, Edit_prefix_dropdownvalue, routePriority_dropdownvalue, voiceCPEdevicename, edit_voiceCPEdevicename);
@@ -7642,13 +7725,13 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		verifySelectedValuesInsideRightDropdown(application, "Ports Selected", "overflow_portsselected_list");
 
 		click_commonMethod(application, "OK", "okbutton", xml);
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "Port Group OverFlow successfully created.");
 		
 		//delete overflow portgroup
 		driver.navigate().refresh();
 		Thread.sleep(1000);
-		ScrolltoElement(application, "portgroup_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
+		ScrolltoElement(application, "disasterrecoverystatus_header", xml);
 		Thread.sleep(1000);
 		WebElement overflowcheckbox= getwebelement(xml.getlocator("//locators/" + application + "/overflow_checkbox").replace("value", overflowPrefixValue));
 		Clickon(overflowcheckbox);
@@ -7661,6 +7744,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		{
 			click_commonMethod(application, "Delete", "delete_alertDelete", xml);
 			Thread.sleep(1000);
+			waitforPagetobeenable();
 			verifysuccessmessage(application, "Overflow PortGroup successfully deleted.");
 		}
 		else
@@ -7903,14 +7987,12 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		String expectedTitleName= "Add DDI Range";
 		waitForpageload();
 		waitforPagetobeenable();
-		ScrolltoElement(application, "ddirange_panelheader", xml);
-		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "portgroup_header", xml);
 		Thread.sleep(1000);
 		compareText(application, "DDI Range Header", "ddirange_panelheader", "DDI Range", xml);
 		click_commonMethod(application, "Add DDI Range", "addDDIRange_link", xml);
 		Thread.sleep(2000);
-
+		waitforPagetobeenable();
 		String mainWindow=driver.getWindowHandle();
 		Set<String> allwindows = driver.getWindowHandles();
 		Iterator<String> itr = allwindows.iterator();
@@ -7933,12 +8015,14 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				}
 
 				compareText(application, "Add DDI Range header", "addDDIRangepage_header", "DDI Range", xml);
-				scrollToTop();
+				ScrolltoElement(application, "addDDIRangepage_header", xml);
 				click_commonMethod(application, "ADD", "addDDI_addbutton", xml);
-				scrolltoend();
+				waitforPagetobeenable();
+				ScrolltoElement(application, "addDDI_addbutton", xml);
 				Thread.sleep(1000);
 				click_commonMethod(application, "Remove", "addDDI_removebutton", xml);
 				Thread.sleep(1000);
+				waitforPagetobeenable();
 				String CountrycodeValue= getwebelement(xml.getlocator("//locators/" + application + "/addDDI_countrycode")).getAttribute("value");
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Country code is displayed as: "+CountrycodeValue);
 				addtextFields_commonMethod(application, "LAC", "addDDI_lactextfield", lac_value, xml);
@@ -7957,11 +8041,10 @@ public class APT_VoiceLineHelper extends DriverHelper {
 					selectValueInsideDropdown(application, "addDDI_portmappingprefix_dropdown", "Port Mapping Prefix", edit_prefix_dropdownvalue, xml);
 				}		
 
-				scrolltoend();
+				ScrolltoElement(application, "okbutton", xml);
 				Thread.sleep(1000);
 				click_commonMethod(application, "OK", "okbutton", xml);
-
-				Thread.sleep(1000);
+				waitforPagetobeenable();
 
 			}
 		}
@@ -7974,9 +8057,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		driver.navigate().refresh();
 
 		//Verify Added DDI Range
-		ScrolltoElement(application, "ddirange_panelheader", xml);
-		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "portgroup_header", xml);
 		Thread.sleep(1000);
 
 		//verify table column headers
@@ -8029,15 +8110,13 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		waitForpageload();
 		waitforPagetobeenable();
-		ScrolltoElement(application, "ddirange_panelheader", xml);
-		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "portgroup_header", xml);
 		Thread.sleep(1000);
 		compareText(application, "DDI Range Header", "ddirange_panelheader", "DDI Range", xml);
 		click_commonMethod(application, "View", "ddi_viewlink", xml);
 		Thread.sleep(3000);
 		waitforPagetobeenable();
-		scrollToTop();
+		ScrolltoElement(application, "ddirange_header", xml);
 		compareText(application, "DDI Range Header", "ddirange_header", "DDI Range", xml);
 
 		GetText(application, "Country Code", "viewpage_countrycode");
@@ -8050,7 +8129,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		compareText(application, "Range End Value", "viewpage_rangeend_value", rangeend_Value, xml);
 		compareText(application, "Extension Digits", "viewpage_extensiondigits", extensiondigits_value, xml);
 		GetText(application, "Emerg Area", "viewpage_emergArea");
-		scrolltoend();
+		ScrolltoElement(application, "viewpage_backbutton", xml);
 		GetText(application, "Incoming Routing", "viewpage_incomingrouting");
 		//GetText(application, "In GEO", "viewpage_InGEO");
 		GetText(application, "Port Mapping Prefix", "viewpage_portmapping");
@@ -8059,7 +8138,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		click_commonMethod(application, "Execute", "viewddipage_executebutton", xml);
 		Thread.sleep(2000);
 		verifysuccessmessage(application, "PSX sync started successfully. Please check the sync status of this Trunk Group. here ");
-		scrolltoend();
+		ScrolltoElement(application, "viewpage_backbutton", xml);
 		click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 		Thread.sleep(3000);
 		waitforPagetobeenable();
@@ -8069,15 +8148,13 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		waitForpageload();
 		waitforPagetobeenable();
-		ScrolltoElement(application, "ddirange_panelheader", xml);
-		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "portgroup_header", xml);
 		Thread.sleep(1000);
 		compareText(application, "DDI Range Header", "ddirange_panelheader", "DDI Range", xml);
 		click_commonMethod(application, "Edit", "ddi_editlink", xml);
 		Thread.sleep(2000);
 		waitforPagetobeenable();
-		scrollToTop();
+		ScrolltoElement(application, "ddirange_header", xml);
 		compareText(application, "DDI Range Header", "ddirange_header", "DDI Range", xml);
 		String CountrycodeValue= getwebelement(xml.getlocator("//locators/" + application + "/addDDI_countrycode")).getAttribute("value");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Country code is displayed as: "+CountrycodeValue);
@@ -8088,7 +8165,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		edittextFields_commonMethod(application, "Range End", "addDDI_rangeend", edit_rangeend_Value, xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "Add Arrow", "addDDI_addArrow", xml);
-		scrolltoend();
+		ScrolltoElement(application, "okbutton", xml);
 		edittextFields_commonMethod(application, "Extension digits", "addDDI_extensiondigits_textfield", edit_extensiondigits_value, xml);
 		editcheckbox_commonMethod(application, edit_incomingrouting_checkbox, "addDDI_incomingrouting_checkbox", "Activate Incoming Routing", xml);
 
@@ -8099,7 +8176,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		{
 			selectValueInsideDropdown(application, "addDDI_portmappingprefix_dropdown", "Port Mapping Prefix", edit_prefix_dropdownvalue, xml);
 		}
-		scrolltoend();
+		ScrolltoElement(application, "okbutton", xml);
 		click_commonMethod(application, "OK", "okbutton", xml);
 		Thread.sleep(2000);
 		waitforPagetobeenable();
@@ -8158,9 +8235,8 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		waitForpageload();
 		waitforPagetobeenable();
-		ScrolltoElement(application, "voiceresiliency_header", xml);
+		ScrolltoElement(application, "ddirange_panelheader", xml);
 		Thread.sleep(2000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		compareText(application, "Voice Resiliency header", "voiceresiliency_header", "Voice Resiliency", xml);
 		GetText(application, "Backup Number", "backupnumber_value");
 		GetText(application, "OBackup Number", "obackupnumber_value");
@@ -8169,6 +8245,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		click_commonMethod(application, "Action dropdown", "voiceresiliency_actiondropdown", xml);
 		click_commonMethod(application, "Edit", "voiceresiliency_Edit", xml);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 		WebElement VoiceResiliencyPopup= getwebelement(xml.getlocator("//locators/" + application + "/voiceresiliency_popup"));
 		if(VoiceResiliencyPopup.isDisplayed())
 		{
@@ -8180,6 +8257,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			}
 			click_commonMethod(application, "SAVE", "savebutton_voiceresiliency", xml);
 			Thread.sleep(3000);
+			waitforPagetobeenable();
 		}
 		else
 		{
@@ -8202,7 +8280,6 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		waitforPagetobeenable();
 		ScrolltoElement(application, "commandsexecution_header", xml);
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		compareText(application, "Commands Execution", "commandsexecution_header", "Commands Execution", xml);
 		compareText(application, "PSX Command", "PSXcommand_label", "PSX Command", xml);
 		addDropdownValues_commonMethod(application, "PSX Command", "PSXcommand_dropdown", PSXcommand_dropdownvalue, xml);
@@ -8244,13 +8321,13 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		waitforPagetobeenable();
 		ScrolltoElement(application, "commandsexecution_header", xml);
 		Thread.sleep(2000);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 		compareText(application, "Commands Execution", "commandsexecution_header", "Commands Execution", xml);
 		compareText(application, "GSX Command", "GSXcommand_label", "GSX Command", xml);
 		Thread.sleep(1000);
 		addDropdownValues_commonMethod(application, "GSX Command", "GSXcommand_dropdown", GSXcommand_dropdownvalue, xml);
 		click_commonMethod(application, "Execute", "GSXcommand_executebutton", xml);
 		Thread.sleep(1000);
+		waitforPagetobeenable();
 		String mainWindow=driver.getWindowHandle();
 		Set<String> allwindows = driver.getWindowHandles();
 		Iterator<String> itr = allwindows.iterator();
@@ -8289,11 +8366,10 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 			ScrolltoElement(application, "configurationpanel_header_executecommand", xml);
 			Thread.sleep(2000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 
 			addDropdownValues_commonMethod(application, "PSX Configuration", "PSXconfigurationDropdown_viewtrunk", expectedConfiguration , xml);
 			click_commonMethod(application, "Execute", "viewTrunk_PSX_executeButton" , xml);
-
+			waitforPagetobeenable();
 
 			Alert alert = driver.switchTo().alert();
 
@@ -8349,12 +8425,11 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 			ScrolltoElement(application, "configurationpanel_header_executecommand", xml);
 			Thread.sleep(2000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 
 			addDropdownValues_commonMethod(application, "SBC Configuration", "SBCconfigurationDropdown_viewtrunk", expectedConfiguration, xml);
 
 			click_commonMethod(application, "Execute", "viewTrunk_SBC_executeButton" , xml);
-
+			waitforPagetobeenable();
 			Alert alert = driver.switchTo().alert();		
 
 			// Capturing alert message.    
@@ -8403,12 +8478,11 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 			ScrolltoElement(application, "configurationpanel_header_executecommand", xml);
 			Thread.sleep(2000);
-			((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-150)");
 
 			addDropdownValues_commonMethod(application, "GSX Configuration", "GSXconfigurationDropdown_viewtrunk", expectedConfiguration, xml);
 
 			click_commonMethod(application, "Generate Configuration", "viewTrunk_GSX_generateConfigurationButton" , xml);
-
+			waitforPagetobeenable();
 			String mainWindow=driver.getWindowHandle();
 			Set<String> allwindows = driver.getWindowHandles();
 			Iterator<String> itr = allwindows.iterator();
@@ -8431,10 +8505,10 @@ public class APT_VoiceLineHelper extends DriverHelper {
 					Log.info("came inside child window");
 
 					//
-					scrolltoend();
+					ScrolltoElement(application, "GSX_config_executeButton", xml);
 					Thread.sleep(2000);
 					click_commonMethod(application, "Execute", "GSX_config_executeButton", xml);
-
+					waitforPagetobeenable();
 				}
 			}
 
@@ -8632,10 +8706,10 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 				edittextFields_commonMethod(application, "GSX manual Configuration", "GSX_editPage_teaxtArea", editGSXmanualConfigvalur, xml);
 
-				scrolltoend();
+				ScrolltoElement(application, "GSX_editPage_SaveButton", xml);
 				Thread.sleep(2000);
 				click_commonMethod(application, "Save", "GSX_editPage_SaveButton", xml);
-
+				waitforPagetobeenable();
 			}
 		}
 
@@ -8803,10 +8877,11 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 					//Text Area	
 					addtextFields_commonMethod(application, "Manul Configuration", "manualConfiguration_textArea", GSXmanualConfiguratio, xml);
-					scrolltoend();
+					ScrolltoElement(application, "save_manualConfiguration", xml);
 					Thread.sleep(1000);
 					click_commonMethod(application, "Save", "save_manualConfiguration", xml);   //click on Save buttton
 					Thread.sleep(1000);
+					waitforPagetobeenable();
 					driver.close();
 				}
 			}
@@ -9012,11 +9087,11 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				GetText(application, "Trunk Name", "editPSX_trunkvalue");
 				edittextFields_commonMethod(application, "PSX Manual Configuration", "GSX_editPage_teaxtArea", editPSXmanualConfigvalue, xml);
 
-				scrolltoend();
+				ScrolltoElement(application, "GSX_editPage_SaveButton", xml);
 				Thread.sleep(1000);
 
 				click_commonMethod(application, "Save", "GSX_editPage_SaveButton", xml);
-
+				waitforPagetobeenable();
 			}
 		}
 
@@ -9100,11 +9175,11 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 				edittextFields_commonMethod(application, "GSX manual Configuration", "GSX_editPage_teaxtArea", editGSXmanualConfigvalur, xml);
 
-				scrolltoend();
+				ScrolltoElement(application, "GSX_editPage_SaveButton", xml);
 				Thread.sleep(2000);
 
 				click_commonMethod(application, "Save", "GSX_editPage_SaveButton", xml);
-
+				waitforPagetobeenable();
 			}
 		}
 
@@ -9224,6 +9299,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 					
 				  Clickon(getwebelement("(//div[@class='sc-ifAKCX oLlzc'][contains(text(),'"+ expectedValueToAdd1 +"')])[1]"));
 				  Thread.sleep(2000);
+				  break;
 					}
 					else
 					{
@@ -9234,7 +9310,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 					  Clickon(getwebelement("(//div[@class='sc-ifAKCX oLlzc'][contains(text(),'"+ expectedValueToAdd2 +"')])[1]"));
 					  Thread.sleep(2000);
 						}
-					break;
+					
 					}
 				  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
 				  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
@@ -9277,13 +9353,13 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 	}
 
-	public String DRusingTDMvalue(String application) throws InterruptedException, DocumentException {
-		
-		ScrolltoElement(application, "viewpage_codec", xml);
-		DRusingTDM_Value= GetText(application, "DR Using TDM", "viewpage_drusingtdm");
-		
-		return DRusingTDM_Value;
-	}
+//	public String DRusingTDMvalue(String application) throws InterruptedException, DocumentException {
+//		
+//		ScrolltoElement(application, "viewpage_codec", xml);
+//		DRusingTDM_Value= GetText(application, "DR Using TDM", "viewpage_drusingtdm");
+//		
+//		return DRusingTDM_Value;
+//	}
 	
 	public void clickOnViewTrunkLink(String application, String siteOrderName) throws Exception {
 
@@ -9307,7 +9383,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 	public void clickOnViewCPEdeviceLink(String application, String siteOrderName) throws Exception {
 
-		scrolltoend();
+		ScrolltoElement(application, "trunkPanel", xml);
 
 		WebElement getTrunkRow=getwebelement(xml.getlocator("//locators/" + application + "/selectCreatedTrunk_InViewServicePage").replace("value", Edit_primarytrunkGroupname));
 		safeJavaScriptClick(getTrunkRow);
@@ -9409,7 +9485,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 
 		//select country
-		scrolltoend();
+		ScrolltoElement(application, "trunk_okButton", xml);
 		Thread.sleep(2000);
 
 		//addDropdownValues_commonMethod(application, "Country", "countrydropdown", Country, xml);
@@ -9475,17 +9551,17 @@ public class APT_VoiceLineHelper extends DriverHelper {
 			}
 		}
 
-		scrolltoend();
+		ScrolltoElement(application, "trunk_okButton", xml);
 		Thread.sleep(1000);
 
 		clickOnBankPage();
 		Thread.sleep(200);
 
-		scrolltoend();
+		ScrolltoElement(application, "trunk_okButton", xml);
 		Thread.sleep(1000);
 		click_commonMethod(application, "OK", "trunk_okButton" , xml);
 		Thread.sleep(2000);
-
+		waitforPagetobeenable();
 	}
 
 	/**
@@ -9707,7 +9783,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 		edittextFields_commonMethod(application, "Snmp V3 Auth Password", "CPE_snmpv3AuthPasswrd" , editSNMPv3AuthPasswrd, xml);   //Snmp V3 Auth Password
 
-		scrolltoend();
+		ScrolltoElement(application, "trunk_okButton", xml);
 		Thread.sleep(1000);
 
 		//Country
@@ -9794,21 +9870,23 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		}
 
 
-		scrolltoend();
+		ScrolltoElement(application, "trunk_okButton", xml);
 		Thread.sleep(1000);
 
 		clickOnBankPage();
 
-		scrolltoend();
+		ScrolltoElement(application, "trunk_okButton", xml);
 		Thread.sleep(1000);
 
 		click_commonMethod(application, "OK", "trunk_okButton" , xml);
 		Thread.sleep(2000);
-
+		waitforPagetobeenable();
 		verifysuccessmessage(application, "CPE Device updated successfully");
+		scrollToTop();
 		Thread.sleep(2000);
 		clickOnBreadCrumb(application, sid);
 		Thread.sleep(2000);
+		waitforPagetobeenable();
 	}
 
 	public void verifyAllDeleteOperations(String application, String customernamevalue, String select_sansearchtype, String sannumbervalue) throws InterruptedException, DocumentException, IOException	{
@@ -9859,8 +9937,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		driver.navigate().refresh();
 		Thread.sleep(1000);
 		waitforPagetobeenable();
-		ScrolltoElement(application, "portgroup_header", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "disasterrecoverystatus_header", xml);
 		Thread.sleep(1000);
 		String AddedPort_RowID= DeletePortGroupRow(application, prefix_dropdownvalue, edit_prefix_dropdownvalue, routePriority_dropdownvalue, voiceCPEdevicename, edit_voiceCPEdevicename);
 		Thread.sleep(2000);
@@ -9876,6 +9953,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		{
 			Thread.sleep(1000);
 			click_commonMethod(application, "Delete", "delete_alertDelete", xml);
+			waitforPagetobeenable();
 			verifysuccessmessage(application, "Port Group successfully deleted.");
 		}
 		else
@@ -10131,7 +10209,9 @@ public class APT_VoiceLineHelper extends DriverHelper {
 					{
 						Thread.sleep(1000);
 						click_commonMethod(application, "Delete ASR Device", "deletebutton", xml);
+						waitforPagetobeenable();
 						verifysuccessmessage(application, "ASR Device deleted successfully");
+						break;
 					}
 					else
 					{
@@ -10143,7 +10223,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 				{
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Device not added for "+IMSPopLocation_Code+ " location");
 				}
-				break;
+				
 			}
 		}
 		else
@@ -10166,6 +10246,7 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		{
 			Thread.sleep(1000);
 			click_commonMethod(application, "Delete ASR Device", "deletebutton", xml);
+			waitforPagetobeenable();
 			verifysuccessmessage(application, "Service successfully deleted. ");
 		}
 		else
@@ -10190,14 +10271,15 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		WebElement searchbutton= getwebelement(xml.getlocator("//locators/" + application + "/searchbutton"));
 		ScrolltoElement(application, "searchbutton", xml);
 		Clickon(searchbutton);
-		Thread.sleep(2000);
-		scrolltoend();
+		waitforPagetobeenable();
+		ScrolltoElement(application, "searchbutton", xml);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/serviceradiobutton")));
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorder_actiondropdown")));
 		Thread.sleep(1000);
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/view")));
-		Thread.sleep(3000);
+		Thread.sleep(1000);
+		waitforPagetobeenable();
 	}
 
 
@@ -10360,11 +10442,13 @@ public class APT_VoiceLineHelper extends DriverHelper {
 
 					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 					System.out.println("Message is verified. It is displaying as: "+alrtmsg);
-
+					successScreenshot(application);
+					
 				}else {
 
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 					System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+					successScreenshot(application);
 				}
 
 			}else {
@@ -10493,4 +10577,84 @@ public class APT_VoiceLineHelper extends DriverHelper {
 		}
 		
 	}
+	
+	/**
+	 *  For Comparing the value from actual value 
+	 * @param application
+	 * @param labelname
+	 * @param xpath
+	 * @param ExpectedText
+	 * @param xml
+	 * @throws InterruptedException
+	 * @throws DocumentException
+	 */
+	public void compareText_fromActualvalue(String application, String labelname, String xpath, String ExpectedText, XMLReader xml) throws InterruptedException, DocumentException {
+
+		String text = null;
+		WebElement element = null;
+
+		try {
+			Thread.sleep(1000);
+			element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
+			String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
+			if(element==null)
+			{
+				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
+			}
+			else if (emptyele!=null && emptyele.isEmpty()) {
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : '"+ labelname +"' value is empty");
+			}else 
+			{
+				   
+				text = element.getText();
+				if((text.contains(" ")) ||  text.contains("-")) {
+					
+					String[] actualTextValue=text.split(" ");
+					String[] expectedValue =ExpectedText.split(" ");
+					
+					if(expectedValue[0].equalsIgnoreCase(actualTextValue[0])) {
+						ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					}
+					else if(expectedValue[0].contains(actualTextValue[0])) {
+						ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					
+					}
+					else
+					{
+						ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+					}
+					
+				}else {
+					if(ExpectedText.equalsIgnoreCase(text)) {
+						ExtentTestManager.getTest().log(LogStatus.PASS," The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info(" The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					}
+					else if(ExpectedText.contains(text)) {
+						ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					
+					}
+					else if(text.contains(ExpectedText)) {
+						ExtentTestManager.getTest().log(LogStatus.PASS,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is same as the Acutal value '"+text+"'");
+					
+					}
+					else
+					{
+						ExtentTestManager.getTest().log(LogStatus.FAIL,"The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+						Log.info("The Expected value for '"+ labelname +"' field '"+ExpectedText+"' is not same as the Acutal value '"+text+"'");
+					}
+				}
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, labelname + " field is not displaying");
+			Log.info(labelname + " field is not displaying");
+		}
+
+	}
+	
 }

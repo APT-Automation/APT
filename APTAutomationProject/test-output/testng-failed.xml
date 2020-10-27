@@ -1,19 +1,363 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+<suite thread-count="4" verbose="4" name="Failed suite [APT Test Suite]" parallel="classes" data-provider-thread-count="1">
+  <listeners>
+    <listener class-name="com.colt.qa.listeners.TestListener"/>
+    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  </listeners>
+  <test name="APT_Automation_Suite(failed)" parallel="classes">
     <classes>
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VOIPAccessDASSwitch">
+        <methods>
+          <include name="Teardown"/>
+          <include name="endReport"/>
+          <include name="startReport"/>
+          <include name="closeReport"/>
+          <include name="BeforeSuite"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VOIPAccessDASSwitch -->
+      <class name="com.colt.qa.apttestscripts.searchForDevice">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.searchForDevice -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DCNDevice">
+        <methods>
+          <include name="Teardown"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DCNDevice -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MDFFirewall">
+        <methods>
+          <include name="Teardown"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MDFFirewall -->
+      <class name="com.colt.qa.apttestscripts.APT_wholesale">
+        <methods>
+          <include name="Teardown"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_wholesale -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccessMultihomedTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccessMultihomedTest -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Firewall">
+        <methods>
+          <include name="Teardown"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Firewall -->
       <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessSwitch">
         <methods>
           <include name="Teardown"/>
-          <include name="createAccessCoreDevice_AccessSwitch" invocation-numbers="0"/>
           <include name="getResult"/>
           <include name="BeforeMethod"/>
-          <include name="endReport"/>
-          <include name="startReport"/>
-          <include name="BeforeSuite"/>
         </methods>
       </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessSwitch -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccess_ColtTotalTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccess_ColtTotalTest -->
+      <class name="com.colt.qa.apttestscripts.DDI_Test">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.DDI_Test -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MiniDSLAM">
+        <methods>
+          <include name="Teardown"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_MiniDSLAM -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccess_VCPEConfigTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccess_VCPEConfigTest -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNSwiftNet">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNSwiftNet -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccessCMSDataCenterTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="IPAccessVCPEConfigService" invocation-numbers="0"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccessCMSDataCenterTest -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNCPESolutionL2">
+        <methods>
+          <include name="Teardown"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNCPESolutionL2 -->
+      <class name="com.colt.qa.apttestscripts.APT_HSSTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_HSSTest -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Keyserver">
+        <methods>
+          <include name="Teardown"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Keyserver -->
+      <class name="com.colt.qa.apttestscripts.Lanlink_Outbandmanagement">
+        <methods>
+          <include name="Teardown"/>
+          <include name="LANLINK_Outbandmanagement" invocation-numbers="0"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.Lanlink_Outbandmanagement -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccessResilientConfigTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccessResilientConfigTest -->
+      <class name="com.colt.qa.apttestscripts.APT_IPTransitTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPTransitTest -->
+      <class name="com.colt.qa.apttestscripts.APT_DomainManagementTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_DomainManagementTest -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccessNoCPETest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccessNoCPETest -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNAccess">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+          <include name="IPVPN_Access" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNAccess -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccessSpeedboatTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccessSpeedboatTest -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_CoreRouter">
+        <methods>
+          <include name="Teardown"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_CoreRouter -->
+      <class name="com.colt.qa.apttestscripts.Lanlink_Metro">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.Lanlink_Metro -->
+      <class name="com.colt.qa.apttestscripts.Lanlink_International">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.Lanlink_International -->
+      <class name="com.colt.qa.apttestscripts.Lanlink_DirectFiber">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.Lanlink_DirectFiber -->
+      <class name="com.colt.qa.apttestscripts.Lanlink_National">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="LANLINK_International" invocation-numbers="0"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.Lanlink_National -->
+      <class name="com.colt.qa.apttestscripts.APT_ManageNetworkTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_ManageNetworkTest -->
+      <class name="com.colt.qa.apttestscripts.Manage_Postcode">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.Manage_Postcode -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VoiceGateway">
+        <methods>
+          <include name="Teardown"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_VoiceGateway -->
+      <class name="com.colt.qa.apttestscripts.APT_VoiceLineTest">
+        <methods>
+          <include name="VoiceLineVService" invocation-numbers="0"/>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_VoiceLineTest -->
+      <class name="com.colt.qa.apttestscripts.Lanlink_OLO">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.Lanlink_OLO -->
+      <class name="com.colt.qa.apttestscripts.APT_VOIPAccessTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_VOIPAccessTest -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter">
+        <methods>
+          <include name="Teardown"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_AccessRouter -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccess_VCPEResilientConfigTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccess_VCPEResilientConfigTest -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_TrafficAggregator">
+        <methods>
+          <include name="Teardown"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_TrafficAggregator -->
+      <class name="com.colt.qa.apttestscripts.IMSN_Translator">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.IMSN_Translator -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNIPSec">
+        <methods>
+          <include name="Teardown"/>
+          <include name="IPVPN_IPSec" invocation-numbers="0"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNIPSec -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CustomerFunctionality">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CustomerFunctionality -->
+      <class name="com.colt.qa.apttestscripts.APT_IPAccessConfigTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="ipa_ConfigurationService" invocation-numbers="0"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_IPAccessConfigTest -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNPlus">
+        <methods>
+          <include name="IPVPN_Plus" invocation-numbers="0"/>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNPlus -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNIPVoice">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNIPVoice -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Prizmnet">
+        <methods>
+          <include name="Teardown"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_Prizmnet -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DSLAM">
+        <methods>
+          <include name="Teardown"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_DSLAM -->
+      <class name="com.colt.qa.apttestscripts.APT_NGINTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="NGINService"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_NGINTest -->
+      <class name="com.colt.qa.apttestscripts.APT_SANManagementTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_SANManagementTest -->
+      <class name="com.colt.qa.apttestscripts.APT_NGINMessageTest">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_NGINMessageTest -->
+      <class name="com.colt.qa.apttestscripts.PerformOrder_Supply">
+        <methods>
+          <include name="Teardown"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.PerformOrder_Supply -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNCPESolutionL3">
+        <methods>
+          <include name="Teardown"/>
+          <include name="getResult"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNCPESolutionL3 -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_LoadBalancer">
+        <methods>
+          <include name="Teardown"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateAccessCoreDevice_LoadBalancer -->
+      <class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNConnect">
+        <methods>
+          <include name="Teardown"/>
+          <include name="IPVPNConnect"/>
+        </methods>
+      </class> <!-- com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNConnect -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- APT_Automation_Suite(failed) -->
+</suite> <!-- Failed suite [APT Test Suite] -->

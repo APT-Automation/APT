@@ -75,7 +75,7 @@ public class IMSN_Translator extends DriverTestcase{
 				ExtentTestManager.endTest(); 
 			
 			logger= ExtentTestManager.startTest ("verifydownlaodTranslationlink");
-				ImsNmbrTranslator_Helper.get().downlaodTranslationlink("ManageColt");
+				ImsNmbrTranslator_Helper.get().downlaodTranslationlink("ManageColt", map.get("DownloadsPath"));
 				Thread.sleep(2000);
 				ExtentTestManager.endTest(); 
 			

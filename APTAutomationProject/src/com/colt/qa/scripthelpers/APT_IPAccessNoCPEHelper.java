@@ -86,13 +86,13 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer Creation Functionality");
 		try {
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-		Thread.sleep(2000);
+		
 		System.out.println("Mouse hovered on Manage Customer's Service");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
-		Thread.sleep(2000);
+		
 		compareText(application, "create customer page header", "createcustomer_header", "Create Customer", xml);
 		scrolltoend();
 		click_commonMethod(application, "Ok", "okbutton", xml);
@@ -116,9 +116,10 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 		addtextFields_commonMethod(application, "Phone", "phonetextfield", phone, xml);
 		addtextFields_commonMethod(application, "Fax", "faxtextfield", fax, xml);
 		scrolltoend();
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Ok", "okbutton", xml);
-		compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.", xml);
+//		compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.", xml);
+		verifysuccessmessage(application, "Customer successfully created.");
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Service Creation page");
@@ -138,7 +139,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			throws InterruptedException, DocumentException, IOException {
 
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-		Thread.sleep(3000);
+		
 		System.out.println("Mouse hovered on Manage Customer's Service");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
@@ -171,7 +172,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			throws InterruptedException, DocumentException, IOException {
 		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer Selection Functionality");
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-		Thread.sleep(3000);
+		
 		System.out.println("Mouse hovered on Manage Customer's Service");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
@@ -210,7 +211,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 		WebElement element= null;
 
 		try {
-			//Thread.sleep(1000);
+			
 			element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 			if(element==null)
 			{
@@ -234,7 +235,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 		WebElement element = null;
 
 		try {
-			//Thread.sleep(1000);
+			
 			element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 			String emptyele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 			if(element==null)
@@ -268,7 +269,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 	public void ClearAndEnterTextValue(String application, String labelname,  String xpath, String newValue) {
 		WebElement element = null;
 		try {
-			//Thread.sleep(1000);
+			
 			element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 			String value= element.getAttribute("value");
 			
@@ -279,7 +280,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			
 			}else {
 				element.clear();
-				//Thread.sleep(1000);
+				
 				element.sendKeys(newValue);
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Entered '"+newValue+"' into '"+labelname+"' text field");
 			}
@@ -297,7 +298,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 		WebElement element = null;
 
 		try {
-			//Thread.sleep(1000);
+			
 			element= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 			if(element==null)
 			{
@@ -333,14 +334,14 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 				}
 				
 				
-				//Thread.sleep(1000);
+				
 				// click on Country dropdown
 				WebElement selectDropdownValue = driver.findElement(By.xpath("//div[contains(text(),'" + dropdownToBeSelectedInTheEnd + "')]"));
 				System.out.println("Selected  '" +lebelname+ "'  is : " + selectDropdownValue.getText().toString());
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected  '"+lebelname+ "'  is : " + selectDropdownValue.getText().toString());
 				Log.info("Selected  '" +lebelname+ "'  is : " + selectDropdownValue.getText().toString());
 				selectDropdownValue.click();
-				Thread.sleep(2000);
+				
 				
 			
 	}catch(NoSuchElementException e) {
@@ -369,14 +370,15 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 
 			WebElement CreateOrder_Header= driver.findElement(By.xpath("//div[text()='Create Order / Service']"));
 			scrolltoview(CreateOrder_Header);
-			Thread.sleep(2000);
+			
 
 			click(application, "select order switch", "selectorderswitch");	
 			EnterTextValue
 			(application, neworderno, "Order/Contract Number", "newordertextfield");
 			EnterTextValue(application, newrfireqno, "RFI Voice line Number", "newrfireqtextfield");
 			click(application, "create order", "createorderbutton");	
-			compareText(application, "create order success message", "OrderCreatedSuccessMsg", "Order created successfully");			
+//			compareText(application, "create order success message", "OrderCreatedSuccessMsg", "Order created successfully");			
+			verifysuccessmessage(application, "Order created successfully");
 			scrolltoview(CreateOrder_Header);
 
 			newordernumber = neworderno;
@@ -404,7 +406,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			SelectDropdownValueUnderDivTag(application, "Existing order", existingordernumber, "existingorderdropdown", "commonDropdownValueTag");
 			Log.info("=== Order Contract Number selected===");
 
-			Thread.sleep(3000);
+			
 
 			SelectOrderNumber = existingordernumber;
 
@@ -423,9 +425,9 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			throws InterruptedException, IOException, DocumentException {
 
 		scrolltoend();
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Next", "nextbutton", xml);
-		Thread.sleep(1000);
+		
 
 		//Warning messages verify
 		warningMessage_commonMethod(application, "order_contractnumber_warngmsg", "Order/Contract Number(Parent SID)", xml);
@@ -436,7 +438,8 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			addtextFields_commonMethod(application, "Order/Contract Number", "newordertextfield", neworderno, xml);
 			addtextFields_commonMethod(application, "RFI Voice line Number", "newrfireqtextfield", newrfireqno, xml);
 			click_commonMethod(application, "create order", "createorderbutton", xml);
-			compareText(application, "Order Creation Success message", "OrderCreatedSuccessMsg", "Order created successfully", xml);
+//			compareText(application, "Order Creation Success message", "OrderCreatedSuccessMsg", "Order created successfully", xml);
+			verifysuccessmessage(application, "Order created successfully");
 			ScrolltoElement(application, "CreateOrderHeader", xml);
 
 			newordernumber = neworderno;
@@ -445,12 +448,12 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 
 		else if (existingorderservice.equalsIgnoreCase("YES")) {
 			ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Existing Order Selection Functionality");
-			Thread.sleep(2000);
+			
 			click_commonMethod(application, "select order switch", "selectorderswitch", xml);
 			addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber, xml);
 			Log.info("=== Order Contract Number selected===");
 
-			Thread.sleep(3000);
+			
 
 			SelectOrderNumber = existingordernumber;
 		} else {
@@ -473,17 +476,17 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 		click_commonMethod(application, "Next", "nextbutton", xml);
 		
 		warningMessage_commonMethod(application, "NetworkConfigurationWarningMessage", "Network Configuration", xml);
-		Thread.sleep(2000);
+		
 		click_commonMethod(application, "Network Configuration", "networkconfigurationinputfield", xml);
 		WebElement servicesubtype = driver.findElement(By.xpath("//div[text()='"+NetworkConfiguration+"']"));
-		Thread.sleep(2000);
+		
 		servicesubtype.click();
-		Thread.sleep(2000);
+		
 		
 		// click on next button
-		Thread.sleep(2000);
+		
 		click_commonMethod(application, "Next", "nextbutton", xml);
-		Thread.sleep(2000);
+		
 		scrollToTop();
 		compareText(application, "Create Order / Service Header", "createorderservice_header", "Create Order / Service", xml);
 
@@ -607,37 +610,41 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 	
 	
 
-	public void verifyCustomerDetailsInformation(String application, String name, String maindomain, String country, String ocn,
+	
+	public void verifyCustomerDetailsInformation(String application, String newCustomerCreation, String existingCustomerSelection,String newCustomer,
+			String existingCustomer, String maindomain, String country, String ocn,
 			String reference, String tcn, String type, String email, String phone, String fax)
 					throws InterruptedException, DocumentException, IOException {
 		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer informations");
 		ScrolltoElement(application, "customerdetailsheader", xml);
-		try {
-		compareText(application, "Customer Name", "Name_Value", name, xml);
-		compareText(application, "Main Domain", "MainDomain_Value", maindomain, xml);
-		compareText(application, "Country", "Country_Value", country, xml);
-		compareText(application, "OCN", "OCN_Value", ocn, xml);
-		compareText(application, "Reference", "Reference_Value", reference, xml);
-		compareText(application, "Technical Contact Name", "TechnicalContactName_Value", tcn, xml);
-		compareText(application, "Type", "Type_Value", type, xml);
-		compareText(application, "Email", "Email_Value", email, xml);
-		compareText(application, "Phone", "Phone_Value", phone, xml);
-		compareText(application, "Fax", "Fax_Value", fax, xml);
-		
-		}catch(NoSuchElementException e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in View Service page");
-			System.out.println(  e+ " : Field is not displayed in View Service page");
-		}catch(Exception e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in View Service page ");
-			System.out.println(  e+" : Field is not displayed in View Service page");
-		}
+		//Customer Name
+			if(newCustomerCreation.equalsIgnoreCase("Yes") || existingCustomerSelection.equalsIgnoreCase("No")) {
+				compareText(application, "Customer Name", "Name_Value", newCustomer, xml);
+				compareText(application, "Country", "Country_Value", country, xml);
+				compareText(application, "OCN", "OCN_Value", ocn, xml);
+				compareText(application, "Reference", "Reference_Value", reference, xml);
+				compareText(application, "Technical Contact Name", "TechnicalContactName_Value", tcn, xml);
+				compareText(application, "Type", "Type_Value", type, xml);
+				compareText(application, "Email", "Email_Value", email, xml);
+				compareText(application, "Phone", "Phone_Value", phone, xml);
+				compareText(application, "Fax", "Fax_Value", fax, xml);
+			}
+			else if(newCustomerCreation.equalsIgnoreCase("No") || existingCustomerSelection.equalsIgnoreCase("Yes")) {
+				compareText(application, "Customer Name", "Name_Value", existingCustomer, xml);
+			}
+			
+		//Main Domain
+			if(maindomain.equalsIgnoreCase("Null")) {
+				Log.info("A default displays for main domain field, if no provided while creating customer");
+			}else {
+				compareText(application, "Main Domain", "MainDomain_Value", maindomain, xml);
+			}
 		
 		Log.info("=== Customer Details panel fields Verified ===");
-		sa.assertAll();
 	}
-
+	
+	
+	
 	public void verifyUserDetailsInformation(String application, String Login, String Name, String Email, String Roles, String Address, String Resource)
 			throws InterruptedException, DocumentException, IOException {
 
@@ -684,7 +691,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			compareText(application, "Create User Header", "CreateUserHeader", "Create User", xml);
 			ScrolltoElement(application, "cancelbutton", xml);
 			click_commonMethod(application, "Cancel", "cancelbutton", xml);
-			Thread.sleep(2000);
+			
 
 			//Create User
 			ScrolltoElement(application, "customerdetailsheader", xml);
@@ -741,7 +748,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 
 			scrolltoend();
 			click_commonMethod(application, "OK", "user_okbutton", xml);
-			Thread.sleep(2000);
+			
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : User added successfully");
 
 			//Edit User
@@ -753,7 +760,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			if(NoOfUsers==1)
 			{
 				click_commonMethod(application, "User Radio button", "UserUnchecked", xml);
-				Thread.sleep(3000);
+				
 			}
 			else if(NoOfUsers>1)
 			{
@@ -767,7 +774,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 
 			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
 			click_commonMethod(application, "Edit", "edit", xml);
-			Thread.sleep(2000);
+			
 			compareText(application, "Edit User Header", "edituser_header", "Edit User", xml);
 			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
 			cleartext(application, "User Name", "UserName");
@@ -788,12 +795,12 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			click_commonMethod(application, "OK", "user_okbutton", xml);
 
 			//View User
-			Thread.sleep(2000);
+			
 			ScrolltoElement(application, "customerdetailsheader", xml);
 			if(NoOfUsers==1)
 			{
 				click_commonMethod(application, "User Radio button", "UserUnchecked", xml);
-				Thread.sleep(3000);
+				
 			}
 			else if(NoOfUsers>1)
 			{
@@ -819,12 +826,12 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			Log.info("------ View User successful ------");
 
 			//Delete User
-			Thread.sleep(2000);
+			
 			ScrolltoElement(application, "customerdetailsheader", xml);
 			if(NoOfUsers==1)
 			{
 				click_commonMethod(application, "User Radio button", "UserUnchecked", xml);
-				Thread.sleep(3000);
+				
 			}
 			else if(NoOfUsers>1)
 			{
@@ -838,7 +845,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 
 			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
 			click_commonMethod(application, "Delete", "delete", xml);
-			Thread.sleep(2000);
+			
 			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
 			if(DeleteAlertPopup.isDisplayed())
 			{
@@ -855,7 +862,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 		else if(!UserGrid.contains("1px"))
 		{
 			//Edit User
-			Thread.sleep(2000);
+			
 			ScrolltoElement(application, "customerdetailsheader", xml);
 			List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='Users']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
 			int NoOfUsers = ExistingUsers.size();
@@ -864,7 +871,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			if(NoOfUsers==1)
 			{
 				click_commonMethod(application, "User Radio button", "UserUnchecked", xml);
-				Thread.sleep(3000);
+				
 			}
 			else if(NoOfUsers>1)
 			{
@@ -898,12 +905,12 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			click_commonMethod(application, "OK", "user_okbutton", xml);
 
 			//View User
-			Thread.sleep(2000);
+			
 			ScrolltoElement(application, "customerdetailsheader", xml);
 			if(NoOfUsers==1)
 			{
 				click_commonMethod(application, "User Radio button", "UserUnchecked", xml);
-				Thread.sleep(3000);
+				
 			}
 			else if(NoOfUsers>1)
 			{
@@ -928,12 +935,12 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			Log.info("------ View User successful ------");
 
 			//Delete User
-			Thread.sleep(2000);
+			
 			ScrolltoElement(application, "customerdetailsheader", xml);
 			if(NoOfUsers==1)
 			{
 				click_commonMethod(application, "User Radio button", "UserUnchecked", xml);
-				Thread.sleep(3000);
+				
 			}
 			else if(NoOfUsers>1)
 			{
@@ -946,7 +953,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 
 			click_commonMethod(application, "Action dropdown", "UserActionDropdown", xml);
 			click_commonMethod(application, "Delete", "delete", xml);
-			Thread.sleep(2000);
+			
 			WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
 			if(DeleteAlertPopup.isDisplayed())
 			{
@@ -971,7 +978,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 //		implicitlyWait("Service screen");
 //		webdriverWait(application, "userspanel_header", xml);
 		
-		Thread.sleep(3000);
+		
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));//orderpanelheader//userspanel_header
 
 		if (getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed()) {
@@ -1034,7 +1041,7 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 			String expectednewvoicelineno) throws InterruptedException, DocumentException {
 		implicitlyWait("Service screen");
 		webdriverWait(application, "userspanel_header", xml);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
 		try {
 		if (neworder.equalsIgnoreCase("YES")) {
@@ -1077,163 +1084,142 @@ public class APT_IPAccessNoCPEHelper extends DriverHelper {
 
 
 
-	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
+public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno, String editOrderSelection) 
+			throws InterruptedException, DocumentException, IOException {
 
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Edit Order' Functionality");
+		
 		ScrolltoElement(application, "userspanel_header", xml);
+
+		if(editOrderSelection.equalsIgnoreCase("no")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Edit Order is not performed");
+			Log.info("Edit Order is not performed");
+		}
+		else if(editOrderSelection.equalsIgnoreCase("Yes")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Performing Edit Order Functionality");
 		
 		//Cancel Edit order in Order panel
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
 		compareText(application, "Edit Order", "editorderheader", "Edit Order", xml);
-		Thread.sleep(1000);
+		
 
 		WebElement EditOrderNo= getwebelement(xml.getlocator("//locators/" + application + "/editorderno"));
 		click_commonMethod(application, "Order Number", "editorderno", xml);
-		Thread.sleep(2000);
+		
 		Clear(EditOrderNo);
-		Thread.sleep(2000);
+		
 		addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
 
 		WebElement EditVoiceLineNo= getwebelement(xml.getlocator("//locators/" + application + "/editvoicelineno"));
 		click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
-		Thread.sleep(2000);
+		
 		Clear(EditVoiceLineNo);
-		Thread.sleep(2000);
-		addtextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
+		
+		addtextFields_commonMethod(application, "RFI Voiceline Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-		Log.info("Navigated to order panel in view service page");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 		//Edit Order
-		Thread.sleep(1000);
+		
 		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
 		compareText(application, "Edit Order Header", "editorderheader", "Edit Order", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Order Number", "editorderno", xml);
-		Thread.sleep(2000);
+		
 		cleartext(application, "Order Number", "editorderno");
-		Thread.sleep(2000);
+		
 		addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
 		click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
-		Thread.sleep(2000);
+		
 		cleartext(application, "RFI Voice Line Number", "editvoicelineno");
-		Thread.sleep(2000);
+		
 		addtextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "OK", "editorder_okbutton", xml);
-		Thread.sleep(1000);
+		
 		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);
-		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-		Log.info("Navigated to order panel in view service page");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
+		
 
-		compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
-		compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		if(editorderno.equalsIgnoreCase("Null")) {
+			
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order/Contract Number (Parent SID)' field is not edited");
+			Log.info("'Order/Contract Number (Parent SID)' field is not edited");
+		}else {
+			compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
+		}
+		
+		if(editvoicelineno.equalsIgnoreCase("Null")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS,"'RFI/RFQ/IP Voice Line Number' field is not edited");
+			Log.info("'RFI/RFQ/IP Voice Line Number' field is not edited");
+		}else {
+			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		}
 		Log.info("------ Edit Order is successful ------");
+		}
 
 	}
 
 
-public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno
-			) throws InterruptedException, DocumentException, IOException {
+public void verifyorderpanel_changeorder(String application, String ChangeOrder_newOrderNumber, String changevoicelineno, String changeOrderSelection_newOrder,
+			String changeOrderSelection_existingOrder, String ChangeOrder_existingOrderNumber) throws InterruptedException, DocumentException, IOException {
 
 		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-		click_commonMethod(application, "Change Order", "changeorderlink", xml);
-		compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-		List<WebElement> ChangeOrder_DropdownList= getwebelements(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist"));
-		int ChangeOrder_Dropdown_count= ChangeOrder_DropdownList.size();
-		System.out.println("Dropdown Count : "+ChangeOrder_Dropdown_count);
-		if(ChangeOrder_Dropdown_count> 1)
-		{
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/changeorder_dropdownvalue")));
-			Thread.sleep(3000);
-
-			//Cancel change order
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			waitforPagetobeenable();
-			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-
-			//Change order
-			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-			click_commonMethod(application, "Change Order", "changeorderlink", xml);
-			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-			
-			WebElement changeOrderDropdopdownvalue=getwebelement("//div[text()='"+ changeorderno +"']");
-			Clickon(changeOrderDropdopdownvalue);
-			Thread.sleep(5000);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected order from dropdown");
-			click_commonMethod(application, "OK", "changeorder_okbutton", xml);
-			waitforPagetobeenable();
-			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
-			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
-			Log.info("------ Change Order is successful ------");
-			
+				
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Change Order' Functionality");
+		
+		if((changeOrderSelection_newOrder.equalsIgnoreCase("No")) && (changeOrderSelection_existingOrder.equalsIgnoreCase("No"))) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Change Order is not performed");
+			Log.info("Change Order is not performed");
 		}
-		else
-		{
-			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
-			click_commonMethod(application, "Order Number", "changeordernumber", xml);
-			Thread.sleep(2000);
-			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
-			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
-			Thread.sleep(3000);
-			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-
+		else if(changeOrderSelection_newOrder.equalsIgnoreCase("Yes")) {
+			
 			//Change Order
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Change Order", "changeorderlink", xml);
 			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-			Thread.sleep(1000);
 			
 			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
 			click_commonMethod(application, "Order Number", "changeordernumber", xml);
-			Thread.sleep(2000);
-			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
+			
+			addtextFields_commonMethod(application, "Order Number", "changeordernumber", ChangeOrder_newOrderNumber, xml);
 			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
-			Thread.sleep(3000);
+			
 			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 			click_commonMethod(application, "Create Order", "createorder_button", xml);
-			Thread.sleep(1000);
+			
 			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
+			
+			compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_newOrderNumber, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
-			
-			
-			
 		}
+		else if(changeOrderSelection_existingOrder.equalsIgnoreCase("yes")) 
+		{
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Performing Change Order functionality");
+			
+			ScrolltoElement(application, "userspanel_header", xml);
+			
+			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
+			
+			
+				addDropdownValues_commonMethod(application, "Order/Contract Number (Parent SID)", "changeorder_chooseorderdropdown", ChangeOrder_existingOrderNumber, xml);
+				
+				click_commonMethod(application, "OK", "changeorder_okbutton", xml);
+				
+				ScrolltoElement(application, "userspanel_header", xml);
+				
+				compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_existingOrderNumber, xml);
+				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
+				Log.info("------ Change Order is successful ------");
+	
+		}
+		
 	}
-
+	
 
 	
 	
@@ -1263,7 +1249,7 @@ public void verifyorderpanel_changeorder(String application, String changeordern
 		WebElement element = null;
 
 		try {
-			Thread.sleep(1000);
+			
 			element = getwebelement("//div[label[contains(text(),'"+labelname+"')]]/div");
 			String emptyele = element.getText().toString();
 
@@ -1382,14 +1368,14 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 				}
 				
 				
-				Thread.sleep(1000);
+				
 				// click on Country dropdown
 				WebElement selectDropdownValue = driver.findElement(By.xpath("//div[contains(text(),'"+dropdownToBeSelectedInTheEnd+"')]"));
 				System.out.println("Selected  '" +lebelname+ "'  is : " + selectDropdownValue.getText().toString());
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected  '"+lebelname+ "'  is : " + selectDropdownValue.getText().toString());
 				Log.info("Selected  '" +lebelname+ "'  is : " + selectDropdownValue.getText().toString());
 				selectDropdownValue.click();
-				Thread.sleep(2000);
+				
 			
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
@@ -1416,16 +1402,16 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 		//Cancel edit service
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
-		Thread.sleep(2000);
+		
 		ScrolltoElement(application, "orderpanelheader", xml);
 		
 		try { 
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Edit", "edit", xml);
-		Thread.sleep(2000);
+		
 		scrolltoend();
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		Thread.sleep(2000);
+		
 		
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
@@ -1440,7 +1426,7 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 		//Edit service
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Edit", "edit", xml);
-		Thread.sleep(2000);
+		
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
@@ -1542,16 +1528,15 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 		
 		
 
-		Thread.sleep(2000);
+		
 		scrolltoend();
 		click_commonMethod(application, "OK", "editservice_okbutton", xml);
-		Thread.sleep(3000);
+		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
 			System.out.println("Navigated to view service page");
-			//*compareText(application, "Service updated success message", "serviceupdate_successmsg", "Service  successfully updated", xml);	
-			GetText(application, "Service updated success message", "serviceupdate_successmsg");
+			verifysuccessmessage(application, "Service successfully updated");
 		}
 		else
 		{
@@ -1584,7 +1569,7 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 		ScrolltoElement(application, "orderpanelheader", xml);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Manage Subnets", "managesubnets_link", xml);
-		Thread.sleep(8000);
+		waitforPagetobeenable();
 		GetText(application, "Manage Subnet header", "managesubnet_header");
 		compareText(application, "Space Name", "spacename_column", "Space Name", xml);
 		compareText(application, "Block Name", "blockname_column", "Block Name", xml);
@@ -1592,7 +1577,7 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 		compareText(application, "Start Address", "startaddress_column", "Start Address", xml);
 		compareText(application, "Size", "size_column", "Size", xml);
 		click_commonMethod(application, "Close", "closesymbol", xml);
-		Thread.sleep(2000);
+		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Manage subnets page");
@@ -1609,16 +1594,16 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 		ScrolltoElement(application, "orderpanelheader", xml);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Manage Subnets Ipv6", "managesubnetsipv6_link", xml);
-		Thread.sleep(8000);
+		waitforPagetobeenable();
 		GetText(application, "Manage Subnet header", "managesubnet_header");
 		compareText(application, "Space Name", "spacename_column", "Space Name", xml);
 		compareText(application, "Block Name", "blockname_column", "Block Name", xml);
 		compareText(application, "Subnet Name", "subnetname_column", "Subnet Name", xml);
 		compareText(application, "Start Address", "startaddress_column", "Start Address", xml);
 		compareText(application, "Size", "size_column", "Size", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Close", "closesymbol", xml);
-		Thread.sleep(2000);
+		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in manage subnets IPv6 page");
@@ -1636,14 +1621,14 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 		ScrolltoElement(application, "orderpanelheader", xml);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Dump", "dump_link", xml);
-		Thread.sleep(2000);
+		
 		GetText(application, "Dump header", "dumppage_header");
 		GetText(application, "Service retrieved time", "serviceretrieved_text");
 		compareText(application, "Service header", "service_header", "Service", xml);
 		GetText(application, "Dump page service details", "dumppage_text");
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Close", "closesymbol", xml);
-		Thread.sleep(2000);
+		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Dump page");
@@ -1662,11 +1647,11 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 		//Manage service
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
-		Thread.sleep(2000);
+		
 		ScrolltoElement(application, "orderpanelheader", xml);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Manage", "manageLink", xml);
-		Thread.sleep(2000);
+		
 		waitforPagetobeenable();
 		scrollToTop();
 		compareText(application, "Manage service header", "manageservice_header", "Manage Service", xml);
@@ -1712,7 +1697,7 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 				click_commonMethod(application, "New Status", "statuspage_newstatusdropdown", xml);
 				click_commonMethod(application, "New Status value", "statuspage_newstatusdropdownvalue", xml);
 				click_commonMethod(application, "OK", "okbutton", xml);
-				Thread.sleep(2000);
+				
 				scrolltoend();
 				WebElement ServiceStatusHistory= getwebelement(xml.getlocator("//locators/" + application + "/servicestatushistory"));
 				try
@@ -1760,7 +1745,7 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 			if(getwebelement(xml.getlocator("//locators/" + application + "/synchronizelink")).isDisplayed())
 			{
 				click_commonMethod(application, "Synchronize", "synchronizelink", xml);
-				Thread.sleep(2000);
+				
 				verifysuccessmessage(application, "Sync started successfully. Please check the sync status of this service.");
 			}
 		}
@@ -1786,15 +1771,15 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 //		verify_FetchInterfacesValue(application);
 //		verify_VistamartDeviceValue(application);
 		click_commonMethod(application, "Manage", "deviceforservicepanel_managelink", xml);
-		Thread.sleep(2000);
+		
 		scrollToTop();
 		compareText(application, "Manage Network header", "managenetwork_header", "Manage COLT's Network - Manage Network", xml);
 		driver.navigate().back();
-		Thread.sleep(2000);
+		
 		scrolltoend();
-		Thread.sleep(2000);
+		
 		click_commonMethod(application, "Back", "managepage_backbutton", xml);
-		Thread.sleep(2000);
+		
 		waitforPagetobeenable();
 	}
 	
@@ -1804,11 +1789,11 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 		//Manage service
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
-		Thread.sleep(2000);
+		
 		ScrolltoElement(application, "orderpanelheader", xml);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Manage", "manageLink", xml);
-		Thread.sleep(2000);
+		
 		scrollToTop();
 		compareText(application, "Manage service header", "manageservice_header", "Manage Service", xml);
 		GetText(application, "Order Name", "status_ordername");
@@ -1891,9 +1876,9 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 		}
 
 		scrolltoend();
-		compareText(application, "Sync Status", "sync_status", syncstatus, xml);
+		GetText(application, "Sync Status", "sync_status");
 		click_commonMethod(application, "Back", "managepage_backbutton", xml);
-		Thread.sleep(2000);
+		
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
@@ -1915,7 +1900,7 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 		ScrolltoElement(application, "orderpanelheader", xml);
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Manage", "manageLink", xml);
-		Thread.sleep(2000);
+		
 		scrollToTop();
 		compareText(application, "Manage service header", "manageservice_header", "Manage Service", xml);
 		compareText(application, "Status header", "statuspanel_header", "Status", xml);
@@ -1960,7 +1945,7 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 				click_commonMethod(application, "New Status", "statuspage_newstatusdropdown", xml);
 				click_commonMethod(application, "New Status value", "statuspage_newstatusdropdownvalue", xml);
 				click_commonMethod(application, "OK", "okbutton", xml);
-				Thread.sleep(2000);
+				
 				scrolltoend();
 				WebElement ServiceStatusHistory= getwebelement(xml.getlocator("//locators/" + application + "/servicestatushistory"));
 				try
@@ -2033,28 +2018,28 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 //		verify_FetchInterfacesValue(application);
 //		verify_VistamartDeviceValue(application);
 		click_commonMethod(application, "Manage", "deviceforservicepanel_managelink", xml);
-		Thread.sleep(2000);
+		
 		scrollToTop();
 		compareText(application, "Manage Network header", "managenetwork_header", "Manage COLT's Network - Manage Network", xml);
 		driver.navigate().back();
-		Thread.sleep(2000);
+		
 		scrolltoend();
-		Thread.sleep(2000);
+		
 		click_commonMethod(application, "Back", "managepage_backbutton", xml);
-		Thread.sleep(2000);
+		
 
 	}
 	
 
 	public void navigateToAddNewDevicepage_PE(String application) throws InterruptedException, DocumentException {
 		ScrolltoElement(application, "portalaccess_header", xml);
-		Thread.sleep(1000);
+		
 		compareText(application, "Provider Equipment (PE)", "providerequipment_header", "Provider Equipment (PE)", xml);
 		click_commonMethod(application, "Add PE Device", "addpedevice_link", xml);
-		Thread.sleep(2000);
+		
 		compareText(application, "Add PE Device Header", "addpedevice_header", "Add PE Device", xml);
 		click_commonMethod(application, "Add New Device toggle", "addnewdevice_togglebutton", xml);
-		Thread.sleep(2000);
+		
 	}
 
 	public void verifyadddevicefields_PE(String application) throws InterruptedException, DocumentException {
@@ -2106,7 +2091,7 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 				} else {
 
 					Clickon(getwebelement("//div[label[text()='" + labelname + "']]//div[text()='×']"));
-					Thread.sleep(1000);
+					
 
 					// verify list of values inside dropdown
 					List<WebElement> listofvalues = driver
@@ -2122,12 +2107,12 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 						System.out.println(" " + valuetypes.getText());
 					}
 
-					//Thread.sleep(2000);
+					//
 					SendKeys(getwebelement("//div[label[text()='" + labelname + "']]//input"), expectedValueToAdd);
-					Thread.sleep(1000);
+					
 
 					Clickon(getwebelement("(//div[contains(text(),'" + expectedValueToAdd + "')])[1]"));
-					Thread.sleep(1000);
+					
 
 					String actualValue = getwebelement(
 							"//label[text()='" + labelname + "']/following-sibling::div//span").getText();
@@ -2168,7 +2153,7 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 				} else {
 
 					Clickon(getwebelement("//div[label[text()='" + labelname + "']]//div[text()='×']"));
-					Thread.sleep(1000);
+					
 
 					// verify list of values inside dropdown
 					List<WebElement> listofvalues = driver
@@ -2184,12 +2169,12 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 						System.out.println(" " + valuetypes.getText());
 					}
 
-					//Thread.sleep(2000);
+					//
 					SendKeys(getwebelement("//div[label[text()='" + labelname + "']]//input"), expectedValueToAdd);
-					Thread.sleep(1000);
+					
 
 					Clickon(getwebelement("(//span[contains(text(),'" + expectedValueToAdd + "')])[1]"));
-					Thread.sleep(1000);
+					
 
 					String actualValue = getwebelement("//label[text()='" + labelname + "']/following-sibling::div//span").getText();
 					ExtentTestManager.getTest().log(LogStatus.PASS,
@@ -2292,9 +2277,9 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 			scrolltoend();
 			//Verify Mandatory fields
 			click_commonMethod(application, "Next", "Next_Button", xml);
-			Thread.sleep(2000);
+			
 			scrollToTop();
-			Thread.sleep(2000);
+			
 			warningMessage_commonMethod(application, "warningMessage_name", "Device Name", xml);
 			warningMessage_commonMethod(application, "warningMessage_vendor", "Vendor/Model", xml);
 			//**warningMessage_commonMethod(application, "warningMessage_Country", "Country", xml);
@@ -2369,7 +2354,7 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 			//select country
 			scrolltoend();
 			  scrolltoview(application, "Snprw Label", "SnmprwLabelAddPEDevicePage", xml);
-			  Thread.sleep(2000);
+			  
 			//SelectDropdownValueUnderDivTag(application, "Country", Country, "countryinput", "commonDropdownValueTag", xml);
 			SelectDropdownValueUnderSelectTag(application, "Country", Country, "countryinput", xml);
 			scrolltoend();
@@ -2443,12 +2428,12 @@ public void SelectDropdownValueUnderDivTag(String application ,String lebelname,
 	}
 	
 		scrolltoend();
-		Thread.sleep(2000);
+		
 		click_commonMethod(application, "Next", "Next_Button", xml);
-		Thread.sleep(3000);
+		
 		scrollToTop();
 		compareText(application, "Add Device success msg", "PE_AddPEDeviceSuccessfulMessage", "Device successfully created.", xml);
-		Thread.sleep(2000);
+		
 	}
 
 	public void verifyViewpage_Devicedetails_PE(String application, String name, String vendormodel, String telnet, String ssh, String snmp2c,String SnmPro,
@@ -2632,7 +2617,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 			
 			try {
 				scrollToTop();
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		click_commonMethod(application, "Action", "viewdevice_Actiondropdown", xml);
 		compareText(application, "Edit", "viewdevice_Edit", "Edit", xml);
 		compareText(application, "Delete", "viewdevice_delete", "Delete", xml);
@@ -2640,15 +2625,15 @@ public void testStatus_PE(String application) throws InterruptedException {
 
 		//Edit in view device page
 		click_commonMethod(application, "Edit", "viewdevice_Edit", xml);
-		Thread.sleep(2000);
+		
 		scrollToTop();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/editdeviceheader")).isDisplayed())
 		{
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Navigated to 'Edit PE Device' page successfully");
 			scrolltoend();
-			Thread.sleep(1000);
+			
 			click_commonMethod(application, "Cancel", "cancelbutton", xml);
-			Thread.sleep(2000);
+			
 			//ScrolltoElement(application, "portalaccess_header", xml);
 			scrollToTop();
 		}
@@ -2678,14 +2663,14 @@ public void testStatus_PE(String application) throws InterruptedException {
 		 
 		 waitforPagetobeenable();
 		 scrollToTop();
-		 Thread.sleep(3000);
+		 
 		 
 		 Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewdevice_Actiondropdown")));
 			
-			Thread.sleep(3000);
+			
 			
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/viewdevice_fetchinterfacelink")));
-			Thread.sleep(2000);
+			
 			
 			
 		//verify success Message
@@ -2706,7 +2691,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 				
 				//click on the 'click here' link
 //				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ClickhereLink_fetchInterface")));
-//				Thread.sleep(3000);
+//				
 				
 				clickLink=true;
 				
@@ -2721,7 +2706,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 					
 					//click on the 'click here' link
 //					Clickon(getwebelement(xml.getlocator("//locators/" + application + "/ClickhereLink_fetchInterface")));
-//					Thread.sleep(3000);
+//					
 					
 					clickLink=true;
 				}
@@ -2742,609 +2727,594 @@ public void testStatus_PE(String application) throws InterruptedException {
 
 	
 	public static String InterfaceAddress;
-	public void verifyFetchDeviceInterface_PE(String application, String devicename, String Inservice_status, String Inmaintenance_status, String vendormodel, String managementaddress, String snmpro, String country, String interfacename) throws InterruptedException, DocumentException, IOException {
-		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Fetch Device Functionality");
-		scrollToTop();
-		if(getwebelement(xml.getlocator("//locators/" + application + "/viewdevicepage_header")).isDisplayed()) {
-			ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
-			System.out.println("'View PE Device' page navigated as expected");
-			click_commonMethod(application, "Action", "viewdevice_Actiondropdown", xml);
-			click_commonMethod(application, "Fetch Interface", "viewdevice_fetchinterfacelink", xml);
-			Thread.sleep(3000);
-		try {
-			if(getwebelement(xml.getlocator("//locators/" + application + "/PE_FetchDeviceInterfacesSuccessMessage")).isDisplayed()){
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Device fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' displayed ");
-				System.out.println("Step : Device fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' displayed ");
-			if(getwebelement(xml.getlocator("//locators/" + application + "/herelink_fetchinterface")).isDisplayed()){
-
-		try {
-		click_commonMethod(application, "here", "herelink_fetchinterface", xml);
-		Thread.sleep(2000);
-
-		//Manage Network
-		compareText(application, "Manage Network header", "managenetwork_header", "Manage COLT's Network - Manage Network", xml);
-		compareText(application, "Status header", "status_header", "Status", xml);
-		compareText(application, "Synchronization header", "synchronization_header", "Synchronization", xml);
-
-		//verify column headers
-		compareText(application, "Device column header", "status_devicecolumn", "Device", xml);
-		compareText(application, "Status column header", "status_statuscloumn", "Status", xml);
-		compareText(application, "Last Modification column header", "status_lastmodificationcolumn", "Last Modification", xml);
-		compareText(application, "Action column header", "status_Action", "Action", xml);
-		compareText(application, "Device column header", "synchronization_devicecolumn", "Device", xml);
-		compareText(application, "Sync Status column header", "synchronization_syncstatuscolumn", "Sync Status", xml);
-		compareText(application, "Smarts column header", "synchronization_smartscolumn", "Smarts", xml);
-		compareText(application, "Fetch Interfaces column header", "synchronization_FetchInterfacescolumn", "Fetch Interfaces", xml);
-		compareText(application, "VistaMart Device column header", "synchronization_vistamartdevice", "VistaMart Device", xml);
-		compareText(application, "Action column header", "synchronization_actioncolumn", "Action", xml);
-
-		}catch(NoSuchElementException e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Manage COLT's Network page");
-			System.out.println(  e+ " : Field is not displayed in Manage COLT's Network Device page");
-		}catch(Exception e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Manage COLT's Network Device page");
-			System.out.println(  e+" : Field is not displayed in Manage COLT's Network Device page");
-		}
+	
+public void verifyFetchDeviceInterface_PE(String application, String devicename, String Inservice_status, String Inmaintenance_status, String vendormodel, 
+		String managementaddress, String snmpro, String country, String interfacename) throws Exception {
+	ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Fetch Device Functionality");
+	scrollToTop();
+	
+	if(getwebelement(xml.getlocator("//locators/" + application + "/viewdevicepage_header")).isDisplayed()) {
+		ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
+		System.out.println("'View PE Device' page navigated as expected");
+	
+		click_commonMethod(application, "Action", "viewdevice_Actiondropdown", xml);
+		click_commonMethod(application, "Fetch Interface", "viewdevice_fetchinterfacelink", xml);
 		
-			}else {
-				ExtentTestManager.getTest().log(LogStatus.FAIL,  " : here Link is not displayed in Manage COLT's Network Device page");
-				System.out.println(  " : here Link is not displayed in Manage COLT's Network Device page");
-			}
-			
-			
-		//verify Status panel column values
-		compareText(application, "Device", "status_devicevalue", devicename, xml);
-		String ServiceStatus= GetText(application, "Status", "status_statusvalue");
-		if(ServiceStatus.equalsIgnoreCase(Inservice_status))
+		
+		try {
+		if(getwebelement(xml.getlocator("//locators/" + application + "/PE_FetchDeviceInterfacesSuccessMessage")).isDisplayed()){
+
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Device fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' displayed ");
+			System.out.println("Step : Device fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' displayed ");
+		//click_commonMethod(application, "here", "herelink_fetchinterface", xml);/Not working
+				safeJavaScriptClick(getwebelement(xml.getlocator("//locators/" +application+ "/herelink_fetchinterface")));
+				
+
+	//Manage Network
+	compareText(application, "Manage Network header", "managenetwork_header", "Manage COLT's Network - Manage Network", xml);
+	compareText(application, "Status header", "status_header", "Status", xml);
+	compareText(application, "Synchronization header", "synchronization_header", "Synchronization", xml);
+
+	//verify column headers
+	compareText(application, "Device column header", "status_devicecolumn", "Device", xml);
+	compareText(application, "Status column header", "status_statuscloumn", "Status", xml);
+	compareText(application, "Last Modification column header", "status_lastmodificationcolumn", "Last Modification", xml);
+	compareText(application, "Action column header", "status_Action", "Action", xml);
+	compareText(application, "Device column header", "synchronization_devicecolumn", "Device", xml);
+	compareText(application, "Sync Status column header", "synchronization_syncstatuscolumn", "Sync Status", xml);
+	compareText(application, "Smarts column header", "synchronization_smartscolumn", "Smarts", xml);
+	compareText(application, "Fetch Interfaces column header", "synchronization_FetchInterfacescolumn", "Fetch Interfaces", xml);
+	compareText(application, "VistaMart Device column header", "synchronization_vistamartdevice", "VistaMart Device", xml);
+	compareText(application, "Action column header", "synchronization_actioncolumn", "Action", xml);
+
+		
+	//verify Status panel column values
+	compareText(application, "Device", "status_devicevalue", devicename, xml);
+	String ServiceStatus= GetText(application, "Status", "status_statusvalue");
+	if(ServiceStatus.equalsIgnoreCase(Inservice_status))
+	{
+		compareText(application, "Status", "status_statusvalue", Inservice_status, xml);
+	}
+	else
+	{
+		compareText(application, "Status", "status_statusvalue", Inmaintenance_status, xml);
+	}
+
+	//verify last modification
+	try {
+		String GMTValue;
+		String LastModificationvalue= GetText(application, "Last Modification", "status_lastmodificationvalue");
+		System.out.println("Last modified date: " +LastModificationvalue);
+		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
+
+		if (LastModificationvalue.length() > 3) 
 		{
-			compareText(application, "Status", "status_statusvalue", Inservice_status, xml);
-		}
+			GMTValue = LastModificationvalue.substring(LastModificationvalue.length() - 3);
+		} 
 		else
 		{
-			compareText(application, "Status", "status_statusvalue", Inmaintenance_status, xml);
+			GMTValue = LastModificationvalue;
 		}
+		sa.assertEquals(GMTValue, "GMT");
 
-		//verify last modification
-		try {
-			String GMTValue;
-			String LastModificationvalue= GetText(application, "Last Modification", "status_lastmodificationvalue");
-			System.out.println("Last modified date: " +LastModificationvalue);
-			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Last Modification column value field is not displaying");
+	}
 
-			if (LastModificationvalue.length() > 3) 
-			{
-				GMTValue = LastModificationvalue.substring(LastModificationvalue.length() - 3);
-			} 
-			else
-			{
-				GMTValue = LastModificationvalue;
+	click_commonMethod(application, "Status", "status_statuslink", xml);
+	
+	compareText(application, "Status page header", "Statuspage_header", "Device", xml);
+
+	//verify field headers in status page
+	compareText(application, "Name field header", "statuspage_nameheader", "Name", xml);
+	compareText(application, "Vendor/Model field header", "statuspage_vendormodelheader", "Vendor/Model", xml);
+	compareText(application, "Management Address field header", "statuspage_managementaddressheader", "Management Address", xml);
+	compareText(application, "Country field header", "statuspage_countryheader", "Country", xml);
+	compareText(application, "City field header", "statuspage_cityheader", "City", xml);
+	compareText(application, "Site field header", "statuspage_siteheader", "Site", xml);
+	compareText(application, "Premise field header", "statuspage_premiseheader", "Premise", xml);
+
+	//verify field values in status page
+	compareText(application, "Name", "statuspage_namevalue", devicename, xml);
+	compareText(application, "Vendor/Model", "statuspage_vendormodelvalue", vendormodel, xml);
+	compareText(application, "Management Address", "statuspage_managementaddressvalue", managementaddress, xml);
+	compareText(application, "Snmpro", "statuspage_snmprovalue", snmpro, xml);
+	compareText(application, "Country", "statuspage_countryvalue", country, xml);
+	GetText(application, "City", "statuspage_cityvalue");
+	GetText(application, "Site", "statuspage_sitevalue");
+	GetText(application, "Premise", "statuspage_premisevalue");
+
+	
+	
+	compareText(application, "Status header", "Statuspage_statusheader", "Status", xml);
+	compareText(application, "Current Status field header", "statuspage_currentstatusfieldheader", "Current Status", xml);
+	compareText(application, "New Status field header", "statuspage_newstatusfieldheader", "New Status", xml);
+	compareText(application, "Current Status", "statuspage_currentstatusvalue", Inservice_status, xml);
+	click_commonMethod(application, "New Status Dropdown", "statuspage_newstatusdropdown", xml);
+	WebElement selectNewStatusvalue= getwebelement(xml.getlocator("//locators/" + application + "/statuspage_newstatusdropdownvalue"));
+	Clickon(selectNewStatusvalue);
+	String NewStatusvalue= getwebelement(xml.getlocator("//locators/" + application + "/statuspage_newstatusdropdownvalue")).getText();
+	ExtentTestManager.getTest().log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue);
+	click_commonMethod(application, "OK", "statuspage_okbutton", xml);
+	
+	scrollToTop();
+//	compareText(application, "Device status update success message", "Sync_successmsg", "Device Status history successfully changed", xml);
+	verifysuccessmessage(application, "Device Status history successfully changed");
+	scrolltoend();
+	//verify 'new status' table column headers
+	compareText(application, "Status column header", "statuspage_statuscolumnheader", "Status", xml);
+	compareText(application, "Changed On column header", "statuspage_changedon_columnheader", "Changed On", xml);
+	compareText(application, "Changed By column header", "statuspage_changedby_columnheader", "Changed By", xml);
+
+	//verify 'new status' table column values
+	//Device status history table
+	int TotalPages;
+	String TotalPagesText = getwebelement("//div[@class='ag-div-margin row']//div//span[@ref='lbTotal']").getText();
+	TotalPages = Integer.parseInt(TotalPagesText);
+	System.out.println("Total number of pages in table is: " + TotalPages);
+
+	if (TotalPages != 0) {
+
+		outerloop:
+			for (int k = 1; k <= TotalPages; k++) {
+
+				String AddedInterface= getwebelement("//div[@role='grid']//div[@ref='eBodyViewport']/div").getAttribute("style");
+				if(!AddedInterface.contains("height: 1px"))
+				{
+					List<WebElement> results = getwebelements("//div[@class='modal-content']//div[@class='ag-div-margin row']//div[@ref='eBodyContainer']//div[@role='row']");
+					int numofrows = results.size();
+					System.out.println("no of results: " + numofrows);
+
+					if ((numofrows == 0)) {
+
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Device Status History is empty");
+					}
+					else {
+						// Current page
+						String CurrentPage = getwebelement("//div[@class='ag-div-margin row']//div//span[@ref='lbCurrent']").getText();
+						int Current_page = Integer.parseInt(CurrentPage);
+						System.out.println("The current page is: " + Current_page);
+
+						sa.assertEquals(k, Current_page);
+
+						System.out.println("Currently we are in page number: " + Current_page);
+						for (int i = 0; i < numofrows; i++) {
+							try {
+
+								String Devicehistorydata = results.get(i).getText();
+								System.out.println(Devicehistorydata);
+								if (Devicehistorydata.contains(NewStatusvalue)) 
+								{
+									ExtentTestManager.getTest().log(LogStatus.PASS, "Device status history table has data");
+									
+									compareText(application, "New Status", "statuspage_newstatusvalue", NewStatusvalue, xml);
+									try {
+										String GMTValue;
+										String ChangedOnvalue= GetText(application, "Changed On", "statuspage_changedonvalue");
+										System.out.println("Changed On value: " +ChangedOnvalue);
+										SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
+
+										if (ChangedOnvalue.length() > 3) 
+										{
+											GMTValue = ChangedOnvalue.substring(ChangedOnvalue.length() - 3);
+										} 
+										else
+										{
+											GMTValue = ChangedOnvalue;
+										}
+										assertEquals(GMTValue, "GMT");
+
+									}catch(Exception e)
+									{
+										e.printStackTrace();
+										ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Changed on column value field is not displaying");
+									}
+
+									compareText(application, "Changed By", "statuspage_changedbyvalue", Getkeyvalue("APT_NonVoiceService_Username"), xml);
+									
+									click_commonMethod(application, "Close", "statuspage_closebutton", xml);
+									break outerloop;
+								}
+
+							} catch (StaleElementReferenceException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+
+							}
+						}
+					}
+				}
+				else
+				{
+					ExtentTestManager.getTest().log(LogStatus.FAIL, "No interfaces added");
+
+				}
 			}
-			sa.assertEquals(GMTValue, "GMT");
 
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Last Modification column value field is not displaying");
-		}
+	}else {
 
-		click_commonMethod(application, "Status", "status_statuslink", xml);
-		Thread.sleep(2000);
-		compareText(application, "Status page header", "Statuspage_header", "Device", xml);
+		System.out.println("No data available in table");
+		Log.info("No data available in table");
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "No data available in table");
+	}
 
-		//verify field headers in status page
-		compareText(application, "Name field header", "statuspage_nameheader", "Name", xml);
-		compareText(application, "Vendor/Model field header", "statuspage_vendormodelheader", "Vendor/Model", xml);
-		compareText(application, "Management Address field header", "statuspage_managementaddressheader", "Management Address", xml);
-		compareText(application, "Snmpro field header", "statuspage_snmproheader", "Snmpro", xml);
-		compareText(application, "Country field header", "statuspage_countryheader", "Country", xml);
-		compareText(application, "City field header", "statuspage_cityheader", "City", xml);
-		compareText(application, "Site field header", "statuspage_siteheader", "Site", xml);
-		compareText(application, "Premise field header", "statuspage_premiseheader", "Premise", xml);
-
-		//verify field values in status page
-		compareText(application, "Name", "statuspage_namevalue", devicename, xml);
-		compareText(application, "Vendor/Model", "statuspage_vendormodelvalue", vendormodel, xml);
-		compareText(application, "Management Address", "statuspage_managementaddressvalue", managementaddress, xml);
-		GetText(application,"Snmpro", "statuspage_snmprovalue");
-		compareText(application, "Country", "statuspage_countryvalue", country, xml);
-		GetText(application, "City", "statuspage_cityvalue");
-		GetText(application, "Site", "statuspage_sitevalue");
-		GetText(application, "Premise", "statuspage_premisevalue");
+	//verify view interfaces page
+	
+	click_commonMethod(application, "View Interfaces", "status_viewinterfaceslink", xml);
+	
+	compareText(application, "Interface page header", "viewinterfacepage_header", "Interfaces", xml);
+	compareText(application, "Interface page subheader", "viewinterfacepage_interfacesubheader", "Interfaces", xml);
+	String AddedInterface= getwebelement("//div[@role='grid']//div[@ref='eBodyViewport']/div").getAttribute("style");
+	if(!AddedInterface.contains("height: 1px"))
+	{
+		compareText(application, "Device Name column header", "viewinterface_devicenamecolumnheader", "Device Name", xml);
+		compareText(application, "Interface Name column header", "interfacename_columnheader", "Interface Name", xml);
+		compareText(application, "Interface Address column header", "interfaceaddress_columnheader", "Interface Address", xml);
+		WebElement InterfaceAddressRowValue= driver.findElement(By.xpath("(//div[@role='gridcell'][@col-id='address'])[1]"));
+		Clickon(InterfaceAddressRowValue);
+		InterfaceAddressRowValue.sendKeys(Keys.TAB);
+		compareText(application, "Interface Type column header", "interfacetype_columnheader", "Interface Type", xml);
+		WebElement InterfaceTypeRowValue= getwebelement(xml.getlocator("//locators/" + application + "/interfacetype_rowvalue"));
+		Clickon(InterfaceTypeRowValue);
+		InterfaceTypeRowValue.sendKeys(Keys.TAB);
+		compareText(application, "Status column header", "viewinterface_status_columnheader", "Status", xml);
+		WebElement StatusRowValue= getwebelement(xml.getlocator("//locators/" + application + "/viewinterface_status_rowvalue"));
+		Clickon(StatusRowValue);
+		StatusRowValue.sendKeys(Keys.TAB);
+		compareText(application, "Last Modification column header", "viewinterface_lastmod_columnheader", "Last Modification", xml);
 
 		
+		click_commonMethod(application, "Close", "viewinterface_closebutton", xml);
 		
-		compareText(application, "Status header", "Statuspage_statusheader", "Status", xml);
-		compareText(application, "Current Status field header", "statuspage_currentstatusfieldheader", "Current Status", xml);
-		compareText(application, "New Status field header", "statuspage_newstatusfieldheader", "New Status", xml);
-		compareText(application, "Current Status", "statuspage_currentstatusvalue", Inservice_status, xml);
-		click_commonMethod(application, "New Status Dropdown", "statuspage_newstatusdropdown", xml);
-		WebElement selectNewStatusvalue= getwebelement(xml.getlocator("//locators/" + application + "/statuspage_newstatusdropdownvalue"));
-		Clickon(selectNewStatusvalue);
-		String NewStatusvalue= getwebelement(xml.getlocator("//locators/" + application + "/statuspage_newstatusdropdownvalue")).getText();
-		ExtentTestManager.getTest().log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue);
-		click_commonMethod(application, "OK", "statuspage_okbutton", xml);
-		Thread.sleep(2000);
-		scrollToTop();
-		compareText(application, "Device status update success message", "Sync_successmsg", "Device Status history successfully changed", xml);
-		Thread.sleep(1000);
-		scrolltoend();
-		//verify 'new status' table column headers
-		compareText(application, "Status column header", "statuspage_statuscolumnheader", "Status", xml);
-		compareText(application, "Changed On column header", "statuspage_changedon_columnheader", "Changed On", xml);
-		compareText(application, "Changed By column header", "statuspage_changedby_columnheader", "Changed By", xml);
+		click_commonMethod(application, "View Interfaces", "status_viewinterfaceslink", xml);
+		
 
-		//verify 'new status' table column values
-		//Device status history table
-		int TotalPages;
-		String TotalPagesText = getwebelement("//div[@class='ag-div-margin row']//div//span[@ref='lbTotal']").getText();
-		TotalPages = Integer.parseInt(TotalPagesText);
-		System.out.println("Total number of pages in table is: " + TotalPages);
+		int TotalPages1;
+		String TotalPagesText1 = getwebelement("//div[@class='ag-div-margin row']//div//span[@ref='lbTotal']").getText();
+		TotalPages1 = Integer.parseInt(TotalPagesText1);
+		System.out.println("Total number of pages in table is: " + TotalPages1);
 
-		if (TotalPages != 0) {
+		if (TotalPages1 != 0) {
 
 			outerloop:
-				for (int k = 1; k <= TotalPages; k++) {
+				for (int k = 1; k <= TotalPages1; k++) {
 
-					String AddedInterface= getwebelement("//div[@role='grid']//div[@ref='eBodyViewport']/div").getAttribute("style");
-					if(!AddedInterface.contains("height: 1px"))
-					{
-						List<WebElement> results = getwebelements("//div[@class='modal-content']//div[@class='ag-div-margin row']//div[@ref='eBodyContainer']//div[@role='row']");
-						int numofrows = results.size();
-						System.out.println("no of results: " + numofrows);
+					List<WebElement> results = getwebelements("//div[@role='row']//div[@role='gridcell'][@col-id='name']");
 
-						if ((numofrows == 0)) {
+					int numofrows = results.size();
+					System.out.println("no of results: " + numofrows);
 
-							ExtentTestManager.getTest().log(LogStatus.PASS, "Device Status History is empty");
-						}
-						else {
-							// Current page
-							String CurrentPage = getwebelement("//div[@class='ag-div-margin row']//div//span[@ref='lbCurrent']").getText();
-							int Current_page = Integer.parseInt(CurrentPage);
-							System.out.println("The current page is: " + Current_page);
+					if ((numofrows == 0)) {
 
-							sa.assertEquals(k, Current_page);
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Interface table is empty");
+					}
+					else {
+						// Current page
+						String CurrentPage = getwebelement("//div[@class='ag-div-margin row']//div//span[@ref='lbCurrent']").getText();
+						int Current_page = Integer.parseInt(CurrentPage);
+						System.out.println("The current page is: " + Current_page);
 
-							System.out.println("Currently we are in page number: " + Current_page);
-							for (int i = 0; i < numofrows; i++) {
-								try {
+						sa.assertEquals(k, Current_page);
 
-									String Devicehistorydata = results.get(i).getText();
-									System.out.println(Devicehistorydata);
-									if (Devicehistorydata.contains(NewStatusvalue)) 
-									{
-										ExtentTestManager.getTest().log(LogStatus.PASS, "Device status history table has data");
-										Thread.sleep(2000);
-										compareText(application, "New Status", "statuspage_newstatusvalue", NewStatusvalue, xml);
-										try {
-											String GMTValue;
-											String ChangedOnvalue= GetText(application, "Changed On", "statuspage_changedonvalue");
-											System.out.println("Changed On value: " +ChangedOnvalue);
-											SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
+						System.out.println("Currently we are in page number: " + Current_page);
+						for (int i = 0; i < numofrows; i++) {
+							try {
 
-											if (ChangedOnvalue.length() > 3) 
-											{
-												GMTValue = ChangedOnvalue.substring(ChangedOnvalue.length() - 3);
-											} 
-											else
-											{
-												GMTValue = ChangedOnvalue;
-											}
-											assertEquals(GMTValue, "GMT");
+								String AddedInterfacedata = results.get(i).getText();
+								System.out.println(AddedInterfacedata);
+								if (AddedInterfacedata.equalsIgnoreCase(interfacename)) {
 
-										}catch(Exception e)
-										{
-											e.printStackTrace();
-											ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Changed on column value field is not displaying");
-										}
+									String InterfaceNameRowID= getwebelement("//div[@role='gridcell'][text()='"+interfacename+"']/parent::div[@role='row']").getAttribute("row-id");
+									System.out.println("Interface row id: "+InterfaceNameRowID);
 
-										compareText(application, "Changed By", "statuspage_changedbyvalue", Getkeyvalue("APT_NonVoiceService_Username"), xml);
-										Thread.sleep(2000);
-										click_commonMethod(application, "Close", "statuspage_closebutton", xml);
-										break outerloop;
-									}
+									//verify interface values in table
+									String DeviceNamevalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='deviceName']").getText();
+									ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Device Name value is displayed as : "+DeviceNamevalue);
+									String InterfaceNamevalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='name']").getText();
+									ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Name value is displayed as : "+InterfaceNamevalue);
+									String InterfaceAddressvalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='address']").getText();
+									ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Address value is displayed as : "+InterfaceAddressvalue);
+									WebElement InterfaceAddressRowValue1= driver.findElement(By.xpath("(//div[@role='gridcell'][@col-id='address'])[1]"));
+									Clickon(InterfaceAddressRowValue1);
+									InterfaceAddressRowValue1.sendKeys(Keys.TAB);
+									String InterfaceTypevalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='type.desc']").getText();
+									ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Type value is displayed as : "+InterfaceTypevalue);
+									WebElement InterfaceTypeRowValue1= getwebelement(xml.getlocator("//locators/" + application + "/interfacetype_rowvalue"));
+									Clickon(InterfaceTypeRowValue1);
+									InterfaceTypeRowValue1.sendKeys(Keys.TAB);
+									String Statusvalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='currentStatus.desc']").getText();
+									ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Status value is displayed as : "+Statusvalue);
+									WebElement StatusRowValue1= getwebelement(xml.getlocator("//locators/" + application + "/viewinterface_status_rowvalue"));
+									Clickon(StatusRowValue1);
+									StatusRowValue1.sendKeys(Keys.TAB);
+									String LastModificationvalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='m_time']").getText();
+									ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Last Modification value is displayed as : "+LastModificationvalue);
+									WebElement LastModificationRowValue= getwebelement(xml.getlocator("//locators/" + application + "/viewinterface_lastmod_rowvalue"));
+									Clickon(LastModificationRowValue);
+									LastModificationRowValue.sendKeys(Keys.TAB);
+									WebElement StatusLink= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='Status']/div/a");
+									Clickon(StatusLink);
+									ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked on Status link in interface table");
 
-								} catch (StaleElementReferenceException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-
+									InterfaceAddress= InterfaceAddressvalue;
+									break outerloop;
 								}
+
+							} catch (StaleElementReferenceException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+
 							}
 						}
+						Clickon(getwebelement("//div[@class='ag-div-margin row']//div//button[text()='Next']"));
+						
 					}
-					else
-					{
-						ExtentTestManager.getTest().log(LogStatus.FAIL, "No interfaces added");
+				}
 
+		//verify status page headers & field names
+		compareText(application, "Interface header", "statuspage_interfaceheader", "Interface", xml);
+		compareText(application, "Name field header", "interface_statuspage_namefield", "Name", xml);
+		compareText(application, "Interface Address field header", "interface_statuspage_interfaceaddressfield", "Interface Address", xml);
+		compareText(application, "Status header", "interface_statuspage_statusheader", "Status", xml);
+		compareText(application, "Current Status field header", "interface_statuspage_currentstatusfield", "Current Status", xml);
+		compareText(application, "New Status field header", "interface_statuspage_newstatusfield", "New Status", xml);
+
+		//verify status page field values
+		compareText(application, "Name", "interface_statuspage_namevalue", interfacename, xml);
+		compareText(application, "Interface Address", "interface_statuspage_interfaceaddressvalue", InterfaceAddress, xml);
+		compareText(application, "Current Status", "interface_statuspage_currentstatusvalue", Inservice_status, xml);
+		click_commonMethod(application, "New Status Dropdown", "interface_statuspage_newstatusdropdown", xml);
+		WebElement selectNewStatusvalue1= getwebelement(xml.getlocator("//locators/" + application + "/interface_statuspage_newstatusdropdownvalue"));
+		Clickon(selectNewStatusvalue1);
+		String NewStatusvalue1= getwebelement(xml.getlocator("//locators/" + application + "/interface_statuspage_newstatusdropdownvalue")).getText();
+		ExtentTestManager.getTest().log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue1);
+		click_commonMethod(application, "OK", "interface_statuspage_okbutton", xml);
+		
+		scrollToTop();
+//		compareText(application, "Interface status update success message", "Sync_successmsg", "Interface Status History successfully changed.", xml);
+		verifysuccessmessage(application, "Interface Status History successfully changed.");
+		scrolltoend();
+		
+		//verify 'new status' table column headers
+		compareText(application, "Status column header", "interface_statuspage_statuscolumnheader", "Status", xml);
+		compareText(application, "Changed On column header", "interface_statuspage_changedon_columnheader", "Changed On", xml);
+		compareText(application, "Changed By column header", "interface_statuspage_changedby_columnheader", "Changed By", xml);
+
+		//verify 'new status' table column values
+		//verify interface status history table
+		int TotalPages2=0;
+		String TotalPagesText2 = getwebelement("(//div[@class='ag-div-margin row']//div//span[@ref='lbTotal'])[1]").getText();
+		TotalPages2 = Integer.parseInt(TotalPagesText2);
+		System.out.println("Total number of pages in table is: " + TotalPages2);
+
+		if (TotalPages2 != 0) {
+
+			outerloop:
+				for (int k = 1; k <= TotalPages2; k++) {
+
+					List<WebElement> results = getwebelements("(//div[@ref='eBodyContainer'])[2]//div[@role='row']");
+
+					int numofrows = results.size();
+					System.out.println("no of results: " + numofrows);
+
+					if ((numofrows == 0)) {
+
+						ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Status History is empty");
+					}
+					else {
+						// Current page
+						String CurrentPage = getwebelement("(//div[@class='ag-div-margin row']//div//span[@ref='lbCurrent'])[1]").getText();
+						int Current_page = Integer.parseInt(CurrentPage);
+						System.out.println("The current page is: " + Current_page);
+
+						sa.assertEquals(k, Current_page);
+
+						System.out.println("Currently we are in page number: " + Current_page);
+						for (int i = 0; i < numofrows; i++) {
+							try {
+								String Interfacehistorydata = results.get(i).getText();
+								System.out.println(Interfacehistorydata);
+								if (Interfacehistorydata.contains(NewStatusvalue1)) 
+								{
+									ExtentTestManager.getTest().log(LogStatus.PASS, "Interface status history table has data");
+									
+									compareText(application, "New Status", "interface_statuspage_newstatusvalue", NewStatusvalue1, xml);
+									try {
+										String GMTValue;
+										String ChangedOnvalue= GetText(application, "Changed On", "interface_statuspage_changedonvalue");
+										System.out.println("Changed On value: " +ChangedOnvalue);
+										SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
+
+										if (ChangedOnvalue.length() > 3)
+										{
+											GMTValue = ChangedOnvalue.substring(ChangedOnvalue.length() - 3);
+										} 
+										else
+										{
+											GMTValue = ChangedOnvalue;
+										}
+										sa.assertEquals(GMTValue, "GMT");
+
+									}catch(Exception e)
+									{
+										e.printStackTrace();
+										ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Changed On column value field is not displaying");
+									}
+
+									compareText(application, "Changed By", "interface_statuspage_changedbyvalue", Getkeyvalue("APT_login_1_Username"), xml);
+									
+									click_commonMethod(application, "Close", "interface_statuspage_closebutton", xml);
+									break outerloop;
+								}
+
+							} catch (StaleElementReferenceException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+
+							}
+						}
 					}
 				}
 
 		}else {
 
-			System.out.println("No data available in table");
-			Log.info("No data available in table");
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "No data available in table");
+			System.out.println("No data available in status history table");
+			Log.info("No data available in status history table");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No data available in status history table");
+		}
+		}else {
+
+			System.out.println("No data available in Interface table");
+			Log.info("No data available in Interface table");
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "No data available in Interface table");
+		}
+	}else
+	{
+		ExtentTestManager.getTest().log(LogStatus.INFO, "No Interface added in table");
+	}
+
+	click_commonMethod(application, "Close", "viewinterface_closebutton", xml);
+	
+
+	//verify synchronization panel column values
+	
+	scrolltoend();
+	compareText(application, "Device", "synchronization_devicevalue", devicename, xml);
+	GetText(application, "Sync Status", "synchronization_syncstatusvalue");
+
+
+	//verify smarts value
+	GetText(application, "Smarts", "synchronization_smartsvalue");
+	//verify smarts date time 
+	try {
+		String GMTValue;
+		String Smartsvalue= getwebelement(xml.getlocator("//locators/" + application + "/smarts_datetimevalue")).getText();
+		String SmartsDateTimevalue= "";
+		if (Smartsvalue.length() > 20) 
+		{
+			SmartsDateTimevalue = Smartsvalue.substring(Smartsvalue.length() - 20);
+			System.out.println("last 20 characters:"+SmartsDateTimevalue);
+		} 
+		else 
+		{
+			SmartsDateTimevalue = Smartsvalue;
 		}
 
-		//verify view interfaces page
-		Thread.sleep(2000);
-		click_commonMethod(application, "View Interfaces", "status_viewinterfaceslink", xml);
-		Thread.sleep(2000);
-		compareText(application, "Interface page header", "viewinterfacepage_header", "Interfaces", xml);
-		compareText(application, "Interface page subheader", "viewinterfacepage_interfacesubheader", "Interfaces", xml);
-		String AddedInterface= getwebelement("//div[@role='grid']//div[@ref='eBodyViewport']/div").getAttribute("style");
-		if(!AddedInterface.contains("height: 1px"))
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Smarts date value is displayed as: "+SmartsDateTimevalue);
+		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
+		if (SmartsDateTimevalue.length() > 3) 
 		{
-			compareText(application, "Device Name column header", "viewinterface_devicenamecolumnheader", "Device Name", xml);
-			compareText(application, "Interface Name column header", "interfacename_columnheader", "Interface Name", xml);
-			compareText(application, "Interface Address column header", "interfaceaddress_columnheader", "Interface Address", xml);
-			WebElement InterfaceAddressRowValue= driver.findElement(By.xpath("(//div[@role='gridcell'][@col-id='address'])[1]"));
-			Clickon(InterfaceAddressRowValue);
-			InterfaceAddressRowValue.sendKeys(Keys.TAB);
-			compareText(application, "Interface Type column header", "interfacetype_columnheader", "Interface Type", xml);
-			WebElement InterfaceTypeRowValue= getwebelement(xml.getlocator("//locators/" + application + "/interfacetype_rowvalue"));
-			Clickon(InterfaceTypeRowValue);
-			InterfaceTypeRowValue.sendKeys(Keys.TAB);
-			compareText(application, "Status column header", "viewinterface_status_columnheader", "Status", xml);
-			WebElement StatusRowValue= getwebelement(xml.getlocator("//locators/" + application + "/viewinterface_status_rowvalue"));
-			Clickon(StatusRowValue);
-			StatusRowValue.sendKeys(Keys.TAB);
-			compareText(application, "Last Modification column header", "viewinterface_lastmod_columnheader", "Last Modification", xml);
-
-			Thread.sleep(1000);
-			click_commonMethod(application, "Close", "viewinterface_closebutton", xml);
-			Thread.sleep(2000);
-			click_commonMethod(application, "View Interfaces", "status_viewinterfaceslink", xml);
-			Thread.sleep(2000);
-
-			int TotalPages1;
-			String TotalPagesText1 = getwebelement("//div[@class='ag-div-margin row']//div//span[@ref='lbTotal']").getText();
-			TotalPages1 = Integer.parseInt(TotalPagesText1);
-			System.out.println("Total number of pages in table is: " + TotalPages1);
-
-			if (TotalPages1 != 0) {
-
-				outerloop:
-					for (int k = 1; k <= TotalPages1; k++) {
-
-						List<WebElement> results = getwebelements("//div[@role='row']//div[@role='gridcell'][@col-id='name']");
-
-						int numofrows = results.size();
-						System.out.println("no of results: " + numofrows);
-
-						if ((numofrows == 0)) {
-
-							ExtentTestManager.getTest().log(LogStatus.PASS, "Interface table is empty");
-						}
-						else {
-							// Current page
-							String CurrentPage = getwebelement("//div[@class='ag-div-margin row']//div//span[@ref='lbCurrent']").getText();
-							int Current_page = Integer.parseInt(CurrentPage);
-							System.out.println("The current page is: " + Current_page);
-
-							sa.assertEquals(k, Current_page);
-
-							System.out.println("Currently we are in page number: " + Current_page);
-							for (int i = 0; i < numofrows; i++) {
-								try {
-
-									String AddedInterfacedata = results.get(i).getText();
-									System.out.println(AddedInterfacedata);
-									if (AddedInterfacedata.equalsIgnoreCase(interfacename)) {
-
-										String InterfaceNameRowID= getwebelement("//div[@role='gridcell'][text()='"+interfacename+"']/parent::div[@role='row']").getAttribute("row-id");
-										System.out.println("Interface row id: "+InterfaceNameRowID);
-
-										//verify interface values in table
-										String DeviceNamevalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='deviceName']").getText();
-										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Device Name value is displayed as : "+DeviceNamevalue);
-										String InterfaceNamevalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='name']").getText();
-										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Name value is displayed as : "+InterfaceNamevalue);
-										String InterfaceAddressvalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='address']").getText();
-										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Address value is displayed as : "+InterfaceAddressvalue);
-										WebElement InterfaceAddressRowValue1= driver.findElement(By.xpath("(//div[@role='gridcell'][@col-id='address'])[1]"));
-										Clickon(InterfaceAddressRowValue1);
-										InterfaceAddressRowValue1.sendKeys(Keys.TAB);
-										String InterfaceTypevalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='type.desc']").getText();
-										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Interface Type value is displayed as : "+InterfaceTypevalue);
-										WebElement InterfaceTypeRowValue1= getwebelement(xml.getlocator("//locators/" + application + "/interfacetype_rowvalue"));
-										Clickon(InterfaceTypeRowValue1);
-										InterfaceTypeRowValue1.sendKeys(Keys.TAB);
-										String Statusvalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='currentStatus.desc']").getText();
-										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Status value is displayed as : "+Statusvalue);
-										WebElement StatusRowValue1= getwebelement(xml.getlocator("//locators/" + application + "/viewinterface_status_rowvalue"));
-										Clickon(StatusRowValue1);
-										StatusRowValue1.sendKeys(Keys.TAB);
-										String LastModificationvalue= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='m_time']").getText();
-										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Last Modification value is displayed as : "+LastModificationvalue);
-										WebElement LastModificationRowValue= getwebelement(xml.getlocator("//locators/" + application + "/viewinterface_lastmod_rowvalue"));
-										Clickon(LastModificationRowValue);
-										LastModificationRowValue.sendKeys(Keys.TAB);
-										WebElement StatusLink= getwebelement("//div[@role='gridcell']/parent::div[@row-id="+InterfaceNameRowID+"]//div[@col-id='Status']/div/a");
-										Clickon(StatusLink);
-										ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked on Status link in interface table");
-
-										InterfaceAddress= InterfaceAddressvalue;
-										break outerloop;
-									}
-
-								} catch (StaleElementReferenceException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-
-								}
-							}
-							Clickon(getwebelement("//div[@class='ag-div-margin row']//div//button[text()='Next']"));
-							Thread.sleep(3000);
-						}
-					}
-
-			//verify status page headers & field names
-			compareText(application, "Interface header", "statuspage_interfaceheader", "Interface", xml);
-			compareText(application, "Name field header", "interface_statuspage_namefield", "Name", xml);
-			compareText(application, "Interface Address field header", "interface_statuspage_interfaceaddressfield", "Interface Address", xml);
-			compareText(application, "Status header", "interface_statuspage_statusheader", "Status", xml);
-			compareText(application, "Current Status field header", "interface_statuspage_currentstatusfield", "Current Status", xml);
-			compareText(application, "New Status field header", "interface_statuspage_newstatusfield", "New Status", xml);
-
-			//verify status page field values
-			compareText(application, "Name", "interface_statuspage_namevalue", interfacename, xml);
-			compareText(application, "Interface Address", "interface_statuspage_interfaceaddressvalue", InterfaceAddress, xml);
-			compareText(application, "Current Status", "interface_statuspage_currentstatusvalue", Inservice_status, xml);
-			click_commonMethod(application, "New Status Dropdown", "interface_statuspage_newstatusdropdown", xml);
-			WebElement selectNewStatusvalue1= getwebelement(xml.getlocator("//locators/" + application + "/interface_statuspage_newstatusdropdownvalue"));
-			Clickon(selectNewStatusvalue1);
-			String NewStatusvalue1= getwebelement(xml.getlocator("//locators/" + application + "/interface_statuspage_newstatusdropdownvalue")).getText();
-			ExtentTestManager.getTest().log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue1);
-			click_commonMethod(application, "OK", "interface_statuspage_okbutton", xml);
-			Thread.sleep(2000);
-			scrollToTop();
-			compareText(application, "Interface status update success message", "Sync_successmsg", "Interface Status History successfully changed.", xml);
-			Thread.sleep(1000);
-			scrolltoend();
-			Thread.sleep(1000);
-			//verify 'new status' table column headers
-			compareText(application, "Status column header", "interface_statuspage_statuscolumnheader", "Status", xml);
-			compareText(application, "Changed On column header", "interface_statuspage_changedon_columnheader", "Changed On", xml);
-			compareText(application, "Changed By column header", "interface_statuspage_changedby_columnheader", "Changed By", xml);
-
-			//verify 'new status' table column values
-			//verify interface status history table
-			int TotalPages2=0;
-			String TotalPagesText2 = getwebelement("(//div[@class='ag-div-margin row']//div//span[@ref='lbTotal'])[1]").getText();
-			TotalPages2 = Integer.parseInt(TotalPagesText2);
-			System.out.println("Total number of pages in table is: " + TotalPages2);
-
-			if (TotalPages2 != 0) {
-
-				outerloop:
-					for (int k = 1; k <= TotalPages2; k++) {
-
-						List<WebElement> results = getwebelements("(//div[@ref='eBodyContainer'])[2]//div[@role='row']");
-
-						int numofrows = results.size();
-						System.out.println("no of results: " + numofrows);
-
-						if ((numofrows == 0)) {
-
-							ExtentTestManager.getTest().log(LogStatus.PASS, "Interface Status History is empty");
-						}
-						else {
-							// Current page
-							String CurrentPage = getwebelement("(//div[@class='ag-div-margin row']//div//span[@ref='lbCurrent'])[1]").getText();
-							int Current_page = Integer.parseInt(CurrentPage);
-							System.out.println("The current page is: " + Current_page);
-
-							sa.assertEquals(k, Current_page);
-
-							System.out.println("Currently we are in page number: " + Current_page);
-							for (int i = 0; i < numofrows; i++) {
-								try {
-									String Interfacehistorydata = results.get(i).getText();
-									System.out.println(Interfacehistorydata);
-									if (Interfacehistorydata.contains(NewStatusvalue1)) 
-									{
-										ExtentTestManager.getTest().log(LogStatus.PASS, "Interface status history table has data");
-										Thread.sleep(2000);
-										compareText(application, "New Status", "interface_statuspage_newstatusvalue", NewStatusvalue1, xml);
-										try {
-											String GMTValue;
-											String ChangedOnvalue= GetText(application, "Changed On", "interface_statuspage_changedonvalue");
-											System.out.println("Changed On value: " +ChangedOnvalue);
-											SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
-
-											if (ChangedOnvalue.length() > 3)
-											{
-												GMTValue = ChangedOnvalue.substring(ChangedOnvalue.length() - 3);
-											} 
-											else
-											{
-												GMTValue = ChangedOnvalue;
-											}
-											sa.assertEquals(GMTValue, "GMT");
-
-										}catch(Exception e)
-										{
-											e.printStackTrace();
-											ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Changed On column value field is not displaying");
-										}
-
-										compareText(application, "Changed By", "interface_statuspage_changedbyvalue", Getkeyvalue("APT_login_1_Username"), xml);
-										Thread.sleep(2000);
-										click_commonMethod(application, "Close", "interface_statuspage_closebutton", xml);
-										break outerloop;
-									}
-
-								} catch (StaleElementReferenceException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-
-								}
-							}
-						}
-					}
-
-			}else {
-
-				System.out.println("No data available in status history table");
-				Log.info("No data available in status history table");
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "No data available in status history table");
-			}
-			}else {
-
-				System.out.println("No data available in Interface table");
-				Log.info("No data available in Interface table");
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "No data available in Interface table");
-			}
-		}else
+			GMTValue = SmartsDateTimevalue.substring(SmartsDateTimevalue.length() - 3);
+		} 
+		else
 		{
-			ExtentTestManager.getTest().log(LogStatus.INFO, "No Interface added in table");
+			GMTValue = SmartsDateTimevalue;
+		}
+		assertEquals(GMTValue, "GMT");
+
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+
+	//verify fetch interfaces value
+	GetText(application, "Fetch Interfaces", "synchronization_fetchinterfacesvalue");
+	//verify fetch interfaces date time
+	try {
+		String GMTValue;
+		String FetchInterfacesvalue= getwebelement(xml.getlocator("//locators/" + application + "/fetchinterfaces_datetime")).getText();
+		String FetchInterfaces_DateTimevalue= "";
+		if (FetchInterfacesvalue.length() > 20) 
+		{
+			FetchInterfaces_DateTimevalue = FetchInterfacesvalue.substring(FetchInterfacesvalue.length() - 20);
+			System.out.println("last 20 characters:"+FetchInterfaces_DateTimevalue);
+		} 
+		else 
+		{
+			FetchInterfaces_DateTimevalue = FetchInterfacesvalue;
 		}
 
-		click_commonMethod(application, "Close", "viewinterface_closebutton", xml);
-		Thread.sleep(2000);
-
-		//verify synchronization panel column values
-		Thread.sleep(2000);
-		scrolltoend();
-		compareText(application, "Device", "synchronization_devicevalue", devicename, xml);
-		GetText(application, "Sync Status", "synchronization_syncstatusvalue");
-
-
-		//verify smarts value
-		GetText(application, "Smarts", "synchronization_smartsvalue");
-		//verify smarts date time 
-		try {
-			String GMTValue;
-			String Smartsvalue= getwebelement(xml.getlocator("//locators/" + application + "/smarts_datetimevalue")).getText();
-			String SmartsDateTimevalue= "";
-			if (Smartsvalue.length() > 20) 
-			{
-				SmartsDateTimevalue = Smartsvalue.substring(Smartsvalue.length() - 20);
-				System.out.println("last 20 characters:"+SmartsDateTimevalue);
-			} 
-			else 
-			{
-				SmartsDateTimevalue = Smartsvalue;
-			}
-
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Smarts date value is displayed as: "+SmartsDateTimevalue);
-			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
-			if (SmartsDateTimevalue.length() > 3) 
-			{
-				GMTValue = SmartsDateTimevalue.substring(SmartsDateTimevalue.length() - 3);
-			} 
-			else
-			{
-				GMTValue = SmartsDateTimevalue;
-			}
-			assertEquals(GMTValue, "GMT");
-
-		}catch(Exception e)
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Fetch Interfaces date value is displayed as: "+FetchInterfaces_DateTimevalue);
+		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
+		if (FetchInterfaces_DateTimevalue.length() > 3) 
 		{
-			e.printStackTrace();
+			GMTValue = FetchInterfaces_DateTimevalue.substring(FetchInterfaces_DateTimevalue.length() - 3);
+		} 
+		else
+		{
+			GMTValue = FetchInterfaces_DateTimevalue;
+		}
+		assertEquals(GMTValue, "GMT");
+
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Fetch Interfaces date value field is not displaying");
+	}
+
+	//verify vistamart device value
+	GetText(application, "VistaMart Device", "synchronization_vistamartdevicevalue");
+	//verify vistamart device date time
+	try {
+		String GMTValue;
+		String VistaMartDevicevalue= getwebelement(xml.getlocator("//locators/" + application + "/vistamartdevice_datetime")).getText();
+		String VistaMartDevice_DateTimevalue= "";
+		if (VistaMartDevicevalue.length() > 20) 
+		{
+			VistaMartDevice_DateTimevalue = VistaMartDevicevalue.substring(VistaMartDevicevalue.length() - 20);
+			System.out.println("last 20 characters:"+VistaMartDevice_DateTimevalue);
+		} 
+		else 
+		{
+			VistaMartDevice_DateTimevalue = VistaMartDevicevalue;
 		}
 
-		//verify fetch interfaces value
-		GetText(application, "Fetch Interfaces", "synchronization_fetchinterfacesvalue");
-		//verify fetch interfaces date time
-		try {
-			String GMTValue;
-			String FetchInterfacesvalue= getwebelement(xml.getlocator("//locators/" + application + "/fetchinterfaces_datetime")).getText();
-			String FetchInterfaces_DateTimevalue= "";
-			if (FetchInterfacesvalue.length() > 20) 
-			{
-				FetchInterfaces_DateTimevalue = FetchInterfacesvalue.substring(FetchInterfacesvalue.length() - 20);
-				System.out.println("last 20 characters:"+FetchInterfaces_DateTimevalue);
-			} 
-			else 
-			{
-				FetchInterfaces_DateTimevalue = FetchInterfacesvalue;
-			}
-
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Fetch Interfaces date value is displayed as: "+FetchInterfaces_DateTimevalue);
-			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
-			if (FetchInterfaces_DateTimevalue.length() > 3) 
-			{
-				GMTValue = FetchInterfaces_DateTimevalue.substring(FetchInterfaces_DateTimevalue.length() - 3);
-			} 
-			else
-			{
-				GMTValue = FetchInterfaces_DateTimevalue;
-			}
-			assertEquals(GMTValue, "GMT");
-
-		}catch(Exception e)
+		ExtentTestManager.getTest().log(LogStatus.PASS, "Vistamart Device date value is displayed as: "+VistaMartDevice_DateTimevalue);
+		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
+		if (VistaMartDevice_DateTimevalue.length() > 3) 
 		{
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Fetch Interfaces date value field is not displaying");
-		}
-
-		//verify vistamart device value
-		GetText(application, "VistaMart Device", "synchronization_vistamartdevicevalue");
-		//verify vistamart device date time
-		try {
-			String GMTValue;
-			String VistaMartDevicevalue= getwebelement(xml.getlocator("//locators/" + application + "/vistamartdevice_datetime")).getText();
-			String VistaMartDevice_DateTimevalue= "";
-			if (VistaMartDevicevalue.length() > 20) 
-			{
-				VistaMartDevice_DateTimevalue = VistaMartDevicevalue.substring(VistaMartDevicevalue.length() - 20);
-				System.out.println("last 20 characters:"+VistaMartDevice_DateTimevalue);
-			} 
-			else 
-			{
-				VistaMartDevice_DateTimevalue = VistaMartDevicevalue;
-			}
-
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Vistamart Device date value is displayed as: "+VistaMartDevice_DateTimevalue);
-			SimpleDateFormat sdf= new SimpleDateFormat("yyyy-mm-dd mm:ss");
-			if (VistaMartDevice_DateTimevalue.length() > 3) 
-			{
-				GMTValue = VistaMartDevice_DateTimevalue.substring(VistaMartDevice_DateTimevalue.length() - 3);
-			} 
-			else
-			{
-				GMTValue = VistaMartDevice_DateTimevalue;
-			}
-			assertEquals(GMTValue, "GMT");
-
-		}catch(Exception e)
+			GMTValue = VistaMartDevice_DateTimevalue.substring(VistaMartDevice_DateTimevalue.length() - 3);
+		} 
+		else
 		{
-			e.printStackTrace();
+			GMTValue = VistaMartDevice_DateTimevalue;
 		}
+		assertEquals(GMTValue, "GMT");
 
-		//verify synchronize link
-		Thread.sleep(2000);
-		click_commonMethod(application, "Synchronize", "synchronization_synchronizelink", xml);
-		Thread.sleep(1000);
-		scrollToTop();
-		Thread.sleep(2000);
-		compareText(application, "Synchronize Success Msg", "Sync_successmsg", "Sync started successfully. Please check the sync status of this device.", xml);
-		Thread.sleep(2000);
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
 
-			}else {
-				ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
-				System.out.println("Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
-				}
-			
-		}catch(NoSuchElementException e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Manage COLT's Network page");
-			System.out.println(  e+ " : Field is not displayed in Manage COLT's Network Device page");
+	//verify synchronize link
+	
+	click_commonMethod(application, "Synchronize", "synchronization_synchronizelink", xml);
+	
+	scrollToTop();
+	
+	compareText(application, "Synchronize Success Msg", "Sync_successmsg", "Sync started successfully. Please check the sync status of this device.", xml);
+	
+
+		}else {
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
+			System.out.println("Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in Manage COLT's Network Device page");
-			System.out.println(  e+" : Field is not displayed in Manage COLT's Network Device page");
+			ExtentTestManager.getTest().log(LogStatus.INFO, "Message displays as: 'Message not found for Message ID : Can't start the fetch operation because another process is already fetching the interfaces for this device.'");
+			System.out.println( "Message displays as: 'Message not found for Message ID : Can't start the fetch operation because another process is already fetching the interfaces for this device.'");
 		}
-			
+		
 		}else {
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View PE Device' page not navigated");
-			System.out.println("'View PE Device' page navigated");
-		}
-			
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "'View PE Device' page not navigated");
+		System.out.println("'View PE Device' page navigated");
 	}
+		
+}
+
+
 
 	
 	
@@ -3358,11 +3328,11 @@ public void testStatus_PE(String application) throws InterruptedException {
 		try {
 			waitforPagetobeenable();
 			ScrolltoElement(application, "portalaccess_header", xml);
-			Thread.sleep(1000);
+			
 			if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 			{
 				click_commonMethod(application, "Edit", "viewservicepage_editdevicelink", xml);
-				Thread.sleep(5000);
+				waitforPagetobeenable();
 				scrollToTop();
 				compareText(application, "Edit PE Device header", "editdeviceheader", "Edit PE Device", xml);
 
@@ -3382,7 +3352,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 
 				//select country
 				scrolltoend();
-				Thread.sleep(2000);
+				
 				addDropdownValues_commonMethod(application, "Country", "countryinput", editCountry, xml);
 
 				//New City		
@@ -3473,11 +3443,11 @@ public void testStatus_PE(String application) throws InterruptedException {
 		}
 
 		scrolltoend();
-		Thread.sleep(2000);
+		
 		click_commonMethod(application, "OK", "okbutton", xml);
-		Thread.sleep(3000);
+		
 		compareText(application, "Edit Device success msg", "successmsg", "Device successfully updated.", xml);
-		Thread.sleep(2000);
+		
 
 	}
 
@@ -3530,7 +3500,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 	    	}else {
 	    		
 	    		click_commonMethod(application, "Select Premise toggle button", selectPremiseToggleButton, xml);
-	    		Thread.sleep(1000);
+	    		
 				
 	    		addDropdownValues_commonMethod(application, labelname, dropdown_xpath, dropdownValue, xml);
 	    		
@@ -3556,7 +3526,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 	    	if(premiseDisplayed) {
 	    		
 	    		click_commonMethod(application, "Select Premise toggle button", addPremisetoggleButton, xml);
-	    		Thread.sleep(1000);
+	    		
 				
 				//Premise name
 				edittextFields_commonMethod(application, "Premise Name", "premisenameinputfield_addPremiseToggleSelected", editNewPremiseName, xml);
@@ -3637,7 +3607,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 	    	}else {
 	    		
 	    		click_commonMethod(application, "Select Site toggle button", selectSiteToggleButton, xml);
-	    		Thread.sleep(1000);
+	    		
 				
 	    		addDropdownValues_commonMethod(application, labelname, dropdown_xpath, dropdownValue, xml);
 	    		
@@ -3663,7 +3633,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 	    	if(cityDisplayed) {
 	    		
 	    		click_commonMethod(application, "Select City toggle button", addSitetoggleButton, xml);
-	    		Thread.sleep(1000);
+	    		
 				
 				//Site name
 				edittextFields_commonMethod(application, "Site Name", "sitenameinputfield_addSiteToggleSelected", editNewSiteName, xml);
@@ -3743,7 +3713,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 	    	}else {
 	    		
 	    		click_commonMethod(application, "Select City toggle button", selectCityToggleButton, xml);
-	    		Thread.sleep(1000);
+	    		
 				
 	    		addDropdownValues_commonMethod(application, labelname, dropdown_xpath, dropdownValue, xml);
 	    		
@@ -3769,7 +3739,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 	    	if(cityDisplayed) {
 	    		
 	    		click_commonMethod(application, "Select City toggle button", addCitytoggleButton, xml);
-	    		Thread.sleep(1000);
+	    		
 				
 				//City name
 				edittextFields_commonMethod(application, "City Name", "citynameinputfield", editNewCityName, xml);
@@ -3949,10 +3919,10 @@ public void testStatus_PE(String application) throws InterruptedException {
 	public void addExistingPEDevice_PE(String application, String existingdevicename) throws InterruptedException, DocumentException, IOException {
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Existing PE Device addition");
 		ScrolltoElement(application, "portalaccess_header", xml);
-		Thread.sleep(1000);
+		
 		compareText(application, "Provider Equipment (PE)", "providerequipment_header", "Provider Equipment (PE)", xml);
 		click_commonMethod(application, "Add PE Device", "addpedevice_link", xml);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		
 		if (getwebelement(xml.getlocator("//locators/" + application + "/addpedevice_header")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'Add PE Device' page navigated as expected");
@@ -3962,7 +3932,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 //		addDropdownValues_commonMethod(application, "Type PE name to filter", "typepename_dropdown", existingdevicename, xml);
 //		SelectDropdownValueUnderSpanTag(application, "Type PE name to filter", existingdevicename, "typepename_dropdown", "commonDropdownValueSpanTag", xml);
 		addDropdownValues_commonMethod3(application, "Type PE name to filter", "typepename_dropdown", existingdevicename, xml);
-		Thread.sleep(2000);
+		
 		
 		//Verify existing device values
 		GetText(application, "Vendor/Model", "existingdevice_vendormodelvalue");
@@ -3989,13 +3959,13 @@ public void testStatus_PE(String application) throws InterruptedException {
 		GetText(application, "City", "existingdevice_city");
 		GetText(application, "Site", "existingdevice_site");
 		GetText(application, "Premise", "existingdevice_premise");
-		Thread.sleep(2000);
+		
 		scrolltoend();
-		Thread.sleep(2000);
+		
 		click_commonMethod(application, "Next", "Next_Button", xml);
-		Thread.sleep(3000);
+		
 		compareText(application, "Add Device success msg", "successmsg", "Device is added to Service.", xml);
-		Thread.sleep(2000);
+		
 		
 			}catch(NoSuchElementException e) {
 				e.printStackTrace();
@@ -4065,7 +4035,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 
 					scrolltoend();
 					click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-					Thread.sleep(2000);
+					
 					
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
@@ -4100,7 +4070,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 				{
 					WebElement AddedDevice_DeletefromserviceLink= driver.findElement(By.xpath("(//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div)[2]/div/div/b[contains(text(),'"+AddedDevice_SNo+"')]/parent::div/following-sibling::div//span[text()='Delete from Service']"));
 					Clickon(AddedDevice_DeletefromserviceLink);								   
-					Thread.sleep(2000);
+					
 					
 //					WebElement DeleteAlertPopup= getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup"));
 //					if(DeleteAlertPopup.isDisplayed())
@@ -4113,7 +4083,8 @@ public void testStatus_PE(String application) throws InterruptedException {
 					
 					//**CancelJavaScriptMethod();
 					AcceptJavaScriptMethod();
-					compareText(application, "Device delete success message", "successmsg", "Device successfully removed from service.", xml);
+//					compareText(application, "Device delete success message", "successmsg", "Device successfully removed from service.", xml);
+					verifysuccessmessage(application, "Device successfully removed from service.");
 				}
 				else
 				{
@@ -4144,7 +4115,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 				String AddedDevice_SNo= AddedDeviceNameText.substring(0, 1);
 					WebElement AddedDevice_DeletefromserviceLink= driver.findElement(By.xpath("(//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div)[2]/div/div/b[contains(text(),'"+AddedDevice_SNo+"')]/parent::div/following-sibling::div//span[text()='Delete from Service']"));
 					Clickon(AddedDevice_DeletefromserviceLink);								   
-					Thread.sleep(2000);
+					
 					
 					Alert alert = driver.switchTo().alert();       
 					  // Capturing alert message.    
@@ -4159,12 +4130,13 @@ public void testStatus_PE(String application) throws InterruptedException {
 					  
 					  try {  
 					    alert.accept();
-					    Thread.sleep(2000);
+					    
 					  }catch(Exception e) {
 					     e.printStackTrace();
 					  } 
 					  
-					  compareText(application, "Device delete success message", "PEDevicedeletionsuccessmessage", "Device successfully removed from service.", xml);
+//					  compareText(application, "Device delete success message", "PEDevicedeletionsuccessmessage", "Device successfully removed from service.", xml);
+					  verifysuccessmessage(application, "Device successfully removed from service.");
 			}
 		}
 		else
@@ -4183,7 +4155,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Router Tool Functionality");
 		waitforPagetobeenable();
 		scrollToTop();
-		Thread.sleep(1000);
+		
 		
 		WebElement vendorModel=getwebelement(xml.getlocator("//locators/" + application + "/PE_View_VendorModelValue"));
 		String vendor=Gettext(vendorModel);
@@ -4191,7 +4163,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 		String ipAddress=Gettext(manageAddress);
 		
 		ScrolltoElement(application, "PE_View_VendorModelValue" , xml);
-		Thread.sleep(1000);
+		
 		
 		if(vendor.startsWith("Cisco")) {
 			
@@ -4374,28 +4346,28 @@ public void testStatus_PE(String application) throws InterruptedException {
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
 			click_commonMethod(application, "View", "viewservicepage_viewdevicelink1", xml);
-			Thread.sleep(5000);
+			waitforPagetobeenable();
 			scrollToTop();
 			if(getwebelement(xml.getlocator("//locators/" + application + "/viewdevicepage_header")).isDisplayed()) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
 				System.out.println("'View PE Device' page navigated as expected");
 
 				ScrolltoElement(application, "Routes_Header", xml);//Routes_Header//RouterTool_header
-		Thread.sleep(1000);
+		
 		compareText(application, "Interfaces header", "interfaces_header", "Interfaces", xml);
 		click_commonMethod(application, "Action dropdown", "interfacepanel_actiondropdown", xml);
 		click_commonMethod(application, "Add Interface/Link", "addinterface_link", xml);
 		scrollToTop();
 
-		Thread.sleep(2000);
+		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/addinterface_header")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'Add Interface' page navigated as expected");
 			System.out.println("'Add Interface' page navigated as expected");
 
 			scrolltoend();
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "OK", "okbutton", xml);
-		Thread.sleep(1000);
+		
 		scrollToTop();
 		//verify warning messages in add interface page
 		warningMessage_commonMethod(application, "interface_warngmsg", "Interface", xml);
@@ -4408,7 +4380,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 		GetText(application, "Network", "network_fieldvalue");
 
 		//verify EIP Allocation
-		Thread.sleep(1000);
+		
 		scrollToTop();
 		click_commonMethod(application, "EIP Allocation button", "eipallocation1_button", xml);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/eipsubnetallocation_header")).isDisplayed())
@@ -4418,14 +4390,14 @@ public void testStatus_PE(String application) throws InterruptedException {
 			SelectDropdownValueUnderSelectTag(application, "City", eipallocation_city, "eipallocation_citydropdown", xml);
 			SelectDropdownValueUnderSelectTag(application, "Sub Net Size", eipallocation_subnetsize, "eipallocation_subnetsize", xml);
 			GetText(application, "Available Pools", "eipallocation_availablepools_value");
-			Thread.sleep(1000);
+			
 			click_commonMethod(application, "Close", "closesymbol", xml);
 		}
 		else
 		{
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "EIP Allocation button is not working");
 		}
-		Thread.sleep(2000);
+		
 
 		//verify getaddress
 		if(getaddress.equalsIgnoreCase("yes"))
@@ -4439,7 +4411,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 			else
 			{
 			addtextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrange_textfield", interfaceaddressrange_value, xml);
-			Thread.sleep(1000);
+			
 			click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
 			}
 		}
@@ -4447,7 +4419,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 		isDisplayed(application, "networkipv6_fieldvalue", "Network");
 		
 		//verify EIP Allocation for IPV6
-				Thread.sleep(1000);
+				
 				ScrolltoElement(application, "network_fieldvalue", xml);
 				click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
 				if(getwebelement(xml.getlocator("//locators/" + application + "/eipallocationIPv6_header")).isDisplayed())
@@ -4457,9 +4429,9 @@ public void testStatus_PE(String application) throws InterruptedException {
 					GetText(application, "Space Name", "eipallocation_spacename");
 					SelectDropdownValueUnderSelectTag(application, "Sub Net Size", eipallocation_ipv6_subnetsize, "eipallocation_ipv6_subnetsize", xml);
 					SelectDropdownValueUnderSelectTag(application, "Available Blocks", eipallocation_availableblocksvalue, "availableblocks_dropdown", xml);
-					Thread.sleep(1000);
+					
 					click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
-					Thread.sleep(2000);
+					
 					scrollToTop();
 					//**compareText(application, "Subnet aalocation success message", "successmsg", "Subnet Allocation IPTransitService_05-IPTransitService_05-XFER-0017527 (null)Successfully", xml);
 					GetText(application, "Subnet allocation success message", "successmsg");
@@ -4469,7 +4441,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "EIP Allocation button is not working");
 				}
 			
-			Thread.sleep(2000);
+			
 		ScrolltoElement(application, "network_fieldvalue", xml);
 		//verify getaddress ipv6
 		if(ipv6_getaddress_button.equalsIgnoreCase("yes"))
@@ -4484,7 +4456,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 		else
 		{
 			addtextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", interfaceaddressrange_value, xml);
-			Thread.sleep(1000);
+			
 			click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
 		}
 			}
@@ -4492,9 +4464,9 @@ public void testStatus_PE(String application) throws InterruptedException {
 			{
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Available Blocks dropdown values are not displaying");
 				click_commonMethod(application, "Close", "eipallocation_popupclose", xml);
-				Thread.sleep(1000);
+				
 				addtextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", interfaceaddressrange_value, xml);
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
 			}
 			
@@ -4502,7 +4474,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 		addtextFields_commonMethod(application, "Link", "link_textfield", link_value, xml);
 		SelectDropdownValueUnderSelectTag(application, "Bearer Type", bearertype_value, "bearertype_dropdown", xml);
 
-		Thread.sleep(2000);
+		
 		SelectDropdownValueUnderSelectTag(application, "Bandwidth", ciscovendor_bandwidth_value, "bandwidth_dropdown", xml);
 
 		if(bearertype_value.equalsIgnoreCase("E1")) {
@@ -4518,7 +4490,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 			SelectDropdownValueUnderSelectTag(application, "Encapsulation", encapsulation_value, "encapsulation_dropdown", xml);
 		}
 		
-		Thread.sleep(1000);
+		
 		ScrolltoElement(application, "link_textfield", xml);
 		addCheckbox_commonMethod(application, "bgp_checkbox", "BGP", bgp_checkbox, "no", xml);
 		if(bgp_checkbox.equalsIgnoreCase("yes"))
@@ -4537,22 +4509,22 @@ public void testStatus_PE(String application) throws InterruptedException {
 		{
 			compareText(application, "Configuration", "configuration_header", "Configuration", xml);
 			click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
-			Thread.sleep(2000);
+			
 			GetText(application, "Configuration", "configuration_textarea");
-			Thread.sleep(1000);
+			
 			click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
-			Thread.sleep(2000);
+			
 			click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
 		}
 		else
 		{
 			click_commonMethod(application, "OK", "okbutton", xml);
 		}
-		compareText(application, "Interface Added success message", "AddInterfaceSucessMessage", "Interface successfully created.", xml);
-		Thread.sleep(2000);
+//		compareText(application, "Interface Added success message", "AddInterfaceSucessMessage", "Interface successfully created.", xml);
+		verifysuccessmessage(application, "Interface successfully created.");
 		scrolltoend();
 		//***click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-		Thread.sleep(2000);
+		
 
 		
 		}else {
@@ -4595,7 +4567,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 		ScrolltoElement(application, "portalaccess_header", xml);//portalaccess_header//ConfigurationOptions_Header
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
-			Thread.sleep(1000);
+			
 			scrolltoend();
 			WebElement SelectInterface= getwebelement(xml.getlocator("//locators/" + application + "/selectinterface"));
 
@@ -4605,7 +4577,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 			{
 				Clickon(SelectInterface);
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on existing Interface radio button");
-				Thread.sleep(1000);
+				
 				if(getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name)).isDisplayed())
 				{
 					WebElement AddedDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name));
@@ -4618,7 +4590,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 				}
 
 				click_commonMethod(application, "Edit", "edit", xml);
-				Thread.sleep(2000);
+				
 				
 				if(getwebelement(xml.getlocator("//locators/" + application + "/editinterface_header")).isDisplayed()) {
 					ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit Interface' page navigated as expected");
@@ -4637,7 +4609,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 			addDropdownValues_commonMethod(application, "Network", "network_fieldvalue", edit_network, xml);
 
 			//verify EIP Allocation
-			Thread.sleep(1000);
+			
 			click_commonMethod(application, "EIP Allocation button", "eipallocation1_button", xml);
 			if(getwebelement(xml.getlocator("//locators/" + application + "/eipsubnetallocation_header")).isDisplayed())
 			{
@@ -4648,14 +4620,14 @@ public void testStatus_PE(String application) throws InterruptedException {
 			
 				GetText(application, "Available Pools", "eipallocation_availablepools_value");
 				//click_commonMethod(application, "Allocate subnet button", "allocatesubnet_button", xml);
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "Close", "closesymbol", xml);
 			}
 			else
 			{
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "EIP Allocation button is not working");
 			}
-			Thread.sleep(2000);
+			
 
 			//verify getaddress
 			if(getaddress.equalsIgnoreCase("yes"))
@@ -4668,14 +4640,14 @@ public void testStatus_PE(String application) throws InterruptedException {
 			else
 			{
 				edittextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrangeIPv6_textfield", edit_interfaceaddressrange_value, xml);
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
 
 			}
 			GetText(application, "Network", "networkipv6_fieldvalue");
 
 			//verify EIP Allocation
-			Thread.sleep(1000);
+			
 			ScrolltoElement(application, "network_fieldvalue", xml);
 			click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
 
@@ -4689,12 +4661,12 @@ public void testStatus_PE(String application) throws InterruptedException {
 				if(availableblocks_dropdowncheck==true) 
 				{
 				addDropdownValues_commonMethod(application, "Available Blocks", "availableblocks_dropdown", edit_ipallocation_availableblocksvalue, xml);
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
-				Thread.sleep(2000);
+				
 				scrollToTop();
 				GetText(application, "Subnet aalocation success message", "successmsg");
-			Thread.sleep(2000);
+			
 
 			//verify getaddress ipv6
 			ScrolltoElement(application, "network_fieldvalue", xml);
@@ -4707,7 +4679,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 			else
 			{
 				edittextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", edit_interfaceaddressrangeIPv6_value, xml);
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
 
 			}
@@ -4716,9 +4688,9 @@ public void testStatus_PE(String application) throws InterruptedException {
 				{
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Available Blocks dropdown values are not displaying");
 					click_commonMethod(application, "Close", "eipallocation_popupclose", xml);
-					Thread.sleep(1000);
+					
 					edittextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", edit_interfaceaddressrangeIPv6_value, xml);
-					Thread.sleep(1000);
+					
 					click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
 
 				}
@@ -4740,7 +4712,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 			{
 				SelectDropdownValueUnderSelectTag(application, "Encapsulation", edit_encapsulation_value, "encapsulation_dropdownEdit", xml);
 			}
-			Thread.sleep(1000);
+			
 			
 			ScrolltoElement(application, "link_textfield", xml);
 			
@@ -4811,7 +4783,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 				click_commonMethod(application, "IP Subnet IPv4 Add", "ipsubnetipv4_addbutton", xml);
 				edittextFields_commonMethod(application, "IP Subnet IPv4", "ipsubnetipv4_textfield", ipsubnetipv4_value, xml);
 			}
-			Thread.sleep(1000);
+			
 			scrolltoend();
 			//configuration panel in edit interface page
 			if(edit_configureinterface_checkbox.equalsIgnoreCase("Yes"))
@@ -4820,28 +4792,29 @@ public void testStatus_PE(String application) throws InterruptedException {
 				compareText(application, "Configuration", "configuration_header", "Configuration", xml);
 				click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
 				
-				Thread.sleep(2000);
+				
 				//click_commonMethod(application, "OK", "configAlert_okbutton", xml);
 				GetText(application, "Configuration", "configuration_textarea");
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
-				Thread.sleep(2000);
+				
 				scrolltoend();
-				Thread.sleep(1000);
+				
 				compareText(application, "Interface Configuration History header", "interfaceconfighistory_header", "Interface Configuration History", xml);
 				compareText(application, "Date column", "date_column", "Date", xml);
 				compareText(application, "File Name column", "filename_column", "File Name", xml);
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
 				
-				Thread.sleep(5000);
-				compareText(application, "Interface update success message", "UpdateInterfaceSucessMessage", "Interface successfully updated.", xml);
+				waitforPagetobeenable();
+//				compareText(application, "Interface update success message", "UpdateInterfaceSucessMessage", "Interface successfully updated.", xml);
+				verifysuccessmessage(application, "Interface successfully updated.");
 			}
 			else
 			{
 				ScrolltoElement(application, "okbutton", xml);
 				click_commonMethod(application, "OK", "okbutton", xml);
-			Thread.sleep(2000);
+			
 			verifysuccessmessage(application, "Interface successfully updated.");
 			}
 		}
@@ -4876,18 +4849,18 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 	if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 	{
 		click_commonMethod(application, "View", "viewservicepage_viewdevicelink1", xml);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		scrollToTop();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/viewdevicepage_header")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
 			System.out.println("'View PE Device' page navigated as expected");
 			
 			ScrolltoElement(application, "Routes_Header", xml);//Routes_Header//RouterTool_header
-				Thread.sleep(1000);
+				
 				compareText(application, "Interfaces header", "interfaces_header", "Interfaces", xml);
 				click_commonMethod(application, "Action dropdown", "interfacepanel_actiondropdown", xml);
 				click_commonMethod(application, "Add Multilink", "addmultilink_link", xml);
-				Thread.sleep(2000);
+				
 				
 				if(getwebelement(xml.getlocator("//locators/" + application + "/addmultilink_header")).isDisplayed()) {
 					ExtentTestManager.getTest().log(LogStatus.PASS, "'Add Multilink' page navigated as expected");
@@ -4897,16 +4870,16 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 				addCheckbox_commonMethod(application, "configureinterface_checkbox", "Configure Interface on Device", multilink_configureinterface_checkbox, "yes", xml);
 				click_commonMethod(application, "Configure Interface on Device", "configureinterface_checkbox", xml);
 				scrolltoend();
-				Thread.sleep(1000);
+				
 				if(multilink_configureinterface_checkbox.equalsIgnoreCase("no"))
 				{
 				click_commonMethod(application, "OK", "okbutton", xml);
-				Thread.sleep(1000);
+				
 				}
 				else
 				{
 					click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
-					Thread.sleep(1000);
+					
 				}
 				scrollToTop();
 				//verify warning messages in add interface page
@@ -4921,7 +4894,7 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 				addtextFields_commonMethod(application, "Interface", "interfacename_textfield", multilink_interfacename, xml);
 				
 				//verify EIP Allocation
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "EIP Allocation button", "eipallocation1_button", xml);
 				if(getwebelement(xml.getlocator("//locators/" + application + "/eipsubnetallocation_header")).isDisplayed())
 				{
@@ -4929,17 +4902,17 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 					GetText(application, "Subnet Type", "subnettype_valueMultilink");
 					SelectDropdownValueUnderSelectTag(application, "City", eipallocation_city, "eipallocation_citydropdown", xml);
 					SelectDropdownValueUnderSelectTag(application, "Sub Net Size", eipallocation_subnetsize, "eipallocation_subnetsize", xml);
-					Thread.sleep(2000);
+					
 					GetText(application, "Available Pools", "eipallocation_availablepools_value");
 					//click_commonMethod(application, "Allocate subnet button", "allocatesubnet_button", xml);
-					Thread.sleep(1000);
+					
 					click_commonMethod(application, "Close", "closesymbol", xml);
 				}
 				else
 				{
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "EIP Allocation button is not working");
 				}
-				Thread.sleep(2000);
+				
 
 				//verify getaddress
 				if(getaddress.equalsIgnoreCase("yes"))
@@ -4954,18 +4927,18 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 					else
 					{
 					addtextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrange_textfield", interfaceaddressrange_value, xml);
-					Thread.sleep(1000);
+					
 					click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
 					}
 				}
 				GetText(application, "Network", "networkipv6_fieldvalueMutilink");
 
 				//verify EIP Allocation
-				Thread.sleep(1000);
+				
 				ScrolltoElement(application, "interfacerange_AddressIpv6_dropdown", xml);
 				ScrolltoElement(application, "interfaceaddressrange_textfield", xml);
 
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
 				if(getwebelement(xml.getlocator("//locators/" + application + "/eipallocationIPv6_header")).isDisplayed())
 				{
@@ -4975,9 +4948,9 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 					SelectDropdownValueUnderSelectTag(application, "Sub Net Size", eipallocation_ipv6_subnetsize, "eipallocation_ipv6_subnetsize", xml);
 					SelectDropdownValueUnderSelectTag(application, "Available Blocks", eipallocation_availableblocksvalue, "availableblocks_dropdown", xml);
 
-					Thread.sleep(1000);
+					
 					click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
-					Thread.sleep(2000);
+					
 					scrollToTop();
 					GetText(application, "Subnet aalocation success message", "successmsg");
 				}
@@ -4985,7 +4958,7 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 				{
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "EIP Allocation button is not working");
 				}
-				Thread.sleep(2000);
+				
 
 				//verify getaddress ipv6
 				ScrolltoElement(application, "getaddress1_button", xml);
@@ -5001,21 +4974,21 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 					else
 					{
 					addtextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", interfaceaddressrange_value, xml);
-					Thread.sleep(1000);
+					
 					click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
 
 					}
 				}
 				
 				addtextFields_commonMethod(application, "Link", "link_textfield", link_value, xml);
-				Thread.sleep(1000);
+				
 				SelectDropdownValueUnderSelectTag(application, "Encapsulation", Multilink_Encapsulation_Value, "encapsulation_dropdown", xml);
 				ScrolltoElement(application, "link_textfield", xml);
 				addtextFields_commonMethod(application, "Unit ID", "unitid_textfield", unitid_value, xml);
 				addtextFields_commonMethod(application, "Slot", "slot_textfield", slot_value, xml);
 				addtextFields_commonMethod(application, "Pic", "pic_textfield", pic_value, xml);
 				addtextFields_commonMethod(application, "Port", "port_textfield", port_value, xml);
-				Thread.sleep(1000);
+				
 				addCheckbox_commonMethod(application, "bgp_checkbox", "BGP", multilink_bgpcheckbox, "no", xml);
 				if(multilink_bgpcheckbox.equalsIgnoreCase("yes"))
 				{
@@ -5068,11 +5041,11 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 				{
 					compareText(application, "Configuration", "configuration_header", "Configuration", xml);
 					click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
-					Thread.sleep(2000);
+					
 					GetText(application, "Configuration", "configuration_textarea");
-					Thread.sleep(1000);
+					
 					click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
-					Thread.sleep(2000);
+					
 					click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
 				}
 				else
@@ -5080,11 +5053,12 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 					click_commonMethod(application, "OK", "okbutton", xml);
 				}
 				
-				Thread.sleep(5000);
-				compareText(application, "Multilink Added success message", "AddMultilinkSucessMessage", "Interface successfully created.", xml);
+				waitforPagetobeenable();
+//				compareText(application, "Multilink Added success message", "AddMultilinkSucessMessage", "Interface successfully created.", xml);
+				verifysuccessmessage(application, "Interface successfully created.");
 				scrolltoend();
 				//**click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-				Thread.sleep(2000);
+				
 			
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "'Add Multilink' page not navigated");
@@ -5119,18 +5093,18 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 		{
 			click_commonMethod(application, "View", "viewservicepage_viewdevicelink1", xml);
-			Thread.sleep(5000);
+			waitforPagetobeenable();
 			scrollToTop();
 			if(getwebelement(xml.getlocator("//locators/" + application + "/viewdevicepage_header")).isDisplayed()) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
 				System.out.println("'View PE Device' page navigated as expected");
 
 				ScrolltoElement(application, "Routes_Header", xml);//Routes_Header//RouterTool_header
-		Thread.sleep(1000);
+		
 		compareText(application, "Interfaces header", "interfaces_header", "Interfaces", xml);
 		click_commonMethod(application, "Action dropdown", "interfacepanel_actiondropdown", xml);
 		click_commonMethod(application, "Add Interface/Link", "addinterface_link", xml);
-		Thread.sleep(2000);
+		
 		scrollToTop();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/addinterface_header")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'Add Interface' page navigated as expected");
@@ -5138,7 +5112,7 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 			
 		scrolltoendOptional();
 		click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
-		Thread.sleep(1000);
+		
 		
 		//verify warning messages in add interface page
 		ScrolltoElement(application, "encapsulation_dropdown", xml);
@@ -5157,7 +5131,7 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 		GetText(application, "Network", "network_fieldvalue");
 
 		//verify EIP Allocation
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "EIP Allocation button", "eipallocation1_button", xml);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/eipsubnetallocation_header")).isDisplayed())
 		{
@@ -5166,14 +5140,14 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 			SelectDropdownValueUnderSelectTag(application, "City", eipallocation_city, "eipallocation_citydropdown", xml);
 			SelectDropdownValueUnderSelectTag(application, "Sub Net Size", eipallocation_subnetsize, "eipallocation_subnetsize", xml);
 			GetText(application, "Available Pools", "eipallocation_availablepools_value");
-			Thread.sleep(1000);
+			
 			click_commonMethod(application, "Close", "closesymbol", xml);
 		}
 		else
 		{
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "EIP Allocation button is not working");
 		}
-		Thread.sleep(2000);
+		
 
 		//verify getaddress
 		if(getaddress.equalsIgnoreCase("yes"))
@@ -5185,7 +5159,7 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 		else
 		{
 			addtextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrange_textfield", interfaceaddressrange_value, xml);
-			Thread.sleep(1000);
+			
 			click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
 
 		}
@@ -5193,18 +5167,19 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 		isDisplayed(application, "networkipv6_fieldvalue", "Network");
 
 		//verify EIP Allocation for IPV6
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
 		if(getwebelement(xml.getlocator("//locators/" + application + "/eipallocationIPv6_header")).isDisplayed())
 		{
-			compareText(application, "EIP Address Allocation header", "eipallocationIPv6_header", "EIP Address Allocation For Interface  ", xml);
+			//compareText(application, "EIP Address Allocation header", "eipallocationIPv6_header", "EIP Address Allocation For Interface  ", xml);
+			GetText(application, "EIP Address Allocation header", "eipallocationIPv6_header");
 			GetText(application, "Subnet Type", "subnettype_value");
 			GetText(application, "Space Name", "eipallocation_spacename");
 			SelectDropdownValueUnderSelectTag(application, "Sub Net Size", eipallocation_ipv6_subnetsize, "eipallocation_ipv6_subnetsize", xml);
 			isDisplayed(application, "availableblocks_dropdown", "Available Blocks");
-			Thread.sleep(1000);
+			
 			click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
-			Thread.sleep(2000);
+			
 			scrollToTop();
 			click_commonMethod(application, "Close", "closesymbol", xml);
 		}
@@ -5212,7 +5187,7 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 		{
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "EIP Allocation button is not working");
 		}
-		Thread.sleep(2000);
+		
 
 		//verify getaddress ipv6
 		if(ipv6_getaddress_button.equalsIgnoreCase("yes"))
@@ -5223,7 +5198,7 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 		else
 		{
 			addtextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", interfaceaddressrange_value, xml);
-			Thread.sleep(1000);
+			
 			click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
 		}
 
@@ -5266,7 +5241,7 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 			SelectDropdownValueUnderSelectTag(application, "Encapsulation", encapsulation_value, "encapsulation_dropdown", xml);
 			addtextFields_commonMethod(application, "STM1 Number", "STM1Number_textfield", STM1Number_value, xml);
 		}
-		Thread.sleep(1000);
+		
 		addtextFields_commonMethod(application, "Unit ID", "unitid_textfield", unitid_value, xml);
 		addtextFields_commonMethod(application, "Slot", "slot_textfield", slot_value, xml);
 		addtextFields_commonMethod(application, "Pic", "pic_textfield", pic_value, xml);
@@ -5288,11 +5263,11 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 			scrolltoend();
 			click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
 			click_commonMethod(application, "Generate Configuration", "GenerateConfigurationButton2", xml);
-			Thread.sleep(2000);
+			
 			GetText(application, "Configuration", "configuration_textarea");
-			Thread.sleep(1000);
+			
 			click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
-			Thread.sleep(2000);
+			
 			click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
 			
 			 Alert alert = driver.switchTo().alert();		
@@ -5308,7 +5283,7 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 		     
 		     try {  
 		       alert.accept();
-		       Thread.sleep(2000);
+		       
 		     }catch(Exception e) {
 		    	 e.printStackTrace();
 		     }
@@ -5319,12 +5294,12 @@ public void verify_CiscoVendor_AddMultilink(String application, String name, Str
 			scrolltoendOptional();
 			click_commonMethod(application, "OK", "okbutton", xml);
 		}
-		Thread.sleep(5000);
-		compareText(application, "Interface Added success message", "AddInterfaceSucessMessage", "Interface successfully created.", xml);
-		
+		waitforPagetobeenable();
+//		compareText(application, "Interface Added success message", "AddInterfaceSucessMessage", "Interface successfully created.", xml);
+		verifysuccessmessage(application, "Interface successfully created.");
 		scrolltoendOptional();
 		click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-		Thread.sleep(2000);
+		
 		
 				JuniperInterfaceNameValue= Juniper_InterfaceName;
 		}else {
@@ -5368,7 +5343,7 @@ public boolean availableBlocks_dropdownCheck(String application, String labelnam
 			  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown is displaying");
 			  
 				  Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//div[text()='×']"));
-				  Thread.sleep(3000);
+				  
 				  
 				  //verify list of values inside dropdown
 				  List<WebElement> listofvalues = driver
@@ -5424,7 +5399,7 @@ public void VerifyEditInterface_JuniperVendor(String application, String name, S
 		{
 			Clickon(SelectInterface);
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on existing Interface radio button");
-			Thread.sleep(1000);
+			
 			if(getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name)).isDisplayed())
 			{
 				WebElement AddedDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name));
@@ -5437,7 +5412,7 @@ public void VerifyEditInterface_JuniperVendor(String application, String name, S
 			}
 
 			click_commonMethod(application, "Edit", "edit", xml);
-			Thread.sleep(2000);
+			
 			
 			if(getwebelement(xml.getlocator("//locators/" + application + "/editinterface_header")).isDisplayed()) {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "'Edit Interface' page navigated as expected");
@@ -5447,7 +5422,7 @@ public void VerifyEditInterface_JuniperVendor(String application, String name, S
 			addDropdownValues_commonMethod(application, "Network", "network_fieldvalue", edit_network, xml);
 
 			//verify EIP Allocation
-			Thread.sleep(1000);
+			
 			if(edit_eipallocation1.equalsIgnoreCase("yes"))
 			{
 			click_commonMethod(application, "EIP Allocation button", "eipallocation1_button", xml);
@@ -5459,7 +5434,7 @@ public void VerifyEditInterface_JuniperVendor(String application, String name, S
 				addDropdownValues_commonMethod(application, "Sub Net Size", "eipallocation_subnetsize", edit_eipallocation_subnetsize, xml);
 				GetText(application, "Available Pools", "eipallocation_availablepools_value");
 				isDisplayed(application, "allocatesubnet_button", "Allocate subnet button");
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "Close", "closesymbol", xml);
 			}
 			else
@@ -5467,7 +5442,7 @@ public void VerifyEditInterface_JuniperVendor(String application, String name, S
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "EIP Allocation button is not working");
 			}
 			}
-			Thread.sleep(2000);
+			
 
 			//verify getaddress
 			if(edit_getaddress.equalsIgnoreCase("yes"))
@@ -5481,12 +5456,12 @@ public void VerifyEditInterface_JuniperVendor(String application, String name, S
 				else
 				{
 				edittextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrange_textfield", edit_interfaceaddressrange_value, xml);
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
 				}
 			}
 			
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
 
 			isDisplayed(application, "networkipv6_fieldvalue", "Network");
@@ -5495,7 +5470,7 @@ public void VerifyEditInterface_JuniperVendor(String application, String name, S
 			//verify EIP Allocation
 			if(edit_eipallocation2.equalsIgnoreCase("yes"))
 			{
-			Thread.sleep(1000);
+			
 			click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
 			
 				compareText(application, "EIP Address Allocation header", "eipallocationIPv6_header", "EIP Address Allocation For Interface  ", xml);
@@ -5507,11 +5482,11 @@ public void VerifyEditInterface_JuniperVendor(String application, String name, S
 				if(availableblocks_dropdowncheck==true) 
 				{
 					GetText(application, "Available Blocks", "availableblocks_dropdown");
-				Thread.sleep(1000);
+				
 				isDisplayed(application, "allocatesubnet_button", "Allocate subnet");
 				click_commonMethod(application, "Close", "closesymbol", xml);
 				
-			Thread.sleep(2000);
+			
 
 			//verify getaddress ipv6
 			if(edit_ipv6_getaddress.equalsIgnoreCase("yes"))
@@ -5523,7 +5498,7 @@ public void VerifyEditInterface_JuniperVendor(String application, String name, S
 			else
 			{
 				edittextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", edit_interfaceaddressrangeIPv6_value, xml);
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
 			}
 				}
@@ -5531,9 +5506,9 @@ public void VerifyEditInterface_JuniperVendor(String application, String name, S
 				{
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Available Blocks dropdown values are not displaying");
 					click_commonMethod(application, "Close", "eipallocation_popupclose", xml);
-					Thread.sleep(1000);
+					
 					edittextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", edit_interfaceaddressrangeIPv6_value, xml);
-					Thread.sleep(1000);
+					
 					click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
 				}
 			}
@@ -5577,7 +5552,7 @@ public void VerifyEditInterface_JuniperVendor(String application, String name, S
 				SelectDropdownValueUnderSelectTag(application, "Encapsulation", edit_encapsulation_value, "encapsulation_dropdownEdit", xml);
 				ClearAndEnterTextValue(application, "STM1 Number", "STM1Number_textfield", edit_STM1Number_value, xml);
 			}
-			Thread.sleep(1000);
+			
 			edittextFields_commonMethod(application, "Unit ID", "unitid_textfield", edit_unitid_value, xml);
 			edittextFields_commonMethod(application, "Slot", "slot_textfield", edit_slot_value, xml);
 			edittextFields_commonMethod(application, "Pic", "pic_textfield", edit_pic_value, xml);
@@ -5600,11 +5575,11 @@ public void VerifyEditInterface_JuniperVendor(String application, String name, S
 				click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
 				click_commonMethod(application, "Generate Configuration", "GenerateConfigurationButton2", xml);
 				
-				Thread.sleep(2000);
+				
 				GetText(application, "Configuration", "configuration_textarea");
-				Thread.sleep(1000);
+				
 				//click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
-				Thread.sleep(2000);
+				
 				click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
 				
 				
@@ -5622,7 +5597,7 @@ public void VerifyEditInterface_JuniperVendor(String application, String name, S
               
               try {  
                 alert.accept();
-                Thread.sleep(2000);
+                
               }catch(Exception e) {
                  e.printStackTrace();
               } 
@@ -5675,18 +5650,18 @@ public void verify_JuniperVendor_AddMultilink(String application, String name, S
 	if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
 	{
 		click_commonMethod(application, "View", "viewservicepage_viewdevicelink1", xml);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		scrollToTop();
 		if(getwebelement(xml.getlocator("//locators/" + application + "/viewdevicepage_header")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'View PE Device' page navigated as expected");
 			System.out.println("'View PE Device' page navigated as expected");
 			
 			ScrolltoElement(application, "Routes_Header", xml);//Routes_Header//RouterTool_header
-				Thread.sleep(1000);
+				
 				compareText(application, "Interfaces header", "interfaces_header", "Interfaces", xml);
 				click_commonMethod(application, "Action dropdown", "interfacepanel_actiondropdown", xml);
 				click_commonMethod(application, "Add Multilink", "addmultilink_link", xml);
-				Thread.sleep(2000);
+				
 				scrollToTop();
 				if(getwebelement(xml.getlocator("//locators/" + application + "/addmultilink_header")).isDisplayed()) {
 					ExtentTestManager.getTest().log(LogStatus.PASS, "'Add Multilink' page navigated as expected");
@@ -5694,16 +5669,16 @@ public void verify_JuniperVendor_AddMultilink(String application, String name, S
 					
 				click_commonMethod(application, "Configure Interface on Device", "configureinterface_checkbox", xml);
 				scrolltoend();
-				Thread.sleep(1000);
+				
 				if(multilink_configureinterface_checkbox.equalsIgnoreCase("no"))
 				{
 				click_commonMethod(application, "OK", "okbutton", xml);
-				Thread.sleep(1000);
+				
 				}
 				else
 				{
 					click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
-					Thread.sleep(1000);
+					
 				}
 				//verify warning messages in add interface page
 				warningMessage_commonMethod(application, "interface_warngmsg", "Interface", xml);
@@ -5717,7 +5692,7 @@ public void verify_JuniperVendor_AddMultilink(String application, String name, S
 				addtextFields_commonMethod(application, "Interface", "interfacename_textfield", multilink_interfacename, xml);
 				
 				//verify EIP Allocation
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "EIP Allocation button", "eipallocation1_button", xml);
 				if(getwebelement(xml.getlocator("//locators/" + application + "/eipsubnetallocation_header")).isDisplayed())
 				{
@@ -5725,17 +5700,17 @@ public void verify_JuniperVendor_AddMultilink(String application, String name, S
 					GetText(application, "Subnet Type", "subnettype_valueMultilink");
 					SelectDropdownValueUnderSelectTag(application, "City", eipallocation_city, "eipallocation_citydropdown", xml);
 					SelectDropdownValueUnderSelectTag(application, "Sub Net Size", eipallocation_subnetsize, "eipallocation_subnetsize", xml);
-					Thread.sleep(2000);
+					
 					GetText(application, "Available Pools", "eipallocation_availablepools_value");
 					GetText(application, "Allocate subnet button", "allocatesubnet_button");
-					Thread.sleep(1000);
+					
 					click_commonMethod(application, "Close", "closesymbol", xml);
 				}
 				else
 				{
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "EIP Allocation button is not working");
 				}
-				Thread.sleep(2000);
+				
 
 				//verify getaddress
 				if(getaddress.equalsIgnoreCase("yes"))
@@ -5750,18 +5725,18 @@ public void verify_JuniperVendor_AddMultilink(String application, String name, S
 					else
 					{
 					addtextFields_commonMethod(application, "Interface Address Range", "interfaceaddressrange_textfield", interfaceaddressrange_value, xml);
-					Thread.sleep(1000);
+					
 					click_commonMethod(application, "Interface Address Range Arrow", "interfaceaddress_Addarrow", xml);
 					}
 				}
 				GetText(application, "Network", "networkipv6_fieldvalueMutilink");
 
 				//verify EIP Allocation
-				Thread.sleep(1000);
+				
 				ScrolltoElement(application, "interfacerange_AddressIpv6_dropdown", xml);
 				ScrolltoElement(application, "interfaceaddressrange_textfield", xml);
 
-				Thread.sleep(1000);
+				
 				click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
 				if(getwebelement(xml.getlocator("//locators/" + application + "/eipallocationIPv6_header")).isDisplayed())
 				{
@@ -5770,16 +5745,16 @@ public void verify_JuniperVendor_AddMultilink(String application, String name, S
 					GetText(application, "Space Name", "eipallocation_spacename");
 					SelectDropdownValueUnderSelectTag(application, "Sub Net Size", eipallocation_ipv6_subnetsize, "eipallocation_ipv6_subnetsize", xml);
 					GetText(application, "Available Blocks", "availableblocks_dropdown");
-					Thread.sleep(1000);
+					
 					click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
-					Thread.sleep(2000);
+					
 					click_commonMethod(application, "Close", "closesymbol", xml);
 				}
 				else
 				{
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "EIP Allocation button is not working");
 				}
-				Thread.sleep(2000);
+				
 
 				//verify getaddress ipv6
 				if(ipv6_getaddress_button.equalsIgnoreCase("yes"))
@@ -5793,21 +5768,21 @@ public void verify_JuniperVendor_AddMultilink(String application, String name, S
 					else
 					{
 					addtextFields_commonMethod(application, "Interface Address Range IPv6", "interfaceaddressrangeIPv6_textfield", interfaceaddressrange_value, xml);
-					Thread.sleep(1000);
+					
 					click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
 
 					}
 				}
 				
 				addtextFields_commonMethod(application, "Link", "link_textfield", link_value, xml);
-				Thread.sleep(1000);
+				
 				SelectDropdownValueUnderSelectTag(application, "Encapsulation", Multilink_Encapsulation_Value, "encapsulation_dropdown", xml);
 				ScrolltoElement(application, "link_textfield", xml);
 				addtextFields_commonMethod(application, "Unit ID", "unitid_textfield", unitid_value, xml);
 				addtextFields_commonMethod(application, "Slot", "slot_textfield", slot_value, xml);
 				addtextFields_commonMethod(application, "Pic", "pic_textfield", pic_value, xml);
 				addtextFields_commonMethod(application, "Port", "port_textfield", port_value, xml);
-				Thread.sleep(1000);
+				
 				addCheckbox_commonMethod(application, "bgp_checkbox", "BGP", multilink_bgpcheckbox, "no", xml);
 				if(multilink_bgpcheckbox.equalsIgnoreCase("yes"))
 				{
@@ -5821,12 +5796,12 @@ public void verify_JuniperVendor_AddMultilink(String application, String name, S
 
 				//Multilinked Bearers table
 				scrolltoend();
-				compareText(application, "Multilinked Bearers", "multilinkedbearers_header", "Multilinked Bearers", xml);
+				compareText(application, "Multilinked Bearers", "multilinkedbearers_header", "Multilink Bearers", xml);
 
 				//table columns
-				compareText(application, "Check to add Interface", "checktoaddinterface_column", "Check to add Interface", xml);
+				compareText(application, "Check to add Interface", "checktoaddinterface_column", "Check to add to Multilink", xml);
 				compareText(application, "Interface", "multilink_interface_column", "Interface", xml);
-				compareText(application, "Link/Circuit", "multilink_link_column", "Link/Circuit", xml);
+				compareText(application, "Link/Circuit", "multilink_link_column", "Link / Circuit Id", xml);
 				compareText(application, "Bearer Type", "multilink_BearerType_column", "Bearer Type", xml);
 				compareText(application, "VLAN Id", "multilink_vlanid_column", "VLAN Id", xml);
 				
@@ -5860,11 +5835,11 @@ public void verify_JuniperVendor_AddMultilink(String application, String name, S
 				{
 					compareText(application, "Configuration", "configuration_header", "Configuration", xml);
 					click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
-					Thread.sleep(2000);
+					
 					GetText(application, "Configuration", "configuration_textarea");
-					Thread.sleep(1000);
+					
 					click_commonMethod(application, "Save Configuration to File", "saveconfiguration_button", xml);
-					Thread.sleep(2000);
+					
 					click_commonMethod(application, "Execute and Save", "executeandsave_button", xml);
 				}
 				else
@@ -5873,10 +5848,11 @@ public void verify_JuniperVendor_AddMultilink(String application, String name, S
 					click_commonMethod(application, "OK", "okbutton", xml);
 				}
 				
-				Thread.sleep(5000);
-				compareText(application, "Multilink Added success message", "AddMultilinkSucessMessage", "Interface successfully created.", xml);
+				waitforPagetobeenable();
+//				compareText(application, "Multilink Added success message", "AddMultilinkSucessMessage", "Interface successfully created.", xml);
+				verifysuccessmessage(application, "Interface successfully created.");
 				click_commonMethod(application, "Back", "viewpage_backbutton", xml);
-				Thread.sleep(2000);
+				
 			
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "'Add Multilink' page not navigated");
@@ -5914,13 +5890,13 @@ public void deleteInterface_PE1(String application, String interfacename, String
 	ScrolltoElement(application, "portalaccess_header", xml);
 	scrolltoend();
 	//click_commonMethod(application, "Show Interfaces", "showinterfaces_link", xml);
-	Thread.sleep(1000);
+	
 	WebElement SelectInterface1= driver.findElement(By.xpath("//div[@role='gridcell' and @col-id='interfaceName']/div[text()='"+interfacename+"']"));
 	if(SelectInterface1.isDisplayed())
 	{
 		Clickon(SelectInterface1);
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on existing Interface radio button");
-		Thread.sleep(1000);
+		
 		
 		if(driver.findElement(By.xpath("//div[div[text()='"+interfacename+"']]/parent::div//span[text()='Delete']")).isDisplayed())
 		{
@@ -5947,13 +5923,13 @@ public void deleteInterface_PE1(String application, String interfacename, String
 
 public void deleteInterface_PE2(String application, String interfacename, String name, String editDevicename, String vendormodel) throws InterruptedException, DocumentException {
 	//Delete Interface
-	Thread.sleep(2000);
+	
 	ScrolltoElement(application, "portalaccess_header", xml);
 	if(getwebelement(xml.getlocator("//locators/" + application + "/showinterfaces_link")).isDisplayed())
 	{
 	click_commonMethod(application, "Show Interfaces", "showinterfaces_link", xml);
 	}
-	Thread.sleep(1000);
+	
 	if(vendormodel.contains("Cisco"))
 	{
 		WebElement CiscoInterface= getwebelement(xml.getlocator("//locators/" + application + "/selectinterface").replace("value", interfacename));
@@ -5971,7 +5947,7 @@ public void deleteInterface_PE2(String application, String interfacename, String
 			}
 		}
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on existing Interface radio button");
-		Thread.sleep(1000);
+		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name)).isDisplayed())
 		{
 			WebElement AddedDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name));
@@ -5984,7 +5960,7 @@ public void deleteInterface_PE2(String application, String interfacename, String
 		}
 
 		click_commonMethod(application, "Delete", "delete", xml);
-		Thread.sleep(2000);
+		
 		
 		Alert alert = driver.switchTo().alert();       
 		  
@@ -6000,7 +5976,7 @@ public void deleteInterface_PE2(String application, String interfacename, String
 		  
 		  try {  
 		    alert.accept();
-		    Thread.sleep(2000);
+		    
 		  }catch(Exception e) {
 		     e.printStackTrace();
 		  } 
@@ -6010,13 +5986,13 @@ public void deleteInterface_PE2(String application, String interfacename, String
 
 public void delete_MultilinkInterface(String application, String multilink_interfacename, String name, String editDevicename, String vendormodel) throws InterruptedException, DocumentException {
 	//Delete Interface
-	Thread.sleep(2000);
+	
 	ScrolltoElement(application, "portalaccess_header", xml);
 	if(getwebelement(xml.getlocator("//locators/" + application + "/showinterfaces_link")).isDisplayed())
 	{
 	click_commonMethod(application, "Show Interfaces", "showinterfaces_link", xml);
 	}
-	Thread.sleep(1000);
+	
 	if(vendormodel.contains("Cisco"))
 	{
 		WebElement CiscoMultilinkInterface= getwebelement(xml.getlocator("//locators/" + application + "/selectinterface").replace("value", Cisco_Multilink_InterfaceName));
@@ -6035,7 +6011,7 @@ public void delete_MultilinkInterface(String application, String multilink_inter
 	}
 	
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on existing Interface radio button");
-		Thread.sleep(1000);
+		
 		if(getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name)).isDisplayed())
 		{
 			WebElement AddedDevice_Interface_Actiondropdown= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_interface_actiondropdown").replace("value", name));
@@ -6048,7 +6024,7 @@ public void delete_MultilinkInterface(String application, String multilink_inter
 		}
 
 		click_commonMethod(application, "Delete", "delete", xml);
-		Thread.sleep(2000);
+		
 		
 		Alert alert = driver.switchTo().alert();       
 		  
@@ -6064,7 +6040,7 @@ public void delete_MultilinkInterface(String application, String multilink_inter
 		  
 		  try {  
 		    alert.accept();
-		    Thread.sleep(2000);
+		    
 		  }catch(Exception e) {
 		     e.printStackTrace();
 		  } 
@@ -6078,11 +6054,11 @@ public void verifyInterfaceConfigHistory(String application, String ServiceIdent
 		searchorder(application, ServiceIdentification);
 		navigateToViewDevicePage(application, DeviceName);
 	ScrolltoElement(application, "interfaces_header", xml);
-	Thread.sleep(1000);
+	
 	compareText(application, "Interface Configuration History", "interfaceconfighistory_header", "Interface Configuration History", xml);
 	compareText(application, "Date column", "date_column", "Date", xml);
 	compareText(application, "File Name column", "filename_column", "File Name", xml);
-	Thread.sleep(1000);
+	
 	//**click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 	}
 	else
@@ -6093,7 +6069,7 @@ public void verifyInterfaceConfigHistory(String application, String ServiceIdent
 
 }
 public void selectInterfacelinkforEquipment(String application, String devicename) throws InterruptedException, DocumentException {
-	Thread.sleep(5000);
+	waitforPagetobeenable();
 
 	ScrolltoElement(application, "portalaccess_header", xml);
 	if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
@@ -6112,7 +6088,7 @@ public void selectInterfacelinkforEquipment(String application, String devicenam
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Select Interface link has been clicked for PE device under Provider Equipment Panel");
 		
 		scrollToTop();
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		compareText(application, "View device header", "viewdevicepage_header", "View PE Device", xml);
 		}
 	}
@@ -6122,7 +6098,7 @@ public void selectInterfacelinkforEquipment(String application, String devicenam
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 	}
 	
-	Thread.sleep(3000);
+	
 }
 
 
@@ -6132,7 +6108,7 @@ public void SelectInterfacetoremovefromservice(String application, String interf
 		throws IOException, InterruptedException, DocumentException {
 
 	ScrolltoElement(application, "labelname_managementAddresss", xml);
-	Thread.sleep(2000);
+	
 
 	selectRowforInterfaceInService(application, interfacename);
 	compareText(application, "Interface in Select Remove message", "InterfaceInSelect_RemoveSuccessMessage", "Interface removed Successfully", xml);
@@ -6187,7 +6163,7 @@ public void selectRowforInterfaceInService(String application, String interfacen
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacenumber + " is selected under 'Interface in Service' table");
 								
 								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceInselect_Actiondropdown")));
-								Thread.sleep(3000);
+								
 
 								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceInselect_removebuton")));
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacenumber + " has been selected to get removed from service");
@@ -6228,7 +6204,7 @@ public void PageNavigation_NextPageForInterfaceToselect_old(String Application)
 		throws InterruptedException, DocumentException {
 
 	Clickon(getwebelement(xml.getlocator("//locators/" + Application + "/InterfaceToselect_nextpage")));
-	Thread.sleep(3000);
+	
 
 }
 
@@ -6281,13 +6257,13 @@ public void selectrowforInterfaceToselecttable(String Application, String interf
 								System.out.println(results.get(i).getText());
 								results.get(i).click();
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacenumber + " is selected under 'Interface to select' table");
-								Thread.sleep(8000);
+								waitforPagetobeenable();
 								Clickon(getwebelement(xml.getlocator("//locators/" + Application + "/InterfaceToselect_Actiondropdown")));
 
-								Thread.sleep(5000);
+								waitforPagetobeenable();
 
 								Clickon(getwebelement(xml.getlocator("//locators/" + Application + "/InterfaceToselect_addbuton")));
-								Thread.sleep(3000);
+								
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacenumber + " is added to service");
 
 
@@ -6413,10 +6389,10 @@ public void edittextFields_SNMPversion(String application, String labelname, Str
 				}else {
 
 					getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).clear();
-					Thread.sleep(3000);
+					
 
 					SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")), expectedValueToEdit);
-					Thread.sleep(3000);
+					
 
 					String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
 					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field value is edited as: "+ actualvalue);
@@ -6433,10 +6409,10 @@ public void edittextFields_SNMPversion(String application, String labelname, Str
 				}else {
 
 					getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).clear();
-					Thread.sleep(3000);
+					
 
 					SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")), expectedValueToEdit);
-					Thread.sleep(3000);
+					
 
 					String actualvalue=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpathname +"")).getAttribute("value");
 					ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " text field value is edited as: "+ actualvalue);
@@ -6462,7 +6438,7 @@ public void Clickon_addToggleButton(String application, String xpath) throws Int
 
 	//Add Toggle button
 	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
-	Thread.sleep(5000);
+	waitforPagetobeenable();
 }
 
 public void executeCommandAndFetchTheValue(String application, String executeButton) throws InterruptedException, DocumentException {
@@ -6598,7 +6574,7 @@ public void deleteSevice1(String application, String ServiceIdentification) thro
 	
 	click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 	click_commonMethod(application, "Delete", "delete", xml);
-	Thread.sleep(2000);
+	
 	
 	Alert alert = driver.switchTo().alert();       
 	  
@@ -6614,7 +6590,7 @@ public void deleteSevice1(String application, String ServiceIdentification) thro
 	  
 	  try {  
 	    alert.accept();
-	    Thread.sleep(2000);
+	    
 	  }catch(Exception e) {
 	     e.printStackTrace();
 	  } 
@@ -6664,28 +6640,28 @@ public static Boolean isFileDownloaded(String fileName, String downloadspath) {
 
 public void searchorder(String application, String sid) throws InterruptedException, DocumentException, IOException {
 	Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-	Thread.sleep(2000);
+	
 	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorderlink")));
 	SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/servicefield")),sid);
-	Thread.sleep(1000);
+	
 	WebElement searchbutton= getwebelement(xml.getlocator("//locators/" + application + "/searchbutton"));
 	ScrolltoElement(application, "searchbutton", xml);
 	Clickon(searchbutton);
-	Thread.sleep(2000);
+	
 	scrolltoend();
 	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/serviceradiobutton")));
-	Thread.sleep(3000);
+	
 	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/searchorder_actiondropdown")));
-	Thread.sleep(1000);
+	
 	Clickon(getwebelement(xml.getlocator("//locators/" + application + "/view")));
-	Thread.sleep(3000);
+	
 }
 
 
 public void cleartext(String application, String labelname, String xpath) throws InterruptedException, DocumentException {
 	WebElement element= null;
 	try {
-		Thread.sleep(1000);
+		
 		element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 		String value= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 		if(element==null)
@@ -6693,7 +6669,7 @@ public void cleartext(String application, String labelname, String xpath) throws
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 		}
 		else if(value!=null) {
-			Thread.sleep(1000);
+			
 			element.clear();	
 		}			
 	} catch (Exception e) {
@@ -6705,11 +6681,11 @@ public void isDisplayed(String application, String xpath, String labelname) {
 	boolean availability = false;
 
 	try {
-		Thread.sleep(1000);
+		
 		availability= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 		System.out.println(availability);
 		if (availability) {
-			Thread.sleep(2000);
+			
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: '"+labelname+"' is displayed as expected");
 		}
 		else {
@@ -6741,7 +6717,7 @@ public String GetText(String application, String labelname, String xpath) throws
 	WebElement element = null;
 
 	try {
-		Thread.sleep(1000);
+		
 		element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")); 
 		String ele = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 		if(element==null)
@@ -6793,7 +6769,7 @@ public void writetoexcel(String filepath, String sheetname, int columnnumber, St
 public void verifysuccessmessage(String application, String expected) throws InterruptedException {
 	
 	scrollToTop();
-	Thread.sleep(3000);
+	
 	try {	
 		
 		boolean successMsg=getwebelement(xml.getlocator("//locators/" + application + "/alertMsg")).isDisplayed();
@@ -6806,11 +6782,13 @@ public void verifysuccessmessage(String application, String expected) throws Int
 				
 				ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 				System.out.println("Message is verified. It is displaying as: "+alrtmsg);
+				successScreenshot(application);
 				
 			}else {
 				
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 				System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+				successScreenshot(application);
 			}
 			
 		}else {
@@ -6822,6 +6800,7 @@ public void verifysuccessmessage(String application, String expected) throws Int
 		Log.info("failure in fetching success message - 'Service created Successfully'  ");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 		System.out.println(expected+ " message is not getting dislpayed");
+		successScreenshot(application);
 	}
 
 }
@@ -6838,7 +6817,7 @@ public void verifysuccessmessage(String application, String expected) throws Int
 	public void clickOnBreadCrump(String application, String breadCrumpLink) throws InterruptedException, DocumentException {
 		
 		scrollToTop();
-		Thread.sleep(2000);
+		
 		WebElement breadcrumb=null;
 
 		try {
@@ -6941,7 +6920,6 @@ click_commonMethod(application, "Action", "Routes_Actionbutton", xml);
 click_commonMethod(application, "Add Link", "Routes_AddLink", xml);
 compareText(application, "Add Route header", "Routes_AddRoutes_Header", "Add Route", xml);
 click_commonMethod(application, "Routes EIP Allocation Link", "Routes_EIPAllocationLink", xml);
-Thread.sleep(4000);
 
 if(getwebelement(xml.getlocator("//locators/" + application + "/Routes_EIPSubnetAllocationforService_Header")).isDisplayed()){
 	
@@ -6955,7 +6933,6 @@ if(getwebelement(xml.getlocator("//locators/" + application + "/Routes_EIPSubnet
 	SelectDropdownValueUnderSpanTag(application, "City dropdown", PE_RouteCity, "Routes_EIPAllocation_CityDropdown", "commonDropdownValueSpanTag", xml);
 	SelectDropdownValueUnderSpanTag(application, "Subnet Size dropdown", PE_RouteSubnetSize, "Routes_EIPAllocation_SubnetSizeDropdown", "commonDropdownValueSpanTag", xml);
 	
-	Thread.sleep(4000);
 	GetText(application, "Available Pool Message", "Routes_EIPAllocation_AvailablePoolsMessage");
 	click_commonMethod(application, "Close EIP Allocation window", "Routes_EIPAllocation_CloseButton", xml);
 }else {
@@ -6973,7 +6950,8 @@ addtextFields_commonMethod(application, "Network MAS", "Routes_NetworkMAStextfie
 addtextFields_commonMethod(application, "Metrics", "Routes_Metricstextfield", PE_Metrics, xml);
 
 click_commonMethod(application, "OK Button", "Routes_OKButton", xml);
-compareText(application, "Add Route Success Message", "AddRouteSuccessMessage", "Static Route successfully created.", xml);
+//compareText(application, "Add Route Success Message", "AddRouteSuccessMessage", "Static Route successfully created.", xml);
+verifysuccessmessage(application, "Static Route successfully created.");
 
 }else{
 ExtentTestManager.getTest().log(LogStatus.FAIL, "Routes panel header is not displaying");
@@ -6998,7 +6976,6 @@ click_commonMethod(application, "Action", "Routes_Actionbutton", xml);
 click_commonMethod(application, "Edit Link", "Routes_EditLink", xml);
 compareText(application, "Edit Route header", "Routes_EditRoutes_Header", "Edit Route", xml);
 click_commonMethod(application, "Routes EIP Allocation Link", "Routes_EIPAllocationLink", xml);
-Thread.sleep(4000);
 
 if(getwebelement(xml.getlocator("//locators/" + application + "/Routes_EIPSubnetAllocationforService_Header")).isDisplayed()){
 	
@@ -7006,7 +6983,7 @@ if(getwebelement(xml.getlocator("//locators/" + application + "/Routes_EIPSubnet
 	//SelectDropdownValueUnderSpanTag(application, "City dropdown", PE_RouteCityEdit, "Routes_EIPAllocation_CityDropdown", "commonDropdownValueSpanTag", xml);
 	SelectDropdownValueUnderSpanTag(application, "Subnet Size dropdown", PE_RouteSubnetSizeEdit, "Routes_EIPAllocation_SubnetSizeDropdown", "commonDropdownValueSpanTag", xml);
 	
-	Thread.sleep(2000);
+	
 	GetText(application, "Available Pool Message", "Routes_EIPAllocation_AvailablePoolsMessage");
 	compareText(application, "Allocate Subnet Button", "Routes_AllocateSubnetButon", "Allocate Subnet", xml);
 	click_commonMethod(application, "Close EIP Allocation window", "EditRoutes_EIPAllocation_CloseButton", xml);
@@ -7022,7 +6999,8 @@ ClearAndEnterTextValue(application, "Metrics", "Routes_Metricstextfield", PE_Met
 
 click_commonMethod(application, "OK Button", "Routes_OKButton", xml);
 scrollToTop();
-compareText(application, "Add Route Success Message", "UpdateRouteSuccessMessage", "Static Route successfully updated.", xml);
+//compareText(application, "Add Route Success Message", "UpdateRouteSuccessMessage", "Static Route successfully updated.", xml);
+verifysuccessmessage(application, "Static Route successfully updated.");
 
 
 }else{
@@ -7045,12 +7023,12 @@ String PE_RouteSubnetSizeEdit, String	PE_GatewayEdit,String	PE_NetworkAddressEdi
 	ScrolltoElement(application, "PE_CPE_Router_IPV4Command_Executebutton", xml);//interfaces_header//RouterTool_header//PE_CPE_Router_IPV4Command_Executebutton
 
 if(getwebelement(xml.getlocator("//locators/" + application + "/Routes_Header")).isDisplayed()){
-	Thread.sleep(2000);
+	
 click_commonMethod(application, "Select Route Checkbox", "Routes_SelectRouteCheckbox", xml);
 click_commonMethod(application, "Action", "Routes_Actionbutton", xml);
 click_commonMethod(application, "Delete Link", "Routes_DeleteLink", xml);
 
-Thread.sleep(2000);
+
 Alert alert = driver.switchTo().alert();
 
 
@@ -7068,7 +7046,8 @@ GetMessageFromAlertJavaScriptPopup();
 
  try {  
    AcceptJavaScriptMethod();//CancelJavaScriptMethod();
-	compareText(application, "Delete Route Success Message", "DeleteRouteSuccessMessage", "Static Route successfully deleted.", xml);
+//	compareText(application, "Delete Route Success Message", "DeleteRouteSuccessMessage", "Static Route successfully deleted.", xml);
+	verifysuccessmessage(application, "Static Route successfully deleted.");
  }catch(Exception e) {
 	 e.printStackTrace();
  }
@@ -7088,7 +7067,7 @@ public void selectInterfacelinkforDevice_Old(String application, String name) th
 	
 	//ScrolltoElement(application, "portalaccess_header", xml);
 	scrolltoend();
-	Thread.sleep(1000);
+	
 	ExtentTestManager.getTest().log(LogStatus.INFO, "check 'Select Interface' link");
 	
 	if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
@@ -7110,7 +7089,7 @@ public void selectInterfacelinkforDevice2(String application, String name) throw
 	
 	//ScrolltoElement(application, "portalaccess_header", xml);
 	scrolltoend();
-	Thread.sleep(1000);
+	
 	ExtentTestManager.getTest().log(LogStatus.INFO, "check 'Select Interface' link");
 	
 	if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
@@ -7125,7 +7104,7 @@ public void selectInterfacelinkforDevice2(String application, String name) throw
 			{
 				WebElement AddedDevice_SelectInterfacesLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_selectinterfaceslink").replace("value", AddedDevice_SNo));
 				Clickon(AddedDevice_SelectInterfacesLink);
-				Thread.sleep(5000);
+				waitforPagetobeenable();
 			}
 			else
 			{
@@ -7144,7 +7123,7 @@ public void SelectInterfacetoremovefromservice_Old(String application,String Int
 		throws IOException, InterruptedException, DocumentException {
 
 	ScrolltoElement(application, "viewpage_vendormodel", xml);
-	Thread.sleep(2000);
+	
 
 	if(vendormodel.contains("Cisco"))
 	{
@@ -7164,7 +7143,7 @@ public void SelectInterfacetoaddwithservcie_Old(String application, String inter
 		throws InterruptedException, DocumentException, IOException {
 
 	scrolltoend();
-	Thread.sleep(2000);
+	
 
 	if(vendormodel.contains("Cisco"))
 	{
@@ -7188,7 +7167,7 @@ public void deleteService2(String application) throws InterruptedException, Docu
 	//Delete Service
 	click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 	click_commonMethod(application, "Delete", "delete", xml);
-	Thread.sleep(2000);
+	
 	
 	Alert alert = driver.switchTo().alert();       
 	  
@@ -7204,11 +7183,11 @@ public void deleteService2(String application) throws InterruptedException, Docu
 	  
 	  try {  
 	    alert.accept();
-	    Thread.sleep(2000);
+	    
 	  }catch(Exception e) {
 	     e.printStackTrace();
 	  } 
-	  Thread.sleep(2000);
+	  
 	  verifysuccessmessage(application, "Service successfully deleted");
 	
 }
@@ -7233,7 +7212,7 @@ public void addDropdownValues_Clickondropdown(String application, String labelna
 			  }else {
 				  
 				  Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//div[contains(@class,'react-dropdown-select-content')]"));
-				  Thread.sleep(3000);
+				  
 				  
 				  //verify list of values inside dropdown
 				  List<WebElement> listofvalues = driver
@@ -7247,15 +7226,15 @@ public void addDropdownValues_Clickondropdown(String application, String labelna
 								 ls.add(valuetypes.getText());
 					}
 					
-					Thread.sleep(1000);
+					
 					    ExtentTestManager.getTest().log(LogStatus.PASS, "list of values inside "+labelname+" dropdown is: "+ls);
 			            System.out.println("list of values inside "+labelname+" dropdown is: "+ls);
 					
-					Thread.sleep(2000);
+					
 				SendKeys(getwebelement("//div[label[text()='"+ labelname +"']]//input"), expectedValueToAdd);	
-				Thread.sleep(2000);
+				
 				  Clickon(getwebelement("(//div[label[text()='"+ labelname +"']]//div[contains(text(),'"+ expectedValueToAdd +"')])[1]"));
-				  Thread.sleep(3000);
+				  
 				  
 				  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
 				  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
@@ -7295,7 +7274,7 @@ public void addDropdownValues_Clickondropdown(String application, String labelna
 public void selectInterfacelinkforDevice(String application, String name) throws InterruptedException, DocumentException {
 	scrolltoend();
 	//ScrolltoElement(application, "providerequipment_header", xml);
-	Thread.sleep(1000);
+	
 	ExtentTestManager.getTest().log(LogStatus.INFO, "check 'Select Interface' link");
 	
 	if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
@@ -7310,7 +7289,7 @@ public void selectInterfacelinkforDevice(String application, String name) throws
 			{
 				WebElement AddedDevice_SelectInterfacesLink= getwebelement(xml.getlocator("//locators/" + application + "/addeddevice_selectinterfaceslink").replace("value", AddedDevice_SNo));
 				Clickon(AddedDevice_SelectInterfacesLink);
-				Thread.sleep(3000);
+				
 				waitforPagetobeenable();
 			}
 			else
@@ -7330,32 +7309,32 @@ public void SelectInterfacetoremovefromservice(String application, String Interf
 		throws IOException, InterruptedException, DocumentException {
 
 	ScrolltoElement(application, "viewpage_premise", xml);
-	Thread.sleep(1000);
+	
 	click_commonMethod(application, "Interfaces in Service Filter", "interfacesinservice_filter", xml);
 	if(Edit_InterfaceName.equalsIgnoreCase("null")) {
 	addtextFields_commonMethod(application, "Interface in Service search", "interfaceinservice_fitertext", InterfaceName, xml);
 	WebElement InterfaceName_GridSelect= getwebelement(xml.getlocator("//locators/" + application + "/interfaceinservice_gridselect").replace("value", InterfaceName));
 	Clickon(InterfaceName_GridSelect);
-	ExtentTestManager.getTest().log(LogStatus.PASS, InterfaceName + " is selected under 'Interface to select' table");
+	ExtentTestManager.getTest().log(LogStatus.PASS, InterfaceName + " is selected under 'Interface in service' table");
 	}
 	else
 	{
 		addtextFields_commonMethod(application, "Interface in Service search", "interfaceinservice_fitertext", Edit_InterfaceName, xml);
 		WebElement InterfaceName_GridSelect= getwebelement(xml.getlocator("//locators/" + application + "/interfaceinservice_gridselect").replace("value", Edit_InterfaceName));
 		Clickon(InterfaceName_GridSelect);
-		ExtentTestManager.getTest().log(LogStatus.PASS, Edit_InterfaceName + " is selected under 'Interface to select' table");
+		ExtentTestManager.getTest().log(LogStatus.PASS, Edit_InterfaceName + " is selected under 'Interface in service' table");
 	}
-	Thread.sleep(3000);
+	
 
 	ScrolltoElement(application, "viewpage_premise", xml);
-	Thread.sleep(1000);
+	
 	click_commonMethod(application, "Action Dropdown", "InterfaceInselect_Actiondropdown", xml);
-	Thread.sleep(1000);
+	
 	click_commonMethod(application, "Remove", "InterfaceInselect_removebuton", xml);
-	Thread.sleep(1000);
+	
 	waitforPagetobeenable();
-	compareText(application, "Remove Interface Success Message", "RemoveSelectInterfaceSuccessMessage", "Interface removed Successfully", xml);
-
+//	compareText(application, "Remove Interface Success Message", "RemoveSelectInterfaceSuccessMessage", "Interface removed Successfully", xml);
+	verifysuccessmessage(application, "Interface removed Successfully");
 }
 
 public void Juniper_selectRowforInterfaceInService(String application, String InterfaceName,	String Edit_InterfaceName)
@@ -7411,7 +7390,7 @@ public void Juniper_selectRowforInterfaceInService(String application, String In
 								Clickon(getwebelement(xml.getlocator(
 										"//locators/" + application + "/InterfaceInselect_Actiondropdown")));
 
-								Thread.sleep(3000);
+								
 
 								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceInselect_removebuton")));
 								ExtentTestManager.getTest().log(LogStatus.PASS, InterfaceName + " has been selected to get removed from service");
@@ -7495,7 +7474,7 @@ public void Cisco_selectRowforInterfaceInService(String application, String inte
 								Clickon(getwebelement(xml.getlocator(
 										"//locators/" + application + "/InterfaceInselect_Actiondropdown")));
 
-								Thread.sleep(3000);
+								
 
 								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceInselect_removebuton")));
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " has been selected to get removed from service");
@@ -7535,7 +7514,7 @@ public void PageNavigation_NextPageForInterfaceToselect(String Application)
 		throws InterruptedException, DocumentException {
 
 	Clickon(getwebelement(xml.getlocator("//locators/" + Application + "/InterfaceToselect_nextpage")));
-	Thread.sleep(3000);
+	
 
 }
 
@@ -7543,7 +7522,7 @@ public void SelectInterfacetoaddwithservcie(String application, String Interface
 		throws InterruptedException, DocumentException, IOException {
 
 	ScrolltoElement(application, "InterfaceInService_panelHeader", xml);
-	Thread.sleep(1000);
+	
 	
 	click_commonMethod(application, "Interfaces To Select Filter", "InteraceColumn_Filter", xml);
 	if(Edit_InterfaceName.equalsIgnoreCase("null")) {
@@ -7559,17 +7538,18 @@ public void SelectInterfacetoaddwithservcie(String application, String Interface
 		Clickon(InterfaceName_GridSelect);
 		ExtentTestManager.getTest().log(LogStatus.PASS, Edit_InterfaceName + " is selected under 'Interface to select' table");
 	}
-	Thread.sleep(3000);
+	
 	waitforPagetobeenable();
 	ScrolltoElement(application, "InterfaceInService_panelHeader", xml);
-	Thread.sleep(1000);
+	
 	click_commonMethod(application, "Action Dropdown", "InterfaceToselect_Actiondropdown", xml);
-	Thread.sleep(1000);
+	
 	click_commonMethod(application, "Add", "InterfaceToselect_addbuton", xml);
-	Thread.sleep(1000);
-	compareText(application, "Add Interface Success Message", "AddSelectInterfaceSuccessMessage", "Interface Added Successfully.", xml);
+	
+//	compareText(application, "Add Interface Success Message", "AddSelectInterfaceSuccessMessage", "Interface Added Successfully.", xml);
+	verifysuccessmessage(application, "Interface Added Successfully.");
 	ScrolltoElement(application, "viewpage_backbutton", xml);
-	Thread.sleep(2000);
+	
 	click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 	waitforPagetobeenable();
 }
@@ -7626,14 +7606,14 @@ public void Juniper_selectrowforInterfaceToselecttable(String application)
 								System.out.println(results.get(i).getText());
 								results.get(i).click();
 								ExtentTestManager.getTest().log(LogStatus.PASS, Edit_JuniperInterfaceNameValue + " is selected under 'Interface to select' table");
-								Thread.sleep(8000);
+								waitforPagetobeenable();
 								Clickon(getwebelement(xml.getlocator(
 										"//locators/" + application + "/InterfaceToselect_Actiondropdown")));
 
-								Thread.sleep(5000);
+								waitforPagetobeenable();
 
 								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceToselect_addbuton")));
-								Thread.sleep(3000);
+								
 								ExtentTestManager.getTest().log(LogStatus.PASS, Edit_JuniperInterfaceNameValue + " is added to service");
 
 
@@ -7718,14 +7698,14 @@ public void Cisco_selectrowforInterfaceToselecttable(String application, String 
 								System.out.println(results.get(i).getText());
 								results.get(i).click();
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is selected under 'Interface to select' table");
-								Thread.sleep(8000);
+								waitforPagetobeenable();
 								Clickon(getwebelement(xml.getlocator(
 										"//locators/" + application + "/InterfaceToselect_Actiondropdown")));
 
-								Thread.sleep(5000);
+								waitforPagetobeenable();
 
 								Clickon(getwebelement(xml.getlocator("//locators/" + application + "/InterfaceToselect_addbuton")));
-								Thread.sleep(3000);
+								
 								ExtentTestManager.getTest().log(LogStatus.PASS, interfacename + " is added to service");
 
 

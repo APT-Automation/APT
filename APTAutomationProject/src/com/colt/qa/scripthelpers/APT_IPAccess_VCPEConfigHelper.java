@@ -4052,7 +4052,7 @@ public class APT_IPAccess_VCPEConfigHelper extends DriverHelper {
 		click_commonMethod(application, "Action", "viewdevice_Actiondropdown", xml);
 		compareText(application, "Edit", "viewdevice_Edit", "Edit", xml);
 		compareText(application, "Delete", "viewdevice_delete", "Delete", xml);
-		compareText(application, "Fetch Interface", "viewdevice_fetchinterfacelink", "Fetch Interface", xml);
+		compareText(application, "Fetch Interface", "viewdevice_fetchinterfacelink", "Fetch Device Interfaces", xml);
 
 		//Edit in view device page
 		click_commonMethod(application, "Edit", "viewdevice_Edit", xml);
@@ -7366,6 +7366,7 @@ public class APT_IPAccess_VCPEConfigHelper extends DriverHelper {
 			Log.info("failure in fetching success message");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 			System.out.println(expected+ " message is not getting dislpayed");
+			successScreenshot(application);
 		}
 
 	}

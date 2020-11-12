@@ -164,7 +164,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		ExtentTestManager.getTest().log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue);
 		click_commonMethod(application, "OK", "statuspage_okbutton", xml);
 		waitforPagetobeenable();
-		scrollToTop();
+		Thread.sleep(3000);
 		verifysuccessmessage(application, "Device Status history successfully changed");
 		Thread.sleep(1000);
 		scrolltoend();
@@ -401,7 +401,7 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		ExtentTestManager.getTest().log(LogStatus.PASS, "New Status Value is: "+NewStatusvalue1);
 		click_commonMethod(application, "OK", "interface_statuspage_okbutton", xml);
 		waitforPagetobeenable();
-		scrollToTop();
+		Thread.sleep(3000);
 		verifysuccessmessage(application, "Interface Status History successfully changed.");
 		scrolltoend();
 		Thread.sleep(1000);
@@ -735,10 +735,9 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 		Thread.sleep(2000);
 		click_commonMethod(application, "Synchronize", "synchronization_synchronizelink", xml);
 		waitforPagetobeenable();
-		scrollToTop();
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		verifysuccessmessage(application, "Sync started successfully. Please check the sync status of this device.");
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		
 		//verify device name link in status panel
 		click(application, "Device", "status_devicevalue", xml);
@@ -879,9 +878,10 @@ public class APT_ManageNetworkHelper extends DriverHelper {
 			}
 
 		}catch(Exception e) {
-			Log.info("failure in fetching success message - 'Service created Successfully'  ");
+			Log.info("Failure in fetching success message ");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 			System.out.println(expected+ " message is not getting dislpayed");
+			successScreenshot(application);
 		}
 
 	}

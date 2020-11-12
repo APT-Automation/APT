@@ -152,6 +152,8 @@ public class APT_IPAccessResilientConfigTest extends DriverTestcase{
 	
 	
 	
+	
+	
 	private void TestCase01() {
 		try {
 			String newCustomerName=map.get("newCustomerCreation");
@@ -238,8 +240,6 @@ public class APT_IPAccessResilientConfigTest extends DriverTestcase{
 		try {
 			logger= ExtentTestManager.startTest("TC-05 : verifyCustomerDetailsInformation_Resilient");
 			ResilientHelper.get().searchorder("IPAccessResilientConfig", map.get("ServiceIdentification"));
-			//ResilientHelper.get().verifyCustomerDetailsInformation("IPAccessResilientConfig", map.get("existingCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
-		
 			ResilientHelper.get().verifyCustomerDetailsInformation("IPAccessResilientConfig", map.get("newCustomerCreation"), map.get("existingCustomerSelection"),map.get("newCustomer"),map.get("existingCustomer"),
 					map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));	
 		
@@ -259,9 +259,6 @@ public class APT_IPAccessResilientConfigTest extends DriverTestcase{
 		try {
 			
 			logger= ExtentTestManager.startTest("TC-06 : VerifyEditOrderChangeOrderFunction_Resilient");
-//			ResilientHelper.get().verifyorderpanel_editorder("IPAccessResilientConfig", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
-//			ResilientHelper.get().verifyorderpanel_changeorder("IPAccessResilientConfig", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"));	
-			
 			ResilientHelper.get().verifyorderpanel_editorder("IPAccessResilientConfig", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
 			ResilientHelper.get().verifyorderpanel_changeorder("IPAccessResilientConfig", map.get("ChangeOrder_newOrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
 					map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));
@@ -314,7 +311,7 @@ public class APT_IPAccessResilientConfigTest extends DriverTestcase{
 			ResilientHelper.get().verifyManageSubnetsIPv6("IPAccessResilientConfig");
 			ResilientHelper.get().verifyDump("IPAccessResilientConfig");
 			ResilientHelper.get().ShowNewInfovistaReport("IPAccessResilientConfig");
-			ResilientHelper.get().verifyManageService1("IPAccessResilientConfig", map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"),
+			ResilientHelper.get().verifyManageService1("IPAccessResilientConfig", map.get("ChangeOrder_newOrderNumber"), map.get("ServiceIdentification"),
 					map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
 			}catch(Exception e) {
 			e.printStackTrace();
@@ -494,9 +491,12 @@ public class APT_IPAccessResilientConfigTest extends DriverTestcase{
 	
 	private void TestCase17() {
 		try {
+			if(map.get("VendorModel").contains("Juniper")) 
+			{
 			logger= ExtentTestManager.startTest("TC-17 : verifyInterfaceConfigurationHistory_Resilient");
 			ResilientHelper.get().verifyInterfaceConfigHistory("IPAccessResilientConfig",map.get("ServiceIdentification"), map.get("NewPE_DeviceName"), map.get("VendorModel"));
-		}catch(Exception e) {
+			}
+			}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");
 			System.out.println(  e+" : Method failed");
@@ -529,6 +529,8 @@ public class APT_IPAccessResilientConfigTest extends DriverTestcase{
 			if(map.get("VendorModel").contains("Cisco"))
 			{
 				logger= ExtentTestManager.startTest("TC-19 : verify_CiscoVendor_AddEditInterface_Resilient");
+				ResilientHelper.get().searchorder("IPAccessResilientConfig", map.get("ServiceIdentification"));
+				ResilientHelper.get().navigateToViewDevicePage("IPAccessResilientConfig", map.get("NewPE_DeviceName"));
 				ResilientHelper.get().verify_CiscoVendor_AddInterface("IPAccessResilientConfig", map.get("ConfigureInterface_Checkbox"), map.get("InterfaceName"), map.get("InterfaceAddressRange_Value")
 						, map.get("EIPAllocation_City"), map.get("ExistingAddressRangeIPv4selection")
 						, map.get("ExistingAddressIPv4DropdownValue"), map.get("NewAddressRangeIpv4selection")
@@ -554,6 +556,8 @@ public class APT_IPAccessResilientConfigTest extends DriverTestcase{
 					map.get("Edit_EIPAllocation_Subnetsize"), map.get("Edit_EIPAllocation_IPv6_Subnetsize"));
 			}else{
 				logger= ExtentTestManager.startTest("TC-19 : VerifyAdd_EditInterface_JuniperVendor_Resilient");
+				ResilientHelper.get().searchorder("IPAccessResilientConfig", map.get("ServiceIdentification"));
+				ResilientHelper.get().navigateToViewDevicePage("IPAccessResilientConfig", map.get("NewPE_DeviceName"));
 				ResilientHelper.get().VerifyAddInterface_JuniperVendor("IPAccessResilientConfig", map.get("InterfaceName"), map.get("InterfaceAddressRange_Value")
 						, map.get("EIPAllocation_City"), map.get("ExistingAddressRangeIPv4selection")
 						, map.get("ExistingAddressIPv4DropdownValue"), map.get("NewAddressRangeIpv4selection")
@@ -645,7 +649,7 @@ public class APT_IPAccessResilientConfigTest extends DriverTestcase{
 	private void TestCase21() {
 		try {
 			
-			logger= ExtentTestManager.startTest("TC-20 : verifySelectInterfaces_ColtTotal");
+			logger= ExtentTestManager.startTest("TC-21 : verifySelectInterfaces_ColtTotal");
 			ResilientHelper.get().searchorder("IPAccessResilientConfig", map.get("ServiceIdentification"));	
 			ResilientHelper.get().selectInterfacelinkforDevice("IPAccessResilientConfig", map.get("NewPE_DeviceName"));
 		
@@ -675,7 +679,6 @@ public class APT_IPAccessResilientConfigTest extends DriverTestcase{
 	private void TestCase22() {
 		try {
 			logger= ExtentTestManager.startTest("TC-22 : verifyAddCPEDeviceFunction_Resilient");
-			Thread.sleep(2000);
 			Thread.sleep(2000);
 			ResilientHelper.get().searchorder("IPAccessResilientConfig", map.get("ServiceIdentification"));
 			ResilientHelper.get().verifyAddCPEDeviceFunction("IPAccessResilientConfig", map.get("ServiceIdentification"),
@@ -1038,7 +1041,7 @@ public class APT_IPAccessResilientConfigTest extends DriverTestcase{
 		try {
 			logger= ExtentTestManager.startTest("TC-37 : deletePEdeviceFunction_NewlyCreatedDevice_Resilient");
 			ResilientHelper.get().searchorder("IPAccessResilientConfig", map.get("ServiceIdentification"));
-			ResilientHelper.get().deleteDevice_PE("IPAccessResilientConfig", "NewPE_DeviceName");
+			ResilientHelper.get().deleteDevice_PE("IPAccessResilientConfig", map.get("NewPE_DeviceName"));
 		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");
@@ -1053,7 +1056,7 @@ public class APT_IPAccessResilientConfigTest extends DriverTestcase{
 	private void TestCase38() {
 		try {
 			logger= ExtentTestManager.startTest("TC-38 : deleteCPEdeviceFunction_Resilient");
-			ResilientHelper.get().deleteDevice_CPE("IPAccessResilientConfig", "CPE_DeviceName");
+			ResilientHelper.get().deleteDevice_CPE("IPAccessResilientConfig", map.get("CPE_DeviceName"));
 		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");
@@ -1070,7 +1073,7 @@ public class APT_IPAccessResilientConfigTest extends DriverTestcase{
 	private void TestCase39() {
 		try {
 			logger= ExtentTestManager.startTest("TC-39 : deleteServiceFunction_Resilient");
-			ResilientHelper.get().deleteSevice1("IPAccessResilientConfig", "ServiceIdentification");
+			ResilientHelper.get().deleteSevice1("IPAccessResilientConfig", map.get("ServiceIdentification"));
 		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");

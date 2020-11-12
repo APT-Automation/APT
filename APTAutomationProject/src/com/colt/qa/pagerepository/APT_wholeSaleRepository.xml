@@ -655,7 +655,7 @@
 <!-- MAS switch interface page -->
 
 
-<MAS_PE_interfacepanel_ActionDropdown>//div[div[text()='Interfaces']]//button[text()='Action']</MAS_PE_interfacepanel_ActionDropdown>
+<MAS_PE_interfacepanel_ActionDropdown>//div[div[text()='Interfaces']]//following-sibling::div//button[text()='Action']</MAS_PE_interfacepanel_ActionDropdown>
 
 <MAS_PE_addInterfaceLink>//a[text()='Add Interface/Link']</MAS_PE_addInterfaceLink>
 
@@ -713,7 +713,9 @@
 <!-- MAS switch view Interface -->
 
 
-<MAS_PE_searchbox>//input[@id='filter-text-box']</MAS_PE_searchbox>
+<MAS_PE_searchbox>//input[@id='interfaceNameAddress']</MAS_PE_searchbox>
+
+<MAS_PE_searchButton>//span[text()='Search']</MAS_PE_searchButton>
 
 <MAS_PE_InterfacePanel_labelnames>//span[@role='columnheader']</MAS_PE_InterfacePanel_labelnames>
 
@@ -769,9 +771,9 @@
 
 <InterfaceInselect_nextpage>//div[div[contains(text(),'Interfaces in Service')]]/following-sibling::div[1]//button[text()='Next']</InterfaceInselect_nextpage>
 
-<InterfaceToselect_Actiondropdown>//div[div[text()='Interfaces to Select']]//button[text()='Action']</InterfaceToselect_Actiondropdown>
+<InterfaceToselect_Actiondropdown>//div[div[text()='Interfaces to Select']]//following-sibling::div//button[text()='Action']</InterfaceToselect_Actiondropdown>
 
-<InterfaceToselect_addbuton>//div[div[text()='Interfaces to Select']]//a[contains(text(),'Add')]</InterfaceToselect_addbuton>
+<InterfaceToselect_addbuton>//div[div[text()='Interfaces to Select']]//following-sibling::div//a[contains(text(),'Add')]</InterfaceToselect_addbuton>
 
 <InterfaceToselect_currentpage>//div[div[contains(text(),'Interfaces to Select')]]/following-sibling::div[1]//span[@ref='lbCurrent']</InterfaceToselect_currentpage>
 

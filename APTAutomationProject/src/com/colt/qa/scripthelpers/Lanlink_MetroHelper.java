@@ -25750,7 +25750,6 @@ Thread.sleep(3000);
 					String alrtmsg=getwebelement(xml.getlocator("//locators/" + application + "/AlertForServiceCreationSuccessMessage")).getText();
 					
 					if(expected.contains(alrtmsg)) {
-						
 						ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 						Log.info("Message is verified. It is displaying as: "+alrtmsg);
 						successScreenshot(application);
@@ -25758,17 +25757,20 @@ Thread.sleep(3000);
 						
 						ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 						Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+						failureScreenshot(application);
 					}
 					
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
 					Log.info(" Success Message is not displaying");
+					failureScreenshot(application);
 				}
 				
 			}catch(Exception e) {
 				Log.info("failure in fetching success message ");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 				Log.info(expected+ " message is not getting dislpayed");
+				failureScreenshot(application);
 			}
 
 		}

@@ -455,14 +455,10 @@ public class APT_wholesale extends DriverTestcase{
 				APT_Helper.get().viewTrunk_PSX_executeConfiguration("wholesaleService", map.get("viewtrunk_PSXconfiguration"), TrunkName,
 						map.get("carierIPOrient_resiltrunk"), map.get("carierIPterminat_resiltrunk"));
 				
-				if(map.get("editGateway").equalsIgnoreCase("null")) {
-					Gateway=map.get("gateway");
-				}
-				else {
-					Gateway=map.get("editGateway");
-				}
+				String gatewayUpdated = APT_Helper.get().fetchgatewayValue("wholesaleService");
 				
-				if(Gateway.contains("SBC")) {
+				
+				if(gatewayUpdated.contains("SBC")) {
 					APT_Helper.get().viewTrunk_SBC_executeConfiguration("wholesaleService", map.get("viewtrunk_SBCconfiguration"));
 				}
 				else
@@ -471,39 +467,52 @@ public class APT_wholesale extends DriverTestcase{
 				}
 				ExtentTestManager.endTest(); 
 				
+				
 			logger= ExtentTestManager.startTest("SBCmanualConfig_wholesaleSIP");
-				if(Gateway.contains("SBC")) {
+			 try {
+				if(gatewayUpdated.contains("SBC")) {
 					APT_Helper.get().addSBC_manualExecutionConfig("wholesaleService", map.get("SBCmanualConfigvalue"));
 					APT_Helper.get().verifySBCfileAdded("wholesaleService");
 					APT_Helper.get().editSBC_manualExecutionConfig("wholesaleService", map.get("editSBCmanualConfigvalue"));
 					APT_Helper.get().deleteSBC_manualExecutionConfig("wholesaleService");
-					ExtentTestManager.endTest();
+					
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.INFO, "'SBC Manual Execution Configuration' panel will not display, if 'SBC' gateway not selected ");
-					ExtentTestManager.endTest();
 				}
+				}catch(Exception e) {
+					 ExtentTestManager.getTest().log(LogStatus.FAIL,"Failure at 'SBC manual COnfiguration'");
+				}
+			ExtentTestManager.endTest();
 				
 				
 			logger= ExtentTestManager.startTest("PSXmanualConfig_wholesaleSIP");
+			 try {
 				APT_Helper.get().addPSX_manualExecutionConfig("wholesaleService", map.get("PSXmanualConfigValue"));
 				APT_Helper.get().verifyPSXfileAdded("wholesaleService");
 				APT_Helper.get().editPSX_manualExecutionConfig("wholesaleService", map.get("editPSXmanualConfigValue"));
 				APT_Helper.get().deletePSX_manualExecutionConfig("wholesaleService");
+			 }catch(Exception e) {
+				 ExtentTestManager.getTest().log(LogStatus.FAIL,"Failure at 'PSX manual COnfiguration'"); 
+			 }
 				ExtentTestManager.endTest();
 				
+				
 			logger= ExtentTestManager.startTest("GSXmanualConfig_wholesaleSIP");
-				if(Gateway.contains("SBC")) {
+			 try {
+				if(gatewayUpdated.contains("SBC")) {
 					ExtentTestManager.getTest().log(LogStatus.INFO, "'GSX Manual Execution Configuration' panel will not display, if 'SBC' gateway is selected ");
-					ExtentTestManager.endTest();
 				}
 				else {
 					APT_Helper.get().addGSX_manualExecutionConfig("wholesaleService", map.get("GSXmanualConfigValue"));
 					APT_Helper.get().verifyGSXfileAdded("wholesaleService");
 					APT_Helper.get().editGSX_manualExecutionConfig("wholesaleService", map.get("editGSXmanualConfigValue"));
 					APT_Helper.get().deleteGSX_manualExecutionConfig("wholesaleService");
-					ExtentTestManager.endTest();
 				}
-			
+			 }catch(Exception e) {
+				 ExtentTestManager.getTest().log(LogStatus.FAIL,"Failure at 'GSX manual COnfiguration'");  
+			 }
+				ExtentTestManager.endTest();
+				
 				
 			/**
 			 * CPE device	

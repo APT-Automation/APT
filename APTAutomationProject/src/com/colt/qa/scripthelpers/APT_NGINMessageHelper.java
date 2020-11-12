@@ -287,6 +287,7 @@ public class APT_NGINMessageHelper extends DriverHelper{
 			Log.info("failure in fetching success message");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 			System.out.println(expected+ " message is not getting dislpayed");
+			successScreenshot(application);
 		}
 
 	}

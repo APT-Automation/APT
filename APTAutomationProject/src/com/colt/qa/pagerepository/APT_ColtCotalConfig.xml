@@ -1162,7 +1162,7 @@
 <AddStaticNATSuccessMessage>//span[contains(text(),'Static NAT successfully inserted.')]</AddStaticNATSuccessMessage>
 <UpdateStaticNATSuccessMessage>//span[contains(text(),'Static NAT successfully updated.')]</UpdateStaticNATSuccessMessage>
 <DeleteStaticNATSuccessMessage>//span[contains(text(),'Static NAT successfully deleted.')]</DeleteStaticNATSuccessMessage>
-<SelectStaticNATCheckbox>(//body//span//span//span[2])[1]</SelectStaticNATCheckbox>
+<SelectStaticNATCheckbox>(//div[@col-id='natLocalIp'][text()='value'])[1]</SelectStaticNATCheckbox>
 
 
 

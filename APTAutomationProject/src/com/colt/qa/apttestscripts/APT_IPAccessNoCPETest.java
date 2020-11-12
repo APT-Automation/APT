@@ -186,7 +186,8 @@ public class APT_IPAccessNoCPETest extends DriverTestcase{
 		try {
 			logger= ExtentTestManager.startTest("TC-05 : verifyCustomerDetailsInformation_NoCPE");
 			NoCPEHelper.get().searchorder("NoCpeConfig", map.get("ServiceIdentification"));
-			NoCPEHelper.get().verifyCustomerDetailsInformation("NoCpeConfig", map.get("existingCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
+			NoCPEHelper.get().verifyCustomerDetailsInformation("NoCpeConfig", map.get("newCustomerCreation"), map.get("existingCustomerSelection"),map.get("newCustomer"),map.get("existingCustomer"),
+					map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
 		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");
@@ -202,9 +203,13 @@ public class APT_IPAccessNoCPETest extends DriverTestcase{
 		try {
 			
 			logger= ExtentTestManager.startTest("TC-06 : VerifyEditOrderChangeOrderFunction_NoCPE");
-			NoCPEHelper.get().verifyorderpanel_editorder("NoCpeConfig", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
-			NoCPEHelper.get().verifyorderpanel_changeorder("NoCpeConfig", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"));
-			}catch(Exception e) {
+			NoCPEHelper.get().searchorder("NoCpeConfig", map.get("ServiceIdentification"));
+			NoCPEHelper.get().verifyorderpanel_editorder("NoCpeConfig", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
+			NoCPEHelper.get().verifyorderpanel_changeorder("NoCpeConfig", map.get("ChangeOrder_newOrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
+					map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));
+			
+			
+		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");
 			System.out.println(  e+" : Method failed");
@@ -239,7 +244,7 @@ public class APT_IPAccessNoCPETest extends DriverTestcase{
 				  	map.get("ManageServiceEdit"),map.get("RouterConfigurationViewIPv4Edit") ,map.get("RouterConfigurationViewIPv6Edit"),map.get("PerformanceReportingEdit"), 
 				  	map.get("IPGuardianEdit"),map.get("SNMPNotificationEdit"), map.get("DeliveryChannelEdit"), map.get("TrapTargetAddressEdit"),map.get("RouterBasedFirewallEdit"),
 				  	map.get("QosEdit"), map.get("ExtendPErangetocustomerLANEdit"));
-			NoCPEHelper.get().verifyManageService("NoCpeConfig", map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"),
+			NoCPEHelper.get().verifyManageService("NoCpeConfig", map.get("ChangeOrder_newOrderNumber"), map.get("ServiceIdentification"),
 					map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
 			}catch(Exception e) {
 			e.printStackTrace();
@@ -404,9 +409,12 @@ public class APT_IPAccessNoCPETest extends DriverTestcase{
 	
 	private void TestCase16() {
 		try {
+			if(map.get("VendorModel").contains("Juniper")) 
+			{
 			logger= ExtentTestManager.startTest("TC-16 : verifyInterfaceConfigurationHistory_NoCPE");
 			NoCPEHelper.get().verifyInterfaceConfigHistory("NoCpeConfig",map.get("ServiceIdentification"), map.get("NewDeviceName"), map.get("VendorModel"));
-		}catch(Exception e) {
+			}
+			}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");
 			System.out.println(  e+" : Method failed");
@@ -556,7 +564,7 @@ public class APT_IPAccessNoCPETest extends DriverTestcase{
 		try {
 			logger= ExtentTestManager.startTest("TC-21 : deleteDeviceFunction_PE_NewlyCreatedDevice_NoCPE");
 			NoCPEHelper.get().searchorder("NoCpeConfig", map.get("ServiceIdentification"));
-			NoCPEHelper.get().deleteDevice_PE("NoCpeConfig", "NewDeviceName");
+			NoCPEHelper.get().deleteDevice_PE("NoCpeConfig", map.get("NewDeviceName"));
 		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");
@@ -573,7 +581,7 @@ public class APT_IPAccessNoCPETest extends DriverTestcase{
 	private void TestCase22() {
 		try {
 			logger= ExtentTestManager.startTest("TC-22 : deleteServiceFunction_PE_NewlyCreatedDevice_NoCPE");
-			NoCPEHelper.get().deleteSevice1("NoCpeConfig", "ServiceIdentification");
+			NoCPEHelper.get().deleteSevice1("NoCpeConfig", map.get("ServiceIdentification"));
 		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");

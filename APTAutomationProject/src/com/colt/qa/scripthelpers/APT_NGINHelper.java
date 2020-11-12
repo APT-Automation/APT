@@ -1373,9 +1373,11 @@ public class APT_NGINHelper extends DriverHelper {
 		click_commonMethod(application, "Synchronize", "synchronizelink", xml);
 		waitforPagetobeenable();
 		verifysuccessmessage(application, "Sync started successfully. Please check the sync status of this service.");
-		scrolltoend();
-		click_commonMethod(application, "Back", "managepage_backbutton", xml);
-		waitforPagetobeenable();
+//		driver.navigate().refresh();
+//		Thread.sleep(5000);
+//		waitforPagetobeenable();
+//		clickOnBreadCrumb(application, sid);
+//		waitforPagetobeenable();
 	}
 		
 	public void verifySynchronizeLink(String application) throws InterruptedException, DocumentException {
@@ -1438,7 +1440,7 @@ public class APT_NGINHelper extends DriverHelper {
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Bulk Interface page refresh successful");
 		Log.info("Bulk Interface page refresh successful");
 		Thread.sleep(1000);
-		scrolltoend();
+		ScrolltoElement(application, "bulkinterfacepage_cancel", xml);
 		click_commonMethod(application, "Cancel", "bulkinterfacepage_cancel", xml);
 		Thread.sleep(2000);
 		waitforPagetobeenable();
@@ -4361,8 +4363,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		
 		//Delete Customer
 		if(!customadm.equalsIgnoreCase("No")) {
-		ScrolltoElement(application, "customerheader", xml);
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-100)");
+		ScrolltoElement(application, "resellerheader", xml);
 		WebElement CustomerGridCheck= getwebelement("(//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 		String CustomerGrid= CustomerGridCheck.getAttribute("style");
 		WebElement AddedCustomer= getwebelement("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//span[contains(@class,'unchecked')]");
@@ -4673,6 +4674,7 @@ public void verify_EditReseller(String application, String ocn, String editemail
 		Log.info("failure in fetching success message");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 		System.out.println(expected+ " message is not getting dislpayed");
+		successScreenshot(application);
 	}
 
 }
@@ -4756,5 +4758,31 @@ public void verify_EditReseller(String application, String ocn, String editemail
 
 	}
 	
+	 /**
+     *    
+      * @param application
+     * @throws DocumentException 
+      * @throws InterruptedException 
+      */
+ public void clickOnBreadCrumb(String application, String sid) throws InterruptedException, DocumentException {
+
+		scrollToTop();
+		Thread.sleep(2000);
+		WebElement breadcrumb=null;
+
+		try {
+			breadcrumb=getwebelement(xml.getlocator("//locators/" + application + "/breadcrumb").replace("value", sid));
+			if(breadcrumb.isDisplayed()) 
+			{
+				//Clickon(breadcrumb);
+				click_commonMethod_PassingWebelementDirectly_forBreadcrumb(application, "Breadcrumb", breadcrumb, xml);
+			}else {
+				System.out.println("Breadcrumb is not displaying for the element "+ breadcrumb);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Breadcrumb is not displaying for the element "+ breadcrumb);
+		}
+	}
 
 }

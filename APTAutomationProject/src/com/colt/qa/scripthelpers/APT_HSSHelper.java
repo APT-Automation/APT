@@ -1365,13 +1365,16 @@ import com.colt.qa.reporter.ExtentTestManager;
 				GetText(application, "Premise", "viewpage_premise");
 			}
 			
+			scrollToTop();
+			Thread.sleep(1000);
 			clickOnBreadCrumb(application, sid);
+			
 //			}
 //			else
 //			{
 //				ExtentTestManager.getTest().log(LogStatus.FAIL, "No Device added in grid");
 //			}
-			waitforPagetobeenable();
+			//waitforPagetobeenable();
 		}
 
 		public void verifyEditDevice(String application, String editDevicename, String editVendorModel
@@ -1384,6 +1387,7 @@ import com.colt.qa.reporter.ExtentTestManager;
 
 			try {
 
+				waitforPagetobeenable();
 				ScrolltoElement(application, "deviceheader", xml);
 				Thread.sleep(1000);
 				if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid")).isDisplayed())
@@ -1908,6 +1912,7 @@ public void SelectInterface(String application) throws InterruptedException, Doc
 			
 			ScrolltoElement(application, "viewdeviceheader", xml);
 			compareText(application, "Interfaces Header", "interfaceheader", "Interfaces", xml);
+			Thread.sleep(1000);
 			WebElement InterfacesGridCheck= getwebelement("(//div[text()='Interfaces']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]");
 			String InterfacesGrid= InterfacesGridCheck.getAttribute("style");
 			WebElement AddedInterfaces= getwebelement("(//div[text()='Interfaces']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//span[contains(@class,'unchecked')])[1]");
@@ -2051,20 +2056,9 @@ public void deleteService(String application) throws InterruptedException, Docum
 		}
 		
 		
-		public void scrollToTop() {
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0,0)");
-		}
 		
 		public void clickOnBankPage() {
 			driver.findElement(By.xpath("//body")).click();
-		}
-
-		
-	//Scroll to particular webelement
-		public void ScrolltoElement(WebElement Element) {
-			
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",(Element));
-			
 		}
 
 	
@@ -2202,6 +2196,7 @@ public void deleteService(String application) throws InterruptedException, Docum
  			Log.info("failure in fetching success message");
  			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
  			System.out.println(expected+ " message is not getting dislpayed");
+ 			successScreenshot(application);
  		}
 
  	}

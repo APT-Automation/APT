@@ -83,7 +83,8 @@ public class APT_VOIPAccessTest extends DriverTestcase{
 		System.out.println("TC-05");
 		logger= ExtentTestManager.startTest("verifyCustomerDetailsInformation_VOIP");
 		APT_VOIPHelper.get().searchorder("voipservice", map.get("ServiceIdentification"));
-		APT_VOIPHelper.get().verifyCustomerDetailsInformation("voipservice", map.get("existingCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
+		APT_VOIPHelper.get().verifyCustomerDetailsInformation("voipservice", map.get("newCustomerCreation"), map.get("existingCustomerSelection"),map.get("newCustomer"),map.get("existingCustomer"),
+				map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
 		ExtentTestManager.endTest();
 		
 		
@@ -95,7 +96,8 @@ public class APT_VOIPAccessTest extends DriverTestcase{
 		System.out.println("TC-06");
 		logger= ExtentTestManager.startTest("VerifyEditOrderChangeOrderFunction_VOIP");
 		APT_VOIPHelper.get().verifyorderpanel_editorder("voipservice", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
-		APT_VOIPHelper.get().verifyorderpanel_changeorder("voipservice", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"));	
+		APT_VOIPHelper.get().verifyorderpanel_changeorder("voipservice", map.get("ChangeOrder_newOrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
+				map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));	
 		ExtentTestManager.endTest();
 		
 
@@ -109,7 +111,7 @@ public class APT_VOIPAccessTest extends DriverTestcase{
 		APT_VOIPHelper.get().editService("voipservice", map.get("ServiceIdentification"), map.get("ResellerCode"),map.get("Remarks"),map.get("EmailService"),
 				map.get("PhoneService"), map.get("ManageService"), map.get("SyslogEventView") ,map.get("ServiceStatusView"), map.get("RouterConfigurationView"),
 				map.get("PerformanceReporting"),map.get("ProactiveNotification"),map.get("NotificationManagementTeam"),map.get("DialUserAdministration"),map.get("ServiceType"),
-				map.get("EditServiceIdentification"), map.get("EditResellerCode"),map.get("EditRemarks"),map.get("EditEmailService"),map.get("EditPhoneService"),
+				map.get("ServiceIdentification"), map.get("EditResellerCode"),map.get("EditRemarks"),map.get("EditEmailService"),map.get("EditPhoneService"),
 				map.get("EditManageService"), map.get("EditSyslogEventView") ,map.get("EditServiceStatusView"),
 				map.get("EditRouterConfigurationView"),map.get("EditPerformanceReporting"),map.get("EditProactiveNotification"), map.get("EditNotificationManagementTeam"),
 				map.get("EditDialUserAdministration"));
@@ -121,7 +123,7 @@ public class APT_VOIPAccessTest extends DriverTestcase{
 		logger= ExtentTestManager.startTest("verifyManageService_ManageSubnet_IPv6_VOIP");
 		APT_VOIPHelper.get().searchorder("voipservice", map.get("ServiceIdentification"));
 		APT_VOIPHelper.get().manageSubnet_viewServicepage("voipservice");
-		APT_VOIPHelper.get().manageServiceFunctionTest("voipservice", map.get("ChangeOrder_OrderNumber"),map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
+		APT_VOIPHelper.get().manageServiceFunctionTest("voipservice", map.get("ChangeOrder_newOrderNumber"),map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
 		ExtentTestManager.endTest();
 
 		
@@ -500,34 +502,34 @@ public class APT_VOIPAccessTest extends DriverTestcase{
 		
 			
 		
-			System.out.println("TC-40");
-			logger= ExtentTestManager.startTest("PSXManuallyExecutedConfigurations_VOIP");
-			APT_VOIPHelper.get().addPSX_manualExecutionConfig("voipservice", map.get("PSXmanualConfigValue"));
-			APT_VOIPHelper.get().verifyPSXfileAdded("voipservice");
-			APT_VOIPHelper.get().editPSX_manualExecutionConfig("voipservice", map.get("editPSXmanualConfigValue"));
-			APT_VOIPHelper.get().deletePSX_manualExecutionConfig("voipservice");
-			ExtentTestManager.endTest();
-
-		
-			System.out.println("TC-41");
-			logger= ExtentTestManager.startTest("GSXManuallyExecutedConfigurations_VOIP");
-			String Gateway3=null;
-			if(map.get("editGateway").equalsIgnoreCase("null")) {
-				Gateway3=map.get("gateway");
-			}else{
-				Gateway3=map.get("editGateway");
-			}
-			if(Gateway3.contains("SBC")) {
-				   ExtentTestManager.getTest().log(LogStatus.INFO, "'GSX Manual Execution Configuration' panel will not display, if 'SBC' gateway is selected ");
-
-			}else{
-				APT_VOIPHelper.get().addGSX_manualExecutionConfig("voipservice", map.get("GSXmanualConfigValue"));
-				APT_VOIPHelper.get().verifyGSXfileAdded("voipservice");
-				APT_VOIPHelper.get().editGSX_manualExecutionConfig("voipservice", map.get("editGSXmanualConfigValue"));
-				APT_VOIPHelper.get().deleteGSX_manualExecutionConfig("voipservice");
-			}
-			ExtentTestManager.endTest();
-		
+//			System.out.println("TC-40");
+//			logger= ExtentTestManager.startTest("PSXManuallyExecutedConfigurations_VOIP");
+//			APT_VOIPHelper.get().addPSX_manualExecutionConfig("voipservice", map.get("PSXmanualConfigValue"));
+//			APT_VOIPHelper.get().verifyPSXfileAdded("voipservice");
+//			APT_VOIPHelper.get().editPSX_manualExecutionConfig("voipservice", map.get("editPSXmanualConfigValue"));
+//			APT_VOIPHelper.get().deletePSX_manualExecutionConfig("voipservice");
+//			ExtentTestManager.endTest();
+//
+//		
+//			System.out.println("TC-41");
+//			logger= ExtentTestManager.startTest("GSXManuallyExecutedConfigurations_VOIP");
+//			String Gateway3=null;
+//			if(map.get("editGateway").equalsIgnoreCase("null")) {
+//				Gateway3=map.get("gateway");
+//			}else{
+//				Gateway3=map.get("editGateway");
+//			}
+//			if(Gateway3.contains("SBC")) {
+//				   ExtentTestManager.getTest().log(LogStatus.INFO, "'GSX Manual Execution Configuration' panel will not display, if 'SBC' gateway is selected ");
+//
+//			}else{
+//				APT_VOIPHelper.get().addGSX_manualExecutionConfig("voipservice", map.get("GSXmanualConfigValue"));
+//				APT_VOIPHelper.get().verifyGSXfileAdded("voipservice");
+//				APT_VOIPHelper.get().editGSX_manualExecutionConfig("voipservice", map.get("editGSXmanualConfigValue"));
+//				APT_VOIPHelper.get().deleteGSX_manualExecutionConfig("voipservice");
+//			}
+//			ExtentTestManager.endTest();
+//		
 			
 		
         System.out.println("TC-42");

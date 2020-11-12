@@ -252,7 +252,7 @@ public class APT_SANManagementHelper extends DriverHelper{
 		click_commonMethod(application, "Search", "san_searchbutton", xml);
 		waitforPagetobeenable();
 		WebElement SelectSAN3= getwebelement("//div[contains(text(),'"+search_sannumber+"')]/parent::div//span[contains(@class,'unchecked')]");
-		try {
+		
 		if(SelectSAN3.isDisplayed())
 		{
 			Clickon(SelectSAN3);
@@ -279,11 +279,6 @@ public class APT_SANManagementHelper extends DriverHelper{
 		{
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
 			Log.info("No existing SAN to display");
-		}
-		}
-		catch (Exception e) {
-			ExtentTestManager.getTest().log(LogStatus.FAIL,"Step : No existing SAN to display");
-				e.printStackTrace();
 		}
 		
 	}
@@ -350,7 +345,6 @@ public class APT_SANManagementHelper extends DriverHelper{
 	
 	public void verifysuccessmessage(String application, String expected) throws InterruptedException {
 		
-		scrollToTop();
 		waitforPagetobeenable();
 		try {	
 			
@@ -382,6 +376,7 @@ public class APT_SANManagementHelper extends DriverHelper{
 			Log.info("failure in fetching success message");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 			System.out.println(expected+ " message is not getting dislpayed");
+			successScreenshot(application);
 		}
 
 	}

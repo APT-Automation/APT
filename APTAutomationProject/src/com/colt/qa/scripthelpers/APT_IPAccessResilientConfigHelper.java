@@ -1657,7 +1657,7 @@ public class APT_IPAccessResilientConfigHelper extends DriverHelper {
 			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
 			Thread.sleep(1000);
 			
-				addDropdownValues_commonMethod(application, "Order/Contract Number (Parent SID)", "changeOrder_orderDropdown", ChangeOrder_existingOrderNumber, xml);
+				addDropdownValues_commonMethod(application, "Order/Contract Number (Parent SID)", "changeorder_chooseorderdropdown", ChangeOrder_existingOrderNumber, xml);
 				
 				click_commonMethod(application, "OK", "changeorder_okbutton", xml);
 				Thread.sleep(1000);
@@ -4082,8 +4082,9 @@ public class APT_IPAccessResilientConfigHelper extends DriverHelper {
 			}catch(Exception e) {
 				e.printStackTrace();
 			} 
-			compareText(application, "Service Delete success msg", "deletesuccessmsg", "Service successfully deleted.", xml);
-
+			//compareText(application, "Service Delete success msg", "deletesuccessmsg", "Service successfully deleted.", xml);
+			waitforPagetobeenable();
+			verifysuccessmessage(application, "Service successfully deleted.");
 		
 	}
 
@@ -4118,6 +4119,7 @@ public class APT_IPAccessResilientConfigHelper extends DriverHelper {
 
 					try {  
 						alert.accept();
+						waitforPagetobeenable();
 						verifysuccessmessage(application, "Device successfully removed from service.");
 					}catch(Exception e) {
 						e.printStackTrace();
@@ -4203,6 +4205,7 @@ public class APT_IPAccessResilientConfigHelper extends DriverHelper {
 					  
 					  try {  
 					    alert.accept();
+					    waitforPagetobeenable();
 					    verifysuccessmessage(application, "Device successfully deleted.");
 					    
 					  }catch(Exception e) {
@@ -6034,6 +6037,7 @@ public class APT_IPAccessResilientConfigHelper extends DriverHelper {
 			Log.info("failure in fetching success message - 'Service created Successfully'  ");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 			System.out.println(expected+ " message is not getting dislpayed");
+			successScreenshot(application);
 		}
 
 	}
@@ -8832,11 +8836,9 @@ public void verifyFetchDeviceInterface_PE(String application, String devicename,
 
 			click_commonMethod(application, "Generate Configuration", "generateconfiguration_button", xml);
 			waitforPagetobeenable();
-			
 
 			scrolltoend();
 			
-
 			String configurationvalues=Gettext(getwebelement(xml.getlocator("//locators/" + application + "/configuration_textarea")));
 			if(configurationvalues.isEmpty()) {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "After clicking on 'Generate' button, no values displaying under 'Configuration' text box");
@@ -9840,12 +9842,12 @@ public void verifyFetchDeviceInterface_PE(String application, String devicename,
 
 					//Multilinked Bearers table
 					scrolltoend();
-					compareText(application, "Multilinked Bearers", "multilinkedbearers_header", "Multilinked Bearers", xml);
+					compareText(application, "Multilinked Bearers", "multilinkedbearers_header", "Multilink Bearers", xml);
 
 					//table columns
-					compareText(application, "Check to add Interface", "checktoaddinterface_column", "Check to add Interface", xml);
+					compareText(application, "Check to add Interface", "checktoaddinterface_column", "Check to add to Multilink", xml);
 					compareText(application, "Interface", "multilink_interface_column", "Interface", xml);
-					compareText(application, "Link/Circuit", "multilink_link_column", "Link/Circuit", xml);
+					compareText(application, "Link/Circuit", "multilink_link_column", "Link / Circuit Id", xml);
 					compareText(application, "Bearer Type", "multilink_BearerType_column", "Bearer Type", xml);
 					compareText(application, "VLAN Id", "multilink_vlanid_column", "VLAN Id", xml);
 
@@ -10135,11 +10137,10 @@ public void verifyFetchDeviceInterface_PE(String application, String devicename,
 					//**SelectDropdownValueUnderSelectTag(application, "Premise", CPE_Premise, "CPE_PremiseDropdown", xml);
 
 					click(application, "Next Button", "AddCPE_NextButton");
-
-					//verifysuccessmessage(application, "CPE Device added successfully");
-//					compareText(application, "Add CPE Device Success Message", "CPE_AddCPEDeviceSuccessMessage", "Device successfully created.");
-					verifysuccessmessage(application, "Device successfully created.");
 					waitforPagetobeenable();
+					//verifysuccessmessage(application, "CPE Device added successfully");
+					verifysuccessmessage(application, "Device successfully created.");
+					
 				}catch(NoSuchElementException e) {
 					e.printStackTrace();
 					ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Add CPE Device page");
@@ -10418,34 +10419,26 @@ public void verifyFetchDeviceInterface_PE(String application, String devicename,
 						////synchronize panel in manage colt page
 						scrolltoend();
 						click(application, "Synchronize", "CPE_Manage_Synchronization_SynchronizeLink");
-						compareText(application, "Synchronize Warning Message", "CPE_Manage_SynchronizeWarningMessage", "Error while synchronizing device, Reason is :: null.");
-
+						verifysuccessmessage(application, "Sync started successfully. Please check the sync status of this device.");
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "'Manage COLT's Network - Manage Network' page not navigated");
 					System.out.println("'Manage COLT's Network - Manage Network' page not navigated");
 				}
 
 				}else {
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
 					System.out.println("Step : Device not fetched successfully and confirmation message 'Fetch Interfaces started successfully. Please check the sync status of this device here' Not displayed ");
+					}
+				}catch(Exception e) {
+					e.printStackTrace();
+					ExtentTestManager.getTest().log(LogStatus.INFO, "Message displays as: 'Message not found for Message ID : Can't start the fetch operation because another process is already fetching the interfaces for this device.'");
+					System.out.println( "Message displays as: 'Message not found for Message ID : Can't start the fetch operation because another process is already fetching the interfaces for this device.'");
 				}
-				
-			}catch(NoSuchElementException e) {
-				e.printStackTrace();
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Field is not displayed in 'Manage COLT's Network - Manage Network' page");
-				System.out.println( "Field is not displayed in 'Manage COLT's Network - Manage Network' page");
-			}catch(Exception e) {
-				e.printStackTrace();
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Field is not displayed in 'Manage COLT's Network - Manage Network' page");
-				System.out.println( "Field is not displayed in 'Manage COLT's Network - Manage Network' page");
-			}
 
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "'View CPE Device' page not navigated");
 			System.out.println("'View CPE Device' page not navigated");
 		}
-
-
 	}
 
 
@@ -10971,7 +10964,8 @@ public void verifyFetchDeviceInterface_PE(String application, String devicename,
 						click_commonMethod(application, "EIP Allocation button", "eipallocation2_button", xml);
 						if(getwebelement(xml.getlocator("//locators/" + application + "/CPE_EIPallocationIPv6_header")).isDisplayed())
 						{
-							compareText(application, "EIP Address Allocation header", "CPE_EIPallocationIPv6_header", "EIP Address Allocation For Interface ", xml);
+							//compareText(application, "EIP Address Allocation header", "CPE_EIPallocationIPv6_header", "EIP Address Allocation For Interface ", xml);
+							GetText(application, "EIP Address Allocation header", "CPE_EIPallocationIPv6_header");
 							GetText(application, "Subnet Type", "subnettype_value");
 							GetText(application, "Space Name", "eipallocation_spacename");//Below values are not listed as expected
 							//SelectDropdownValueUnderSelectTag(application, "Sub Net Size", eipallocation_ipv6_subnetsize, "eipallocation_ipv6_subnetsize", xml);
@@ -10979,8 +10973,6 @@ public void verifyFetchDeviceInterface_PE(String application, String devicename,
 							
 							//click_commonMethod(application, "Allocate subnet", "allocatesubnet_button", xml);
 							
-							//scrollToTop();
-							//GetText(application, "Subnet allocation success message", "successmsg");
 
 							click_commonMethod(application, "Close Button", "CPE_EIPallocationIPv6_CloseButton", xml);
 
@@ -11018,7 +11010,7 @@ public void verifyFetchDeviceInterface_PE(String application, String devicename,
 							click_commonMethod(application, "Interface Address Range IPv6 Arrow", "interfaceaddressIPv6_Addarrow", xml);
 						}
 
-						ScrolltoElement(application, "CPE_AddthisasaPIRangeIPV6Checkbox", xml);
+						//ScrolltoElement(application, "IVManagementCheckbox", xml);//CPE_EthernetCheckbox//IVManagementCheckbox
 						if(CPE_EthernetCheckbox.equalsIgnoreCase("Yes")) {
 							addCheckbox_commonMethod(application, "CPE_EthernetCheckbox", "Ethernet", CPE_EthernetCheckbox, "no", xml);
 							SelectDropdownValueUnderSelectTag(application, "Speed", CPE_Speed, "CPE_SpeedDropdown", xml);
@@ -11027,7 +11019,7 @@ public void verifyFetchDeviceInterface_PE(String application, String devicename,
 							SelectDropdownValueUnderSelectTag(application, "Clock Source", CPE_ClockSource, "CPE_ClockSourceDropdown", xml);
 						}
 
-						addCheckbox_commonMethod(application, "IVManagementCheckbox", "IV Management", IVManagementCheckbox, "yes", xml);
+						addCheckbox_commonMethod(application, "IVManagementCheckbox", "IV Management", IVManagementCheckbox, "no", xml);
 						if(CPE_InterfaceIsLANCheckbox.equalsIgnoreCase("Yes") && CPE_InterfaceIsWANCheckbox.equalsIgnoreCase("No")) {
 							addtextFields_commonMethod(application, "VRRP Group", "CPE_VRRPGroupTextfield", CPE_VRRPGroup, xml);
 							addtextFields_commonMethod(application, "VRRP IP", "CPE_VRRPIPTextfield", CPE_VRRPIP, xml);

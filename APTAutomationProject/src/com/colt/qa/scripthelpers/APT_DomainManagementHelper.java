@@ -886,9 +886,10 @@ public void verifysuccessmessage(String application, String expected) throws Int
 		}
 		
 	}catch(Exception e) {
-		Log.info("failure in fetching success message");
+		Log.info("Failure in fetching success message");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 		System.out.println(expected+ " message is not getting dislpayed");
+		successScreenshot(application);
 	}
 
 }

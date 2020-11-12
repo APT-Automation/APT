@@ -216,6 +216,7 @@ public class APT_MCS_CreateOrder_IPVPNPlus extends DriverTestcase{
 			,map.get("CpenterfaceDirection"),map.get("CpeVoiceline"), map.get("CpeIVManagement"),map.get("CpeIVBitCounter"),map.get("CpeAddRange"),map.get("CpeSecondaryIp"),map.get("CpeNetmask"),map.get("CpeSpeed"),map.get("CpeDuplex"),map.get("CpeInterface"),map.get("CpeInterfaceAddRangeDdn"),map.get("CpeInterfaceAddRangeText"),map.get("CpeAddress"),
 			map.get("InterfaceGetAddress"),map.get("CPE_Router Id"),map.get("VPN Site Order Num"),map.get("CpeAddInterfaceButton"),map.get("InterfaceCNGReferance"));
 	ExtentTestManager.endTest();
+	
 	logger= ExtentTestManager.startTest("CPEDeviceConfiguration-IPVPNPlus");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().CPEDeviceConfiguration("ipvpnservice", map.get("ServiceSubType"),map.get("CPE_VPN Vendor/Model"),map.get("CPE_Router Id"),map.get("CPE_Management Address"),map.get("VPN Site Order Num"),map.get("CPEGetAddress"),map.get("CPEAvailableBlock"),map.get("CPEPremiseName"),map.get("CPEPremiseCode")
@@ -330,13 +331,14 @@ public class APT_MCS_CreateOrder_IPVPNPlus extends DriverTestcase{
 	logger= ExtentTestManager.startTest("PEdevice-IPVPNPlus"); 
 	
 	//verify whether Equipment panel is available	
-		boolean EquipmentPanel=APT_IPVPNHelper.get().findPanelHeader("ipvpnservice", "Provider Equipment (PE)");
-		
+	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
+	boolean EquipmentPanel=APT_IPVPNHelper.get().findPanelHeader("ipvpnservice", "Provider Equipment (PE)",map.get("VPN Site Order Num"));
+
 		if(EquipmentPanel) {
 			
 			APT_IPVPNHelper.get().SelectPEdevice_existingDevice("ipvpnservice", map.get("ExistingPEdevice"));
 			
-			APT_IPVPNHelper.get().verifysuccessmessage("ipvpnservice", "Site device created successfully");
+			APT_IPVPNHelper.get().verifysuccessmessage("ipvpnservice", "Device successfully created.");
 			
 			APT_IPVPNHelper.get().verifyValuesforProviderEqiupment("ipvpnservice");
 			

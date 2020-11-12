@@ -3311,16 +3311,19 @@ scrolltoend();
 							"Message is displaying and it gets mismatches. It is displaying as: " + alrtmsg
 									+ " .The Expected value is: " + expected);
 					Log.info("Message is displaying and it gets mismatches. It is displaying as: " + alrtmsg);
+					failureScreenshot(application);
 				}
 			} else {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
 				Log.info(" Success Message is not displaying");
+				failureScreenshot(application);
 			}
 
 		} catch (Exception e) {
 			Log.info("failure in fetching success message ");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, expected + " Message is not displaying");
 			Log.info(expected + " message is not getting dislpayed");
+			failureScreenshot(application);
 		}
 
 	}

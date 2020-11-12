@@ -1876,24 +1876,26 @@ public void verifysuccessmessage(String application, String expected) throws Int
 				
 				ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 				Log.info("Message is verified. It is displaying as: "+alrtmsg);
-				
 				successScreenshot(application);
 				
 			}else {
 				
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 				Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+				failureScreenshot(application);
 			}
 			
 		}else {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
 			Log.info(" Success Message is not displaying");
+			failureScreenshot(application);
 		}
 		
 	}catch(Exception e) {
 		Log.info("failure in fetching success message - 'Service created Successfully'  ");
 		ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 		Log.info(expected+ " message is not getting dislpayed");
+		failureScreenshot(application);
 	}
 }
 

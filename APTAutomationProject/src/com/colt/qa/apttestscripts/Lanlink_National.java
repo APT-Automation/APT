@@ -19,7 +19,7 @@ public class Lanlink_National extends DriverTestcase{
 	public String devicename_IntEquipment=null;
 	   
 	@Test(dataProviderClass = DataReader.class, dataProvider = "DataReader_LANLINK_National", priority=0)
-	public void LANLINK_International(Map<String, String> map) throws Exception {
+	public void LANLINK_National(Map<String, String> map) throws Exception {
 
 		setup();	
 		
@@ -721,7 +721,7 @@ public class Lanlink_National extends DriverTestcase{
 										National.get().verifysuccessmessage("LANLINK", "Device successfully created");
 										ExtentTestManager.endTest();
 										
-										logger= ExtentTestManager.startTest ("verifyEnteredValues_1G_IntermediateEquipment");
+										logger= ExtentTestManager.startTest ("verifyEnteredValues_1G_IntermediateEquipment_LanlinkNational");
 										National.get().verifyCPEdevicedataenteredForIntermediateEquipment_1G( "LANLINK",  map.get("device_intEquip_name"), map.get("device_intequip_vender_1G_Overture"),
 												map.get("device_intequip_vender_1G_Accedian"), map.get("device_intequip_snmpro"), map.get("device_intequip_managementAddress_textfield"), map.get("device_intequip_Mepid"),
 												map.get("device_intequip_poweralarm_1G_overture"), map.get("device_intequip_poweralarm_1G_Accedian"), map.get("device_intequip_Mediaselection_Overture"),  map.get("device_intequip_Macaddress_Overture"),  map.get("device_intequip_serialNumber_Accedian"),
@@ -879,7 +879,7 @@ public class Lanlink_National extends DriverTestcase{
 							ExtentTestManager.endTest();
 							
 							
-					logger= ExtentTestManager.startTest ("deletDeviceFromService_IntermediateEquipment");
+					logger= ExtentTestManager.startTest ("deletDeviceFromService_IntermediateEquipment_LanlinkNational");
 							DirectFiber.get().deleteDeviceFromServiceForIntermediateequipment("LANLINK",  devicename_IntEquipment);
 							DirectFiber.get().successMessage_deleteFromService("LANLINK");
 							ExtentTestManager.endTest();
@@ -890,7 +890,7 @@ public class Lanlink_National extends DriverTestcase{
 								Log.info(" 'Intermediate Equipment' panel is displaying under 'view site order' page");
 								ExtentTestManager.endTest();
 							}
-					
+					 
 					
 					logger= ExtentTestManager.startTest ("PAMTest_LanlinkNational");
 							String ServiceID = null;

@@ -233,7 +233,6 @@ public class APT_IPAccessMultihomedTest extends DriverTestcase{
 		try {
 			logger= ExtentTestManager.startTest("TC-05 : verifyCustomerDetailsInformation_Multihomed");
 			MultihomedHelper.get().searchorder("MultihomedConfig", map.get("ServiceIdentification"));
-//			MultihomedHelper.get().verifyCustomerDetailsInformation("MultihomedConfig", map.get("existingCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
 			MultihomedHelper.get().verifyCustomerDetailsInformation("MultihomedConfig", map.get("newCustomerCreation"), map.get("existingCustomerSelection"),map.get("newCustomer"),map.get("existingCustomer"),
 					map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));	
 		
@@ -252,9 +251,6 @@ public class APT_IPAccessMultihomedTest extends DriverTestcase{
 			
 			logger= ExtentTestManager.startTest("TC-06 : VerifyEditOrderChangeOrderFunction_Multihomed");
 			MultihomedHelper.get().searchorder("MultihomedConfig", map.get("ServiceIdentification"));
-//			MultihomedHelper.get().verifyorderpanel_editorder("MultihomedConfig", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
-//			MultihomedHelper.get().verifyorderpanel_changeorder("MultihomedConfig", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"));	
-			
 			MultihomedHelper.get().verifyorderpanel_editorder("MultihomedConfig", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
 			MultihomedHelper.get().verifyorderpanel_changeorder("MultihomedConfig", map.get("ChangeOrder_newOrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
 					map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));
@@ -305,7 +301,7 @@ public class APT_IPAccessMultihomedTest extends DriverTestcase{
 			MultihomedHelper.get().verifyManageSubnetsIPv6("MultihomedConfig");
 			MultihomedHelper.get().verifyDump("MultihomedConfig");
 			MultihomedHelper.get().ShowNewInfovistaReport("MultihomedConfig");
-			MultihomedHelper.get().verifyManageService1("MultihomedConfig", map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"),
+			MultihomedHelper.get().verifyManageService1("MultihomedConfig", map.get("ChangeOrder_newOrderNumber"), map.get("ServiceIdentification"),
 					map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
 			}catch(Exception e) {
 			e.printStackTrace();
@@ -480,9 +476,12 @@ public class APT_IPAccessMultihomedTest extends DriverTestcase{
 	
 	private void TestCase17() {
 		try {
+			if(map.get("VendorModel").contains("Juniper")) 
+			{
 			logger= ExtentTestManager.startTest("TC-17 : verifyInterfaceConfigurationHistory_ColtTotal");
 			MultihomedHelper.get().verifyInterfaceConfigHistory("MultihomedConfig",map.get("ServiceIdentification"), map.get("NewPE_DeviceName"), map.get("VendorModel"));
-		}catch(Exception e) {
+			}
+			}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");
 			System.out.println(  e+" : Method failed");
@@ -982,7 +981,7 @@ public class APT_IPAccessMultihomedTest extends DriverTestcase{
 		try {
 			logger= ExtentTestManager.startTest("TC-37 : deletePEdeviceFunction_NewlyCreatedDevice_Multihomed");
 			MultihomedHelper.get().searchorder("MultihomedConfig", map.get("ServiceIdentification"));
-			MultihomedHelper.get().deleteDevice_PE("MultihomedConfig", "DeviceName");
+			MultihomedHelper.get().deleteDevice_PE("MultihomedConfig", map.get("DeviceName"));
 		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");
@@ -997,7 +996,7 @@ public class APT_IPAccessMultihomedTest extends DriverTestcase{
 	private void TestCase38() {
 		try {
 			logger= ExtentTestManager.startTest("TC-38 : deleteCPEdeviceFunction_NewlyCreatedDevice_Multihomed");
-			MultihomedHelper.get().deleteDevice_CPE("MultihomedConfig", "CPE_DeviceName");
+			MultihomedHelper.get().deleteDevice_CPE("MultihomedConfig", map.get("CPE_DeviceName"));
 		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");
@@ -1012,7 +1011,7 @@ public class APT_IPAccessMultihomedTest extends DriverTestcase{
 	private void TestCase39() {
 		try {
 			logger= ExtentTestManager.startTest("TC-39 : deleteServiceFunction_Multihomed");
-			MultihomedHelper.get().deleteSevice1("MultihomedConfig", "ServiceIdentification");
+			MultihomedHelper.get().deleteSevice1("MultihomedConfig", map.get("ServiceIdentification"));
 		}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");

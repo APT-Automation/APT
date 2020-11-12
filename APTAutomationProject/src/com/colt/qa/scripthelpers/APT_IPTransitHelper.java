@@ -5684,6 +5684,7 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
         			Log.info("failure in fetching success message");
         			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
         			System.out.println(expected+ " message is not getting dislpayed");
+        			successScreenshot(application);
         		}
 
         	}

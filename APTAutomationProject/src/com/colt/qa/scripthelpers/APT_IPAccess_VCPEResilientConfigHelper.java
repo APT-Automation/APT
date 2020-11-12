@@ -448,7 +448,7 @@ public class APT_IPAccess_VCPEResilientConfigHelper extends DriverHelper {
 			String reference, String tcn, String type, String email, String phone, String fax)
 					throws InterruptedException, DocumentException, IOException {
 		
-		
+		waitforPagetobeenable();
 		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer informations");
 		ScrolltoElement(application, "customerdetailsheader", xml);
 		
@@ -7217,6 +7217,7 @@ public void selectEnableValueUnderAddressDropdown(String application, String lab
 			Log.info("failure in fetching success message");
 			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 			System.out.println(expected+ " message is not getting dislpayed");
+			successScreenshot(application);
 		}
 
 	}

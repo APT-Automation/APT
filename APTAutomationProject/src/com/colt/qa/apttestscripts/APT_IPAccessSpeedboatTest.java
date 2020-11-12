@@ -32,34 +32,34 @@ public String CustomerName=null;
         
         if(newCustomerName.equalsIgnoreCase("yes") && existingCustomer.equalsIgnoreCase("no")) {
               
-              logger= ExtentTestManager.startTest("CreateCustomer");
+              logger= ExtentTestManager.startTest("CreateCustomer_IPAccessSpeedboat");
               APT_IPASpeedboatHelper.get().createcustomer("ipaSpeedboat", map.get("newCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), 
                           map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), 
                           map.get("Fax"));
               CustomerName=map.get("newCustomer");
               ExtentTestManager.endTest();
               
-              logger= ExtentTestManager.startTest("selectExistingCustomer"); 
+              logger= ExtentTestManager.startTest("selectExistingCustomer_IPAccessSpeedboat"); 
               APT_IPASpeedboatHelper.get().selectCustomertocreateOrder("ipaSpeedboat",map.get("newCustomer"));
               ExtentTestManager.endTest();
         }
         else if(newCustomerName.equalsIgnoreCase("no") && existingCustomer.equalsIgnoreCase("Yes")) {
               
-              logger= ExtentTestManager.startTest("selectExistingCustomer"); 
+              logger= ExtentTestManager.startTest("selectExistingCustomer_IPAccessSpeedboat"); 
               APT_IPASpeedboatHelper.get().selectCustomertocreateOrder("ipaSpeedboat",map.get("existingCustomer"));
               CustomerName=map.get("existingCustomer");
               ExtentTestManager.endTest();
         }
         
-		logger= ExtentTestManager.startTest("verifyCreateorder");
+		logger= ExtentTestManager.startTest("verifyCreateorder_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().createorderservice("ipaSpeedboat", map.get("NewOrderService"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ExistingOrderService"), map.get("ExistingOrderNumber"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyservicetypeselection");
+		logger= ExtentTestManager.startTest("verifyservicetypeselection_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().verifyselectservicetype("ipaSpeedboat", map.get("ServiceType"), map.get("NetworkConfiguration_DrodpwonValue"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyservicecreation");
+		logger= ExtentTestManager.startTest("verifyservicecreation_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().verifyservicecreation("ipaSpeedboat", map.get("ServiceIdentification"), map.get("Remarks")
 				, map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ServiceType")
 				, map.get("NetworkConfiguration_DrodpwonValue"), map.get("TerminationDate"), map.get("BillingTypevalue")
@@ -69,12 +69,14 @@ public String CustomerName=null;
 				, map.get("DataCenterGeneration_DropdownValue"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyCustomerDetailsInformation");
-		APT_IPASpeedboatHelper.get().verifyCustomerDetailsInformation("ipaSpeedboat", map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
+		logger= ExtentTestManager.startTest("verifyCustomerDetailsInformation_IPAccessSpeedboat");
+		APT_IPASpeedboatHelper.get().verifyCustomerDetailsInformation("ipaSpeedboat",map.get("newCustomerCreation"), map.get("existingCustomerSelection"),map.get("newCustomer"),map.get("existingCustomer"),
+				map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));	
+		
 		APT_IPASpeedboatHelper.get().verifyUserDetailsInformation("ipaSpeedboat", map.get("LoginColumn"), map.get("NameColumn"), map.get("EmailColumn"), map.get("RolesColumn"), map.get("AddressColumn"), map.get("ResourceColumn"));
 		ExtentTestManager.endTest();
 		
-//		logger= ExtentTestManager.startTest("verifyUserDetailsInformation");
+//		logger= ExtentTestManager.startTest("verifyUserDetailsInformation_IPAccessSpeedboat");
 //		APT_IPASpeedboatHelper.get().VerifyUsersPanel("ipaSpeedboat", map.get("UserName"), map.get("FirstName"), map.get("SurName"), map.get("PostalAddress"), map.get("UserEmail"), map.get("Phone"), map.get("EditUserName"), map.get("EditFirstName"), map.get("EditSurName"), map.get("EditPostalAddress"), 
 //				map.get("EditEmail"), map.get("EditPhone"),map.get("IPGuardianAccountGroup"),map.get("ColtOnlineUser"),map.get("GeneratePassword"),map.get("RolesToBeSelected"),map.get("HideRouterToolsIPv6CommandsCisco_ToBeSelected"),map.get("HideRouterToolsIPv4CommandsHuiwai_ToBeSelected"), 
 //				map.get("HideRouterToolsIPv4CommandsCisco_ToBeSelected"), map.get("HideServicesToBeSelected"),map.get("HideSiteOrderToBeSelected"), map.get("editRolesToBeSelected"), map.get("edit_RoleToBeHidden"), map.get("RouterToolsIPv6CommandsCisco_ToBeAvailable"), map.get("RouterToolsIPv6CommandsCisco_ToBeHidden"), 
@@ -82,24 +84,27 @@ public String CustomerName=null;
 //				map.get("SiteOrders_ToBeAvailable"), map.get("SiteOrders_ToBeHidden"), map.get("editIPGuardianAccountGroup"), map.get("editColtOnlineUser"));
 //		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyOrderDetailsInformation");
-		APT_IPASpeedboatHelper.get().verifyorderpanel_editorder("ipaSpeedboat", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
-		APT_IPASpeedboatHelper.get().verifyorderpanel_changeorder("ipaSpeedboat", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"));
+		logger= ExtentTestManager.startTest("verifyOrderDetailsInformation_IPAccessSpeedboat");
+		APT_IPASpeedboatHelper.get().verifyorderpanel_editorder("ipaSpeedboat", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
+		APT_IPASpeedboatHelper.get().verifyorderpanel_changeorder("ipaSpeedboat", map.get("ChangeOrder_newOrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
+				map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));
+		
+		
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyServicepanelinviewservicepage");
+		logger= ExtentTestManager.startTest("verifyServicepanelinviewservicepage_IPAccessSpeedboat");
 	  	APT_IPASpeedboatHelper.get().verifyservicepanelInformationinviewservicepage("ipaSpeedboat", map.get("ServiceIdentification")
 	  			, map.get("ServiceType"), map.get("NetworkConfiguration_DrodpwonValue"), map.get("Remarks"), map.get("TerminationDate")
 	  			, map.get("BillingTypevalue"), map.get("Email"), map.get("PhoneContact"), map.get("SmartsMonitoringDestination_DropdownValue"));
 	  	ExtentTestManager.endTest();
 	  	
-		logger= ExtentTestManager.startTest("verifyManagementOptionspanel");
+		logger= ExtentTestManager.startTest("verifyManagementOptionspanel_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().verifyManagementConfigpanels("ipaSpeedboat", map.get("PerformanceReporting_Checkbox")
 				, map.get("IPGuardian_Checkbox"), map.get("RouterConfigView_IPv4_Checkbox"), map.get("RouterConfigView_IPv6_Checkbox")
 				, map.get("DeliveryChannel_DropdownValue"), map.get("Topology_DropdownValue"), map.get("DataCenterGeneration_DropdownValue"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyServicepanelLinks");
+		logger= ExtentTestManager.startTest("verifyServicepanelLinks_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().verifyEditservice("ipaSpeedboat", map.get("ServiceIdentification"), map.get("ServiceType")
 				, map.get("NetworkConfiguration_DrodpwonValue"), map.get("EditRemarks"), map.get("Remarks")
 				, map.get("Edit_TerminationDate"), map.get("Edit_BillingTypevalue"), map.get("Edit_Email"), map.get("Edit_PhoneContact")
@@ -111,14 +116,14 @@ public String CustomerName=null;
 		APT_IPASpeedboatHelper.get().verifyManageSubnets("ipaSpeedboat");
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("VerifyManageService");
-		APT_IPASpeedboatHelper.get().verifyManageService("ipaSpeedboat", map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
+		logger= ExtentTestManager.startTest("VerifyManageService_IPAccessSpeedboat");
+		APT_IPASpeedboatHelper.get().verifyManageService("ipaSpeedboat", map.get("ChangeOrder_newOrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
 		ExtentTestManager.endTest();
 		
 		//=====================================  Part2 ===============================================
 		
 		System.out.println("TC-01");
-		logger= ExtentTestManager.startTest("verifyAddViewDeleteExistingDistributionSwitchDevice");
+		logger= ExtentTestManager.startTest("verifyAddViewDeleteExistingDistributionSwitchDevice_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().searchorder("IPAccessSpeedboat2", map.get("ServiceIdentification"));
 		APT_IPASpeedboatHelper.get().addExistingDistributionSwitchDevice_PE("IPAccessSpeedboat2",map.get("Topology_DropdownValue"), map.get("ExistingDestributionSwitchDeviceName"));
 		APT_IPASpeedboatHelper.get().verifyExistingDistributionSwitchDeviceInfo_PE("IPAccessSpeedboat2",map.get("Topology_DropdownValue"), map.get("ExistingDestributionSwitchDeviceName"));
@@ -129,7 +134,7 @@ public String CustomerName=null;
 		
 		
 		System.out.println("TC-02");
-		logger= ExtentTestManager.startTest("verifyRouterToolFunction_PE_DistributionSwitch_Speedboat");
+		logger= ExtentTestManager.startTest("verifyRouterToolFunction_PE_DistributionSwitch_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().routerPanel_PE("IPAccessSpeedboat2", map.get("PE_CommandIPV4"),
 				map.get("PE_CommandIPV6"),map.get("PE_vrf_Ipv4"), map.get("PE_vrf_Ipv6"));
 		ExtentTestManager.endTest();
@@ -139,7 +144,7 @@ public String CustomerName=null;
 		
 					
 		System.out.println("TC-03");		
-		logger= ExtentTestManager.startTest("verifyAddEditDeleteRoutesFunction_PE_DistributionSwitch_Speedboat");
+		logger= ExtentTestManager.startTest("verifyAddEditDeleteRoutesFunction_PE_DistributionSwitch_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().addRouteFunction_PE("IPAccessSpeedboat2", map.get("ServiceIdentification"),map.get("ExistingDestributionSwitchDeviceName"), 	map.get("PE_DS_RouteCity"),
 		map.get("PE_RouteSubnetSize"), map.get("PE_Gateway"), map.get("PE_NetworkAddress"), map.get("PE_NetworkMAS"),	map.get("PE_Metrics"));
 		APT_IPASpeedboatHelper.get().editRouteFunction_PE("IPAccessSpeedboat2", map.get("ServiceIdentification"),map.get("ExistingDestributionSwitchDeviceName"),map.get("PE_DS_RouteCityEdit"),
@@ -152,7 +157,7 @@ public String CustomerName=null;
 		
 		
 		System.out.println("TC-04");
-		logger= ExtentTestManager.startTest("verifyEditCPEDeviceFunction_Speedboat");
+		logger= ExtentTestManager.startTest("verifyEditCPEDeviceFunction_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().verifyEditDeviceFunction_DS("IPAccessSpeedboat2", map.get("ServiceIdentification"),
 				map.get("DS_DeviceNameEdit"),map.get("DS_VendorModelEdit"),map.get("DS_ManagementAddressEdit"),map.get("DS_CountryEdit"),
 				map.get("DS_CityEdit"),  map.get("DS_SiteEdit"), map.get("DS_PremiseEdit")); 
@@ -161,7 +166,7 @@ public String CustomerName=null;
 		
 		
 		System.out.println("TC-05");
-		logger= ExtentTestManager.startTest("VerifyFetchDeviceInterfaceFunction_PE_Speedboat");
+		logger= ExtentTestManager.startTest("VerifyFetchDeviceInterfaceFunction_PE_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().verifyFetchDeviceInterface_DS("IPAccessSpeedboat2", map.get("ExistingDestributionSwitchDeviceName"), map.get("InServiceStatus"), map.get("InMaintenanceStatus"), 
 				map.get("DS_VendorModelEdit"), map.get("DS_ManagementAddressEdit"), map.get("SnmProNewValue"), map.get("DS_CountryEdit"), map.get("InterfaceName"));
 		ExtentTestManager.endTest();
@@ -169,7 +174,7 @@ public String CustomerName=null;
 		
 		
 		System.out.println("TC-06");
-		logger= ExtentTestManager.startTest("deleteDistributionSwitchDevice_Speedboat");
+		logger= ExtentTestManager.startTest("deleteDistributionSwitchDevice_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().searchorder("IPAccessSpeedboat2", map.get("ServiceIdentification"));//ServiceIdentification
 		APT_IPASpeedboatHelper.get().deleteDistributionSwitchDevice("IPAccessSpeedboat2", map.get("ExistingDestributionSwitchDeviceName"));
 		ExtentTestManager.endTest();
@@ -179,7 +184,7 @@ public String CustomerName=null;
 		
 		//ACCESS SWITCH
 		System.out.println("TC-07");
-		logger= ExtentTestManager.startTest("VerifyAddViewDeleteExistingAccessSwitchDevice_Speedboat");
+		logger= ExtentTestManager.startTest("VerifyAddViewDeleteExistingAccessSwitchDevice_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().searchorder("IPAccessSpeedboat2", map.get("ServiceIdentification"));
 		APT_IPASpeedboatHelper.get().addExistingAccessSwitchDevice("IPAccessSpeedboat2",map.get("Topology_DropdownValue"), map.get("ExistingAccessSwitchDeviceName"));
 		APT_IPASpeedboatHelper.get().verifyExistingAccessSwitchDeviceInfo_PE("IPAccessSpeedboat2",map.get("Topology_DropdownValue"), map.get("ExistingAccessSwitchDeviceName"));
@@ -191,7 +196,7 @@ public String CustomerName=null;
 		
 		
 		System.out.println("TC-08");
-		logger= ExtentTestManager.startTest("verifyRouterToolFunction_PE_AccessSwitch_Speedboat");
+		logger= ExtentTestManager.startTest("verifyRouterToolFunction_PE_AccessSwitch_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().routerPanel_PE("IPAccessSpeedboat2", map.get("PE_CommandIPV4"),
 					map.get("PE_CommandIPV6"),map.get("PE_vrf_Ipv4"), map.get("PE_vrf_Ipv6"));
 		ExtentTestManager.endTest();
@@ -200,7 +205,7 @@ public String CustomerName=null;
 		
 								
 		System.out.println("TC-09");						
-		logger= ExtentTestManager.startTest("verifyAddEditDeleteRoutesFunction_AccessSwitch_Speedboat");
+		logger= ExtentTestManager.startTest("verifyAddEditDeleteRoutesFunction_AccessSwitch_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().addRouteFunction_AS("IPAccessSpeedboat2", map.get("ServiceIdentification"),map.get("DeviceName"), 	map.get("PE_RouteCity"),
 				map.get("PE_RouteSubnetSize"), map.get("PE_Gateway"), map.get("PE_NetworkAddress"), map.get("PE_NetworkMAS"),	map.get("PE_Metrics"));
 		APT_IPASpeedboatHelper.get().editRouteFunction_AS("IPAccessSpeedboat2", map.get("ServiceIdentification"),map.get("DeviceName"),map.get("PE_RouteCityEdit"),
@@ -212,7 +217,7 @@ public String CustomerName=null;
 		
 		
 		System.out.println("TC-10");
-		logger= ExtentTestManager.startTest("deleteAccessSwitchDevice");
+		logger= ExtentTestManager.startTest("deleteAccessSwitchDevice_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().searchorder("IPAccessSpeedboat2", map.get("ServiceIdentification"));//ServiceIdentification
 		APT_IPASpeedboatHelper.get().deleteAccessSwitchDevice("IPAccessSpeedboat2", map.get("ExistingAccessSwitchDeviceName"));
 		ExtentTestManager.endTest();
@@ -224,7 +229,7 @@ public String CustomerName=null;
 		
 		
 		System.out.println("TC-11");
-		logger= ExtentTestManager.startTest("VerifyAddNewPEDeviceFunction_Speedboat");
+		logger= ExtentTestManager.startTest("VerifyAddNewPEDeviceFunction_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().searchorder("IPAccessSpeedboat2", map.get("ServiceIdentification"));
 		APT_IPASpeedboatHelper.get().navigateToAddNewDestributionSwitchDevicePage("IPAccessSpeedboat2");
 		APT_IPASpeedboatHelper.get().verifyAddNewDestributionSwitchDeviceFields("IPAccessSpeedboat2");
@@ -241,7 +246,7 @@ public String CustomerName=null;
 		
 		
 		System.out.println("TC-12");
-		logger= ExtentTestManager.startTest("VerifyNewDeviceInformation_PE_Speedboat");
+		logger= ExtentTestManager.startTest("VerifyNewDeviceInformation_PE_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().verifyViewpage_AddedNewDestributionSwitchDeviceDetails("IPAccessSpeedboat2", map.get("DeviceName"), map.get("VendorModel"), map.get("Telnet"),
 				map.get("SSH"), map.get("Snmp2C"), map.get("SnmPro"), map.get("Snmprw"), map.get("SnmProNewValue"), map.get("SnmprwNewValue"), map.get("Snmp3"), 
 				map.get("Snmpv3Username"),map.get("Snmpv3Authpassword"), map.get("Snmpv3Privpassword"), map.get("Snmpv3UsernameNewValue"),map.get("Snmpv3AuthpasswordNewValue"),
@@ -254,7 +259,7 @@ public String CustomerName=null;
 		
 		
 				System.out.println("TC-13");
-				logger= ExtentTestManager.startTest("VerifyAddInterface_DistributionSwitch_JuniperVendor_Speedboat");
+				logger= ExtentTestManager.startTest("VerifyAddInterface_DistributionSwitch_JuniperVendor_IPAccessSpeedboat");
 				APT_IPASpeedboatHelper.get().VerifyAddInterface_DistributionSwitch_JuniperVendor("IPAccessSpeedboat2", map.get("InterfaceName"), map.get("InterfaceAddressRange_Value")
 						, map.get("EIPAllocation_City"), map.get("ExistingAddressRangeIPv4selection")
 						, map.get("ExistingAddressIPv4DropdownValue"), map.get("NewAddressRangeIpv4selection")
@@ -272,7 +277,7 @@ public String CustomerName=null;
 				
 				
 				System.out.println("TC-14");
-				logger= ExtentTestManager.startTest("VerifyAddMultilink_DistributionSwitch_JuniperVendor_Speedboat");
+				logger= ExtentTestManager.startTest("VerifyAddMultilink_DistributionSwitch_JuniperVendor_IPAccessSpeedboat");
 				APT_IPASpeedboatHelper.get().VerifyAddMultilink_DistributionSwitch_JuniperVendor("IPAccessSpeedboat2", map.get("InterfaceName"), map.get("InterfaceAddressRange_Value")
 						, map.get("EIPAllocation_City"), map.get("ExistingAddressRangeIPv4selection")
 						, map.get("ExistingAddressIPv4DropdownValue"), map.get("NewAddressRangeIpv4selection")
@@ -290,7 +295,7 @@ public String CustomerName=null;
 				
 				
 				System.out.println("TC-15");
-				logger= ExtentTestManager.startTest("VerifyAddNewPEDeviceFunction_Speedboat");
+				logger= ExtentTestManager.startTest("VerifyAddNewPEDeviceFunction_IPAccessSpeedboat");
 				APT_IPASpeedboatHelper.get().searchorder("IPAccessSpeedboat2", map.get("ServiceIdentification"));
 				APT_IPASpeedboatHelper.get().navigateToAddNewAccessSwitchDevicePage("IPAccessSpeedboat2");
 				APT_IPASpeedboatHelper.get().verifyAddNewAccessSwitchDeviceFields("IPAccessSpeedboat2");
@@ -302,7 +307,7 @@ public String CustomerName=null;
 				
 				
 				System.out.println("TC-16");
-				logger= ExtentTestManager.startTest("VerifyNewDeviceInformation_PE_Speedboat");
+				logger= ExtentTestManager.startTest("VerifyNewDeviceInformation_PE_IPAccessSpeedboat");
 				APT_IPASpeedboatHelper.get().verifyViewpage_AddedNewAccessSwitchDeviceDetails("IPAccessSpeedboat2", map.get("ServiceIdentification"),
 						map.get("NewAccessDeviceName"),map.get("AS_VendorModel"),map.get("AS_ManagementAddress"),map.get("AS_Snmpro"),
 						map.get("AS_Country"),  map.get("AS_City"), map.get("AS_Site"), map.get("AS_Premise")); 
@@ -315,7 +320,7 @@ public String CustomerName=null;
 			
 				
 				System.out.println("TC-17");
-				logger= ExtentTestManager.startTest("VerifyAddInterface_DistributionSwitch_JuniperVendor_Speedboat");
+				logger= ExtentTestManager.startTest("VerifyAddInterface_DistributionSwitch_JuniperVendor_IPAccessSpeedboat");
 				APT_IPASpeedboatHelper.get().VerifyAddInterface_AccessSwitch_AristaVendor("IPAccessSpeedboat2", map.get("InterfaceName"), map.get("NewAccessDeviceName"), map.get("InterfaceAddressRange_Value")
 						, map.get("EIPAllocation_City"), map.get("ExistingAddressRangeIPv4selection")
 						, map.get("ExistingAddressIPv4DropdownValue"), map.get("NewAddressRangeIpv4selection")
@@ -332,7 +337,7 @@ public String CustomerName=null;
 				
 				
 		System.out.println("TC-18");
-		logger= ExtentTestManager.startTest("VerifyAddMultilink_AccessSwitch_AristaVendor_Speedboat");
+		logger= ExtentTestManager.startTest("VerifyAddMultilink_AccessSwitch_AristaVendor_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().VerifyAddMultilink_AccessSwitch_AristaVendor("IPAccessSpeedboat2",  map.get("MultilinkName"),
 				 map.get("VendorModel"), map.get("InterfaceAddressRange_Value")
 					, map.get("EIPAllocation_City"), map.get("ExistingAddressRangeIPv4selection")
@@ -350,7 +355,7 @@ public String CustomerName=null;
 		
 		
 		System.out.println("TC-19");
-		logger= ExtentTestManager.startTest("deleteFunction_Interfaces_NewlyCreatedDevice_Service_Customer_Speedboat");
+		logger= ExtentTestManager.startTest("deleteFunction_Interfaces_NewlyCreatedDevice_Service_Customer_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().searchorder("IPAccessSpeedboat2", map.get("ServiceIdentification"));
 		//APT_IPASpeedboatHelper.get().deleteAccessSwitchInterface("IPAccessSpeedboat2", map.get("InterfaceName"));
 		APT_IPASpeedboatHelper.get().deleteAccessSwitchDevice("IPAccessSpeedboat2", map.get("NewAccessDeviceName"));
@@ -360,7 +365,7 @@ public String CustomerName=null;
 		
 		
 		System.out.println("TC-20");
-		logger= ExtentTestManager.startTest("Delete Service");
+		logger= ExtentTestManager.startTest("Delete Service_IPAccessSpeedboat");
 		APT_IPASpeedboatHelper.get().deleteService("IPAccessSpeedboat2");
 		ExtentTestManager.endTest();
 		

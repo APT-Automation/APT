@@ -127,7 +127,7 @@ public class APT_VOIPAccessHelper extends DriverHelper {
 		public void verifysuccessmessage(String application, String expected) throws InterruptedException {
 			
 			scrollToTop();
-			Thread.sleep(3000);
+			
 			try {	
 				
 				boolean successMsg=getwebelement(xml.getlocator("//locators/" + application + "/alertMsg")).isDisplayed();
@@ -146,6 +146,7 @@ public class APT_VOIPAccessHelper extends DriverHelper {
 						
 						ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 						System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+						successScreenshot(application);
 					}
 					
 				}else {
@@ -157,6 +158,7 @@ public class APT_VOIPAccessHelper extends DriverHelper {
 				Log.info("failure in fetching success message - 'Service created Successfully'  ");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 				System.out.println(expected+ " message is not getting dislpayed");
+				successScreenshot(application);
 			}
 
 		}
@@ -165,7 +167,7 @@ public class APT_VOIPAccessHelper extends DriverHelper {
 public void verifysuccessmessageforEditService(String application) throws InterruptedException {
 			
 			scrollToTop();
-			Thread.sleep(3000);
+			
 			try {	
 				
 				String expected= "Service updated successfully";
@@ -218,7 +220,6 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					}else {
 
 						Clickon(getwebelement("//div[label[text()='"+ fieldname +"']]//div[text()='×']"));
-						Thread.sleep(3000);
 
 						//verify list of values inside dropdown
 						List<WebElement> listofvalues = driver
@@ -235,9 +236,9 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 
 						}
 
-						Thread.sleep(3000);
+						
 						Clickon(getwebelement("//div[text()='"+ expectedValueToAdd +"']"));
-						Thread.sleep(3000);
+						
 
 						String actualValue=getwebelement("//div[label[text()='"+ fieldname +"']]//span").getText();
 						ExtentTestManager.getTest().log(LogStatus.PASS, fieldname + " dropdown value selected as: "+ actualValue );
@@ -264,9 +265,9 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 		
 		public void delete(String application, String labelname, String xpath, String expectedvalue) throws InterruptedException, DocumentException{
-			Thread.sleep(1000);	
+				
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
-			Thread.sleep(2000);
+			
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on delete link");
 
 			if(getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup")).isDisplayed())
@@ -399,7 +400,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		public void cleartext(String application, String labelname, String xpath) throws InterruptedException, DocumentException {
 			WebElement element= null;
 			try {
-				Thread.sleep(1000);
+				
 				element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 				String value= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).getAttribute("value");
 				if(element==null)
@@ -407,7 +408,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step:  '"+labelname+"' not found");
 				}
 				else if(value!=null) {
-					Thread.sleep(1000);
+					
 					element.clear();	
 				}			
 			} catch (Exception e) {
@@ -773,7 +774,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				WebElement element= null;
 
 				try {
-					Thread.sleep(1000);
+					
 					element = getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +""));
 					if(element==null)
 					{
@@ -813,7 +814,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					  
 					if(!expectedResult.equalsIgnoreCase("null")) {
 						boolean isElementSelected=getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isSelected();
-						Thread.sleep(2000);
+						
 						
 						if (expectedResult.equalsIgnoreCase("yes")) {
 							
@@ -866,9 +867,9 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 			 */
 			
 			public void delete(String application, String xpath, String labelname, String expectedvalue, XMLReader xml) throws InterruptedException, DocumentException{
-				Thread.sleep(1000);	
+					
 				Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
-				Thread.sleep(2000);
+				
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on delete link");
 
 				WebElement DeleteAlertPopup= driver.findElement(By.xpath("//div[@class='modal-content']"));
@@ -903,7 +904,7 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					WebElement element= null;
 
 					try {
-						Thread.sleep(1000);
+						
 						element = getwebelement(webelement);
 						if(element==null)
 						{
@@ -996,14 +997,14 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 							}
 							
 							
-							//Thread.sleep(1000);
+							//
 							// click on Country dropdown
 							WebElement selectDropdownValue = driver.findElement(By.xpath("//div[contains(text(),'" + dropdownToBeSelectedInTheEnd + "')]"));
 							System.out.println("Selected  '" +lebelname+ "'  is : " + selectDropdownValue.getText().toString());
 							ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected  '"+lebelname+ "'  is : " + selectDropdownValue.getText().toString());
 							Log.info("Selected  '" +lebelname+ "'  is : " + selectDropdownValue.getText().toString());
 							selectDropdownValue.click();
-							Thread.sleep(2000);
+							
 							
 						
 				}catch(NoSuchElementException e) {
@@ -1115,13 +1116,13 @@ public void SelectDropdownValueUnderSelectTag(String application, String labelna
 		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer Creation Functionality");
 		try {
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-		Thread.sleep(2000);
+		
 		System.out.println("Mouse hovered on Manage Customer's Service");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 		click_commonMethod(application, "create customer link", "createcustomerlink", xml);
-		Thread.sleep(2000);
+		
 		compareText(application, "create customer page header", "createcustomer_header", "Create Customer", xml);
 		scrolltoend();
 		click_commonMethod(application, "Ok", "okbutton", xml);
@@ -1145,9 +1146,10 @@ public void SelectDropdownValueUnderSelectTag(String application, String labelna
 		addtextFields_commonMethod(application, "Phone", "phonetextfield", phone, xml);
 		addtextFields_commonMethod(application, "Fax", "faxtextfield", fax, xml);
 		scrolltoend();
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Ok", "okbutton", xml);
-		compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.", xml);
+//		compareText(application, "create customer success message", "customercreationsuccessmsg", "Customer successfully created.", xml);
+		verifysuccessmessage(application, "Customer successfully created.");
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Service Creation page");
@@ -1167,13 +1169,13 @@ public void SelectDropdownValueUnderSelectTag(String application, String labelna
 
 public void customerCreationForm_UI(String application)	throws Exception {
 	Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-	Thread.sleep(2000);
+	
 	System.out.println("Mouse hovered on Manage Customer's Service");
 	ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 	Log.info("Mouse hovered on 'Manage Customers Service' menu item");
 
 	click_commonMethod(application, "create customer link", "createcustomerlink", xml);
-	Thread.sleep(2000);
+	
 	
 	if(getwebelement(xml.getlocator("//locators/" + application + "/createcustomer_header")).isDisplayed()) {
 		ExtentTestManager.getTest().log(LogStatus.PASS, "'Create Customer' page navigated as expected");
@@ -1201,7 +1203,7 @@ public void customerCreationForm_UI(String application)	throws Exception {
 	isDisplayed(application, "faxtextfield", "Fax", xml);
 	
 	scrolltoend();
-	Thread.sleep(1000);
+	
 	isDisplayed(application, "okbutton", "OK", xml);
 
 	}else {
@@ -1218,7 +1220,7 @@ public void customerCreationForm_UI(String application)	throws Exception {
 			throws InterruptedException, DocumentException, IOException {
 
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-		Thread.sleep(3000);
+		
 		System.out.println("Mouse hovered on Manage Customer's Service");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 		Log.info("Mouse hovered on 'Manage Customers Service' menu item");
@@ -1252,7 +1254,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 	Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
 	isDisplayed(application, "ManageCustomerServiceLink", "MANAGE CUSTOMER'S SERVICE Link", xml);
-	Thread.sleep(3000);
+	
 	System.out.println("Mouse hovered on Manage Customer's Service");
 	ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouse hovered on 'Manage Customers Service' menu item");
 	Log.info("Mouse hovered on 'Manage Customers Service' menu item");
@@ -1290,7 +1292,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			throws Exception {
 		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer Selection Functionality");
 		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/ManageCustomerServiceLink")));
-		Thread.sleep(3000);
+		
 		System.out.println("Mouser hovered on Manage Customer's Service");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Mouser hovered on 'Manage Customers Service' menu item");
 
@@ -1318,9 +1320,9 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			throws InterruptedException, IOException, DocumentException {
 
 		scrolltoend();
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Next", "nextbutton", xml);
-		Thread.sleep(1000);
+		
 
 		//Warning messages verify
 		warningMessage_commonMethod(application, "order_contractnumber_warngmsg", "Order/Contract Number(Parent SID)", xml);
@@ -1331,7 +1333,8 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			addtextFields_commonMethod(application, "Order/Contract Number", "newordertextfield", neworderno, xml);
 			addtextFields_commonMethod(application, "RFI Voice line Number", "newrfireqtextfield", newrfireqno, xml);
 			click_commonMethod(application, "create order", "createorderbutton", xml);
-			compareText(application, "Order Creation Success message", "OrderCreatedSuccessMsg", "Order created successfully", xml);
+//			compareText(application, "Order Creation Success message", "OrderCreatedSuccessMsg", "Order created successfully", xml);
+			verifysuccessmessage(application, "Order created successfully");
 			ScrolltoElement(application, "CreateOrderHeader", xml);
 
 			newordernumber = neworderno;
@@ -1340,12 +1343,12 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 		else if (existingorderservice.equalsIgnoreCase("YES")) {
 			ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Existing Order Selection Functionality");
-			Thread.sleep(2000);
+			
 			click_commonMethod(application, "select order switch", "selectorderswitch", xml);
 			addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber, xml);
 			Log.info("=== Order Contract Number selected===");
 
-			Thread.sleep(3000);
+			
 
 			SelectOrderNumber = existingordernumber;
 		} else {
@@ -1361,9 +1364,9 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			throws InterruptedException, IOException, DocumentException {
 
 		scrolltoend();
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Next", "nextbutton", xml);
-		Thread.sleep(1000);
+		
 
 		//Warning messages verify
 		warningMessage_commonMethod(application, "order_contractnumber_warngmsg", "Order/Contract Number(Parent SID)", xml);
@@ -1371,7 +1374,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 		if (neworder.equalsIgnoreCase("YES")) {
 
-			Thread.sleep(2000);
+			
 			isDisplayed(application, "selectorderswitch", "select order switch", xml);
 			click_commonMethod(application, "select order switch", "selectorderswitch", xml);
 			isDisplayed(application, "newordertextfield", "Order/Contract Number(Parent SID)", xml);
@@ -1386,7 +1389,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			addDropdownValues_commonMethod(application, "Order/Contract Number(Parent SID)", "existingorderdropdown", existingordernumber, xml);
 			Log.info("=== Order Contract Number selected===");
 
-			Thread.sleep(3000);
+			
 
 			SelectOrderNumber = existingordernumber;
 		} else {
@@ -1396,61 +1399,40 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		}
 	}
 
-
-	public void verifyCustomerDetailsInformation(String application, String name, String maindomain, String country, String ocn,
+public void verifyCustomerDetailsInformation(String application, String newCustomerCreation, String existingCustomerSelection,String newCustomer,
+			String existingCustomer, String maindomain, String country, String ocn,
 			String reference, String tcn, String type, String email, String phone, String fax)
 					throws InterruptedException, DocumentException, IOException {
-
-		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer informations");		
-		implicitlyWait("Service screen");
-		webdriverWait(application, "userspanel_header", xml);
-		//scrollToTop();
-		try {
-			
-		// verify Name information
-			Thread.sleep(3000);
-		compareText(application, "Legal Customer Name", "Name_Value", name);
-
-		// verify MainDomain information
-		compareText(application, "Main Domain", "MainDomain_Value", maindomain);
-
-		// verify Country information
-		compareText(application, "Country", "Country_Value", country);
-
-		// verify OCN information
-		compareText(application, "OCN", "OCN_Value", ocn);
-
-		// verify Reference information
-		compareText(application, "Reference", "Reference_Value", reference);
-
-		// verify Technical Contact Name information
-		compareText(application, "Technical Contact Name", "TechnicalContactName_Value", tcn);
-
-		// verify Type information
-		compareText(application, "Type", "Type_Value", type);
-
-		// verify Email information
-		compareText(application, "Email", "Email_Value", email);
-
-		// verify Phone information
-		compareText(application, "Phone", "Phone_Value", phone);
-
-		// verify Fax information
-		compareText(application, "Fax", "Fax_Value", fax);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer informations");
 		
-		}catch(NoSuchElementException e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in View Service page");
-			System.out.println(  e+ " : Field is not displayed in View Service page");
-		}catch(Exception e) {
-			e.printStackTrace();
-			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed in View Service page ");
-			System.out.println(  e+" : Field is not displayed in View Service page");
-		}
+		waitforPagetobeenable();
+		ScrolltoElement(application, "CustomerDetailsHeader", xml);
+		//Customer Name
+			if(newCustomerCreation.equalsIgnoreCase("Yes") || existingCustomerSelection.equalsIgnoreCase("No")) {
+				compareText(application, "Customer Name", "Name_Value", newCustomer, xml);
+				compareText(application, "Country", "Country_Value", country, xml);
+				compareText(application, "OCN", "OCN_Value", ocn, xml);
+				compareText(application, "Reference", "Reference_Value", reference, xml);
+				compareText(application, "Technical Contact Name", "TechnicalContactName_Value", tcn, xml);
+				compareText(application, "Type", "Type_Value", type, xml);
+				compareText(application, "Email", "Email_Value", email, xml);
+				compareText(application, "Phone", "Phone_Value", phone, xml);
+				compareText(application, "Fax", "Fax_Value", fax, xml);
+			}
+			else if(newCustomerCreation.equalsIgnoreCase("No") || existingCustomerSelection.equalsIgnoreCase("Yes")) {
+				compareText(application, "Customer Name", "Name_Value", existingCustomer, xml);
+			}
+			
+		//Main Domain
+			if(maindomain.equalsIgnoreCase("Null")) {
+				Log.info("A default displays for main domain field, if no provided while creating customer");
+			}else {
+				compareText(application, "Main Domain", "MainDomain_Value", maindomain, xml);
+			}
 		
 		Log.info("=== Customer Details panel fields Verified ===");
 	}
-
+	
 	public void verifyUserDetailsInformation(String application, String Login, String Name, String Email, String Roles, String Address, String Resource)
 			throws InterruptedException, DocumentException, IOException {
 
@@ -1526,7 +1508,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			if(NoOfUsers==1)
 			{
 				click(application, "User Radio button", "UserUnchecked");
-				Thread.sleep(3000);
+				
 			}
 			else if(NoOfUsers>1)
 			{
@@ -1540,7 +1522,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 			click(application, "Action dropdown", "UserActionDropdown");
 			click(application, "Edit", "edit");
-			Thread.sleep(2000);
+			
 			compareText(application, "Edit User Header", "edituser_header", "Edit User");
 			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
 			cleartext(application, "User Name", "UserName");
@@ -1565,7 +1547,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			if(NoOfUsers==1)
 			{
 				click(application, "User Radio button", "UserUnchecked");
-				Thread.sleep(3000);
+				
 			}
 			else if(NoOfUsers>1)
 			{
@@ -1595,7 +1577,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			if(NoOfUsers==1)
 			{
 				click(application, "User Radio button", "UserUnchecked");
-				Thread.sleep(3000);
+				
 			}
 			else if(NoOfUsers>1)
 			{
@@ -1621,7 +1603,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			if(NoOfUsers==1)
 			{
 				click(application, "User Radio button", "UserUnchecked");
-				Thread.sleep(3000);
+				
 			}
 			else if(NoOfUsers>1)
 			{
@@ -1660,7 +1642,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			if(NoOfUsers==1)
 			{
 				click(application, "User Radio button", "UserUnchecked");
-				Thread.sleep(3000);
+				
 			}
 			else if(NoOfUsers>1)
 			{
@@ -1690,7 +1672,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			if(NoOfUsers==1)
 			{
 				click(application, "User Radio button", "UserUnchecked");
-				Thread.sleep(3000);
+				
 			}
 			else if(NoOfUsers>1)
 			{
@@ -1715,13 +1697,13 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		try {
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
 		
 			click_commonMethod(application, "Action", "serviceactiondropdown", xml);
-		   Thread.sleep(3000);
+		   
 		   click_commonMethod(application, "Dump", "DumpLink", xml);
-		   Thread.sleep(2000);
+		   
 		   waitforPagetobeenable();
 		   boolean DumpPage=false;
 		   DumpPage=getwebelement(xml.getlocator("//locators/" + application + "/dumpPage_header")).isDisplayed();
@@ -1751,7 +1733,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			   }
 			   
 			   Clickon(getwebelement(xml.getlocator("//locators/" + application + "/dump_xButton")));
-			   Thread.sleep(3000);
+			   waitforPagetobeenable();
 			   
 				click(application, "Action dropdown", "serviceactiondropdown");
 				compareText(application, "Edit Link", "EditLink", "Edit");
@@ -1785,13 +1767,13 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		try {
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
 		click_commonMethod(application, "Action", "serviceactiondropdown", xml);
-		   Thread.sleep(3000);
+		waitforPagetobeenable();
 		   click_commonMethod(application, "Manage Subnet IPv6", "ManageSubnetsIpv6Link", xml);
-		   Thread.sleep(2000);
+		   
 		   waitforPagetobeenable();
 		   boolean DumpPage=false;
 		   DumpPage=getwebelement(xml.getlocator("//locators/" + application + "/dumpPage_header")).isDisplayed();
@@ -1822,7 +1804,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			   }
 			   
 			   Clickon(getwebelement(xml.getlocator("//locators/" + application + "/dump_xButton")));
-			   Thread.sleep(2000);
+			   
 			   
 		   }catch(NoSuchElementException e) {
 				e.printStackTrace();
@@ -1859,14 +1841,14 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
-			Thread.sleep(4000);
+			waitforPagetobeenable();
 			try {
 			click_commonMethod(application, "Action", "serviceactiondropdown", xml);
-		   Thread.sleep(3000);
+			waitforPagetobeenable();
 		   click_commonMethod(application, "Manage Subnet IPv6", "ManageSubnetsIpv6Link", xml);
-		   Thread.sleep(2000);
+		   
 		   
 		   boolean DumpPage=false;
 		   DumpPage=getwebelement(xml.getlocator("//locators/" + application + "/dumpPage_header")).isDisplayed();
@@ -1896,7 +1878,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			   }
 			   
 			   Clickon(getwebelement(xml.getlocator("//locators/" + application + "/dump_xButton")));
-			   Thread.sleep(2000);
+			   
 			   
 			   
 		   }else {
@@ -1924,7 +1906,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		
 			implicitlyWait("Service screen");
 			webdriverWait(application, "servicepanel_header", xml);
-			Thread.sleep(5000);	
+			waitforPagetobeenable();	
 		scrolltoview(application, "Management Options panel", "servicepanel_header", xml);		
 		try {
 		Boolean ManagementOptions_Header = getwebelement(xml.getlocator("//locators/" + application + "/managementoptions_header")).isDisplayed();
@@ -1963,894 +1945,6 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	
 
 
-	public static String ResellerName;
-	public void AddReseller(String application, String ocn, String email, String city, String streetname, String streetno, String pobox, String zipcode, String phone, String fax) throws InterruptedException, DocumentException, IOException {
-
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")));
-
-		isDisplayed(application, "resellerheader", "Reseller Header", xml);
-
-		// verify customer name column
-		compareText(application, "Customer Name", "reseller_customername_column", "Customer Name");
-		// verify status column
-		GetText(application, "Status", "statuscolumn");
-		// verify Add link in Reseller action dropdown
-		//Cancel add reseller
-		click(application, "Action dropdown", "ResellerActionDropdown");
-		click(application, "Add", "AddLink");
-		isDisplayed(application, "manageresellerheader", "Manage Reseller in OSP", xml);
-		click(application, "Cancel", "cancelbutton");
-
-		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-		{
-			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
-		}
-
-		//warning msg verfiy in reseller panel
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")));
-		click(application, "Action dropdown", "ResellerActionDropdown");
-		click(application, "Add", "AddLink");
-		isDisplayed(application, "manageresellerheader", "Manage Reseller in OSP", xml);
-		click(application, "Next", "nextbutton");
-		WarningMessage(application, "reselleremail_warngmsg", "Email");
-		WarningMessage(application, "resellercity_warngmsg", "City");
-		WarningMessage(application, "resellerstreetname_warngmsg", "Street Name");
-		WarningMessage(application, "resellerstreetno_warngmsg", "Street Number");
-		WarningMessage(application, "resellerpobox_warngmsg", "PO Box");
-		WarningMessage(application, "resellerzipcode_warngmsg", "Zip Code");
-		WarningMessage(application, "resellerphone_warngmsg", "Phone");
-
-		//Add reseller
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/manageresellerheader")));
-		Thread.sleep(1000);
-		String resellername= getwebelement(xml.getlocator("//locators/" + application + "/resellername")).getAttribute("value");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Reseller Name is displaying as: '"+resellername+"'");
-		EnterTextValue(application, email, "Email", "reseller_email");	
-		EnterTextValue(application, city, "City", "reseller_city");
-		EnterTextValue(application, streetname, "Street Name", "reseller_streetname");
-		EnterTextValue(application, streetno, "Street Number", "reseller_streetno");
-		EnterTextValue(application, pobox, "PO Box", "reseller_pobox");
-		EnterTextValue(application, zipcode, "Zip Code", "reseller_zipcode");
-		EnterTextValue(application, phone, "Phone", "reseller_phone");
-		EnterTextValue(application, fax, "Fax", "reseller_fax");
-		click(application, "Next", "nextbutton");
-
-		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-		{
-			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
-			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/resellercreated_successmsg")));
-			compareText(application, "Reseller created success message", "resellercreated_successmsg", "Manage Reseller successfully created");
-		}
-		else
-			Log.info("Reseller not created");
-		System.out.println("Reseller not created");
-
-		//Added Reseller
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")));
-		WebElement ResellerGridCheck= driver.findElement(By.xpath("(//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
-		String ResellerGrid= ResellerGridCheck.getAttribute("style");
-
-		WebElement AddedReseller= driver.findElement(By.xpath("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + ocn + "')]/parent::div//input[@type='radio']"));
-		if(!ResellerGrid.contains("height: 1px"))
-		{
-			Clickon(AddedReseller);
-			Thread.sleep(1000);
-
-			click(application, "Action dropdown", "ResellerActionDropdown");
-
-			List<WebElement> ResellerLinks= driver.findElements(By.xpath("//div[contains(text(),'Reseller')]/following-sibling::div//div//a"));
-			int ResellerLinksCount= ResellerLinks.size();
-			for(int i=0;i<ResellerLinksCount;i++)
-			{
-				String Link= ResellerLinks.get(i).getText();
-				ExtentTestManager.getTest().log(LogStatus.PASS, ""+Link+" link is displaying under reseller panel");
-				System.out.println("Reseller link:"+ Link + "is displaying");
-				Thread.sleep(2000);
-			}
-
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
-			//Added Reseller grid verification
-
-			compareText(application, "Added Reseller Name", "Addedreseller_columnvalue", ocn);
-
-		}
-
-		else
-			Log.info("Reseller is not added in the grid");
-		System.out.println("Reseller is not added in the grid");
-		ExtentTestManager.getTest().log(LogStatus.FAIL, "Reseller is not added in the grid");
-		ResellerName= ocn;		
-	}
-
-
-
-	public void verifyResellerLinks(String application, String ocn, String editemail, String editcity, String editstreetname, String editstreetno, String editpobox, String editzipcode, String editphone, String editfax) throws InterruptedException, DocumentException, IOException {
-
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")));
-		WebElement ResellerGridCheck= driver.findElement(By.xpath("(//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
-		String ResellerGrid= ResellerGridCheck.getAttribute("style");
-
-		WebElement AddedReseller= driver.findElement(By.xpath("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ ocn +"')]/parent::div//input[@type='radio']"));
-
-		//Edit Reseller
-		if(!ResellerGrid.contains("height: 1px"))
-		{
-			Clickon(AddedReseller);
-			Thread.sleep(1000);
-
-			click(application, "Action dropdown", "ResellerActionDropdown");
-			click(application, "Edit", "edit");
-			compareText(application, "Manage Reseller Header", "manageresellerheader", "Manage Reseller in OSP");
-			cleartext(application, "Email", "reseller_email");
-			EnterTextValue(application, editemail, "Email", "reseller_email");
-			cleartext(application, "City", "reseller_city");
-			EnterTextValue(application, editcity, "City", "reseller_city");
-			cleartext(application, "Street Name", "reseller_streetname");
-			EnterTextValue(application, editstreetname, "Street Name", "reseller_streetname");
-			cleartext(application, "Street Number", "reseller_streetno");
-			EnterTextValue(application, editstreetno, "Street Number", "reseller_streetno");
-			cleartext(application, "PO Box", "reseller_pobox");
-			EnterTextValue(application, editpobox, "PO Box", "reseller_pobox");
-			cleartext(application, "Zip Code", "reseller_zipcode");
-			EnterTextValue(application, editzipcode, "Zip Code", "reseller_zipcode");
-			cleartext(application, "Phone", "reseller_phone");
-			EnterTextValue(application, editphone, "Phone", "reseller_phone");
-			cleartext(application, "Fax", "reseller_fax");
-			EnterTextValue(application, editfax, "Fax", "reseller_fax");
-			click(application, "OK", "okbutton");
-
-			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-			{
-				Log.info("Navigated to view service page");
-				System.out.println("Navigated to view service page");
-				scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/editreseller_successmsg")));
-				compareText(application, "Edit Reseller success message", "editreseller_successmsg", "Reseller already in OSP. Successfully updated.");
-			}
-			else
-			{
-				Log.info("Reseller not updated");
-				System.out.println("Reseller not updated");
-			}
-		}
-		else
-		{
-			Log.info("Reseller is not added in the grid");
-			System.out.println("Reseller is not added in the grid");
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Reseller is not added in the grid");
-		}
-
-		//View reseller
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")));
-		WebElement AddedReseller1= driver.findElement(By.xpath("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ ocn +"')]/parent::div//input[@type='radio']"));
-		if(!ResellerGrid.contains("height: 1px"))
-		{
-			Clickon(AddedReseller1);
-			Thread.sleep(1000);
-			click(application, "Action dropdown", "ResellerActionDropdown");
-
-			if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
-			{
-				click(application, "View", "view");
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
-				compareText(application, "Manage Reseller Header", "manageresellerheader_viewpage", "Manage Reseller in OSP");
-				compareText(application, "Reseller Name", "resellernamevalue", ocn);
-				compareText(application, "Email", "reselleremailvalue", editemail);
-				compareText(application, "City", "resellercityvalue", editcity);
-				compareText(application, "Street Name", "resellerstreetnamevalue", editstreetname);
-				compareText(application, "Street Number", "resellerstreetnovalue", editstreetno);
-				compareText(application, "PO Box", "resellerpoboxvalue", editpobox);
-				compareText(application, "Zipcode", "resellerzipcodevalue", editzipcode);
-				compareText(application, "Phone", "resellerphonevalue", editphone);
-				compareText(application, "Fax", "resellerfaxvalue", editfax);
-				GetText(application, "Web Access Authorized", "resellerwebaccessvalue");
-				Thread.sleep(1000);
-
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
-				Thread.sleep(2000);
-				click(application, "View page Action dropdown", "viewpage_actiondropdown");
-
-				//Edit link in view reseller page
-				click(application, "View page Edit", "edit");
-				compareText(application, "Manage Reseller Header", "manageresellerheader", "Manage Reseller in OSP");
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Edit Reseller page is displaying as expected");
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-				click(application, "Cancel", "cancelbutton");
-
-				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-				{
-					Log.info("Navigated to view service page");
-					System.out.println("Navigated to view service page");
-				}
-			}
-			else
-			{
-				Log.info("Reseller is not added in the grid");
-				System.out.println("Reseller is not added in the grid");
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Reseller is not added in the grid");
-			}
-			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")));
-			WebElement AddedReseller2= driver.findElement(By.xpath("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ ocn +"')]/parent::div//input[@type='radio']"));
-			if(!ResellerGrid.contains("height: 1px"))
-			{
-				Clickon(AddedReseller2);
-				Thread.sleep(1000);
-
-				click(application, "Action dropdown", "ResellerActionDropdown");
-
-				if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
-				{
-					click(application, "View", "view");
-					compareText(application, "Manage Reseller Header", "manageresellerheader_viewpage", "Manage Reseller in OSP");
-					((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
-					click(application, "View page Action dropdown", "viewpage_actiondropdown");
-
-					//Delete link in view reseller page
-					click(application, "View page Delete", "delete");
-
-					if(getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup")).isDisplayed())
-					{
-						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Delete Reseller alert is displaying as expected");
-						Clickon(getwebelement(xml.getlocator("//locators/" + application + "/deletealertclose")));
-						Thread.sleep(2000);
-						ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on delete alert popup close button");
-					}
-					else
-						Log.info("Delete alert popup is not displayed");
-				}
-
-				//Associate Reseller with NGIN Objects link in view reseller page
-				click(application, "View page Action dropdown", "viewpage_actiondropdown");
-				click(application, "Associate Reseller with NGIN Objects", "associateresellerlink");
-				Thread.sleep(2000);
-				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-				{
-					Log.info("Navigated to view service page");
-					System.out.println("Navigated to view service page");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Associate Reseller with NGIN Objects link verified");
-				}
-
-			}
-			else
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : View link is not displaying under Reseller panel");
-		}
-		else
-		{
-			Log.info("Reseller is not added in the grid");
-			System.out.println("Reseller is not added in the grid");
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Reseller is not added in the grid");
-		}
-	}
-
-	public void verifyCustomerpanel(String application) throws InterruptedException, DocumentException, IOException {
-
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
-		compareText(application, "Customer panel header", "CustomerDetailsHeader", "Customer");
-		click(application, "Action dropdown", "CustomerpanelActionDropdown");
-
-		if(getwebelement(xml.getlocator("//locators/" + application + "/AddLink")).isDisplayed())
-		{
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Add link is displaying under Customer panel");
-			Log.info("Add link is displayed");
-		}
-		else
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Add link is not displaying under Customer panel");
-
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/CustomerDetailsHeader")));
-
-	}
-
-	String Customername=null;
-	public void AddCustomer(String application, String resellername, String defaultvalue, String configure, String country, String email, String phone, String fax, String city, String streetname, String streetno, String pobox, String zipcode) throws InterruptedException, DocumentException, IOException {
-
-
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
-		compareText(application, "Customer panel header", "CustomerDetailsHeader", "Customer");
-
-		// verify customer name column
-		compareText(application, "Customer Name column", "customerpanel_customernamecolumntext", "Customer Name");
-
-		// verify Add link in customer action dropdown
-
-		//Cancel add customer
-		click(application, "Action dropdown", "CustomerpanelActionDropdown");
-		click(application, "Add", "AddLink");
-		Thread.sleep(2000);
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
-		compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP");
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		Thread.sleep(1000);
-		click(application, "Cancel", "cancelbutton");
-		Thread.sleep(2000);
-
-		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-		{
-			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
-		}
-
-		//Add Customer
-
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
-		click(application, "Action dropdown", "CustomerpanelActionDropdown");
-		click(application, "Add", "AddLink");
-		Thread.sleep(2000);
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
-		compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP");
-		Thread.sleep(1000);
-
-		//Select Country from dropdown
-		addDropdownValues(application, "Country", "customer_country", country);
-		String CustomerOCN= getwebelement(xml.getlocator("//locators/" + application + "/customer_ocn")).getAttribute("value");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : OCN is displaying as: '"+CustomerOCN+"'");
-
-
-		String CustomerNamevalue= GetText(application, "Customer Name", "customerpanel_customernamevalue");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer Name is displaying as: '"+CustomerNamevalue+"'");
-		String CustomerName_viewpage= CustomerNamevalue.replace("(New)", "").trim();
-		System.out.println("Customer name is :"+CustomerName_viewpage);
-		EnterTextValue(application, resellername, "Reseller Name", "resellername");
-		GetText(application, "Email", "reseller_email");
-		EnterTextValue(application, city, "City", "reseller_city");
-		EnterTextValue(application, streetname, "Street Name", "reseller_streetname");
-		EnterTextValue(application, streetno, "Street Number", "reseller_streetno");
-		EnterTextValue(application, pobox, "PO Box", "reseller_pobox");
-		EnterTextValue(application, zipcode, "Zip Code", "reseller_zipcode");
-		GetText(application, "Phone", "reseller_phone");
-		GetText(application, "Fax", "reseller_fax");
-
-		if(defaultvalue.equalsIgnoreCase("YES"))
-		{
-			String Default_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/defaultcheckbox")).getAttribute("checked");
-			if(Default_Checkbox.isEmpty())
-			{
-				System.out.println("Default checkbox is checked");
-				Thread.sleep(1000);
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Default checkbox is checked");
-				Log.info("Default checkbox is checked");
-			}
-			else
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Default checkbox is not checked by default");
-		}
-
-		else if(configure.equalsIgnoreCase("YES"))
-		{
-			String Configure_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/configurecheckbox")).getAttribute("checked");
-			if(Configure_Checkbox.isEmpty())
-			{
-				System.out.println("Configure checkbox is checked");
-				Thread.sleep(1000);
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Configure checkbox is checked");
-				Log.info("Configure checkbox is checked");
-			}
-			else
-			{
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Configure checkbox is not checked");
-				click(application, "Configure checkbox", "configurecheckbox");
-			}
-		}
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		Thread.sleep(1000);
-		click(application, "Next", "nextbutton");
-		Thread.sleep(3000);	
-
-		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-		{
-			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
-			compareText(application, "Customer created success message", "addcustomer_successmsg", "Manage Customer successfully created");
-		}
-		else
-		{
-			Log.info("Customer not created");
-			System.out.println("Customer not created");
-		}
-
-		//Added Customer
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
-		WebElement CustomerGridCheck= driver.findElement(By.xpath("(//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
-		String CustomerGrid= CustomerGridCheck.getAttribute("style");
-
-		WebElement AddedCustomer= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName_viewpage + "')]/parent::div//input[@type='radio']"));
-		if(!CustomerGrid.contains("height: 1px"))
-		{
-			Clickon(AddedCustomer);
-			Thread.sleep(1000);
-			click(application, "Action dropdown", "CustomerpanelActionDropdown");
-
-			List<WebElement> CustomerLinks= driver.findElements(By.xpath("//div[contains(text(),'Customer')]/following-sibling::div//div//a"));
-			int CustomerLinksCount= CustomerLinks.size();
-			for(int i=0;i<CustomerLinksCount;i++)
-			{
-				String Link= CustomerLinks.get(i).getText();
-				ExtentTestManager.getTest().log(LogStatus.PASS, ""+Link+" link is displaying under customer panel");
-				System.out.println("Customer link:"+ Link + " is displaying");
-				Thread.sleep(2000);
-			}
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/CustomerDetailsHeader")));
-
-			//Added Customer grid verification
-			WebElement AddedCustomer1= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName_viewpage + "')]"));
-			String AddedCustomerName_value = AddedCustomer1.getText();
-			Log.info("Added Customer Name is displayed as : " + AddedCustomerName_value);
-			System.out.println("Added Customer Name:"+ AddedCustomerName_value);
-			sa.assertEquals(AddedCustomerName_value,CustomerName_viewpage);
-		}
-		else
-		{
-			Log.info("Customer is not added in the grid");
-			System.out.println("Customer is not added in the grid");
-		}
-
-		Customername= CustomerName_viewpage;
-	}
-
-
-	public void verifyCustomerLinks(String application, String editreseller, String editemail, String editcity, String editstreetname, String editstreetno, String editpobox, String editzipcode, String editphone, String editfax) throws InterruptedException, DocumentException, IOException {
-
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
-		WebElement CustomerGridCheck= driver.findElement(By.xpath("(//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
-		String CustomerGrid= CustomerGridCheck.getAttribute("style");
-
-		WebElement AddedCustomer= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ Customername+"')]/parent::div//input[@type='radio']"));
-
-		//Edit Customer
-		if(!CustomerGrid.contains("height: 1px"))
-		{
-			Clickon(AddedCustomer);
-			Thread.sleep(1000);
-			click(application, "Action dropdown", "CustomerpanelActionDropdown");
-			click(application, "Edit", "edit");
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
-			compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP");
-			Thread.sleep(1000);
-
-			String CountryDisabled= getwebelement(xml.getlocator("//locators/" + application + "/customercountry_disabled")).getAttribute("disabled");
-			if(CountryDisabled!=null)
-			{
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Country dropdown is disabled as expected");
-			}
-			else
-			{
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Country dropdown is enabled");
-			}
-			String CustomerOCN= getwebelement(xml.getlocator("//locators/" + application + "/customer_ocn")).getAttribute("value");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : OCN is displaying as: '"+CustomerOCN+"'");
-
-			String CustomernameDisabled= getwebelement(xml.getlocator("//locators/" + application + "/customername_disabled")).getAttribute("disabled");
-			if(CustomernameDisabled!=null)
-			{
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer name dropdown is disabled as expected");
-			}
-			else
-			{
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Customer name dropdown is enabled");
-			}
-			EnterTextValue(application, editreseller, "Reseller name", "resellername");
-			cleartext(application, "Email", "reseller_email");
-			EnterTextValue(application, editemail, "Email", "reseller_email");
-			cleartext(application, "City", "reseller_city");
-			EnterTextValue(application, editcity, "City", "reseller_city");
-			cleartext(application, "Street Name", "reseller_streetname");
-			EnterTextValue(application, editstreetname, "Street Name", "reseller_streetname");
-			cleartext(application, "Street Number", "reseller_streetno");
-			EnterTextValue(application, editstreetno, "Street Number", "reseller_streetno");
-			cleartext(application, "PO Box", "reseller_pobox");
-			EnterTextValue(application, editpobox, "PO Box", "reseller_pobox");
-			cleartext(application, "Zip Code", "reseller_zipcode");
-			EnterTextValue(application, editzipcode, "Zip Code", "reseller_zipcode");
-			cleartext(application, "Phone", "reseller_phone");
-			EnterTextValue(application, editphone, "Phone", "reseller_phone");
-			cleartext(application, "Fax", "reseller_fax");
-			EnterTextValue(application, editfax, "Fax", "reseller_fax");
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			click(application, "Ok", "okbutton");
-
-			if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-			{
-				Log.info("Navigated to view service page");
-				System.out.println("Navigated to view service page");
-				compareText(application, "Customer updated success message", "editcustomer_successmsg", "Manage Customer successfully updated");
-			}
-			else
-			{
-				Log.info("Customer not updated");
-				System.out.println("Customer not updated");
-			}
-
-		}
-
-		//View customer
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
-		//WebElement AddedCustomer1= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + CustomerName + "')]/parent::div//input[@type='radio']"));
-		WebElement AddedCustomer1= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ Customername +"')]/parent::div//input[@type='radio']"));
-
-		if(!CustomerGrid.contains("height: 1px"))
-		{
-			Clickon(AddedCustomer1);
-			Thread.sleep(1000);
-			click(application, "Action dropdown", "CustomerpanelActionDropdown");
-
-			if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
-			{
-				click(application, "View", "view");
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
-				compareText(application, "Manage Customer in OSP header", "manageresellerheader_viewpage", "Manage Customer In OSP");
-				Thread.sleep(1000);
-
-				GetText(application, "Country", "customer_countryvalue");
-				GetText(application, "Customer Name", "customer_customernamevalue");
-				GetText(application, "Reseller Name", "resellernamevalue");
-				GetText(application, "Email", "reselleremailvalue");
-				GetText(application, "City", "resellercityvalue");
-				GetText(application, "Street Name", "resellerstreetnamevalue");
-				GetText(application, "Street Number", "resellerstreetnovalue");
-				GetText(application, "PO Box", "resellerpoboxvalue");
-				GetText(application, "Zip Code", "resellerzipcodevalue");
-				GetText(application, "Phone", "resellerphonevalue");
-				GetText(application, "Fax", "resellerfaxvalue");
-				Thread.sleep(1000);
-
-				//Edit customer in view customer page
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
-				click(application, "Action dropdown", "viewpage_actiondropdown");
-				click(application, "Edit", "viewpage_editcustomer");
-				compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP");
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Edit Customer in view customer page is verified");
-				Thread.sleep(1000);
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-				click(application, "Cancel", "cancelbutton");
-				Thread.sleep(1000);
-			}
-		}
-		//Delete customer in view customer page
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/resellerheader")));
-		WebElement AddedCustomer2= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+ Customername +"')]/parent::div//input[@type='radio']"));
-
-		if(!CustomerGrid.contains("height: 1px"))
-		{
-			Clickon(AddedCustomer2);
-			Thread.sleep(1000);
-			click(application, "Action dropdown", "CustomerpanelActionDropdown");
-
-			if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
-			{
-				click(application, "View", "view");
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
-				compareText(application, "Manage Customer in OSP header", "manageresellerheader_viewpage", "Manage Customer In OSP");
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Delete Customer in view customer page is verified");
-				Thread.sleep(1000);
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
-				click(application, "Action dropdown", "viewpage_actiondropdown");
-
-				//Delete customer in view customer page
-				click(application, "Delete", "viewpage_deletecustomer");
-
-				if(getwebelement(xml.getlocator("//locators/" + application + "/delete_alertpopup")).isDisplayed())
-				{
-					click(application, "Delete Alert close", "deletealertclose");
-				}
-				else
-					Log.info("Delete alert popup is not displayed");
-			}
-			else
-			{
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : View link is not displaying under customer panel");
-			}
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			click(application, "Back", "viewpage_backbutton");
-
-		}
-
-
-	}
-
-	public void verifySANpanel(String application) throws InterruptedException, DocumentException, IOException {
-
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/customerheader")));
-		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC");
-		click(application, "Action dropdown", "SANActionDropdown");		
-
-		if(getwebelement(xml.getlocator("//locators/" + application + "/addsan_link")).isDisplayed())
-		{
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Add SAN link is displaying under SAN/FRC panel");
-			Log.info("Add link is displayed");
-		}
-		else
-		{
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Add link is not displaying under SAN/FRC panel");
-		}
-		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/sanheader")));
-
-	}
-
-
-	public void AddSAN(String application, String country, String sannumber, String maxcallduration, String chargebandname, String predestinationnumber, String ringtonumber, String routingforpayphone_value, String routingformobile_value, String defaultrouting_value, String RingToNumber_Checkbox, String AnnouncementToPlay_Checkbox, String ComplexRouting_Checkbox, String defaultroutebusy_value, String noanswer_value, String networkcongestion, String resellername, String defaultvalue, String configure, String email, String phone, String fax, String city, String streetname, String streetno, String pobox, String zipcode, String serviceprofilevalue) throws InterruptedException, DocumentException, IOException, InvalidFormatException {
-
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/customerheader")));
-		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC");
-
-		//verify FRC number column
-		compareText(application, "FRC Number column", "frcnumber_column", "FRC Number");
-		// verify customer name column
-		compareText(application, "Customer name column", "san_customername", "Customer Name");
-
-		// verify Add SAN link in SAN/FRC action dropdown
-
-		//Cancel add SAN
-		click(application, "Action dropdown", "SANActionDropdown");	
-		click(application, "Add SAN", "addsan_link");
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
-		compareText(application, "Add SAN header", "addsan_header", "Add SAN");	
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		click(application, "Cancel", "cancelbutton");
-		Thread.sleep(2000);
-		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-		{
-			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
-		}
-
-		//Add SAN
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/customerheader")));
-		click(application, "Action dropdown", "SANActionDropdown");	
-		click(application, "Add SAN", "addsan_link");
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
-		compareText(application, "Add SAN header", "addsan_header", "Add SAN");
-
-		addDropdownValues(application, "Country", "customer_country", country);
-		click(application, "Customer Name dropdown", "customername");
-		Thread.sleep(1000);
-
-		if(getwebelement(xml.getlocator("//locators/" + application + "/customernamedropdown_valuesdisplay")).isDisplayed())
-		{
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Existing customer is available");
-			click(application, "Customer Name dropdown value", "customernamedropdown_valuesdisplay");
-		}
-		else if(getwebelement(xml.getlocator("//locators/" + application + "/customernamedropdown_nomatchesfound")).isDisplayed())
-		{
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Existing customer is not available");
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/addsan_header")));
-
-			//Manage new customer link
-			click(application, "Manage new customer", "managenewcustomer_link");
-			compareText(application, "Manage Customer in OSP header", "manageresellerheader", "Manage Customer In OSP");
-			Thread.sleep(1000);
-
-			//=========================
-
-			//Add Customer
-			//Select Country from dropdown
-			addDropdownValues(application, "Country", "customer_country", country);
-			String CustomerOCN= getwebelement(xml.getlocator("//locators/" + application + "/customer_ocn")).getAttribute("value");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : OCN is displaying as: '"+CustomerOCN+"'");
-			String CustomerNamevalue= GetText(application, "Customer Name", "customerpanel_customernamevalue");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer Name is displaying as: '"+CustomerNamevalue+"'");
-			CustomerNamevalue.replace("(New)", "").trim();
-			EnterTextValue(application, resellername, "Reseller Name", "resellername");
-			GetText(application, "Email", "reseller_email");
-			EnterTextValue(application, city, "City", "reseller_city");
-			EnterTextValue(application, streetname, "Street Name", "reseller_streetname");
-			EnterTextValue(application, streetno, "Street Number", "reseller_streetno");
-			EnterTextValue(application, pobox, "PO Box", "reseller_pobox");
-			EnterTextValue(application, zipcode, "Zip Code", "reseller_zipcode");
-			GetText(application, "Phone", "reseller_phone");
-			GetText(application, "Fax", "reseller_fax");
-
-			if(defaultvalue.equalsIgnoreCase("YES"))
-			{
-				String Default_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/defaultcheckbox")).getAttribute("checked");
-				if(Default_Checkbox.isEmpty())
-				{
-					System.out.println("Default checkbox is checked");
-					Thread.sleep(1000);
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Default checkbox is checked");
-					Log.info("Default checkbox is checked");
-				}
-				else
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Default checkbox is not checked by default");
-			}
-
-			else if(configure.equalsIgnoreCase("YES"))
-			{
-				String Configure_Checkbox= getwebelement(xml.getlocator("//locators/" + application + "/configurecheckbox")).getAttribute("checked");
-				if(Configure_Checkbox.isEmpty())
-				{
-					System.out.println("Configure checkbox is checked");
-					Thread.sleep(1000);
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Configure checkbox is checked");
-					Log.info("Configure checkbox is checked");
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Configure checkbox is not checked");
-					click(application, "Configure checkbox", "configurecheckbox");
-				}
-			}
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			Thread.sleep(1000);
-			click(application, "Next", "nextbutton");
-			Thread.sleep(3000);	
-
-			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/addsan_header")));
-			compareText(application, "Add SAN header", "addsan_header", "Add SAN");
-			Thread.sleep(1000);
-
-			//Select Country from dropdown
-			addDropdownValues(application, "Country", "customer_country", country);
-			click(application, "Customer Name dropdown", "customername");
-			Thread.sleep(1000);
-			click(application, "Customer Name dropdown value", "customernamedropdown_valuesdisplay");
-		}
-
-		Thread.sleep(1000);
-		//SAN customer name
-		String SAN_Customernamevalue= getwebelement(xml.getlocator("//locators/" + application + "/customername_selectedtext")).getText();
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step :Customer name selected is : " + SAN_Customernamevalue);
-		String SAN_Customername=SAN_Customernamevalue.substring(0, SAN_Customernamevalue.indexOf("(")).trim();
-		writetoexcel("src\\com\\saksoft\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 106, SAN_Customername);
-
-		String SANNumber_CountryCode=getwebelement(xml.getlocator("//locators/" + application + "/san_number")).getAttribute("value");
-		EnterTextValue(application, sannumber, "SAN Number", "san_number");
-		//SAN number
-		String SANNumberValue= SANNumber_CountryCode+sannumber;
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step :SAN Number is dsplayed as : " + SANNumberValue);
-		writetoexcel("src\\com\\saksoft\\qa\\datalibrary\\APT_NGIN.xlsx", "NGIN", 107, SANNumberValue);
-
-		//Select service profile from dropdown
-		addDropdownValues(application, "Service Profile", "serviceprofile", serviceprofilevalue);
-		Thread.sleep(1000);
-
-		if(RingToNumber_Checkbox.equalsIgnoreCase("YES"))
-		{
-			click(application, "'Ring To Number' radio", "ringtonumber_radiobutton");
-			Thread.sleep(1000);
-			EnterTextValue(application, ringtonumber, "Ring To Number", "ringtonumber_field");
-		}
-		else if(AnnouncementToPlay_Checkbox.equalsIgnoreCase("YES"))
-		{
-			click(application, "'Announcement to play' radio", "announcementtoplay_radiobutton");
-			Thread.sleep(1000);
-			//Select announcement to play value from dropdown
-			click(application, "Announcement To Play dropdown", "announcementtoplay_dropdown");
-			click(application, "Announcement To Play value", "announcementtoplay_dropdownvalue");
-		}
-		else if(ComplexRouting_Checkbox.equalsIgnoreCase("YES"))
-		{
-			click(application, "'Complex route' radio", "complexroute_radiobutton");
-			Thread.sleep(1000);
-			EnterTextValue(application, routingforpayphone_value, "Routing for payphone", "routingforpayphone_field");
-			EnterTextValue(application, routingformobile_value, "Routing for mobile", "routingformobile");
-			EnterTextValue(application, defaultrouting_value, "Default Routing", "defaultrouting");
-			click(application, "Enable logical routing checkbox", "enablelogicalrouting");
-			EnterTextValue(application, defaultroutebusy_value, "Default Route busy", "defaultroutebusy");
-			EnterTextValue(application, noanswer_value, "No Answer", "noanswer");
-			EnterTextValue(application, networkcongestion, "Network Congestion", "networkcongestion");
-		}
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		click(application, "Next", "nextbutton");
-
-		if(getwebelement(xml.getlocator("//locators/" + application + "/viewsan_header")).isDisplayed())
-		{
-			Log.info("Navigated to view SAN page");
-			System.out.println("Navigated to view SAN page");
-			compareText(application, "Add SAN success message", "addsan_successmsg", "SAN successfully created");
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			click(application, "Back", "viewpage_backbutton");
-		}
-		else
-		{
-			Log.info("SAN not created");
-			System.out.println("SAN not created");
-		}
-
-		if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-		{
-			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
-		}
-		else
-		{
-			Log.info("Not navigated to view service page");
-			System.out.println("Not navigated to view service page");
-		}
-		//Added Customer
-		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-		WebElement SANGridCheck= driver.findElement(By.xpath("(//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
-		String SANGrid= SANGridCheck.getAttribute("style");
-
-		WebElement AddedSAN= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + SAN_Customername + "')]/parent::div//input[@type='radio']"));
-		if(!SANGrid.contains("height: 1px"))
-		{
-			Clickon(AddedSAN);
-			Thread.sleep(1000);
-
-			click(application, "Action dropdown", "SANActionDropdown");
-
-			List<WebElement> SANLinks= driver.findElements(By.xpath("//div[contains(text(),'SAN/FRC')]/following-sibling::div//div//a"));
-			int SANLinksCount= SANLinks.size();
-			for(int i=0;i<SANLinksCount;i++)
-			{
-				String Link= SANLinks.get(i).getText();
-				ExtentTestManager.getTest().log(LogStatus.PASS, ""+Link+" link is displaying under SAN/FRC panel");
-				System.out.println("Customer link:"+ Link + " is displaying");
-				Thread.sleep(2000);
-			}
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/sanheader")));
-
-			//Added Customer grid verification
-
-			WebElement AddedSan= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + SANNumberValue + "')]"));
-			String AddedSAN_FRCNumber = AddedSan.getText();
-			Log.info("FRC Number for Added SAN is displayed as : " + AddedSAN_FRCNumber);
-			System.out.println("FRC Number for Added SAN: "+ AddedSAN_FRCNumber);
-			sa.assertEquals(AddedSAN_FRCNumber,SANNumberValue);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "FRC Number for Added SAN is displayed as : " + AddedSAN_FRCNumber);
-
-			WebElement AddedSan1= driver.findElement(By.xpath("//div[text()='SAN/FRC']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + SAN_Customername + "')]"));
-			String AddedSAN_Customervalue = AddedSan1.getText();
-			Log.info("Customer Name for Added SAN is displayed as : " + AddedSAN_Customervalue);
-			System.out.println("Customer Name for Added SAN: "+ AddedSAN_Customervalue);
-			sa.assertEquals(AddedSAN_Customervalue,SAN_Customername);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Customer Name for Added SAN is displayed as : " + AddedSAN_Customervalue);
-		}
-
-		else
-		{
-			Log.info("SAN is not added in the grid");
-			System.out.println("SAN is not added in the grid");
-		}
-
-	}
-
-
-
-
-	public void verifyAllDeleteOperations(String application, String customernamevalue) throws InterruptedException, DocumentException	{
-
-		//Delete SAN
-		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/sanheader")));
-		compareText(application, "SAN/FRC Header", "sanheader", "SAN/FRC");
-		click(application, "SAN Action dropdown", "SANActionDropdown");
-		click(application, "Delete SAN link", "deletesan_link");	
-		delete(application, "deletesan_link", "SAN", "San deleted Successfully");
-
-		//Delete Customer
-		WebElement CustomerGridCheck= driver.findElement(By.xpath("(//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
-		String CustomerGrid= CustomerGridCheck.getAttribute("style");
-		WebElement AddedCustomer= driver.findElement(By.xpath("//div[text()='Customer']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'"+customernamevalue+"')]/parent::div//input[@type='radio']"));
-		if(!CustomerGrid.contains("height: 1px"))
-		{
-			Clickon(AddedCustomer);
-			Thread.sleep(1000);
-
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/CustomerpanelActionDropdown")));
-			Thread.sleep(1000);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Action dropdown button");
-
-			delete(application, "delete", "Customer", "Data deleted successfully. ");
-		}
-
-		//Delete Reseller
-		WebElement ResellerGridCheck= driver.findElement(By.xpath("(//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div)[1]"));
-		String ResellerGrid= ResellerGridCheck.getAttribute("style");
-
-		WebElement AddedReseller= driver.findElement(By.xpath("//div[text()='Reseller']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[contains(text(),'" + ResellerName + "')]/parent::div//input[@type='radio']"));
-
-		if(!ResellerGrid.contains("height: 1px"))
-		{
-			Clickon(AddedReseller);
-			Thread.sleep(1000);
-			click(application, "Action dropdown", "ResellerActionDropdown");
-
-			delete(application, "delete", "Reseller", "Delete Reseller:Data deleted successfully. RESELLER REMOVED");
-		}
-
-		//Delete Service
-		click(application, "Action dropdown", "serviceactiondropdown");
-		delete(application, "delete", "Service", "Service successfully deleted");
-	}
 
 
 	//============================================================================================
@@ -2858,9 +1952,9 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 	public void navigateToManageCustomerServicePage(String application) throws InterruptedException, DocumentException {
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/mcslink")));
-		Thread.sleep(2000);
+		
 		Reporter.log("=== MCS page navigated ===");
-		Thread.sleep(2000);
+		
 	}
 
 	public void navigateToCreateOrderServicePage(String application) throws InterruptedException, DocumentException {
@@ -2868,7 +1962,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		navigateToManageCustomerServicePage(application);
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/createorderlink")));
-		Thread.sleep(2000);
+		
 		Reporter.log("=== Create Order/Service navigated ===");
 	}
 
@@ -2878,7 +1972,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			throws InterruptedException, IOException, DocumentException {
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/nextbutton")));
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 
 		boolean choosocustomerwarningmsg = getwebelement(
 				xml.getlocator("//locators/" + application + "/choosocustomerwarningmsg")).isDisplayed();
@@ -2896,10 +1990,10 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		 * System.out.println("Entered customer Name is : " + customer);
 		 */
 
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/chooseCustomerdropdown")));
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		System.out.println("clicked on customer dropdown");
 
 		try {
@@ -2973,7 +2067,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			System.out.println("RFI / RFQ /IP Voice Line number text field is displayed ");
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/selectorderswitch")));
-			Thread.sleep(5000);
+			waitforPagetobeenable();
 
 			System.out.println("clicked on the switch to verify the presence of create order button");
 			// ExtentTestManager.getTest().log(LogStatus.PASS, "clicked on the switch to verify
@@ -2991,7 +2085,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			}
 
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/createorderswitch")));
-			Thread.sleep(5000);
+			waitforPagetobeenable();
 			// ExtentTestManager.getTest().log(LogStatus.PASS, "clicked on the switch to verify
 			// the presence of create order button ");
 
@@ -3026,8 +2120,6 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			SelectDropdownValueUnderDivTag(application, "Existing order", existingordernumber, "existingorderdropdown", "commonDropdownValueTag");
 			Log.info("=== Order Contract Number selected===");
 
-			Thread.sleep(3000);
-
 			SelectOrderNumber = existingordernumber;
 
 
@@ -3047,13 +2139,14 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 
 			WebElement CreateOrder_Header= driver.findElement(By.xpath("//div[text()='Create Order / Service']"));
 			scrolltoview(CreateOrder_Header);
-			Thread.sleep(2000);
+			
 
 			click(application, "select order switch", "selectorderswitch");	
 			EnterTextValue(application, neworderno, "Order/Contract Number", "newordertextfield");
 			EnterTextValue(application, newrfireqno, "RFI Voice line Number", "newrfireqtextfield");
 			click(application, "create order", "createorderbutton");	
-			compareText(application, "create order success message", "OrderCreatedSuccessMsg", "Order created successfully");			
+//			compareText(application, "create order success message", "OrderCreatedSuccessMsg", "Order created successfully");
+			verifysuccessmessage(application, "Order created successfully");
 			scrolltoview(CreateOrder_Header);
 
 			newordernumber = neworderno;
@@ -3083,7 +2176,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			  }else {
 				  
 				  Clickon(getwebelement("//div[label[text()='"+labelname+"']]//div[text()='×']"));
-				  Thread.sleep(3000);
+				  
 				  
 				  //verify list of values inside dropdown
 				  List<WebElement> listofvalues = driver
@@ -3098,13 +2191,13 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 								System.out.println(" " + valuetypes.getText());
 					}
 					
-					Thread.sleep(2000);
+					
 				SendKeys(getwebelement("//div[label[text()='"+ labelname +"']]//input"), expectedValueToAdd);	
-				Thread.sleep(2000);
+				
 				 Clickon(getwebelement("//div[label[text()='"+ labelname +"']]//input"));
 					
 				  Clickon(getwebelement("(//div[contains(text(),'"+expectedValueToAdd+"')])[1]"));
-				  Thread.sleep(3000);
+				  
 				  
 				  String actualValue=getwebelement("//label[text()='"+ labelname +"']/following-sibling::div//span").getText();
 				  ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
@@ -3274,6 +2367,8 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	public void verifyingservicecreation(String application, String sid, String ResellerCode,  String Remarks, String EmailService, String PhoneService, 
 			String ManageService, String SyslogEventView, String ServiceStatusView, String RouterConfigurationView, String PerformanceReporting, String ProactiveNotification,
 			String NotificationManagementTeam, String DialUserAdministration, String orderno, String rfireqno, String servicetype) throws InterruptedException, IOException, DocumentException {
+		
+		waitforPagetobeenable();
 		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Service Creation Functionality");
 		if(getwebelement(xml.getlocator("//locators/" + application + "/createorderservice_header")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'Servce Creation' page navigated as expected");
@@ -3287,7 +2382,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 		scrolltoview(OKbutton);
 		
 		click(application, "OK", "OKbutton_ServiceCreation");
-		//Thread.sleep(1000);
+		//
 		scrollToTop();
 		warningMessage_commonMethod(application, "sidwarngmsg", "Service Identification", xml);
 		
@@ -3610,7 +2705,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	public void verifyorderpanelinformation_Existingorder(String application, String existingorder,
 			String expectedorderno, String expectedvoicelineno) throws InterruptedException, DocumentException {
 		
-		Thread.sleep(3000);
+		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));//orderpanelheader//userspanel_header
 
 		if (getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed()) {
@@ -3670,7 +2765,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 			String expectednewvoicelineno) throws InterruptedException, DocumentException {
 		implicitlyWait("Service screen");
 		webdriverWait(application, "userspanel_header", xml);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
 		try {
 		if (neworder.equalsIgnoreCase("YES")) {
@@ -3715,7 +2810,7 @@ public void customerSelectionToCreateOrder_UI(String application, String ChooseC
 	
 	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
 		
-		Thread.sleep(2000);
+		
 		waitforPagetobeenable();
 		ScrolltoElement(application, "userspanel_header", xml);
 try {
@@ -3724,20 +2819,20 @@ try {
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
 		waitforPagetobeenable();
 		compareText(application, "Edit Order", "editorderheader", "Edit Order", xml);
-		Thread.sleep(1000);
+		
 
 		WebElement EditOrderNo= getwebelement(xml.getlocator("//locators/" + application + "/editorderno"));
 		click_commonMethod(application, "Order Number", "editorderno", xml);
-		Thread.sleep(2000);
+		
 		Clear(EditOrderNo);
-		Thread.sleep(2000);
+		
 		addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
 
 		WebElement EditVoiceLineNo= getwebelement(xml.getlocator("//locators/" + application + "/editvoicelineno"));
 		click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
-		Thread.sleep(2000);
+		
 		Clear(EditVoiceLineNo);
-		Thread.sleep(2000);
+		
 		addtextFields_commonMethod(application, "Order Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
 		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
@@ -3745,29 +2840,29 @@ try {
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 		//Edit Order
-		Thread.sleep(1000);
+		
 		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 		click_commonMethod(application, "Edit Order", "editorderlink", xml);
 		waitforPagetobeenable();
 		compareText(application, "Edit Order Header", "editorderheader", "Edit Order", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Order Number", "editorderno", xml);
-		Thread.sleep(2000);
+		
 		cleartext(application, "Order Number", "editorderno");
-		Thread.sleep(2000);
+		
 		addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
 		click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
-		Thread.sleep(2000);
+		
 		cleartext(application, "RFI Voice Line Number", "editvoicelineno");
-		Thread.sleep(2000);
+		
 		addtextFields_commonMethod(application, "Order Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "OK", "editorder_okbutton", xml);
 		waitforPagetobeenable();
-		Thread.sleep(1000);
+		
 		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);
+		
 		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
 		Log.info("Navigated to order panel in view service page");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
@@ -3785,107 +2880,68 @@ try {
 sa.assertAll();
 	}
 
-	public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno
-			) throws InterruptedException, DocumentException, IOException {
+public void verifyorderpanel_changeorder(String application, String ChangeOrder_newOrderNumber, String changevoicelineno, String changeOrderSelection_newOrder,
+			String changeOrderSelection_existingOrder, String ChangeOrder_existingOrderNumber) throws InterruptedException, DocumentException, IOException {
 
 		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-		click_commonMethod(application, "Change Order", "changeorderlink", xml);
-		compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-		List<WebElement> ChangeOrder_DropdownList= getwebelements(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist"));
-		int ChangeOrder_Dropdown_count= ChangeOrder_DropdownList.size();
-		System.out.println("Dropdown Count : "+ChangeOrder_Dropdown_count);
-		if(ChangeOrder_Dropdown_count> 1)
-		{
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/changeorder_dropdownvalue")));
-			Thread.sleep(3000);
-
-			//Cancel change order
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			waitforPagetobeenable();
-			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-
-			//Change order
-			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-			click_commonMethod(application, "Change Order", "changeorderlink", xml);
-			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-			
-			WebElement changeOrderDropdopdownvalue=getwebelement("//div[text()='"+ changeorderno +"']");
-			Clickon(changeOrderDropdopdownvalue);
-			Thread.sleep(5000);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected order from dropdown");
-			click_commonMethod(application, "OK", "changeorder_okbutton", xml);
-			waitforPagetobeenable();
-			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
-			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
-			Log.info("------ Change Order is successful ------");
-			
+				
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Change Order' Functionality");
+		
+		if((changeOrderSelection_newOrder.equalsIgnoreCase("No")) && (changeOrderSelection_existingOrder.equalsIgnoreCase("No"))) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Change Order is not performed");
+			Log.info("Change Order is not performed");
 		}
-		else
-		{
-			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
-			click_commonMethod(application, "Order Number", "changeordernumber", xml);
-			Thread.sleep(2000);
-			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
-			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
-			Thread.sleep(3000);
-			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			waitforPagetobeenable();
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-
+		else if(changeOrderSelection_newOrder.equalsIgnoreCase("Yes")) {
+			
 			//Change Order
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Change Order", "changeorderlink", xml);
 			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-			Thread.sleep(1000);
-			
 			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
 			click_commonMethod(application, "Order Number", "changeordernumber", xml);
-			Thread.sleep(2000);
-			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
+			waitforPagetobeenable();
+			addtextFields_commonMethod(application, "Order Number", "changeordernumber", ChangeOrder_newOrderNumber, xml);
 			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
-			Thread.sleep(3000);
 			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
 			click_commonMethod(application, "Create Order", "createorder_button", xml);
-			Thread.sleep(1000);
 			waitforPagetobeenable();
+			verifysuccessmessage(application, "Order successfully  changed.");
 			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
+			compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_newOrderNumber, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
 		}
+		else if(changeOrderSelection_existingOrder.equalsIgnoreCase("yes")) 
+		{
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Performing Change Order functionality");
+			waitforPagetobeenable();
+			ScrolltoElement(application, "userspanel_header", xml);
+			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
+			
+				addDropdownValues_commonMethod(application, "Order/Contract Number (Parent SID)", "changeorder_chooseorderdropdown", ChangeOrder_existingOrderNumber, xml);
+				
+				click_commonMethod(application, "OK", "changeorder_okbutton", xml);
+				waitforPagetobeenable();
+				verifysuccessmessage(application, "Order successfully  changed.");
+				ScrolltoElement(application, "userspanel_header", xml);
+				compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_existingOrderNumber, xml);
+				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
+				Log.info("------ Change Order is successful ------");
+	
+		}
+		
 	}
+	
 	
 	
 
 	public void verifyorderpanel_editorder_UI(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
 		implicitlyWait("Service screen");
 		webdriverWait(application, "userspanel_header", xml);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		try {
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
 		if(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed()) {
@@ -3930,10 +2986,10 @@ sa.assertAll();
 		
 		implicitlyWait("Service screen");
 		webdriverWait(application, "userspanel_header", xml);
-		Thread.sleep(3000);
+		waitforPagetobeenable();
 		try {
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/userspanel_header")));
-		Thread.sleep(1000);
+		
 
 		if(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")).isDisplayed()) {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order' panel navigated as expected in view service page");
@@ -3953,7 +3009,7 @@ sa.assertAll();
 			isDisplayed(application, "cancelbutton", "Cancel", xml);
 			
 			click(application, "Select order switch", "changeorder_selectorderswitch");
-			Thread.sleep(2000);
+			
 			isDisplayed(application, "editorderno", "Order/Contract Number (Parent SID)", xml);
 			isDisplayed(application, "editvoicelineno", "RFI/RFQ/IP Voice Line Number", xml);
 			click(application, "Cancel","cancelbutton");//"changeorder_cancelbutton");////body//button[span[contains(text(),'Cancel')]]
@@ -3992,7 +3048,7 @@ sa.assertAll();
 	
 	public void verifyservicepanelInformationinviewservicepage(String application, String sid, String servicetype, String ResellerCode ,
 			String Remarks , String EmailService, String PhoneService) throws InterruptedException, DocumentException, IOException {
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
 		
 		try {
@@ -4032,7 +3088,7 @@ sa.assertAll();
 		waitforPagetobeenable();
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
 		
 		try { 
@@ -4044,7 +3100,7 @@ sa.assertAll();
 		EnterTextValue(application, EditRemarks, "Remarks", "remarktextarea");
 		ScrolltoElement(application, "cancelbutton", xml);
 		click(application, "Cancel", "cancelbutton");
-		Thread.sleep(2000);
+		
 		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
 		if(getwebelement(xml.getlocator("//locators/" + application + "/servicepanel_header")).isDisplayed())
@@ -4070,7 +3126,7 @@ sa.assertAll();
 		
 	
 		ScrolltoElement(application, "OKbutton_ServiceCreation", xml);
-Thread.sleep(2000);
+
 
 	//Performance Reporting
 		editcheckbox_commonMethod(application, PerformanceReporting, "PerformanceReportingcheckbox", "Performance Reporting", xml);
@@ -4080,13 +3136,14 @@ Thread.sleep(2000);
 		click(application, "OK", "OKbutton_ServiceCreation");
 		waitforPagetobeenable();
 		
-		Thread.sleep(2000);
+		
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/CustomerDetailsHeader")));
 		if(getwebelement(xml.getlocator("//locators/" + application + "/CustomerDetailsHeader")).isDisplayed())
 		{
 			Log.info("Navigated to view service page");
 			System.out.println("Navigated to view service page");
-			compareText(application, "Service updated success message", "serviceupdate_successmsg", "Service successfully updated");	
+//			compareText(application, "Service updated success message", "serviceupdate_successmsg", "Service successfully updated");	
+			verifysuccessmessage(application, "Service successfully updated");
 		}
 		else
 		{
@@ -4100,9 +3157,9 @@ Thread.sleep(2000);
 		//Verify all the links available in service actions list
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
-		Thread.sleep(1000);
+		
 		click(application, "Action dropdown", "serviceactiondropdown");
 		compareText(application, "Edit Link", "EditLink", "Edit");
 		compareText(application, "Delete Link", "DeleteLink", "Delete");
@@ -4130,7 +3187,7 @@ Thread.sleep(2000);
  
 		implicitlyWait("Service screen");
 		webdriverWait(application, "orderpanelheader", xml);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
 		click(application, "Action dropdown", "serviceactiondropdown");
 		click(application, "Edit", "edit");
@@ -4304,7 +3361,7 @@ Thread.sleep(2000);
 		try {
 			waitforPagetobeenable();
 		//Manage service
-				Thread.sleep(2000);
+				
 				scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
 				click(application, "Action dropdown", "serviceactiondropdown");
 				click(application, "Manage", "manageLink");
@@ -4424,7 +3481,7 @@ Thread.sleep(2000);
 		//Manage service
 				implicitlyWait("Service screen");
 				webdriverWait(application, "orderpanelheader", xml);
-				Thread.sleep(5000);
+				waitforPagetobeenable();
 				scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
 				click(application, "Action dropdown", "serviceactiondropdown");
 				click(application, "Manage", "manageLink");
@@ -4537,481 +3594,29 @@ Thread.sleep(2000);
 			throws InterruptedException, DocumentException, IOException {
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/createorderlink")));
-		Thread.sleep(2000);
+		
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Create Order/Service Link");
 
 		SendKeys(getwebelement(xml.getlocator("//locators/" + application + "/createordernametextfield")), name);
-		Thread.sleep(2000);
+		
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Name is entered in name textfield");
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/chooseCustomerdropdown")));
-		Thread.sleep(2000);
+		
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Clicked on Customer Dropdown");
 
 		WebElement el = driver
 				.findElement(By.xpath("//div[@role='list']//span[contains(text(),'" + selectCustomer + "')]"));
 		String selectedcustomer = el.getText();
 		el.click();
-		Thread.sleep(2000);
+		
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer is selected from dropdown" + selectedcustomer);
 
 		Clickon(getwebelement(xml.getlocator("//locators/" + application + "/nextbutton")));
-		Thread.sleep(2000);
+		
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Clicked on Next button");
 
 	}
-
-	public void verifySearchSAN(String application, String search_sannumber, String customernamevalue, String searchSANfilename, String browserfiles_downloadspath, String serviceprofilevalue, String internationaloutgoingcalls_checkedvalue, String internationalincomingcalls_checkedvalue, String mobilecallsallowed_checkedvalue, String payphoneblocking_checkedvalue, String supervisionfieldvalue, String noreplytimervalue, String webaccessblockedvalue, String cpsfreeformatvalue, String maxcallduration, String chargebandname, String predestinationnumber) throws InterruptedException, DocumentException
-	{
-		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/managecoltnetworklink")));
-		Thread.sleep(1000);
-		click(application, "Search for SANs", "searchsanlink");
-		Thread.sleep(2000);
-		compareText(application, "SAN Search", "sansearchheader", "SAN Search");
-		EnterTextValue(application, search_sannumber, "SAN", "santextfield");
-		Thread.sleep(1000);
-		click(application, "Search", "san_searchbutton");
-		Thread.sleep(3000);
-		click(application, "Download To Excel", "downloadtoexcellink");
-		Thread.sleep(3000);
-		isFileDownloaded(searchSANfilename, browserfiles_downloadspath);
-		WebElement SelectSAN= driver.findElement(By.xpath("//div[contains(text(),'"+search_sannumber+"')]/parent::div//input[@type='radio']"));
-
-		if(SelectSAN.isDisplayed())
-		{
-			//Verify SearchSAN columns headers
-			compareText(application, "FRC Number", "frcnumber_column", "FRC Number");
-			compareText(application, "Service Profile", "serviceprofilecolumn", "Service Profile");
-			compareText(application, "Customer Name", "customernamecolumn", "Customer Name");
-			compareText(application, "Begin Date", "begindatecolumn", "Begin Date");
-			compareText(application, "Order Name", "ordernamecolumn", "Order Name");
-			Thread.sleep(1000);
-
-			Clickon(SelectSAN);
-			Thread.sleep(2000);
-			click(application, "Action dropdown", "searchsan_actiondropdown");
-			//View link displayed verify
-			if(getwebelement(xml.getlocator("//locators/" + application + "/view")).isDisplayed())
-			{
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : View link is displaying in Search SAN page");
-				Log.info("View link is displayed");
-			}
-			else
-			{
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : View link is not displaying in Search SAN page");
-			}
-
-			//Delete link displayed verify
-			if(getwebelement(xml.getlocator("//locators/" + application + "/delete")).isDisplayed())
-			{
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Delete link is displaying in Search SAN page");
-				Log.info("Add link is displayed");
-			}
-			else
-			{
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Delete link is not displaying in Search SAN page");
-			}
-		}
-		else
-		{
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
-		}
-		if(SelectSAN.isDisplayed())
-		{
-			Clickon(SelectSAN);
-			Thread.sleep(2000);
-			click(application, "Action dropdown", "searchsan_actiondropdown");
-			Thread.sleep(1000);
-			click(application, "View", "view");
-			compareText(application, "View San Header", "searchsan_viewpageheader", "View San");
-
-			//Verify view San details
-
-			compareText(application, "Customer Name", "viewsan_customername", customernamevalue);
-			compareText(application, "SAN/FRC Number", "viewsan_sannumber", search_sannumber);
-			compareText(application, "Service Profile", "serviceprofilevalue", serviceprofilevalue);
-			compareText(application, "International outgoing calls", "internationaloutgoingcallsvalue", internationaloutgoingcalls_checkedvalue);
-			compareText(application, "International incoming calls", "searchsan_internationalincomingcallsvalue", internationalincomingcalls_checkedvalue);
-			compareText(application, "Mobile calls allowed", "mobilecallsallowedvalue", mobilecallsallowed_checkedvalue);
-			compareText(application, "No reply timer", "view_noreplytimervalue", noreplytimervalue);
-			compareText(application, "Max call duration", "maxcalldurationvalue", maxcallduration);
-			compareText(application, "Charge band name", "chargebandnamevalue", chargebandname);
-			compareText(application, "Payphone blocking enabled", "payphoneblockingenabledvalue", payphoneblocking_checkedvalue);
-			compareText(application, "Web access blocked", "webaccessblockedvalue", webaccessblockedvalue);
-			compareText(application, "Predestination number", "searchsan_predestinationnumbervalue", predestinationnumber);
-			compareText(application, "CPS Free Format", "CPSvalue", cpsfreeformatvalue);
-			GetText(application, "Ring To Number", "ringtonumbervalue");
-			GetText(application, "Announcement to play", "searchsan_announcementtoplayvalue");
-			Thread.sleep(2000);
-			click(application, "Back", "viewpage_backbutton");
-		}
-		else
-		{
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
-		}
-
-		if(getwebelement(xml.getlocator("//locators/" + application + "/sansearchheader")).isDisplayed())
-		{
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to SAN Search page");
-		}
-		else
-		{
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Didn't navigate to SAN Search page");
-		}
-
-		//Verify Search order/service page
-		EnterTextValue(application, search_sannumber, "SAN", "santextfield");
-		Thread.sleep(1000);
-		click(application, "Search", "san_searchbutton");
-		Thread.sleep(3000);
-		WebElement SelectSAN1= driver.findElement(By.xpath("//div[contains(text(),'"+search_sannumber+"')]/parent::div//input[@type='radio']"));
-		if(SelectSAN1.isDisplayed())
-		{	
-			String OrderNumber= getwebelement(xml.getlocator("//locators/" + application + "/ordername_link")).getText();
-			click(application, "Order Name", "ordername_link");
-			compareText(application, "Search For Order / Service Header", "searchfororder_header", "Search For Order / Service");
-			Thread.sleep(1000);
-			WebElement SelectExistingOrder= driver.findElement(By.xpath("//div[contains(text(),'"+OrderNumber+"')]/parent::div//input[@type='radio']"));
-
-			if(SelectExistingOrder.isDisplayed())
-			{
-				Clickon(SelectExistingOrder);
-				click(application, "Action dropdown", "searchsan_actiondropdown");
-				Thread.sleep(1000);
-				click(application, "View", "searchfororder_viewlink");
-				Thread.sleep(2000);
-				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-				{
-					Log.info("Navigated to view service page");
-					System.out.println("Navigated to view service page");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to view service page");
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
-				}
-
-			}
-			else
-			{
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Existing order is not available");
-			}
-		}
-		else
-		{
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
-		}
-
-		driver.navigate().back();
-		Thread.sleep(2000);
-
-		//Verify manage link in search order page
-		compareText(application, "SAN Search", "sansearchheader", "SAN Search");
-		if(getwebelement(xml.getlocator("//locators/" + application + "/sansearchheader")).isDisplayed())
-		{
-			Log.info("Navigated to view service page");
-			System.out.println("Navigated to view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to 'SAN Search' page");
-		}
-		else
-		{
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Didn't navigate to 'SAN Search' page");
-		}
-
-		EnterTextValue(application, search_sannumber, "SAN", "santextfield");
-		Thread.sleep(1000);
-		click(application, "Search", "san_searchbutton");
-		Thread.sleep(3000);
-
-		WebElement SelectSAN2= driver.findElement(By.xpath("//div[contains(text(),'"+search_sannumber+"')]/parent::div//input[@type='radio']"));
-		if(SelectSAN2.isDisplayed())
-		{
-			String OrderNumber= getwebelement(xml.getlocator("//locators/" + application + "/ordername_link")).getText();
-			click(application, "Order Name", "ordername_link");
-			compareText(application, "Search For Order / Service Header", "searchfororder_header", "Search For Order / Service");
-			Thread.sleep(1000);
-			WebElement SelectExistingOrder= driver.findElement(By.xpath("//div[contains(text(),'"+OrderNumber+"')]/parent::div//input[@type='radio']"));
-			if(SelectExistingOrder.isDisplayed())
-			{
-				Clickon(SelectExistingOrder);
-				click(application, "Action dropdown", "searchsan_actiondropdown");
-				Thread.sleep(1000);
-				click(application, "Manage", "searchfororder_managelink");
-				Thread.sleep(2000);
-				if(getwebelement(xml.getlocator("//locators/" + application + "/customerdetailsheader")).isDisplayed())
-				{
-					Log.info("Navigated to view service page");
-					System.out.println("Navigated to view service page");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to view service page");
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Didn't navigate to view service page");
-				}
-
-			}
-			else
-			{
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Existing order is not available");
-			}
-		}
-		else
-		{
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
-		}
-
-		driver.navigate().back();
-		Thread.sleep(2000);
-
-		//Verify Delete SAN details
-		EnterTextValue(application, search_sannumber, "SAN", "santextfield");
-		Thread.sleep(1000);
-		click(application, "Search", "san_searchbutton");
-		Thread.sleep(3000);
-		WebElement SelectSAN3= driver.findElement(By.xpath("//div[contains(text(),'"+search_sannumber+"')]/parent::div//input[@type='radio']"));
-		if(SelectSAN3.isDisplayed())
-		{
-			Clickon(SelectSAN3);
-			Thread.sleep(2000);
-			click(application, "Action dropdown", "searchsan_actiondropdown");
-			Thread.sleep(1000);
-			//	delete(application, "delete", "Delete", "San deleted Successfully");
-			Thread.sleep(1000);
-		}
-		else
-		{
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing SAN to display");
-		}
-
-	}
-
-
-	public void verifyNGINMessage(String application, String nginmessage_sannumber) throws InterruptedException, DocumentException
-	{
-		Moveon(getwebelement(xml.getlocator("//locators/" + application + "/managecoltnetworklink")));
-		Thread.sleep(1000);
-		click(application, "NGIN Messages", "nginmessageslink");
-		Thread.sleep(2000);
-		compareText(application, "Manage Messages Header", "nginmessageheader", "Manage Messages - Messages Search");
-		isDisplayed(application, "nginmsg_sannumber", "SAN Number text field", xml);
-		isDisplayed(application, "nginmsg_customername_textfield", "Customer Name text field", xml);
-		Thread.sleep(1000);
-		EnterTextValue(application, nginmessage_sannumber, "SAN Number", "nginmsg_sannumber");
-		click(application, "Search", "san_searchbutton");
-		Thread.sleep(2000);
-
-
-		WebElement SelectExistingSAN= driver.findElement(By.xpath("//div[text()='"+nginmessage_sannumber+"']/preceding-sibling::div//div//input[@type='radio']"));
-		if(SelectExistingSAN.isDisplayed())
-		{
-			//Verify existing SAN column headers
-			compareText(application, "FRC Number", "nginmsg_frcnumbercolumn", "FRC Number");
-			compareText(application, "Name", "nginmsg_namecolumn", "Name");
-			compareText(application, "Customer Name", "customernamecolumn", "Customer Name");
-			Thread.sleep(1000);
-			Clickon(SelectExistingSAN);
-			Thread.sleep(2000);
-			click(application, "Action dropdown", "searchsan_actiondropdown");
-			//View link displayed verify
-			if(getwebelement(xml.getlocator("//locators/" + application + "/edit")).isDisplayed())
-			{
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Edit link is displaying in Manage Messages page");
-				Log.info("Edit link is displayed");
-
-				click(application, "Edit", "edit");
-				Thread.sleep(2000);
-				compareText(application, "Edit Message Header", "editmessageheader", "Edit Message");
-				//verify edit message page fields
-				//verify customer name field
-				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_customername")).getAttribute("readonly")!=null)
-				{
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer Name field is disabled as expected");
-					String Customernamevalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_customername")).getAttribute("value");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Customer Name field value is displayed as:"+ Customernamevalue);
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Customer Name field is enabled");
-				}
-
-				//verify country code field
-				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_countrycode")).getAttribute("readonly")!=null)
-				{
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Country code field is disabled as expected");
-					String CountryCodevalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_countrycode")).getAttribute("value");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Country code field value is displayed as:"+ CountryCodevalue);
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Country code field is enabled");
-				}
-
-				//verify san reference field
-				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_sanreference")).getAttribute("readonly")!=null)
-				{
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : SAN Reference field is disabled as expected");
-					String SANReferencevalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_sanreference")).getAttribute("value");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : SAN Reference field value is displayed as:"+ SANReferencevalue);
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : SAN Reference field is enabled");
-				}
-
-				//verify name field
-				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_name")).getAttribute("readonly")!=null)
-				{
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Name field is disabled as expected");
-					String Namevalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_name")).getAttribute("value");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Name field value is displayed as:"+ Namevalue);
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Name field is enabled");
-				}
-
-				//verify description field
-				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_description")).getAttribute("readonly")!=null)
-				{
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Description field is disabled as expected");
-					String Descriptionvalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_description")).getAttribute("value");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Description field value is displayed as:"+ Descriptionvalue);
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Description field is enabled");
-				}
-
-				//verify body field
-				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_bodyfield")).getAttribute("readonly")!=null)
-				{
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Body field is disabled as expected");
-					String Bodyvalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_bodyfield")).getAttribute("value");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Body field value is displayed as:"+ Bodyvalue);
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Body field is enabled");
-				}
-
-				//verify prefix field
-				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_prefixfield")).getAttribute("readonly")!=null)
-				{
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Prefix field is disabled as expected");
-					String Prefixvalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_prefixfield")).getAttribute("value");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Prefix field value is displayed as:"+ Prefixvalue);
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Prefix field is enabled");
-				}
-
-				//verify repetitions field
-				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_repetitionsfield")).getAttribute("readonly")!=null)
-				{
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Repetitions field is disabled as expected");
-					String Repetitionsvalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_repetitionsfield")).getAttribute("value");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Repetitions field value is displayed as:"+ Repetitionsvalue);
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Repetitions field is enabled");
-				}
-
-				//verify duration field
-				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_durationfield")).getAttribute("readonly")!=null)
-				{
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Duration field is disabled as expected");
-					String Durationvalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_durationfield")).getAttribute("value");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Duration field value is displayed as:"+ Durationvalue);
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Duration field is enabled");
-				}
-
-				//verify suffix field
-				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_suffixfield")).getAttribute("readonly")!=null)
-				{
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Suffix field is disabled as expected");
-					String Suffixvalue= getwebelement(xml.getlocator("//locators/" + application + "/editmessage_suffixfield")).getAttribute("value");
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Suffix field value is displayed as:"+ Suffixvalue);
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Suffix field is enabled");
-				}
-
-				//verify start network charge checkbox field
-				if(getwebelement(xml.getlocator("//locators/" + application + "/editmessage_startnetworkcharge")).getAttribute("checked")!=null)
-				{
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : 'Start Network Charge' checkbox is checked by default as expected");
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : 'Start Network Charge' checkbox is not checked by default");
-				}
-
-				click(application, "Cancel", "cancelbutton");
-				Thread.sleep(3000);
-			}
-			else
-			{
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Edit link is not displaying in Manage Messages page");
-			}
-		}
-		else
-		{
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing NGIN Messages to display");
-		}
-
-		WebElement SelectExistingSAN1= driver.findElement(By.xpath("//div[text()='"+nginmessage_sannumber+"']/preceding-sibling::div//div//input[@type='radio']"));
-		if(SelectExistingSAN1.isDisplayed())
-		{
-			Clickon(SelectExistingSAN1);
-			Thread.sleep(2000);
-			click(application, "Action dropdown", "searchsan_actiondropdown");
-			//View link displayed verify
-			if(getwebelement(xml.getlocator("//locators/" + application + "/edit")).isDisplayed())
-			{
-				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Edit link is displaying in Manage Messages page");
-				Log.info("Edit link is displayed");
-
-				click(application, "Edit", "edit");
-				Thread.sleep(2000);
-				compareText(application, "Edit Message Header", "editmessageheader", "Edit Message");
-				//Uncheck start network charge checkbox
-				click(application, "Start Network Charge Checkbox", "editmessage_startnetworkcharge");
-
-				click(application, "OK", "editmessage_okbutton");
-				Thread.sleep(2000);
-				if(getwebelement(xml.getlocator("//locators/" + application + "/nginmessageheader")).isDisplayed())
-				{
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to Manage Messages page");
-					compareText(application, "Edit Message page success message", "editmessage_successmessage", "Message successfully updated.");
-				}
-				else
-				{
-					ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Not navigated to Manage Messages page");
-				}
-			}
-			else
-			{
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : Edit link is not displaying in Manage Messages page");
-			}
-		}
-		else
-		{
-			ExtentTestManager.getTest().log(LogStatus.FAIL, "Step : No existing NGIN Messages to display");
-		}
-
-	}
-
-	
-	
-	
-	
-	
 	
 	
 	
@@ -5076,7 +3681,7 @@ sa.assertAll();
 	
 	
 	public void verifyAddMASswitch_UI(String application, String MAS_IMSPOPLocation) throws InterruptedException, DocumentException, IOException {
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MASswitch_header")));//portalaccess_header//ProviderEquipment_header
 		click(application, "Add MAS Switch Link", "MAS_AddMASSwitchLink");
 		
@@ -5252,8 +3857,9 @@ public void testStatus_MAS(String application) throws InterruptedException {
 			
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_Edit_PremiseLevel")));
 		click(application, "OK in Edit MAS Device", "MAS_OKbutton");
-		compareText(application, "MAS Switch Update message", "MAS_UpdateSwitchSuccessfulMessage", "MAS switch updated successfully");
-		
+	 waitforPagetobeenable();
+//		compareText(application, "MAS Switch Update message", "MAS_UpdateSwitchSuccessfulMessage", "MAS switch updated successfully");
+		verifysuccessmessage(application, "MAS switch updated successfully");
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit MAS Device page");
@@ -5299,8 +3905,7 @@ public void testStatus_MAS(String application) throws InterruptedException {
 			
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_Edit_PremiseLevel")));
 		click(application, "Cancel", "MAS_Cancelbutton");
-		//Thread.sleep(5000);
-		
+		waitforPagetobeenable();		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit MAS Device page");
@@ -5342,7 +3947,7 @@ public void testStatus_MAS(String application) throws InterruptedException {
 		}
 		
 		click(application, "Click here Link for MAS", "MAS_hereLink_UnderFetchDeviceInterfacesSuccessMessage");
-		Thread.sleep(2000);
+		
 		
 		//Manage COLT's Network - Manage Network
 		if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_ManageCOLTsNetworkManageNetwork_header")).isDisplayed()) {
@@ -5421,8 +4026,8 @@ public void testStatus_MAS(String application) throws InterruptedException {
 		////synchronize panel in manage colt page
 			scrolltoend();
 			click(application, "Synchronize", "MAS_Manage_Synchronization_SynchronizeLink");
-			compareText(application, "Synchronize Success Message", "MAS_Manage_SynchronizeSuccessMessage", "Sync started successfully. Please check the sync status of this device.");
-				
+//			compareText(application, "Synchronize Success Message", "MAS_Manage_SynchronizeSuccessMessage", "Sync started successfully. Please check the sync status of this device.");
+				verifysuccessmessage(application, "Sync started successfully. Please check the sync status of this device.");
 
 			Log.info("------  Sync started successfully. Please check the sync status of this device   ------");
 			
@@ -5460,12 +4065,12 @@ public void testStatus_MAS(String application) throws InterruptedException {
 		
 		WebElement serviceIdLink=getwebelement("//span[text()='"+ ServiceIdentification +"']");
 		Clickon(serviceIdLink);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 
 
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/ProviderEquipment_header")));
 		click(application, "View Link", "MAS_viewdevice1");
-		Thread.sleep(10000);
+		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/RouterTool_header")));
 		compareText(application, "Router Tools header", "RouterTool_header", "Router Tools");
 		
@@ -5567,7 +4172,7 @@ public void testStatus_MAS(String application) throws InterruptedException {
 			EnterTextValue(application, MAS_GroupNumber, "Group Number textfield", "MAS_PE_GroupNumberTextfield");
 			EnterTextValue(application, MAS_Link, "Link textfield", "MAS_PE_LinkTextfield");
 			EnterTextValue(application, MAS_VLANID, "Interface textfield", "MAS_PE_VLANIDTextfield");
-			//Thread.sleep(2000);
+			
 			
 //			//IV Management Checkbox
 //			if(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_IVManagementCheckbox")).isEnabled()){
@@ -5588,7 +4193,7 @@ public void testStatus_MAS(String application) throws InterruptedException {
 			addCheckbox_commonMethod(application, "MAS_PE_IVManagementCheckbox", "IV Management", MAS_IVManagement, "No", xml);
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_Configuration_label")));
 			click(application, "Generate Configuration Dropdown", "MAS_PE_GenerateConfigurationDropdown");
-			//Thread.sleep(2000);
+			
 			
 
 			EnterTextValue(application, MAS_GenerateConfiguration, "Enter Generate Configuration", "MAS_PE_GenerateConfigurationDropdown");
@@ -5651,7 +4256,7 @@ public void testStatus_MAS(String application) throws InterruptedException {
 		
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_Configuration_label")));
 			click(application, "Generate Configuration Dropdown", "MAS_PE_GenerateConfigurationDropdown");
-			//Thread.sleep(2000);
+			
 			
 			EnterTextValue(application, MAS_GenerateConfiguration, "Enter Generate Configuration", "MAS_PE_GenerateConfigurationDropdown");
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_IVManagementCheckbox")));
@@ -5707,7 +4312,7 @@ public void testStatus_MAS(String application) throws InterruptedException {
 		
 
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/portalaccess_header")));//ProviderEquipment_header//portalaccess_header//managementoptions_header
-		//Thread.sleep(2000);
+		
 		click(application, "Select Checkbox interface", "MAS_PE_Checkbox1_ViewServicePage"); 
 		click(application, "ACTION MAS Switch", "MASSwitch_ACTION_Device1"); 
 		click(application, "ACTION MAS Switch", "MAS_PE_ACTION_EditLink_Device1"); 
@@ -5738,7 +4343,7 @@ public void testStatus_MAS(String application) throws InterruptedException {
 			editcheckbox_commonMethod(application, MAS_IVManagementEdit, "MAS_PE_IVManagementCheckbox", "IV Management", xml);
 		
 
-			//Thread.sleep(2000);
+			
 			scrolltoend();
 			//**EnterTextValue(application, MAS_GenerateConfigurationEdit, "Enter Generate Configuration", "MAS_PE_GenerateConfigurationDropdown");
 			click(application, "Generate Configuration Dropdown", "MAS_PE_GenerateConfigurationDropdown");
@@ -5752,7 +4357,8 @@ public void testStatus_MAS(String application) throws InterruptedException {
 			scrolltoend();
 			click(application, "OK Button", "MAS_PE_OKButton");
 			
-			compareText(application, "Interface Updated Successfully Message", "MAS_PE_UpdateInterfaceSuccessfullMessage", "Interface updated successfully");
+//			compareText(application, "Interface Updated Successfully Message", "MAS_PE_UpdateInterfaceSuccessfullMessage", "Interface updated successfully");
+			verifysuccessmessage(application, "Interface updated successfully");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces sucessfully updated by selecting VPN as Access Media");
 			
 		
@@ -5795,7 +4401,8 @@ public void testStatus_MAS(String application) throws InterruptedException {
 			scrolltoend();
 			click(application, "OK Button", "MAS_PE_OKButton");
 			
-			compareText(application, "Interface Updated Successfully Message", "MAS_PE_UpdateInterfaceSuccessfullMessage", "Interface updated successfully");
+//			compareText(application, "Interface Updated Successfully Message", "MAS_PE_UpdateInterfaceSuccessfullMessage", "Interface updated successfully");
+			verifysuccessmessage(application, "Interface updated successfully");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces sucessfully updated by selecting EPN as Access Media");
 			Log.info("------ Interface Updated successfully ------");
 			
@@ -5835,7 +4442,7 @@ public void testStatus_MAS(String application) throws InterruptedException {
 			String MAS_InterfaceAddressMask, String	MAS_HSRPIP, String	MAS_InterfaceAddressRangeIPV6, String MAS_HSRPIPv6Address, 
 			String	MAS_PrimaryIPv6onMas1, String MAS_SecondaryIPv6onMas2, String MAS_GroupNumber, String MAS_Link, String MAS_VLANID,
 			String	MAS_IVManagement, String MAS_Configuration, String MAS_HSRPTrackInterface, String MAS_HSRPAuthentication) throws InterruptedException, DocumentException, IOException {
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_CommandIPV4_header")));//RouterTool_header//MAS_PE_CommandIPV4_header//MAS_PE_InterfacesPanel_header
 		click(application, "ACTION Link", "MAS_View_InterfacesActionLink");
 		click(application, "Add Interface Link", "MAS_PE_AddInterfaceLink");
@@ -5948,7 +4555,7 @@ public void testStatus_MAS(String application) throws InterruptedException {
 		
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/portalaccess_header")));//ProviderEquipment_header//portalaccess_header//managementoptions_header
 		//***click(application, "Show Interfaces Link", "MAS_ShowInterfaceLink");
-		Thread.sleep(2000);
+		
 		click(application, "Select Checkbox interface", "MAS_PE_Checkbox1_ViewServicePage"); 
 		click(application, "ACTION MAS Switch", "MASSwitch_ACTION_Device1"); 
 		click(application, "Configure interface", "MAS_PE_ACTION_ConfigureLink_Device1"); 
@@ -5974,7 +4581,7 @@ public void testStatus_MAS(String application) throws InterruptedException {
 		GetText(application, "VLAN Id", "MAS_PE_Configure_VLANIdValue");
 
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_Configuration_label")));
-		Thread.sleep(2000);
+		
 		
 		SelectDropdownValueUnderSelectTag(application, "Configuration", MAS_GenerateConfiguration, "MAS_PE_Configure_GenerateConfigurationDropdown", xml);
 		
@@ -6016,7 +4623,7 @@ public void testStatus_MAS(String application) throws InterruptedException {
 		
 		compareText(application, "Delete Interface Warning Message from View Service page", "MAS_PE_DeleteInterfaceWarningMessage", "Are you sure that you want to delete?");
 		click(application, "Delete Button", "MAS_PE_DeleteButton");
-		Thread.sleep(3000);
+		waitforPagetobeenable();
 		compareText(application, "Delete Interface Successfull Message", "MAS_PE_DeleteInterfaceSuccessfullMessage", "Interface successfully removed from this service.");
 	}
 	
@@ -6392,10 +4999,10 @@ public void testStatus_PE(String application) throws InterruptedException {
 				//edittextFields_commonMethod(application, "Snmpro", "MAS_PE_Edit_snmpro", PE_SnmproEdit, xml);
 			
 				scrolltoend();
-				Thread.sleep(2000);
+				
 				
 				scrolltoend();
-				Thread.sleep(2000);
+				
 				//Country
 						if(!PE_CountryEdit.equalsIgnoreCase("Null")) {
 							
@@ -6489,9 +5096,9 @@ public void testStatus_PE(String application) throws InterruptedException {
 						
 				scrolltoend();
 				click(application, "OK in Edit PE Device", "PE_OKbutton");
-				Thread.sleep(5000);
-				compareText(application, "PE Device Update message", "PE_UpdatePEDeviceSuccessfulMessage", "PE Device updated successfully");
-		
+				waitforPagetobeenable();
+//				compareText(application, "PE Device Update message", "PE_UpdatePEDeviceSuccessfulMessage", "PE Device updated successfully");
+				verifysuccessmessage(application, "PE Device updated successfully");
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Edit PE Device page");
@@ -6578,7 +5185,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 		}else {
 			
 			click_commonMethod(application, "Select City toggle button", selectCityToggleButton, xml);
-			Thread.sleep(1000);
+			
 			
 			selectValueInsideDropdown(application, dropdown_xpath, labelname, dropdownValue, xml);
 			
@@ -6604,7 +5211,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 		if(cityDisplayed) {
 			
 			click_commonMethod(application, "Select City toggle button", addCitytoggleButton, xml);
-			Thread.sleep(1000);
+			
 			
 			//City name
 			edittextFields_commonMethod(application, "City Name", "citynameinputfield", editNewCityName, xml);
@@ -6683,7 +5290,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 		}else {
 			
 			click_commonMethod(application, "Select Site toggle button", selectSiteToggleButton, xml);
-			Thread.sleep(1000);
+			
 			
 			selectValueInsideDropdown(application, dropdown_xpath, labelname, dropdownValue, xml);
 			
@@ -6709,7 +5316,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 		if(siteDisplayed) {
 			
 			click_commonMethod(application, "Select City toggle button", addSitetoggleButton, xml);
-			Thread.sleep(1000);
+			
 			
 			//Site name
 			edittextFields_commonMethod(application, "Site Name", "sitenameinputfield_addSiteToggleSelected", editNewSiteName, xml);
@@ -6791,7 +5398,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 		}else {
 			
 			click_commonMethod(application, "Select Premise toggle button", selectPremiseToggleButton, xml);
-			Thread.sleep(1000);
+			
 			
 			selectValueInsideDropdown(application, dropdown_xpath, labelname, dropdownValue, xml);
 			
@@ -6817,7 +5424,7 @@ public void testStatus_PE(String application) throws InterruptedException {
 		if(premiseDisplayed) {
 			
 			click_commonMethod(application, "Select Premise toggle button", addPremisetoggleButton, xml);
-			Thread.sleep(1000);
+			
 			
 			//Premise name
 			edittextFields_commonMethod(application, "Premise Name", "premisenameinputfield_addPremiseToggleSelected", editNewPremiseName, xml);
@@ -6864,7 +5471,7 @@ public void verifyEditPEDeviceFunction_UI(String application, String ServiceIden
 			
 				scrolltoend();
 				click(application, "Cancel", "MAS_Cancelbutton");
-				Thread.sleep(5000);
+				waitforPagetobeenable();
 		
 		}catch(NoSuchElementException e) {
 			e.printStackTrace();
@@ -6910,7 +5517,7 @@ try {
 		
 		
 		click(application, "Click here Link for PE", "PE_hereLink_UnderFetchDeviceInterfacesSuccessMessage");
-		Thread.sleep(2000);
+		
 		
 		//Manage COLT's Network - Manage Network
 		if(getwebelement(xml.getlocator("//locators/" + application + "/PE_ManageCOLTsNetworkManageNetwork_header")).isDisplayed()) {
@@ -6991,8 +5598,8 @@ try {
 		////synchronize panel in manage colt page
 			scrolltoend();
 			click(application, "Synchronize", "PE_Manage_Synchronization_SynchronizeLink");
-			compareText(application, "Synchronize Success Message", "PE_Manage_SynchronizeSuccessMessage", "Sync started successfully. Please check the sync status of this device.");
-				
+//			compareText(application, "Synchronize Success Message", "PE_Manage_SynchronizeSuccessMessage", "Sync started successfully. Please check the sync status of this device.");
+			verifysuccessmessage(application, "Sync started successfully. Please check the sync status of this device.");	
 			Log.info("------  Sync started successfully. Please check the sync status of this device   ------");
 
 		}catch(NoSuchElementException e) {
@@ -7033,7 +5640,7 @@ public void routerPanel_PE(String application, String commandIPv4, String comman
 		String vrfname_ipv4, String vrfname_ipv6) throws InterruptedException, DocumentException, IOException {
 	
 	scrollToTop();
-	Thread.sleep(1000);
+	
 	
 	WebElement vendorModel=getwebelement(xml.getlocator("//locators/" + application + "/PE_View_VendorModelValue"));
 	String vendor=Gettext(vendorModel);
@@ -7041,7 +5648,7 @@ public void routerPanel_PE(String application, String commandIPv4, String comman
 	String ipAddress=Gettext(manageAddress);
 	
 	ScrolltoElement(application, "PE_View_VendorModelValue" , xml);
-	Thread.sleep(1000);
+	
 	
 	if(vendor.startsWith("Cisco")) {
 		
@@ -7222,16 +5829,16 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 	public void verifyRouterToolFunction_PE(String application,String ServiceIdentification, String PE_CommandIPV4,String PE_ManagementAddress) throws InterruptedException, DocumentException, IOException {
 				
 		scrollToTop();
-		Thread.sleep(2000);
+		
 		
 		WebElement serviceIdLink=getwebelement("//span[text()='"+ ServiceIdentification +"']");
 		Clickon(serviceIdLink);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 
 		
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/TrunkGroupSiteOrders_header")));
 		click(application, "View Link", "PE_viewdevice1");
-		Thread.sleep(10000);
+		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/PE_View_PremiseValue")));
 		compareText(application, "Router Tools header", "RouterTool_header", "Router Tools");
 		
@@ -7275,7 +5882,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		
 		
 		if(PE_AccessMedia.equalsIgnoreCase("VPN")) {
-			Thread.sleep(2000);
+			
 			scrollToTop();
 			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMedia);
 			
@@ -7316,7 +5923,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_GenerateConfigurationButton")));
 			//**scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_Configuration_label")));
 			click(application, "Generate Configuration Dropdown", "MAS_PE_GenerateConfigurationDropdown");
-			Thread.sleep(2000);
+			
 			
 			EnterTextValue(application, PE_GenerateConfiguration, "Enter Generate Configuration", "MAS_PE_GenerateConfigurationDropdown");
 			
@@ -7324,7 +5931,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			Clickon(SelectGenerateConfigurationDropdownValue);
 			
 			
-			Thread.sleep(3000);
+			waitforPagetobeenable();
 			click(application, "Generate Configuration Button", "MAS_PE_GenerateConfigurationButton");
 			GetText(application, "Save Configuration to File Button", "MAS_PE_SaveConfigurationtoFileButton");
 			
@@ -7337,11 +5944,11 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			
 		}else if(PE_AccessMedia.equalsIgnoreCase("EPN")) {
 			scrollToTop();
-			Thread.sleep(2000);
+			
 			scrollToTop();
 			ExtentTestManager.getTest().log(LogStatus.PASS,  " Selected Access Media is : "+PE_AccessMedia);
 			click_commonMethod(application, "Access Media", "MAS_PE_AccessMediaDropdown", xml);
-			Thread.sleep(5000);
+			waitforPagetobeenable();
 			WebElement SelectMAS_AccessMediaDropdownValue=getwebelement("//div[text()='"+PE_AccessMedia+"']");
 			Clickon(SelectMAS_AccessMediaDropdownValue);
 			
@@ -7435,7 +6042,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			String	PE_PrimaryIPv6onMas1, String PE_SecondaryIPv6onMas2, String PE_GroupNumber, String PE_Link, String PE_VLANID, String PE_VRRPGroupName , String PE_VRF,
 			String	PE_IVManagement, String PE_Configuration, String PE_VRRPTrackInterface, String PE_VRRPAuthentication) throws InterruptedException, DocumentException, IOException {
 		
-			Thread.sleep(5000);
+			waitforPagetobeenable();
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_CommandIPV4_header")));//RouterTool_header//MAS_PE_CommandIPV4_header//MAS_PE_InterfacesPanel_header
 			click(application, "ACTION Link", "MAS_View_InterfacesActionLink");
 			click(application, "Add Interface Link", "MAS_PE_AddInterfaceLink");
@@ -7547,7 +6154,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		try {
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/ProviderEquipment_header")));//ProviderEquipment_header//portalaccess_header//managementoptions_header
 			//***click(application, "Show Interfaces Link", "MAS_ShowInterfaceLink");
-			Thread.sleep(2000);
+			
 			click(application, "Select Checkbox interface", "MAS_PE_Checkbox1_ViewServicePage"); 
 			click(application, "ACTION PE Device", "PE_ACTION_Device1"); 
 			click(application, "Edit Link", "PE_ACTION_EditLink_Device1"); 
@@ -7563,7 +6170,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			click(application, "Access Media Dropdown", "MAS_PE_AccessMediaDropdown");
 			WebElement SelectPE_AccessMediaDropdownValue=getwebelement("//div[text()='"+ PE_AccessMediaEdit +"']");
 			Clickon(SelectPE_AccessMediaDropdownValue);
-			Thread.sleep(5000);
+			waitforPagetobeenable();
 			//*ClearAndEnterTextValue(application, "Interface textfield", "MAS_PE_InterfaceTextfield", PE_InterfaceEdit);
 			ClearAndEnterTextValue(application, "Interface Address Range Textfield", "MAS_PE_InterfaceAddressRangeTextfield", PE_InterfaceAddressRangeEdit);
 			ClearAndEnterTextValue(application, "Interface Address Mask textfield", "MAS_PE_InterfaceAddressMaskTextfield", PE_InterfaceAddressMaskEdit);
@@ -7582,13 +6189,13 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_GenerateConfigurationButton")));
 			click(application, "Generate Configuration Dropdown", "MAS_PE_GenerateConfigurationDropdown");
-			Thread.sleep(2000);
+			
 			
 			EnterTextValue(application, PE_GenerateConfigurationEdit, "Enter Generate Configuration", "MAS_PE_GenerateConfigurationDropdown");
 			WebElement SelectGenerateConfigurationDropdownValue=getwebelement("//div[text()='"+ PE_GenerateConfigurationEdit +"']");
 			Clickon(SelectGenerateConfigurationDropdownValue);
 
-			Thread.sleep(3000);
+			waitforPagetobeenable();
 			click(application, "Generate Configuration Button", "MAS_PE_GenerateConfigurationButton");
 			GetText(application, "Save Configuration to File Button", "MAS_PE_SaveConfigurationtoFileButton");
 			
@@ -7596,7 +6203,8 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			scrolltoend();
 			click(application, "OK Button", "MAS_PE_OKButton");
 				
-			compareText(application, "Interface Updated Successfully Message", "MAS_PE_UpdateInterfaceSuccessfullMessage", "Interface updated successfully");
+//			compareText(application, "Interface Updated Successfully Message", "MAS_PE_UpdateInterfaceSuccessfullMessage", "Interface updated successfully");
+			verifysuccessmessage(application, "Interface updated successfully");
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Interfaces sucessfully updated by selecting VPN as Access Media");
 			
 		}else if(PE_AccessMediaEdit.equalsIgnoreCase("EPN")) {
@@ -7604,7 +6212,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			click(application, "Access Media Dropdown", "MAS_PE_AccessMediaDropdown");
 			WebElement SelectPE_AccessMediaDropdownValue=getwebelement("//div[text()='"+ PE_AccessMediaEdit +"']");
 			Clickon(SelectPE_AccessMediaDropdownValue);
-			Thread.sleep(5000);
+			waitforPagetobeenable();
 
 			ClearAndEnterTextValue(application, "Interface Address Range Textfield", "MAS_PE_InterfaceAddressRangeTextfield", PE_InterfaceAddressRangeEdit);
 			ClearAndEnterTextValue(application, "Interface Address Mask textfield", "MAS_PE_InterfaceAddressMaskTextfield", PE_InterfaceAddressMaskEdit);
@@ -7627,7 +6235,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 			
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/MAS_PE_GenerateConfigurationButton")));
 			click(application, "Generate Configuration Dropdown", "MAS_PE_GenerateConfigurationDropdown");
-			Thread.sleep(2000);
+			
 			
 			ScrolltoElement(application, "MAS_PE_IVManagementCheckbox", xml);
 //			EnterTextValue(application, PE_GenerateConfigurationEdit, "Enter Generate Configuration", "MAS_PE_GenerateConfigurationDropdown");
@@ -7635,7 +6243,6 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 //			Clickon(SelectGenerateConfigurationDropdownValue);
 			
 			addDropdownValues_commonMethod(application, "Generate Configuration ", "MAS_PE_GenerateConfigurationDropdown", PE_GenerateConfigurationEdit, xml);
-			Thread.sleep(3000);
 			click(application, "Generate Configuration Button", "MAS_PE_GenerateConfigurationButton");
 			GetText(application, "Save Configuration to File Button", "MAS_PE_SaveConfigurationtoFileButton");
 			EnterTextValue(application, "Configuration test", "Configuration", "MAS_PE_ConfigurationTextfield");
@@ -7771,7 +6378,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 				
 		compareText(application, "Delete Interface Warning Message from View Service page", "MAS_PE_DeleteInterfaceWarningMessage", "Are you sure that you want to delete?");
 		click(application, "Delete Button", "MAS_PE_DeleteButton");
-		Thread.sleep(3000);
+		waitforPagetobeenable();
 		compareText(application, "Delete Interface Successfull Message", "PE_DeleteInterfaceSuccessfullMessage", "Interface deleted successfully");
 		
 	}
@@ -7795,7 +6402,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		click(application, "Delete Device from View Device page", "PE_View_Action_DeleteLink");
 		compareText(application, "Delete PE Device Warning Message from View Device page", "PE_ViewDevice_Action_DeletePEDeviceWarningMessage", "Are you sure that you want to delete this item?");
 		click(application, "Delete Button", "PE_ViewDevice_Action_DeleteButton");
-		Thread.sleep(3000);
+		waitforPagetobeenable();
 		compareText(application, "Delete MAS Device Successful Message", "PE_DeletePEDeviceSuccessfulMessage", "PE Device deleted successfully");
 
 		
@@ -7805,7 +6412,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		click(application, "Delete From Service Link", "PE_deletefromservicedevice1");
 		compareText(application, "Delete PE Device Warning Message from View Service page", "PE_ViewService_DeletePEDeviceWarningMessage", "Are you sure that you want to delete?");
 		click(application, "Delete Button", "PE_ViewService_DeleteButton");
-		Thread.sleep(3000);
+		waitforPagetobeenable();
 		compareText(application, "Delete PE Device Successfull Message", "PE_DeletePEDeviceSuccessfulMessage", "PE Device deleted successfully");
 		
 		}else {
@@ -7891,7 +6498,7 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 		boolean trunkgrupOrderErrMsg= false;
 		try {
 		scrolltoend();
-		//Thread.sleep(2000);
+		
 		
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/PE_AddPEDeviceLink")));
 		TrunkGroupSiteOrderPanel_header= getwebelement(xml.getlocator("//locators/" + application + "/TrunkGroupSiteOrderPanel_header")).isDisplayed();
@@ -7932,9 +6539,10 @@ public void vrfNametextField_IPV4_PE(String application, String command_ipv4, St
 				
 			//Click on OK button
 				click_commonMethod(application, "OK", "trunk_okButton", xml);
-				//Thread.sleep(3000);
+				//waitforPagetobeenable();
 				
-				compareText(application, "Add Trunk Group/Site Order Creation success message", "alertMSg_siteorderCreation", "Trunk Group created successfully", xml);
+//				compareText(application, "Add Trunk Group/Site Order Creation success message", "alertMSg_siteorderCreation", "Trunk Group created successfully", xml);
+				verifysuccessmessage(application, "Trunk Group created successfully");
 				try {
 				trunkgrupOrderErrMsg=getwebelement(xml.getlocator("//locators/" + application + "/alertMSg_siteorderCreation")).isDisplayed();
 				String actualMsg=getwebelement(xml.getlocator("//locators/" + application + "/alertMSg_siteorderCreation")).getText();
@@ -7993,9 +6601,8 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 		
 		boolean addtrunkSiteorderPage_panelheader=false;
 		boolean trunkgrupOrderErrMsg=false;
-		
+		waitforPagetobeenable();
 		scrolltoend();
-		Thread.sleep(3000);
 		
 		WebElement editlink=getwebelement("//div[div[span[text()='"+ TrunkGroupSiteOrderNumber +"']]]//span[text()='Edit']");
 		Clickon(editlink);
@@ -8019,7 +6626,7 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 			
 		//Click on OK button
 			click_commonMethod(application, "OK", "trunk_okButton", xml);
-			Thread.sleep(3000);
+			waitforPagetobeenable();
 			
 			try {
 			trunkgrupOrderErrMsg=getwebelement(xml.getlocator("//locators/" + application + "/alertMSg_siteorderCreation")).isDisplayed();
@@ -8067,9 +6674,8 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 		
 		boolean siteOrderpage=false;
 		boolean trunkgrupOrderErrMsg=false;
-		
+		waitforPagetobeenable();
 		scrolltoend();
-		Thread.sleep(3000);
 		
 		WebElement editlink=getwebelement("//div[div[span[text()='"+ siteOrderName +"']]]//span[text()='Edit']");
 		Clickon(editlink);
@@ -8094,7 +6700,7 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 			
 		//Click on OK button
 			click_commonMethod(application, "OK", "trunk_okButton", xml);
-			Thread.sleep(3000);
+			waitforPagetobeenable();
 			
 			try {
 			trunkgrupOrderErrMsg=getwebelement(xml.getlocator("//locators/" + application + "/alertMSg_siteorderCreation")).isDisplayed();
@@ -8131,7 +6737,7 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 	
 	
 	public void deleteTrunkGroupSiteOrderNumber(String application, String TrunkGroupSiteOrderNumber) throws InterruptedException, DocumentException, IOException {
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		try {
 		scrolltoend();
 		boolean TrunkGroupSiteOrderNumberText=false;
@@ -8200,7 +6806,7 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 	
 	public void deleteUpdatedTrunkGroupSiteOrderNumber(String application,   String TrunkGroupSiteOrderNumberEdit) throws InterruptedException, DocumentException, IOException {
 		scrolltoend();
-		Thread.sleep(1000);
+		
 		
 		boolean TrunkGroupSiteOrderNumberUpdatedText=false;
 		//boolean ViewService_Trunk_DeleteSiteOrderSuccessMessage=false;
@@ -8267,7 +6873,7 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 	public void verifyAddedSiteOrderAndTrunkLinkUnderTrunkPanel(String application, String TrunkGroupSiteOrderNumber) throws InterruptedException, DocumentException, IOException {
 		try {
 		scrolltoend();
-		Thread.sleep(1000);
+		
 		
 		boolean siteOrderUnderTrunkPanel=false;
 		
@@ -8280,11 +6886,11 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 			System.out.println(TrunkGroupSiteOrderNumber + " 'Site Order' is displaying under 'Trunk' panel");
 			
 		//Click on Add trunk link	
-			Thread.sleep(2000);
+			
 			String addTunklinkXpath="//div[div[span[text()='"+ TrunkGroupSiteOrderNumber +"']]]/following-sibling::div//a[span[text()='Add Trunk']]";
 			scrolltoend();
 			click_commonMethod_PassingWebelementDirectly(application, "Add Trunk", addTunklinkXpath, xml);
-			Thread.sleep(1000);
+			
 			
 									}else {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, TrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
@@ -8312,7 +6918,7 @@ public void editTrunkGroupSiteOrderNumber(String application, String TrunkGroupS
 public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String application, String ExistingTrunkGroupSiteOrderNumber) throws InterruptedException, DocumentException, IOException {
 		
 		scrolltoend();
-		Thread.sleep(1000);
+		
 		
 		boolean siteOrderUnderTrunkPanel=false;
 		
@@ -8327,7 +6933,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		//Click on Add trunk link	
 			String addTunklinkXpath="//div[div[span[text()='"+ ExistingTrunkGroupSiteOrderNumber +"']]]/following-sibling::div//span[text()='Add Trunk']";
 			click_commonMethod_PassingWebelementDirectly(application, "Add Trunk", addTunklinkXpath, xml);
-			Thread.sleep(1000);
+			
 			
 									}else {
 			ExtentTestManager.getTest().log(LogStatus.FAIL, ExistingTrunkGroupSiteOrderNumber + " 'Site Order' is not displaying under 'Trunk' panel");
@@ -8399,13 +7005,13 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		System.out.println("'Add Trunk' Page navigated as expected");
 		
 		
-	Thread.sleep(2000);
+	
 	scrolltoend();
 	
 	click_commonMethod(application, "OK Button", "trunk_okButton", xml);
 	
 	scrollToTop();
-	//Thread.sleep(2000);
+	
 	
 	
 	
@@ -8446,7 +7052,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 	
 	WebElement PrimaryTrunk2=getwebelement(xml.getlocator("//locators/" + application + "/PrimaryTrunk_Dropdown"));
 	scrolltoview(PrimaryTrunk2);
-	//Thread.sleep(2000);
+	
 	
 	
 		//Quality
@@ -8459,7 +7065,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 
 	WebElement IPAddressType=getwebelement(xml.getlocator("//locators/" + application + "/IPaddresstype_Dropdown"));
 	scrolltoview(IPAddressType);
-	//Thread.sleep(2000);
+	
 	
 	
 		//IP PBX Range
@@ -9016,7 +7622,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 
 	WebElement internetBasedCusotmerView=getwebelement(xml.getlocator("//locators/" + application + "/internetBasedCustomer_checkbox"));
 	scrolltoview(internetBasedCusotmerView);
-	Thread.sleep(2000);
+	
 	
 	
 	if(signallingtransportProtocol.equalsIgnoreCase("sip-tls-tcp")) {
@@ -9237,12 +7843,12 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		
 		WebElement reusenifgroup=getwebelement(xml.getlocator("//locators/" + application + "/reuseNIFgroup_checkbox"));
 		scrolltoview(reusenifgroup);
-		Thread.sleep(2000);
+		
 		
 		
 	
 	scrolltoend();
-	Thread.sleep(1000);
+	
 	
 	isDisplayed(application, "trunk_okButton", "OK", xml);
 	isDisplayed(application, "cancelbutton", "Cancel", xml);
@@ -9306,13 +7912,13 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			System.out.println("'Add Trunk' Page navigated as expected");
 			
 			
-		Thread.sleep(2000);
+		
 		scrolltoend();
 		
 		click_commonMethod(application, "OK Button", "trunk_okButton", xml);
 		
 		scrollToTop();
-		//Thread.sleep(2000);
+		
 		
 		
 		
@@ -9351,7 +7957,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		
 		WebElement PrimaryTrunk2=getwebelement(xml.getlocator("//locators/" + application + "/PrimaryTrunk_Dropdown"));
 		scrolltoview(PrimaryTrunk2);
-		//Thread.sleep(2000);
+		
 		
 		
 			//Quality
@@ -9364,7 +7970,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 
 		WebElement IPAddressType=getwebelement(xml.getlocator("//locators/" + application + "/IPaddresstype_Dropdown"));
 		scrolltoview(IPAddressType);
-		//Thread.sleep(2000);
+		
 		
 		
 			//IP PBX Range
@@ -9871,7 +8477,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 
 		WebElement internetBasedCusotmerView=getwebelement(xml.getlocator("//locators/" + application + "/internetBasedCustomer_checkbox"));
 		scrolltoview(internetBasedCusotmerView);
-		Thread.sleep(2000);
+		
 		
 		
 		if(signallingtransportProtocol.equalsIgnoreCase("sip-tls-tcp")) {
@@ -10017,11 +8623,11 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			
 			WebElement reusenifgroup=getwebelement(xml.getlocator("//locators/" + application + "/reuseNIFgroup_checkbox"));
 			scrolltoview(reusenifgroup);
-			Thread.sleep(2000);
+			
 			
 		
 		scrolltoend();
-		Thread.sleep(1000);
+		
 		
 		click_commonMethod(application, "OK", "trunk_okButton", xml);
 		waitforPagetobeenable();
@@ -10093,12 +8699,12 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		String prefix_code=null;
 		
 		scrolltoend();
-		Thread.sleep(2000);
+		
 		
 		click_commonMethod(application, "OK", "OKbutton", xml);
 		
 		scrollToTop();
-		Thread.sleep(2000);
+		
 		
 		
 	//Trunk Type	
@@ -10167,7 +8773,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		
 		WebElement trunktype=getwebelement(xml.getlocator("//locators/" + application + "/trunkType_Dropdown"));
 		scrolltoview(trunktype);
-		Thread.sleep(2000);
+		
 		
 	//Quality
 		selectValueInsideDropdown(application, "quality_Dropdown", "Quality", quality, xml);
@@ -10195,7 +8801,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 	
 		WebElement traficDirection=getwebelement(xml.getlocator("//locators/" + application + "/trafficDirection_Dropdown"));
 		scrolltoview(traficDirection);
-		Thread.sleep(2000);
+		
 		
 		
 	//Carrier IP originating
@@ -10665,7 +9271,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 	
 		WebElement internetBasedCusotmerView=getwebelement(xml.getlocator("//locators/" + application + "/internetBasedCustomer_checkbox"));
 		scrolltoview(internetBasedCusotmerView);
-		Thread.sleep(2000);
+		
 		
 		
 		if(signallingtransportProtocol.equalsIgnoreCase("sip-tls-tcp")) {
@@ -10741,7 +9347,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			
 			WebElement reusenifgroup=getwebelement(xml.getlocator("//locators/" + application + "/reuseNIFgroup_checkbox"));
 			scrolltoview(reusenifgroup);
-			Thread.sleep(2000);
+			
 			
 	//Retry Invite
 		edittextFields_commonMethod(application, "Retry Invite", "retryinvite_textField", retryInvite, xml);
@@ -10757,7 +9363,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		
 		WebElement retryinviteView=getwebelement(xml.getlocator("//locators/" + application + "/retryinvite_textField"));
 		scrolltoview(retryinviteView);
-		Thread.sleep(2000);
+		
 	
 	//E164GlobalProfile
 		addTrunk_existingNewDropdownField(application, globalProfile_ExistingSelection, globalProfile_newSelection, globalProfile_ExistingValue, 
@@ -10786,7 +9392,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 
 		WebElement globalProfileView=getwebelement(xml.getlocator("//locators/" + application + "/globalProfile_textField"));
 		scrolltoview(globalProfileView);
-		Thread.sleep(2000);
+		
 		
 		
 	//Carrier
@@ -10805,7 +9411,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		
 		
 		scrolltoend();
-		Thread.sleep(2000);
+		
 		
 	
 	//In DM/PM rule
@@ -10842,7 +9448,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		
 		
 		scrolltoend();
-		Thread.sleep(1000);
+		
 		
 		click_commonMethod(application, "OK", "OKbutton", xml);
 		
@@ -11035,7 +9641,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		}
 				
 		else if(gateway.equals("LONNBS1")) {
-			code="813";
+			code="820";
 		}
 				
 		else if(gateway.equals("FRANBS1")) {
@@ -11168,7 +9774,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		else if((existingFieldSelection.equalsIgnoreCase("no")) && (newFieldSelection.equalsIgnoreCase("yes"))) {
 			
 			click_commonMethod(application, labelname, xpath_checkbox, xml);
-			Thread.sleep(1000);
+			
 			
 			addtextFields_commonMethod(application, labelname, xpath_textfield, newFieldvalue, xml);
 		}
@@ -11207,7 +9813,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 			}else {
 				
 				click_commonMethod(application, labelname, xpath_checkbox, xml);
-				Thread.sleep(1000);
+				
 				
 				edittextFields_commonMethod(application, labelname, xpath_textfield, textFieldValue, xml);
 				
@@ -11236,7 +9842,7 @@ public void verifyExistingSiteOrderAndTrunkLinkUnderTrunkPanel(String applicatio
 		}else {
 			
 			click_commonMethod(application, labelname, xpath_checkbox, xml);
-			Thread.sleep(1000);
+			
 			
 			selectValueInsideDropdown(application, xpath_dropdown, labelname, existinFieldvalue, xml);
 			
@@ -11305,7 +9911,7 @@ try {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "'View Trunk' Page navigated as expected");
 			System.out.println("'View Trunk' Page navigated as expected");
 			
-			Thread.sleep(2000);
+			
 			
 			
 //		//Trunk Group Description
@@ -11600,13 +10206,13 @@ sa.assertAll();
 	
 public void verifyAddDRPlans(String application, String Add_DRplanA, String Add_DRplanB, String Add_DRplanC, String Add_DRplanD, String Add_DRplanE, String rangestart_cc, String rangestart_lac, String rangestart_num, String rangefinish_cc, String rangefinish_lac, String rangefinish_num, String destinationnumber_cc, String destinationnumber_lac, String destinationnumber_num, String activate_deactivateDRplan_dropdownvalue, String edit_rangestart_cc, String edit_rangestart_lac, String edit_rangestart_num, String edit_rangefinish_cc, String edit_rangefinish_lac, String edit_rangefinish_num, String edit_destinationnumber_cc, String edit_destinationnumber_lac, String edit_destinationnumber_num, String edit_activate_deactivateDRplan_dropdownvalue) throws InterruptedException, DocumentException, IOException {
 try {
-	Thread.sleep(3000);
+	waitforPagetobeenable();
 	ScrolltoElement(application, "customizedmedia_header", xml);
-	Thread.sleep(1000);
+	
 	click_commonMethod(application, "Disaster Recovery Header", "recovery_header", xml);
-	Thread.sleep(1000);
+	
 	click_commonMethod(application, "Add DR Plan", "addDRplans_link", xml);
-	Thread.sleep(1000);
+	
 	waitforPagetobeenable();
 	compareText(application, "Add DR Plans Header", "addDRplan_header", "Disaster Recovery Plans", xml);
 	
@@ -11614,9 +10220,9 @@ try {
 		scrollToTop();
 		compareText(application, "DR Plan A_header", "DRplanA_header", "DR Plan A", xml);
 		click_commonMethod(application, "DR Plan A Action dropdown", "DRplanA_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Add", "DRplan_addlink", xml);
-		Thread.sleep(1000);
+		
 		waitforPagetobeenable();
 		AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 		compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
@@ -11627,9 +10233,9 @@ try {
 		//Edit DR Plan
 		addedDRplan(application, "DR Plan A", rangestart_cc, rangestart_lac, rangestart_num);
 		click_commonMethod(application, "DR Plan A Action dropdown", "DRplanA_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Edit", "DRplan_editlink", xml);
-		Thread.sleep(1000);
+		
 		waitforPagetobeenable();
 		EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
@@ -11643,20 +10249,20 @@ try {
 			addedDRplan(application, "DR Plan A", rangestart_cc, rangestart_lac, rangestart_num);	
 		}
 		click_commonMethod(application, "DR Plan A Action dropdown", "DRplanA_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Delete", "DRplan_Deletelink", xml);
-		Thread.sleep(1000);
+		
 		deleteDRPlan(application);
 
 	}
 	if(Add_DRplanB.equalsIgnoreCase("Yes")) {
 		ScrolltoElement(application, "DRplanA_header", xml);
-		Thread.sleep(1000);
+		
 		compareText(application, "DR Plan B_header", "DRplanB_header", "DR Plan B", xml);
 		click_commonMethod(application, "DR Plan B Action dropdown", "DRplanB_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Add", "DRplan_addlink", xml);
-		Thread.sleep(1000);
+		
 		waitforPagetobeenable();
 		AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 		compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
@@ -11666,18 +10272,18 @@ try {
 
 		//Edit DR Plan
 		ScrolltoElement(application, "DRplanA_header", xml);
-		Thread.sleep(1000);
+		
 		addedDRplan(application, "DR Plan B", rangestart_cc, rangestart_lac, rangestart_num);
 		click_commonMethod(application, "DR Plan B Action dropdown", "DRplanB_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Edit", "DRplan_editlink", xml);
-		Thread.sleep(1000);
+		
 		waitforPagetobeenable();
 		EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 		//Delete DR Plan
 		ScrolltoElement(application, "DRplanA_header", xml);
-		Thread.sleep(1000);
+		
 		if(edit_rangestart_cc.equalsIgnoreCase("Yes") || edit_rangestart_cc.equalsIgnoreCase("null") || edit_rangestart_lac.equalsIgnoreCase("Yes")|| edit_rangestart_lac.equalsIgnoreCase("null") || edit_rangestart_num.equalsIgnoreCase("Yes")||edit_rangestart_num.equalsIgnoreCase("null"))
 		{
 			editedDRplan(application, "DR Plan B", rangestart_cc, rangestart_lac, rangestart_num, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num);
@@ -11687,20 +10293,20 @@ try {
 			addedDRplan(application, "DR Plan B", rangestart_cc, rangestart_lac, rangestart_num);	
 		}
 		click_commonMethod(application, "DR Plan B Action dropdown", "DRplanB_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Delete", "DRplan_Deletelink", xml);
-		Thread.sleep(1000);
+		
 		deleteDRPlan(application);
 	}
 	if(Add_DRplanC.equalsIgnoreCase("Yes")) {
 
 		ScrolltoElement(application, "DRplanB_header", xml);
-		Thread.sleep(1000);
+		
 		compareText(application, "DR Plan C_header", "DRplanC_header", "DR Plan C", xml);
 		click_commonMethod(application, "DR Plan C Action dropdown", "DRplanC_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Add", "DRplan_addlink", xml);
-		Thread.sleep(1000);
+		
 		waitforPagetobeenable();
 		AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 		compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
@@ -11710,18 +10316,18 @@ try {
 
 		//Edit DR Plan
 		ScrolltoElement(application, "DRplanB_header", xml);
-		Thread.sleep(1000);
+		
 		addedDRplan(application, "DR Plan C", rangestart_cc, rangestart_lac, rangestart_num);
 		click_commonMethod(application, "DR Plan C Action dropdown", "DRplanC_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Edit", "DRplan_editlink", xml);
-		Thread.sleep(1000);
+		
 		waitforPagetobeenable();
 		EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 		//Delete DR Plan
 		ScrolltoElement(application, "DRplanB_header", xml);
-		Thread.sleep(1000);
+		
 		if(edit_rangestart_cc.equalsIgnoreCase("Yes") || edit_rangestart_cc.equalsIgnoreCase("null") || edit_rangestart_lac.equalsIgnoreCase("Yes")|| edit_rangestart_lac.equalsIgnoreCase("null") || edit_rangestart_num.equalsIgnoreCase("Yes")||edit_rangestart_num.equalsIgnoreCase("null"))
 		{
 			editedDRplan(application, "DR Plan C", rangestart_cc, rangestart_lac, rangestart_num, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num);
@@ -11731,20 +10337,20 @@ try {
 			addedDRplan(application, "DR Plan C", rangestart_cc, rangestart_lac, rangestart_num);	
 		}
 		click_commonMethod(application, "DR Plan C Action dropdown", "DRplanC_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Delete", "DRplan_Deletelink", xml);
-		Thread.sleep(1000);
+		
 		deleteDRPlan(application);
 
 	}
 	if(Add_DRplanD.equalsIgnoreCase("Yes")) {
 		ScrolltoElement(application, "DRplanC_header", xml);
-		Thread.sleep(1000);
+		
 		compareText(application, "DR Plan D_header", "DRplanD_header", "DR Plan D", xml);
 		click_commonMethod(application, "DR Plan D Action dropdown", "DRplanD_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Add", "DRplanD_E_addlink", xml);
-		Thread.sleep(1000);
+		
 		waitforPagetobeenable();
 		AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 		compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
@@ -11754,18 +10360,18 @@ try {
 
 		//Edit DR Plan
 		ScrolltoElement(application, "DRplanC_header", xml);
-		Thread.sleep(1000);
+		
 		addedDRplan(application, "DR Plan D", rangestart_cc, rangestart_lac, rangestart_num);
 		click_commonMethod(application, "DR Plan D Action dropdown", "DRplanD_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Edit", "DRplanD_E_editlink", xml);
-		Thread.sleep(1000);
+		
 		waitforPagetobeenable();
 		EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 		//Delete DR Plan
 		ScrolltoElement(application, "DRplanC_header", xml);
-		Thread.sleep(1000);
+		
 		if(edit_rangestart_cc.equalsIgnoreCase("Yes") || edit_rangestart_cc.equalsIgnoreCase("null") || edit_rangestart_lac.equalsIgnoreCase("Yes")|| edit_rangestart_lac.equalsIgnoreCase("null") || edit_rangestart_num.equalsIgnoreCase("Yes")||edit_rangestart_num.equalsIgnoreCase("null"))
 		{
 			editedDRplan(application, "DR Plan D", rangestart_cc, rangestart_lac, rangestart_num, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num);
@@ -11775,20 +10381,20 @@ try {
 			addedDRplan(application, "DR Plan D", rangestart_cc, rangestart_lac, rangestart_num);	
 		}
 		click_commonMethod(application, "DR Plan D Action dropdown", "DRplanD_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Delete", "DRplanD_E_Deletelink", xml);
-		Thread.sleep(1000);
+		
 		deleteDRPlan(application);
 
 	}
 	if(Add_DRplanE.equalsIgnoreCase("Yes")) {
 		ScrolltoElement(application, "DRplanD_header", xml);
-		Thread.sleep(2000);
+		
 		compareText(application, "DR Plan E_header", "DRplanE_header", "DR Plan E", xml);
 		click_commonMethod(application, "DR Plan E Action dropdown", "DRplanE_actiondropdown", xml);
-		Thread.sleep(2000);
+		
 		click_commonMethod(application, "Add", "DRplanD_E_addlink", xml);
-		Thread.sleep(1000);
+		
 		waitforPagetobeenable();
 		AddDRPlan(application, rangestart_cc, rangestart_lac, rangestart_num, rangefinish_cc, rangefinish_lac, rangefinish_num, destinationnumber_cc, destinationnumber_lac, destinationnumber_num, activate_deactivateDRplan_dropdownvalue);
 		compareText(application, "Range Start", "DRplanA_rangestart_columnheader", "Range Start", xml);
@@ -11798,18 +10404,18 @@ try {
 
 		//Edit DR Plan
 		ScrolltoElement(application, "DRplanD_header", xml);
-		Thread.sleep(1000);
+		
 		addedDRplan(application, "DR Plan E", rangestart_cc, rangestart_lac, rangestart_num);
 		click_commonMethod(application, "DR Plan E Action dropdown", "DRplanE_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Edit", "DRplanD_E_editlink", xml);
-		Thread.sleep(1000);
+		
 		waitforPagetobeenable();
 		EditDRPlan(application, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num, edit_rangefinish_cc, edit_rangefinish_lac, edit_rangefinish_num, edit_destinationnumber_cc, edit_destinationnumber_lac, edit_destinationnumber_num, edit_activate_deactivateDRplan_dropdownvalue);
 
 		//Delete DR Plan
 		ScrolltoElement(application, "DRplanD_header", xml);
-		Thread.sleep(1000);
+		
 		if(edit_rangestart_cc.equalsIgnoreCase("Yes") || edit_rangestart_cc.equalsIgnoreCase("null") || edit_rangestart_lac.equalsIgnoreCase("Yes")|| edit_rangestart_lac.equalsIgnoreCase("null") || edit_rangestart_num.equalsIgnoreCase("Yes")||edit_rangestart_num.equalsIgnoreCase("null"))
 		{
 			editedDRplan(application, "DR Plan E", rangestart_cc, rangestart_lac, rangestart_num, edit_rangestart_cc, edit_rangestart_lac, edit_rangestart_num);
@@ -11819,12 +10425,12 @@ try {
 			addedDRplan(application, "DR Plan E", rangestart_cc, rangestart_lac, rangestart_num);	
 		}
 		click_commonMethod(application, "DR Plan E Action dropdown", "DRplanE_actiondropdown", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Delete", "DRplanD_E_Deletelink", xml);
-		Thread.sleep(1000);
+		
 		deleteDRPlan(application);
 	}
-	Thread.sleep(1000);
+	
 	ScrolltoElement(application, "viewpage_backbutton", xml);
 	click_commonMethod(application, "Back", "viewpage_backbutton", xml);
 	waitforPagetobeenable();
@@ -11844,7 +10450,7 @@ public void AddDRPlan(String application, String rangestart_cc, String rangestar
 
 	compareText(application, "Add DR Plan Header", "addDRplan_header1", "Disaster Recovery Plans", xml);
 	click_commonMethod(application, "OK", "okbutton", xml);
-	Thread.sleep(1000);
+	
 
 	//verify warning messages
 	warningMessage_commonMethod(application, "rangestart_cc_warngmsg", "Range Start CC", xml);
@@ -11919,7 +10525,7 @@ public void addedDRplan(String application, String DRPlanHeader, String rangesta
 
 				}
 			}
-			Thread.sleep(1000);
+			
 		}
 	}
 	else
@@ -12001,7 +10607,7 @@ public void editedDRplan(String application, String DRPlanHeader, String rangest
 
 				}
 			}
-			Thread.sleep(1000);
+			
 		}
 	}
 	else
@@ -12048,7 +10654,7 @@ public void deleteDRPlan(String application) {
 
 	try {  
 		alert.accept();
-		Thread.sleep(2000);
+		
 
 	}catch(Exception e) {
 		e.printStackTrace();
@@ -12071,7 +10677,7 @@ public void activate_deactivateDRPlan_dropdown(String application, String labeln
 			}else {
 
 				Clickon(getwebelement("//div[label[text()='"+ labelname +"']]/parent::div/following-sibling::div//div[text()='×']"));
-				Thread.sleep(3000);
+				waitforPagetobeenable();
 
 				//verify list of values inside dropdown
 				List<WebElement> listofvalues = driver
@@ -12086,12 +10692,12 @@ public void activate_deactivateDRPlan_dropdown(String application, String labeln
 					System.out.println(" " + valuetypes.getText());
 				}
 
-				Thread.sleep(2000);
+				
 				SendKeys(getwebelement("(//label[text()='"+ labelname +"']/parent::div/parent::div/following-sibling::div//input)[1]"), expectedValueToAdd);	
-				Thread.sleep(2000);
+				
 
 				Clickon(getwebelement("(//div[contains(text(),'"+ expectedValueToAdd +"')])[1]"));
-				Thread.sleep(3000);
+				waitforPagetobeenable();
 
 				String actualValue=getwebelement("//label[text()='"+ labelname +"']/parent::div/parent::div/following-sibling::div//span").getText();
 				ExtentTestManager.getTest().log(LogStatus.PASS, labelname + " dropdown value selected as: "+ actualValue );
@@ -12114,13 +10720,13 @@ public void activate_deactivateDRPlan_dropdown(String application, String labeln
 
 public void verifyDRPlansBulkInterface(String application, String bulkjob_filepath, String ExistingTrunkName) throws InterruptedException, DocumentException {
 try {
-	Thread.sleep(3000);
+	waitforPagetobeenable();
 	ScrolltoElement(application, "customizedmedia_header", xml);
-	Thread.sleep(1000);
+	
 	click_commonMethod(application, "Disaster Recovery Header", "recovery_header", xml);
-	Thread.sleep(1000);
+	
 	click_commonMethod(application, "DR Plans Bulk Interface", "DRplans_bulkinterface_link", xml);
-	Thread.sleep(1000);
+	
 	waitforPagetobeenable();
 	compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
 	try {
@@ -12134,7 +10740,7 @@ try {
 	//Archive link in bulk interface page
 	click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
 	click_commonMethod(application, "Archive", "bulkinterface_archivelink", xml);
-	Thread.sleep(2000);
+	
 	waitforPagetobeenable();
 	ScrolltoElement(application, "archive_backbutton", xml);
 	click_commonMethod(application, "Back", "archive_backbutton", xml);
@@ -12147,7 +10753,7 @@ try {
 	compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
 	ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Bulk Interface page refresh successful");
 	Log.info("Bulk Interface page refresh successful");
-	Thread.sleep(2000);
+	
 
 	addedBulkInterface(application, ExistingTrunkName);
 	ScrolltoElement(application, "bulkinterface_backbutton", xml);
@@ -12167,13 +10773,13 @@ sa.assertAll();
 
 public void verifydownloadDRplans(String application, String DRPlansfilename, String browserfiles_downloadspath) throws InterruptedException, DocumentException {
 	try {
-	Thread.sleep(3000);
+	waitforPagetobeenable();
 	ScrolltoElement(application, "customizedmedia_header", xml);
-	Thread.sleep(1000);
+	
 	click_commonMethod(application, "Disaster Recovery Header", "recovery_header", xml);
-	Thread.sleep(1000);
+	
 	click_commonMethod(application, "Download DR Plans", "downloadDRplans_link", xml);
-	Thread.sleep(1000);
+	
 	waitforPagetobeenable();
 	isFileDownloaded(DRPlansfilename, browserfiles_downloadspath);
 	 }catch(NoSuchElementException e) {
@@ -12191,10 +10797,10 @@ public void verifydownloadDRplans(String application, String DRPlansfilename, St
 public void VerifyDisasterRecoveryStatus(String application) throws InterruptedException, DocumentException {
 
 	ScrolltoElement(application, "codecfield_viewpage", xml);
-	Thread.sleep(2000);
+	
 	compareText(application, "GSX/PSX Disaster Recovery Status header", "disasterrecoverystatus_header", "GSX/PSX Disaster Recovery Status", xml);
 	GetText(application, "PSX TDM DR Status", "psx_tdm_drstatus_value");
-	Thread.sleep(2000);
+	
 
 }
 
@@ -12276,7 +10882,7 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 
 							}
 						}
-						Thread.sleep(1000);
+						
 					}
 				}
 				else
@@ -12300,7 +10906,7 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 		boolean TrunkNameToAddCPEDeviceText=false;
 		boolean trunkgrupOrderErrMsg= false;
 		boolean TrunkGroupSiteOrderNumberText=false;
-		Thread.sleep(10000);
+		waitforPagetobeenable();
 		
 		try {
 		scrolltoend();
@@ -12321,13 +10927,13 @@ public void addedBulkInterface(String application, String ExistingTrunkName) thr
 		ExtentTestManager.getTest().log(LogStatus.PASS,"Step : Checkbox Selection is done for Expected trunk, Selected Trunk is " + TrunkName);
 		Log.info("Selected Trunk is  : " + TrunkName);
 		
-		Thread.sleep(2000);
+		
 		  String TunkActionLinkXpathInViewServicePage="//div[div[span[contains(text(),'"+TrunkGroupSiteOrderNumber+"')]]]/following-sibling::div//button[text()='Action']";
-		  Thread.sleep(2000);
+		  
 		//**click_commonMethod_PassingWebelementDirectly(application, "Trunk Action", TunkActionLinkXpathInViewServicePage, xml);
 		click(application, "ACTION LINK in Trunk panel", "ViewService_Trunk_ActionLink1");
 													
-		//Thread.sleep(2000);
+		
 		String ViewTrunkLinkXpathInViewServicePage="//div[div[span[contains(text(),'"+TrunkGroupSiteOrderNumber+"')]]]/following-sibling::div//a[text()='View']";
 		//**click_commonMethod_PassingWebelementDirectly(application, "View Link", ViewTrunkLinkXpathInViewServicePage, xml);
 		click(application, "View Trunk Link", "ViewService_Trunk_ViewTrunkLink");
@@ -12384,7 +10990,7 @@ sa.assertAll();
 		
 		
 		scrollToTop();
-		Thread.sleep(2000);
+		
 		
 		String AddressContext="EXTERNAL_AC_";
 		String IPINTERFACEGROUP ="EXTERNAL_IPIG_";
@@ -12713,7 +11319,7 @@ sa.assertAll();
 		String ipInterfaceGroup=null;
 		String prefix_code=null;
 		
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		
 		
 		try {
@@ -12765,7 +11371,7 @@ sa.assertAll();
 		
 		WebElement PrimaryTrunk2=getwebelement(xml.getlocator("//locators/" + application + "/PrimaryTrunk_Dropdown"));
 		scrolltoview(PrimaryTrunk2);
-		//Thread.sleep(2000);
+		
 		
 		
 			//Quality
@@ -12778,7 +11384,7 @@ sa.assertAll();
 
 		WebElement IPAddressType=getwebelement(xml.getlocator("//locators/" + application + "/IPaddresstype_Dropdown"));
 		scrolltoview(IPAddressType);
-		//Thread.sleep(2000);
+		
 		
 		
 //			//IP PBX Range  (Need to Update)
@@ -13282,7 +11888,7 @@ sa.assertAll();
 
 		WebElement internetBasedCusotmerView=getwebelement(xml.getlocator("//locators/" + application + "/internetBasedCustomer_checkbox"));
 		scrolltoview(internetBasedCusotmerView);
-		Thread.sleep(2000);
+		
 		
 		
 		if(signallingtransportProtocol.equalsIgnoreCase("sip-tls-tcp")) {
@@ -13475,11 +12081,11 @@ sa.assertAll();
 			
 			WebElement reusenifgroup=getwebelement(xml.getlocator("//locators/" + application + "/reuseNIFgroup_checkbox"));
 			scrolltoview(reusenifgroup);
-			Thread.sleep(2000);
+			
 			
 		
 		scrolltoend();
-		Thread.sleep(1000);
+		
 		
 		click_commonMethod(application, "OK", "trunk_okButton", xml);
 		GetText(application, "Trunk Update Success Message", "UpdateTrunkSuccessMessage");
@@ -13562,7 +12168,7 @@ sa.assertAll();
 		String gatewayCode=null;
 		String primarytrunk="0";
 		
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		scrollToTop();
 	//Action button	
 		click_commonMethod(application, "Action", "ViewTrunkPage_ActionButton", xml);//viewPage_ActionButton
@@ -13570,7 +12176,7 @@ sa.assertAll();
 	//click on Edit link
 		click_commonMethod(application, "Edit", "ViewTrunkPage_EditLink", xml);//editLink//ViewTrunkPage_EditLink
 		
-		Thread.sleep(4000);
+		waitforPagetobeenable();
 		//Trunk Type	
 				selectValueInsideDropdown(application, "trunkType_Dropdown", "Trunk Type", edit_TrunkType, xml);
 				
@@ -13596,22 +12202,22 @@ sa.assertAll();
 				
 			//VOIP Protocol
 				selectValueInsideDropdown(application, "voipProtocol_Dropdown", "VOIP Protocol", edit_VOIPprotocol, xml);
-				Thread.sleep(1000);
+				
 				String voipProtocol_actualvalue=GetTheSelectedValueInsideDropdown_trunk(application, "voipProtocol_Dropdown", "VOIP Protocol");
-				Thread.sleep(1000);
+				
 				System.out.println("The voip protocol displaying is "+ voipProtocol_actualvalue);
 				String voip_code=voipProtocol_code(application, voipProtocol_actualvalue);
 				
 			//CDR Delivery
 				selectValueInsideDropdown(application, "CDRdelivery_Dropdown", "CDR Delivery", edit_CDRdelivery, xml);
-				Thread.sleep(1000);
+				
 				String cdrDelivery_actualvalue=GetTheSelectedValueInsideDropdown_trunk(application, "CDRdelivery_Dropdown", "CDR Delivery");
-				Thread.sleep(1000);
+				
 				String CDR_code=CDRdelivery_code(application, cdrDelivery_actualvalue);
 			
 			//Prefix
 					 edittextFields_commonMethod(application, "Prefix", "prefix_textField", editPrefix, xml);
-					 Thread.sleep(1000);
+					 
 
 			//valdate the prefix value for adding into Trunk group Name field	 
 				 String preifxValueInsidetextField=getwebelement(xml.getlocator("//locators/" + application + "/prefix_textField")).getAttribute("value");
@@ -13636,7 +12242,7 @@ sa.assertAll();
 				
 				WebElement trunk_type=getwebelement(xml.getlocator("//locators/" + application + "/trunkType_Dropdown"));
 				scrolltoview(trunk_type);
-				Thread.sleep(2000);
+				
 				
 			//Quality
 				selectValueInsideDropdown(application, "quality_Dropdown", "Quality", editQuality, xml);
@@ -13664,7 +12270,7 @@ sa.assertAll();
 			
 				WebElement traficDirection=getwebelement(xml.getlocator("//locators/" + application + "/trafficDirection_Dropdown"));
 				scrolltoview(traficDirection);
-				Thread.sleep(2000);
+				
 				
 			//Carrier IP originating
 				edittextFields_commonMethod(application, "Carrier IP Originating (Address/Mask)", "carrierIPoriginating_textField", editCarrierIPoriginating, xml);
@@ -13698,7 +12304,7 @@ sa.assertAll();
 			  
 			//Sub Interface Slot
 			  selectValueInsideDropdown(application, "subInterfaceSlot_Dropdown", "Sub Interface Slot", edit_subInterfaceSlot, xml);
-			  Thread.sleep(1000);
+			  
 			  String subIntercaeSlot_actualValue=GetTheSelectedValueInsideDropdown_trunk(application, "subInterfaceSlot_Dropdown", "Sub Interface Slot");
 			  
 				 
@@ -13754,7 +12360,7 @@ sa.assertAll();
 				
 				WebElement internetBasedCusotmerView=getwebelement(xml.getlocator("//locators/" + application + "/internetBasedCustomer_checkbox"));
 				scrolltoview(internetBasedCusotmerView);
-				Thread.sleep(2000);
+				
 				
 				String signaltransport_actualvalue=GetTheSelectedValueInsideDropdown_trunk(application, "signallingTransportProtocol_Dropdown", "Signalling Transport Protocol");
 				if(signaltransport_actualvalue.equalsIgnoreCase("sip-tls-tcp")) {
@@ -13844,7 +12450,7 @@ sa.assertAll();
 				
 				WebElement retryinviteView=getwebelement(xml.getlocator("//locators/" + application + "/retryinvite_textField"));
 				scrolltoview(retryinviteView);
-				Thread.sleep(2000);
+				
 			
 			//E164GlobalProfile
 				editTrunk_existingNewDropdownField(application, editglobalProfile_ExistingSelection, editglobalProfile_newSelection, editGlobalProfile_ExistingValue, 
@@ -13873,7 +12479,7 @@ sa.assertAll();
 				
 				WebElement globalProfileView=getwebelement(xml.getlocator("//locators/" + application + "/globalProfile_textField"));
 				scrolltoview(globalProfileView);
-				Thread.sleep(2000);
+				
 				
 			//Carrier
 				editTrunk_existingNewDropdownField(application, editCarrier_existingFieldSelection, editCarrier_newFieldSelection, editCarrier_existingValue,
@@ -13890,7 +12496,7 @@ sa.assertAll();
 						editEgressIPsignal_newValue, "EgressIpsignal_Dropdown", "EgressIPsignal_checkbox", "EgressipSignal_TextField", "Egress IP Signaling Profile");
 				
 				scrolltoend();
-				Thread.sleep(2000);
+				
 				
 			
 			//In DM/PM rule
@@ -13925,7 +12531,7 @@ sa.assertAll();
 		
 				
 				scrolltoend();
-				Thread.sleep(1000);
+				
 				
 				click_commonMethod(application, "OK", "OKbutton", xml);
 				
@@ -13984,20 +12590,20 @@ sa.assertAll();
 		
 		WebElement hyperLink=getwebelement("//a[text()='"+ servicename +"']");
 		click_commonMethod_PassingWebelementDirectly(application, "Sevice name hyperlink","hyperLink" , xml);
-		Thread.sleep(1000);
+		
 		
 		scrolltoend();
-		Thread.sleep(2000);
+		
 		
 		click_commonMethod(application, "OK", "OKbutton", xml);
 		
 		scrollToTop();
-		Thread.sleep(2000);
+		
 		
 		//Primary Trunk Group
 		System.out.println("Primary trunk group value: "+primarytrunkGroupname);
 		selectValueInsideDropdown(application, "primaryTrunkGroup_Dropdown", "Primary Trunk Group" , primarytrunkGroupname, xml);
-		Thread.sleep(2000);
+		
 		
 		//Trunk Type
 		fetchDisabledFieldValue(application, "Trunk Type", "trunkType_Dropdown");
@@ -14088,8 +12694,7 @@ sa.assertAll();
 	}
 	
 	public String GetTheSelectedValueInsideDropdown_trunk(String application , String xpath, String labelname) throws IOException, InterruptedException, DocumentException
-	{ //Thread.sleep(3000);
-	
+	{ 
 		String selectedValue=null;
 		
 	try {	
@@ -14112,7 +12717,7 @@ sa.assertAll();
 	}
 	
 	public void GetTheValuesInsideDropdown(WebElement el, String labelname) throws IOException, InterruptedException
-	{ //Thread.sleep(3000);
+	{
 		
 		List<String> ls = new ArrayList<String>();
 		Select sel=new Select(el);
@@ -14289,10 +12894,10 @@ sa.assertAll();
 		boolean TrunkGroupSiteOrderNumberText=false;
 		WebElement Trunknumber1=null;
 		
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		try {
 		ScrolltoElement(application, "addTrunkSiteOrderlink", xml);
-		Thread.sleep(2000);
+		
 			
 		//// OR
 		//***TrunkNameToAddCPEDeviceText= getwebelement(xml.getlocator("//locators/" +application+ "/selectTrunkName").replace("value", ExistingTrunkName)).isDisplayed();
@@ -14305,7 +12910,7 @@ sa.assertAll();
 		WebElement CheckboxForExpectedTrunk = driver.findElement(By.xpath("//div[text()='"+ExistingTrunkName+"']"));
 		String TrunkName = CheckboxForExpectedTrunk.getText().toString();
 		CheckboxForExpectedTrunk.click();
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		ExtentTestManager.getTest().log(LogStatus.PASS,"Step : Checkbox Selection is done for Expected trunk, Selected Trunk is " + TrunkName);
 		Log.info("Selected Trunk is  : " + TrunkName);
 		click(application, "ACTION LINK in Trunk panel", "ViewService_Trunk_ActionLink1");
@@ -14356,8 +12961,8 @@ sa.assertAll();
 
 			click(application, "OK Button", "trunk_okButton");
 			
-			compareText(application, "Add CPE Device Success Message", "CPE_AddCPEDeviceSuccessMessage", "CPE Device added successfully");
-			
+//			compareText(application, "Add CPE Device Success Message", "CPE_AddCPEDeviceSuccessMessage", "CPE Device added successfully");
+			verifysuccessmessage(application, "CPE Device added successfully");
 			}catch(NoSuchElementException e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed in Add CPE Device page");
@@ -14503,7 +13108,7 @@ sa.assertAll();
 			System.out.println("'View CPE Device' page navigated as expected");
 			
 			click(application, "ACTION Link", "CPE_View_ActionLink");
-			Thread.sleep(2000);
+			
 			click(application, "Edit Link", "CPE_View_Action_EditLink");
 			
 			if(getwebelement(xml.getlocator("//locators/" + application + "/CPE_EditDevice_Header")).isDisplayed()) {
@@ -14545,9 +13150,9 @@ sa.assertAll();
 			click(application, "OK in Edit CPE Device", "AddCPE_OKButton"); //Not Working Issues raised
 			//**click(application, "Cancel in Edit CPE Device", "AddCPE_CancelButton");
 			
-			Thread.sleep(5000);
-			compareText(application, "CPE Device Update message", "CPE_UpdateCPEDeviceSuccessMessage", "CPE Device updated successfully");
-
+			waitforPagetobeenable();
+//			compareText(application, "CPE Device Update message", "CPE_UpdateCPEDeviceSuccessMessage", "CPE Device updated successfully");
+			verifysuccessmessage(application, "CPE Device updated successfully");
 			Log.info("------  CPE Device updated successfully   ------");
 			
 			
@@ -14610,7 +13215,7 @@ public void veriyFetchDeviceInterfacesFunction_CPE(String application,String Ser
 		}
 		
 		click(application, "Click here Link for CPE", "CPE_hereLink_UnderFetchDeviceInterfacesSuccessMessage");
-		Thread.sleep(2000);
+		
 		
 		//Manage COLT's Network - Manage Network
 		if(getwebelement(xml.getlocator("//locators/" + application + "/CPE_ManageCOLTsNetworkManageNetwork_header")).isDisplayed()) {
@@ -14737,17 +13342,17 @@ sa.assertAll();
 public void verifyRouterToolFunction_CPE(String application,String ServiceIdentification, String CPE_CommandIPV4, String CPE_CommandIPV6, String CPE_ManagementAddress) throws InterruptedException, DocumentException, IOException {
 		try {
 		scrollToTop();
-		Thread.sleep(2000);
+		
 		
 		WebElement serviceIdLink=getwebelement("//a[text()='"+ ServiceIdentification +"']");
 		Clickon(serviceIdLink);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		
 		WebElement TrunkGroupSiteOrders_header= getwebelement(xml.getlocator("//locators/" + application + "/TrunkGroupSiteOrders_header"));
 		scrolltoview(TrunkGroupSiteOrders_header);
 		
 		click(application, "View Link For CPE Device under Trunk Device panel", "ViewService_Trunk_ViewCPEDeviceLink");
-		Thread.sleep(10000);
+		waitforPagetobeenable();
 		scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/RouterTool_header")));
 		compareText(application, "Router Tools header", "RouterTool_header", "Router Tools");
 		
@@ -14793,7 +13398,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 			click(application, "Delete Device from View Device page", "CPE_View_Action_DeleteLink");
 			compareText(application, "Delete PE Device Warning Message from View Device page", "CPE_ViewDevice_Action_DeletePEDeviceWarningMessage", "Are you sure that you want to delete this item?");
 			click(application, "Delete Button", "CPE_ViewDevice_Action_DeleteButton");
-			Thread.sleep(5000);
+			waitforPagetobeenable();
 			scrollToTop();
 			compareText(application, "Delete CPE Device Successful Message", "CPE_DeleteCPEDeviceSuccessMessage", "CPE Device deleted successfully");
 			
@@ -14818,7 +13423,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 		public void navigateToViewServicePageByServiceBreadcumLink_MAS(String application,String ServiceIdentification) throws InterruptedException, DocumentException {
 		scrollToTop();
 			try {
-				Thread.sleep(4000);
+				waitforPagetobeenable();
 			WebElement serviceIdLink=getwebelement("//a[text()='"+ServiceIdentification+"']");
 			Clickon(serviceIdLink);
 
@@ -14843,7 +13448,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 
 				   GetText(application, "Device Name in Manage Colt page under Status Panel", "MAS_Manage_Status_DeviceValue");
 				   click_commonMethod(application, "Device Link ", "MAS_Manage_Status_DeviceValue", xml);
-				   Thread.sleep(3000);
+				   waitforPagetobeenable();
 				   
 		}else{
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  "VOIP ACCESS Device Link is not displayed under Manage Colt Network page");
@@ -14892,7 +13497,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 	
 		
 		public void navigateToViewDevicePage_MAS_UI(String application, String MAS_DeviceName) throws InterruptedException, DocumentException {
-			Thread.sleep(4000);
+			waitforPagetobeenable();
 			try {
 			ScrolltoElement(application, "portalaccess_header", xml);//managementOptionsPanelheader//portalaccess_header//ProviderEquipment_header
 			if(getwebelement(xml.getlocator("//locators/" + application + "/existingMASdevicegrid")).isDisplayed())
@@ -14934,7 +13539,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 					{
 						WebElement AddedDevice_ViewLink= driver.findElement(By.xpath("//div[div[b[text()='"+existingdevicename+"']]]//span[text()='View']"));
                         Clickon(AddedDevice_ViewLink);
-						Thread.sleep(5000);
+						waitforPagetobeenable();
 						compareText(application, "View device header", "MAS_ViewDevice_Header", "Device", xml);
 					}else{
                           ExtentTestManager.getTest().log(LogStatus.FAIL, "Invalid device name");
@@ -14963,7 +13568,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 						WebElement AddedDevice_ViewLink= driver.findElement(By.xpath("(//div[text()='Provider Equipment (PE)']/parent::div/following-sibling::div)[2]/div/div/b[contains(text(),'"+AddedDevice_SNo+"')]/parent::div/following-sibling::div//span[text()='View']"));
 						//Clickon(AddedDevice_ViewLink);
 						click_commonMethod(application, "View Link", "viewservicepage_viewdevicelink", xml);
-						Thread.sleep(5000);
+						waitforPagetobeenable();
 						compareText(application, "View device header", "viewdevicepage_header", "View PE Device", xml);
 					}
 				}
@@ -14981,7 +13586,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 
 			//Add Toggle button
 			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")));
-			Thread.sleep(5000);
+			waitforPagetobeenable();
 		}
 
 		
@@ -14996,7 +13601,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 				String vrfname_ipv4, String vrfname_ipv6) throws InterruptedException, DocumentException, IOException {
 			
 			scrollToTop();
-			//Thread.sleep(1000);
+			//
 
 			WebElement vendorModel=getwebelement(xml.getlocator("//locators/" + application + "/MAS_View_VendorModelValue"));
 			String vendor=Gettext(vendorModel);
@@ -15004,7 +13609,7 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 			String ipAddress=Gettext(manageAddress);
 			
 			ScrolltoElement(application, "MAS_View_VendorModelValue" , xml);
-			//Thread.sleep(1000);
+			//
 			
 			if(vendor.startsWith("Cisco")) {
 				
@@ -15181,15 +13786,15 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 			
 			WebElement orderPanel= getwebelement(xml.getlocator("//locators/" + application + "/OrderPanel"));
 			scrolltoview(orderPanel);
-			Thread.sleep(2000);
+			
 			
 		//click on Action dropdown	
 			click_commonMethod(application, "Action", "ActionDropdown_InViewPage", xml);
-			Thread.sleep(1000);
+			
 			
 		//click on edit link
 			click_commonMethod(application, "edit", "editLink_InViewPage", xml);
-			Thread.sleep(1000);
+			
 			
 		}
 	
@@ -15206,16 +13811,16 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 			System.out.println("PSX Sync Status displayed as : "+PSXSyncStatus);
 			if(!PSXSyncStatus.contains("QUEUED")) {
 			click(application, "Trunk ACTION link", "ViewTrunkPage_ActionButton");
-			Thread.sleep(2000);
+			
 			click(application, "Delete DLink", "ViewTrunkPage_DeleteLink");
 			compareText(application, "Delete Trunk Warning Message from View Trunk page", "ViewTrunk_DeleteWarningMessage", "Are you sure that you want to delete?");
 			click(application, "Delete Button", "ViewTrunkPage_DeleteButton");
-			Thread.sleep(3000);
+			waitforPagetobeenable();
 			compareText(application, "Delete Trunk Successful Message", "DeleteTrunkSuccessMessage", "Trunk deleted successfully");
 		}else {
 				ExtentTestManager.getTest().log(LogStatus.PASS, "Selected Trunk can't be deleted since 'PSX Sync Status' is : "+PSXSyncStatus);
 				System.out.println("Selected Trunk can't be deleted since 'PSX Sync Status' is : "+PSXSyncStatus);
-				Thread.sleep(2000);
+				
 				searchorder(application, Trunk_ServiceIdentification);
 			}
 			
@@ -15245,14 +13850,14 @@ public void verifyRouterToolFunction_CPE(String application,String ServiceIdenti
 				waitforPagetobeenable();
 				
 				scrollToTop();
-				Thread.sleep(2000);
+				
 				WebElement breadcrumb=null;
 		
 				try {
 				breadcrumb=getwebelement(xml.getlocator("//locators/" + application + "/breadcrump").replace("value", breadCrumpLink));
 				if(breadcrumb.isDisplayed()) {
 					click_commonMethod_PassingWebelementDirectly(application, "Breadcrump", "breadcrump", xml);
-					Thread.sleep(3000);
+					waitforPagetobeenable();
 				}else {
 					System.out.println("Breadcrumb is not displaying for the element "+ breadcrumb);
 				}
@@ -15291,7 +13896,7 @@ public void viewTrunk_GSX_generateConfiguration(String application) throws Inter
 	
 	WebElement lowerCaseRouteelement=getwebelement(xml.getlocator("//locators/" + application + "/createLowerCaseRoute_viewTrunkPage"));
 	scrolltoview(lowerCaseRouteelement);
-	Thread.sleep(2000);
+	
 	
 //	addDropdownValues(application, fieldname, xpath, expectedValueToAdd);
 	
@@ -15304,7 +13909,7 @@ public void viewTrunk_PSX_executeConfiguration(String application, String expect
 	Thread.sleep(7000);
 	
 	scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/DDIRange_Header")));
-	Thread.sleep(2000);
+	
 	
 	SelectDropdownValueUnderDivTag(application, "PSX Configuration", expectedConfiguration, "PSXconfigurationDropdown_viewtrunk", "commonDropdownValueTag");
 	click_commonMethod(application, "Execute", "viewTrunk_PSX_executeButton" , xml);
@@ -15324,7 +13929,7 @@ public void viewTrunk_PSX_executeConfiguration(String application, String expect
      
      try {  
        alert.accept();
-       Thread.sleep(2000);
+       
        
        System.out.println("aceept 2");
        alert.accept();
@@ -15335,7 +13940,7 @@ public void viewTrunk_PSX_executeConfiguration(String application, String expect
      try {
      if(expectedConfiguration.equalsIgnoreCase("Delete Trunk Group")) {
     	 //compareText(application, "PSX config sucess Message", "PSXconfig_WarningMessage", "PSX sync could not be started because this Trunk Group is already Queued / Processing or 3 step PSX sync is not completed.", xml);
-    	 isDisplayed(application, "PSXconfig_WarningMessage", "PSX config Warning Message", xml);
+    	 verifysuccessmessage(application, "PSX sync started successfully.");
      }else if(expectedConfiguration.equalsIgnoreCase("Add Destination IP Address")) {
     	 String alertMessage1=alert.getText();
     	 if(alertMessage1.isEmpty()) {
@@ -15375,7 +13980,7 @@ public void viewTrunk_SBC_executeConfiguration(String application, String expect
 	
 	System.out.println("expected value "+ expectedConfiguration);
 	scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/DDIRange_Header")));
-	Thread.sleep(2000);
+	
 	
 	addDropdownValues_commonMethod(application, "SBC Configuration", "SBCconfigurationDropdown_viewtrunk", expectedConfiguration, xml);
 	
@@ -15393,12 +13998,12 @@ public void viewTrunk_SBC_executeConfiguration(String application, String expect
 	       System.out.println("text message for alert displays as: "+alertMessage);
        }
        
-       Thread.sleep(3000);
+       waitforPagetobeenable();
      
        //TODO 
      try {  
        alert.accept();
-       Thread.sleep(2000);
+       
        
        System.out.println("accept 2");
        alert.accept();
@@ -15433,7 +14038,7 @@ public void viewTrunk_GSX_executeConfiguration(String application, String expect
 	try {
 	System.out.println("expected value "+ expectedConfiguration);
 	scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/DDIRange_Header")));
-	Thread.sleep(2000);
+	
 	
 	addDropdownValues_commonMethod(application, "GSX Configuration", "GSXconfigurationDropdown_viewtrunk", expectedConfiguration, xml);
 	
@@ -15449,7 +14054,7 @@ public void viewTrunk_GSX_executeConfiguration(String application, String expect
                 driver.switchTo().window(childWindow);
                 System.out.println(driver.switchTo().window(childWindow).getTitle());
                   
-                Thread.sleep(1000);
+                
                 
               String gsxConfiguredValue = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/GSXcongig_textArea")));
               if(gsxConfiguredValue.isEmpty()) {
@@ -15462,15 +14067,15 @@ public void viewTrunk_GSX_executeConfiguration(String application, String expect
                 
                //
                 scrolltoend();
-                Thread.sleep(2000);
+                
                 click_commonMethod(application, "Execute", "GSX_config_executeButton", xml);
           }
     }
     
-   Thread.sleep(3000);
+   waitforPagetobeenable();
    driver.close();
     driver.switchTo().window(mainWindow);
-    Thread.sleep(1000);
+    
 
     scrollToTop();
    String gsxSuccessMesage= Gettext(getwebelement(xml.getlocator("//locators/" + application + "/GSXconfig_sucessMessage")));
@@ -15505,7 +14110,7 @@ public void viewTrunk_GSX_executeConfiguration(String application, String expect
 public void addSBC_manualExecutionConfig(String application, String manualConfigurationValue) throws InterruptedException, DocumentException, IOException {
 	try {
 	scrolltoend();
-	Thread.sleep(2000);
+	
 	
 	boolean SBCHeder=getwebelement(xml.getlocator("//locators/" + application + "/SBCmanualConfig_PanelHeader")).isDisplayed();
 	if(SBCHeder) {
@@ -15528,7 +14133,7 @@ public void addSBC_manualExecutionConfig(String application, String manualConfig
 	                driver.switchTo().window(childWindow);
 	                System.out.println(driver.switchTo().window(childWindow).getTitle());
 	                  
-	                Thread.sleep(1000);
+	                
 	                
 	              String psxConfiguredValue = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/manualConfiguration_textArea")));
 	              if(psxConfiguredValue.isEmpty()) {
@@ -15542,15 +14147,15 @@ public void addSBC_manualExecutionConfig(String application, String manualConfig
 	            	//Text Area	
 	                addtextFields_commonMethod(application, "SBC Manual Configuration", "manualConfiguration_textArea", manualConfigurationValue, xml);	        		scrolltoend();
 	        		click_commonMethod(application, "Save", "saveButton_manualConfiguration", xml);   //click on Save buttton
-	        		Thread.sleep(1000);
+	        		
 	        			                
 	          }
 	    }
 	    
-	    Thread.sleep(5000);
+	    waitforPagetobeenable();
 	    //**driver.close();//Automatically getting closed
 	     driver.switchTo().window(mainWindow);
-	     Thread.sleep(1000);
+	     
 
 	     scrollToTop();
 	    compareText(application, "SBC Manual Configuration added Successfully", "AddManualConfiguration_SuccessMessage", "Manual Configuration added Successfully", xml);
@@ -15579,7 +14184,7 @@ public void verifySBCfileAdded(String application) throws InterruptedException, 
 	
 	
 	scrolltoend();
-	Thread.sleep(1000);
+	
 	
 	WebElement filename=getwebelement(xml.getlocator("//locators/" + application + "/SBC_selectCreatedValue"));
 	String SBCfilenameCreated=Gettext(filename);
@@ -15664,7 +14269,7 @@ public void editGSX_manualExecutionConfig(String application, String editGSXmanu
                 driver.switchTo().window(childWindow);
                 System.out.println(driver.switchTo().window(childWindow).getTitle());
                   
-                Thread.sleep(1000);
+                
                 
 //               Write here  whatever you want to do and perform
                 System.out.println("came inside child window");
@@ -15672,7 +14277,7 @@ public void editGSX_manualExecutionConfig(String application, String editGSXmanu
                 edittextFields_commonMethod(application, "GSX manual Configuration", "GSX_editPage_teaxtArea", editGSXmanualConfigvalur, xml);
                
                 scrolltoend();
-                Thread.sleep(2000);
+                
                 
                 click_commonMethod(application, "Save", "GSX_editPage_SaveButton", xml);
                 
@@ -15680,10 +14285,10 @@ public void editGSX_manualExecutionConfig(String application, String editGSXmanu
     }
     
     driver.switchTo().window(mainWindow);
-    Thread.sleep(1000);
+    
     //**verifysuccessmessage(application, "Manual Configuration updated Successfully");
-    compareText(application, "Update GSX Manual Configuration Successfully", "UpdateManualConfiguration_SuccessMessage", "Manual Configuration updated Successfully", xml);
-
+//    compareText(application, "Update GSX Manual Configuration Successfully", "UpdateManualConfiguration_SuccessMessage", "Manual Configuration updated Successfully", xml);
+    verifysuccessmessage(application, "Manual Configuration updated Successfully");
 	 }catch(NoSuchElementException e) {
 	    	e.printStackTrace();
 	    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
@@ -15723,7 +14328,7 @@ public void editPSX_manualExecutionConfig(String application, String editPSXmanu
                 driver.switchTo().window(childWindow);
                 System.out.println(driver.switchTo().window(childWindow).getTitle());
                   
-                Thread.sleep(1000);
+                
                 
 //               Write here  whatever you want to do and perform
                 System.out.println("came inside child window");
@@ -15731,7 +14336,7 @@ public void editPSX_manualExecutionConfig(String application, String editPSXmanu
                 edittextFields_commonMethod(application, "PSX manual Configuration", "GSX_editPage_teaxtArea", editPSXmanualConfigvalur, xml);
                 
                 scrolltoend();
-                Thread.sleep(1000);
+                
                 
                 click_commonMethod(application, "Save", "GSX_editPage_SaveButton", xml);
                 
@@ -15739,9 +14344,9 @@ public void editPSX_manualExecutionConfig(String application, String editPSXmanu
     }
     
     driver.switchTo().window(mainWindow);
-    Thread.sleep(1000);
-    compareText(application, "Update PSX Manual Configuration Successfully", "UpdateManualConfiguration_SuccessMessage", "Manual Configuration updated Successfully", xml);
-
+    
+//    compareText(application, "Update PSX Manual Configuration Successfully", "UpdateManualConfiguration_SuccessMessage", "Manual Configuration updated Successfully", xml);
+    verifysuccessmessage(application, "Manual Configuration updated Successfully");
 	}catch(NoSuchElementException e) {
 		e.printStackTrace();
 		ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
@@ -15778,7 +14383,7 @@ public void editSBC_manualExecutionConfig(String application, String editGSXmanu
                 driver.switchTo().window(childWindow);
                 System.out.println(driver.switchTo().window(childWindow).getTitle());
                   
-                Thread.sleep(1000);
+                
                 
 //               Write here  whatever you want to do and perform
                 System.out.println("came inside child window");
@@ -15786,16 +14391,17 @@ public void editSBC_manualExecutionConfig(String application, String editGSXmanu
                 edittextFields_commonMethod(application, "GSX manual Configuration", "GSX_editPage_teaxtArea", editGSXmanualConfigvalur, xml);
                
                 scrolltoend();
-                Thread.sleep(2000);
+                
                 click_commonMethod(application, "Save", "GSX_editPage_SaveButton", xml);
                 
           }
     }
     
     driver.switchTo().window(mainWindow);
-    Thread.sleep(1000);
-    compareText(application, "Update SBC Manual Configuration Successfully", "UpdateManualConfiguration_SuccessMessage", "Manual Configuration updated Successfully", xml);
-	 }catch(NoSuchElementException e) {
+    
+//    compareText(application, "Update SBC Manual Configuration Successfully", "UpdateManualConfiguration_SuccessMessage", "Manual Configuration updated Successfully", xml);
+    verifysuccessmessage(application, "Manual Configuration updated Successfully");
+	}catch(NoSuchElementException e) {
 	    	e.printStackTrace();
 	    	ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
 	    	System.out.println(  e+ " : Field is not displayed");
@@ -15814,7 +14420,7 @@ public void editSBC_manualExecutionConfig(String application, String editGSXmanu
 public void deleteSBC_manualExecutionConfig(String application) throws InterruptedException, DocumentException, IOException {
 	try {
 	scrolltoend();
-	Thread.sleep(2000);
+	
 	
 	click_commonMethod(application, "SBCcreated", "SBC_selectCreatedValue", xml);
 	
@@ -15828,7 +14434,7 @@ public void deleteSBC_manualExecutionConfig(String application) throws Interrupt
    	 ExtentTestManager.getTest().log(LogStatus.PASS, "Delete Pop up message displays as: "+ deletPopUpMessage);
    	 
      click_commonMethod(application, "Delete", "DeleteButton_PSX_GSX_SBC", xml);
-     Thread.sleep(3000);
+     waitforPagetobeenable();
      
      scrollToTop();
         compareText(application, "SBC Manual Configuration deleted Successfully", "SBC_DeleteManualConfiguration_SuccessMessage", "Deleted SBC manual config successfully.", xml);
@@ -15864,7 +14470,7 @@ public void deleteSBC_manualExecutionConfig(String application) throws Interrupt
 public void deletePSX_manualExecutionConfig(String application) throws InterruptedException, DocumentException, IOException {
 	try {
 	scrolltoend();
-	Thread.sleep(2000);
+	
 	
 	click_commonMethod(application, "PSXcreated", "PSX_selectCreatedValue", xml);
 	
@@ -15878,7 +14484,7 @@ public void deletePSX_manualExecutionConfig(String application) throws Interrupt
    	 ExtentTestManager.getTest().log(LogStatus.PASS, "Delete Pop up message displays as: "+ deletPopUpMessage);
    	 
         click_commonMethod(application, "Delete", "DeleteButton_PSX_GSX_SBC", xml);
-        Thread.sleep(3000);
+        waitforPagetobeenable();
         
         scrollToTop();
         compareText(application, "PSX Manual Configuration deleted Successfully", "PSX_DeleteManualConfiguration_SuccessMessage", "Deleted PSX manual config successfully.", xml);
@@ -15915,7 +14521,7 @@ public void deletePSX_manualExecutionConfig(String application) throws Interrupt
 	public void deleteGSX_manualExecutionConfig(String application) throws InterruptedException, DocumentException, IOException {
 		try {
 		scrolltoend();
-		Thread.sleep(2000);
+		
 		
 		click_commonMethod(application, "PSXcreated", "GSX_selectCreatedValue", xml);
 		
@@ -15929,7 +14535,7 @@ public void deletePSX_manualExecutionConfig(String application) throws Interrupt
 	   	 ExtentTestManager.getTest().log(LogStatus.PASS, "Delete Pop up message displays as: "+ deletPopUpMessage);
 	   	 
 	        click_commonMethod(application, "Delete", "DeleteButton_PSX_GSX_SBC", xml);
-	        Thread.sleep(3000);
+	        waitforPagetobeenable();
 	        
 	        scrollToTop();
 	         compareText(application, "GSX Manual Configuration deleted Successfully", "GSX_DeleteManualConfiguration_SuccessMessage", "Deleted GSX manual config successfully.", xml);
@@ -15966,7 +14572,7 @@ public void addPSX_manualExecutionConfig(String application, String PSXmanualCon
 	
 	try {
 	scrolltoend();
-	Thread.sleep(2000);
+	
 	
 	boolean PSXHeader=getwebelement(xml.getlocator("//locators/" + application + "/PSXmanualConfig_PanelHeader")).isDisplayed();
 	if(PSXHeader) {
@@ -15975,7 +14581,7 @@ public void addPSX_manualExecutionConfig(String application, String PSXmanualCon
 		
 		
 		click_commonMethod(application, "Action", "PSXManualConfig_actionDropdown", xml);
-		Thread.sleep(5000);
+		waitforPagetobeenable();
 		click_commonMethod(application, "Add link", "PSX_addLink", xml);
 		
 		//TODO compare Header name
@@ -15990,7 +14596,7 @@ public void addPSX_manualExecutionConfig(String application, String PSXmanualCon
 	                driver.switchTo().window(childWindow);
 	                System.out.println(driver.switchTo().window(childWindow).getTitle());
 	                  
-	                Thread.sleep(1000);
+	                
 	                
 	              String psxConfiguredValue = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/manualConfiguration_textArea")));
 	              if(psxConfiguredValue.isEmpty()) {
@@ -16005,19 +14611,20 @@ public void addPSX_manualExecutionConfig(String application, String PSXmanualCon
 	        		addtextFields_commonMethod(application, "Manul Configuration", "manualConfiguration_textArea", PSXmanualConfiguratio, xml);
 	        		scrolltoend();
 	        		click_commonMethod(application, "Save", "saveButton_manualConfiguration", xml);   //click on Save buttton
-	        		Thread.sleep(1000);
-	        			                
+	        		
+	        		 waitforPagetobeenable();		                
 	          }
 	    }
 	    
-	    Thread.sleep(5000);
-	    //**driver.close();//Automatically getting closed
+	   
+	    //driver.close();//Automatically getting closed
 	     driver.switchTo().window(mainWindow);
-	     Thread.sleep(1000);
+	     
 
 	     scrollToTop();
 	     try {
-	    compareText(application, "PSX Manual Configuration added Successfully", "AddManualConfiguration_SuccessMessage", "Manual Configuration added Successfully", xml);
+//	    compareText(application, "PSX Manual Configuration added Successfully", "AddManualConfiguration_SuccessMessage", "Manual Configuration added Successfully", xml);
+	    verifysuccessmessage(application, "Manual Configuration added Successfully");
 	     }catch(NoSuchElementException e) {
 				e.printStackTrace();
 				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
@@ -16056,7 +14663,7 @@ sa.assertAll();
 public void addGSX_manualExecutionConfig(String application, String GSXmanualConfiguratio) throws InterruptedException, DocumentException, IOException {
 	try {
 	scrolltoend();
-	Thread.sleep(2000);
+	
 	
 	boolean PSXHeader=getwebelement(xml.getlocator("//locators/" + application + "/GSXmanualConfig_PanelHeader")).isDisplayed();
 	if(PSXHeader) {
@@ -16079,7 +14686,7 @@ public void addGSX_manualExecutionConfig(String application, String GSXmanualCon
 	                driver.switchTo().window(childWindow);
 	                System.out.println(driver.switchTo().window(childWindow).getTitle());
 	                  
-	                Thread.sleep(1000);
+	                
 	                
 	              String psxConfiguredValue = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/manualConfiguration_textArea")));
 	              if(psxConfiguredValue.isEmpty()) {
@@ -16094,20 +14701,20 @@ public void addGSX_manualExecutionConfig(String application, String GSXmanualCon
 	        		addtextFields_commonMethod(application, "Manul Configuration", "manualConfiguration_textArea", GSXmanualConfiguratio, xml);
 	        		scrolltoend();
 	        		click_commonMethod(application, "Save", "saveButton_manualConfiguration", xml);   //click on Save buttton
-	        		Thread.sleep(1000);
+	        		
 	        			                
 	          }
 	    }
 	    
-	    Thread.sleep(5000);
+	    waitforPagetobeenable();
 	    //**driver.close();//Automatically getting closed
 	     driver.switchTo().window(mainWindow);
-	     Thread.sleep(1000);
+	     
 
 	     scrollToTop();
 	    //**verifysuccessmessage(application, "Manual Configuration added Successfully");  //verify success Message
-	    compareText(application, "GSX Manual Configuration added Successfully", "GSXManualConfiguration_SuccessMessage", "Manual Configuration added Successfully", xml);
-	    
+//	    compareText(application, "GSX Manual Configuration added Successfully", "GSXManualConfiguration_SuccessMessage", "Manual Configuration added Successfully", xml);
+	    verifysuccessmessage(application, "Manual Configuration added Successfully");
 	}else {
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "'GSX Manully Executed Configuration' panel is not displaying");
 		System.out.println("'GSX Manully Executed Configuration' panel is not displaying");
@@ -16137,7 +14744,7 @@ public void verifyPSXfileAdded(String application) throws InterruptedException, 
 	
 	try {
 	scrolltoend();
-	Thread.sleep(1000);
+	
 	
 	WebElement filename=getwebelement(xml.getlocator("//locators/" + application + "/PSX_selectCreatedValue"));
 	String PSXfilenameCreated=Gettext(filename);
@@ -16221,7 +14828,7 @@ public void verifyGSXfileAdded(String application) throws InterruptedException, 
 	
 	try {
 	scrolltoend();
-	Thread.sleep(1000);
+	
 	
 	WebElement filename=getwebelement(xml.getlocator("//locators/" + application + "/GSX_selectCreatedValue"));
 	String GSXfilenameCreated=Gettext(filename);
@@ -16434,7 +15041,7 @@ sa.assertAll();
 		
 		//cancel bulk interface
 		ScrolltoElement(application, "orderpanelheader", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Bulk Interface", "bulkinterfacelink", xml);
 		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
@@ -16447,15 +15054,15 @@ sa.assertAll();
 
 		//submit bulk job
 		ScrolltoElement(application, "orderpanelheader", xml);
-		Thread.sleep(1000);
+		
 		click_commonMethod(application, "Action dropdown", "serviceactiondropdown", xml);
 		click_commonMethod(application, "Bulk Interface", "bulkinterfacelink", xml);
 		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
 		WebElement BulkJob_Choosefile_button= getwebelement(xml.getlocator("//locators/" + application + "/bulkjob_choosefilebutton"));
 		BulkJob_Choosefile_button.sendKeys(bulkjob_filepath);
 		click_commonMethod(application, "Submit", "bulkjobsubmit", xml);
-		compareText(application, "Bulk Job Success message", "successmsg", "FRC Numbers sent to Queue for Creation. Please check the bulk operation of SANs here.", xml);
-		
+//		compareText(application, "Bulk Job Success message", "successmsg", "FRC Numbers sent to Queue for Creation. Please check the bulk operation of SANs here.", xml);
+		verifysuccessmessage(application, "FRC Numbers sent to Queue for Creation. Please check the bulk operation of SANs here.");
 		//Archive link in bulk interface page
 		click_commonMethod(application, "Action dropdown", "bulkinterface_actiondropdown", xml);
 		click_commonMethod(application, "Archive", "bulkinterface_archivelink", xml);
@@ -16470,10 +15077,10 @@ sa.assertAll();
 		compareText(application, "Bulk Interface Header", "bulkinterfaceheader", "Bulk Interface", xml);
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Bulk Interface page refresh successful");
 		Log.info("Bulk Interface page refresh successful");
-		Thread.sleep(1000);
+		
 		scrolltoend();
 		click_commonMethod(application, "Cancel", "bulkinterfacepage_cancel", xml);
-		Thread.sleep(2000);
+		
 
 	}
 	
@@ -16481,7 +15088,7 @@ sa.assertAll();
 		boolean availability = false;
 
 		try {
-			Thread.sleep(1000);
+			
 			availability= getwebelement(xml.getlocator("//locators/" + application + "/"+ xpath +"")).isDisplayed();
 			System.out.println(availability);
 			if (availability) {
@@ -16550,15 +15157,15 @@ sa.assertAll();
 				
 				
 public void deleteServiceFunction(String application, String expectedvalue) throws InterruptedException, DocumentException{
-			Thread.sleep(5000);
+			waitforPagetobeenable();
 			try {
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/orderpanelheader")));
 				click_commonMethod(application, "Action", "serviceactiondropdown", xml);
-				Thread.sleep(2000);
+				
 				click(application, "Delete Link", "DeleteLink");
 				compareText(application, "Delete Trunk Warning Message from View Trunk page", "DeleteServiceWarningMessage", "Are you sure that you want to delete this item?");
 				click(application, "Delete Button", "deletebutton");
-				Thread.sleep(3000);
+				waitforPagetobeenable();
 				compareText(application, "Delete Service Successful Message", "deletesuccessmsg", "Service successfully deleted.");
 				
 			

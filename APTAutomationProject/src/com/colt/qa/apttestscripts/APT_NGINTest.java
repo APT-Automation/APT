@@ -49,19 +49,19 @@ public String CustomerName=null;
               ExtentTestManager.endTest();
         }
     		
-		logger= ExtentTestManager.startTest ("verifyneworder");
+		logger= ExtentTestManager.startTest ("verifyneworder - NGIN");
 		APT_NGIN.get().createorderservice("nginservice", map.get("NewOrderService"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ExistingOrderService"), map.get("ExistingOrderNumber"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("verifyservicetypeselection");
+		logger= ExtentTestManager.startTest ("verifyservicetypeselection - NGIN");
 		APT_NGIN.get().verifyselectservicetype("nginservice", map.get("ServiceType"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("verifyservicecreation");
+		logger= ExtentTestManager.startTest ("verifyservicecreation - NGIN");
 		APT_NGIN.get().verifyservicecreation("nginservice", map.get("ServiceIdentification"), map.get("Remarks"), map.get("Customer Administration"), map.get("SAN Administration"), map.get("Reseller Administration"),  map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ServiceType"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("verifyCustomerDetailsInformation");
+		logger= ExtentTestManager.startTest ("verifyCustomerDetailsInformation - NGIN");
 		APT_NGIN.get().verifyCustomerDetailsInformation("nginservice", map.get("newCustomerCreation"), map.get("existingCustomerSelection"),
 				map.get("newCustomer"),	map.get("existingCustomer"),
 				map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"), 
@@ -69,7 +69,7 @@ public String CustomerName=null;
 		APT_NGIN.get().verifyUserDetailsInformation("nginservice", map.get("LoginColumn"), map.get("NameColumn"), map.get("EmailColumn"), map.get("RolesColumn"), map.get("AddressColumn"), map.get("ResourceColumn"));
 		ExtentTestManager.endTest();
 		
-//		logger= ExtentTestManager.startTest ("verifyUserDetailsInformation");
+//		logger= ExtentTestManager.startTest ("verifyUserDetailsInformation - NGIN");
 //		APT_NGIN.get().VerifyUsersPanel("nginservice", map.get("UserName"), map.get("FirstName"), map.get("SurName"), map.get("PostalAddress"), map.get("UserEmail"), map.get("Phone"), map.get("EditUserName"), map.get("EditFirstName"), map.get("EditSurName"), map.get("EditPostalAddress"), 
 //				map.get("EditEmail"), map.get("EditPhone"),map.get("IPGuardianAccountGroup"),map.get("ColtOnlineUser"),map.get("GeneratePassword"),map.get("RolesToBeSelected"),map.get("HideRouterToolsIPv6CommandsCisco_ToBeSelected"),map.get("HideRouterToolsIPv4CommandsHuiwai_ToBeSelected"), 
 //				map.get("HideRouterToolsIPv4CommandsCisco_ToBeSelected"), map.get("HideServicesToBeSelected"),map.get("HideSiteOrderToBeSelected"), map.get("editRolesToBeSelected"), map.get("edit_RoleToBeHidden"), map.get("RouterToolsIPv6CommandsCisco_ToBeAvailable"), 
@@ -77,23 +77,18 @@ public String CustomerName=null;
 //				map.get("HideRouterToolsIPv4CommandsCisco_ToBeHidden"), map.get("Services_ToBeAvailable"), map.get("Services_ToBeHidden"), map.get("SiteOrders_ToBeAvailable"), map.get("SiteOrders_ToBeHidden"), map.get("editIPGuardianAccountGroup"), map.get("editColtOnlineUser"));
 //		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("verifyorderpanelinviewservicepage");
-		APT_NGIN.get().verifyorderpanel_editorder("nginservice", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
-		APT_NGIN.get().verifyorderpanel_changeorder("nginservice", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
-				map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));
-		ExtentTestManager.endTest();
-		
-		logger= ExtentTestManager.startTest ("verifyServicepanelinviewservicepage");
+		logger= ExtentTestManager.startTest ("verifyServicepanelinviewservicepage - NGIN");
 		APT_NGIN.get().verifyservicepanelInformationinviewservicepage("nginservice", map.get("ServiceIdentification"), map.get("ServiceType"), map.get("Remarks"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("verifyManagementOptionspanel");
+		logger= ExtentTestManager.startTest ("verifyManagementOptionspanel - NGIN");
 		APT_NGIN.get().verifyManagementOptionspanel("nginservice", map.get("Customer Administration"), map.get("SAN Administration"), map.get("Reseller Administration"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("ServicepanelLinks");
+		logger= ExtentTestManager.startTest ("ServicepanelLinks - NGIN");
 		APT_NGIN.get().verifyEditService("nginservice", map.get("EditRemarks"), map.get("Remarks"), map.get("ServiceIdentification"), map.get("ServiceType"));
 		APT_NGIN.get().verifyManageService("nginservice", map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
+		APT_NGIN.get().searchservice("nginservice", map.get("ServiceIdentification"));
 		APT_NGIN.get().verifySynchronizeLink("nginservice");
 		if(map.get("BulkInterface").equalsIgnoreCase("Yes"))
 		{
@@ -102,45 +97,45 @@ public String CustomerName=null;
 		ExtentTestManager.endTest();
 	
 		if(!(map.get("Reseller Administration")).equalsIgnoreCase("No")) {
-		logger= ExtentTestManager.startTest ("verifyResellerpanelinviewservicepage");
+		logger= ExtentTestManager.startTest ("verifyResellerpanelinviewservicepage - NGIN");
 		APT_NGIN.get().verifyResellerpanel("nginservice");
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("verifyAddReseller");
+		logger= ExtentTestManager.startTest ("verifyAddReseller - NGIN");
 		APT_NGIN.get().AddReseller("nginservice", map.get("OCN"), map.get("Reseller_Email"), map.get("Reseller_City"), map.get("Reseller_StreetName"), map.get("Reseller_StreetNumber"), map.get("Reseller_POBox"), map.get("Reseller_Zipcode"), map.get("Reseller_Phone"), map.get("Reseller_Fax"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("verifyResellerLinks");
+		logger= ExtentTestManager.startTest ("verifyResellerLinks - NGIN");
 		APT_NGIN.get().verify_ViewReseller("nginservice", map.get("OCN"), map.get("Reseller_Email"), map.get("Reseller_City"), map.get("Reseller_StreetName"), map.get("Reseller_StreetNumber"), map.get("Reseller_POBox"), map.get("Reseller_Zipcode"), map.get("Reseller_Phone"), map.get("Reseller_Fax"));
 		APT_NGIN.get().verify_EditReseller("nginservice", map.get("OCN"), map.get("Reseller_EditEmail"), map.get("Reseller_EditCity"), map.get("Reseller_EditStreetName"), map.get("Reseller_EditStreetNumber"), map.get("Reseller_EditPOBox"), map.get("Reseller_EditZipcode"), map.get("Reseller_EditPhone"), map.get("Reseller_EditFax"));
 		ExtentTestManager.endTest();
 		}
 		
 		if(!(map.get("Customer Administration")).equalsIgnoreCase("No")) {
-		logger= ExtentTestManager.startTest ("verifyCustomerpanelinviewservicepage");
+		logger= ExtentTestManager.startTest ("verifyCustomerpanelinviewservicepage - NGIN");
 		APT_NGIN.get().verifyCustomerpanel("nginservice");
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("verifyAddCustomer");
+		logger= ExtentTestManager.startTest ("verifyAddCustomer - NGIN");
 		APT_NGIN.get().AddCustomer("nginservice", map.get("ResellerName"), map.get("DefaultValue_checkbox"), map.get("Configure_checkbox"), map.get("Customer_Country"), map.get("Email"), map.get("Phone"), map.get("Fax"), map.get("Reseller_City"), map.get("Reseller_StreetName"), map.get("Reseller_StreetNumber"), map.get("Reseller_POBox"), map.get("Reseller_Zipcode"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("verifyCustomerLinksinviewservicepage");
+		logger= ExtentTestManager.startTest ("verifyCustomerLinksinviewservicepage - NGIN");
 		APT_NGIN.get().verify_ViewCustomer("nginservice", map.get("ResellerName"), map.get("DefaultValue_checkbox"), map.get("Configure_checkbox"), map.get("Customer_Country"), map.get("Email"), map.get("Phone"), map.get("Fax"), map.get("Reseller_City"), map.get("Reseller_StreetName"), map.get("Reseller_StreetNumber"), map.get("Reseller_POBox"), map.get("Reseller_Zipcode"));
 		APT_NGIN.get().verify_EditCustomer("nginservice", map.get("Reseller_EditResellerName"), map.get("Reseller_EditEmail"), map.get("Reseller_EditCity"), map.get("Reseller_EditStreetName"), map.get("Reseller_EditStreetNumber"), map.get("Reseller_EditPOBox"), map.get("Reseller_EditZipcode"), map.get("Reseller_EditPhone"), map.get("Reseller_EditFax"));
 		ExtentTestManager.endTest();
 		}
 		
 		if(!(map.get("SAN Administration")).equalsIgnoreCase("No")) {
-		logger= ExtentTestManager.startTest ("verifySANpanelinviewservicepage");
+		logger= ExtentTestManager.startTest ("verifySANpanelinviewservicepage - NGIN");
 		APT_NGIN.get().verifySANpanel("nginservice");
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("verifyAddSAN");
+		logger= ExtentTestManager.startTest ("verifyAddSAN - NGIN");
 		APT_NGIN.get().AddSAN("nginservice", map.get("Customer_Country"), map.get("AddSAN_SANNumber"), map.get("PreDestinationNumber"), map.get("Ringtonumber"), map.get("Routingforpayphone_value"), map.get("Routingformobile_value"), map.get("Defaultrouting_value"), map.get("RingToNumber_Checkbox"), map.get("AnnouncementToPlay_Checkbox"), map.get("ComplexRouting_Checkbox"), map.get("defaultroutebusy_value"), map.get("noanswer_value"), map.get("networkcongestion"), map.get("ResellerName"), map.get("DefaultValue_checkbox"), map.get("Configure_checkbox"), map.get("Email"), map.get("Phone"), map.get("Fax"), map.get("Reseller_City"), map.get("Reseller_StreetName"), map.get("Reseller_StreetNumber"), map.get("Reseller_POBox"), map.get("Reseller_Zipcode"), map.get("ServiceProfile"), map.get("Maxcallduration"), map.get("Chargebandname"), map.get("InternationalOutgoingCalls_checkbox"), map.get("InternationalIncomingCalls_checkbox"), map.get("MobileCallsAllowed_checkbox"), map.get("PayphoneBlockingenabled_checkbox"), map.get("Supervisionfieldvalue"), map.get("NoReplyTimerValue"), map.get("WebAccessBlocked_checkbox"), map.get("CPSFreeFormatValue"), map.get("SANBlock_Checkbox"), map.get("FOCEnabled_Checkbox"), map.get("EnableLogicalRouting_Checkbox"), map.get("EnablePriceAnnouncement_Checkbox"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("verifySANLinks");
+		logger= ExtentTestManager.startTest ("verifySANLinks - NGIN");
 		APT_NGIN.get().verifyViewSAN("nginservice", map.get("CustomerNameValue"), map.get("SANNumberValue"), map.get("ServiceProfile"), map.get("Supervisionfieldvalue"), map.get("Maxcallduration"), map.get("PreDestinationNumber"), map.get("Ringtonumber"), map.get("NoReplyTimerValue"), map.get("SelectSANSearchType"));
 		APT_NGIN.get().verifyEditSAN("nginservice", map.get("CustomerNameValue"), map.get("SANNumberValue"), map.get("Edit_ServiceProfile"), map.get("Supervisionfieldvalue"), map.get("Edit_SupervisionValue"), map.get("Maxcallduration"), map.get("Chargebandname"), map.get("PreDestinationNumber"), map.get("Ringtonumber"), map.get("Routingforpayphone_value"), map.get("Routingformobile_value"), map.get("Defaultrouting_value"), map.get("RingToNumber_Checkbox"), map.get("AnnouncementToPlay_Checkbox"), map.get("ComplexRouting_Checkbox"), map.get("defaultroutebusy_value"), map.get("noanswer_value"), map.get("networkcongestion"), map.get("InternationalOutgoingCalls_checkbox"), map.get("InternationalIncomingCalls_checkbox"), map.get("MobileCallsAllowed_checkbox"), map.get("PayphoneBlockingenabled_checkbox"), map.get("NoReplyTimerValue"), map.get("WebAccessBlocked_checkbox"), map.get("CPSFreeFormatValue"), map.get("EnablePriceAnnouncement_Checkbox"), map.get("SelectSANSearchType"), map.get("Edit_EnablePriceAnnouncement_Checkbox"), map.get("Edit_ChargeBandName"), map.get("Edit_InternationalOutgoingCalls_checkbox"), map.get("Edit_InternationalIncomingCalls_checkbox"), map.get("Edit_MobileCallsAllowed_checkbox"), map.get("Edit_NoReplyTimerValue"), map.get("Edit_MaxCallDuration"), map.get("Edit_PayphoneBlockingenabled_checkbox"), map.get("Edit_WebAccessBlocked_checkbox"), map.get("Edit_SANBlock_Checkbox"), map.get("Edit_FOCEnabled_Checkbox"), map.get("Edit_RingToNumber_Checkbox"), map.get("Edit_AnnouncementToPlay_Checkbox"), map.get("Edit_ComplexRouting_Checkbox"), map.get("Edit_PreDestinationNumber"));
 		//APT_NGIN.get().verifyPortIn("nginservice", map.get("CustomerNameValue"), map.get("SANNumberValue"), map.get("SelectSANSearchType"), map.get("PortInNumber"), map.get("CancelPorting"));
@@ -152,7 +147,7 @@ public String CustomerName=null;
 		ExtentTestManager.endTest();
 		}
 		
-		logger= ExtentTestManager.startTest ("AllDeleteOperations");
+		logger= ExtentTestManager.startTest ("AllDeleteOperations - NGIN");
 		APT_NGIN.get().verifyAllDeleteOperations("nginservice", map.get("CustomerNameValue"), map.get("SelectSANSearchType"), map.get("SANNumberValue"), map.get("Customer Administration"), map.get("SAN Administration"), map.get("Reseller Administration"));
 		ExtentTestManager.endTest();
 	}

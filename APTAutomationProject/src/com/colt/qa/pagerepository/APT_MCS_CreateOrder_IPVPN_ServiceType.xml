@@ -794,6 +794,7 @@
 <Togglebutton>(//div[@class='react-switch-bg'])[1]</Togglebutton>
 
 <AddPrimierToggle>(//div[@class='react-switch-bg'])[3]</AddPrimierToggle>
+<AddPrimierToggleSwiftNet>(//div[@class='react-switch-bg'])[2]</AddPrimierToggleSwiftNet>
 
 <SelectsiteToogle>(//div[@class='react-switch-bg'])[3]</SelectsiteToogle>
 
@@ -1472,7 +1473,7 @@
 
 <fetchDeviceInterace_SuccessMessage>//div[contains(text(),'Fetch interfaces started successfully. Please check the sync status of this device.')]</fetchDeviceInterace_SuccessMessage>
 
-<fetchdeviceInterface_successtextMessage>(//div[@class='alert alert-success alert-Style col-12 col-sm-12 col-md-12'])[1]</fetchdeviceInterface_successtextMessage>
+<fetchdeviceInterface_successtextMessage>(//div[contains(@class,'alert alert-success alert-Style')])[1]</fetchdeviceInterface_successtextMessage>
 
 <fetchDeviceInterface_hereLink>//a[text()='here']</fetchDeviceInterface_hereLink>
 

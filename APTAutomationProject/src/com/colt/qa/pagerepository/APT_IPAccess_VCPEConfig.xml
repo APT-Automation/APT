@@ -669,7 +669,7 @@
 <fetchsuccessmsg>(//div[@role='alert']//span)[1]</fetchsuccessmsg>
 <herelink_fetchinterface>(//div[@role='alert']//span)[1]/a</herelink_fetchinterface>
 <fetchDeviceInterace_SuccessMessage>(//div[contains(@class,'alert-success')]/span)[1]</fetchDeviceInterace_SuccessMessage>
-<fetchdeviceInterface_successtextMessage>(//div[@role='alert']/span)[1]</fetchdeviceInterface_successtextMessage> 
+<fetchdeviceInterface_successtextMessage>(//div[@role='alert']/span)[1]s</fetchdeviceInterface_successtextMessage> 
 
 <!--  Manage Network  -->
 <managenetwork_header>(//div[@class='heading-green-row row'])[1]//div</managenetwork_header>

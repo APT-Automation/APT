@@ -330,13 +330,14 @@ public class APT_MCS_CreateOrder_IPVPNConnect extends DriverTestcase{
 	logger= ExtentTestManager.startTest("PEdevice-IPVPNConnect"); 
 	
 	//verify whether Equipment panel is available	
-		boolean EquipmentPanel=APT_IPVPNHelper.get().findPanelHeader("ipvpnservice", "Provider Equipment (PE)");
-		
+	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
+	boolean EquipmentPanel=APT_IPVPNHelper.get().findPanelHeader("ipvpnservice", "Provider Equipment (PE)",map.get("VPN Site Order Num"));
+
 		if(EquipmentPanel) {
 			
 			APT_IPVPNHelper.get().SelectPEdevice_existingDevice("ipvpnservice", map.get("ExistingPEdevice"));
 			
-			APT_IPVPNHelper.get().verifysuccessmessage("ipvpnservice", "Site device created successfully");
+			APT_IPVPNHelper.get().verifysuccessmessage("ipvpnservice", "Device successfully created.");
 			
 			APT_IPVPNHelper.get().verifyValuesforProviderEqiupment("ipvpnservice");
 			

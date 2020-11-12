@@ -41,7 +41,6 @@
 		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNIPVoice"/>
 		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNPlus"/>
 		<class name="com.colt.qa.apttestscripts.APT_MCS_CreateOrder_IPVPNSwiftNet"/>
-		<class name="com.colt.qa.apttestscripts.APT_VoiceLineTest"/>
 		<class name="com.colt.qa.apttestscripts.APT_DomainManagementTest"/>
 		<class name="com.colt.qa.apttestscripts.DDI_Test"/>
 		<class name="com.colt.qa.apttestscripts.APT_VOIPAccessTest"/>
@@ -68,7 +67,6 @@
 		<class name="com.colt.qa.apttestscripts.APT_IPAccessNoCPETest"/>
 		<class name="com.colt.qa.apttestscripts.APT_IPAccessResilientConfigTest"/>
 		<class name="com.colt.qa.apttestscripts.APT_IPAccessSpeedboatTest"/>
-		
 		
 </classes>
 

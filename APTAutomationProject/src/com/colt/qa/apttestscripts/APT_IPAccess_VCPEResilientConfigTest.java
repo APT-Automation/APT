@@ -95,7 +95,7 @@ public static String ManagementAddress=null;
         
 		logger= ExtentTestManager.startTest("verifyOrderDetailsInformation - IPAccess VCPE Resilient Configuration");
 		APT_IPA_VCPEResilientConfigHelper.get().verifyorderpanel_editorder("ipaVcpeResilient", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
-		APT_IPA_VCPEResilientConfigHelper.get().verifyorderpanel_changeorder("ipaVcpeResilient", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
+		APT_IPA_VCPEResilientConfigHelper.get().verifyorderpanel_changeorder("ipaVcpeResilient", map.get("ChangeOrder_newOrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
 				map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));
 		ExtentTestManager.endTest();
         
@@ -938,7 +938,7 @@ public static String ManagementAddress=null;
 		
 		
 		logger= ExtentTestManager.startTest("VerifyManageService - IPAccess VCPE Resilient Configuration");
-		APT_IPA_VCPEResilientConfigHelper.get().verifyManageService("ipaVcpeResilient", map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
+		APT_IPA_VCPEResilientConfigHelper.get().verifyManageService("ipaVcpeResilient", map.get("ChangeOrder_newOrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
 		ExtentTestManager.endTest();
 		
 		logger= ExtentTestManager.startTest("Delete Device - IPAccess VCPE Resilient Configuration");

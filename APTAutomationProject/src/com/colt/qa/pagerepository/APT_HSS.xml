@@ -42,6 +42,29 @@
 <customer_createorderpage_warngmsg>//div[text()='Choose a customer']</customer_createorderpage_warngmsg>
 <sidwarngmsg>//input[@id='serviceIdentification']/parent::div//div</sidwarngmsg>
 
+<!--  Verify Customer details panel  -->
+<Name_Text>(//div//label[@for='name'])[1]</Name_Text>
+<Name_Value>//label[text()='Legal Customer Name']/parent::div/parent::div//div[2]</Name_Value>
+<MainDomain_Text>(//div//label[@for='name'])[2]</MainDomain_Text>
+<MainDomain_Value>//label[text()='Main Domain']/parent::div/parent::div//div[2]</MainDomain_Value>
+<Country_Text>(//div//label[@for='name'])[3]</Country_Text>
+<Country_Value>//label[text()='Country']/parent::div/parent::div//div[2]</Country_Value>
+<OCN_Text>(//div//label[@for='name'])[4]</OCN_Text>
+<OCN_Value>//label[text()='OCN']/parent::div/parent::div//div[2]</OCN_Value>
+<Reference_Text>(//div//label[@for='name'])[5]</Reference_Text>
+<Reference_Value>//label[text()='Reference']/parent::div/parent::div//div[2]</Reference_Value>
+<Type_Text>(//div//label[@for='name'])[6]</Type_Text>
+<Type_Value>//label[text()='Type']/parent::div/parent::div//div[2]</Type_Value>
+<TechnicalContactName_Text>(//div//label[@for='name'])[7]</TechnicalContactName_Text>
+<TechnicalContactName_Value>//label[text()='Technical Contact Name']/parent::div/parent::div//div[2]</TechnicalContactName_Value>
+<Email_Text>(//div//label[@for='name'])[8]</Email_Text>
+<Email_Value>//label[text()='Email']/parent::div/parent::div//div[2]</Email_Value>
+<Phone_Text>(//div//label[@for='name'])[9]</Phone_Text>
+<Phone_Value>//label[text()='Phone']/parent::div/parent::div//div[2]</Phone_Value>
+<Fax_Text>(//div//label[@for='name'])[10]</Fax_Text>
+<Fax_Value>//label[text()='Fax']/parent::div/parent::div//div[2]</Fax_Value>
+
+
 <!-- create order/service page -->
 <createordernametextfield>//input[@id='customerName']</createordernametextfield>
 <customerdropdown>//div[label[text()='Customer']]/div</customerdropdown>

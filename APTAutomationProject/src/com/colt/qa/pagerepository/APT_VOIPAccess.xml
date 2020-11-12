@@ -846,6 +846,8 @@
 <CPE_UpdateCPEDeviceSuccessMessage>//span[contains(text(),'CPE Device updated successfully')]</CPE_UpdateCPEDeviceSuccessMessage>
 <CPE_DeleteCPEDeviceSuccessMessage>//span[text()='CPE Device deleted successfully']</CPE_DeleteCPEDeviceSuccessMessage>
 <alertMsg>(//div[@role='alert'])[1]</alertMsg>
+<AlertForServiceCreationSuccessMessage>(//div[@role='alert']/span)[1]</AlertForServiceCreationSuccessMessage>
+
 
 <CPE_ViewDevice_Header>(//div/div[2]/div[1]/div[1]/span)[1]</CPE_ViewDevice_Header>
 <CPE_EditDevice_Header>//p[contains(text(),'Edit CPE Device')]</CPE_EditDevice_Header>

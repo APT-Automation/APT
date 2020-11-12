@@ -1347,7 +1347,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 		 
 			}
 	
-	public void verifyDownloadNt(String application)throws Exception
+	public void verifyDownloadNt(String application, String downloadpath)throws Exception
 	{
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying Download NT Service Area");
 		
@@ -1358,7 +1358,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 		Log.info("Clicked on Download Nt Service Area link");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Download Nt Service Area link");
 		
-		isFileDownloaded("C:\\Users\\SKathiresan-ADM\\Downloads", "postcode_cld_63");
+		isFileDownloaded(downloadpath, "postcode_cld_63");
 
 
 	}
@@ -1476,7 +1476,6 @@ String ActualValue,String DummyCodeValue) throws Exception
 	 		
 	 		
 	 		waitforPagetobeenable();
-	 		
 	 		scrollToTop();
 	 		Thread.sleep(3000);
 	 		try {	
@@ -1504,20 +1503,20 @@ String ActualValue,String DummyCodeValue) throws Exception
 	 					
 	 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 	 					Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+	 					failureScreenshot(application);
 	 				}
 	 				
 	 			}else {
 	 				ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
 	 				Log.info(" Success Message is not displaying");
+	 				failureScreenshot(application);
 	 			}
-	 			
-	 			Thread.sleep(2000);
 	 			
 	 		}catch(Exception e) {
 	 			Log.info("failure in fetching success message  ");
 	 			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 	 			Log.info(expected+ " message is not getting dislpayed");
-	 			Thread.sleep(2000);
+	 			failureScreenshot(application);
 	 		}
 	 	}
 
@@ -1549,12 +1548,14 @@ String ActualValue,String DummyCodeValue) throws Exception
 	 					
 	 					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 	 					Log.info("Message is verified. It is displaying as: "+alrtmsg);
+	 					successScreenshot(application);
 	 					
 	 					
 	 				}else {
 	 					
 	 					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 	 					Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+	 					successScreenshot(application);
 	 				}
 	 				
 	 			}else {
@@ -1568,7 +1569,7 @@ String ActualValue,String DummyCodeValue) throws Exception
 	 			Log.info("failure in fetching success message - 'Service created Successfully'  ");
 	 			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 	 			Log.info(expected+ " message is not getting dislpayed");
-	 			Thread.sleep(2000);
+	 			successScreenshot(application);
 	 		}
 	 	}
 

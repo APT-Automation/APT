@@ -27996,21 +27996,21 @@ Thread.sleep(3000);
 					}else {
 						ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 						Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
-						successScreenshot(application);
+						failureScreenshot(application);
 					}
 					
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
 					Log.info(" Success Message is not displaying");
+					failureScreenshot(application);
 				}
 				
-				Thread.sleep(2000);
 				
 			}catch(Exception e) {
 				Log.info("failure in fetching success message - 'Service created Successfully'  ");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 				Log.info(expected+ " message is not getting dislpayed");
-				Thread.sleep(2000);
+				failureScreenshot(application);
 			}
 
 		}

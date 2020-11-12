@@ -118,6 +118,11 @@
 <managelink>//div[@class='dropdown-menu show']//a[text()='Manage']</managelink>
 <searchbutton>//span[text()='Search']</searchbutton>
 
+<!--  success Message -->
+<alertMsg>(//div[@role='alert'])[1]</alertMsg>
+<AlertForServiceCreationSuccessMessage>(//div[@role='alert']/span)[1]</AlertForServiceCreationSuccessMessage>
+
+
 </ManageNetwork>
 
 </locators>

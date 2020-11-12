@@ -34,35 +34,35 @@ public String CustomerName=null;
         
         if(newCustomerName.equalsIgnoreCase("yes") && existingCustomer.equalsIgnoreCase("no")) {
               
-              logger= ExtentTestManager.startTest("CreateCustomer");
+              logger= ExtentTestManager.startTest("CreateCustomer_CMSDataCentre");
               APT_IPA_CMSHelper.get().createcustomer("ipaCMS", map.get("newCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), 
                           map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), 
                           map.get("Fax"));
               CustomerName=map.get("newCustomer");
               ExtentTestManager.endTest();
               
-              logger= ExtentTestManager.startTest("selectExistingCustomer"); 
+              logger= ExtentTestManager.startTest("selectExistingCustomer_CMSDataCentre"); 
               APT_IPA_CMSHelper.get().selectCustomertocreateOrder("ipaCMS",map.get("newCustomer"));
               ExtentTestManager.endTest();
               
         }
         else if(newCustomerName.equalsIgnoreCase("no") && existingCustomer.equalsIgnoreCase("Yes")) {
               
-              logger= ExtentTestManager.startTest("selectExistingCustomer"); 
+              logger= ExtentTestManager.startTest("selectExistingCustomer_CMSDataCentre"); 
               APT_IPA_CMSHelper.get().selectCustomertocreateOrder("ipaCMS",map.get("existingCustomer"));
               CustomerName=map.get("existingCustomer");
               ExtentTestManager.endTest();
         }
         
-		logger= ExtentTestManager.startTest("verifyCreateorder");
+		logger= ExtentTestManager.startTest("verifyCreateorder_CMSDataCentre");
 		APT_IPA_CMSHelper.get().createorderservice("ipaCMS", map.get("NewOrderService"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ExistingOrderService"), map.get("ExistingOrderNumber"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyservicetypeselection");
+		logger= ExtentTestManager.startTest("verifyservicetypeselection_CMSDataCentre");
 		APT_IPA_CMSHelper.get().verifyselectservicetype("ipaCMS", map.get("ServiceType"), map.get("NetworkConfiguration_DrodpwonValue"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyservicecreation");
+		logger= ExtentTestManager.startTest("verifyservicecreation_CMSDataCentre");
 		APT_IPA_CMSHelper.get().verifyservicecreation("ipaCMS", map.get("ServiceIdentification"), map.get("Remarks")
 				, map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ServiceType")
 				, map.get("NetworkConfiguration_DrodpwonValue"), map.get("TerminationDate"), map.get("BillingTypevalue")
@@ -71,13 +71,15 @@ public String CustomerName=null;
 				, map.get("DeliveryChannel_DropdownValue"), map.get("Topology_DropdownValue"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyCustomerDetailsInformation");
-		APT_IPA_CMSHelper.get().verifyCustomerDetailsInformation("ipaCMS", map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
+		logger= ExtentTestManager.startTest("verifyCustomerDetailsInformation_CMSDataCentre");
+		APT_IPA_CMSHelper.get().verifyCustomerDetailsInformation("ipaCMS", map.get("newCustomerCreation"), map.get("existingCustomerSelection"),map.get("newCustomer"),map.get("existingCustomer"),
+				map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));	
+		
 		APT_IPA_CMSHelper.get().verifyUserDetailsInformation("ipaCMS", map.get("LoginColumn"), map.get("NameColumn"), map.get("EmailColumn"), map.get("RolesColumn"), map.get("AddressColumn"), map.get("ResourceColumn"));
 		ExtentTestManager.endTest();
 		
 		
-//		logger= ExtentTestManager.startTest("verifyUserDetailsInformation");
+//		logger= ExtentTestManager.startTest("verifyUserDetailsInformation_CMSDataCentre");
 //		APT_IPA_CMSHelper.get().VerifyUsersPanel("ipaCMS", map.get("UserName"), map.get("FirstName"), map.get("SurName"), map.get("PostalAddress"), map.get("UserEmail"), map.get("Phone"), map.get("EditUserName"), map.get("EditFirstName"), map.get("EditSurName"), map.get("EditPostalAddress"), 
 //				map.get("EditEmail"), map.get("EditPhone"),map.get("IPGuardianAccountGroup"),map.get("ColtOnlineUser"),map.get("GeneratePassword"),map.get("RolesToBeSelected"),map.get("HideRouterToolsIPv6CommandsCisco_ToBeSelected"),map.get("HideRouterToolsIPv4CommandsHuiwai_ToBeSelected"), 
 //				map.get("HideRouterToolsIPv4CommandsCisco_ToBeSelected"), map.get("HideServicesToBeSelected"),map.get("HideSiteOrderToBeSelected"), map.get("editRolesToBeSelected"), map.get("edit_RoleToBeHidden"), map.get("RouterToolsIPv6CommandsCisco_ToBeAvailable"), map.get("RouterToolsIPv6CommandsCisco_ToBeHidden"), 
@@ -86,24 +88,26 @@ public String CustomerName=null;
 //		ExtentTestManager.endTest();
 		
 		
-		logger= ExtentTestManager.startTest("verifyOrderDetailsInformation");
-		APT_IPA_CMSHelper.get().verifyorderpanel_editorder("ipaCMS", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
-		APT_IPA_CMSHelper.get().verifyorderpanel_changeorder("ipaCMS", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"));
+		logger= ExtentTestManager.startTest("verifyOrderDetailsInformation_CMSDataCentre");
+		APT_IPA_CMSHelper.get().verifyorderpanel_editorder("ipaCMS", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
+		APT_IPA_CMSHelper.get().verifyorderpanel_changeorder("ipaCMS", map.get("ChangeOrder_newOrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
+				map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));
+		
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyServicepanelinviewservicepage");
+		logger= ExtentTestManager.startTest("verifyServicepanelinviewservicepage_CMSDataCentre");
 	  	APT_IPA_CMSHelper.get().verifyservicepanelInformationinviewservicepage("ipaCMS", map.get("ServiceIdentification")
 	  			, map.get("ServiceType"), map.get("NetworkConfiguration_DrodpwonValue"), map.get("Remarks"), map.get("TerminationDate")
 	  			, map.get("BillingTypevalue"), map.get("Email"), map.get("PhoneContact"));
 	  	ExtentTestManager.endTest();
 	  	
-		logger= ExtentTestManager.startTest("verifyManagementConfigOptionspanels");
+		logger= ExtentTestManager.startTest("verifyManagementConfigOptionspanels_CMSDataCentre");
 		APT_IPA_CMSHelper.get().verifyManagementConfigpanels("ipaCMS", map.get("PerformanceReporting_Checkbox")
 				, map.get("IPGuardian_Checkbox"), map.get("RouterConfigView_IPv4_Checkbox"), map.get("RouterConfigView_IPv6_Checkbox")
 				, map.get("DeliveryChannel_DropdownValue"), map.get("Topology_DropdownValue"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyServicepanelLinks");
+		logger= ExtentTestManager.startTest("verifyServicepanelLinks_CMSDataCentre");
 		APT_IPA_CMSHelper.get().verifyEditservice("ipaCMS", map.get("ServiceIdentification"), map.get("ServiceType")
 				, map.get("NetworkConfiguration_DrodpwonValue"), map.get("EditRemarks"), map.get("Remarks")
 				, map.get("Edit_TerminationDate"), map.get("Edit_BillingTypevalue"), map.get("Edit_Email"), map.get("Edit_PhoneContact")
@@ -114,8 +118,8 @@ public String CustomerName=null;
 		APT_IPA_CMSHelper.get().verifyManageSubnets("ipaCMS");
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("VerifyManageService");
-		APT_IPA_CMSHelper.get().verifyManageService("ipaCMS", map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
+		logger= ExtentTestManager.startTest("VerifyManageService_CMSDataCentre");
+		APT_IPA_CMSHelper.get().verifyManageService("ipaCMS", map.get("ChangeOrder_newOrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
 		ExtentTestManager.endTest();
 		
 		
@@ -137,7 +141,6 @@ public String CustomerName=null;
         				(topology.equalsIgnoreCase("1AS"))) {
         	
         	
-        	System.out.println("TC-01");
     		logger= ExtentTestManager.startTest("verifyAddViewExistingDistributionSwitchDevice_CMSDataCentre");
     		APT_IPA_CMSHelper.get().searchorder("CMSDataCentre", map.get("ServiceIdentification"));
     		APT_IPA_CMSHelper.get().addExistingDistributionSwitchDevice_PE("CMSDataCentre",map.get("Topology_DropdownValue"), map.get("ExistingDestributionSwitchDeviceName"));
@@ -146,14 +149,12 @@ public String CustomerName=null;
     		ExtentTestManager.endTest();
     
     		
-    		System.out.println("TC-02");
     		logger= ExtentTestManager.startTest("verifyRouterToolFunction_PE_DistributionSwitch_CMSDataCentre");
     		APT_IPA_CMSHelper.get().routerPanel_PE("CMSDataCentre", map.get("PE_CommandIPV4"),
     				map.get("PE_CommandIPV6"),map.get("PE_vrf_Ipv4"), map.get("PE_vrf_Ipv6"));
     		ExtentTestManager.endTest();
     		
     					
-    		System.out.println("TC-03");		
     		logger= ExtentTestManager.startTest("verifyAddEditDeleteRoutesFunction_PE_DistributionSwitch_CMSDataCentre");
     		APT_IPA_CMSHelper.get().addRouteFunction_PE("CMSDataCentre", map.get("ServiceIdentification"),map.get("ExistingDestributionSwitchDeviceName"), 	map.get("PE_RouteCity"),
     		map.get("PE_RouteSubnetSize"), map.get("PE_Gateway"), map.get("PE_NetworkAddress"), map.get("PE_NetworkMAS"),	map.get("PE_Metrics"));
@@ -164,7 +165,6 @@ public String CustomerName=null;
     		ExtentTestManager.endTest();
     		
     		
-    		System.out.println("TC-04");
     		logger= ExtentTestManager.startTest("verifyEditCPEDeviceFunction_CMSDataCentre");
     		APT_IPA_CMSHelper.get().verifyEditDeviceFunction_DS("CMSDataCentre", map.get("ServiceIdentification"),
     				map.get("DS_DeviceNameEdit"),map.get("DS_VendorModelEdit"),map.get("DS_ManagementAddressEdit"),map.get("DS_CountryEdit"),
@@ -172,7 +172,6 @@ public String CustomerName=null;
     		ExtentTestManager.endTest();
     		
     		
-    		System.out.println("TC-05");
     		logger= ExtentTestManager.startTest("VerifyFetchDeviceInterfaceFunction_PE_CMSDataCentre");
     		String deviceName_cmsData = "Null";
     		if(map.get("DS_DeviceNameEdit").equalsIgnoreCase("Null")) {
@@ -187,7 +186,6 @@ public String CustomerName=null;
     		ExtentTestManager.endTest();
     		
     		
-    		System.out.println("TC-06");
     		logger= ExtentTestManager.startTest("DeleteDistributionSwitchDeviceFunction_PE_CMSDataCentre");
     		APT_IPA_CMSHelper.get().searchorder("CMSDataCentre", map.get("ServiceIdentification"));//ServiceIdentification
     		APT_IPA_CMSHelper.get().deleteDistributionSwitchDevice("CMSDataCentre", map.get("ExistingDestributionSwitchDeviceName"));
@@ -195,7 +193,6 @@ public String CustomerName=null;
     		ExtentTestManager.endTest();
            
     			
-    			System.out.println("TC-11");
     			logger= ExtentTestManager.startTest("AddNewPEDeviceFunction_CMSDataCentre");
     			APT_IPA_CMSHelper.get().searchorder("CMSDataCentre", map.get("ServiceIdentification"));
     			APT_IPA_CMSHelper.get().navigateToAddNewDestributionSwitchDevicePage("CMSDataCentre");
@@ -210,7 +207,6 @@ public String CustomerName=null;
     			ExtentTestManager.endTest();
     			
     			
-    			System.out.println("TC-12");
     			logger= ExtentTestManager.startTest("VerifyNewDeviceInformationAdded_PE_CMSDataCentre");
     			APT_IPA_CMSHelper.get().verifyViewpage_AddedNewDestributionSwitchDeviceDetails("CMSDataCentre", map.get("newDeviceName_distributionSWitch"), map.get("DS_VendorModel"), map.get("Telnet"),
     					map.get("SSH"), map.get("Snmp2C"), map.get("SnmPro"), map.get("Snmprw"), map.get("SnmProNewValue"), map.get("SnmprwNewValue"), map.get("Snmp3"), 
@@ -222,8 +218,7 @@ public String CustomerName=null;
     			APT_IPA_CMSHelper.get().testStatus_PE("CMSDataCentre");
     			ExtentTestManager.endTest();
     			
-    					System.out.println("TC-13");
-    					logger= ExtentTestManager.startTest("AddInterface_DistributionSwitch_CMSDataCentre");
+    					logger= ExtentTestManager.startTest("AddInterface_Cisco_DistributionSwitch_CMSDataCentre");
     					APT_IPA_CMSHelper.get().clickOnAddInterfaceLink_CMSdata("IPACCESS");
     					APT_IPA_CMSHelper.get().addInterface_Cisco_CMSdata("IPACCESS", map.get("addInterface_CMS_interfaceValue"), map.get("adInterface_CMS_existingAddressIPv4Selection"), map.get("adInterface_CMS_existingAddressIPv4DropdownValue"),
     							map.get("adInterface_CMSnewAddressIpv4Selection"), map.get("adInterface_CMS_newAddressIpv4Range"),
@@ -238,7 +233,7 @@ public String CustomerName=null;
     					ExtentTestManager.endTest();
     					
     					
-    					logger= ExtentTestManager.startTest("AddMultilink_distributionSwitch_CMSdata");
+    					logger= ExtentTestManager.startTest("AddMultilink_Cisco_distributionSwitch__CMSDataCentre");
     					APT_IPA_CMSHelper.get().clickOnBreadCrumb("IPACCESS", map.get("newDeviceName_distributionSWitch"));
     					APT_IPA_CMSHelper.get().clickOnAddMultilink_CMSdata("IPACCESS");
     					APT_IPA_CMSHelper.get().addMultilink_cisco_CMS("IPACCESS", map.get("addMultilink_CMS_MultilinkValue"), map.get("addMultilink_CMS_existingAddressIPv4Selection"), map.get("addMultilink_CMS_existingAddressIPv4DropdownValue"),
@@ -250,7 +245,7 @@ public String CustomerName=null;
     					ExtentTestManager.endTest();
     					
     					
-    					logger= ExtentTestManager.startTest("EditInterface_distributionSwitch_CMSdata");
+    					logger= ExtentTestManager.startTest("EditInterface_Cisco_distributionSwitch__CMSDataCentre");
     					APT_IPA_CMSHelper.get().clickOnBreadCrump("IPACCESS", map.get("ServiceIdentification"));
     					APT_IPA_CMSHelper.get().clickOnEditInterface("IPACCESS", map.get("addInterface_CMS_interfaceValue"));
     					APT_IPA_CMSHelper.get().editInterface_Cisco_CMSdata("IPACCESS", map.get("editInterface_CMS_interfaceValue"), map.get("editInterface_CMS_existingAddressIPv4Selection"), map.get("editInterface_CMS_existingAddressIPv4DropdownValue"),
@@ -262,11 +257,10 @@ public String CustomerName=null;
     							map.get("editInterface_CMS_Vlan"), map.get("editInterface_CMS_speed"), map.get("editInterface_CMS_duplex"), map.get("editInterface_CMS_ivmanagement"), map.get("editInterface_CMS_vrrpIP"),
     							map.get("editInterface_CMS_vrrpGroupNumber"), map.get("editInterface_vrrpTrackNumber"), map.get("editInterface_CMS_vrrpPassword"), map.get("editInterface_CMS_vrrpIPV6"),
     							map.get("editInterface_CMS_interfaceNode"));
-    					APT_IPA_CMSHelper.get().verifysuccessmessage("IPACCESS", "Interface successfully updated.");
     					ExtentTestManager.endTest();
     					
     					
-    					logger= ExtentTestManager.startTest("EditMultilink_distributionSwitch_CMSdata");
+    					logger= ExtentTestManager.startTest("EditMultilink_Cisco_distributionSwitch__CMSDataCentre");
     					String MultilinkValue = "Multilink" + map.get("addMultilink_CMS_MultilinkValue");
     					APT_IPA_CMSHelper.get().clickOnEditMultilink("IPACCESS", MultilinkValue);
     					APT_IPA_CMSHelper.get().editMultilink_cisco_CMS("IPACCESS", map.get("editMultilink_CMS_MultilinkValue"), map.get("editMultilink_CMS_existingAddressIPv4Selection"), map.get("editMultilink_CMS_existingAddressIPv4DropdownValue"),
@@ -277,12 +271,12 @@ public String CustomerName=null;
     					APT_IPA_CMSHelper.get().verifysuccessmessage("IPACCESS", "Multilink interface successfully updated.");
     					ExtentTestManager.endTest();
     					
-    					logger= ExtentTestManager.startTest("DeleteInterface_distributionSwitch_CMSdata");
+    					logger= ExtentTestManager.startTest("DeleteInterface_distributionSwitch__CMSDataCentre");
     					APT_IPA_CMSHelper.get().clickOnBreadCrump("IPACCESS", map.get("ServiceIdentification"));
     					APT_IPA_CMSHelper.get().deleteInterface_Cisco_CMS("IPACCESS", map.get("addInterface_CMS_interfaceValue"), map.get("editInterface_CMS_interfaceValue"));
     					ExtentTestManager.endTest();
     					
-    					logger= ExtentTestManager.startTest("DeleteDistributionSwitchForNewDevice_PE_CMSDataCentre");
+    					logger= ExtentTestManager.startTest("DeleteDistributionSwitchForNewDevice_CMSDataCentre");
     					APT_IPA_CMSHelper.get().clickOnBreadCrump("IPACCESS", map.get("ServiceIdentification"));
     					APT_IPA_CMSHelper.get().deleteDistributionSwitchDevice("CMSDataCentre", map.get("newDeviceName_distributionSWitch"));
     					APT_IPA_CMSHelper.get().verifysuccessmessage("CMSDataCentre", "Device successfully removed from service.");
@@ -304,7 +298,6 @@ public String CustomerName=null;
         			
         	
     		if((map.get("ExistingAccessSwitchSelection").equalsIgnoreCase("Yes")) && (map.get("newAccessSwitchSElection").equalsIgnoreCase("No"))) {
-    			System.out.println("TC-07");
     			logger= ExtentTestManager.startTest("VerifyAddViewExistingAccessSwitchDevice_CMSDataCentre");
         		APT_IPA_CMSHelper.get().searchorder("CMSDataCentre", map.get("ServiceIdentification"));
         		APT_IPA_CMSHelper.get().addExistingAccessSwitchDevice("CMSDataCentre",map.get("Topology_DropdownValue"), 
@@ -313,7 +306,6 @@ public String CustomerName=null;
         		APT_IPA_CMSHelper.get().testStatus_PE("CMSDataCentre");
         		ExtentTestManager.endTest();
         		
-        		System.out.println("TC-09");						
         		logger= ExtentTestManager.startTest("verifyAddEditDeleteRoutesFunction_AccessSwitch_CMSDataCentre");
         		APT_IPA_CMSHelper.get().addRouteFunction_AS("CMSDataCentre", map.get("ServiceIdentification"),map.get("ExistingAccessSwitchDeviceName"), 	map.get("PE_RouteCity"),
         				map.get("PE_RouteSubnetSize"), map.get("PE_Gateway"), map.get("PE_NetworkAddress"), map.get("PE_NetworkMAS"),	map.get("PE_Metrics"));
@@ -335,15 +327,13 @@ public String CustomerName=null;
     					map.get("AS_Country"),  map.get("AS_City"), map.get("AS_Site"), map.get("AS_Premise")); 
     			ExtentTestManager.endTest();
     			
-    			System.out.println("TC-16");
-    			logger= ExtentTestManager.startTest("VerifyNewAddedDeviceInformation_PE_CMSDataCentre");
+    			logger= ExtentTestManager.startTest("VerifyNewAddedDeviceInformation_CMSDataCentre");
     			APT_IPA_CMSHelper.get().verifyViewpage_AddedNewAccessSwitchDeviceDetails("CMSDataCentre", map.get("ServiceIdentification"),
     					map.get("NewAccessDeviceName"),map.get("AS_VendorModel"),map.get("AS_ManagementAddress"),map.get("AS_Snmpro"),
     					map.get("AS_Country"),  map.get("AS_City"), map.get("AS_Site"), map.get("AS_Premise")); 
     			APT_IPA_CMSHelper.get().testStatus_PE("CMSDataCentre");
     			ExtentTestManager.endTest();
     			
-    			System.out.println("TC-09");						
         		logger= ExtentTestManager.startTest("verifyAddEditDeleteRoutesFunction_AccessSwitch_CMSDataCentre");
         		APT_IPA_CMSHelper.get().addRouteFunction_AS("CMSDataCentre", map.get("ServiceIdentification"),map.get("NewAccessDeviceName"), 	map.get("PE_RouteCity"),
         				map.get("PE_RouteSubnetSize"), map.get("PE_Gateway"), map.get("PE_NetworkAddress"), map.get("PE_NetworkMAS"),	map.get("PE_Metrics"));
@@ -355,14 +345,13 @@ public String CustomerName=null;
     		}
     		
     		
-    		System.out.println("TC-08");
     		logger= ExtentTestManager.startTest("verifyRouterToolFunction_PE_AccessSwitch_CMSDataCentre");
     		APT_IPA_CMSHelper.get().routerPanel_PE("CMSDataCentre", map.get("PE_CommandIPV4"),
     					map.get("PE_CommandIPV6"),map.get("PE_vrf_Ipv4"), map.get("PE_vrf_Ipv6"));
     		ExtentTestManager.endTest();
     										
     		
-    		logger= ExtentTestManager.startTest("AddInterface");
+    		logger= ExtentTestManager.startTest("AddInterface_AccessSwitch_Cisco_CMSDataCentre");
     		APT_IPA_CMSHelper.get().clickOnAddInterfaceLink_CMSdata("IPACCESS");
     		APT_IPA_CMSHelper.get().addInterface_Cisco_CMSdata_accessSwitch("IPACCESS", map.get("Accesswitch_addInterface_interfaceValue"), map.get("Accesswitch_addInterface_existingAddressIPv4Selection"), map.get("Accesswitch_addInterface_existingAddressIPv4DropdownValue"),
     				map.get("Accesswitch_addInterfacenewAddressIpv4Selection"), map.get("Accesswitch_addInterface_newAddressIpv4Range"),
@@ -377,7 +366,7 @@ public String CustomerName=null;
     		ExtentTestManager.endTest();
     		
     		
-    		logger= ExtentTestManager.startTest("AddMultilink");
+    		logger= ExtentTestManager.startTest("AddMultilink_AccessSwitch_Cisco_CMSDataCentre");
     		APT_IPA_CMSHelper.get().clickOnAddMultilink_CMSdata("IPACCESS");
     		APT_IPA_CMSHelper.get().addMultilink_cisco_CMS_AccessSwitch("IPACCESS", map.get("Accesswitch_addMultilink_MultilinkValue"), map.get("Accesswitch_addMultilink_existingAddressIPv4Selection"), map.get("Accesswitch_addMultilink_existingAddressIPv4DropdownValue"),
     				map.get("Accesswitch_addMultilink_newAddressIpv4Selection"), map.get("Accesswitch_addMultilink_newAddressIpv4Range"), map.get("Accesswitch_addMultilink_subnetSizeValue_IPv4"), map.get("Accesswitch_addMultilink_cityValue_IPv4"),
@@ -388,7 +377,7 @@ public String CustomerName=null;
     		ExtentTestManager.endTest();
     		
     		
-    		logger= ExtentTestManager.startTest("EditInterface_AccessSwitch_CMSdata");
+    		logger= ExtentTestManager.startTest("EditInterface_AccessSwitch_CMSDataCentre");
     		APT_IPA_CMSHelper.get().clickOnBreadCrump("IPACCESS", map.get("ServiceIdentification"));
     		APT_IPA_CMSHelper.get().clickOnEditInterface_accessSwitch("IPACCESS", map.get("Accesswitch_addInterface_interfaceValue"));
     		APT_IPA_CMSHelper.get().editInterface_Cisco_CMSdata("IPACCESS", map.get("Accesswitch_editInterface_interfaceValue"), map.get("Accesswitch_editInterface_existingAddressIPv4Selection"), map.get("Accesswitch_editInterface_existingAddressIPv4DropdownValue"),
@@ -403,7 +392,8 @@ public String CustomerName=null;
     		APT_IPA_CMSHelper.get().verifysuccessmessage("IPACCESS", "Interface successfully updated.");
     		ExtentTestManager.endTest();
     		
-    		logger= ExtentTestManager.startTest("EditMultilink_AccessSwitch_CMSdata");
+    		
+    		logger= ExtentTestManager.startTest("EditMultilink_Cisco_AccessSwitch_CMSDataCentre");
     		String MultilinkValue = "Multilink" + map.get("Accesswitch_addMultilink_MultilinkValue");
     		APT_IPA_CMSHelper.get().clickOnEditMultilink_AccessSWitch("IPACCESS", MultilinkValue);
     		APT_IPA_CMSHelper.get().editMultilink_cisco_CMS("IPACCESS", map.get("Accesswitch_editMultilink_MultilinkValue"), map.get("Accesswitch_editMultilink_existingAddressIPv4Selection"), map.get("Accesswitch_editMultilink_existingAddressIPv4DropdownValue"),
@@ -415,13 +405,13 @@ public String CustomerName=null;
     		ExtentTestManager.endTest();
     		
     		
-    		logger= ExtentTestManager.startTest("DeleteInterface_accessSwitch_CMSdata");
+    		logger= ExtentTestManager.startTest("DeleteInterface_accessSwitch_CMSDataCentre");
     		APT_IPA_CMSHelper.get().clickOnBreadCrump("IPACCESS", map.get("ServiceIdentification"));
     		APT_IPA_CMSHelper.get().deleteInterface_AccessSwitch_CMS("IPACCESS", map.get("Accesswitch_addInterface_interfaceValue"),
     				map.get("Accesswitch_editInterface_interfaceValue"));
     		ExtentTestManager.endTest();
     		
-    		logger= ExtentTestManager.startTest("DeleteMultilink_accessSwitch_CMSdata");
+    		logger= ExtentTestManager.startTest("DeleteMultilink_accessSwitch_CMSDataCentre");
     		APT_IPA_CMSHelper.get().deleteInterface_AccessSwitch_CMS("IPACCESS", map.get("Accesswitch_addInterface_interfaceValue"),
     				map.get("Accesswitch_editInterface_interfaceValue"));
     		ExtentTestManager.endTest();
@@ -429,31 +419,29 @@ public String CustomerName=null;
         	
     		if((map.get("ExistingAccessSwitchSelection").equalsIgnoreCase("Yes")) && (map.get("newAccessSwitchSElection").equalsIgnoreCase("No"))) {
     			
-    			logger= ExtentTestManager.startTest("deleteAccessSwitch_existingDevice");
+    			logger= ExtentTestManager.startTest("deleteAccessSwitch_existingDevice_CMSDataCentre");
         		APT_IPA_CMSHelper.get().deleteAccessSwitchDevice("CMSDataCentre", map.get("ExistingAccessSwitchDeviceName"));
         		ExtentTestManager.endTest();
         		
     		}
     		else if((map.get("ExistingAccessSwitchSelection").equalsIgnoreCase("No")) && (map.get("newAccessSwitchSElection").equalsIgnoreCase("Yes"))) {
     			
-    			logger= ExtentTestManager.startTest("deleteAccessSwitch_newDevice");
+    			logger= ExtentTestManager.startTest("deleteAccessSwitch_newDevice_CMSDataCentre");
         		APT_IPA_CMSHelper.get().deleteAccessSwitchDevice("CMSDataCentre", map.get("NewAccessDeviceName"));
         		ExtentTestManager.endTest();
     			
     		}
-    		System.out.println("TC-10");
     		
         	
         }else {
-        	ExtentTestManager.startTest("AccessSwitch_CMSdata");
+        	ExtentTestManager.startTest("AccessSwitch_CMSDataCentre");
         	Log.info("Access SWitch will not dipslay for the topology '" + topology + "'");
         	ExtentTestManager.getTest().log(LogStatus.INFO, "Access SWitch will not dipslay for the topology '" + topology + "'");
         	ExtentTestManager.endTest();
         }
 		
 		
-		System.out.println("TC-20");
-		logger= ExtentTestManager.startTest("Delete Service");
+		logger= ExtentTestManager.startTest("Delete Service_CMSDataCentre");
 		APT_IPA_CMSHelper.get().searchorder("CMSDataCentre", map.get("ServiceIdentification"));
 		APT_IPA_CMSHelper.get().deleteService("ipaCMS");
 		ExtentTestManager.endTest();

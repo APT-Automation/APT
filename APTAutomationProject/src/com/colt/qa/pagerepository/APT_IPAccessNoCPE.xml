@@ -220,7 +220,7 @@
 <sync_servicename>(//a[@title='Service'])[2]</sync_servicename>
 <sync_servicetype>//div/div[1]/div[4]/div[4]/div[2]</sync_servicetype>
 <sync_servicedetails>//div/div[1]/div[4]/div[2]/div[3]/label</sync_servicedetails>
-<sync_status>//span[text()='Pending']</sync_status>
+<sync_status>(//div[text()='Synchronisation']/parent::div/parent::div//div[@class='div-margin row'])[3]/div[4]</sync_status>
 <managepage_backbutton>//span[text()='Back']</managepage_backbutton>
 <Servicestatus_popup>//div[@class='modal-content']</Servicestatus_popup>
 <servicestatus_popupclose>(//div[text()='Service Status']/following-sibling::button//span)[1]</servicestatus_popupclose>

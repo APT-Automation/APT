@@ -202,6 +202,8 @@
 <successmsg>//div[@role='alert']//span</successmsg>
 <bulkinterface_actiondropdown>//div[contains(text(),'Bulk Interface')]/following-sibling::div/div//button[text()='Action']</bulkinterface_actiondropdown>
 
+<breadcrumb>//ol[@class='breadcrumb']//a[contains(text(),'value')]</breadcrumb>
+
 <!-- Management Options -->
 <managementoptions_customeradminvalue>//div[label[text()='Customer Administration']]/div</managementoptions_customeradminvalue>
 <managementoptions_sanadminvalue>//div[label[text()='SAN Administration']]/div</managementoptions_sanadminvalue>

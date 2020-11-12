@@ -226,7 +226,7 @@
 <servicepanel_servicetypevalue>//label[contains(text(),'Service Type')]/parent::div/following-sibling::div</servicepanel_servicetypevalue>
 <servicepanel_remarksvalue>//label[contains(text(),'Remark')]/parent::div/following-sibling::div</servicepanel_remarksvalue>
 <servicepanel_terminationdate>//label[contains(text(),'Termination Date')]/parent::div/following-sibling::div</servicepanel_terminationdate>
-<servicepanel_email>//div[text()='Service']/parent::div/following-sibling::div//label[contains(text(),'Email')]/parent::div/following-sibling::div</servicepanel_email>
+<servicepanel_email>//div[text()='Service']/parent::div/following-sibling::div//label[contains(text(),'Email')]/following-sibling::div</servicepanel_email>
 <servicepanel_phone>//div[text()='Service']/parent::div/following-sibling::div//label[contains(text(),'Phone Contact')]/parent::div/following-sibling::div</servicepanel_phone>
 <servicepanel_billingtype>//label[contains(text(),'Billing Type')]/parent::div/following-sibling::div</servicepanel_billingtype>
 <serviceactiondropdown>//div[div[text()='Service']]//button</serviceactiondropdown>

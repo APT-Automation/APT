@@ -36,34 +36,34 @@ public String ServicenameTag="- IPAccess Configuration";
       
         if(newCustomerName.equalsIgnoreCase("yes") && existingCustomer.equalsIgnoreCase("no")) {
               
-              logger= ExtentTestManager.startTest("CreateCustomer");
+              logger= ExtentTestManager.startTest("CreateCustomer"+ServicenameTag);
               APT_IPAccessConfigHelper.get().createcustomer("ipa_config", map.get("newCustomer"), map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), 
                           map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), 
                           map.get("Fax"));
               CustomerName=map.get("newCustomer");
               ExtentTestManager.endTest();
               
-              logger= ExtentTestManager.startTest("selectExistingCustomer"); 
+              logger= ExtentTestManager.startTest("selectExistingCustomer"+ServicenameTag); 
               APT_IPAccessConfigHelper.get().selectCustomertocreateOrder("ipa_config",map.get("newCustomer"));
               ExtentTestManager.endTest();
         }
         else if(newCustomerName.equalsIgnoreCase("no") && existingCustomer.equalsIgnoreCase("Yes")) {
               
-              logger= ExtentTestManager.startTest("selectExistingCustomer"); 
+              logger= ExtentTestManager.startTest("selectExistingCustomer"+ServicenameTag); 
               APT_IPAccessConfigHelper.get().selectCustomertocreateOrder("ipa_config",map.get("existingCustomer"));
               CustomerName=map.get("existingCustomer");
               ExtentTestManager.endTest();
         }
         
-		logger= ExtentTestManager.startTest("verifyCreateorder");
+		logger= ExtentTestManager.startTest("verifyCreateorder"+ServicenameTag);
 		APT_IPAccessConfigHelper.get().createorderservice("ipa_config", map.get("NewOrderService"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ExistingOrderService"), map.get("ExistingOrderNumber"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyservicetypeselection");
+		logger= ExtentTestManager.startTest("verifyservicetypeselection"+ServicenameTag);
 		APT_IPAccessConfigHelper.get().verifyselectservicetype("ipa_config", map.get("ServiceType"), map.get("NetworkConfiguration_DrodpwonValue"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyservicecreation");
+		logger= ExtentTestManager.startTest("verifyservicecreation"+ServicenameTag);
 		APT_IPAccessConfigHelper.get().verifyservicecreation("ipa_config", map.get("ServiceIdentification"), map.get("Remarks")
 				, map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ServiceType"), map.get("NetworkConfiguration_DrodpwonValue")
 				, map.get("TerminationDate"), map.get("BillingTypevalue"), map.get("Email"), map.get("PhoneContact")
@@ -78,12 +78,14 @@ public String ServicenameTag="- IPAccess Configuration";
 				, map.get("PA_Checkbox"), map.get("PI_Checkbox"), map.get("TrapTargetAddress_Value"), map.get("ActelisBased_Checkbox"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyCustomerDetailsInformation");
-		APT_IPAccessConfigHelper.get().verifyCustomerDetailsInformation("ipa_config", map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"),  map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
+		logger= ExtentTestManager.startTest("verifyCustomerDetailsInformation"+ServicenameTag);
+		APT_IPAccessConfigHelper.get().verifyCustomerDetailsInformation("ipa_config", map.get("newCustomerCreation"), map.get("existingCustomerSelection"),map.get("newCustomer"),map.get("existingCustomer"),
+				map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"), map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));	
+		
 		APT_IPAccessConfigHelper.get().verifyUserDetailsInformation("ipa_config", map.get("LoginColumn"), map.get("NameColumn"), map.get("EmailColumn"), map.get("RolesColumn"), map.get("AddressColumn"), map.get("ResourceColumn"));
 		ExtentTestManager.endTest();
 		
-//		logger= ExtentTestManager.startTest("verifyUserDetailsInformation");
+//		logger= ExtentTestManager.startTest("verifyUserDetailsInformation"+ServicenameTag);
 //		APT_IPAccessConfigHelper.get().VerifyUsersPanel("ipa_config", map.get("UserName"), map.get("FirstName"), map.get("SurName"), map.get("PostalAddress"), map.get("UserEmail"), map.get("Phone"), map.get("EditUserName"), map.get("EditFirstName"), map.get("EditSurName"), map.get("EditPostalAddress"), 
 //				map.get("EditEmail"), map.get("EditPhone"),map.get("IPGuardianAccountGroup"),map.get("ColtOnlineUser"),map.get("GeneratePassword"),map.get("RolesToBeSelected"),map.get("HideRouterToolsIPv6CommandsCisco_ToBeSelected"),map.get("HideRouterToolsIPv4CommandsHuiwai_ToBeSelected"), 
 //				map.get("HideRouterToolsIPv4CommandsCisco_ToBeSelected"), map.get("HideServicesToBeSelected"),map.get("HideSiteOrderToBeSelected"), map.get("editRolesToBeSelected"), map.get("edit_RoleToBeHidden"), map.get("RouterToolsIPv6CommandsCisco_ToBeAvailable"), map.get("RouterToolsIPv6CommandsCisco_ToBeHidden"), 
@@ -91,12 +93,13 @@ public String ServicenameTag="- IPAccess Configuration";
 //				map.get("SiteOrders_ToBeAvailable"), map.get("SiteOrders_ToBeHidden"), map.get("editIPGuardianAccountGroup"), map.get("editColtOnlineUser"));
 //		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyOrderDetailsInformation");
-		APT_IPAccessConfigHelper.get().verifyorderpanel_editorder("ipa_config", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"));
-		APT_IPAccessConfigHelper.get().verifyorderpanel_changeorder("ipa_config", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"));
+		logger= ExtentTestManager.startTest("verifyOrderDetailsInformation"+ServicenameTag);
+		APT_IPAccessConfigHelper.get().verifyorderpanel_editorder("ipa_config", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
+		APT_IPAccessConfigHelper.get().verifyorderpanel_changeorder("ipa_config", map.get("ChangeOrder_newOrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
+				map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("verifyServicepanelinviewservicepage");
+		logger= ExtentTestManager.startTest("verifyServicepanelinviewservicepage"+ServicenameTag);
 	  	APT_IPAccessConfigHelper.get().verifyservicepanelInformationinviewservicepage("ipa_config", map.get("ServiceIdentification")
 	  			, map.get("ServiceType"), map.get("NetworkConfiguration_DrodpwonValue"), map.get("Remarks")
 	  			, map.get("TerminationDate"), map.get("BillingTypevalue"), map.get("Email"), map.get("PhoneContact")
@@ -108,7 +111,7 @@ public String ServicenameTag="- IPAccess Configuration";
 		
 	  	ExtentTestManager.endTest();
 	  	
-		logger= ExtentTestManager.startTest("verifyManagementOptionspanel");
+		logger= ExtentTestManager.startTest("verifyManagementOptionspanel"+ServicenameTag);
 		APT_IPAccessConfigHelper.get().verifyManagementConfigpanels("ipa_config", map.get("PerformanceReporting_Checkbox"), map.get("IPGuardian_Checkbox")
 				, map.get("Package_DropdownValue"), map.get("SnmpNotification_Checkbox"), map.get("RouterConfigView_IPv4_Checkbox")
 				, map.get("RouterConfigView_IPv6_Checkbox"), map.get("DeliveryChannel_DropdownValue"), map.get("RouterbasedFirewall_Checkbox")
@@ -118,7 +121,7 @@ public String ServicenameTag="- IPAccess Configuration";
 		ExtentTestManager.endTest();
 		
 		
-		logger= ExtentTestManager.startTest("verifyServicepanelLinks");
+		logger= ExtentTestManager.startTest("verifyServicepanelLinks"+ServicenameTag);
 		APT_IPAccessConfigHelper.get().verifyEditservice("ipa_config", map.get("ServiceIdentification"), map.get("ServiceType")
 				, map.get("NetworkConfiguration_DrodpwonValue"), map.get("EditRemarks"), map.get("Remarks")
 				, map.get("Edit_TerminationDate"), map.get("Edit_BillingTypevalue"), map.get("Edit_Email"), map.get("Edit_PhoneContact")
@@ -136,13 +139,13 @@ public String ServicenameTag="- IPAccess Configuration";
 		APT_IPAccessConfigHelper.get().verifyDump("ipa_config");
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("addExistingPEDevice");
+		logger= ExtentTestManager.startTest("addExistingPEDevice"+ServicenameTag);
 		APT_IPAccessConfigHelper.get().searchorder("ipa_config", map.get("ServiceIdentification"));
 		APT_IPAccessConfigHelper.get().addExistingPEDevice("ipa_config", map.get("ExistingDeviceName"));
 		APT_IPAccessConfigHelper.get().deleteExistingDevice("ipa_config", map.get("ExistingDeviceName"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("addNewPEDevice");
+		logger= ExtentTestManager.startTest("addNewPEDevice"+ServicenameTag);
 		APT_IPAccessConfigHelper.get().navigateToAddNewDevicepage("ipa_config");
 		APT_IPAccessConfigHelper.get().addNewPEDevice("ipa_config", map.get("DeviceName"), map.get("DeviceType"), map.get("VendorModel"), map.get("Telnet"), map.get("SSH"), map.get("Snmp2C"), map.get("SnmPro"), map.get("Snmprw"), 
 													map.get("SnmProNewValue"), map.get("SnmprwNewValue"), map.get("Snmp3"), map.get("Snmpv3Username"),
@@ -166,7 +169,7 @@ public String ServicenameTag="- IPAccess Configuration";
 		ExtentTestManager.endTest();
 		
 		
-		logger= ExtentTestManager.startTest("verifyRouterTools");
+		logger= ExtentTestManager.startTest("verifyRouterTools"+ServicenameTag);
 		APT_IPAccessConfigHelper.get().navigatetoViewDevicePage("ipa_config", map.get("DeviceName"), map.get("editdeviceName"));
 		DeviceName= APT_IPAccessConfigHelper.get().verifyDeviceName("ipa_config");
 		VendorModel= APT_IPAccessConfigHelper.get().verifyVendorModel("ipa_config");
@@ -201,7 +204,7 @@ public String ServicenameTag="- IPAccess Configuration";
 		ExtentTestManager.endTest();
 		
 		
-			logger= ExtentTestManager.startTest("verifyInterfacePanel");
+			logger= ExtentTestManager.startTest("verifyInterfacePanel"+ServicenameTag);
 			String CPEWANTechnology= map.get("CPEWANTechnology_DropdownValue");
 			String Edit_CPEWANTechnology=map.get("Edit_CPEWANTechnology_DropdownValue");
 			String PEWANTechnology= map.get("PEWANTechnology_DropdownValue");
@@ -595,13 +598,13 @@ public String ServicenameTag="- IPAccess Configuration";
 		
 		if(VendorModel.contains("Juniper")) 
 		{
-		logger= ExtentTestManager.startTest("verifyInterfaceConfigHistory");
+		logger= ExtentTestManager.startTest("verifyInterfaceConfigHistory"+ServicenameTag);
 		APT_IPAccessConfigHelper.get().verifyInterfaceConfigHistory("ipa_config");
 		ExtentTestManager.endTest();
 		}
 		
 		
-		logger= ExtentTestManager.startTest("verifySelectInterfaces");
+		logger= ExtentTestManager.startTest("verifySelectInterfaces"+ServicenameTag);
 		APT_IPAccessConfigHelper.get().selectInterfacelinkforDevice("ipa_config", DeviceName);
 		
 		if(map.get("RemoveInterface_Selection").equalsIgnoreCase("yes")) {
@@ -618,11 +621,11 @@ public String ServicenameTag="- IPAccess Configuration";
 		ExtentTestManager.endTest();
 		
 		
-		logger= ExtentTestManager.startTest("VerifyManageService");
-		APT_IPAccessConfigHelper.get().verifyManageService("ipa_config", map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
+		logger= ExtentTestManager.startTest("VerifyManageService"+ServicenameTag);
+		APT_IPAccessConfigHelper.get().verifyManageService("ipa_config", map.get("ChangeOrder_newOrderNumber"), map.get("ServiceIdentification"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest("Delete Device");
+		logger= ExtentTestManager.startTest("Delete Device"+ServicenameTag);
 		APT_IPAccessConfigHelper.get().deleteDevice("ipa_config", DeviceName);
 		ExtentTestManager.endTest();
 		
@@ -642,7 +645,7 @@ public String ServicenameTag="- IPAccess Configuration";
 		
 		
 		System.out.println("TC-09");
-		logger= ExtentTestManager.startTest("verifyAddCPEDeviceFunction_IPAccessConfiguration");
+		logger= ExtentTestManager.startTest("verifyAddCPEDeviceFunction"+ServicenameTag);
 		Thread.sleep(2000);
 		APT_IPAccessConfigHelper.get().searchorder("IPAConfig2", map.get("ServiceIdentification"));
 		APT_IPAccessConfigHelper.get().verifyAddCPEDeviceFunction("IPAConfig2", map.get("ServiceIdentification"),
@@ -657,7 +660,7 @@ public String ServicenameTag="- IPAccess Configuration";
 		
 		
 	System.out.println("TC-10");
-	logger= ExtentTestManager.startTest("verifyAddedCPEDeviceInformation_IPAccessConfiguration");
+	logger= ExtentTestManager.startTest("verifyAddedCPEDeviceInformation"+ServicenameTag);
 	APT_IPAccessConfigHelper.get().verifyAddedCPEDeviceInformation_View("IPAConfig2", map.get("ServiceIdentification"),
 			map.get("CPE_DeviceName"), map.get("CPE_RouterID"),map.get("CPE_VendorModel"),map.get("CPE_ManagementAddress"),map.get("CPE_Snmpro"),map.get("CPE_Country"),
 			map.get("CPE_City"),  map.get("CPE_Site"), map.get("CPE_Premise"), map.get("CPE_Role1"),  map.get("CPE_Role2")); 
@@ -672,7 +675,7 @@ public String ServicenameTag="- IPAccess Configuration";
 	
 	
 	System.out.println("TC-11");
-	logger= ExtentTestManager.startTest("verifyEditCPEDeviceFunction_IPAccessConfiguration");
+	logger= ExtentTestManager.startTest("verifyEditCPEDeviceFunction"+ServicenameTag);
 	APT_IPAccessConfigHelper.get().verifyEditCPEDeviceFunction("IPAConfig2", map.get("ServiceIdentification"),
 			map.get("CPE_DeviceNameEdit"), map.get("CPE_RouterIDEdit"),map.get("CPE_VendorModelEdit"),map.get("CPE_ManagementAddressEdit"),map.get("CPE_SnmproEdit"),map.get("CPE_CountryEdit"),
 			map.get("CPE_CityEdit"),  map.get("CPE_SiteEdit"), map.get("CPE_PremiseEdit"), map.get("CPE_Role1Edit"),  map.get("CPE_Role2Edit")); 
@@ -685,7 +688,7 @@ public String ServicenameTag="- IPAccess Configuration";
 	
 	
 		System.out.println("TC-12");
-		logger= ExtentTestManager.startTest("verifyRouterToolFunction_CPE_IPAccessConfiguration");
+		logger= ExtentTestManager.startTest("verifyRouterToolFunction_CPE"+ServicenameTag);
 		APT_IPAccessConfigHelper.get().searchorder("IPAConfig2", map.get("ServiceIdentification"));
 		APT_IPAccessConfigHelper.get().navigateToViewDevicePage_CPE("IPAConfig2", map.get("CPE_DeviceName"));
 		APT_IPAccessConfigHelper.get().routerPanel_CPE("IPAConfig2", map.get("CPE_CommandIPV4"),
@@ -760,7 +763,7 @@ public String ServicenameTag="- IPAccess Configuration";
 				APT_IPAccessConfigHelper.get().addStaticNATMappingFunction_CPE("IPAConfig2", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
 				map.get("Static_Protocol"),map.get("Static_LocalPort"), map.get("Static_GlobalPort"), map.get("Static_LocalIP"), map.get("Static_GlobalIP"));
 				APT_IPAccessConfigHelper.get().editStaticNATMappingFunction_CPE("IPAConfig2", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
-				map.get("Static_ProtocolEdit"),map.get("Static_LocalPortEdit"), map.get("Static_GlobalPortEdit"), map.get("Static_LocalIPEdit"), map.get("Static_GlobalIPEdit"));
+				map.get("Static_ProtocolEdit"),map.get("Static_LocalPortEdit"), map.get("Static_GlobalPortEdit"), map.get("Static_LocalIP"), map.get("Static_LocalIPEdit"), map.get("Static_GlobalIPEdit"));
 				APT_IPAccessConfigHelper.get().deleteStaticNATMappingFunction_CPE("IPAConfig2", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
 						map.get("Static_ProtocolEdit"),map.get("Static_LocalPortEdit"), map.get("Static_GlobalPortEdit"), map.get("Static_LocalIP"), map.get("Static_LocalIPEdit"), map.get("Static_GlobalIPEdit"));
 				ExtentTestManager.endTest();
@@ -776,7 +779,7 @@ public String ServicenameTag="- IPAccess Configuration";
 				map.get("Dynamic_PoolMode"),map.get("Dynamic_InterfaceMode"), map.get("Dynamic_LocalNetwork"), map.get("Dynamic_PoolStartAddress"), map.get("Dynamic_PoolEndAddress"),
 				map.get("Dynamic_PoolPrefix"), map.get("Dynamic_MapsToInterface"), map.get("StaticNATEdit"), map.get("DynamicNATEdit"));
 				APT_IPAccessConfigHelper.get().editDynamicNATMappingFunction_CPE("IPAConfig2", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
-						map.get("EditDynamic_PoolMode"),map.get("EditDynamic_InterfaceMode"), map.get("EditDynamic_LocalNetwork"), map.get("EditDynamic_PoolStartAddress"), map.get("EditDynamic_PoolEndAddress"),
+						map.get("EditDynamic_PoolMode"),map.get("EditDynamic_InterfaceMode"), map.get("Dynamic_LocalNetwork"), map.get("EditDynamic_LocalNetwork"), map.get("EditDynamic_PoolStartAddress"), map.get("EditDynamic_PoolEndAddress"),
 						map.get("EditDynamic_PoolPrefix"), map.get("EditDynamic_MapsToInterface"), map.get("StaticNATEdit"), map.get("DynamicNATEdit"));
 				APT_IPAccessConfigHelper.get().deleteDynamicNATMappingFunction_CPE("IPAConfig2", map.get("ServiceIdentification")
 						,map.get("CPE_DeviceName"), map.get("StaticNATEdit"), map.get("DynamicNATEdit"), map.get("Dynamic_LocalNetwork")
@@ -792,7 +795,7 @@ public String ServicenameTag="- IPAccess Configuration";
 				APT_IPAccessConfigHelper.get().addStaticNATMappingFunction_CPE("IPAConfig2", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
 						map.get("Static_Protocol"),map.get("Static_LocalPort"), map.get("Static_GlobalPort"), map.get("Static_LocalIP"), map.get("Static_GlobalIP"));
 				APT_IPAccessConfigHelper.get().editStaticNATMappingFunction_CPE("IPAConfig2", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
-						map.get("Static_ProtocolEdit"),map.get("Static_LocalPortEdit"), map.get("Static_GlobalPortEdit"), map.get("Static_LocalIPEdit"), map.get("Static_GlobalIPEdit"));
+						map.get("Static_ProtocolEdit"),map.get("Static_LocalPortEdit"), map.get("Static_GlobalPortEdit"), map.get("Static_LocalIP"), map.get("Static_LocalIPEdit"), map.get("Static_GlobalIPEdit"));
 				APT_IPAccessConfigHelper.get().deleteStaticNATMappingFunction_CPE("IPAConfig2", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
 						map.get("Static_ProtocolEdit"),map.get("Static_LocalPortEdit"), map.get("Static_GlobalPortEdit"), map.get("Static_LocalIP"), map.get("Static_LocalIPEdit"), map.get("Static_GlobalIPEdit"));
 				ExtentTestManager.endTest();
@@ -803,7 +806,7 @@ public String ServicenameTag="- IPAccess Configuration";
 						map.get("Dynamic_PoolMode"),map.get("Dynamic_InterfaceMode"), map.get("Dynamic_LocalNetwork"), map.get("Dynamic_PoolStartAddress"), map.get("Dynamic_PoolEndAddress"),
 						map.get("Dynamic_PoolPrefix"), map.get("Dynamic_MapsToInterface"), map.get("StaticNATEdit"), map.get("DynamicNATEdit"));
 				APT_IPAccessConfigHelper.get().editDynamicNATMappingFunction_CPE("IPAConfig2", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
-						map.get("EditDynamic_PoolMode"),map.get("EditDynamic_InterfaceMode"), map.get("EditDynamic_LocalNetwork"), map.get("EditDynamic_PoolStartAddress"), map.get("EditDynamic_PoolEndAddress"),
+						map.get("EditDynamic_PoolMode"),map.get("EditDynamic_InterfaceMode"), map.get("Dynamic_LocalNetwork"), map.get("EditDynamic_LocalNetwork"), map.get("EditDynamic_PoolStartAddress"), map.get("EditDynamic_PoolEndAddress"),
 						map.get("EditDynamic_PoolPrefix"), map.get("EditDynamic_MapsToInterface"), map.get("StaticNATEdit"), map.get("DynamicNATEdit"));
 				APT_IPAccessConfigHelper.get().deleteDynamicNATMappingFunction_CPE("IPAConfig2", map.get("ServiceIdentification"),map.get("CPE_DeviceName")
 						, map.get("StaticNATEdit"), map.get("DynamicNATEdit"), map.get("Dynamic_LocalNetwork"), map.get("EditDynamic_LocalNetwork"));
@@ -825,7 +828,7 @@ public String ServicenameTag="- IPAccess Configuration";
 		 
 		 
 			System.out.println("TC-21");
-			logger= ExtentTestManager.startTest("verifyDHCPServersonCPEFunction_CPE_Multohomed");
+			logger= ExtentTestManager.startTest("verifyDHCPServersonCPEFunction_CPE"+ServicenameTag);
 			APT_IPAccessConfigHelper.get().searchorder("IPAConfig2", map.get("ServiceIdentification"));
 			APT_IPAccessConfigHelper.get().navigateToViewDevicePage_CPE("IPAConfig2", "CPE_DeviceName");
 			APT_IPAccessConfigHelper.get().addDHCPServersonCPEFunction_CPE("IPAConfig2", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
@@ -868,7 +871,7 @@ public String ServicenameTag="- IPAccess Configuration";
 					
 					
 					System.out.println("TC-24");
-					logger= ExtentTestManager.startTest("verifyFetchDeviceInterfaceFunction_CPE_IPAccessConfiguration");
+					logger= ExtentTestManager.startTest("verifyFetchDeviceInterfaceFunction_CPE"+ServicenameTag);
 					APT_IPAccessConfigHelper.get().searchorder("IPAConfig2", map.get("ServiceIdentification"));
 					APT_IPAccessConfigHelper.get().navigateToViewDevicePage_CPE("IPAConfig2", map.get("CPE_DeviceName"));
 					APT_IPAccessConfigHelper.get().veriyFetchDeviceInterfacesFunction_CPE("IPAConfig2",map.get("ServiceIdentification"), 
@@ -883,7 +886,7 @@ public String ServicenameTag="- IPAccess Configuration";
 					if(CPEWANTechnology.equalsIgnoreCase("ADSL") || Edit_CPEWANTechnology.equalsIgnoreCase("ADSL")) {
 						System.out.println("TC-25");
 						if(PEWANTechnology.equalsIgnoreCase("L2TP") || Edit_PEWANTechnology.equalsIgnoreCase("L2TP")) {
-							logger= ExtentTestManager.startTest("verifyAddWANMultilink_CPEDevice_IPAccessConfiguration");
+							logger= ExtentTestManager.startTest("verifyAddWANMultilink_CPEDevice"+ServicenameTag);
 							APT_IPAccessConfigHelper.get().searchorder("IPAConfig2", map.get("ServiceIdentification"));
 							APT_IPAccessConfigHelper.get().verifyADSL_L2TP_AddWANMultilink_CPEDevice("IPAConfig2",map.get("CPEMultilink_Name"), 
 									map.get("CPEMultilink_GetAddress_Button"), map.get("CPEMultilink_IPV6_GetAddressButton"), map.get("CPEMultilink_InterfaceAddressRange_Value"), 
@@ -899,7 +902,7 @@ public String ServicenameTag="- IPAccess Configuration";
 							
 
 							System.out.println("TC-26");
-							logger= ExtentTestManager.startTest("verifyAddLANInterface_CPEDevice_IPAccessConfiguration");
+							logger= ExtentTestManager.startTest("verifyAddLANInterface_CPEDevice"+ServicenameTag);
 							APT_IPAccessConfigHelper.get().searchorder("IPAConfig2", map.get("ServiceIdentification"));
 							APT_IPAccessConfigHelper.get().verifyAddLANInterface_CPEDevice("IPAConfig2",map.get("CPE_InterfaceName"), 
 									map.get("CPE_GetAddress_Button"), map.get("CPE_IPV6_GetAddressButton"), map.get("CPE_InterfaceAddressRange_Value"), map.get("CPE_EIPAllocation_City"),
@@ -914,7 +917,7 @@ public String ServicenameTag="- IPAccess Configuration";
 							
 						
 							System.out.println("TC-27");
-							logger= ExtentTestManager.startTest("verifyAddWANInterface_CPEDevice_IPAccessConfiguration");
+							logger= ExtentTestManager.startTest("verifyAddWANInterface_CPEDevice"+ServicenameTag);
 							APT_IPAccessConfigHelper.get().searchorder("IPAConfig2", map.get("ServiceIdentification"));
 							APT_IPAccessConfigHelper.get().verifyAddWANInterface_CPEDevice("IPAConfig2",map.get("CPE_InterfaceName"), 
 									map.get("CPE_GetAddress_Button"), map.get("CPE_IPV6_GetAddressButton"), map.get("CPE_InterfaceAddressRange_Value"), map.get("CPE_EIPAllocation_City"),
@@ -944,16 +947,16 @@ public String ServicenameTag="- IPAccess Configuration";
 					
 
 		
-				logger= ExtentTestManager.startTest("TC-28 : deletePEdeviceFunction_NewlyCreatedDevice_IPAccessConfiguration");
+				logger= ExtentTestManager.startTest("TC-28 : deletePEdeviceFunction_NewlyCreatedDevice"+ServicenameTag);
 				APT_IPAccessConfigHelper.get().searchorder("IPAConfig2", map.get("ServiceIdentification"));
-				APT_IPAccessConfigHelper.get().deleteDevice_PE("IPAConfig2", "DeviceName");
+				APT_IPAccessConfigHelper.get().deleteDevice_PE("IPAConfig2", map.get("DeviceName"));
 				ExtentTestManager.endTest();
 		
 		
 		
 		
-				logger= ExtentTestManager.startTest("TC-29 : deleteCPEdeviceFunction_IPAccessConfiguration");
-				APT_IPAccessConfigHelper.get().deleteDevice_CPE("IPAConfig2", "CPE_DeviceName");
+				logger= ExtentTestManager.startTest("TC-29 : deleteCPEdeviceFunction"+ServicenameTag);
+				APT_IPAccessConfigHelper.get().deleteDevice_CPE("IPAConfig2", map.get("CPE_DeviceName"));
 				ExtentTestManager.endTest();
 
 		
@@ -961,8 +964,8 @@ public String ServicenameTag="- IPAccess Configuration";
 		
 		
 		
-				logger= ExtentTestManager.startTest("TC-30 : deleteServiceFunction_IPAccessConfiguration");
-				APT_IPAccessConfigHelper.get().deleteSevice1("IPAConfig2", "ServiceIdentification");
+				logger= ExtentTestManager.startTest("TC-30 : deleteServiceFunction"+ServicenameTag);
+				APT_IPAccessConfigHelper.get().deleteSevice1("IPAConfig2", map.get("ServiceIdentification"));
 				ExtentTestManager.endTest();
 		
 					

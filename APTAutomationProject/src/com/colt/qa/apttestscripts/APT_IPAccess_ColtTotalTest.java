@@ -244,7 +244,7 @@ public class APT_IPAccess_ColtTotalTest extends DriverTestcase{
 			ColtTotalHelper.get().verifyManageSubnets("ColtCotalConfig");
 			ColtTotalHelper.get().verifyDump("ColtCotalConfig");
 			ColtTotalHelper.get().ShowNewInfovistaReport("ColtCotalConfig");
-			ColtTotalHelper.get().verifyManageService1("ColtCotalConfig", map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdentification"),
+			ColtTotalHelper.get().verifyManageService1("ColtCotalConfig", map.get("ChangeOrder_newOrderNumber"), map.get("ServiceIdentification"),
 					map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
 		ExtentTestManager.endTest();
 	}	
@@ -402,11 +402,17 @@ public class APT_IPAccess_ColtTotalTest extends DriverTestcase{
 	
 	
 	
+	
+	
+	
 	private void TestCase16() {
 		try {
+			if(map.get("VendorModel").contains("Juniper")) 
+			{
 			logger= ExtentTestManager.startTest("TC-16 : verifyInterfaceConfigurationHistory_ColtTotal");
 			ColtTotalHelper.get().verifyInterfaceConfigHistory("ColtCotalConfig",map.get("ServiceIdentification"), map.get("NewPE_DeviceName"), map.get("VendorModel"));
-		}catch(Exception e) {
+			}
+			}catch(Exception e) {
 			e.printStackTrace();
 			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Method failed");
 			System.out.println(  e+" : Method failed");
@@ -716,9 +722,8 @@ public class APT_IPAccess_ColtTotalTest extends DriverTestcase{
 				map.get("Static_Protocol"),map.get("Static_LocalPort"), map.get("Static_GlobalPort"), map.get("Static_LocalIP"), map.get("Static_GlobalIP"));
 				ColtTotalHelper.get().editStaticNATMappingFunction_CPE("ColtCotalConfig", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
 				map.get("Static_ProtocolEdit"),map.get("Static_LocalPortEdit"), map.get("Static_GlobalPortEdit"), map.get("Static_LocalIPEdit"), map.get("Static_GlobalIPEdit"));
-				ColtTotalHelper.get().deleteStaticNATMappingFunction_CPE("ColtCotalConfig", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
-						map.get("Static_ProtocolEdit"),map.get("Static_LocalPortEdit"), map.get("Static_GlobalPortEdit"), map.get("Static_LocalIPEdit"), map.get("Static_GlobalIPEdit"));
-	              
+				ColtTotalHelper.get().deleteStaticNATMappingFunction_CPE("ColtCotalConfig",  map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
+						map.get("Static_ProtocolEdit"),map.get("Static_LocalPortEdit"), map.get("Static_GlobalPortEdit"), map.get("Static_LocalIP"), map.get("Static_LocalIPEdit"), map.get("Static_GlobalIPEdit"));
 	        }else if(StaticNATMapping.equalsIgnoreCase("no") && DynamicNATMapping.equalsIgnoreCase("Yes")) {
 				logger= ExtentTestManager.startTest("TC-29 : verifyDynamicNATMappingFunction_CPE_ColtTotal");
 	        	ExtentTestManager.getTest().log(LogStatus.INFO, "'Dynamic NAT Selection status is :  "+DynamicNATMapping);
@@ -730,8 +735,9 @@ public class APT_IPAccess_ColtTotalTest extends DriverTestcase{
 				ColtTotalHelper.get().editDynamicNATMappingFunction_CPE("ColtCotalConfig", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
 						map.get("EditDynamic_PoolMode"),map.get("EditDynamic_InterfaceMode"), map.get("EditDynamic_LocalNetwork"), map.get("EditDynamic_PoolStartAddress"), map.get("EditDynamic_PoolEndAddress"),
 						map.get("EditDynamic_PoolPrefix"), map.get("EditDynamic_MapsToInterface"), map.get("StaticNATEdit"), map.get("DynamicNATEdit"));
-				ColtTotalHelper.get().deleteDynamicNATMappingFunction_CPE("ColtCotalConfig", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
-						map.get("StaticNATEdit"), map.get("DynamicNATEdit"));
+				ColtTotalHelper.get().deleteDynamicNATMappingFunction_CPE("ColtCotalConfig", map.get("ServiceIdentification")
+						,map.get("CPE_DeviceName"), map.get("StaticNATEdit"), map.get("DynamicNATEdit"), map.get("Dynamic_LocalNetwork")
+						, map.get("EditDynamic_LocalNetwork"));
 				 
 	        }else if(StaticNATMapping.equalsIgnoreCase("Yes") && DynamicNATMapping.equalsIgnoreCase("Yes")) {
 				logger= ExtentTestManager.startTest("TC-29 : verifyStatic+DynamicNATMappingFunction_CPE_ColtTotal");
@@ -743,7 +749,7 @@ public class APT_IPAccess_ColtTotalTest extends DriverTestcase{
 				ColtTotalHelper.get().editStaticNATMappingFunction_CPE("ColtCotalConfig", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
 						map.get("Static_ProtocolEdit"),map.get("Static_LocalPortEdit"), map.get("Static_GlobalPortEdit"), map.get("Static_LocalIPEdit"), map.get("Static_GlobalIPEdit"));
 				ColtTotalHelper.get().deleteStaticNATMappingFunction_CPE("ColtCotalConfig", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
-						map.get("Static_ProtocolEdit"),map.get("Static_LocalPortEdit"), map.get("Static_GlobalPortEdit"), map.get("Static_LocalIPEdit"), map.get("Static_GlobalIPEdit"));
+						map.get("Static_ProtocolEdit"),map.get("Static_LocalPortEdit"), map.get("Static_GlobalPortEdit"), map.get("Static_LocalIP"), map.get("Static_LocalIPEdit"), map.get("Static_GlobalIPEdit"));
 				
 				
 	        	ExtentTestManager.getTest().log(LogStatus.INFO, "'Dynamic NAT Selection status is :  "+DynamicNATMapping);
@@ -755,8 +761,9 @@ public class APT_IPAccess_ColtTotalTest extends DriverTestcase{
 				ColtTotalHelper.get().editDynamicNATMappingFunction_CPE("ColtCotalConfig", map.get("ServiceIdentification"),map.get("CPE_DeviceName"),
 						map.get("EditDynamic_PoolMode"),map.get("EditDynamic_InterfaceMode"), map.get("EditDynamic_LocalNetwork"), map.get("EditDynamic_PoolStartAddress"), map.get("EditDynamic_PoolEndAddress"),
 						map.get("EditDynamic_PoolPrefix"), map.get("EditDynamic_MapsToInterface"), map.get("StaticNATEdit"), map.get("DynamicNATEdit"));
-				ColtTotalHelper.get().deleteDynamicNATMappingFunction_CPE("ColtCotalConfig", map.get("ServiceIdentification"),map.get("CPE_DeviceName"), map.get("StaticNATEdit"), map.get("DynamicNATEdit"));
-	        	
+				ColtTotalHelper.get().deleteDynamicNATMappingFunction_CPE("ColtCotalConfig", map.get("ServiceIdentification")
+						,map.get("CPE_DeviceName"), map.get("StaticNATEdit"), map.get("DynamicNATEdit"), map.get("Dynamic_LocalNetwork")
+						, map.get("EditDynamic_LocalNetwork"));
 	        }else if(StaticNATMapping.equalsIgnoreCase("no") && DynamicNATMapping.equalsIgnoreCase("no")) {
 	        	logger= ExtentTestManager.startTest("TC-29 : StaticAndDynamicNonSelection_CPE_ColtTotal");
 	        	ExtentTestManager.getTest().log(LogStatus.INFO, "'Static NAT & Dynamic NAT is not selected as expected");

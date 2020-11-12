@@ -47,50 +47,50 @@ import com.relevantcodes.extentreports.LogStatus;
 		              ExtentTestManager.endTest();
 		        }
 		        
-				logger= ExtentTestManager.startTest ("verifycreateorder");
+				logger= ExtentTestManager.startTest ("verifycreateorder - HSS");
 				APT_HSSHelper.get().createorderservice("hss", map.get("NewOrderService"), map.get("NewOrderNumber"), map.get("NewRFIREQNumber"), map.get("ExistingOrderService"), map.get("ExistingOrderNumber"));
 				ExtentTestManager.endTest();
 				
-				logger= ExtentTestManager.startTest ("verifyservicetypeselection");
+				logger= ExtentTestManager.startTest ("verifyservicetypeselection - HSS");
 				APT_HSSHelper.get().verifyselectservicetype("hss", map.get("ServiceType"));
 				ExtentTestManager.endTest();
 				
-				logger= ExtentTestManager.startTest ("verifyservicecreation");
+				logger= ExtentTestManager.startTest ("verifyservicecreation - HSS");
 				APT_HSSHelper.get().verifyservicecreation("hss", map.get("ServiceIdvalue"),map.get("RemarkValue"),map.get("EmailValue"),
 				map.get("PhoneContactValue"),map.get("PerformanceReporting_Checkbox"),map.get("WaveService_checkbox")
 				,map.get("InterfaceSpeedValue"),map.get("TypeOfServiceValue"));
 				ExtentTestManager.endTest();
 				
-				logger= ExtentTestManager.startTest ("verifyCustomerDetailsInformation");
+				logger= ExtentTestManager.startTest ("verifyCustomerDetailsInformation - HSS");
 				APT_HSSHelper.get().verifyCustomerDetailsInformation("hss", map.get("newCustomerCreation"), map.get("existingCustomerSelection"),
 						map.get("newCustomer"),	map.get("existingCustomer"),
 						map.get("MainDomain"), map.get("CountryToBeSelected"), map.get("OCN"), map.get("Reference"), 
 						map.get("TechnicalContactName"), map.get("TypeToBeSelected"), map.get("Email"), map.get("Phone"), map.get("Fax"));
 				ExtentTestManager.endTest();
 				
-				logger= ExtentTestManager.startTest ("verifyservicepanelinviewservicepage");
+				logger= ExtentTestManager.startTest ("verifyservicepanelinviewservicepage - HSS");
 				APT_HSSHelper.get().verifyservicepanelInformationinviewservicepage("hss", map.get("ServiceIdvalue")
 						,map.get("RemarkValue"),map.get("EmailValue"),map.get("PhoneContactValue"),map.get("ServiceType"));
 				ExtentTestManager.endTest();
 				
-				logger= ExtentTestManager.startTest ("VerifyManagementOptionsPanel");
+				logger= ExtentTestManager.startTest ("VerifyManagementOptionsPanel - HSS");
 				APT_HSSHelper.get().VerifyManagementPanel("hss",map.get("PerformanceReporting_Checkbox"),map.get("WaveService_checkbox")
 						,map.get("InterfaceSpeedValue"),map.get("TypeOfServiceValue"));
 				ExtentTestManager.endTest();
 				
-				logger= ExtentTestManager.startTest ("VerifyOrderPanel");
+				logger= ExtentTestManager.startTest ("VerifyOrderPanel - HSS");
 				APT_HSSHelper.get().verifyorderpanel_editorder("hss", map.get("EditOrder_OrderNumber"), map.get("EditOrder_VoicelineNumber"), map.get("editOrderSelection"));
 				APT_HSSHelper.get().verifyorderpanel_changeorder("hss", map.get("ChangeOrder_OrderNumber"), map.get("ChangeOrder_VoicelineNumber"), map.get("changeOrderSelection_newOrder"),
 						map.get("changeOrderSelection_existingOrder"), map.get("ChangeOrder_existingOrderNumber"));
 				ExtentTestManager.endTest();
 				
-			logger= ExtentTestManager.startTest ("verifyServicePanelLinks");
+			logger= ExtentTestManager.startTest ("verifyServicePanelLinks - HSS");
 			APT_HSSHelper.get().VerifyEditService("hss", map.get("EditRemarks"), map.get("ServiceIdvalue"), map.get("Edit_Email"), map.get("Edit_PhoneContact"));				
 			APT_HSSHelper.get().verifyDump("hss");
 			APT_HSSHelper.get().verifyShowInfovistaReport("hss");
 			ExtentTestManager.endTest();
 			
-				logger= ExtentTestManager.startTest ("AddNewPEDevice");
+				logger= ExtentTestManager.startTest ("AddNewPEDevice - HSS");
 				APT_HSSHelper.get().navigateToAddNewDevicepage("hss");
 				APT_HSSHelper.get().addNewPEDevice("hss", map.get("DeviceName"), map.get("DeviceType")
 						, map.get("VendorModel"), map.get("Telnet"), map.get("SSH"), map.get("Snmp2C")
@@ -128,28 +128,28 @@ import com.relevantcodes.extentreports.LogStatus;
 						, map.get("editNewPremiseName"), map.get("editNewPremiseCode"));
 				ExtentTestManager.endTest();
 				
-		logger= ExtentTestManager.startTest ("AddExistingDevice");
+		logger= ExtentTestManager.startTest ("AddExistingDevice - HSS");
 		APT_HSSHelper.get().AddExistingDevice("hss", map.get("ExistingDeviceName"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("SelectInterface");
+		logger= ExtentTestManager.startTest ("SelectInterface - HSS");
 		APT_HSSHelper.get().selectInterfacelinkforDevice("hss", map.get("ExistingDeviceName"));
 		APT_HSSHelper.get().SelectInterface("hss");
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("DeleteExistingDevice");
+		logger= ExtentTestManager.startTest ("DeleteExistingDevice - HSS");
 		APT_HSSHelper.get().deleteExistingDevice("hss", map.get("ExistingDeviceName"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("ManageService");
+		logger= ExtentTestManager.startTest ("ManageService - HSS");
 		APT_HSSHelper.get().verifyManageService("hss", map.get("ChangeOrder_OrderNumber"), map.get("ServiceIdvalue"), map.get("ServiceType"), map.get("ServiceStatus"), map.get("syncstatus"), map.get("ServiceStatusChangeRequired"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("DeleteNewDevice");
+		logger= ExtentTestManager.startTest ("DeleteNewDevice - HSS");
 		APT_HSSHelper.get().deleteDevice("hss", map.get("ManagementAddress"));
 		ExtentTestManager.endTest();
 		
-		logger= ExtentTestManager.startTest ("DeleteService");
+		logger= ExtentTestManager.startTest ("DeleteService - HSS");
 		APT_HSSHelper.get().deleteService("hss");
 		ExtentTestManager.endTest();
 		}

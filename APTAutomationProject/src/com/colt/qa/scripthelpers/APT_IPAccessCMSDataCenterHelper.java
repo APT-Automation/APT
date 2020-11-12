@@ -348,25 +348,40 @@ public class APT_IPAccessCMSDataCenterHelper extends DriverHelper {
 		sa.assertAll();
 	}
 
-	public void verifyCustomerDetailsInformation(String application, String maindomain, String country, String ocn,
+
+	public void verifyCustomerDetailsInformation(String application, String newCustomerCreation, String existingCustomerSelection,String newCustomer,
+			String existingCustomer, String maindomain, String country, String ocn,
 			String reference, String tcn, String type, String email, String phone, String fax)
 					throws InterruptedException, DocumentException, IOException {
-
+		ExtentTestManager.getTest().log(LogStatus.INFO, "'Verifying Customer informations");
 		ScrolltoElement(application, "customerdetailsheader", xml);
-		GetText(application, "Customer Name", "Name_Value");
-		compareText(application, "Main Domain", "MainDomain_Value", maindomain, xml);
-		compareText(application, "Country", "Country_Value", country, xml);
-		compareText(application, "OCN", "OCN_Value", ocn, xml);
-		compareText(application, "Reference", "Reference_Value", reference, xml);
-		compareText(application, "Technical Contact Name", "TechnicalContactName_Value", tcn, xml);
-		compareText(application, "Type", "Type_Value", type, xml);
-		compareText(application, "Email", "Email_Value", email, xml);
-		compareText(application, "Phone", "Phone_Value", phone, xml);
-		compareText(application, "Fax", "Fax_Value", fax, xml);
+		//Customer Name
+			if(newCustomerCreation.equalsIgnoreCase("Yes") || existingCustomerSelection.equalsIgnoreCase("No")) {
+				compareText(application, "Customer Name", "Name_Value", newCustomer, xml);
+				compareText(application, "Country", "Country_Value", country, xml);
+				compareText(application, "OCN", "OCN_Value", ocn, xml);
+				compareText(application, "Reference", "Reference_Value", reference, xml);
+				compareText(application, "Technical Contact Name", "TechnicalContactName_Value", tcn, xml);
+				compareText(application, "Type", "Type_Value", type, xml);
+				compareText(application, "Email", "Email_Value", email, xml);
+				compareText(application, "Phone", "Phone_Value", phone, xml);
+				compareText(application, "Fax", "Fax_Value", fax, xml);
+			}
+			else if(newCustomerCreation.equalsIgnoreCase("No") || existingCustomerSelection.equalsIgnoreCase("Yes")) {
+				compareText(application, "Customer Name", "Name_Value", existingCustomer, xml);
+			}
+			
+		//Main Domain
+			if(maindomain.equalsIgnoreCase("Null")) {
+				Log.info("A default displays for main domain field, if no provided while creating customer");
+			}else {
+				compareText(application, "Main Domain", "MainDomain_Value", maindomain, xml);
+			}
+		
 		Log.info("=== Customer Details panel fields Verified ===");
-		sa.assertAll();
 	}
-
+	
+	
 	public void verifyUserDetailsInformation(String application, String Login, String Name, String Email, String Roles, String Address, String Resource)
 			throws InterruptedException, DocumentException, IOException {
 
@@ -965,12 +980,19 @@ public class APT_IPAccessCMSDataCenterHelper extends DriverHelper {
 		sa.assertAll();
 	}
 
-	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno) throws InterruptedException, DocumentException, IOException {
+	public void verifyorderpanel_editorder(String application, String editorderno, String editvoicelineno, String editOrderSelection) 
+			throws InterruptedException, DocumentException, IOException {
 
-		waitForpageload();
-		waitforPagetobeenable();
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Edit Order' Functionality");
+		
 		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);;
+
+		if(editOrderSelection.equalsIgnoreCase("no")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Edit Order is not performed");
+			Log.info("Edit Order is not performed");
+		}
+		else if(editOrderSelection.equalsIgnoreCase("Yes")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Performing Edit Order Functionality");
 		
 		//Cancel Edit order in Order panel
 		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
@@ -981,16 +1003,17 @@ public class APT_IPAccessCMSDataCenterHelper extends DriverHelper {
 		WebElement EditOrderNo= getwebelement(xml.getlocator("//locators/" + application + "/editorderno"));
 		click_commonMethod(application, "Order Number", "editorderno", xml);
 		Thread.sleep(2000);
-		edittextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
+		Clear(EditOrderNo);
+		Thread.sleep(2000);
+		addtextFields_commonMethod(application, "Order Number", "editorderno", editorderno, xml);
 
 		WebElement EditVoiceLineNo= getwebelement(xml.getlocator("//locators/" + application + "/editvoicelineno"));
 		click_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", xml);
 		Thread.sleep(2000);
-		edittextFields_commonMethod(application, "RFI Voice Line Number", "editvoicelineno", editvoicelineno, xml);
+		Clear(EditVoiceLineNo);
+		Thread.sleep(2000);
+		addtextFields_commonMethod(application, "RFI Voiceline Number", "editvoicelineno", editvoicelineno, xml);
 		click_commonMethod(application, "Cancel", "cancelbutton", xml);
-		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-		Log.info("Navigated to order panel in view service page");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
 		//Edit Order
 		Thread.sleep(1000);
@@ -1014,75 +1037,39 @@ public class APT_IPAccessCMSDataCenterHelper extends DriverHelper {
 		Thread.sleep(1000);
 		ScrolltoElement(application, "userspanel_header", xml);
 		Thread.sleep(1000);
-		compareText(application, "Order Header", "orderpanelheader", "Order", xml);
-		Log.info("Navigated to order panel in view service page");
-		ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
 
+		if(editorderno.equalsIgnoreCase("Null")) {
+			
+			ExtentTestManager.getTest().log(LogStatus.PASS, "'Order/Contract Number (Parent SID)' field is not edited");
+			Log.info("'Order/Contract Number (Parent SID)' field is not edited");
+		}else {
+			compareText(application, "Order Number", "ordernumbervalue", editorderno, xml);
+		}
+		
+		if(editvoicelineno.equalsIgnoreCase("Null")) {
+			ExtentTestManager.getTest().log(LogStatus.PASS,"'RFI/RFQ/IP Voice Line Number' field is not edited");
+			Log.info("'RFI/RFQ/IP Voice Line Number' field is not edited");
+		}else {
+			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", editvoicelineno, xml);
+		}
 		Log.info("------ Edit Order is successful ------");
+		}
 
 	}
 
-	public void verifyorderpanel_changeorder(String application, String changeorderno, String changevoicelineno) throws InterruptedException, DocumentException, IOException {
+	public void verifyorderpanel_changeorder(String application, String ChangeOrder_newOrderNumber, String changevoicelineno, String changeOrderSelection_newOrder,
+			String changeOrderSelection_existingOrder, String ChangeOrder_existingOrderNumber) throws InterruptedException, DocumentException, IOException {
 
 		ScrolltoElement(application, "userspanel_header", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-		click_commonMethod(application, "Change Order", "changeorderlink", xml);
-		compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-		Thread.sleep(1000);
-		click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-		List<WebElement> ChangeOrder_DropdownList= getwebelements(xml.getlocator("//locators/" + application + "/changeorder_dropdownlist"));
-		int ChangeOrder_Dropdown_count= ChangeOrder_DropdownList.size();
-		if(ChangeOrder_Dropdown_count> 1)
-		{
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/changeorder_dropdownvalue")));
-			Thread.sleep(3000);
-
-			//Cancel change order
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-
-			//Change order
-			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
-			click_commonMethod(application, "Change Order", "changeorderlink", xml);
-			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
-			Thread.sleep(1000);
-			click_commonMethod(application, "Choose order dropdown", "changeorder_chooseorderdropdown", xml);
-			Clickon(getwebelement(xml.getlocator("//locators/" + application + "/changeorder_dropdownvalue")));
-			Thread.sleep(3000);
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Selected order from dropdown");
-			click_commonMethod(application, "OK", "changeorder_okbutton", xml);
-			Thread.sleep(1000);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Navigated to order panel in view service page");
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
-			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
-			Log.info("------ Change Order is successful ------");
-
+				
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Verifying 'Change Order' Functionality");
+		
+		if((changeOrderSelection_newOrder.equalsIgnoreCase("No")) && (changeOrderSelection_existingOrder.equalsIgnoreCase("No"))) {
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Change Order is not performed");
+			Log.info("Change Order is not performed");
 		}
-		else
-		{
-			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
-			click_commonMethod(application, "Order Number", "changeordernumber", xml);
-			Thread.sleep(2000);
-			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
-			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
-			Thread.sleep(3000);
-			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
-			click_commonMethod(application, "Cancel", "changeorder_cancelbutton", xml);
-			ScrolltoElement(application, "userspanel_header", xml);
-			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-
+		else if(changeOrderSelection_newOrder.equalsIgnoreCase("Yes")) {
+			
 			//Change Order
 			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
 			click_commonMethod(application, "Change Order", "changeorderlink", xml);
@@ -1091,7 +1078,7 @@ public class APT_IPAccessCMSDataCenterHelper extends DriverHelper {
 			click_commonMethod(application, "Select order switch", "changeorder_selectorderswitch", xml);
 			click_commonMethod(application, "Order Number", "changeordernumber", xml);
 			Thread.sleep(2000);
-			addtextFields_commonMethod(application, "Order Number", "changeordernumber", changeorderno, xml);
+			addtextFields_commonMethod(application, "Order Number", "changeordernumber", ChangeOrder_newOrderNumber, xml);
 			click_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", xml);
 			Thread.sleep(3000);
 			addtextFields_commonMethod(application, "RFI Voice Line Number", "changeordervoicelinenumber", changevoicelineno, xml);
@@ -1099,14 +1086,36 @@ public class APT_IPAccessCMSDataCenterHelper extends DriverHelper {
 			Thread.sleep(1000);
 			ScrolltoElement(application, "userspanel_header", xml);
 			Thread.sleep(1000);
-			compareText(application, "Order Panel Header", "orderpanelheader", "Order", xml);
-			Log.info("Navigated to order panel in view service page");
-			ExtentTestManager.getTest().log(LogStatus.PASS, "Step : Navigated to order panel in view service page");
-			compareText(application, "Order Number", "ordernumbervalue", changeorderno, xml);
+			compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_newOrderNumber, xml);
 			compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
 			Log.info("------ Change Order is successful ------");
 		}
+		else if(changeOrderSelection_existingOrder.equalsIgnoreCase("yes")) 
+		{
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Performing Change Order functionality");
+			
+			ScrolltoElement(application, "userspanel_header", xml);
+			Thread.sleep(1000);
+			click_commonMethod(application, "Action dropdown", "orderactionbutton", xml);
+			click_commonMethod(application, "Change Order", "changeorderlink", xml);
+			compareText(application, "Change Order header", "changeorderheader", "Change Order", xml);
+			Thread.sleep(1000);
+			
+				addDropdownValues_commonMethod(application, "Order/Contract Number (Parent SID)", "changeorder_chooseorderdropdown", ChangeOrder_existingOrderNumber, xml);
+				
+				click_commonMethod(application, "OK", "changeorder_okbutton", xml);
+				Thread.sleep(1000);
+				ScrolltoElement(application, "userspanel_header", xml);
+				Thread.sleep(1000);
+				compareText(application, "Order Number", "ordernumbervalue", ChangeOrder_existingOrderNumber, xml);
+				compareText(application, "RFI Voice Line Number", "ordervoicelinenumbervalue", changevoicelineno, xml);
+				Log.info("------ Change Order is successful ------");
+	
+		}
+		
 	}
+	
+	
 
 	public void verifyservicepanelInformationinviewservicepage(String application, String sid, String servicetype
 			, String networkConfig_dropdownvalue, String Remarks, String terminationdate, String billingtypevalue, String email
@@ -2240,7 +2249,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		compareText(application, "Country", "viewpage_country", AS_Country, xml);
 
 		//Existing City
-			compareText(application, "City", "viewpage_city", AS_City, xml);
+			GetText(application, "City", "viewpage_city");
 
 		//Site
 			compareText(application, "Site", "viewpage_site", CPE_SiteEdit, xml);
@@ -2445,7 +2454,7 @@ verifysuccessmessage(application, "Sync started successfully. Please check the s
 		click_commonMethod(application, "OK", "statuspage_okbutton", xml);
 		Thread.sleep(2000);
 		scrollToTop();
-		compareText(application, "Device status update success message", "Sync_successmsg", "Device Status history successfully changed", xml);
+		compareText(application, "Device status update success message", "Sync_successmsg", "Device Status History successfully changed.", xml);
 		Thread.sleep(1000);
 		scrolltoend();
 		//verify 'new status' table column headers
@@ -10859,7 +10868,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 			
 			selectValueInsideDropdown(application, "ipv4_subnetSizeValue" , "Sub Net Size" , subnetSize_ipv4, xml);
 			
-			selectValueInsideDropdown(application, "ipv4_cityValue" , "City", cityValue_Ipv4, xml);
+			isDisplayed(application, "ipv4_cityValue", "City");
 			
 			
 			String availablePools = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/availablePool_IPv4_messages")));
@@ -10885,7 +10894,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 			
 			int r = addressRangeIpv4Dropdownvalue.size();
 			if(r<=1) {
-				ExtentTestManager.getTest().log(LogStatus.FAIL, "No value displaying under 'Interface Address Range _ IPv4'");
+				ExtentTestManager.getTest().log(LogStatus.INFO, "No value displaying under 'Interface Address Range _ IPv4'");
 				Log.info("No value displaying under 'Interface Address Range _ IPv4'");
 			}else {
 				
@@ -10904,7 +10913,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 			  
 			  String interfaceValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/interfaceAddress_textField")).getAttribute("value");
 			  if(interfaceValueIntextField.isEmpty()) {
-				  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values dipslaying under 'Address_IPv4' text field");
+				  ExtentTestManager.getTest().log(LogStatus.INFO, "No values dipslaying under 'Address_IPv4' text field");
 				  System.out.println("No values dipslaying under 'Address_IPv4' text field");
 			  }else {
 				  ExtentTestManager.getTest().log(LogStatus.PASS, "value in 'Address_IPv4' text field is displaying as: "+interfaceValueIntextField);
@@ -10940,6 +10949,11 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 				click_commonMethod(application, "Allocate Subnet", "addInterface_allocateSubnet", xml);
 				clickOnBankPage();
 				
+				String EIPSubnetAllocation_Header=getwebelement(xml.getlocator("//locators/" + application + "/eipsubnetallocation_header")).getText();
+				if(EIPSubnetAllocation_Header.equalsIgnoreCase("EIP Subnet Allocation")) {
+				click_commonMethod(application, "x", "EIPallocation_xButton", xml);
+				}
+				
 				waitForpageload();   waitforPagetobeenable();
 				
 				click_commonMethod(application, "Get Address", "getAddress_IPv6", xml);
@@ -10950,7 +10964,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 				
 				int r = addressRangeIpv6Dropdownvalue.size();
 				if(r<=1) {
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "No value displaying under 'Interface Address Range _ IPv6'");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "No value displaying under 'Interface Address Range _ IPv6'");
 					Log.info("No value displaying under 'Interface Address Range _ IPv6'");
 				}else {
 					
@@ -11153,7 +11167,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 		public void clickOnEditMultilink_AccessSWitch(String application, String interfaceName) throws InterruptedException, DocumentException {
 			
 			waitForpageload();  waitforPagetobeenable();
-			
+			try {
 			scrolltoend();
 			scrolltoview(getwebelement(xml.getlocator("//locators/" + application + "/distributionSwitch_ActionDropdown")));
 			Thread.sleep(1000);
@@ -11164,6 +11178,16 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 			click_commonMethod(application, "Edit", "distributionSwitch_editLink", xml);
 			Thread.sleep(1000);
 			waitForpageload();   waitforPagetobeenable();
+			
+			}catch(NoSuchElementException e) {
+				e.printStackTrace();
+				ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+				System.out.println(  e+ " : Field is not displayed");
+			}catch(Exception e) {
+				e.printStackTrace();
+				ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+				System.out.println(  e+" : Field is not displayed");
+			}
 			
 		}
 		
@@ -11317,7 +11341,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 				
 				int r = addressRangeIpv4Dropdownvalue.size();
 				if(r<=1) {
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "No value displaying under 'Interface Address Range _ IPv4'");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "No value displaying under 'Interface Address Range _ IPv4'");
 					Log.info("No value displaying under 'Interface Address Range _ IPv4'");
 				}else {
 					
@@ -11336,7 +11360,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 				  
 				  String interfaceValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/interfaceAddress_textField")).getAttribute("value");
 				  if(interfaceValueIntextField.isEmpty()) {
-					  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values dipslaying under 'Address_IPv4' text field");
+					  ExtentTestManager.getTest().log(LogStatus.INFO, "No values dipslaying under 'Address_IPv4' text field");
 					  System.out.println("No values dipslaying under 'Address_IPv4' text field");
 				  }else {
 					  ExtentTestManager.getTest().log(LogStatus.PASS, "value in 'Address_IPv4' text field is displaying as: "+interfaceValueIntextField);
@@ -11381,7 +11405,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 					
 					int r = addressRangeIpv6Dropdownvalue.size();
 					if(r<=1) {
-						ExtentTestManager.getTest().log(LogStatus.FAIL, "No value displaying under 'Interface Address Range _ IPv6'");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "No value displaying under 'Interface Address Range _ IPv6'");
 						Log.info("No value displaying under 'Interface Address Range _ IPv6'");
 					}else {
 						
@@ -11400,7 +11424,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 					  
 					  String interfaceValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/interfaceAddressIPv6_textField")).getAttribute("value");
 					  if(interfaceValueIntextField.isEmpty()) {
-						  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values dipslaying under 'Address_IPv6' text field");
+						  ExtentTestManager.getTest().log(LogStatus.INFO, "No values dipslaying under 'Address_IPv6' text field");
 						  System.out.println("No values dipslaying under 'Address_IPv6' text field");
 					  }else {
 						  ExtentTestManager.getTest().log(LogStatus.PASS, "value in 'Address_IPv6' text field is displaying as: "+interfaceValueIntextField);
@@ -11489,6 +11513,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 				Thread.sleep(2000);
 				scrolltoend();
 				click_commonMethod(application, "Execute and Save", "addInterface_executeAndSaveButton" , xml);
+				 verifysuccessmessage(application, "Interface successfully updated.");
 
 			}else {
 				ExtentTestManager.getTest().log(LogStatus.FAIL, "'Configuration' panel is not displaying");
@@ -11497,6 +11522,25 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 		  }else {
 			  scrolltoend();
 				click_commonMethod(application, "OK" , "addInterface_okButton" , xml);
+				
+				Alert alert = driver.switchTo().alert();       
+				  // Capturing alert message.    
+				    String alertMessage= driver.switchTo().alert().getText();
+				    if(alertMessage.isEmpty()) {
+				       ExtentTestManager.getTest().log(LogStatus.FAIL, "No message displays");
+				          System.out.println("No Message displays"); 
+				    }else {
+				       ExtentTestManager.getTest().log(LogStatus.PASS, "Alert message displays as: "+alertMessage);
+				          System.out.println("text message for alert displays as: "+alertMessage);
+				    }
+				  
+				  try {  
+				    alert.accept();
+				    Thread.sleep(2000);
+				    verifysuccessmessage(application, "Interface successfully updated.");
+				  }catch(Exception e) {
+				     e.printStackTrace();
+				  } 
 		  }
 		}
 		
@@ -11507,10 +11551,10 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 				String bandwidth, String vlan, String speed, String duplex, String ivManagement) throws InterruptedException, DocumentException, 
 		IOException { 
 			
+			try {
 			boolean addressValue=false;
 			String expectedAvailablePoolvalue = "None of applicable pools contains a largest available fit which is equal to the selected network size. Please contact RIPEmaster team.";
 			waitForpageload();   waitforPagetobeenable();
-			
 			scrollToTop();
 			
 		//Configure Interface on Device	
@@ -11568,7 +11612,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 				
 				int r = addressRangeIpv4Dropdownvalue.size();
 				if(r<=1) {
-					ExtentTestManager.getTest().log(LogStatus.FAIL, "No value displaying under 'Interface Address Range _ IPv4'");
+					ExtentTestManager.getTest().log(LogStatus.INFO, "No value displaying under 'Interface Address Range _ IPv4'");
 					Log.info("No value displaying under 'Interface Address Range _ IPv4'");
 				}else {
 					
@@ -11587,7 +11631,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 				  
 				  String interfaceValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/interfaceAddress_textField")).getAttribute("value");
 				  if(interfaceValueIntextField.isEmpty()) {
-					  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values dipslaying under 'Address_IPv4' text field");
+					  ExtentTestManager.getTest().log(LogStatus.INFO, "No values dipslaying under 'Address_IPv4' text field");
 					  System.out.println("No values dipslaying under 'Address_IPv4' text field");
 				  }else {
 					  ExtentTestManager.getTest().log(LogStatus.PASS, "value in 'Address_IPv4' text field is displaying as: "+interfaceValueIntextField);
@@ -11633,7 +11677,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 					
 					int r = addressRangeIpv6Dropdownvalue.size();
 					if(r<=1) {
-						ExtentTestManager.getTest().log(LogStatus.FAIL, "No value displaying under 'Interface Address Range _ IPv6'");
+						ExtentTestManager.getTest().log(LogStatus.INFO, "No value displaying under 'Interface Address Range _ IPv6'");
 						Log.info("No value displaying under 'Interface Address Range _ IPv6'");
 					}else {
 						
@@ -11653,7 +11697,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 					  
 					  String interfaceValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/interfaceAddressIPv6_textField")).getAttribute("value");
 					  if(interfaceValueIntextField.isEmpty()) {
-						  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values dipslaying under 'Address_IPv6' text field");
+						  ExtentTestManager.getTest().log(LogStatus.INFO, "No values dipslaying under 'Address_IPv6' text field");
 						  System.out.println("No values dipslaying under 'Address_IPv6' text field");
 					  }else {
 						  ExtentTestManager.getTest().log(LogStatus.PASS, "value in 'Address_IPv6' text field is displaying as: "+interfaceValueIntextField);
@@ -11727,6 +11771,15 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
 			  scrolltoend();
 				click_commonMethod(application, "OK" , "addInterface_okButton" , xml);
 		  }
+		}catch(NoSuchElementException e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL, e+ " : Field is not displayed");
+			System.out.println(  e+ " : Field is not displayed");
+		}catch(Exception e) {
+			e.printStackTrace();
+			ExtentTestManager.getTest().log(LogStatus.FAIL,  e+" : Field is not displayed");
+			System.out.println(  e+" : Field is not displayed");
+		}
 		}
 
 		
@@ -11970,22 +12023,25 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
         					
         					ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
         					System.out.println("Message is verified. It is displaying as: "+alrtmsg);
-        					
+        					successScreenshot(application);
         				}else {
         					
         					ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
         					System.out.println("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+        					successScreenshot(application);
         				}
         				
         			}else {
         				ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
         				System.out.println(" Success Message is not displaying");
+        				
         			}
         			
         		}catch(Exception e) {
         			Log.info("failure in fetching success message");
         			ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
         			System.out.println(expected+ " message is not getting dislpayed");
+        			successScreenshot(application);
         		}
 
         	}
@@ -12141,7 +12197,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
       				
       				int r = addressRangeIpv4Dropdownvalue.size();
       				if(r<=1) {
-      					ExtentTestManager.getTest().log(LogStatus.FAIL, "No value displaying under 'Interface Address Range _ IPv4'");
+      					ExtentTestManager.getTest().log(LogStatus.INFO, "No value displaying under 'Interface Address Range _ IPv4'");
       					Log.info("No value displaying under 'Interface Address Range _ IPv4'");
       				}else {
       					
@@ -12160,7 +12216,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
       				  
       				  String interfaceValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/interfaceAddress_textField")).getAttribute("value");
       				  if(interfaceValueIntextField.isEmpty()) {
-      					  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values dipslaying under 'Address_IPv4' text field");
+      					  ExtentTestManager.getTest().log(LogStatus.INFO, "No values dipslaying under 'Address_IPv4' text field");
       					  System.out.println("No values dipslaying under 'Address_IPv4' text field");
       				  }else {
       					  ExtentTestManager.getTest().log(LogStatus.PASS, "value in 'Address_IPv4' text field is displaying as: "+interfaceValueIntextField);
@@ -12206,7 +12262,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
       					
       					int r = addressRangeIpv6Dropdownvalue.size();
       					if(r<=1) {
-      						ExtentTestManager.getTest().log(LogStatus.FAIL, "No value displaying under 'Interface Address Range _ IPv6'");
+      						ExtentTestManager.getTest().log(LogStatus.INFO, "No value displaying under 'Interface Address Range _ IPv6'");
       						Log.info("No value displaying under 'Interface Address Range _ IPv6'");
       					}else {
       						
@@ -12380,9 +12436,11 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
       					Log.info("Subnet Type value is not displaying as expected. It is displaying as: " + subnetTypevalue);
       				}
       				
-      				selectValueInsideDropdown(application, "ipv4_subnetSizeValue" , "Sub Net Size" , subnetSize_ipv4, xml);
+      				//*selectValueInsideDropdown(application, "ipv4_subnetSizeValue" , "Sub Net Size" , subnetSize_ipv4, xml);
+      				GetText(application, "Sub Net Size", "ipv4_subnetSizeValue");
       				
-      				selectValueInsideDropdown(application, "ipv4_cityValue" , "City", cityValue_Ipv4, xml);
+      				//*selectValueInsideDropdown(application, "ipv4_cityValue" , "City", cityValue_Ipv4, xml);
+      				GetText(application, "City", "ipv4_cityValue");
       				
       				Thread.sleep(6000);
       				
@@ -12409,7 +12467,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
       				
       				int r = addressRangeIpv4Dropdownvalue.size();
       				if(r<=1) {
-      					ExtentTestManager.getTest().log(LogStatus.FAIL, "No value displaying under 'Interface Address Range _ IPv4'");
+      					ExtentTestManager.getTest().log(LogStatus.INFO, "No value displaying under 'Interface Address Range _ IPv4'");
       					Log.info("No value displaying under 'Interface Address Range _ IPv4'");
       				}else {
       					
@@ -12428,7 +12486,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
       				  
       				  String interfaceValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/interfaceAddress_textField")).getAttribute("value");
       				  if(interfaceValueIntextField.isEmpty()) {
-      					  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values dipslaying under 'Address_IPv4' text field");
+      					  ExtentTestManager.getTest().log(LogStatus.INFO, "No values dipslaying under 'Address_IPv4' text field");
       					  System.out.println("No values dipslaying under 'Address_IPv4' text field");
       				  }else {
       					  ExtentTestManager.getTest().log(LogStatus.PASS, "value in 'Address_IPv4' text field is displaying as: "+interfaceValueIntextField);
@@ -12474,7 +12532,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
       					
       					int r = addressRangeIpv6Dropdownvalue.size();
       					if(r<=1) {
-      						ExtentTestManager.getTest().log(LogStatus.FAIL, "No value displaying under 'Interface Address Range _ IPv6'");
+      						ExtentTestManager.getTest().log(LogStatus.INFO, "No value displaying under 'Interface Address Range _ IPv6'");
       						Log.info("No value displaying under 'Interface Address Range _ IPv6'");
       					}else {
       						
@@ -12494,7 +12552,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
       					  
       					  String interfaceValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/interfaceAddressIPv6_textField")).getAttribute("value");
       					  if(interfaceValueIntextField.isEmpty()) {
-      						  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values dipslaying under 'Address_IPv6' text field");
+      						  ExtentTestManager.getTest().log(LogStatus.INFO, "No values dipslaying under 'Address_IPv6' text field");
       						  System.out.println("No values dipslaying under 'Address_IPv6' text field");
       					  }else {
       						  ExtentTestManager.getTest().log(LogStatus.PASS, "value in 'Address_IPv6' text field is displaying as: "+interfaceValueIntextField);
@@ -12661,10 +12719,10 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
       					Log.info("Subnet Type value is not displaying as expected. It is displaying as: " + subnetTypevalue);
       				}
       				
-      				selectValueInsideDropdown(application, "ipv4_subnetSizeValue" , "Sub Net Size" , subnetSize_ipv4, xml);
-      				
-      				selectValueInsideDropdown(application, "ipv4_cityValue" , "City", cityValue_Ipv4, xml);
-      				
+      				//**selectValueInsideDropdown(application, "ipv4_subnetSizeValue" , "Sub Net Size" , subnetSize_ipv4, xml);
+      				//**selectValueInsideDropdown(application, "ipv4_cityValue" , "City", cityValue_Ipv4, xml);
+      				GetText(application, "Sub Net Size", "ipv4_subnetSizeValue");
+      				GetText(application, "City", "ipv4_cityValue");
       				
       				String availablePools = Gettext(getwebelement(xml.getlocator("//locators/" + application + "/availablePool_IPv4_messages")));
       				if(availablePools.equals(expectedAvailablePoolvalue)) {
@@ -12689,7 +12747,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
       				
       				int r = addressRangeIpv4Dropdownvalue.size();
       				if(r<=1) {
-      					ExtentTestManager.getTest().log(LogStatus.FAIL, "No value displaying under 'Interface Address Range _ IPv4'");
+      					ExtentTestManager.getTest().log(LogStatus.INFO, "No value displaying under 'Interface Address Range _ IPv4'");
       					Log.info("No value displaying under 'Interface Address Range _ IPv4'");
       				}else {
       					
@@ -12708,7 +12766,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
       				  
       				  String interfaceValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/interfaceAddress_textField")).getAttribute("value");
       				  if(interfaceValueIntextField.isEmpty()) {
-      					  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values dipslaying under 'Address_IPv4' text field");
+      					  ExtentTestManager.getTest().log(LogStatus.INFO, "No values dipslaying under 'Address_IPv4' text field");
       					  System.out.println("No values dipslaying under 'Address_IPv4' text field");
       				  }else {
       					  ExtentTestManager.getTest().log(LogStatus.PASS, "value in 'Address_IPv4' text field is displaying as: "+interfaceValueIntextField);
@@ -12754,7 +12812,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
       					
       					int r = addressRangeIpv6Dropdownvalue.size();
       					if(r<=1) {
-      						ExtentTestManager.getTest().log(LogStatus.FAIL, "No value displaying under 'Interface Address Range _ IPv6'");
+      						ExtentTestManager.getTest().log(LogStatus.INFO, "No value displaying under 'Interface Address Range _ IPv6'");
       						Log.info("No value displaying under 'Interface Address Range _ IPv6'");
       					}else {
       						
@@ -12774,7 +12832,7 @@ public void clickOnAddInterfaceLink_CMSdata(String application) throws Interrupt
       					  
       					  String interfaceValueIntextField = getwebelement(xml.getlocator("//locators/" + application + "/interfaceAddressIPv6_textField")).getAttribute("value");
       					  if(interfaceValueIntextField.isEmpty()) {
-      						  ExtentTestManager.getTest().log(LogStatus.FAIL, "No values dipslaying under 'Address_IPv6' text field");
+      						  ExtentTestManager.getTest().log(LogStatus.INFO, "No values dipslaying under 'Address_IPv6' text field");
       						  System.out.println("No values dipslaying under 'Address_IPv6' text field");
       					  }else {
       						  ExtentTestManager.getTest().log(LogStatus.PASS, "value in 'Address_IPv6' text field is displaying as: "+interfaceValueIntextField);

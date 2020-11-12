@@ -1817,7 +1817,10 @@ public void Moveon(WebElement el) {
 					ExtentTestManager.getTest().log(LogStatus.PASS, "Step: Clicked on '"+labelname+"' button");
 				}
 
-			} catch (Exception e) {
+			}catch(StaleElementReferenceException er) {
+				er.printStackTrace();
+				element.click();
+			}catch (Exception e) {
 				ExtentTestManager.getTest().log(LogStatus.FAIL,"Step: Clicking on '"+labelname+"' button is unsuccessful");
 				e.printStackTrace();
 			}
@@ -1894,6 +1897,14 @@ public void successScreenshot(String application) {
 	String screenshotBase64 = "data:image/jpg;base64," +((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
 	String ScreenshottoReport= ExtentTestManager.getTest().addScreenCapture(screenshotBase64);
 	ExtentTestManager.getTest().log(LogStatus.PASS, ScreenshottoReport);
+	
+	}
+
+
+public void failureScreenshot(String application) {
+	String screenshotBase64 = "data:image/jpg;base64," +((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
+	String ScreenshottoReport= ExtentTestManager.getTest().addScreenCapture(screenshotBase64);
+	ExtentTestManager.getTest().log(LogStatus.FAIL, ScreenshottoReport);
 	
 	}
 

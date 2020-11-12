@@ -46,7 +46,7 @@ public class APT_MCS_CreateOrder_IPVPNHelper extends DriverHelper {
 		super(dr);
 		// TODO Auto-generated constructor stub
 	}
-
+//Abhay
 	WebElement el;
 
 	SoftAssert sa = new SoftAssert();
@@ -5518,7 +5518,7 @@ public class APT_MCS_CreateOrder_IPVPNHelper extends DriverHelper {
 		//compareText(application, "Show Infovista Report Link", "ShowNewInfovistaReportLink", "Show Infovista Report");
 		compareText(application, "Show New Infovista Report Link", "ShowNewInfovistaReportLink", "Show New Infovista Report");
 		compareText(application, "Manage Link", "manageLink", "Manage");
-		if((!Subtype.equalsIgnoreCase("IPVPN IPSec"))&& (!Subtype.equalsIgnoreCase("IPVPN Access"))) {
+		if(Subtype.equalsIgnoreCase("IPVPN Plus")) {
 		compareText(application, "Synchronize Link", "SynchronizeServiceLink", "Synchronize");
 	}
 		//compareText(application, "Manage Subnets Ipv6 Link", "ManageSubnetsIpv6Link", "Manage Subnets Ipv6");
@@ -7362,7 +7362,12 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		EnterTextValue(application, VPNRouterId, "Router Id", "VPNRouterId");
 		EnterTextValue(application, VPNManagementAdd, "Management Address", "VPNManagementAdd");
 		//addDropdownValues_commonMethod(application, "Vendor/Model", "VPNVendoeModel", VPNVendorModel, xml);
+		if(!ServiceSubType.equalsIgnoreCase("SwiftNet")) {
 		click(application, "Add Premise Toggle", "AddPrimierToggle");
+		}else
+		{
+			click(application, "Add Premise Toggle", "AddPrimierToggleSwiftNet");
+		}
 		Thread.sleep(2000);
 		EnterTextValueCommon(application, "Testing", "Premise Name", "TextValueCommon");
 		EnterTextValueCommon(application, "123", "Premise Code", "TextValueCommon");
@@ -7400,8 +7405,9 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		if(ServiceSubType.equalsIgnoreCase("SwiftNet")) {
 		EnterTextValue(application, SamPName, "Snmp V3 User Name", "VPNSampName");
 		}
-		click(application, "OK in Edit", "VPN_OKbutton");
-		Thread.sleep(5000);
+		click(application, "OK to Add Device", "VPN_OKbutton");
+		Thread.sleep(2000);
+		waitforPageenable();
 		compareText(application, "Add Site Device Successful Message for VPN Order", "VPN_AddDeviceSuccessfulMessage", "Site device created successfully");
 	Thread.sleep(2000);
 	}
@@ -8104,7 +8110,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 		Thread.sleep(3000);
 		if(NoOfDevice<5)
 		{
-			click(application, "Delete CPE Device", "ConfigureCPE");
+			click(application, "Click On Configure Button", "ConfigureCPE");
 			Thread.sleep(3000);
 		}
 		else if(NoOfDevice>5)
@@ -8126,7 +8132,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
 			scrolltoview(Configuration_header);
 			
 	        if(ServiceSubType.equalsIgnoreCase("IPVPN Plus")) {
-	        Clickon(getwebelement("//span[text()='Generate Configuration']"));
+	        Clickon(getwebelement("//span[text()='Generate']"));
  			Thread.sleep(2000);
  			waitforPageenable();
  			ExtentTestManager.getTest().log(LogStatus.PASS, "Click on Generate Button");
@@ -8134,7 +8140,7 @@ ClickCommon(application, "Edit", "AddVPNSiteCommonLink");
   			Thread.sleep(2000);
   			waitforPageenable();
   			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Save Configuration");
-  			 Clickon(getwebelement("//span[text()='Execute Configuration on Device']"));
+  			 Clickon(getwebelement("//span[text()='Execute Configuration']"));
   			Thread.sleep(2000);
   			waitforPageenable();
   			ExtentTestManager.getTest().log(LogStatus.PASS, "Clicked on Execute Configuration");
@@ -10952,13 +10958,40 @@ ClickCommon(application, "View", "AddVPNSiteCommonLink");
 	
 	
 	
-	 public boolean findPanelHeader(String application, String devicePanelName) throws InterruptedException, DocumentException {
+	 public boolean findPanelHeader(String application, String devicePanelName, String VPNSiterderNum ) throws InterruptedException, DocumentException {
 
-		 waitForpageload();
-		 waitforPagetobeenable();
-		 Thread.sleep(1000);
 		 
-		  scrolltoend();
+		 WebElement VPNSiteOrder_header= getwebelement(xml.getlocator("//locators/" + application + "/VPNSiteOrderHeader"));
+			scrolltoview(VPNSiteOrder_header);
+			List<WebElement> ExistingUsers= driver.findElements(By.xpath("//div[text()='VPN Site Orders']/parent::div/following-sibling::div//div[@ref='eBodyViewport']//div[@role='row']"));
+			int NoOfUsers = ExistingUsers.size();
+			System.out.println("Numberofuser="+ NoOfUsers);
+
+			if(NoOfUsers==1)
+			{
+				click(application, "VPN Order Radio button", "VPNSiteOrderRadio");
+				Thread.sleep(3000);
+			}
+			else if(NoOfUsers>=1)
+			{
+				WebElement AddedUser = driver
+						.findElement(By.xpath("//div[contains(text(),'" + VPNSiterderNum+ "')]//parent::div//parent::div//preceding-sibling::div//span[@class='ag-selection-checkbox']"));
+				AddedUser.click();
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : clicked on Existing VPN Site Order radio button");
+			}
+			else
+			{
+				ExtentTestManager.getTest().log(LogStatus.PASS, "Step : No Order displayed");
+
+			}
+
+			click(application, "Action dropdown", "VPNSiteactionbutton");
+			ClickCommon(application, "View", "AddVPNSiteCommonLink");
+			waitforPageenable();
+	        scrolltoend();
+
+		 
+		 
 		  Thread.sleep(2000);
 		  WebElement el=null;
 		  boolean panelheader=false;
@@ -11022,8 +11055,8 @@ ClickCommon(application, "View", "AddVPNSiteCommonLink");
   	   fetchValueFromViewPage(application, "Vendor/Model");
   	   fetchValueFromViewPage(application, "Management Address");
   	   fetchValueFromViewPage(application, "SNMP Version");
-  	   fetchValueFromViewPage(application, "Snmprw");
-  	   fetchValueFromViewPage(application, "Snmpro");
+  	  // fetchValueFromViewPage(application, "Snmprw");
+  	  // fetchValueFromViewPage(application, "Snmpro");
   	   fetchValueFromViewPage(application, "Country");
   	   fetchValueFromViewPage(application, "City");
   	   fetchValueFromViewPage(application, "Site");
@@ -13319,7 +13352,7 @@ public void isDisplayed(String application, String xpath, String labelname) {
 			click_commonMethod(application, "Action", "viewDevicePage_ActionDropdown", xml);
 			
 			click_commonMethod(application, "Fetch Device Interfaces", "viewDevicePage_fetchDeviceInterfaceLink" , xml);
-			
+			Thread.sleep(3000);
 			
 			//verify success Message
 			String expectedValue="Fetch interfaces started successfully. Please check the sync status of this device. ";
@@ -13342,7 +13375,7 @@ public void isDisplayed(String application, String xpath, String labelname) {
 					System.out.println(" Success Message displays as: "+actualMessage);
 					
 				//click on the 'click here' link
-					click_commonMethod(application, "here", "fetchDeviceInterface_hereLink", xml);
+					//click_commonMethod(application, "here", "fetchDeviceInterface_hereLink", xml);
 					clickLink=true;
 					
 				}
@@ -13355,7 +13388,7 @@ public void isDisplayed(String application, String xpath, String labelname) {
 					System.out.println(" Success Message displays as: "+actualMessage);
 					
 				//click on the 'click here' link
-					click_commonMethod(application, "here", "fetchDeviceInterface_hereLink", xml);
+				//	click_commonMethod(application, "here", "fetchDeviceInterface_hereLink", xml);
 					clickLink=true;
 					
 				}

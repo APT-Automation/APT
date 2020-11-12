@@ -180,6 +180,7 @@ public class APT_MCS_CreateOrder_IPVPNCPESolutionL3 extends DriverTestcase{
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().shownewInfovista("ipvpnservice");
 	ExtentTestManager.endTest();
+	
 	logger= ExtentTestManager.startTest("AddNewDevice-CPEL3");
 	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
 	APT_IPVPNHelper.get().AddNewDevice("ipvpnservice", map.get("ServiceSubType"),map.get("VPN Vendor/Model"),map.get("Router Id"),map.get("Management Address"),map.get("Snmp V3 User Name"));
@@ -331,8 +332,9 @@ public class APT_MCS_CreateOrder_IPVPNCPESolutionL3 extends DriverTestcase{
 	logger= ExtentTestManager.startTest("PEdevice-CPEL3"); 
 	
 	//verify whether Equipment panel is available	
-		boolean EquipmentPanel=APT_IPVPNHelper.get().findPanelHeader("ipvpnservice", "Provider Equipment (PE)");
-		
+	APT_IPVPNHelper.get().searchorder("ipvpnservice", map.get("ServiceIdentification"));
+	boolean EquipmentPanel=APT_IPVPNHelper.get().findPanelHeader("ipvpnservice", "Provider Equipment (PE)",map.get("VPN Site Order Num"));
+
 		if(EquipmentPanel) {
 			
 			APT_IPVPNHelper.get().SelectPEdevice_existingDevice("ipvpnservice", map.get("ExistingPEdevice"));

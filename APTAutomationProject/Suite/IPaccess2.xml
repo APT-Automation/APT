@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="APT Test Suite" thread-count="5" data-provider-thread-count="1" verbose="4"  parallel="tests" >
+
+    
+	<listeners>
+	  <listener class-name="com.colt.qa.listeners.TestListener"/>
+	   <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+    
+	<test name="IPAccess_ColtTotalConfiguration">
+	<classes>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccess_ColtTotalTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccess_VCPEConfigTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccess_VCPEResilientConfigTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccessCMSDataCenterTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccessConfigTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccessMultihomedTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccessNoCPETest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccessResilientConfigTest"/>
+		<class name="com.colt.qa.apttestscripts.APT_IPAccessSpeedboatTest"/>
+		
+	</classes>
+	</test>	
+</suite>	
+
+
+

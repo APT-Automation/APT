@@ -341,7 +341,7 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 			waitforPagetobeenable();
 			
 			scrollToTop();
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 			try {	
 				
 				boolean successMsg=getwebelement(xml.getlocator("//locators/" + application + "/alertMsg")).isDisplayed();
@@ -351,27 +351,28 @@ public static String newordernumber, newVoiceLineNumber, SelectOrderNumber;
 					String alrtmsg=getwebelement(xml.getlocator("//locators/" + application + "/AlertForServiceCreationSuccessMessage")).getText();
 					
 					if(expected.contains(alrtmsg)) {
-						
 						ExtentTestManager.getTest().log(LogStatus.PASS,"Message is verified. It is displaying as: "+alrtmsg);
 						Log.info("Message is verified. It is displaying as: "+alrtmsg);
-						
 						successScreenshot(application);
 						
 					}else {
 						
 						ExtentTestManager.getTest().log(LogStatus.FAIL, "Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg +" .The Expected value is: "+ expected);
 						Log.info("Message is displaying and it gets mismatches. It is displaying as: "+ alrtmsg);
+						failureScreenshot(application);
 					}
 					
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " Success Message is not displaying");
 					Log.info(" Success Message is not displaying");
+					failureScreenshot(application);
 				}
 				
 			}catch(Exception e) {
 				Log.info("failure in fetching success message ");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, expected+ " Message is not displaying");
 				Log.info(expected+ " message is not getting dislpayed");
+				failureScreenshot(application);
 			}
 
 		}
@@ -403,16 +404,19 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 						
 						ExtentTestManager.getTest().log(LogStatus.FAIL, "Service creation message is displaying but the success message display as: "+ alrtmsg);
 						Log.info("Service creation message is displaying and the message gets mismatches. It is displaying as: "+ alrtmsg);
+						failureScreenshot(application);
 					}
 					
 				}else {
 					ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Service updated successfully' message is not displaying after creating service");
+					failureScreenshot(application);
 				}
 				
 			}catch(Exception e) {
 				Log.info("failure in fetching success message - 'Service updated successfully'  ");
 				ExtentTestManager.getTest().log(LogStatus.FAIL, " 'Service updated successfully' message is not displaying after editing the service");
 				Log.info("Success message for edit Service is not getting dislpayed");
+				failureScreenshot(application);
 			}
 
 		}
@@ -1145,16 +1149,12 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		
 		
 	//Carrier IP originating
-//		warningMessage_commonMethod(application, "carrierIPoriginating_warningMessage", "Carrier IP Originating (Address/Mask)", xml);
-		
 		addtextFields_commonMethod(application, "Carrier IP Originating (Address/Mask)", "carrierIPoriginating_textField", carrierIPoriginating, xml);
 		click_commonMethod(application, ">>", "carrierIPoriginating_addButtton", xml);
 		GetTheValuesInsideDropdown(getwebelement(xml.getlocator("//locators/" + application + "/carrierIPOriginating_addedValue_selectDropdownField")), "Carrier IP Originating (Address/Mask)");
 		
 		
 	//Carrier IP Terminating
-//		warningMessage_commonMethod(application, "carrerIPterminating_warningMessage", "Carrier IP Terminating((Address)", xml);
-		
 		addtextFields_commonMethod(application, "Carrier IP Terminating(Address)", "carrierIPterminating_textField", carrierIPterminating, xml);
 		click_commonMethod(application, ">>", "carrierIPterminating_addButton", xml);
 		GetTheValuesInsideDropdown(getwebelement(xml.getlocator("//locators/" + application + "/carrierIPterminating_addedValue_selectDropdownField")), "Carrier IP Terminating (Address)");
@@ -1220,8 +1220,6 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 					}else {
 						
 						//VLAN Tag
-//						edittextFields_commonMethod(application, "VLAN Tag", "vlanTag_textField", vlanTag, xml);
-						
 						String vlanDefaultvalue_afterVlanediting=getwebelement(xml.getlocator("//locators/" + application + "/vlanTag_textField")).getAttribute("value");
 
 					//Sub Interface slot
@@ -1499,7 +1497,13 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		addtextFields_commonMethod(application, "Media IP", "mediaIP_textField", mediaIP, xml);
 		
 	//Reuse NIF Group
-		addCheckbox_commonMethod(application, "reuseNIFgroup_checkbox", "Reuse NIF Group", reuseNIFgroup, "No", xml);
+		if(gateway.contains("SBC")) {
+			Log.info("Reuse NIF Group checkbox will not dipslay, if 'gateway' selected as 'SBC'");
+		}
+		else {
+			addCheckbox_commonMethod(application, "reuseNIFgroup_checkbox", "Reuse NIF Group", reuseNIFgroup, "No", xml);
+		}
+		
 		
 	//Reuse Sig Zone/Part
 		addCheckbox_commonMethod(application, "reuseSigZonePart_checkbox", "Reuse Sig Zone/Part", reuseSigZonePart, "No", xml);
@@ -2343,8 +2347,14 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 		//Media IP
 			compareText_InViewPage(application, "Media IP", mediaIP, xml);
 			
-		//Reuse NIF Group	
-			compareText_InViewPage(application, "Reuse NIF Group", reuseNIFgroup, xml);
+		//Reuse NIF Group
+			if(gateway.contains("SBC")) {
+				Log.info("Reuse NIF field will not display for Gateway 'SBC'");
+			}
+			else {
+				compareText_InViewPage(application, "Reuse NIF Group", reuseNIFgroup, xml);
+			}
+			
 			
 		//Reuse Sig Zone/Port
 			compareText_InViewPage(application, "Reuse Sig Zone/Port", reuseSigZonePart, xml);
@@ -2760,7 +2770,13 @@ public void verifysuccessmessageforEditService(String application) throws Interr
 				edittextFields_commonMethod(application, "Media IP", "mediaIP_textField", edit_mediaIP, xml);
 				
 			//Reuse NIF Group
-				editcheckbox_commonMethod(application, edit_reuseNIFgroup, "reuseNIFgroup_checkbox", "Reuse NIF Group", xml);
+				if(gateway_actualValue.contains("SBC")) {
+					Log.info("Reuse NIF Group checkbox will not display, if gateway contains 'SBC'");
+				}
+				else{
+					editcheckbox_commonMethod(application, edit_reuseNIFgroup, "reuseNIFgroup_checkbox", "Reuse NIF Group", xml);
+				}
+				
 				
 			//Reuse Sig Zone/Part
 				editcheckbox_commonMethod(application, edit_reuseSigZonePart, "reuseSigZonePart_checkbox", "Reuse Sig Zone/Part", xml);
@@ -4486,6 +4502,7 @@ try {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Expected column names are: "+ expectedvalues);
 			
 			addtextFields_commonMethod(application, "Search box", "MAS_PE_searchbox", interfaceName, xml);
+			click_commonMethod(application, "Search", "MAS_PE_searchButton", xml);
 		
 		//Fetches list of common label names	
 			List<WebElement> interfaceLabelnames = getwebelements(xml.getlocator("//locators/" + application + "/MAS_PE_InterfacePanel_labelnames"));
@@ -4515,7 +4532,8 @@ try {
 			
 			String interfaceAddressrangeValue=null;
 					
-			
+			waitforPagetobeenable();
+			scrolltoend();
 			if(MAS_InterfaceAddressRangeIPV6.equalsIgnoreCase("null")) {
 				interfaceAddressrangeValue=MAS_InterfaceAddressRange;
 			}else {
@@ -5186,20 +5204,17 @@ try {
 			
 			ExtentTestManager.getTest().log(LogStatus.INFO, "'Select interface_Add Interface to Service'");
 			
-			
-			
 			waitforPagetobeenable();
 			
 			WebElement interfaceInSericePanelHeader=getwebelement(xml.getlocator("//locators/" + Application + "/InterfaceInService_panelHeader"));
 			scrolltoview(interfaceInSericePanelHeader);
 			Thread.sleep(2000);
 			
-			click_commonMethod(Application, "Interface Column filter", "InteraceColumn_Filter", xml);
+//			click_commonMethod(Application, "Interface Column filter", "InteraceColumn_Filter", xml);
+//			Thread.sleep(1000);
+			addtextFields_commonMethod(Application, "Interface Name/Address", "MAS_PE_searchbox", interfacenumber, xml); 
+			click_commonMethod(Application, "Search", "MAS_PE_searchButton", xml);
 			Thread.sleep(1000);
-			addtextFields_commonMethod(Application, "Filter Text", "filterTxt", interfacenumber, xml); 
-			Thread.sleep(1000);
-			
-			click_commonMethod(Application, "Interface column Header", "InterfaceToSelect_interfaceColumnHeader", xml);
 			
 			selectrowforInterfaceToselecttable(Application, interfacenumber);
 
@@ -5209,39 +5224,12 @@ try {
 				throws IOException, InterruptedException, DocumentException {
 
 			int TotalPages;
-
-			String TextKeyword = Gettext(
-					getwebelement(xml.getlocator("//locators/" + Application + "/InterfaceToselect_totalpage")));
-
-			TotalPages = Integer.parseInt(TextKeyword);
-
-			Log.info("Total number of pages in Interface to select table is: " + TotalPages);
-
-			ab:
-
-			if (TotalPages != 0) {
-				for (int k = 1; k <= TotalPages; k++) {
-
-					// Current page
-					String CurrentPage = Gettext(
-							getwebelement(xml.getlocator("//locators/" + Application + "/InterfaceToselect_currentpage")));
-					int Current_page = Integer.parseInt(CurrentPage);
-
-					assertEquals(k, Current_page);
-
-					Log.info("Currently we are in page number: " + Current_page);
-
-					List<WebElement> results = getwebelements("//div[div[contains(text(),'Interfaces to Select')]]/following-sibling::div[1]//div[div[text()='"+interfacenumber+"']]//span[@class='ag-icon ag-icon-checkbox-unchecked']");
-//					Log.info(results);	
+			
+					List<WebElement> results = getwebelements("//form[div[div[text()='Interfaces to Select']]]//following-sibling::div//div[text()='"+ interfacenumber +"']");
 					int numofrows = results.size();
 					Log.info("no of results: " + numofrows);
 					boolean resultflag;
 
-					if (numofrows == 0) {
-						PageNavigation_NextPageForInterfaceToselect(Application);
-					}
-
-					else {
 						for (int i = 0; i < numofrows; i++) {
 							try {
 								resultflag = results.get(i).isDisplayed();
@@ -5255,7 +5243,7 @@ try {
 									Thread.sleep(1000);
 									
 									click_commonMethod(Application, "Add", "InterfaceToselect_addbuton", xml);
-
+									break;
 								}
 
 							} catch (StaleElementReferenceException e) {
@@ -5267,18 +5255,9 @@ try {
 								// results.get(i).click();
 								Log.info("selected row is : " + i);
 								ExtentTestManager.getTest().log(LogStatus.FAIL, " Failure on selecting an Interface to ad with service ");
-
-
 							}
 						}
-						break ab;
-					}
-				}
-			} else {
-				Log.info("No values found inside the table");
-				Log.info("No values available inside the Interfacetoselect table");
-			}
-
+						
 		}
 
 
@@ -7011,7 +6990,6 @@ public void selectInterface_AndDelete_PEdevice(String application, String device
 		if(getwebelement(xml.getlocator("//locators/" + application + "/existingdevicegrid_CPEdevice")).isDisplayed())
         {
               List<WebElement> addeddevicesList= getwebelements(xml.getlocator("//locators/" + application + "/CPEdevice_fetchAlldevice_inViewPage"));
-//              Log.info(addeddevicesList);
               int AddedDevicesCount= addeddevicesList.size();
               for(int i=0;i<AddedDevicesCount;i++) {
                     String AddedDeviceNameText= addeddevicesList.get(i).getText();

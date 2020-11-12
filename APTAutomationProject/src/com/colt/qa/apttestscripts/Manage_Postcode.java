@@ -85,7 +85,7 @@ public class Manage_Postcode extends DriverTestcase{
 				ExtentTestManager.endTest(); 
 				
 			logger= ExtentTestManager.startTest ("verifyDownloadNtArea");
-				ManagePostcode_Helper.get().verifyDownloadNt("ManageColt");
+				ManagePostcode_Helper.get().verifyDownloadNt("ManageColt", map.get("Downloadspath"));
 				ExtentTestManager.endTest(); 
 			
 			logger= ExtentTestManager.startTest ("delete postcode");
